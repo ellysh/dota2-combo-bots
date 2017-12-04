@@ -7,7 +7,7 @@ local tableItemsToBuy = {
     "item_boots",
     "item_magic_stick",
     "item_enchanted_mango",
-    "item_wind_lace"
+    "item_wind_lace",
     "item_ring_of_regen",
     "item_cloak",
     "item_shadow_amulet",
