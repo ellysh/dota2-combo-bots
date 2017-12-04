@@ -1,28 +1,36 @@
-
-
-----------------------------------------------------------------------------------------------------
+local BotHeroes = {
+  "npc_dota_hero_juggernaut",
+  "npc_dota_hero_crystal_maiden",
+  "npc_dota_hero_skeleton_king",
+  "npc_dota_hero_ursa",
+  "npc_dota_hero_shadow_shaman"
+};
 
 function Think()
-
-
-    if ( GetTeam() == TEAM_RADIANT )
-    then
-        print( "selecting radiant" );
-        SelectHero( 2, "npc_dota_hero_antimage" );
-        SelectHero( 3, "npc_dota_hero_axe" );
-        SelectHero( 4, "npc_dota_hero_bane" );
-        SelectHero( 5, "npc_dota_hero_bloodseeker" );
-        SelectHero( 6, "npc_dota_hero_crystal_maiden" );
-    elseif ( GetTeam() == TEAM_DIRE )
-    then
-        print( "selecting dire" );
-        SelectHero( 7, "npc_dota_hero_drow_ranger" );
-        SelectHero( 8, "npc_dota_hero_earthshaker" );
-        SelectHero( 9, "npc_dota_hero_juggernaut" );
-        SelectHero( 10, "npc_dota_hero_mirana" );
-        SelectHero( 11, "npc_dota_hero_nevermore" );
+  local IDs = GetTeamPlayers(GetTeam());
+  for i,id in pairs(IDs) do
+    if IsPlayerBot(id) then
+      SelectHero(id, BotHeroes[i]);
     end
-
+  end
 end
 
-----------------------------------------------------------------------------------------------------
+function UpdateLaneAssignments()
+  if ( GetTeam() == TEAM_RADIANT ) then
+    return {
+      [1] = LANE_TOP,
+      [2] = LANE_TOP,
+      [3] = LANE_MID,
+      [4] = LANE_BOT,
+      [5] = LANE_BOT,
+    };
+  elseif ( GetTeam() == TEAM_DIRE ) then
+    return {
+      [1] = LANE_BOT,
+      [2] = LANE_BOT,
+      [3] = LANE_MID,
+      [4] = LANE_TOP,
+      [5] = LANE_TOP,
+    };
+  end
+end
