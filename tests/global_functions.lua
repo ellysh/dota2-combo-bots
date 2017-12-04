@@ -3,7 +3,8 @@ require("unit_scoped_functions")
 
 function GetItemCost(item)
     local ItemsCost = {
-        ["item_tango"] = 150
+        ["item_tango"] = 150,
+        ["item_flask"] = 110
     };
 
     return ItemsCost[item]

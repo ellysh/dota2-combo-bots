@@ -1,4 +1,7 @@
-local tableItemsToBuy = {
+package.path = package.path .. ";../?.lua"
+local item_purchase_utility = require("item_purchase_utility")
+
+local itemsToBuy = {
     "item_flask",
     "item_tango",
     "item_branches",
@@ -51,29 +54,6 @@ local tableItemsToBuy = {
     "item_talisman_of_evasion",
 };
 
-
-----------------------------------------------------------------------------------------------------
-
 function ItemPurchaseThink()
-
-    local npcBot = GetBot();
-
-    if ( #tableItemsToBuy == 0 )
-    then
-        npcBot:SetNextItemPurchaseValue( 0 );
-        return;
-    end
-
-    local sNextItem = tableItemsToBuy[1];
-
-    npcBot:SetNextItemPurchaseValue( GetItemCost( sNextItem ) );
-
-    if ( npcBot:GetGold() >= GetItemCost( sNextItem ) )
-    then
-        npcBot:ActionImmediate_PurchaseItem( sNextItem );
-        table.remove( tableItemsToBuy, 1 );
-    end
-
+    item_purchase_utility.PurchaseItem(itemsToBuy)
 end
-
-----------------------------------------------------------------------------------------------------
