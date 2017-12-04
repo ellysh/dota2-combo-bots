@@ -10,8 +10,8 @@ function Bot:SetNextItemPurchaseValue(cost)
     print('Bot:SetNextItemPurchaseValue() - cost = ' .. cost)
 end
 
-function Bot:Action_PurchaseItem(item)
-    print('Bot:Action_PurchaseItem() - item = ' .. item)
+function Bot:ActionImmediate_PurchaseItem(item)
+    print('Bot:ActionImmediate_PurchaseItem() - item = ' .. item)
 end
 
 function Bot:GetGold()

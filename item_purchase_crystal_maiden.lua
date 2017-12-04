@@ -45,7 +45,7 @@ function ItemPurchaseThink()
 
     if ( npcBot:GetGold() >= GetItemCost( sNextItem ) )
     then
-        npcBot:Action_PurchaseItem( sNextItem );
+        npcBot:ActionImmediate_PurchaseItem( sNextItem );
         table.remove( tableItemsToBuy, 1 );
     end
 
