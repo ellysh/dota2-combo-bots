@@ -1,5 +1,5 @@
-package.path = package.path .. ";../?.lua"
-local item_purchase_utility = require("item_purchase_utility")
+local item_purchase_utility = require(
+    GetScriptDirectory() .."/item_purchase_utility")
 
 local itemsToBuy = {
     "item_flask",
