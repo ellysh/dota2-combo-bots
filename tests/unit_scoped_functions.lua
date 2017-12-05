@@ -19,3 +19,30 @@ end
 function Bot:GetGold()
     return TestBot.gold
 end
+
+------------------------------------------------
+
+TEAM_RADIANT = 0
+TEAM_DIRE = 1
+
+LANE_TOP = 0
+LANE_MID = 1
+LANE_BOT = 2
+
+function GetTeam()
+    return TEAM_RADIANT
+end
+
+function GetTeamPlayers(team)
+    return {1, 2, 3, 4, 5}
+end
+
+function IsPlayerBot(playerId)
+    return true
+end
+
+SelectedHero = {}
+
+function SelectHero(playerId, heroName)
+    SelectedHero[playerId] = heroName
+end
