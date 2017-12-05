@@ -1,4 +1,4 @@
-package.path = package.path .. ";../?.lua"
+package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 local item_purchase_utility = require("item_purchase_utility")
 

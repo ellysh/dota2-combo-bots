@@ -6,7 +6,10 @@ GAME_DIR="/home/elly/Games/steamapps/common/dota 2 beta/game/dota/scripts/vscrip
 
 rm -f "$GAME_DIR/"*
 
-for FILE in $FILES
-do
-    ln -s "$BOT_DIR/$FILE" "$GAME_DIR/$FILE"
-done
+cp *.lua "$GAME_DIR"
+cp -R utility "$GAME_DIR"
+
+#for FILE in $FILES
+#do
+#    ln -s "$BOT_DIR/$FILE" "$GAME_DIR/$FILE"
+#done
