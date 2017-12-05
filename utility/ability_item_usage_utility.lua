@@ -1,5 +1,87 @@
 local M = {};
 
+local cache1 = {};
+
+function M.GetLastValues(key, value)
+  if cache1[key] == nil then
+    cache1[key] = {
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+      {value, DotaTime()},
+    };
+  end
+
+  if DotaTime() - cache1[key][1][2] >= 1 then
+    table.remove(cache1[key])
+    table.insert(cache1[key], 1, {value, DotaTime()})
+  end
+
+  return cache1[key];
+end
+
+function M.ConsiderGlyph(tower)
+  if tower ~= nil then return end
+  local recentValues = M.GetLastValues('Health:' .. tower:GetUnitName(), tower:GetHealth());
+  if recentValues[5][1] - recentValues[1][1] > tower:GetHealth() * 0.5 and
+    GetGlyphCooldown() == 0 then
+      GetBot():ActionImmediate_Glyph();
+  end
+end
+
+function M.GetOutermostTower(team, lane)
+
+  if lane == LANE_TOP then
+    if GetTower(team, TOWER_TOP_1) ~= nil then
+      return GetTower(team, TOWER_TOP_1);
+    end
+    if GetTower(team, TOWER_TOP_2) ~= nil then
+      return GetTower(team, TOWER_TOP_2);
+    end
+    if GetTower(team, TOWER_TOP_3) ~= nil then
+      return GetTower(team, TOWER_TOP_3);
+    end
+  end
+
+  if lane == LANE_MID then
+    if GetTower(team, TOWER_MID_1) ~= nil then
+      return GetTower(team, TOWER_MID_1);
+    end
+    if GetTower(team, TOWER_MID_2) ~= nil then
+      return GetTower(team, TOWER_MID_2);
+    end
+    if GetTower(team, TOWER_MID_3) ~= nil then
+      return GetTower(team, TOWER_MID_3);
+    end
+    if GetTower(team, TOWER_BASE_1) ~= nil then
+      return GetTower(team, TOWER_BASE_1);
+    end
+    if GetTower(team, TOWER_BASE_2) ~= nil then
+      return GetTower(team, TOWER_BASE_2);
+    end
+  end
+
+  if lane == LANE_BOT then
+    if GetTower(team, TOWER_BOT_1) ~= nil then
+      return GetTower(team, TOWER_BOT_1);
+    end
+    if GetTower(team, TOWER_BOT_2) ~= nil then
+      return GetTower(team, TOWER_BOT_2);
+    end
+    if GetTower(team, TOWER_BOT_3) ~= nil then
+      return GetTower(team, TOWER_BOT_3);
+    end
+  end
+
+  return GetAncient(team);
+end
+
 function M.GetHeroWith(npcBot, comparison, attr, radius, enemy)
 
   local heroes = npcBot:GetNearbyHeroes(radius, enemy, BOT_MODE_NONE);

@@ -21,6 +21,10 @@ function AbilityUsageThink()
     return;
   end
 
+  utility.ConsiderGlyph(utility.GetOutermostTower(GetTeam(), LANE_TOP));
+  utility.ConsiderGlyph(utility.GetOutermostTower(GetTeam(), LANE_MID));
+  utility.ConsiderGlyph(utility.GetOutermostTower(GetTeam(), LANE_BOT));
+
   local ultTarget = nil;
 
   local enemyHeroes = npcBot:GetNearbyHeroes(ult:GetCastRange(), true, BOT_MODE_NONE);
@@ -43,7 +47,7 @@ function AbilityUsageThink()
   end
 
   if shackles:IsFullyCastable() and
-    #npcBot:GetNearbyHeroes(ult:GetCastRange(), false, BOT_MODE_NONE) >= 1 and
+    #npcBot:GetNearbyHeroes(ult:GetCastRange(), false, BOT_MODE_NONE) >= 2 and
     npcBot:GetMana() - shackles:GetManaCost() > ult:GetManaCost() + shock:GetManaCost() then
     local target = utility.GetHeroWith(npcBot, 'min', 'GetHealth', shackles:GetCastRange(), true);
     if target ~= nil then
