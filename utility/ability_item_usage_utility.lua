@@ -27,7 +27,8 @@ function M.GetLastValues(key, value)
 end
 
 function M.ConsiderGlyph(tower)
-  if tower ~= nil then return end
+  if tower == nil then return end
+
   local recentValues = M.GetLastValues('Health:' .. tower:GetUnitName(), tower:GetHealth());
   if recentValues[5][1] - recentValues[1][1] > tower:GetHealth() * 0.5 and
     GetGlyphCooldown() == 0 then
