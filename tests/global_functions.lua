@@ -6,14 +6,22 @@ function GetScriptDirectory()
 end
 
 function GetItemCost(item)
-    local ItemsCost = {
+    local itemsCost = {
         ["item_tango"] = 150,
         ["item_flask"] = 110
     };
 
-    return ItemsCost[item]
+    return itemsCost[item]
 end
+
+local TestBot = Bot:new()
 
 function GetBot()
     return TestBot
+end
+
+local TestUnit = Unit:new()
+
+function GetTower(team, tower)
+    return TestUnit
 end

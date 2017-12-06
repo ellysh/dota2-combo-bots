@@ -11,5 +11,5 @@ item_purchase_utility.PurchaseItem(itemsToBuy)
 item_purchase_utility.PurchaseItem(itemsToBuy)
 
 -- Buy an item_tango with 150+110 gold cost at the beginning
-assert((TestBot.gold == 365), "item_purchase_utility.PurchaseItem() - failed")
+assert((GetBot():GetGold() == 365), "item_purchase_utility.PurchaseItem() - failed")
 assert((#itemsToBuy == 0), "item_purchase_utility.PurchaseItem() - failed")

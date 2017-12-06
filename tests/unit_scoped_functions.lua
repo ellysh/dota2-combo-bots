@@ -6,18 +6,34 @@ function Bot:new()
     return setmetatable(newObj, self)
 end
 
-TestBot = Bot:new()
-
 function Bot:SetNextItemPurchaseValue(cost)
-    TestBot.item_cost = cost
+    self.item_cost = cost
 end
 
 function Bot:ActionImmediate_PurchaseItem(item)
-    TestBot.gold = TestBot.gold - TestBot.item_cost
+    self.gold = self.gold - self.item_cost
 end
 
 function Bot:GetGold()
-    return TestBot.gold
+    return self.gold
+end
+
+-----------------------------------------------
+
+Unit = {}
+
+function Unit:new()
+    local newObj = {name = "test", health = 100}
+    self.__index = self
+    return setmetatable(newObj, self)
+end
+
+function Unit:GetUnitName()
+    return self.name
+end
+
+function Unit:GetHealth()
+    return self.health
 end
 
 ------------------------------------------------
