@@ -13,6 +13,14 @@ function AbilityUsageThink()
 
   local npcBot = GetBot();
 
+  utility.UseWard(npcBot, "shadow_shaman_mass_serpent_ward");
+  --utility.UseChanneledSingleDisable(npcBot, "shadow_shaman_shackles");
+  --utility.UseSingleDisable(npcBot, "shadow_shaman_voodoo");
+  --utility.UseMultiNuke(npcBot, "shadow_shaman_ether_shock");
+
+--[[
+  local npcBot = GetBot();
+
   if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
     return;
   end
@@ -74,4 +82,5 @@ function AbilityUsageThink()
       return npcBot:ActionPush_UseAbilityOnEntity(hex, target);
     end
   end
+--]]
 end

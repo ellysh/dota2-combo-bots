@@ -89,7 +89,7 @@ function M.UseGlyph()
   UseGlyph(GetOutermostTower(GetTeam(), LANE_BOT));
 end
 
-function M.GetHeroWith(npcBot, comparison, attr, radius, enemy)
+local function GetHeroWith(npcBot, comparison, attr, radius, enemy)
 
   local heroes = npcBot:GetNearbyHeroes(radius, enemy, BOT_MODE_NONE);
   local hero = npcBot;
@@ -128,6 +128,48 @@ function M.GetHeroWith(npcBot, comparison, attr, radius, enemy)
   end
 
   return hero, value;
+
+end
+
+local function UseAbilityOnLocation(npcBot, ability, target)
+  if target ~= nil and ability:IsFullyCastable() then
+    return npcBot:ActionPush_UseAbilityOnLocation(ability, target);
+  end
+end
+
+function M.UseWard(npcBot, ability_name)
+  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
+    return;
+  end
+
+  local ability = npcBot:GetAbilityByName(ability_name);
+  local castRange = ability:GetCastRange();
+  local target = npcBot:FindAoELocation(
+    true,
+    true,
+    npcBot:GetLocation(),
+    castRange,
+    650,        -- TODO: With Aghanim the wards radius became 875
+    0,
+    0)
+
+  if target.count >= 2 then
+    return npcBot:ActionPush_UseAbilityOnLocation(
+      ability,
+      target.targetloc);
+  end
+
+  local towers = npcBot:GetNearbyTowers(castRange, true);
+  if #towers > 0 then
+    target = towers[1]:GetLocation();
+    return npcBot:ActionPush_UseAbilityOnLocation(ability, target);
+  end
+
+  local barracks = npcBot:GetNearbyBarracks(castRange, true);
+  if #barracks > 0 then
+    target = barracks[1]:GetLocation();
+    return npcBot:ActionPush_UseAbilityOnLocation(ability, target);
+  end
 
 end
 
