@@ -9,21 +9,18 @@ local Abilities = {
 };
 
 function AbilityUsageThink()
+  utility.UseGlyph();
 
   local npcBot = GetBot();
-
-  local shock = npcBot:GetAbilityByName(Abilities[1]);
-  local hex = npcBot:GetAbilityByName(Abilities[2]);
-  local shackles = npcBot:GetAbilityByName(Abilities[3]);
-  local ult = npcBot:GetAbilityByName(Abilities[4]);
 
   if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
     return;
   end
 
-  utility.ConsiderGlyph(utility.GetOutermostTower(GetTeam(), LANE_TOP));
-  utility.ConsiderGlyph(utility.GetOutermostTower(GetTeam(), LANE_MID));
-  utility.ConsiderGlyph(utility.GetOutermostTower(GetTeam(), LANE_BOT));
+  local shock = npcBot:GetAbilityByName(Abilities[1]);
+  local hex = npcBot:GetAbilityByName(Abilities[2]);
+  local shackles = npcBot:GetAbilityByName(Abilities[3]);
+  local ult = npcBot:GetAbilityByName(Abilities[4]);
 
   local ultTarget = nil;
 

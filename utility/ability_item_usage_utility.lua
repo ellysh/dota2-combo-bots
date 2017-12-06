@@ -2,7 +2,7 @@ local M = {};
 
 local cache1 = {};
 
-function M.GetLastValues(key, value)
+local function GetLastValues(key, value)
   if cache1[key] == nil then
     cache1[key] = {
       {value, DotaTime()},
@@ -26,17 +26,7 @@ function M.GetLastValues(key, value)
   return cache1[key];
 end
 
-function M.ConsiderGlyph(tower)
-  if tower == nil then return end
-
-  local recentValues = M.GetLastValues('Health:' .. tower:GetUnitName(), tower:GetHealth());
-  if recentValues[5][1] - recentValues[1][1] > tower:GetHealth() * 0.5 and
-    GetGlyphCooldown() == 0 then
-      GetBot():ActionImmediate_Glyph();
-  end
-end
-
-function M.GetOutermostTower(team, lane)
+local function GetOutermostTower(team, lane)
 
   if lane == LANE_TOP then
     if GetTower(team, TOWER_TOP_1) ~= nil then
@@ -81,6 +71,22 @@ function M.GetOutermostTower(team, lane)
   end
 
   return GetAncient(team);
+end
+
+local function UseGlyph(tower)
+  if tower == nil then return end
+
+  local recentValues = GetLastValues('Health:' .. tower:GetUnitName(), tower:GetHealth());
+  if recentValues[5][1] - recentValues[1][1] > tower:GetHealth() * 0.5 and
+    GetGlyphCooldown() == 0 then
+      GetBot():ActionImmediate_Glyph();
+  end
+end
+
+function M.UseGlyph()
+  UseGlyph(GetOutermostTower(GetTeam(), LANE_TOP));
+  UseGlyph(GetOutermostTower(GetTeam(), LANE_MID));
+  UseGlyph(GetOutermostTower(GetTeam(), LANE_BOT));
 end
 
 function M.GetHeroWith(npcBot, comparison, attr, radius, enemy)
