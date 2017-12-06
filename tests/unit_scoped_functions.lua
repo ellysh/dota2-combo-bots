@@ -1,4 +1,26 @@
-Bot = {}
+Unit = {}
+
+function Unit:new()
+    local newObj = {name = "test", health = 100}
+    self.__index = self
+    return setmetatable(newObj, self)
+end
+
+function Unit:GetUnitName()
+    return self.name
+end
+
+function Unit:GetHealth()
+    return self.health
+end
+
+function Unit:IsAlive()
+    return true
+end
+
+-----------------------------------------------
+
+Bot = Unit:new()
 
 function Bot:new()
     local newObj = {gold = 625, item_cost = 0}
@@ -18,22 +40,10 @@ function Bot:GetGold()
     return self.gold
 end
 
------------------------------------------------
+local TestUnit = Unit:new()
 
-Unit = {}
-
-function Unit:new()
-    local newObj = {name = "test", health = 100}
-    self.__index = self
-    return setmetatable(newObj, self)
-end
-
-function Unit:GetUnitName()
-    return self.name
-end
-
-function Unit:GetHealth()
-    return self.health
+function Bot:GetNearbyHeroes(radius, enemies, mode)
+    return { TestUnit }
 end
 
 ------------------------------------------------
@@ -62,3 +72,4 @@ SelectedHero = {}
 function SelectHero(playerId, heroName)
     SelectedHero[playerId] = heroName
 end
+

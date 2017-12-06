@@ -25,3 +25,10 @@ local TestUnit = Unit:new()
 function GetTower(team, tower)
     return TestUnit
 end
+
+local Time = 0.0
+
+function DotaTime()
+    Time = Time + 1
+    return Time
+end
