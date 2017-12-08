@@ -2,38 +2,53 @@ local item_purchase_utility = require(
     GetScriptDirectory() .."/utility/item_purchase_utility")
 
 local itemsToBuy = {
+    -- Starting items
     "item_tango",
+    "item_flask",
     "item_stout_shield",
     "item_branches",
-    "item_branches",
-    "item_boots",
-    "item_magic_stick",
     "item_enchanted_mango",
+
+    -- Early game
+    "item_boots",
+
+    -- Magic wand
+    "item_magic_stick",
+    "item_branches",
+
+    -- Core
+    -- Power Treads
     "item_belt_of_strength",
     "item_gloves",
 
-    "item_broadsword",
-    "item_robe",
-    "item_chainmail",
+    -- Amulet of Mordiggian
+    "item_helm_of_iron_will",
+    "item_gloves",
+    "item_blades_of_attack",
+    "item_recipe_armlet",
 
-    "item_belt_of_strength",
-    "item_ogre_axe",
-    "item_recipe_sange",
-    "item_talisman_of_evasion",
+    -- Blink Dagger
+    "item_blink",
 
+    -- Radiance
+    "item_relic",
+    "item_recipe_radiance",
+
+    -- Extension Items
+    -- Assault Cuirass
     "item_platemail",
-    "item_chainmail",
     "item_hyperstone",
+    "item_chainmail",
     "item_recipe_assault",
 
-    "item_point_booster",
-    "item_staff_of_wizardry",
-    "item_ogre_axe",
-    "item_blade_of_alacrity",
+    -- Mjollnir
+    "item_mithril_hammer",
+    "item_gloves",
+    "item_recipe_maelstrom",
 
-    "item_vitality_booster",
-    "item_vitality_booster",
-    "item_reaver",
+    "item_hyperstone",
+
+    "item_recipe_mjollnir"
 };
 
 function ItemPurchaseThink()

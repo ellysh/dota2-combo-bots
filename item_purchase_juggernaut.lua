@@ -37,6 +37,7 @@ local itemsToBuy = {
     "item_robe",
     "item_recipe_diffusal_blade",
 
+    -- Extension Items
     -- Butterfly
     "item_quarterstaff",
     "item_eagle",
