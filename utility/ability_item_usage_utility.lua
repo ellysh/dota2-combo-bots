@@ -143,13 +143,16 @@ function M.UseWard(npcBot, ability_name)
   end
 
   local ability = npcBot:GetAbilityByName(ability_name);
+
+  if not ability:IsFullyCastable() then return end
+
   local castRange = ability:GetCastRange();
   local target = npcBot:FindAoELocation(
     true,
     true,
     npcBot:GetLocation(),
     castRange,
-    650,        -- TODO: With Aghanim the wards radius became 875
+    400,        -- TODO: With Aghanim the wards radius became 875
     0,
     0)
 
@@ -170,7 +173,82 @@ function M.UseWard(npcBot, ability_name)
     target = barracks[1]:GetLocation();
     return npcBot:ActionPush_UseAbilityOnLocation(ability, target);
   end
+end
 
+function M.UseChanneledSingleDisable(npcBot, ability_name)
+  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
+    return;
+  end
+
+  local ability = npcBot:GetAbilityByName(ability_name);
+
+  if not ability:IsFullyCastable() then return end
+
+  -- Check if an ally hero is near. He will attack the disabled enemy
+  if #npcBot:GetNearbyHeroes(600, false, BOT_MODE_NONE) < 2 then return end
+
+  local castRange = ability:GetCastRange();
+  local target = GetHeroWith(
+    npcBot,
+    'max',
+    'GetRawOffensivePower',
+    castRange,
+    true);
+
+  if target ~= nil then
+      return npcBot:Action_UseAbilityOnEntity(ability, target);
+  end
+end
+
+function M.UseSingleDisable(npcBot, ability_name)
+  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
+    return;
+  end
+
+  local ability = npcBot:GetAbilityByName(ability_name);
+
+  if not ability:IsFullyCastable() then return end
+
+  local castRange = ability:GetCastRange();
+  local target = GetHeroWith(
+    npcBot,
+    'max',
+    'GetRawOffensivePower',
+    castRange,
+    true);
+
+  if target ~= nil then
+      return npcBot:Action_UseAbilityOnEntity(ability, target);
+  end
+end
+
+function M.UseMultiNuke(npcBot, ability_name)
+  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
+    return;
+  end
+
+  local ability = npcBot:GetAbilityByName(ability_name);
+
+  if not ability:IsFullyCastable() then return end
+
+  local castRange = ability:GetCastRange();
+
+  local target = npcBot:GetNearbyHeroes(castRange, true, BOT_MODE_NONE);
+
+  if #target >= 2 then
+      return npcBot:Action_UseAbilityOnEntity(ability, target[1]);
+  end
+
+  target = GetHeroWith(
+    npcBot,
+    'min',
+    'GetHealth',
+    castRange,
+    true);
+
+  if target ~= nil and targt:GetHealth() <= ability:GetAbilityDamage() then
+      return npcBot:Action_UseAbilityOnEntity(ability, target);
+  end
 end
 
 return M;
