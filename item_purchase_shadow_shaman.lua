@@ -23,7 +23,7 @@ local itemsToBuy = {
     "item_ring_of_health",
     "item_recipe_force_staff",
 
-    "item_ward_observer"
+    "item_ward_observer",
 
     -- Aghanim Scepter
     "item_point_booster",
