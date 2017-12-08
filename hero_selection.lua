@@ -7,6 +7,10 @@ local BotHeroes = {
   "npc_dota_hero_shadow_shaman"
 };
 
+function GetBotNames ()
+    return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
+end
+
 function Think()
   local IDs = GetTeamPlayers(GetTeam());
   for i,id in pairs(IDs) do
