@@ -33,3 +33,7 @@ ability_item_usage_utility.UseMultiNuke(
 ability_item_usage_utility.UseChanneledNoTargetDisable(
   GetBot(),
   "ability_item_usage_utility")
+
+ability_item_usage_utility.UseAreaNuke(
+  GetBot(),
+  "crystal_maiden_crystal_nova")

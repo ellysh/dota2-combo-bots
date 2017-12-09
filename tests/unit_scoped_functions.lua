@@ -1,7 +1,12 @@
 Unit = {}
 
 function Unit:new()
-    local newObj = {name = "test", health = 100, offensivePower = 100}
+    local newObj = {
+      name = "test",
+      health = 100,
+      maxHealth = 200,
+      offensivePower = 100}
+
     self.__index = self
     return setmetatable(newObj, self)
 end
@@ -14,6 +19,10 @@ function Unit:GetHealth()
     return self.health
 end
 
+function Unit:GetMaxHealth()
+  return self.maxHealth
+end
+
 function Unit:IsAlive()
     return true
 end
@@ -21,7 +30,6 @@ end
 function Unit:GetRawOffensivePower()
   return self.offensivePower
 end
-
 
 -----------------------------------------------
 
@@ -104,6 +112,22 @@ function Ability:GetCastRange()
 end
 
 function Ability:IsFullyCastable()
+  return true
+end
+
+function Ability:IsAbilityCastable()
+  return true
+end
+
+function Ability:IsOwnersManaEnough()
+  return true
+end
+
+function Ability:IsCooldownReady()
+  return true
+end
+
+function Ability:IsTrained()
   return true
 end
 
