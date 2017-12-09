@@ -218,19 +218,42 @@ function M.UseSingleDisable(npcBot, abilityName)
   if not ability:IsFullyCastable() then return end
 
   local castRange = ability:GetCastRange()
+
+  -- Disable the most dangerous enemy in teamfight
+  local enemies = npcBot:GetNearbyHeroes(castRange, true, BOT_MODE_NONE)
+
+  if #enemies >= 3 then
+
+    local target = M.GetHeroWith(
+      npcBot,
+      'max',
+      'GetRawOffensivePower',
+      castRange,
+      true)
+
+    if target ~= nil then
+
+      logger.Print("M.UseSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
+
+      return npcBot:Action_UseAbilityOnEntity(ability, target)
+    end
+  end
+
+  -- Disable the almost died enemy
   local target = M.GetHeroWith(
     npcBot,
-    'max',
-    'GetRawOffensivePower',
+    'min',
+    'GetHealth',
     castRange,
     true)
 
-  if target ~= nil then
+  if target ~= nil and target:GetHealth() <= ability:GetAbilityDamage() then
 
     logger.Print("M.UseSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:Action_UseAbilityOnEntity(ability, target)
   end
+
 end
 
 function M.UseMultiNuke(npcBot, abilityName)

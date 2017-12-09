@@ -107,6 +107,10 @@ function Ability:IsFullyCastable()
   return true
 end
 
+function Ability:GetAbilityDamage()
+  return 100
+end
+
 ------------------------------------------------
 
 TEAM_RADIANT = 0
