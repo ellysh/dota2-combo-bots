@@ -1,10 +1,13 @@
+local logger = require(
+    GetScriptDirectory() .."/utility/logger")
+
 function GetAliveUnitNumber(unitType)
-  local units = GetUnitList(unitType);
-  local result = 0;
+  local units = GetUnitList(unitType)
+  local result = 0
 
   for _, unit in pairs(units) do
     if unit:IsAlive() and not unit:IsIllusion() then
-      result = result + 1;
+      result = result + 1
     end
   end
 
@@ -12,11 +15,11 @@ function GetAliveUnitNumber(unitType)
 end
 
 function GetAliveAllyHeroNumber()
-  return GetAliveUnitNumber(UNIT_LIST_ALLIED_HEROES);
+  return GetAliveUnitNumber(UNIT_LIST_ALLIED_HEROES)
 end
 
 function GetAliveEnemyHeroNumber()
-  return GetAliveUnitNumber(UNIT_LIST_ENEMY_HEROES);
+  return GetAliveUnitNumber(UNIT_LIST_ENEMY_HEROES)
 end
 
 function UpdatePushLaneDesires()
@@ -25,14 +28,24 @@ function UpdatePushLaneDesires()
 
   -- Do not push if enemy team has significant advantage (2 alive heroes)
   if 1 < (GetAliveEnemyHeroNumber() - GetAliveAllyHeroNumber()) then
+
+    logger.Print("UpdatePushLaneDesires() - do not push " .. GetAliveAllyHeroNumber() .. " vs " .. GetAliveEnemyHeroNumber())
+
     return {0, 0, 0}
   end
 
   -- Push mid if > 2 enemy heroes died
-  if GetAliveEnemyHeroNumber() < 4 then return {0.2, 0.8, 0.2} end
+  if GetAliveEnemyHeroNumber() < 4 then
+
+    logger.Print("UpdatePushLaneDesires() - push " .. GetAliveAllyHeroNumber() .. " vs " .. GetAliveEnemyHeroNumber())
+
+    return {0.2, 0.8, 0.2}
+  end
+
+  logger.Print("UpdatePushLaneDesires() - default decision")
 
   -- Orefer to push mid in the general case
-  return { 0.4, 0.7, 0.4 };
+  return { 0.4, 0.7, 0.4 }
 end
 
 --[[
@@ -40,7 +53,7 @@ end
 
 function UpdateDefendLaneDesires()
 
-    return { 0.2, 0.2, 0.2 };
+    return { 0.2, 0.2, 0.2 }
 
 end
 
@@ -48,7 +61,7 @@ end
 
 function UpdateFarmLaneDesires()
 
-    return { 0.5, 0.5, 0.5 };
+    return { 0.5, 0.5, 0.5 }
 
 end
 
@@ -56,7 +69,7 @@ end
 
 function UpdateRoamDesire()
 
-    return { 0.5, GetTeamMember( 1 ) };
+    return { 0.5, GetTeamMember( 1 ) }
 
 end
 
@@ -65,7 +78,7 @@ end
 
 function UpdateRoshanDesire()
 
-    return 0.1;
+    return 0.1
 
 end
 
