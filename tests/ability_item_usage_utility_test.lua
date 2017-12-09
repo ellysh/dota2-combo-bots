@@ -2,7 +2,7 @@ package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 local ability_item_usage_utility = require("ability_item_usage_utility")
 
-ability_item_usage_utility.UseGlyph()
+ability_item_usage_utility.UseGlyph(GetBot())
 
 hero, value = ability_item_usage_utility.GetHeroWith(
     GetBot(),

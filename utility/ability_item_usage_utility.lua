@@ -46,22 +46,21 @@ function M.UseGlyph(npcBot)
   for i, buildingId in pairs(Towers) do
     local tower = GetTower(GetTeam(), buildingId)
 
-    if tower == nil then goto continue end
+    if tower ~= nil then
 
-    local tableNearbyEnemyHeroes = GetEnemiesNearLocation(
-      tower:GetLocation(),
-      700)
+      local tableNearbyEnemyHeroes = GetEnemiesNearLocation(
+        tower:GetLocation(),
+        700)
 
-    if 200 <= tower:GetHealth() and tower:GetHealth() <=1000
-        and 2 <= #tableNearbyEnemyHeroes then
+      if 200 <= tower:GetHealth() and tower:GetHealth() <=1000
+          and 2 <= #tableNearbyEnemyHeroes then
 
-      logger.Print("M.UseGlyph() - use glyph to " .. tower:GetUnitName() .. ". HP = " .. tower:GetHealth() .. " enemies = " .. #tableNearbyEnemyHeroes)
+        logger.Print("M.UseGlyph() - use glyph to " .. tower:GetUnitName() .. ". HP = " .. tower:GetHealth() .. " enemies = " .. #tableNearbyEnemyHeroes)
 
-      npcBot:ActionImmediate_Glyph()
-      break
+        npcBot:ActionImmediate_Glyph()
+        break
+      end
     end
-
-     ::continue::
   end
 end
 

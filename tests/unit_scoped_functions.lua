@@ -49,6 +49,18 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
     return { TestUnit }
 end
 
+function Bot:IsChanneling()
+  return false
+end
+
+function Bot:IsUsingAbility()
+  return false
+end
+
+function Bot:IsCastingAbility()
+  return false
+end
+
 ------------------------------------------------
 
 TEAM_RADIANT = 0

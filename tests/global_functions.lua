@@ -27,6 +27,10 @@ function GetTower(team, tower)
     return TestUnit
 end
 
+function GetGlyphCooldown()
+  return 0
+end
+
 local Time = 0.0
 
 function DotaTime()
