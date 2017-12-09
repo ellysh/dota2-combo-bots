@@ -14,8 +14,6 @@ local itemsToBuy = {
     "item_boots",
     "item_ring_of_regen",
 
-    "item_ward_observer",
-
     -- Magic wand
     "item_magic_stick",
     "item_enchanted_mango",
@@ -23,8 +21,6 @@ local itemsToBuy = {
     -- Glimmer cape
     "item_cloak",
     "item_shadow_amulet",
-
-    "item_ward_observer",
 
     -- Extension Items
     -- Force Stuff

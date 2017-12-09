@@ -21,7 +21,7 @@ end
 
 function UpdatePushLaneDesires()
   -- Do not push at the beginning of the match
-  if DotaTime() <= 7 * 60 then return {0, 0, 0} end
+  if DotaTime() <= 10 * 60 then return {0, 0, 0} end
 
   -- Do not push if enemy team has significant advantage (2 alive heroes)
   if 1 < (GetAliveEnemyHeroNumber() - GetAliveAllyHeroNumber()) then
