@@ -61,6 +61,41 @@ function Bot:IsCastingAbility()
   return false
 end
 
+function Bot:FindAoELocation()
+  return {count = 2, {1.2, 3.4}}
+end
+
+function Bot:ActionPush_UseAbilityOnLocation()
+end
+
+function Bot:GetLocation()
+  return {1.2, 3.4}
+end
+
+------------------------------------------
+
+Ability = {}
+
+function Ability:new()
+    local newObj = {castRange = 600}
+    self.__index = self
+    return setmetatable(newObj, self)
+end
+
+local TestAbility = Ability:new()
+
+function Bot:GetAbilityByName(abilityName)
+  return TestAbility
+end
+
+function Ability:GetCastRange()
+  return self.castRange
+end
+
+function Ability:IsFullyCastable()
+  return true
+end
+
 ------------------------------------------------
 
 TEAM_RADIANT = 0
@@ -87,4 +122,3 @@ SelectedHero = {}
 function SelectHero(playerId, heroName)
     SelectedHero[playerId] = heroName
 end
-

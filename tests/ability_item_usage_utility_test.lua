@@ -13,3 +13,7 @@ hero, value = ability_item_usage_utility.GetHeroWith(
 
 assert((hero:GetUnitName() == "test"), "GetHeroWith() - failed")
 assert((value == 100), "GetHeroWith() - failed")
+
+ability_item_usage_utility.UseWard(
+  GetBot(),
+  "shadow_shaman_mass_serpent_ward")

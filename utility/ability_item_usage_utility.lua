@@ -113,10 +113,10 @@ local function UseAbilityOnLocation(npcBot, ability, target)
   end
 end
 
-function M.UseWard(npcBot, ability_name)
+function M.UseWard(npcBot, abilityName)
   if IsBotBusy(npcBot) then return end
 
-  local ability = npcBot:GetAbilityByName(ability_name)
+  local ability = npcBot:GetAbilityByName(abilityName)
 
   if not ability:IsFullyCastable() then return end
 
@@ -132,7 +132,7 @@ function M.UseWard(npcBot, ability_name)
 
   if target.count >= 2 then
 
-    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #1 " .. ability_name .. " to " .. target.count)
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #1 " .. abilityName .. " to " .. target.count)
 
     return npcBot:ActionPush_UseAbilityOnLocation(
       ability,
@@ -143,7 +143,7 @@ function M.UseWard(npcBot, ability_name)
   if #towers > 0 then
     target = towers[1]:GetLocation()
 
-    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #2 " .. ability_name .. " to " .. target:GetUnitName())
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #2 " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:ActionPush_UseAbilityOnLocation(ability, target)
   end
@@ -152,16 +152,16 @@ function M.UseWard(npcBot, ability_name)
   if #barracks > 0 then
     target = barracks[1]:GetLocation()
 
-    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #3 " .. ability_name .. " to " .. target:GetUnitName())
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #3 " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:ActionPush_UseAbilityOnLocation(ability, target)
   end
 end
 
-function M.UseChanneledSingleDisable(npcBot, ability_name)
+function M.UseChanneledSingleDisable(npcBot, abilityName)
   if IsBotBusy(npcBot) then return end
 
-  local ability = npcBot:GetAbilityByName(ability_name)
+  local ability = npcBot:GetAbilityByName(abilityName)
 
   if not ability:IsFullyCastable() then return end
 
@@ -178,16 +178,16 @@ function M.UseChanneledSingleDisable(npcBot, ability_name)
 
   if target ~= nil then
 
-    logger.Print("M.UseChanneledSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName())
+    logger.Print("M.UseChanneledSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:Action_UseAbilityOnEntity(ability, target)
   end
 end
 
-function M.UseSingleDisable(npcBot, ability_name)
+function M.UseSingleDisable(npcBot, abilityName)
   if IsBotBusy(npcBot) then return end
 
-  local ability = npcBot:GetAbilityByName(ability_name)
+  local ability = npcBot:GetAbilityByName(abilityName)
 
   if not ability:IsFullyCastable() then return end
 
@@ -201,18 +201,18 @@ function M.UseSingleDisable(npcBot, ability_name)
 
   if target ~= nil then
 
-    logger.Print("M.UseSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName())
+    logger.Print("M.UseSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:Action_UseAbilityOnEntity(ability, target)
   end
 end
 
-function M.UseMultiNuke(npcBot, ability_name)
+function M.UseMultiNuke(npcBot, abilityName)
   if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
     return
   end
 
-  local ability = npcBot:GetAbilityByName(ability_name)
+  local ability = npcBot:GetAbilityByName(abilityName)
 
   if not ability:IsFullyCastable() then return end
 
@@ -233,7 +233,7 @@ function M.UseMultiNuke(npcBot, ability_name)
 
   if target ~= nil and target:GetHealth() <= ability:GetAbilityDamage() then
 
-    logger.Print("M.UseMultiNuke() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName())
+    logger.Print("M.UseMultiNuke() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:Action_UseAbilityOnEntity(ability, target)
   end
