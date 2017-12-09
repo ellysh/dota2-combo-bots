@@ -1,8 +1,8 @@
 local logger = require(
     GetScriptDirectory() .."/utility/logger")
 
-function GetAliveUnitNumber(unitType)
-  local units = GetUnitList(unitType)
+function GetAliveAllyHeroNumber()
+  local units = GetUnitList(UNIT_LIST_ALLIED_HEROES)
   local result = 0
 
   for _, unit in pairs(units) do
@@ -14,12 +14,16 @@ function GetAliveUnitNumber(unitType)
   return result
 end
 
-function GetAliveAllyHeroNumber()
-  return GetAliveUnitNumber(UNIT_LIST_ALLIED_HEROES)
-end
-
 function GetAliveEnemyHeroNumber()
-  return GetAliveUnitNumber(UNIT_LIST_ENEMY_HEROES)
+  local result = 0
+
+  for _, enemyId in pairs(GetTeamPlayers(GetOpposingTeam())) do
+    if IsHeroAlive(enemyId) then
+      result = result + 1
+    end
+  end
+
+  return result
 end
 
 function UpdatePushLaneDesires()
@@ -39,10 +43,10 @@ function UpdatePushLaneDesires()
 
     logger.Print("UpdatePushLaneDesires() - push " .. GetAliveAllyHeroNumber() .. " vs " .. GetAliveEnemyHeroNumber())
 
-    return {0.2, 0.8, 0.2}
+    return {0.2, 0.9, 0.2}
   end
 
-  logger.Print("UpdatePushLaneDesires() - default decision")
+  logger.Print("UpdatePushLaneDesires() - default decision " .. GetAliveAllyHeroNumber() .. " vs " .. GetAliveEnemyHeroNumber())
 
   -- Orefer to push mid in the general case
   return { 0.4, 0.7, 0.4 }
