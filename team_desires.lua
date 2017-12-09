@@ -26,6 +26,7 @@ function GetAliveEnemyHeroNumber()
   return result
 end
 
+--[[
 function UpdatePushLaneDesires()
   -- Do not push at the beginning of the match
   if DotaTime() <= 10 * 60 then return {0, 0, 0} end
@@ -51,6 +52,7 @@ function UpdatePushLaneDesires()
   -- Orefer to push mid in the general case
   return { 0.4, 0.7, 0.4 }
 end
+--]]
 
 --[[
 ----------------------------------------------------------------------------------------------------
