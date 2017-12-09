@@ -42,7 +42,7 @@ local itemsToBuy = {
     "item_void_stone",
     "item_wind_lace",
     "item_recipe_cyclone"
-};
+}
 
 function ItemPurchaseThink()
     item_purchase_utility.PurchaseItem(itemsToBuy)

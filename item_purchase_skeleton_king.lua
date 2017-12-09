@@ -49,7 +49,7 @@ local itemsToBuy = {
     "item_hyperstone",
 
     "item_recipe_mjollnir"
-};
+}
 
 function ItemPurchaseThink()
     item_purchase_utility.PurchaseItem(itemsToBuy)

@@ -47,7 +47,7 @@ local itemsToBuy = {
     "item_buckler",
     "item_recipe_mekansm",
     "item_recipe_guardian_greaves"
-};
+}
 
 function ItemPurchaseThink()
   item_purchase_utility.PurchaseItem(itemsToBuy)

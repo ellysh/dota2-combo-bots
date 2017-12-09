@@ -4,9 +4,9 @@ local logger = require(
 local M = {}
 
 local function IsTpScrollPresent(npcBot)
-  local tpScroll = npcBot:FindItemSlot("item_tpscroll");
+  local tpScroll = npcBot:FindItemSlot("item_tpscroll")
 
-  return tpScroll ~= -1;
+  return tpScroll ~= -1
 end
 
 local function PurchaseTpScroll(npcBot)
@@ -14,27 +14,27 @@ local function PurchaseTpScroll(npcBot)
 
   if (npcBot:GetGold() >= GetItemCost("item_tpscroll")) then
 
-    logger.Print("PurchaseTpScroll() - " .. npcBot:GetUnitName() .. " bought TpScroll");
+    logger.Print("PurchaseTpScroll() - " .. npcBot:GetUnitName() .. " bought TpScroll")
 
-    npcBot:ActionImmediate_PurchaseItem("item_tpscroll");
+    npcBot:ActionImmediate_PurchaseItem("item_tpscroll")
   end
 end
 
 function M.PurchaseItem(itemsToBuy)
-  local npcBot = GetBot();
+  local npcBot = GetBot()
 
   PurchaseTpScroll(npcBot)
 
   if (#itemsToBuy == 0) then
-    return;
+    return
   end
 
-  local nextItem = itemsToBuy[1];
+  local nextItem = itemsToBuy[1]
 
   if (npcBot:GetGold() >= GetItemCost(nextItem)) then
-    logger.Print("M.PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. nextItem);
-    npcBot:ActionImmediate_PurchaseItem(nextItem);
-    table.remove(itemsToBuy, 1);
+    logger.Print("M.PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. nextItem)
+    npcBot:ActionImmediate_PurchaseItem(nextItem)
+    table.remove(itemsToBuy, 1)
   end
 end
 

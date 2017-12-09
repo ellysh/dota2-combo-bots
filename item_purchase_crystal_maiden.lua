@@ -42,7 +42,7 @@ local itemsToBuy = {
     "item_staff_of_wizardry",
     "item_ogre_axe",
     "item_blade_of_alacrity"
-};
+}
 
 function ItemPurchaseThink()
     item_purchase_utility.PurchaseItem(itemsToBuy)

@@ -53,7 +53,7 @@ local itemsToBuy = {
     "item_stout_shield",
 
     "item_recipe_abyssal_blade"
-};
+}
 
 function ItemPurchaseThink()
     item_purchase_utility.PurchaseItem(itemsToBuy)
