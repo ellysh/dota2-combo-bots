@@ -231,7 +231,7 @@ function M.UseMultiNuke(npcBot, ability_name)
     castRange,
     true)
 
-  if target ~= nil and targt:GetHealth() <= ability:GetAbilityDamage() then
+  if target ~= nil and target:GetHealth() <= ability:GetAbilityDamage() then
 
     logger.Print("M.UseMultiNuke() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName())
 
