@@ -41,7 +41,8 @@ end
 function M.UseGlyph(npcBot)
   if IsBotBusy(npcBot) then return end
 
-  if GetGlyphCooldown() > 0 then return end
+  -- TODO: This check always returns 108 second.
+  --if GetGlyphCooldown() > 0 then return end
 
   for i, buildingId in pairs(Towers) do
     local tower = GetTower(GetTeam(), buildingId)
@@ -50,9 +51,9 @@ function M.UseGlyph(npcBot)
 
       local tableNearbyEnemyHeroes = GetEnemiesNearLocation(
         tower:GetLocation(),
-        700)
+        800)
 
-      if 200 <= tower:GetHealth() and tower:GetHealth() <=1000
+      if 150 <= tower:GetHealth() and tower:GetHealth() <= 1600
           and 2 <= #tableNearbyEnemyHeroes then
 
         logger.Print("M.UseGlyph() - use glyph to " .. tower:GetUnitName() .. ". HP = " .. tower:GetHealth() .. " enemies = " .. #tableNearbyEnemyHeroes)
