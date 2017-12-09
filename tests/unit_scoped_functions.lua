@@ -23,21 +23,24 @@ end
 Bot = Unit:new()
 
 function Bot:new()
-    local newObj = {gold = 625, item_cost = 0}
+    local newObj = {gold = 625}
     self.__index = self
     return setmetatable(newObj, self)
 end
 
 function Bot:SetNextItemPurchaseValue(cost)
-    self.item_cost = cost
 end
 
 function Bot:ActionImmediate_PurchaseItem(item)
-    self.gold = self.gold - self.item_cost
+    self.gold = self.gold - GetItemCost(item)
 end
 
 function Bot:GetGold()
     return self.gold
+end
+
+function Bot:FindItemSlot(itemName)
+  return 0
 end
 
 local TestUnit = Unit:new()

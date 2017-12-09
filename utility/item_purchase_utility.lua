@@ -26,8 +26,8 @@ function M.PurchaseItem(itemsToBuy)
   local nextItem = itemsToBuy[1];
 
   if (npcBot:GetGold() >= GetItemCost(nextItem)) then
-      npcBot:ActionImmediate_PurchaseItem(nextItem);
-      table.remove(itemsToBuy, 1);
+    npcBot:ActionImmediate_PurchaseItem(nextItem);
+    table.remove(itemsToBuy, 1);
   end
 end
 

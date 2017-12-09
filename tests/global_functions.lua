@@ -8,7 +8,8 @@ end
 function GetItemCost(item)
     local itemsCost = {
         ["item_tango"] = 150,
-        ["item_flask"] = 110
+        ["item_flask"] = 110,
+        ["item_courier"] = 200
     };
 
     return itemsCost[item]

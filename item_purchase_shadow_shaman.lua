@@ -29,7 +29,7 @@ local itemsToBuy = {
     "item_point_booster",
     "item_staff_of_wizardry",
     "item_ogre_axe",
-    "item_blade_of_alacrity"
+    "item_blade_of_alacrity",
 
     -- Extension Items
     -- Refresher Orb
@@ -37,7 +37,7 @@ local itemsToBuy = {
     "item_void_stone",
     "item_ring_of_health",
     "item_void_stone",
-    "item_recipe_refresher"
+    "item_recipe_refresher",
 
     -- Eul scepter
     "item_staff_of_wizardry",

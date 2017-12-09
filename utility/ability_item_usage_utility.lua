@@ -89,7 +89,7 @@ function M.UseGlyph()
   UseGlyph(GetOutermostTower(GetTeam(), LANE_BOT));
 end
 
-local function GetHeroWith(npcBot, comparison, attr, radius, enemy)
+function M.GetHeroWith(npcBot, comparison, attr, radius, enemy)
 
   local heroes = npcBot:GetNearbyHeroes(radius, enemy, BOT_MODE_NONE);
   local hero = npcBot;
