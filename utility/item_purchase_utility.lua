@@ -13,6 +13,7 @@ local function PurchaseTpScroll(npcBot)
   if IsTpScrollPresent(npcBot) then return end
 
   if (npcBot:GetGold() >= GetItemCost("item_tpscroll")) then
+    logger.Print("PurchaseTpScroll() - " .. npcBot:GetUnitName() .. " bought TpScroll");
     npcBot:ActionImmediate_PurchaseItem("item_tpscroll");
   end
 end
@@ -29,7 +30,7 @@ function M.PurchaseItem(itemsToBuy)
   local nextItem = itemsToBuy[1];
 
   if (npcBot:GetGold() >= GetItemCost(nextItem)) then
-    logger.Print(npcBot:GetUnitName() .. " bought " .. nextItem);
+    logger.Print("M.PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. nextItem);
     npcBot:ActionImmediate_PurchaseItem(nextItem);
     table.remove(itemsToBuy, 1);
   end

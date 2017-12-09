@@ -1,3 +1,6 @@
+local logger = require(
+    GetScriptDirectory() .."/utility/logger")
+
 local M = {};
 
 local function GetEnemiesNearLocation(loc, dist)
@@ -43,6 +46,8 @@ function M.UseGlyph(npcBot)
 
     if 200 <= tower:GetHealth() and tower:GetHealth() <=1000
         and 2 <= #tableNearbyEnemyHeroes then
+
+      logger.Print("M.UseGlyph() - use glyph to " .. tower:GetUnitName() .. ". HP = " .. tower:GetHealth() .. " enemies = " .. #tableNearbyEnemyHeroes);
 
       npcBot:ActionImmediate_Glyph()
       break
@@ -120,6 +125,9 @@ function M.UseWard(npcBot, ability_name)
     0)
 
   if target.count >= 2 then
+
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #1 " .. ability_name .. " to " .. target.targetloc);
+
     return npcBot:ActionPush_UseAbilityOnLocation(
       ability,
       target.targetloc);
@@ -128,12 +136,18 @@ function M.UseWard(npcBot, ability_name)
   local towers = npcBot:GetNearbyTowers(castRange, true);
   if #towers > 0 then
     target = towers[1]:GetLocation();
+
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #2 " .. ability_name .. " to " .. target:GetUnitName());
+
     return npcBot:ActionPush_UseAbilityOnLocation(ability, target);
   end
 
   local barracks = npcBot:GetNearbyBarracks(castRange, true);
   if #barracks > 0 then
     target = barracks[1]:GetLocation();
+
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #3 " .. ability_name .. " to " .. target:GetUnitName());
+
     return npcBot:ActionPush_UseAbilityOnLocation(ability, target);
   end
 end
@@ -159,7 +173,10 @@ function M.UseChanneledSingleDisable(npcBot, ability_name)
     true);
 
   if target ~= nil then
-      return npcBot:Action_UseAbilityOnEntity(ability, target);
+
+    logger.Print("M.UseChanneledSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName());
+
+    return npcBot:Action_UseAbilityOnEntity(ability, target);
   end
 end
 
@@ -181,7 +198,10 @@ function M.UseSingleDisable(npcBot, ability_name)
     true);
 
   if target ~= nil then
-      return npcBot:Action_UseAbilityOnEntity(ability, target);
+
+    logger.Print("M.UseSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName());
+
+    return npcBot:Action_UseAbilityOnEntity(ability, target);
   end
 end
 
@@ -210,7 +230,10 @@ function M.UseMultiNuke(npcBot, ability_name)
     true);
 
   if target ~= nil and targt:GetHealth() <= ability:GetAbilityDamage() then
-      return npcBot:Action_UseAbilityOnEntity(ability, target);
+
+    logger.Print("M.UseMultiNuke() - " .. npcBot:GetUnitName() .. " cast " .. ability_name .. " to " .. target:GetUnitName());
+
+    return npcBot:Action_UseAbilityOnEntity(ability, target);
   end
 end
 
