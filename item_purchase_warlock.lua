@@ -4,7 +4,11 @@ local item_purchase_utility = require(
 local itemsToBuy = {
     -- Starting items
     "item_tango",
-    "item_null_talisman",
+
+    -- Null Talisman
+    "item_circlet",
+    "item_mantle",
+    "item_recipe_null_talisman",
 
     -- Core items
     -- Arcane boots
@@ -46,5 +50,5 @@ local itemsToBuy = {
 };
 
 function ItemPurchaseThink()
-    item_purchase_utility.PurchaseItem(itemsToBuy)
+  item_purchase_utility.PurchaseItem(itemsToBuy)
 end
