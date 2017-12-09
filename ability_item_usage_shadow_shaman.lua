@@ -9,9 +9,9 @@ local Abilities = {
 };
 
 function AbilityUsageThink()
-  utility.UseGlyph();
-
   local npcBot = GetBot();
+
+  utility.UseGlyph(npcBot);
 
   utility.UseWard(npcBot, "shadow_shaman_mass_serpent_ward");
   utility.UseChanneledSingleDisable(npcBot, "shadow_shaman_shackles");
