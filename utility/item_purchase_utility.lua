@@ -1,3 +1,6 @@
+local logger = require(
+    GetScriptDirectory() .."/utility/logger")
+
 local M = {}
 
 local function IsTpScrollPresent(npcBot)
@@ -26,6 +29,7 @@ function M.PurchaseItem(itemsToBuy)
   local nextItem = itemsToBuy[1];
 
   if (npcBot:GetGold() >= GetItemCost(nextItem)) then
+    logger.Print(npcBot:GetUnitName() .. " bought " .. nextItem);
     npcBot:ActionImmediate_PurchaseItem(nextItem);
     table.remove(itemsToBuy, 1);
   end
