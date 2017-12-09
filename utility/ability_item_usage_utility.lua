@@ -132,7 +132,7 @@ function M.UseWard(npcBot, ability_name)
 
   if target.count >= 2 then
 
-    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #1 " .. ability_name .. " to " .. target.targetloc);
+    logger.Print("M.UseWard() - " .. npcBot:GetUnitName() .. " cast #1 " .. ability_name .. " to " .. target.count);
 
     return npcBot:ActionPush_UseAbilityOnLocation(
       ability,
