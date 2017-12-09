@@ -29,3 +29,7 @@ ability_item_usage_utility.UseSingleDisable(
 ability_item_usage_utility.UseMultiNuke(
   GetBot(),
   "shadow_shaman_ether_shock")
+
+ability_item_usage_utility.UseChanneledNoTargetDisable(
+  GetBot(),
+  "ability_item_usage_utility")

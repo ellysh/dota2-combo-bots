@@ -158,6 +158,32 @@ function M.UseWard(npcBot, abilityName)
   end
 end
 
+function M.UseChanneledNoTargetDisable(npcBot, abilityName)
+  if IsBotBusy(npcBot) then return end
+
+  local ability = npcBot:GetAbilityByName(abilityName)
+
+  if not ability:IsFullyCastable() then return end
+
+  local target = npcBot:FindAoELocation(
+    true,
+    true,
+    npcBot:GetLocation(),
+    0,
+    700,        -- This is the crystal_maiden_freezing_field radius
+    0,
+    0)
+
+  if target.count >= 3 then
+
+    logger.Print("M.UseChanneledMultiDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target.count)
+
+    return npcBot:ActionPush_UseAbility(
+      ability,
+      target.targetloc)
+  end
+end
+
 function M.UseChanneledSingleDisable(npcBot, abilityName)
   if IsBotBusy(npcBot) then return end
 

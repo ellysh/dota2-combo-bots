@@ -67,7 +67,7 @@ function Bot:IsCastingAbility()
 end
 
 function Bot:FindAoELocation()
-  return {count = 2, {1.2, 3.4}}
+  return {count = 3, {1.2, 3.4}}
 end
 
 function Bot:GetLocation()
@@ -78,6 +78,9 @@ function Bot:ActionPush_UseAbilityOnLocation()
 end
 
 function Bot:Action_UseAbilityOnEntity()
+end
+
+function Bot:ActionPush_UseAbility()
 end
 
 ------------------------------------------

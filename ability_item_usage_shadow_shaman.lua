@@ -1,13 +1,6 @@
 local utility = require(
     GetScriptDirectory() .."/utility/ability_item_usage_utility")
 
-local Abilities = {
-  "shadow_shaman_ether_shock",
-  "shadow_shaman_voodoo",
-  "shadow_shaman_shackles",
-  "shadow_shaman_mass_serpent_ward",
-}
-
 function AbilityUsageThink()
   local npcBot = GetBot()
 
