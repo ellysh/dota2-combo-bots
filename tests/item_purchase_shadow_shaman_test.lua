@@ -4,5 +4,5 @@ require("item_purchase_shadow_shaman")
 
 ItemPurchaseThink()
 
--- Buy an item_tango with 150 gold cost at the beginning
+-- Buy an item_courier with 200 gold cost at the beginning
 assert((GetBot():GetGold() == 425), "ItemPurchaseThink() - failed")

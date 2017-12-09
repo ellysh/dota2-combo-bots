@@ -27,7 +27,7 @@ local itemsToBuy = {
     "item_void_stone",
     "item_ring_of_health",
     "item_void_stone",
-    "item_recipe_refresher"
+    "item_recipe_refresher",
 
     -- Octarine core
     "item_mystic_staff",
