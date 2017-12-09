@@ -6,9 +6,9 @@ function AbilityUsageThink()
 
   utility.UseGlyph(npcBot)
 
-  utility.UseMultiNuke(npcBot, "crystal_maiden_crystal_nova")
-  utility.UseSingleDisable(npcBot, "crystal_maiden_frostbite")
   utility.UseChanneledNoTargetDisable(
     npcBot,
     "crystal_maiden_freezing_field")
+  utility.UseAreaNuke(npcBot, "crystal_maiden_crystal_nova")
+  utility.UseSingleDisable(npcBot, "crystal_maiden_frostbite")
 end

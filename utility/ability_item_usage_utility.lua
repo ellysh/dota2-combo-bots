@@ -107,10 +107,11 @@ function M.GetHeroWith(npcBot, comparison, attr, radius, enemy)
 
 end
 
-local function UseAbilityOnLocation(npcBot, ability, target)
-  if target ~= nil and ability:IsFullyCastable() then
-    return npcBot:ActionPush_UseAbilityOnLocation(ability, target)
-  end
+local function IsAbilityCastable(ability)
+  return ability:IsFullyCastable()
+    and ability:IsOwnersManaEnough()
+    and ability:IsCooldownReady()
+    and ability:IsTrained()
 end
 
 function M.UseWard(npcBot, abilityName)
@@ -118,7 +119,7 @@ function M.UseWard(npcBot, abilityName)
 
   local ability = npcBot:GetAbilityByName(abilityName)
 
-  if not ability:IsFullyCastable() then return end
+  if not IsAbilityCastable(ability) then return end
 
   local castRange = ability:GetCastRange()
   local target = npcBot:FindAoELocation(
@@ -163,13 +164,13 @@ function M.UseChanneledNoTargetDisable(npcBot, abilityName)
 
   local ability = npcBot:GetAbilityByName(abilityName)
 
-  if not ability:IsFullyCastable() then return end
+  if not IsAbilityCastable(ability) then return end
 
   local target = npcBot:FindAoELocation(
     true,
     true,
     npcBot:GetLocation(),
-    0,
+    700,
     700,        -- This is the crystal_maiden_freezing_field radius
     0,
     0)
@@ -189,7 +190,7 @@ function M.UseChanneledSingleDisable(npcBot, abilityName)
 
   local ability = npcBot:GetAbilityByName(abilityName)
 
-  if not ability:IsFullyCastable() then return end
+  if not IsAbilityCastable(ability) then return end
 
   -- Check if an ally hero is near. He will attack the disabled enemy
   if #npcBot:GetNearbyHeroes(600, false, BOT_MODE_NONE) < 2 then return end
@@ -215,7 +216,7 @@ function M.UseSingleDisable(npcBot, abilityName)
 
   local ability = npcBot:GetAbilityByName(abilityName)
 
-  if not ability:IsFullyCastable() then return end
+  if not IsAbilityCastable(ability) then return end
 
   local castRange = ability:GetCastRange()
 
@@ -239,7 +240,7 @@ function M.UseSingleDisable(npcBot, abilityName)
     end
   end
 
-  -- Disable the almost died enemy
+  -- Disable the damaged enemy
   local target = M.GetHeroWith(
     npcBot,
     'min',
@@ -247,7 +248,7 @@ function M.UseSingleDisable(npcBot, abilityName)
     castRange,
     true)
 
-  if target ~= nil and target:GetHealth() <= ability:GetAbilityDamage() then
+  if target ~= nil and target:GetHealth() <= target:GetMaxHealth() then
 
     logger.Print("M.UseSingleDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
@@ -263,7 +264,7 @@ function M.UseMultiNuke(npcBot, abilityName)
 
   local ability = npcBot:GetAbilityByName(abilityName)
 
-  if not ability:IsFullyCastable() then return end
+  if not IsAbilityCastable(ability) then return end
 
   local castRange = ability:GetCastRange()
 
@@ -283,11 +284,54 @@ function M.UseMultiNuke(npcBot, abilityName)
     castRange,
     true)
 
-  if target ~= nil and target:GetHealth() <= ability:GetAbilityDamage() then
+  if target ~= nil and target:GetHealth() <= target:GetMaxHealth() then
 
     logger.Print("M.UseMultiNuke() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
     return npcBot:Action_UseAbilityOnEntity(ability, target)
+  end
+end
+
+function M.UseAreaNuke(npcBot, abilityName)
+  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
+    return
+  end
+
+  local ability = npcBot:GetAbilityByName(abilityName)
+
+  if not IsAbilityCastable(ability) then return end
+
+  local castRange = ability:GetCastRange()
+  local target = npcBot:FindAoELocation(
+    true,
+    true,
+    npcBot:GetLocation(),
+    castRange,
+    castRange,
+    0,
+    0)
+
+  if target.count >= 2 then
+
+    logger.Print("M.UseAreaNuke() - " .. npcBot:GetUnitName() .. " cast #1 " ..   abilityName .. " to " .. target.count)
+
+    return npcBot:ActionPush_UseAbilityOnLocation(
+      ability,
+      target.targetloc)
+  end
+
+  target = M.GetHeroWith(
+    npcBot,
+    'min',
+    'GetHealth',
+    castRange,
+    true)
+
+  if target ~= nil and target:GetHealth() <= target:GetMaxHealth()/2 then
+
+    logger.Print("M.UseAreaNuke() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
+
+    return npcBot:Action_ActionPush_UseAbilityOnLocation(ability, target)
   end
 end
 
