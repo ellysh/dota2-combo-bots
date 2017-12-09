@@ -177,11 +177,9 @@ function M.UseChanneledNoTargetDisable(npcBot, abilityName)
 
   if target.count >= 3 then
 
-    logger.Print("M.UseChanneledMultiDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target.count)
+    logger.Print("M.UseChanneledNoTargetDisable() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target.count)
 
-    return npcBot:ActionPush_UseAbility(
-      ability,
-      target.targetloc)
+    return npcBot:ActionPush_UseAbility(ability)
   end
 end
 
@@ -193,7 +191,7 @@ function M.UseChanneledSingleDisable(npcBot, abilityName)
   if not IsAbilityCastable(ability) then return end
 
   -- Check if an ally hero is near. He will attack the disabled enemy
-  if #npcBot:GetNearbyHeroes(600, false, BOT_MODE_NONE) < 2 then return end
+  if #npcBot:GetNearbyHeroes(700, false, BOT_MODE_NONE) == 0 then return end
 
   local castRange = ability:GetCastRange()
   local target = M.GetHeroWith(
@@ -327,7 +325,7 @@ function M.UseAreaNuke(npcBot, abilityName)
     castRange,
     true)
 
-  if target ~= nil and target:GetHealth() <= target:GetMaxHealth()/2 then
+  if target ~= nil and target:GetHealth() <= target:GetMaxHealth() then
 
     logger.Print("M.UseAreaNuke() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target:GetUnitName())
 
