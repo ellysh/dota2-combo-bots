@@ -188,7 +188,7 @@ function M.UseChanneledSingleDisable(npcBot, ability_name)
   if #npcBot:GetNearbyHeroes(600, false, BOT_MODE_NONE) < 2 then return end
 
   local castRange = ability:GetCastRange();
-  local target = GetHeroWith(
+  local target = M.GetHeroWith(
     npcBot,
     'max',
     'GetRawOffensivePower',
@@ -210,7 +210,7 @@ function M.UseSingleDisable(npcBot, ability_name)
   if not ability:IsFullyCastable() then return end
 
   local castRange = ability:GetCastRange();
-  local target = GetHeroWith(
+  local target = M.GetHeroWith(
     npcBot,
     'max',
     'GetRawOffensivePower',
@@ -239,7 +239,7 @@ function M.UseMultiNuke(npcBot, ability_name)
       return npcBot:Action_UseAbilityOnEntity(ability, target[1]);
   end
 
-  target = GetHeroWith(
+  target = M.GetHeroWith(
     npcBot,
     'min',
     'GetHealth',

@@ -3,7 +3,7 @@ local M = {}
 local function IsTpScrollPresent(npcBot)
   local tpScroll = npcBot:FindItemSlot("item_tpscroll");
 
-  return tpScroll ~= nil;
+  return tpScroll ~= -1;
 end
 
 local function PurchaseTpScroll(npcBot)
