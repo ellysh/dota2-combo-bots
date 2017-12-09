@@ -221,7 +221,10 @@ function M.UseMultiNuke(npcBot, abilityName)
   local target = npcBot:GetNearbyHeroes(castRange, true, BOT_MODE_NONE)
 
   if #target >= 2 then
-      return npcBot:Action_UseAbilityOnEntity(ability, target[1])
+
+    logger.Print("M.UseMultiNuke() - " .. npcBot:GetUnitName() .. " cast " .. abilityName .. " to " .. target[1]:GetUnitName())
+
+    return npcBot:Action_UseAbilityOnEntity(ability, target[1])
   end
 
   target = M.GetHeroWith(

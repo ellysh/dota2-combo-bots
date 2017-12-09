@@ -21,3 +21,11 @@ ability_item_usage_utility.UseWard(
 ability_item_usage_utility.UseChanneledSingleDisable(
   GetBot(),
   "shadow_shaman_shackles")
+
+ability_item_usage_utility.UseSingleDisable(
+  GetBot(),
+  "shadow_shaman_voodoo")
+
+ability_item_usage_utility.UseMultiNuke(
+  GetBot(),
+  "shadow_shaman_ether_shock")
