@@ -1,7 +1,7 @@
 Unit = {}
 
 function Unit:new()
-    local newObj = {name = "test", health = 100}
+    local newObj = {name = "test", health = 100, offensivePower = 100}
     self.__index = self
     return setmetatable(newObj, self)
 end
@@ -17,6 +17,11 @@ end
 function Unit:IsAlive()
     return true
 end
+
+function Unit:GetRawOffensivePower()
+  return self.offensivePower
+end
+
 
 -----------------------------------------------
 
@@ -46,7 +51,7 @@ end
 local TestUnit = Unit:new()
 
 function Bot:GetNearbyHeroes(radius, enemies, mode)
-    return { TestUnit }
+    return { TestUnit, TestUnit }
 end
 
 function Bot:IsChanneling()
@@ -65,11 +70,14 @@ function Bot:FindAoELocation()
   return {count = 2, {1.2, 3.4}}
 end
 
+function Bot:GetLocation()
+  return {1.2, 3.4}
+end
+
 function Bot:ActionPush_UseAbilityOnLocation()
 end
 
-function Bot:GetLocation()
-  return {1.2, 3.4}
+function Bot:Action_UseAbilityOnEntity()
 end
 
 ------------------------------------------

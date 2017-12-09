@@ -17,3 +17,7 @@ assert((value == 100), "GetHeroWith() - failed")
 ability_item_usage_utility.UseWard(
   GetBot(),
   "shadow_shaman_mass_serpent_ward")
+
+ability_item_usage_utility.UseChanneledSingleDisable(
+  GetBot(),
+  "shadow_shaman_shackles")
