@@ -32,7 +32,15 @@ local Towers = {
     TOWER_BASE_2
 }
 
+local function IsBotBusy(npcBot)
+  return npcBot:IsChanneling()
+        or npcBot:IsUsingAbility()
+        or npcBot:IsCastingAbility();
+end
+
 function M.UseGlyph(npcBot)
+  if IsBotBusy(npcBot) then return end
+
   if GetGlyphCooldown() > 0 then return end
 
   for i, buildingId in pairs(Towers) do
@@ -106,9 +114,7 @@ local function UseAbilityOnLocation(npcBot, ability, target)
 end
 
 function M.UseWard(npcBot, ability_name)
-  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
-    return;
-  end
+  if IsBotBusy(npcBot) then return end
 
   local ability = npcBot:GetAbilityByName(ability_name);
 
@@ -153,9 +159,7 @@ function M.UseWard(npcBot, ability_name)
 end
 
 function M.UseChanneledSingleDisable(npcBot, ability_name)
-  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
-    return;
-  end
+  if IsBotBusy(npcBot) then return end
 
   local ability = npcBot:GetAbilityByName(ability_name);
 
@@ -181,9 +185,7 @@ function M.UseChanneledSingleDisable(npcBot, ability_name)
 end
 
 function M.UseSingleDisable(npcBot, ability_name)
-  if npcBot:IsChanneling() or npcBot:IsUsingAbility() then
-    return;
-  end
+  if IsBotBusy(npcBot) then return end
 
   local ability = npcBot:GetAbilityByName(ability_name);
 
