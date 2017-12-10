@@ -112,7 +112,7 @@ local function IsAbilityCastable(ability)
     and ability:IsOwnersManaEnough()
     and ability:IsCooldownReady()
     and ability:IsTrained()
-    and not (ability:GetBehavior() & ABILITY_BEHAVIOR_PASSIVE)
+    and bit.band(ability:GetBehavior(), ABILITY_BEHAVIOR_PASSIVE) ~= 0
 end
 
 -----------------------
@@ -343,6 +343,7 @@ end
 local function CreateAbilityObject(ability)
   local result = {}
 
+  result.name = ability:GetName()
   result.ability = ability
   result.castRange = ability:GetCastRange()
   result.damage = ability:GetAbilityDamage()
@@ -450,7 +451,7 @@ local function IsChasing(npcBot)
   end
 end
 
-local function IsRetreating(npcBot)
+local function IsDefending(npcBot)
   local allies = GetNearbyAllies(npcBot)
 
   if #allies < #GetNearbyEnemies(npcBot) then
@@ -471,25 +472,25 @@ local function EstimateOffensiveAbilityPower(ability)
 
   if ability.targetFlags == ABILITY_TARGET_FLAG_MANA_ONLY then return 10 end
 
-  if ability.behavior & ABILITY_BEHAVIOR_AOE
-    or ability.behavior & ABILITY_BEHAVIOR_NO_TARGET then
+  if bit.band(ability.behavior, ABILITY_BEHAVIOR_AOE) ~= 0
+    or bit.band(ability.behavior, ABILITY_BEHAVIOR_NO_TARGET) ~= 0 then
 
     result = result + 20
   end
 
-  if ability.behavior & ABILITY_BEHAVIOR_CHANNELLED then
+  if bit.band(ability.behavior, ABILITY_BEHAVIOR_CHANNELLED) ~= 0 then
     result = result + 20
   end
 
-  if ability.behavior & ABILITY_BEHAVIOR_ROOT_DISABLES then
+  if bit.band(ability.behavior, ABILITY_BEHAVIOR_ROOT_DISABLES) ~= 0 then
     result = result + 15
   end
 
-  if ability.damageType & DAMAGE_TYPE_PURE then
+  if ability.damageType == DAMAGE_TYPE_PURE then
     result = result + 10
   end
 
-  if ability.damageType & DAMAGE_TYPE_MAGICAL then
+  if ability.damageType == DAMAGE_TYPE_MAGICAL then
     result = result + 5
   end
 
@@ -522,7 +523,7 @@ local function FindStrongestOffensiveAbility(npcBot, abilities)
   local decisionTable = {}
 
   for _, ability in pairs(abilities) do
-    if not IsAbilityCastable(ability)
+    if not IsAbilityCastable(ability.ability)
       or not IsAbilityOffensive(ability) then goto continue end
 
     local decisionAbility = {}
@@ -563,20 +564,28 @@ end
 
 local function UseOffensiveAbility(npcBot, ability, enemyChoice)
   -- TODO: Process the case when enemy stands far than the ability radius
-  if ability.behavior & ABILITY_BEHAVIOR_NO_TARGET then
+  if bit.band(ability.behavior, ABILITY_BEHAVIOR_NO_TARGET) ~= 0 then
+
+      logger.Print("UseOffensiveAbility() - " .. npcBot:GetUnitName()
+        .. "cast " .. ability.name)
+
     return npcBot:ActionPush_UseAbility(ability.ability)
   end
 
-  if ability.behavior & ABILITY_BEHAVIOR_UNIT_TARGET then
+  if bit.band(ability.behavior, ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0 then
 
     local target = GetEnemy(enemyChoice)
 
     if target ~= nil then
+
+      logger.Print("UseOffensiveAbility() - " .. npcBot:GetUnitName()
+        .. "cast " .. ability.name .. " to " .. target:GetUnitName())
+
       return npcBot:Action_UseAbilityOnEntity(ability.ability, target)
     end
   end
 
-  if ability.behavior & ABILITY_BEHAVIOR_POINT then
+  if bit.band(ability.behavior, ABILITY_BEHAVIOR_POINT) ~= 0 then
     local target = npcBot:FindAoELocation(
       true,
       true,
@@ -585,6 +594,9 @@ local function UseOffensiveAbility(npcBot, ability, enemyChoice)
       400,  -- TODO: Fix this magic number
       0,
       0)
+
+    logger.Print("UseOffensiveAbility() - " .. npcBot:GetUnitName()
+      .. "cast " .. ability.name .. " to " .. target.count .. " targets")
 
     return npcBot:ActionPush_UseAbilityOnLocation(
       ability.ability,
@@ -621,10 +633,16 @@ local function UseAbilityOffensive(npcBot, abilities)
   if not IsOffensiveMode(npcBot) then return end
 
   if IsTeamfight(npcBot) then
+    logger.Print("UseAbilityOffensive() - " .. npcBot:GetUnitName()
+        .. " is in teamfight")
+
     UseStrongestOffensiveAbility(npcBot, abilities, STRONGEST_ENEMY)
   end
 
   if IsChasing(npcBot) then
+    logger.Print("UseAbilityOffensive() - " .. npcBot:GetUnitName()
+        .. " is chasing")
+
     UseStrongestOffensiveAbility(npcBot, abilities, MIN_HP_ENEMY)
   end
 
@@ -633,7 +651,10 @@ end
 local function UseAbilityDefensive(npcBot, abilities)
   if not IsDefensiveMode(npcBot) then return end
 
-  if IsRetreating(npcBot) then
+  if IsDefending(npcBot) then
+    logger.Print("UseAbilityOffensive() - " .. npcBot:GetUnitName()
+        .. " is defending")
+
     UseStrongestDefensiveAbility(npcBot, abilities, STRONGEST_ENEMY)
   end
 end
