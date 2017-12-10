@@ -398,9 +398,27 @@ local function IsOffensiveMode(npcBot)
     or npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_BOT
 end
 
+local function IsDefensiveMode(npcBot)
+  return npcBot:GetActiveMode() == BOT_MODE_RETREAT
+    or npcBot:GetActiveMode() == BOT_MODE_DEFEND_ALLY
+    or npcBot:GetActiveMode() == BOT_MODE_EVASIVE_MANEUVERS
+    or npcBot:GetActiveMode() == BOT_MODE_DEFEND_TOWER_TOP
+    or npcBot:GetActiveMode() == BOT_MODE_DEFEND_TOWER_MID
+    or npcBot:GetActiveMode() == BOT_MODE_DEFEND_TOWER_BOT
+end
+
 local function IsAlliesGroupHaveOffensiveMode(heroes)
   for _, hero in pairs(heroes) do
     if IsOffensiveMode(hero) then return true end
+  end
+
+  return false
+end
+
+-- TODO: Generalize this and above functions
+local function IsAlliesGroupHaveDevensiveMode(heroes)
+  for _, hero in pairs(heroes) do
+    if IsDefensiveMode(hero) then return true end
   end
 
   return false
@@ -429,6 +447,14 @@ local function IsChasing(npcBot)
 
   if 1 <= #allies and #GetNearbyEnemies(npcBot) < #allies then
     return IsAlliesGroupHaveOffensiveMode(allies)
+  end
+end
+
+local function IsRetreating(npcBot)
+  local allies = GetNearbyAllies(npcBot)
+
+  if #allies < #GetNearbyEnemies(npcBot) then
+    return IsAlliesGroupHaveDevensiveMode(allies)
   end
 end
 
@@ -578,6 +604,19 @@ local function UseStrongestOffensiveAbility(
   UseOffensiveAbility(useAbility, enemyChoice)
 end
 
+local function UseStrongestDefensiveAbility(
+  npcBot,
+  abilities,
+  enemyChoice)
+
+  -- TODO: Use FindStrongestDefensiveAbility(), which prefers disable skills
+  local useAbility = FindStrongestOffensiveAbility(npcBot, abilities)
+
+  if useAbility == nil then return end
+
+  UseOffensiveAbility(useAbility, enemyChoice)
+end
+
 local function UseAbilityOffensive(npcBot, abilities)
   if not IsOffensiveMode(npcBot) then return end
 
@@ -589,10 +628,14 @@ local function UseAbilityOffensive(npcBot, abilities)
     UseStrongestOffensiveAbility(npcBot, abilities, MIN_HP_ENEMY)
   end
 
-  -- 4. and 5. TODO: Chasing case with IsRetreating() +  UseStrongestRetreatSkill()
-    -- 1) Use AoE/multi-tagrget disable on several chasing enemies.
-    -- 2) Use single-target disable on one chasing enemy.
+end
 
+local function UseAbilityDefensive(npcBot, abilities)
+  if not IsDefensiveMode(npcBot) then return end
+
+  if IsRetreating(npcBot) then
+    UseStrongestDefensiveAbility(npcBot, abilities, STRONGEST_ENEMY)
+  end
 end
 
 function M.UseAbility(npcBot, abilities)
@@ -600,7 +643,7 @@ function M.UseAbility(npcBot, abilities)
 
   UseAbilityOffensive(npcBot, abilities)
 
-  -- TODO: UseAbilityDefensive(npcBot, abilities)
+  UseAbilityDefensive(npcBot, abilities)
 end
 
 -------
