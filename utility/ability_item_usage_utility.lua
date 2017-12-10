@@ -112,6 +112,7 @@ local function IsAbilityCastable(ability)
     and ability:IsOwnersManaEnough()
     and ability:IsCooldownReady()
     and ability:IsTrained()
+    and not (ability:GetBehavior() & ABILITY_BEHAVIOR_PASSIVE)
 end
 
 -----------------------
@@ -345,6 +346,12 @@ local function CreateAbilityObject(ability)
   result.ability = ability
   result.castRange = ability:GetCastRange()
   result.damage = ability:GetAbilityDamage()
+  result.damageType = ability:GetDamageType()
+    -- DAMAGE_TYPE_PHYSICAL
+    -- DAMAGE_TYPE_MAGICAL
+    -- DAMAGE_TYPE_PURE
+
+  result.duration = ability:GetDuration()
   result.targetTeam = ability:GetTargetTeam()
     -- ABILITY_TARGET_TEAM_NONE
     -- ABILITY_TARGET_TEAM_FRIENDLY
@@ -356,10 +363,10 @@ local function CreateAbilityObject(ability)
 
   result.manaCost = ability:GetManaCost()
   result.behavior = ability:GetBehavior()
-    --ABILITY_BEHAVIOR_NO_TARGET
-    --ABILITY_BEHAVIOR_UNIT_TARGET
-    --ABILITY_BEHAVIOR_POINT
-    --ABILITY_BEHAVIOR_AOE
+    -- ABILITY_BEHAVIOR_NO_TARGET
+    -- ABILITY_BEHAVIOR_UNIT_TARGET
+    -- ABILITY_BEHAVIOR_POINT
+    -- ABILITY_BEHAVIOR_AOE
 
   return result
 end
@@ -369,15 +376,14 @@ function M.InitAbilities(npcBot, abilities)
   for i = 0, 25, 1 do
     local ability = npcBot:GetAbilityInSlot(i)
 
-    if ability ~= nil then
-      if ability:GetName() ~= "generic_hidden" then
+    if ability == nil
+      or ability:GetName() == "generic_hidden" then goto continue end
 
-        if not ability:IsTalent() then
-          table.insert(abilities, CreateAbilityObject(ability))
-        end
-
-      end
+    if not ability:IsTalent() then
+      table.insert(abilities, CreateAbilityObject(ability))
     end
+
+    ::continue::
   end
 
   logger.Print("M.InitAbilities() - " .. npcBot:GetUnitName() .. " loads " .. #abilities .. " abilities" )
@@ -418,12 +424,127 @@ local function IsTeamfight(npcBot)
   end
 end
 
-local function UseStrongestAoeSkill(npcBot, abilities)
-  for ability in abilities do
-    -- IsAbilityCastable
+local function IsAbilityOffensive(ability)
+  return ability.targetTeam == ABILITY_TARGET_TEAM_ENEMY
+end
 
+local function EstimateOffensiveAbilityPower(ability)
+  -- Estimation from 0 to 100
 
+  local result = 0
+
+  if ability.targetTeam ~= ABILITY_TARGET_TEAM_ENEMY then return 0 end
+
+  if ability.targetFlags == ABILITY_TARGET_FLAG_MANA_ONLY then return 10 end
+
+  if ability.behavior & ABILITY_BEHAVIOR_AOE
+    or ability.behavior & ABILITY_BEHAVIOR_NO_TARGET then
+
+    result = result + 20
   end
+
+  if ability.behavior & ABILITY_BEHAVIOR_CHANNELLED then
+    result = result + 20
+  end
+
+  if ability.behavior & ABILITY_BEHAVIOR_ROOT_DISABLES then
+    result = result + 15
+  end
+
+  if ability.damageType & DAMAGE_TYPE_PURE then
+    result = result + 10
+  end
+
+  if ability.damageType & DAMAGE_TYPE_MAGICAL then
+    result = result + 5
+  end
+
+  local damage = ability.damage
+  if ability.duration > 0 then
+    result = result + 5
+    damage = damage * ability.duration
+  end
+
+  result = result + damage / 100
+
+  return result
+end
+
+local function GetStrongestAbility(decisionTable)
+  local result = nil
+  local maxPower = 0
+
+  for _, ability in pairs(decisionTable) do
+    if ability.power > maxPower then
+      result = ability.ability
+      maxPower = ability.power
+    end
+  end
+
+  return result
+end
+
+local function FindStrongestOffensiveAbility(npcBot, abilities)
+  local decisionTable = {}
+
+  for _, ability in pairs(abilities) do
+    if not IsAbilityCastable(ability)
+      or not IsAbilityOffensive(ability) then goto continue end
+
+    local decisionAbility = {}
+    decisionAbility.ability = ability
+    decisionAbility.power = EstimateOffensiveAbilityPower(ability)
+
+    table.insert(decisionTable, decisionAbility)
+
+    ::continue::
+  end
+
+  return GetStrongestAbility(decisionTable)
+end
+
+local function UseOffensiveAbility(npcBot, ability)
+  -- TODO: Process the case when enemy stands far than the ability radius
+  if ability.behavior & ABILITY_BEHAVIOR_NO_TARGET then
+    return npcBot:ActionPush_UseAbility(ability.ability)
+  end
+
+  if ability.behavior & ABILITY_BEHAVIOR_UNIT_TARGET then
+
+    local target = M.GetHeroWith(
+      npcBot,
+      'max',
+      'GetRawOffensivePower',
+      ability.castRange,
+      true)
+
+    if target ~= nil then
+      return npcBot:Action_UseAbilityOnEntity(ability.ability, target)
+    end
+  end
+
+  if ability.behavior & ABILITY_BEHAVIOR_POINT then
+    local target = npcBot:FindAoELocation(
+      true,
+      true,
+      npcBot:GetLocation(),
+      castRange,
+      400,  -- TODO: Fix this magic number
+      0,
+      0)
+
+    return npcBot:ActionPush_UseAbilityOnLocation(
+      ability.ability,
+      target.targetloc)
+  end
+end
+
+local function UseStrongestOffensiveAbility(npcBot, abilities)
+  local useAbility = FindStrongestOffensiveAbility(npcBot, abilities)
+
+  if useAbility == nil then return end
+
+  UseOffensiveAbility(useAbility)
 end
 
 local function UseAbilityOffensive(npcBot, abilities)
@@ -435,18 +556,24 @@ local function UseAbilityOffensive(npcBot, abilities)
 
   -- 1.
   if IsTeamfight(npcBot) then
-    UseStrongestAoeSkill(npcBot, abilities)
+    UseStrongestOffensiveAbility(npcBot, abilities)
   end
+
+  -- 2. and 3. TODO: Chasing case with IsChasing() +  UseStrongestChaseSkill()
+    -- 1) Use AoE/multi-tagrget disable on several chasing enemies.
+    -- 2) Use single-target disable on one chasing enemy.
+
+  -- TODO: UseStrongestChaseSkill() + chase power estimation
 end
 
 function M.UseAbility(npcBot, abilities)
   if IsBotBusy(npcBot) then return end
 
   UseAbilityOffensive(npcBot, abilities)
-  -- 4. Use AoE/multi-tagrget disable on several chasing enemies.
-  -- 5. Use single-target disable on one chasing enemy.
+
+  -- TODO: UseAbilityDefensive(npcBot, abilities)
 end
 
-
 -------
+
 return M
