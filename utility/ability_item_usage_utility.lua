@@ -114,6 +114,10 @@ local function IsAbilityCastable(ability)
     and ability:IsTrained()
 end
 
+-----------------------
+
+-- TODO: Remove this block of usage abilites function
+
 function M.UseWard(npcBot, abilityName)
   if IsBotBusy(npcBot) then return end
 
@@ -333,4 +337,116 @@ function M.UseAreaNuke(npcBot, abilityName)
   end
 end
 
+-------
+
+local function CreateAbilityObject(ability)
+  local result = {}
+
+  result.ability = ability
+  result.castRange = ability:GetCastRange()
+  result.damage = ability:GetAbilityDamage()
+  result.targetTeam = ability:GetTargetTeam()
+    -- ABILITY_TARGET_TEAM_NONE
+    -- ABILITY_TARGET_TEAM_FRIENDLY
+    -- ABILITY_TARGET_TEAM_ENEMY
+
+  result.targetType = ability:GetTargetType()
+  result.targetFlags = ability:GetTargetFlags()
+    -- ABILITY_TARGET_FLAG_MANA_ONLY
+
+  result.manaCost = ability:GetManaCost()
+  result.behavior = ability:GetBehavior()
+    --ABILITY_BEHAVIOR_NO_TARGET
+    --ABILITY_BEHAVIOR_UNIT_TARGET
+    --ABILITY_BEHAVIOR_POINT
+    --ABILITY_BEHAVIOR_AOE
+
+  return result
+end
+
+function M.InitAbilities(npcBot, abilities)
+
+  for i = 0, 25, 1 do
+    local ability = npcBot:GetAbilityInSlot(i)
+
+    if ability ~= nil then
+      if ability:GetName() ~= "generic_hidden" then
+
+        if not ability:IsTalent() then
+          table.insert(abilities, CreateAbilityObject(ability))
+        end
+
+      end
+    end
+  end
+
+  logger.Print("M.InitAbilities() - " .. npcBot:GetUnitName() .. " loads " .. #abilities .. " abilities" )
+end
+
+local function IsOffensiveMode(npcBot)
+  return npcBot:GetActiveMode() == BOT_MODE_ATTACK
+    or npcBot:GetActiveMode() == BOT_MODE_ROAM
+    or npcBot:GetActiveMode() == BOT_MODE_TEAM_ROAM
+    or npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_TOP
+    or npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_MID
+    or npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_BOT
+end
+
+local function IsAlliesGroupHaveOffensiveMode(heroes)
+  for _, hero in pairs(heroes) do
+    if IsOffensiveMode(hero) then return true end
+  end
+
+  return false
+end
+
+local MAX_ATTACK_RANGE = 950
+
+local function GetNearbyEnemies(npcBot)
+  return npcBot:GetNearbyHeroes(MAX_ATTACK_RANGE, true, BOT_MODE_NONE)
+end
+
+local function GetNearbyAllies(npcBot)
+  return npcBot:GetNearbyHeroes(MAX_ATTACK_RANGE, false, BOT_MODE_NONE)
+end
+
+local function IsTeamfight(npcBot)
+  local allies = GetNearbyAllies(npcBot)
+
+  if 3 <= #GetNearbyEnemies(npcBot) and 3 <= allies then
+    return IsAlliesGroupHaveOffensiveMode(allies)
+  end
+end
+
+local function UseStrongestAoeSkill(npcBot, abilities)
+  for ability in abilities do
+    -- IsAbilityCastable
+
+
+  end
+end
+
+local function UseAbilityOffensive(npcBot, abilities)
+  if not IsOffensiveMode(npcBot) then return end
+
+  -- 1. Use the strongest disable/damage AoE/multi-tagrget skill in a teamfight.
+  -- 2. Use AoE/multi-tagrget disable/nuke on several retreating enemies (low hp).
+  -- 3. Use single-target disable/nuke on one retreating enemy (low hp).
+
+  -- 1.
+  if IsTeamfight(npcBot) then
+    UseStrongestAoeSkill(npcBot, abilities)
+  end
+end
+
+function M.UseAbility(npcBot, abilities)
+  if IsBotBusy(npcBot) then return end
+
+  UseAbilityOffensive(npcBot, abilities)
+  -- 4. Use AoE/multi-tagrget disable on several chasing enemies.
+  -- 5. Use single-target disable on one chasing enemy.
+end
+
+
+-------
 return M
