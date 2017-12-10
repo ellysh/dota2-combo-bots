@@ -419,7 +419,15 @@ end
 local function IsTeamfight(npcBot)
   local allies = GetNearbyAllies(npcBot)
 
-  if 3 <= #GetNearbyEnemies(npcBot) and 3 <= allies then
+  if 3 <= #GetNearbyEnemies(npcBot) and 3 <= #allies then
+    return IsAlliesGroupHaveOffensiveMode(allies)
+  end
+end
+
+local function IsChasing(npcBot)
+  local allies = GetNearbyAllies(npcBot)
+
+  if 1 <= #allies and #GetNearbyEnemies(npcBot) < #allies then
     return IsAlliesGroupHaveOffensiveMode(allies)
   end
 end
@@ -503,7 +511,31 @@ local function FindStrongestOffensiveAbility(npcBot, abilities)
   return GetStrongestAbility(decisionTable)
 end
 
-local function UseOffensiveAbility(npcBot, ability)
+local EnemyChoice = {
+  STRONGEST_ENEMY,
+  MIN_HP_ENEMY
+}
+
+local function GetEnemy(enemyChoice)
+  if enemyChoice == STRONGEST_ENEMY then
+    return M.GetHeroWith(
+      npcBot,
+      'max',
+      'GetRawOffensivePower',
+      ability.castRange,
+      true)
+  end
+  if enemyChoice == MIN_HP_ENEMY then
+    return M.GetHeroWith(
+      npcBot,
+      'min',
+      'GetHealth',
+      ability.castRange,
+      true)
+  end
+end
+
+local function UseOffensiveAbility(npcBot, ability, enemyChoice)
   -- TODO: Process the case when enemy stands far than the ability radius
   if ability.behavior & ABILITY_BEHAVIOR_NO_TARGET then
     return npcBot:ActionPush_UseAbility(ability.ability)
@@ -511,12 +543,7 @@ local function UseOffensiveAbility(npcBot, ability)
 
   if ability.behavior & ABILITY_BEHAVIOR_UNIT_TARGET then
 
-    local target = M.GetHeroWith(
-      npcBot,
-      'max',
-      'GetRawOffensivePower',
-      ability.castRange,
-      true)
+    local target = GetEnemy(enemyChoice)
 
     if target ~= nil then
       return npcBot:Action_UseAbilityOnEntity(ability.ability, target)
@@ -539,31 +566,33 @@ local function UseOffensiveAbility(npcBot, ability)
   end
 end
 
-local function UseStrongestOffensiveAbility(npcBot, abilities)
+local function UseStrongestOffensiveAbility(
+  npcBot,
+  abilities,
+  enemyChoice)
+
   local useAbility = FindStrongestOffensiveAbility(npcBot, abilities)
 
   if useAbility == nil then return end
 
-  UseOffensiveAbility(useAbility)
+  UseOffensiveAbility(useAbility, enemyChoice)
 end
 
 local function UseAbilityOffensive(npcBot, abilities)
   if not IsOffensiveMode(npcBot) then return end
 
-  -- 1. Use the strongest disable/damage AoE/multi-tagrget skill in a teamfight.
-  -- 2. Use AoE/multi-tagrget disable/nuke on several retreating enemies (low hp).
-  -- 3. Use single-target disable/nuke on one retreating enemy (low hp).
-
-  -- 1.
   if IsTeamfight(npcBot) then
-    UseStrongestOffensiveAbility(npcBot, abilities)
+    UseStrongestOffensiveAbility(npcBot, abilities, STRONGEST_ENEMY)
   end
 
-  -- 2. and 3. TODO: Chasing case with IsChasing() +  UseStrongestChaseSkill()
+  if IsChasing(npcBot) then
+    UseStrongestOffensiveAbility(npcBot, abilities, MIN_HP_ENEMY)
+  end
+
+  -- 4. and 5. TODO: Chasing case with IsRetreating() +  UseStrongestRetreatSkill()
     -- 1) Use AoE/multi-tagrget disable on several chasing enemies.
     -- 2) Use single-target disable on one chasing enemy.
 
-  -- TODO: UseStrongestChaseSkill() + chase power estimation
 end
 
 function M.UseAbility(npcBot, abilities)
