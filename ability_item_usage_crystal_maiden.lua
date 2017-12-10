@@ -10,7 +10,7 @@ function AbilityUsageThink()
 
   utility.UseGlyph(npcBot)
 
-  utility.UseAbility(npcBot, abilities)
+  utility.UseAbility(npcBot, Abilities)
 end
 
 --[[
