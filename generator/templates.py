@@ -3,7 +3,8 @@ local HEROES = {
 """
 
 HERO = """
-  <hero> = {
+  {
+    name = "<hero>",
     position = {<position1>, <position2>},
     combo_heroes = {
       "<combo1>",

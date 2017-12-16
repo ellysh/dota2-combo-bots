@@ -1,7 +1,8 @@
 
 local HEROES = {
 
-  npc_dota_hero_crystal_maiden = {
+  {
+    name = "npc_dota_hero_crystal_maiden",
     position = {5, nil},
     combo_heroes = {
       "npc_dota_hero_juggernaut",
@@ -15,7 +16,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_juggernaut = {
+  {
+    name = "npc_dota_hero_juggernaut",
     position = {1, nil},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -29,7 +31,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_sven = {
+  {
+    name = "npc_dota_hero_sven",
     position = {1, nil},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -43,7 +46,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_ursa = {
+  {
+    name = "npc_dota_hero_ursa",
     position = {1, nil},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -57,7 +61,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_shadow_shaman = {
+  {
+    name = "npc_dota_hero_shadow_shaman",
     position = {4, 5},
     combo_heroes = {
       "npc_dota_hero_ursa",
@@ -71,7 +76,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_venomancer = {
+  {
+    name = "npc_dota_hero_venomancer",
     position = {5, nil},
     combo_heroes = {
       "npc_dota_hero_juggernaut",
@@ -85,7 +91,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_obsidian_destroyer = {
+  {
+    name = "npc_dota_hero_obsidian_destroyer",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_skywrath_mage",
@@ -99,7 +106,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_death_prophet = {
+  {
+    name = "npc_dota_hero_death_prophet",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_faceless_void",
@@ -113,7 +121,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_queenofpain = {
+  {
+    name = "npc_dota_hero_queenofpain",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_tiny",
@@ -127,7 +136,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_bristleback = {
+  {
+    name = "npc_dota_hero_bristleback",
     position = {3, nil},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -141,7 +151,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_tidehunter = {
+  {
+    name = "npc_dota_hero_tidehunter",
     position = {3, nil},
     combo_heroes = {
       "npc_dota_hero_tiny",
@@ -155,7 +166,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_shredder = {
+  {
+    name = "npc_dota_hero_shredder",
     position = {3, 2},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -169,7 +181,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_skywrath_mage = {
+  {
+    name = "npc_dota_hero_skywrath_mage",
     position = {4, nil},
     combo_heroes = {
       "npc_dota_hero_obsidian_destroyer",
@@ -183,7 +196,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_lion = {
+  {
+    name = "npc_dota_hero_lion",
     position = {4, 5},
     combo_heroes = {
       "npc_dota_hero_lina",
@@ -197,7 +211,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_sand_king = {
+  {
+    name = "npc_dota_hero_sand_king",
     position = {4, nil},
     combo_heroes = {
       "nil",
@@ -211,7 +226,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_lich = {
+  {
+    name = "npc_dota_hero_lich",
     position = {5, nil},
     combo_heroes = {
       "npc_dota_hero_faceless_void",
@@ -225,7 +241,8 @@ local HEROES = {
     }
   },
 
-    npc_dota_hero_faceless_void = {
+  {
+    name = "  npc_dota_hero_faceless_void",
     position = {3, nil},
     combo_heroes = {
       "npc_dota_hero_lich",
@@ -239,7 +256,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_nevermore = {
+  {
+    name = "npc_dota_hero_nevermore",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_tiny",
@@ -253,7 +271,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_tiny = {
+  {
+    name = "npc_dota_hero_tiny",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_nevermore",
@@ -267,7 +286,8 @@ local HEROES = {
     }
   },
 
-    npc_dota_hero_dazzle = {
+  {
+    name = "  npc_dota_hero_dazzle",
     position = {5, nil},
     combo_heroes = {
       "npc_dota_hero_bristleback",
@@ -281,7 +301,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_lina = {
+  {
+    name = "npc_dota_hero_lina",
     position = {4, nil},
     combo_heroes = {
       "npc_dota_hero_lion",
@@ -295,7 +316,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_legion_commander = {
+  {
+    name = "npc_dota_hero_legion_commander",
     position = {1, 3},
     combo_heroes = {
       "npc_dota_hero_lion",
@@ -309,7 +331,8 @@ local HEROES = {
     }
   },
 
-  npc_dota_hero_drow_ranger = {
+  {
+    name = "npc_dota_hero_drow_ranger",
     position = {1, nil},
     combo_heroes = {
       "npc_dota_hero_vengefulspirit",
@@ -323,7 +346,8 @@ local HEROES = {
     }
   },
 
-    npc_dota_hero_razor = {
+  {
+    name = "  npc_dota_hero_razor",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_bane",
