@@ -14,14 +14,17 @@ function ElementInList(element, list)
   return false
 end
 
+function GetRandomTrue()
+  return (RealTime() % 0.2) < 0.1
+end
+
 function GetRandomHero(position)
-  -- TODO: Now we find first hero with the specified position.
-  -- It should be random instead.
-  for _, hero in pairs(heroes.HEROES) do
-    if ElementInList(position, hero.position) then
-      return hero.name
+  while true do
+    for _, hero in pairs(heroes.HEROES) do
+      if ElementInList(position, hero.position) and GetRandomTrue() then
+        return hero.name
+    end
   end
-  return nil
 end
 
 -- TODO: Now the draft algorithm works only for all pick mode for a team of bots
