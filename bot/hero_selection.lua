@@ -1,23 +1,34 @@
-local BotHeroes = {
-  "npc_dota_hero_juggernaut",
-  "npc_dota_hero_crystal_maiden",
-  "npc_dota_hero_warlock",
-  "npc_dota_hero_skeleton_king",
-  --"npc_dota_hero_ursa",
-  "npc_dota_hero_shadow_shaman"
-}
+local heroes = require(
+    GetScriptDirectory() .."/database/heroes")
 
 function GetBotNames ()
     return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
 end
 
-function Think()
-  local IDs = GetTeamPlayers(GetTeam())
-  for i,id in pairs(IDs) do
-    if IsPlayerBot(id) then
-      SelectHero(id, BotHeroes[i])
+function ElementInList(element, list)
+  for _,e in pairs(list) do
+    if e == element then
+      return true
     end
   end
+  return false
+end
+
+function GetRandomHero(position)
+  -- TODO: Now we find first hero with the specified position.
+  -- It should be random instead.
+  for _, hero in pairs(heroes.HEROES) do
+    if ElementInList(position, hero.position) then
+      return hero.name
+  end
+  return nil
+end
+
+-- TODO: Now the draft algorithm works only for all pick mode for a team of bots
+function Think()
+  local players = GetTeamPlayers(GetTeam())
+
+  SelectHero(players[1], GetRandomHero(5))
 end
 
 function UpdateLaneAssignments()
