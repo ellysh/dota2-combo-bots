@@ -21,11 +21,28 @@ def print_header():
 def print_footer():
   sys.stdout.write(t.HEROES_FOOTER)
 
+def get_value(line, index):
+  return line[index].strip() if line[index] else 'nil'
+
+def print_hero(line):
+  hero = t.HERO.replace('<hero>', line[0])
+  hero = hero.replace('<position1>', get_value(line, 1))
+  hero = hero.replace('<position2>', get_value(line, 2))
+  hero = hero.replace('<combo1>', get_value(line, 3))
+  hero = hero.replace('<combo2>', get_value(line, 4))
+  hero = hero.replace('<combo3>', get_value(line, 5))
+  hero = hero.replace('<counter1>', get_value(line, 6))
+  hero = hero.replace('<counter2>', get_value(line, 7))
+  hero = hero.replace('<counter3>', get_value(line, 8))
+
+  sys.stdout.write(hero)
+
 def parse_lines(reader):
   skip_header_lines(reader)
 
   for line in reader:
-    print line
+    #print line
+    print_hero(line)
 
 def parse_csv_file(filename):
   with c.open_file(filename, "rU") as file_obj:
