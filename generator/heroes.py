@@ -3,6 +3,7 @@
 import sys
 import csv
 import common as c
+import templates as t
 
 _USAGE = """Usage: heroes.py <in_file>
     in_file - the heroes.csv file
@@ -13,6 +14,12 @@ Example:
 
 def skip_header_lines(reader):
   reader.next()
+
+def print_header():
+  sys.stdout.write(t.HEROES_HEADER)
+
+def print_footer():
+  sys.stdout.write(t.HEROES_FOOTER)
 
 def parse_lines(reader):
   skip_header_lines(reader)
@@ -31,7 +38,11 @@ def main():
   else:
     c.print_usage(_USAGE)
 
+  print_header()
+
   parse_csv_file(filename)
+
+  print_footer()
 
 if __name__ == '__main__':
   main()
