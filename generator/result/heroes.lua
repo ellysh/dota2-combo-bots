@@ -312,9 +312,9 @@ local HEROES = {
   npc_dota_hero_drow_ranger = {
     position = {1, nil},
     combo_heroes = {
-      "nil",
-      "nil",
-      "nil"
+      "npc_dota_hero_vengefulspirit",
+      "npc_dota_hero_visage",
+      "npc_dota_hero_windrunner"
     },
     counter_heroes = {
       "nil",
@@ -326,7 +326,7 @@ local HEROES = {
     npc_dota_hero_razor = {
     position = {2, nil},
     combo_heroes = {
-      "nil",
+      "npc_dota_hero_bane",
       "nil",
       "nil"
     },
