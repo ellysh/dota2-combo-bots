@@ -75,21 +75,25 @@ function Think()
 end
 
 function UpdateLaneAssignments()
+  -- Radiant:  easy lane = bot / hard lane = top
+  -- Dire:     easy lane = top / hard lane = bot
+
+  -- TODO: Consider the hero combos when choosing the lanes
   if ( GetTeam() == TEAM_RADIANT ) then
     return {
-      [1] = LANE_TOP,
-      [2] = LANE_TOP,
-      [3] = LANE_MID,
+      [1] = LANE_BOT,
+      [2] = LANE_MID,
+      [3] = LANE_TOP,
       [4] = LANE_BOT,
-      [5] = LANE_BOT,
+      [5] = LANE_TOP,
     }
   elseif ( GetTeam() == TEAM_DIRE ) then
     return {
-      [1] = LANE_BOT,
-      [2] = LANE_BOT,
-      [3] = LANE_MID,
+      [1] = LANE_TOP,
+      [2] = LANE_MID,
+      [3] = LANE_BOT,
       [4] = LANE_TOP,
-      [5] = LANE_TOP,
+      [5] = LANE_BOT,
     }
   end
 end
