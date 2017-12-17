@@ -40,8 +40,8 @@ function GetRandomHero(position)
   while true do
     for _, hero in pairs(heroes.HEROES) do
       if IsElementInList(position, hero.position)
-        and not IsHeroPicked(hero.name)
-        and GetRandomTrue() then
+        and GetRandomTrue()
+        and not IsHeroPicked(hero.name) then
         logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. hero.position[1])
         return hero.name
       end
