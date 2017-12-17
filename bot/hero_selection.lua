@@ -22,6 +22,16 @@ function IsIntersectionOfLists(list1, list2)
   return false
 end
 
+function IsHeroPicked(hero)
+  local players = GetTeamPlayers(GetTeam())
+
+  for _, player in pairs(players) do
+    if hero == GetSelectedHeroName(player) then return true end
+  end
+
+  return false
+end
+
 function GetRandomTrue()
   return (RandomInt(0, 100) % 2) == 0
 end
@@ -29,7 +39,9 @@ end
 function GetRandomHero(position)
   while true do
     for _, hero in pairs(heroes.HEROES) do
-      if IsElementInList(position, hero.position) and GetRandomTrue() then
+      if IsElementInList(position, hero.position)
+        and not IsHeroPicked(hero.name)
+        and GetRandomTrue() then
         logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. hero.position[1])
         return hero.name
       end
@@ -40,6 +52,7 @@ end
 function GetComboHero(position, combo_heroes)
   for _, hero in pairs(heroes.HEROES) do
     if IsElementInList(position, hero.position)
+      and not IsHeroPicked(hero.name)
       and IsIntersectionOfLists(combo_heroes, hero.combo_heroes) then
         logger.Print("GetComboHero() - name = " .. hero.name .. " position = " .. hero.position[1])
         return hero.name
