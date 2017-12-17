@@ -41,3 +41,7 @@ end
 function RealTime()
   return DotaTime() + 1
 end
+
+function RandomInt()
+  return 2
+end
