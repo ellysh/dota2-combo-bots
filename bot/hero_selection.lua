@@ -22,14 +22,19 @@ function IsIntersectionOfLists(list1, list2)
   return false
 end
 
-function IsHeroPicked(hero)
-  local players = GetTeamPlayers(GetTeam())
+function IsHeroPickedByTeam(hero, team)
+  local players = GetTeamPlayers(team)
 
   for _, player in pairs(players) do
     if hero == GetSelectedHeroName(player) then return true end
   end
 
   return false
+end
+
+function IsHeroPicked(hero)
+  return IsHeroPickedByTeam(hero, GetTeam())
+         or IsHeroPickedByTeam(hero, GetOpposingTeam())
 end
 
 function GetRandomTrue()

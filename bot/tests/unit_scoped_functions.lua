@@ -148,6 +148,10 @@ function GetTeam()
     return TEAM_RADIANT
 end
 
+function GetOpposingTeam()
+    return TEAM_DIRE
+end
+
 function GetTeamPlayers(team)
     return {1, 2, 3, 4, 5}
 end
