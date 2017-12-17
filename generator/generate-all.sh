@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./heroes.py database/csv/heroes.csv > result/heroes.lua
+./heroes.py database/csv/heroes.csv > ../bot/database/heroes.lua
