@@ -1,5 +1,6 @@
+local M = {}
 
-local HEROES = {
+M.HEROES = {
 
   {
     name = "npc_dota_hero_crystal_maiden",
@@ -362,3 +363,5 @@ local HEROES = {
   },
 
 }
+
+return M

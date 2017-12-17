@@ -34,6 +34,10 @@ end
 local Time = 0.0
 
 function DotaTime()
-    Time = Time + 1
+    Time = Time + 0.2
     return Time
+end
+
+function RealTime()
+  return DotaTime() + 1
 end

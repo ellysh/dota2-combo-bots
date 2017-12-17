@@ -5,10 +5,10 @@ require("hero_selection")
 Think()
 
 assert((SelectedHero[1] == "npc_dota_hero_juggernaut"), "Think() - failed")
-assert((SelectedHero[2] == "npc_dota_hero_crystal_maiden"), "Think() - failed")
-assert((SelectedHero[3] == "npc_dota_hero_warlock"), "Think() - failed")
-assert((SelectedHero[4] == "npc_dota_hero_skeleton_king"), "Think() - failed")
-assert((SelectedHero[5] == "npc_dota_hero_shadow_shaman"), "Think() - failed")
+assert((SelectedHero[2] == "npc_dota_hero_obsidian_destroyer"), "Think() - failed")
+assert((SelectedHero[3] == "npc_dota_hero_tidehunter"), "Think() - failed")
+assert((SelectedHero[4] == "npc_dota_hero_skywrath_mage"), "Think() - failed")
+assert((SelectedHero[5] == "npc_dota_hero_venomancer"), "Think() - failed")
 
 local laneAssignment = UpdateLaneAssignments()
 
