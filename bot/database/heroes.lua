@@ -244,7 +244,7 @@ M.HEROES = {
   },
 
   {
-    name = "  npc_dota_hero_faceless_void",
+    name = "npc_dota_hero_faceless_void",
     position = {3, nil},
     combo_heroes = {
       "npc_dota_hero_lich",
@@ -289,7 +289,7 @@ M.HEROES = {
   },
 
   {
-    name = "  npc_dota_hero_dazzle",
+    name = "npc_dota_hero_dazzle",
     position = {5, nil},
     combo_heroes = {
       "npc_dota_hero_bristleback",
@@ -349,7 +349,7 @@ M.HEROES = {
   },
 
   {
-    name = "  npc_dota_hero_razor",
+    name = "npc_dota_hero_razor",
     position = {2, nil},
     combo_heroes = {
       "npc_dota_hero_bane",

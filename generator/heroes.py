@@ -25,7 +25,7 @@ def get_value(line, index):
   return line[index].strip() if line[index] else 'nil'
 
 def print_hero(line):
-  hero = t.HERO.replace('<hero>', line[0])
+  hero = t.HERO.replace('<hero>', get_value(line ,0))
   hero = hero.replace('<position1>', get_value(line, 1))
   hero = hero.replace('<position2>', get_value(line, 2))
   hero = hero.replace('<combo1>', get_value(line, 3))

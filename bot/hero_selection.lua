@@ -23,7 +23,7 @@ function IsIntersectionOfLists(list1, list2)
 end
 
 function GetRandomTrue()
-  return (RealTime() % 0.2) < 0.1
+  return (RandomInt(0, 100) % 2) == 0
 end
 
 function GetRandomHero(position)
