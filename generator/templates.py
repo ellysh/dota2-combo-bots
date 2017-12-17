@@ -1,5 +1,7 @@
 HEROES_HEADER = """
-local HEROES = {
+local M = {}
+
+M.HEROES = {
 """
 
 HERO = """
@@ -21,4 +23,6 @@ HERO = """
 
 HEROES_FOOTER = """
 }
+
+return M
 """
