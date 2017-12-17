@@ -45,3 +45,7 @@ end
 function RandomInt()
   return 2
 end
+
+function GetSelectedHeroName(playerId)
+  return "npc_dota_hero_venomancer"
+end
