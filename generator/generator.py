@@ -21,10 +21,11 @@ def get_variable(table, suffix):
   return eval("t." + table + suffix)
 
 def print_header(table):
+  sys.stdout.write(t.HEADER)
   sys.stdout.write(get_variable(table, "_HEADER"))
 
 def print_footer(table):
-  sys.stdout.write(get_variable(table, "_FOOTER"))
+  sys.stdout.write(t.FOOTER)
 
 def get_value(line, index):
   return line[index].strip() if line[index] else 'nil'

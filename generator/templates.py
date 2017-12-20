@@ -1,8 +1,15 @@
+HEADER = """
+local M = {}
+"""
+
+FOOTER = """
+}
+
+return M
+"""
 #---------------------------------------------
 
 HEROES_HEADER = """
-local M = {}
-
 M.HEROES = {
 """
 
@@ -23,17 +30,9 @@ HEROES = """
   },
 """
 
-HEROES_FOOTER = """
-}
-
-return M
-"""
-
 #---------------------------------------------
 
 ITEM_RECIPE_HEADER = """
-local M = {}
-
 M.ITEM_RECIPE = {
 """
 
@@ -48,9 +47,4 @@ ITEM_RECIPE = """
   },
 """
 
-ITEM_RECIPE_FOOTER = """
-}
-
-return M
-"""
-
+#---------------------------------------------
