@@ -41,7 +41,6 @@ def parse_lines(reader):
   skip_header_lines(reader)
 
   for line in reader:
-    #print line
     print_hero(line)
 
 def parse_csv_file(filename):
