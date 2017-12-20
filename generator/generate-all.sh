@@ -3,5 +3,5 @@
 CSV_DIR="database/csv"
 RESULT_DIR="../bot/database"
 
-./heroes.py $CSV_DIR/heroes.csv > $RESULT_DIR/heroes.lua
-./item_recipe.py $CSV_DIR/item_recipe.csv > $RESULT_DIR/item_recipe.lua
+./generator.py HEROES 9 $CSV_DIR/heroes.csv > $RESULT_DIR/heroes.lua
+./generator.py ITEM_RECIPE 5 $CSV_DIR/item_recipe.csv > $RESULT_DIR/item_recipe.lua

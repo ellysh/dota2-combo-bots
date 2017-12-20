@@ -6,19 +6,19 @@ local M = {}
 M.HEROES = {
 """
 
-HERO = """
+HEROES = """
   {
-    name = "<hero>",
-    position = {<position1>, <position2>},
+    name = "<0>",
+    position = {<1>, <2>},
     combo_heroes = {
-      "<combo1>",
-      "<combo2>",
-      "<combo3>"
+      "<3>",
+      "<4>",
+      "<5>"
     },
     counter_heroes = {
-      "<counter1>",
-      "<counter2>",
-      "<counter3>"
+      "<6>",
+      "<7>",
+      "<8>"
     }
   },
 """
@@ -39,12 +39,12 @@ M.ITEM_RECIPE = {
 
 ITEM_RECIPE = """
   {
-    name = "<item>",
+    name = "<0>",
     combo_heroes = {
-      "<component1>",
-      "<component2>",
-      "<component3>",
-      "<component4>"}
+      "<1>",
+      "<2>",
+      "<3>",
+      "<4>"}
   },
 """
 
