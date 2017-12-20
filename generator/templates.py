@@ -1,3 +1,5 @@
+#---------------------------------------------
+
 HEROES_HEADER = """
 local M = {}
 
@@ -26,3 +28,29 @@ HEROES_FOOTER = """
 
 return M
 """
+
+#---------------------------------------------
+
+ITEM_RECIPE_HEADER = """
+local M = {}
+
+M.ITEM_RECIPE = {
+"""
+
+ITEM_RECIPE = """
+  {
+    name = "<item>",
+    combo_heroes = {
+      "<component1>",
+      "<component2>",
+      "<component3>",
+      "<component4>"}
+  },
+"""
+
+ITEM_RECIPE_FOOTER = """
+}
+
+return M
+"""
+
