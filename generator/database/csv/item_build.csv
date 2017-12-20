@@ -1,0 +1,25 @@
+Hero;Starting Items;;;Core Items;;;Extra Items;;;
+npc_dota_hero_crystal_maiden;item_tango;item_clarity;;item_magic_wand;item_tranquil_boots;item_glimmer_cape;item_force_staff;  item_ultimate_scepter;item_lotus_orb;item_blink
+npc_dota_hero_juggernaut;item_tango;item_flask;item_stout_shield;item_magic_wand;item_phase_boots;item_manta;item_diffusal_blade;item_butterfly;item_abyssal_blade;item_skadi
+npc_dota_hero_sven;;;;;;;;;;
+npc_dota_hero_ursa;;;;;;;;;;
+npc_dota_hero_shadow_shaman;;;;;;;;;;
+npc_dota_hero_venomancer;;;;;;;;;;
+npc_dota_hero_obsidian_destroyer;;;;;;;;;;
+npc_dota_hero_death_prophet;;;;;;;;;;
+npc_dota_hero_queenofpain;;;;;;;;;;
+npc_dota_hero_bristleback;;;;;;;;;;
+npc_dota_hero_tidehunter;;;;;;;;;;
+npc_dota_hero_shredder;;;;;;;;;;
+npc_dota_hero_skywrath_mage;;;;;;;;;;
+npc_dota_hero_lion;;;;;;;;;;
+npc_dota_hero_sand_king;;;;;;;;;;
+npc_dota_hero_lich;;;;;;;;;;
+  npc_dota_hero_faceless_void;;;;;;;;;;
+npc_dota_hero_nevermore;;;;;;;;;;
+npc_dota_hero_tiny;;;;;;;;;;
+  npc_dota_hero_dazzle;;;;;;;;;;
+npc_dota_hero_lina;;;;;;;;;;
+npc_dota_hero_legion_commander;;;;;;;;;;
+npc_dota_hero_drow_ranger;;;;;;;;;;
+  npc_dota_hero_razor;;;;;;;;;;
