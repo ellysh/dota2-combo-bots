@@ -9,44 +9,44 @@ local item_build = require(
 
 local M = {}
 
-local function IsTpScrollPresent(npcBot)
-  local tpScroll = npcBot:FindItemSlot("item_tpscroll")
+local function IsTpScrollPresent(npc_bot)
+  local tp_scroll = npc_bot:FindItemSlot("item_tpscroll")
 
-  return tpScroll ~= -1
+  return tp_scroll ~= -1
 end
 
-local function PurchaseCourier(npcBot)
+local function PurchaseCourier(npc_bot)
   if GetNumCouriers() > 0 then return end
 
   local players = GetTeamPlayers(GetTeam())
 
   -- Buy courier only by player of 5th position
-  if players[5] == npcBot:GetPlayerID() then
+  if players[5] == npc_bot:GetPlayerID() then
 
-    logger.Print("PurchaseCourier() - " .. npcBot:GetUnitName() .. " bought Courier")
+    logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought Courier")
 
-    npcBot:ActionImmediate_PurchaseItem("item_courier")
+    npc_bot:ActionImmediate_PurchaseItem("item_courier")
   end
 end
 
-local function PurchaseTpScroll(npcBot)
-  if IsTpScrollPresent(npcBot) then return end
+local function PurchaseTpScroll(npc_bot)
+  if IsTpScrollPresent(npc_bot) then return end
 
-  if (npcBot:GetGold() >= GetItemCost("item_tpscroll")) then
+  if (npc_bot:GetGold() >= GetItemCost("item_tpscroll")) then
 
-    logger.Print("PurchaseTpScroll() - " .. npcBot:GetUnitName() .. " bought TpScroll")
+    logger.Print("PurchaseTpScroll() - " .. npc_bot:GetUnitName() .. " bought TpScroll")
 
-    npcBot:ActionImmediate_PurchaseItem("item_tpscroll")
+    npc_bot:ActionImmediate_PurchaseItem("item_tpscroll")
   end
 end
 
-local function PurchaseItem(npcBot, item)
+local function PurchaseItem(npc_bot, item)
   -- TODO: Process compound items correctly there.
-  if item ~= "nil" and (npcBot:GetGold() >= GetItemCost(item)) then
+  if item ~= "nil" and (npc_bot:GetGold() >= GetItemCost(item)) then
 
-    logger.Print("PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. item)
+    logger.Print("PurchaseItem() - " .. npc_bot:GetUnitName() .. " bought " .. item)
 
-    npcBot:ActionImmediate_PurchaseItem(item)
+    npc_bot:ActionImmediate_PurchaseItem(item)
     return true
   end
 
@@ -61,25 +61,25 @@ local function FindNextItemToBuy(item_list)
   return "nil"
 end
 
-local function PurchaseItemList(npcBot, item_type)
-  local item_list = item_build.ITEM_BUILD[npcBot:GetUnitName()].items
+local function PurchaseItemList(npc_bot, item_type)
+  local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if PurchaseItem(npcBot, item) then
+  if PurchaseItem(npc_bot, item) then
     -- Mark the item as bought
     item_list[i] = "nil"
   end
 end
 
 function M.PurchaseItem()
-  local npcBot = GetBot()
+  local npc_bot = GetBot()
 
-  PurchaseCourier(npcBot)
+  PurchaseCourier(npc_bot)
 
-  PurchaseTpScroll(npcBot)
+  PurchaseTpScroll(npc_bot)
 
-  PurchaseItemList(npcBot)
+  PurchaseItemList(npc_bot)
 end
 
 -- Provide an access to local functions for unit tests only

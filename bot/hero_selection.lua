@@ -72,26 +72,26 @@ end
 function Think()
   local players = GetTeamPlayers(GetTeam())
 
-  local heroPosition5 = GetRandomHero(5)
-  SelectHero(players[5], heroPosition5)
+  local hero_position_5 = GetRandomHero(5)
+  SelectHero(players[5], hero_position_5)
 
-  local heroPosition4 = GetComboHero(4, {heroPosition5})
-  SelectHero(players[4], heroPosition4)
+  local hero_position_4 = GetComboHero(4, {hero_position_5})
+  SelectHero(players[4], hero_position_4)
 
-  local heroPosition3 = GetComboHero(3, {heroPosition4, heroPosition5})
-  SelectHero(players[3], heroPosition3)
+  local hero_position_3 = GetComboHero(3, {hero_position_4, hero_position_5})
+  SelectHero(players[3], hero_position_3)
 
-  local heroPosition2 = GetComboHero(
+  local hero_position_2 = GetComboHero(
     2,
-    {heroPosition3, heroPosition4, heroPosition5})
+    {hero_position_3, hero_position_4, hero_position_5})
 
-  SelectHero(players[2], heroPosition2)
+  SelectHero(players[2], hero_position_2)
 
-  local heroPosition1 = GetComboHero(
+  local hero_position_1 = GetComboHero(
     1,
-    {heroPosition2, heroPosition3, heroPosition4, heroPosition5})
+    {hero_position_2, hero_position_3, hero_position_4, hero_position_5})
 
-  SelectHero(players[1], heroPosition1)
+  SelectHero(players[1], hero_position_1)
 end
 
 function UpdateLaneAssignments()
