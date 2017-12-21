@@ -2,7 +2,9 @@
 
 FILES=$(ls *.lua)
 
-#lua hero_selection_test.lua
+lua hero_selection_test.lua
+
+exit 0
 
 for FILE in $FILES
 do

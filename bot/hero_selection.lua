@@ -4,25 +4,27 @@ local heroes = require(
 local logger = require(
     GetScriptDirectory() .."/utility/logger")
 
-function GetBotNames ()
+local M = {}
+
+local function GetBotNames ()
     return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
 end
 
-function IsElementInList(element, list)
+local function IsElementInList(element, list)
   for _, e in pairs(list) do
     if e == element then return true end
   end
   return false
 end
 
-function IsIntersectionOfLists(list1, list2)
+local function IsIntersectionOfLists(list1, list2)
   for _, e in pairs(list1) do
     if IsElementInList(e, list2) then return true end
   end
   return false
 end
 
-function IsHeroPickedByTeam(hero, team)
+local function IsHeroPickedByTeam(hero, team)
   local players = GetTeamPlayers(team)
 
   for _, player in pairs(players) do
@@ -32,16 +34,16 @@ function IsHeroPickedByTeam(hero, team)
   return false
 end
 
-function IsHeroPicked(hero)
+local function IsHeroPicked(hero)
   return IsHeroPickedByTeam(hero, GetTeam())
          or IsHeroPickedByTeam(hero, GetOpposingTeam())
 end
 
-function GetRandomTrue()
+local function GetRandomTrue()
   return (RandomInt(0, 100) % 2) == 0
 end
 
-function GetRandomHero(position)
+local function GetRandomHero(position)
   while true do
     for _, hero in pairs(heroes.HEROES) do
       if IsElementInList(position, hero.position)
@@ -54,7 +56,7 @@ function GetRandomHero(position)
   end
 end
 
-function GetComboHero(position, combo_heroes)
+local function GetComboHero(position, combo_heroes)
   for _, hero in pairs(heroes.HEROES) do
     if IsElementInList(position, hero.position)
       and not IsHeroPicked(hero.name)
@@ -115,3 +117,15 @@ function UpdateLaneAssignments()
     }
   end
 end
+
+-- Provide an access to local functions for unit tests only
+M.test_GetBotNames = GetBotNames
+M.test_IsElementInList = IsElementInList
+M.test_IsIntersectionOfLists = IsIntersectionOfLists
+M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
+M.test_IsHeroPicked = IsHeroPicked
+M.test_GetRandomTrue = GetRandomTrue
+M.test_GetRandomHero = GetRandomHero
+M.test_GetComboHero = GetComboHero
+
+return M

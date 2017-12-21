@@ -82,7 +82,7 @@ function M.PurchaseItem()
   PurchaseItemList(npcBot)
 end
 
--- Provide an access to locac functions for unit tests only
+-- Provide an access to local functions for unit tests only
 M.test_IsTpScrollPresent = IsTpScrollPresent
 M.test_PurchaseCourier = PurchaseCourier
 M.test_PurchaseTpScroll = PurchaseTpScroll
