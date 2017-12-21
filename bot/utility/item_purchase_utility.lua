@@ -40,21 +40,6 @@ local function PurchaseTpScroll(npcBot)
   end
 end
 
-local function IsGameBeginning()
-  return DotaTime() < 0
-end
-
-local function IsInventoryEmpty(npcBot)
-  for i = 0, 16, 1 do
-    local item = npcBot:GetItemInSlot(i)
-    if item ~= nill and item:GetName() ~= "item_tpscroll" then
-      return false
-    end
-  end
-
-  return true
-end
-
 local function PurchaseItem(npcBot, item)
   -- TODO: Process compound items correctly there.
   if item ~= "nil" and (npcBot:GetGold() >= GetItemCost(item)) then
@@ -76,21 +61,8 @@ local function FindNextItemToBuy(item_list)
   return "nil"
 end
 
-local STARTING_ITEM = 0
-local CORE_ITEM = 1
-
 local function PurchaseItemList(npcBot, item_type)
-  local item_list = nil
-
-  if item_type == STARTING_ITEM then
-    if not IsGameBeginning() or not IsInventoryEmpty(npcBot) then return end
-
-    item_list = item_build.ITEM_BUILD[npcBot:GetUnitName()].starting_items
-  else
-    if IsGameBeginning() or IsInventoryEmpty(npcBot) then return end
-
-    item_list = item_build.ITEM_BUILD[npcBot:GetUnitName()].core_items
-  end
+  local item_list = item_build.ITEM_BUILD[npcBot:GetUnitName()].items
 
   local i, item = FindNextItemToBuy(item_list)
 
@@ -107,9 +79,7 @@ function M.PurchaseItem()
 
   PurchaseTpScroll(npcBot)
 
-  PurchaseItemList(npcBot, STARTING_ITEM)
-
-  PurchaseItemList(npcBot, CORE_ITEM)
+  PurchaseItemList(npcBot)
 end
 
 return M

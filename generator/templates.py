@@ -55,11 +55,10 @@ M.ITEM_BUILD = {
 
 ITEM_BUILD = """
   <0> = {
-    starting_items = {
+    items = {
       "<1>",
       "<2>",
-      "<3>"},
-    core_items = {
+      "<3>",
       "<4>",
       "<5>",
       "<6>",
