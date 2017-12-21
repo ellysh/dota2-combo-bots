@@ -2,7 +2,7 @@ Unit = {}
 
 function Unit:new()
     local newObj = {
-      name = "test",
+      name = "npc_dota_hero_crystal_maiden",
       health = 100,
       maxHealth = 200,
       offensivePower = 100}
@@ -53,7 +53,7 @@ function Bot:GetGold()
 end
 
 function Bot:FindItemSlot(itemName)
-  return 0
+  return -1
 end
 
 local TestUnit = Unit:new()
@@ -89,6 +89,10 @@ function Bot:Action_UseAbilityOnEntity()
 end
 
 function Bot:ActionPush_UseAbility()
+end
+
+function Bot:GetPlayerID()
+  return 5
 end
 
 ------------------------------------------

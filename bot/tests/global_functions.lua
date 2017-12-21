@@ -9,7 +9,8 @@ function GetItemCost(item)
     local itemsCost = {
         ["item_tango"] = 150,
         ["item_flask"] = 110,
-        ["item_courier"] = 200
+        ["item_courier"] = 200,
+        ["item_tpscroll"] = 100
     };
 
     return itemsCost[item]
@@ -48,4 +49,8 @@ end
 
 function GetSelectedHeroName(playerId)
   return "npc_dota_hero_venomancer"
+end
+
+function GetNumCouriers()
+  return 0
 end

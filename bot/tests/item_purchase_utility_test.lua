@@ -1,15 +1,51 @@
 package.path = package.path .. ";../utility/?.lua"
+
 require("global_functions")
-local item_purchase_utility = require("item_purchase_utility")
 
-local itemsToBuy = {
-    "item_tango",
-    "item_flask"
-};
+local item_purchase = require("item_purchase_utility")
+local luaunit = require('luaunit')
 
-item_purchase_utility.PurchaseItem(itemsToBuy)
-item_purchase_utility.PurchaseItem(itemsToBuy)
+function test_IsTpScrollPresent()
+  luaunit.assertFalse(item_purchase.test_IsTpScrollPresent(GetBot()))
+end
 
--- Buy an item_tango with 150+110 gold cost at the beginning
-assert((GetBot():GetGold() == 365), "item_purchase_utility.PurchaseItem() - failed")
-assert((#itemsToBuy == 0), "item_purchase_utility.PurchaseItem() - failed")
+function test_PurchaseCourier()
+  item_purchase.test_PurchaseCourier(GetBot())
+end
+
+function test_PurchaseTpScroll()
+  item_purchase.test_PurchaseTpScroll(GetBot())
+end
+
+function test_PurchaseItem()
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_tango"))
+end
+
+function test_FindNextItemToBuy()
+  local item_list = {
+    "nil",
+    "item_tango"
+  }
+
+  index, item = item_purchase.test_FindNextItemToBuy(item_list)
+
+  luaunit.assertEquals(index, 2)
+  luaunit.assertEquals(item, "item_tango")
+end
+
+function test_PurchaseItemList()
+  local item_list = {
+    "nil",
+    "item_tango"
+  }
+
+  item_purchase.test_PurchaseItemList(GetBot(), item_list)
+end
+
+function test_PurchaseItem()
+  item_purchase.PurchaseItem()
+end
+
+os.exit(luaunit.LuaUnit.run())

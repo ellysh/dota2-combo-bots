@@ -1,4 +1,5 @@
 package.path = package.path .. ";../?.lua"
+
 require("global_functions")
 
 local hero_selection = require("hero_selection")
@@ -99,4 +100,4 @@ function test_UpdateLaneAssignments()
   luaunit.assertEquals(result[5], LANE_TOP)
 end
 
-os.exit( luaunit.LuaUnit.run() )
+os.exit(luaunit.LuaUnit.run())
