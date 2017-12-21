@@ -1,10 +1,10 @@
 local logger = require(
     GetScriptDirectory() .."/utility/logger")
 
-local heroes = require(
+local item_recipe = require(
     GetScriptDirectory() .."/database/item_recipe")
 
-local heroes = require(
+local item_build = require(
     GetScriptDirectory() .."/database/item_build")
 
 local M = {}
@@ -40,25 +40,45 @@ local function PurchaseTpScroll(npcBot)
   end
 end
 
+local function IsGameBeginning()
+  return DotaTime() < 0
+end
+
+local function IsInventoryEmpty(npcBot)
+  for i = 0, 16, 1 do
+    local item = npcBot:GetItemInSlot(i)
+    if item ~= nill and item:GetName() ~= "item_tpscroll" then
+      return false
+    end
+  end
+
+  return true
+end
+
+local function PurchaseStartingItem(npcBot)
+  if not IsGameBeginning or not IsInventoryEmpty(npcBot) then return end
+
+  local starting_items = item_build.ITEM_BUILD[npcBot:GetUnitName()].starting_items
+
+  for _, item in pairs(starting_items) do
+    if item ~= nil and (npcBot:GetGold() >= GetItemCost(item)) then
+
+      logger.Print("PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. item)
+
+      npcBot:ActionImmediate_PurchaseItem(item)
+    end
+  end
+
+end
+
 function M.PurchaseItem()
   local npcBot = GetBot()
 
   PurchaseCourier(npcBot)
 
   PurchaseTpScroll(npcBot)
---[[
-  if (#itemsToBuy == 0) then
-    return
-  end
 
-  local nextItem = itemsToBuy[1]
-
-  if (npcBot:GetGold() >= GetItemCost(nextItem)) then
-    logger.Print("M.PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. nextItem)
-    npcBot:ActionImmediate_PurchaseItem(nextItem)
-    table.remove(itemsToBuy, 1)
-  end
---]]
+  PurchaseStartingItem(npcBot)
 end
 
 return M
