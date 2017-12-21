@@ -56,11 +56,14 @@ local function IsInventoryEmpty(npcBot)
 end
 
 local function PurchaseStartingItem(npcBot)
-  if not IsGameBeginning or not IsInventoryEmpty(npcBot) then return end
+  if not IsGameBeginning() or not IsInventoryEmpty(npcBot) then return end
 
   local starting_items = item_build.ITEM_BUILD[npcBot:GetUnitName()].starting_items
 
   for _, item in pairs(starting_items) do
+
+    -- TODO: Move this purchase action into the function.
+    -- Process compound items correctly there.
     if item ~= "nil" and (npcBot:GetGold() >= GetItemCost(item)) then
 
       logger.Print("PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. item)
@@ -68,6 +71,12 @@ local function PurchaseStartingItem(npcBot)
       npcBot:ActionImmediate_PurchaseItem(item)
     end
   end
+end
+
+local function PurchaseCoreItem(npcBot)
+  if IsGameBeginning() or IsInventoryEmpty(npcBot) then return end
+
+  -- TODO: Implement this function
 end
 
 function M.PurchaseItem()
@@ -78,6 +87,8 @@ function M.PurchaseItem()
   PurchaseTpScroll(npcBot)
 
   PurchaseStartingItem(npcBot)
+
+  PurchaseCoreItem(npcBot)
 end
 
 return M

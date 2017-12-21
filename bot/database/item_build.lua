@@ -11,8 +11,7 @@ M.ITEM_BUILD = {
     core_items = {
       "item_magic_wand",
       "item_tranquil_boots",
-      "item_glimmer_cape"},
-    extra_items = {
+      "item_glimmer_cape",
       "item_force_staff",
       "item_ultimate_scepter",
       "item_blink"}
@@ -26,8 +25,7 @@ M.ITEM_BUILD = {
     core_items = {
       "item_magic_wand",
       "item_phase_boots",
-      "item_manta"},
-    extra_items = {
+      "item_manta",
       "item_diffusal_blade",
       "item_butterfly",
       "item_abyssal_blade"}
@@ -41,8 +39,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -56,8 +53,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -71,8 +67,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -86,8 +81,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -101,8 +95,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -116,8 +109,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -131,8 +123,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -146,8 +137,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -161,8 +151,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -176,8 +165,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -191,8 +179,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -206,8 +193,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -221,8 +207,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -236,8 +221,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -251,8 +235,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -266,8 +249,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -281,8 +263,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -296,8 +277,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -311,8 +291,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -326,8 +305,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -341,8 +319,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
@@ -356,8 +333,7 @@ M.ITEM_BUILD = {
     core_items = {
       "nil",
       "nil",
-      "nil"},
-    extra_items = {
+      "nil",
       "nil",
       "nil",
       "nil"}
