@@ -55,28 +55,49 @@ local function IsInventoryEmpty(npcBot)
   return true
 end
 
-local function PurchaseStartingItem(npcBot)
-  if not IsGameBeginning() or not IsInventoryEmpty(npcBot) then return end
+local function PurchaseItem(npcBot, item)
+  -- TODO: Process compound items correctly there.
+  if item ~= "nil" and (npcBot:GetGold() >= GetItemCost(item)) then
 
-  local starting_items = item_build.ITEM_BUILD[npcBot:GetUnitName()].starting_items
+    logger.Print("PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. item)
 
-  for _, item in pairs(starting_items) do
-
-    -- TODO: Move this purchase action into the function.
-    -- Process compound items correctly there.
-    if item ~= "nil" and (npcBot:GetGold() >= GetItemCost(item)) then
-
-      logger.Print("PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. item)
-
-      npcBot:ActionImmediate_PurchaseItem(item)
-    end
+    npcBot:ActionImmediate_PurchaseItem(item)
+    return true
   end
+
+  return false
 end
 
-local function PurchaseCoreItem(npcBot)
-  if IsGameBeginning() or IsInventoryEmpty(npcBot) then return end
+local function FindNextItemToBuy(item_list)
+  for i, item in pairs(item_list) do
+    if item ~= "nil" then return i, item end
+  end
 
-  -- TODO: Implement this function
+  return "nil"
+end
+
+local STARTING_ITEM = 0
+local CORE_ITEM = 1
+
+local function PurchaseItemList(npcBot, item_type)
+  local item_list = nil
+
+  if item_type == STARTING_ITEM then
+    if not IsGameBeginning() or not IsInventoryEmpty(npcBot) then return end
+
+    item_list = item_build.ITEM_BUILD[npcBot:GetUnitName()].starting_items
+  else
+    if IsGameBeginning() or IsInventoryEmpty(npcBot) then return end
+
+    item_list = item_build.ITEM_BUILD[npcBot:GetUnitName()].core_items
+  end
+
+  local i, item = FindNextItemToBuy(item_list)
+
+  if PurchaseItem(npcBot, item) then
+    -- Mark the item as bought
+    item_list[i] = "nil"
+  end
 end
 
 function M.PurchaseItem()
@@ -86,9 +107,9 @@ function M.PurchaseItem()
 
   PurchaseTpScroll(npcBot)
 
-  PurchaseStartingItem(npcBot)
+  PurchaseItemList(npcBot, STARTING_ITEM)
 
-  PurchaseCoreItem(npcBot)
+  PurchaseItemList(npcBot, CORE_ITEM)
 end
 
 return M
