@@ -61,14 +61,13 @@ local function PurchaseStartingItem(npcBot)
   local starting_items = item_build.ITEM_BUILD[npcBot:GetUnitName()].starting_items
 
   for _, item in pairs(starting_items) do
-    if item ~= nil and (npcBot:GetGold() >= GetItemCost(item)) then
+    if item ~= "nil" and (npcBot:GetGold() >= GetItemCost(item)) then
 
       logger.Print("PurchaseItem() - " .. npcBot:GetUnitName() .. " bought " .. item)
 
       npcBot:ActionImmediate_PurchaseItem(item)
     end
   end
-
 end
 
 function M.PurchaseItem()

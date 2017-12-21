@@ -54,8 +54,7 @@ M.ITEM_BUILD = {
 """
 
 ITEM_BUILD = """
-  {
-    hero = "<0>",
+  <0> = {
     starting_items = {
       "<1>",
       "<2>",
