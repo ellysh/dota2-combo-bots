@@ -82,4 +82,12 @@ function M.PurchaseItem()
   PurchaseItemList(npcBot)
 end
 
+-- Provide an access to locac functions for unit tests only
+M.test_IsTpScrollPresent = IsTpScrollPresent
+M.test_PurchaseCourier = PurchaseCourier
+M.test_PurchaseTpScroll = PurchaseTpScroll
+M.test_PurchaseItem = PurchaseItem
+M.test_FindNextItemToBuy = FindNextItemToBuy
+M.test_PurchaseItemList = PurchaseItemList
+
 return M
