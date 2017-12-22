@@ -65,6 +65,8 @@ function Bot:ActionImmediate_PurchaseItem(item)
   self.gold = self.gold - GetItemCost(item)
 
   table.insert(self.inventory, item)
+
+  return PURCHASE_ITEM_SUCCESS
 end
 
 function Bot:GetItemInSlot(slot)

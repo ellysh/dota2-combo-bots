@@ -104,8 +104,8 @@ local function PurchaseItem(npc_bot, item)
 
     logger.Print("PurchaseItem() - " .. npc_bot:GetUnitName() .. " bought " .. item)
 
-    npc_bot:ActionImmediate_PurchaseItem(item)
-    return true
+    return npc_bot:ActionImmediate_PurchaseItem(item)
+            == PURCHASE_ITEM_SUCCESS
   end
 
   return false

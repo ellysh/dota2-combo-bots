@@ -62,3 +62,7 @@ end
 function GetNumCouriers()
   return 0
 end
+
+function GetCourier()
+  return nil
+end
