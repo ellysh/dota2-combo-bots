@@ -23,6 +23,7 @@ end
 local function IsSecretShopRequired(npc_bot)
   return npc_bot.is_secret_shop_required ~= nil
          and npc_bot.is_secret_shop_required
+         and npc_botGetActiveMode() ~= BOT_MODE_SECRET_SHOP
 end
 
 local function IsCourierDamaged(courier)
@@ -72,5 +73,11 @@ function CourierUsageThink()
 
   end
 end
+
+-- Provide an access to local functions for unit tests only
+M.test_IsCourierFree = IsCourierFree
+M.test_IsCourierIdle = IsCourierIdle
+M.test_IsSecretShopRequired = IsSecretShopRequired
+M.test_IsCourierDamaged = IsCourierDamaged
 
 return M

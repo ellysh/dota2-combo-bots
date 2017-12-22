@@ -30,6 +30,7 @@ function M.IsElementInList(element, list)
   return M.GetElementIndexInList(element, list) ~= -1
 end
 
+-- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 
 return M
