@@ -65,7 +65,12 @@ local function GetInventoryItems(npc_bot)
   local result = {}
 
   for i = 0, 16, 1 do
-    table.insert(result, npc_bot:GetItemInSlot(i):GetName())
+    local item = npc_bot:GetItemInSlot(i)
+    if item ~= nil then
+      table.insert(result, item:GetName())
+    else
+      table.insert(result, "nil")
+    end
   end
 
   return result
