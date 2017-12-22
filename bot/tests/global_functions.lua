@@ -18,10 +18,14 @@ function GetItemCost(item)
   return itemsCost[item]
 end
 
-function GetBot()
-  local TestBot = Bot:new()
+local TestBot = Bot:new()
 
+function GetBot()
   return TestBot
+end
+
+function test_RefreshBot()
+  TestBot = Bot:new()
 end
 
 local TestUnit = Unit:new()

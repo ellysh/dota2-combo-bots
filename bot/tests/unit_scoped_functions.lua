@@ -36,7 +36,10 @@ end
 Bot = Unit:new()
 
 function Bot:new()
-  local newObj = {gold = 625}
+  local newObj = {
+    gold = 625,
+    inventory = {}
+  }
   self.__index = self
   return setmetatable(newObj, self)
 end
@@ -44,13 +47,14 @@ end
 function Bot:SetNextItemPurchaseValue(cost)
 end
 
-PURCHASED_ITEMS = {}
-
 function Bot:ActionImmediate_PurchaseItem(item)
   self.gold = self.gold - GetItemCost(item)
 
-  PURCHASED_ITEMS = {}
-  table.insert(PURCHASED_ITEMS, item)
+  table.insert(self.inventory, item)
+end
+
+function Bot:GetItemInSlot(slot)
+  return self.inventory[slot]
 end
 
 function Bot:GetGold()
@@ -58,6 +62,10 @@ function Bot:GetGold()
 end
 
 function Bot:FindItemSlot(itemName)
+  for i, item in pairs(self.inventory) do
+    if item == itemName then return i end
+  end
+
   return -1
 end
 
