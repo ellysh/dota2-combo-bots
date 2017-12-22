@@ -16,7 +16,9 @@ function test_PurchaseCourier()
 
   item_purchase.test_PurchaseCourier(GetBot())
 
-  luaunit.assertEquals(GetBot():GetItemInSlot(1), "item_courier")
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_courier")
 end
 
 function test_PurchaseTpScroll()
@@ -24,7 +26,9 @@ function test_PurchaseTpScroll()
 
   item_purchase.test_PurchaseTpScroll(GetBot())
 
-  luaunit.assertEquals(GetBot():GetItemInSlot(1), "item_tpscroll")
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_tpscroll")
 end
 
 function test_PurchaseItem_basic()
@@ -34,7 +38,7 @@ function test_PurchaseItem_basic()
     GetBot(),
     "item_tango"))
 
-  luaunit.assertEquals(GetBot():GetItemInSlot(1), "item_tango")
+  luaunit.assertEquals(GetBot():GetItemInSlot(1):GetName(), "item_tango")
 end
 
 function test_PurchaseItem_recipe()
@@ -56,10 +60,21 @@ function test_PurchaseItem_recipe()
     GetBot(),
     "item_magic_wand"))
 
-  luaunit.assertEquals(GetBot():GetItemInSlot(1), "item_branches")
-  luaunit.assertEquals(GetBot():GetItemInSlot(2), "item_branches")
-  luaunit.assertEquals(GetBot():GetItemInSlot(3), "item_enchanted_mango")
-  luaunit.assertEquals(GetBot():GetItemInSlot(4), "item_magic_stick")
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_branches")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(2):GetName(),
+    "item_branches")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(3):GetName(),
+    "item_enchanted_mango")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(4):GetName(),
+    "item_magic_stick")
 end
 
 function test_FindNextItemToBuy()
@@ -90,7 +105,9 @@ function test_MPurchaseItem()
 
   item_purchase.PurchaseItem()
 
-  luaunit.assertEquals(GetBot():GetItemInSlot(1), "item_courier")
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_courier")
 end
 
 os.exit(luaunit.LuaUnit.run())

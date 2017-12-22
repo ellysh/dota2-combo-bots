@@ -33,6 +33,20 @@ end
 
 -----------------------------------------------
 
+Item = {}
+
+function Item:new()
+  local newObj = { name = "" }
+  self.__index = self
+  return setmetatable(newObj, self)
+end
+
+function Item:GetName()
+  return self.name
+end
+
+-----------------------------------------------
+
 Bot = Unit:new()
 
 function Bot:new()
@@ -54,7 +68,9 @@ function Bot:ActionImmediate_PurchaseItem(item)
 end
 
 function Bot:GetItemInSlot(slot)
-  return self.inventory[slot]
+  local item = Item:new()
+  item.name = self.inventory[slot]
+  return item
 end
 
 function Bot:GetGold()

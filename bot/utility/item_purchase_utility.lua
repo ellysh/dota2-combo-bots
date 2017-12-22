@@ -44,22 +44,45 @@ local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
 end
 
-local function IsItemAlreadyBought(npc_bot, item)
-  if npc_bot:GetCourierValue() > 0 then
-    -- TODO: Team can have more then one curier
-    if GetCourier(0):FindItemSlot(item) ~= -1 then
-      return true
-    end
+local function GetElementIndexInList(element, list)
+  for i, e in pairs(list) do
+    if e == element then return i end
+  end
+  return -1
+end
+
+local function IsItemAlreadyBought(item, inventory)
+  local index = GetElementIndexInList(item, inventory)
+
+  if index ~= -1 then
+    inventory[index] = "nil"
+    return true
+  end
+  return false
+end
+
+local function GetInventoryItems(npc_bot)
+  local result = {}
+
+  for i = 0, 16, 1 do
+    table.insert(result, npc_bot:GetItemInSlot(i):GetName())
   end
 
-  return npc_bot:FindItemSlot(item) ~= -1
+  return result
 end
 
 local function FindNextComponentToBuy(npc_bot, item)
+  -- Do not buy anything until curier bring some items
+  if npc_bot:GetCourierValue() > 0 then return "nil" end
+
   local component_list = item_recipe.ITEM_RECIPE[item].components
 
+  local inventory = GetInventoryItems(npc_bot)
+
   for _, component in pairs(component_list) do
-    if component ~= "nil" and not IsItemAlreadyBought(npc_bot, component) then
+    if component ~= "nil"
+      and not IsItemAlreadyBought(component, inventory) then
+
       return component
     end
   end
@@ -96,7 +119,9 @@ local function PurchaseItemList(npc_bot, item_type)
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if PurchaseItem(npc_bot, item) and IsItemAlreadyBought(npc_bot, item) then
+  if PurchaseItem(npc_bot, item)
+    and IsItemAlreadyBought(item, GetInventoryItems(npc_bot)) then
+
     -- Mark the item as bought
     item_list[i] = "nil"
   end
