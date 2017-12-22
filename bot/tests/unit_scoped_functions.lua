@@ -100,6 +100,10 @@ function Bot:GetPlayerID()
   return 5
 end
 
+function Bot:GetCourierValue()
+  return 0
+end
+
 ------------------------------------------
 
 Ability = {}

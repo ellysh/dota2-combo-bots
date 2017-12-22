@@ -41,12 +41,29 @@ local function PurchaseTpScroll(npc_bot)
 end
 
 local function IsRecipeItem(item)
-  -- TODO: Implement this function
-  return false
+  return item_recipe.ITEM_RECIPE[item] ~= nil
 end
 
-local function FindNextComponentToBuy(item)
-  -- TODO: Implement this function
+local function IsItemAlreadyBought(npc_bot, item)
+  if npc_bot:GetCourierValue() > 0 then
+    -- TODO: Team can have more then one curier
+    if GetCourier(0):FindItemSlot(item) ~= -1 then
+      return true
+    end
+  end
+
+  return npc_bot:FindItemSlot(item) ~= -1
+end
+
+local function FindNextComponentToBuy(npc_bot, item)
+  local component_list = item_recipe.ITEM_RECIPE[item].components
+
+  for _, component in pairs(component_list) do
+    if component ~= "nil" and not IsItemAlreadyBought(npc_bot, component) then
+      return component
+    end
+  end
+
   return "nil"
 end
 
@@ -55,7 +72,7 @@ local function PurchaseItem(npc_bot, item)
     item = FindNextComponentToBuy(item)
   end
 
-  if (npc_bot:GetGold() >= GetItemCost(item)) then
+  if item ~= "nil" and (npc_bot:GetGold() >= GetItemCost(item)) then
 
     logger.Print("PurchaseItem() - " .. npc_bot:GetUnitName() .. " bought " .. item)
 
@@ -79,7 +96,7 @@ local function PurchaseItemList(npc_bot, item_type)
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if PurchaseItem(npc_bot, item) then
+  if PurchaseItem(npc_bot, item) and IsItemAlreadyBought(npc_bot, item) then
     -- Mark the item as bought
     item_list[i] = "nil"
   end
