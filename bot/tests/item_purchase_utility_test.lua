@@ -44,7 +44,22 @@ function test_PurchaseItem_recipe()
     GetBot(),
     "item_magic_wand"))
 
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_magic_wand"))
+
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_magic_wand"))
+
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_magic_wand"))
+
   luaunit.assertEquals(GetBot():GetItemInSlot(1), "item_branches")
+  luaunit.assertEquals(GetBot():GetItemInSlot(2), "item_branches")
+  luaunit.assertEquals(GetBot():GetItemInSlot(3), "item_enchanted_mango")
+  luaunit.assertEquals(GetBot():GetItemInSlot(4), "item_magic_stick")
 end
 
 function test_FindNextItemToBuy()

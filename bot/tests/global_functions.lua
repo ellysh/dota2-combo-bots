@@ -12,7 +12,9 @@ function GetItemCost(item)
     ["item_flask"] = 110,
     ["item_courier"] = 200,
     ["item_tpscroll"] = 100,
-    ["item_clarity"] = 50
+    ["item_clarity"] = 50,
+    ["item_enchanted_mango"] = 100,
+    ["item_magic_stick"] = 200
   };
 
   return itemsCost[item]
