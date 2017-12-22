@@ -37,9 +37,8 @@ M.ITEM_RECIPE = {
 """
 
 ITEM_RECIPE = """
-  {
-    name = "<0>",
-    combo_heroes = {
+  <0> = {
+    components = {
       "<1>",
       "<2>",
       "<3>",

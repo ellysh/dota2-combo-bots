@@ -40,9 +40,22 @@ local function PurchaseTpScroll(npc_bot)
   end
 end
 
+local function IsRecipeItem(item)
+  -- TODO: Implement this function
+  return false
+end
+
+local function FindNextComponentToBuy(item)
+  -- TODO: Implement this function
+  return "nil"
+end
+
 local function PurchaseItem(npc_bot, item)
-  -- TODO: Process compound items correctly there.
-  if item ~= "nil" and (npc_bot:GetGold() >= GetItemCost(item)) then
+  if IsRecipeItem(item) then
+    item = FindNextComponentToBuy(item)
+  end
+
+  if (npc_bot:GetGold() >= GetItemCost(item)) then
 
     logger.Print("PurchaseItem() - " .. npc_bot:GetUnitName() .. " bought " .. item)
 
