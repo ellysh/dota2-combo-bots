@@ -69,7 +69,7 @@ end
 
 local function PurchaseItem(npc_bot, item)
   if IsRecipeItem(item) then
-    item = FindNextComponentToBuy(item)
+    item = FindNextComponentToBuy(npc_bot, item)
   end
 
   if item ~= "nil" and (npc_bot:GetGold() >= GetItemCost(item)) then

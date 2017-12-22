@@ -8,6 +8,7 @@ end
 function GetItemCost(item)
   local itemsCost = {
     ["item_tango"] = 150,
+    ["item_branches"] = 50,
     ["item_flask"] = 110,
     ["item_courier"] = 200,
     ["item_tpscroll"] = 100,

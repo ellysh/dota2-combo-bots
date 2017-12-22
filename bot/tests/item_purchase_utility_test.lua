@@ -21,10 +21,16 @@ function test_PurchaseTpScroll()
   luaunit.assertEquals(PURCHASED_ITEMS[1], "item_tpscroll")
 end
 
-function test_PurchaseItem()
+function test_PurchaseItem_basic()
   luaunit.assertTrue(item_purchase.test_PurchaseItem(
     GetBot(),
     "item_tango"))
+end
+
+function test_PurchaseItem_recipe()
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_magic_wand"))
 end
 
 function test_FindNextItemToBuy()
