@@ -61,7 +61,7 @@ local function IsItemAlreadyBought(item, inventory)
   return false
 end
 
-local function GetInventoryItems(npc_bot)
+local function GetInventoryAndStashItems(npc_bot)
   local result = {}
 
   for i = 0, 16, 1 do
@@ -82,7 +82,7 @@ local function FindNextComponentToBuy(npc_bot, item)
 
   local component_list = item_recipe.ITEM_RECIPE[item].components
 
-  local inventory = GetInventoryItems(npc_bot)
+  local inventory = GetInventoryAndStashItems(npc_bot)
 
   for _, component in pairs(component_list) do
     if component ~= "nil"
@@ -125,7 +125,7 @@ local function PurchaseItemList(npc_bot, item_type)
   local i, item = FindNextItemToBuy(item_list)
 
   if PurchaseItem(npc_bot, item)
-    and IsItemAlreadyBought(item, GetInventoryItems(npc_bot)) then
+    and IsItemAlreadyBought(item, GetInventoryAndStashItems(npc_bot)) then
 
     -- Mark the item as bought
     item_list[i] = "nil"
