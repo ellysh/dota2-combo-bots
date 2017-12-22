@@ -7,6 +7,9 @@ local item_recipe = require(
 local item_build = require(
   GetScriptDirectory() .."/database/item_build")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local function IsTpScrollPresent(npc_bot)
@@ -44,15 +47,8 @@ local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
 end
 
-local function GetElementIndexInList(element, list)
-  for i, e in pairs(list) do
-    if e == element then return i end
-  end
-  return -1
-end
-
 local function IsItemAlreadyBought(item, inventory)
-  local index = GetElementIndexInList(item, inventory)
+  local index = functions.GetElementIndexInList(item, inventory)
 
   if index ~= -1 then
     inventory[index] = "nil"
