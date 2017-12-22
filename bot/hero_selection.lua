@@ -4,22 +4,18 @@ local heroes = require(
 local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local function GetBotNames ()
   return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
 end
 
-local function IsElementInList(element, list)
-  for _, e in pairs(list) do
-    if e == element then return true end
-  end
-  return false
-end
-
 local function IsIntersectionOfLists(list1, list2)
   for _, e in pairs(list1) do
-    if IsElementInList(e, list2) then return true end
+    if functions.IsElementInList(e, list2) then return true end
   end
   return false
 end
@@ -46,7 +42,7 @@ end
 local function GetRandomHero(position)
   while true do
     for _, hero in pairs(heroes.HEROES) do
-      if IsElementInList(position, hero.position)
+      if functions.IsElementInList(position, hero.position)
         and GetRandomTrue()
         and not IsHeroPicked(hero.name) then
 
@@ -60,7 +56,7 @@ end
 
 local function GetComboHero(position, combo_heroes)
   for _, hero in pairs(heroes.HEROES) do
-    if IsElementInList(position, hero.position)
+    if functions.IsElementInList(position, hero.position)
       and not IsHeroPicked(hero.name)
       and IsIntersectionOfLists(combo_heroes, hero.combo_heroes) then
 
@@ -127,7 +123,6 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_GetBotNames = GetBotNames
-M.test_IsElementInList = IsElementInList
 M.test_IsIntersectionOfLists = IsIntersectionOfLists
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked

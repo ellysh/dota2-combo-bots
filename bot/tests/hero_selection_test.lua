@@ -15,17 +15,6 @@ function test_GetBotNames()
   luaunit.assertEquals(bot_names[5], "Echo")
 end
 
-function test_IsElementInList()
-  local list = {1, 2, 3, 4, 5}
-
-  luaunit.assertTrue(hero_selection.test_IsElementInList(1, list))
-  luaunit.assertTrue(hero_selection.test_IsElementInList(2, list))
-  luaunit.assertTrue(hero_selection.test_IsElementInList(3, list))
-  luaunit.assertTrue(hero_selection.test_IsElementInList(4, list))
-  luaunit.assertTrue(hero_selection.test_IsElementInList(5, list))
-  luaunit.assertFalse(hero_selection.test_IsElementInList(6, list))
-end
-
 function test_IsIntersectionOfLists()
   local list1 = {1, 2, 3, 4, 5}
   local list2 = {3, 4, 5, 6}
