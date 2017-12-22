@@ -1,8 +1,32 @@
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local function IsCourierFree(state)
   return state ~= COURIER_STATE_MOVING
          and state ~= COURIER_STATE_DELIVERING_ITEMS
+end
+
+local function IsCourierIdle(time, state)
+  if state ~= COURIER_STATE_IDLE then return end
+
+  if courier.idle_time == nil then
+    courier.idle_time = GameTime()
+  elseif 10 < (GameTime() - courier.idle_time) then
+    return true
+  end
+
+  return false
+end
+
+local function IsSecretShopRequired(npc_bot)
+  return npc_bot.is_secret_shop_required ~= nil
+         and npc_bot.is_secret_shop_required
+end
+
+local function IsCourierDamaged(courier)
+  return courier:GetHealth() / courier:GetMaxHealth() <= 0.9
 end
 
 function CourierUsageThink()
@@ -17,12 +41,35 @@ function CourierUsageThink()
 
   if state == COURIER_STATE_DEAD then return end
 
+  if IsCourierDamaged(courier) then
+    npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_BURST)
+  end
+
   if IsCourierFree(courier_state) and npc_bot:GetCourierValue() > 0
-    and not IsItemSlotsFull() then
+    and not functions.IsItemSlotsFull() then
 
     npc_bot:ActionImmediate_Courier(
       courier,
       COURIER_ACTION_TRANSFER_ITEMS)
+  end
+
+  if IsCourierFree(courier_state) and IsSecretShopRequired(npc_bot) then
+
+    npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_SECRET_SHOP)
+  end
+
+  if courier_state == COURIER_STATE_AT_BASE
+    and npc_bot:GetStashValue() > 0 then
+
+    npc_bot:ActionImmediate_Courier(
+      courier,
+      COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
+  end
+
+  if IsCourierIdle(courier) then
+
+    npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
+
   end
 end
 
