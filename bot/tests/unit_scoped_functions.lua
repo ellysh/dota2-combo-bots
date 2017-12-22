@@ -36,7 +36,7 @@ end
 Item = {}
 
 function Item:new()
-  local newObj = { name = "" }
+  local newObj = { name = nil }
   self.__index = self
   return setmetatable(newObj, self)
 end
@@ -70,6 +70,10 @@ function Bot:ActionImmediate_PurchaseItem(item)
 end
 
 function Bot:GetItemInSlot(slot)
+  local item_in_slot = self.inventory[slot]
+
+  if item_in_slot == nil then return nil end
+
   local item = Item:new()
   item.name = self.inventory[slot]
   return item

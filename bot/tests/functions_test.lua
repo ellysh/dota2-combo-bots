@@ -44,4 +44,16 @@ function test_GetElementIndexInList()
     -1)
 end
 
+function test_GetItemSlotsCount()
+  test_RefreshBot()
+
+  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 0)
+
+  table.insert(GetBot().inventory, "item_tango")
+  table.insert(GetBot().inventory, "item_branches")
+  table.insert(GetBot().inventory, "item_tango")
+
+  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 3)
+end
+
 os.exit(luaunit.LuaUnit.run())
