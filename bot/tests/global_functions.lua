@@ -2,19 +2,19 @@ package.path = package.path .. ";../?.lua"
 require("unit_scoped_functions")
 
 function GetScriptDirectory()
-    return ".."
+  return ".."
 end
 
 function GetItemCost(item)
-    local itemsCost = {
-        ["item_tango"] = 150,
-        ["item_flask"] = 110,
-        ["item_courier"] = 200,
-        ["item_tpscroll"] = 100,
-        ["item_clarity"] = 50
-    };
+  local itemsCost = {
+    ["item_tango"] = 150,
+    ["item_flask"] = 110,
+    ["item_courier"] = 200,
+    ["item_tpscroll"] = 100,
+    ["item_clarity"] = 50
+  };
 
-    return itemsCost[item]
+  return itemsCost[item]
 end
 
 function GetBot()
@@ -26,7 +26,7 @@ end
 local TestUnit = Unit:new()
 
 function GetTower(team, tower)
-    return TestUnit
+  return TestUnit
 end
 
 function GetGlyphCooldown()
@@ -36,8 +36,8 @@ end
 local Time = 0.0
 
 function DotaTime()
-    Time = Time + 0.2
-    return Time
+  Time = Time + 0.2
+  return Time
 end
 
 function RealTime()

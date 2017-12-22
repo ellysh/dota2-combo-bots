@@ -1,13 +1,13 @@
 local heroes = require(
-    GetScriptDirectory() .."/database/heroes")
+  GetScriptDirectory() .."/database/heroes")
 
 local logger = require(
-    GetScriptDirectory() .."/utility/logger")
+  GetScriptDirectory() .."/utility/logger")
 
 local M = {}
 
 local function GetBotNames ()
-    return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
+  return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
 end
 
 local function IsElementInList(element, list)
@@ -49,7 +49,9 @@ local function GetRandomHero(position)
       if IsElementInList(position, hero.position)
         and GetRandomTrue()
         and not IsHeroPicked(hero.name) then
+
         logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. hero.position[1])
+
         return hero.name
       end
     end
@@ -61,8 +63,10 @@ local function GetComboHero(position, combo_heroes)
     if IsElementInList(position, hero.position)
       and not IsHeroPicked(hero.name)
       and IsIntersectionOfLists(combo_heroes, hero.combo_heroes) then
-        logger.Print("GetComboHero() - name = " .. hero.name .. " position = " .. hero.position[1])
-        return hero.name
+
+      logger.Print("GetComboHero() - name = " .. hero.name .. " position = " .. hero.position[1])
+
+      return hero.name
     end
   end
   return GetRandomHero(position)
@@ -78,7 +82,10 @@ function Think()
   local hero_position_4 = GetComboHero(4, {hero_position_5})
   SelectHero(players[4], hero_position_4)
 
-  local hero_position_3 = GetComboHero(3, {hero_position_4, hero_position_5})
+  local hero_position_3 = GetComboHero(
+    3,
+    {hero_position_4, hero_position_5})
+
   SelectHero(players[3], hero_position_3)
 
   local hero_position_2 = GetComboHero(

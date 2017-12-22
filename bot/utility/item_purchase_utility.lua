@@ -1,11 +1,11 @@
 local logger = require(
-    GetScriptDirectory() .."/utility/logger")
+  GetScriptDirectory() .."/utility/logger")
 
 local item_recipe = require(
-    GetScriptDirectory() .."/database/item_recipe")
+  GetScriptDirectory() .."/database/item_recipe")
 
 local item_build = require(
-    GetScriptDirectory() .."/database/item_build")
+  GetScriptDirectory() .."/database/item_build")
 
 local M = {}
 
