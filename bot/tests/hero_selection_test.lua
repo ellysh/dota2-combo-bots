@@ -79,15 +79,15 @@ end
 function test_Think()
   Think()
 
-  luaunit.assertEquals(SelectedHero[1], "npc_dota_hero_juggernaut")
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_juggernaut")
 
   luaunit.assertEquals(
-    SelectedHero[2],
+    SELECTED_HEROES[2],
     "npc_dota_hero_obsidian_destroyer")
 
-  luaunit.assertEquals(SelectedHero[3], "npc_dota_hero_bristleback")
-  luaunit.assertEquals(SelectedHero[4], "npc_dota_hero_shadow_shaman")
-  luaunit.assertEquals(SelectedHero[5], "npc_dota_hero_crystal_maiden")
+  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_bristleback")
+  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_shadow_shaman")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_crystal_maiden")
 end
 
 function test_UpdateLaneAssignments()

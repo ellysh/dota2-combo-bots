@@ -10,16 +10,17 @@ function GetItemCost(item)
         ["item_tango"] = 150,
         ["item_flask"] = 110,
         ["item_courier"] = 200,
-        ["item_tpscroll"] = 100
+        ["item_tpscroll"] = 100,
+        ["item_clarity"] = 50
     };
 
     return itemsCost[item]
 end
 
-local TestBot = Bot:new()
-
 function GetBot()
-    return TestBot
+  local TestBot = Bot:new()
+
+  return TestBot
 end
 
 local TestUnit = Unit:new()

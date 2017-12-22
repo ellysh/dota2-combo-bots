@@ -44,8 +44,13 @@ end
 function Bot:SetNextItemPurchaseValue(cost)
 end
 
+PURCHASED_ITEMS = {}
+
 function Bot:ActionImmediate_PurchaseItem(item)
     self.gold = self.gold - GetItemCost(item)
+
+    PURCHASED_ITEMS = {}
+    table.insert(PURCHASED_ITEMS, item)
 end
 
 function Bot:GetGold()
@@ -164,8 +169,8 @@ function IsPlayerBot(playerId)
     return true
 end
 
-SelectedHero = {}
+SELECTED_HEROES = {}
 
 function SelectHero(playerId, heroName)
-    SelectedHero[playerId] = heroName
+    SELECTED_HEROES[playerId] = heroName
 end

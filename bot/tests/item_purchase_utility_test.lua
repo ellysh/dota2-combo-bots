@@ -11,10 +11,14 @@ end
 
 function test_PurchaseCourier()
   item_purchase.test_PurchaseCourier(GetBot())
+
+  luaunit.assertEquals(PURCHASED_ITEMS[1], "item_courier")
 end
 
 function test_PurchaseTpScroll()
   item_purchase.test_PurchaseTpScroll(GetBot())
+
+  luaunit.assertEquals(PURCHASED_ITEMS[1], "item_tpscroll")
 end
 
 function test_PurchaseItem()
@@ -44,8 +48,10 @@ function test_PurchaseItemList()
   item_purchase.test_PurchaseItemList(GetBot(), item_list)
 end
 
-function test_PurchaseItem()
+function test_MPurchaseItem()
   item_purchase.PurchaseItem()
+
+  luaunit.assertEquals(PURCHASED_ITEMS[1], "item_tango")
 end
 
 os.exit(luaunit.LuaUnit.run())
