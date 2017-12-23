@@ -8,7 +8,8 @@ function Unit:new()
     name = "npc_dota_hero_crystal_maiden",
     health = 200,
     max_health = 200,
-    offensivePower = 100}
+    offensive_power = 100,
+    is_alive = true}
 
   self.__index = self
   return setmetatable(newObj, self)
@@ -27,7 +28,7 @@ function Unit:GetMaxHealth()
 end
 
 function Unit:IsAlive()
-  return true
+  return self.is_alive
 end
 
 function Unit:GetRawOffensivePower()
@@ -133,8 +134,10 @@ function Bot:GetPlayerID()
   return 5
 end
 
+COURIER_VALUE = 0
+
 function Bot:GetCourierValue()
-  return 0
+  return COURIER_VALUE
 end
 
 BOT_MODE = BOT_MODE_NONE
@@ -147,6 +150,12 @@ COURIER_ACTION = nil
 
 function Bot:ActionImmediate_Courier(courier, action)
   COURIER_ACTION = action
+end
+
+STASH_VALUE = 0
+
+function Bot:GetStashValue()
+  return STASH_VALUE
 end
 
 ------------------------------------------

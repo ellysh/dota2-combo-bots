@@ -47,7 +47,7 @@ function M.CourierUsageThink()
   end
 
   if IsCourierFree(courier_state) and npc_bot:GetCourierValue() > 0
-    and not functions.IsItemSlotsFull() then
+    and not functions.IsItemSlotsFull(npc_bot) then
 
     npc_bot:ActionImmediate_Courier(
       courier,

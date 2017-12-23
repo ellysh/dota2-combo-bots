@@ -59,15 +59,92 @@ function test_IsCourierDamaged()
   luaunit.assertTrue(courier.test_IsCourierDamaged(c))
 end
 
-function test_CourierUsageThink()
+function test_CourierUsageThink_no_action()
   test_RefreshCourier()
+  test_RefreshBot()
 
-  -- Courier IDLE test
+  local bot = GetBot()
+  bot.is_alive = false
+
+  COURIER_ACTION = nil
   courier.CourierUsageThink()
+  luaunit.assertEquals(COURIER_ACTION, nil)
+
+  COURIER_STATE = COURIER_STATE_DEAD
+  COURIER_ACTION = nil
+  courier.CourierUsageThink()
+  luaunit.assertEquals(COURIER_ACTION, nil)
+
+  COURIER = nil
+  COURIER_ACTION = nil
+  courier.CourierUsageThink()
+  luaunit.assertEquals(COURIER_ACTION, nil)
+end
+
+function test_CourierUsageThink_return_action()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  COURIER_STATE = COURIER_STATE_IDLE
+  TIME = 0
+  courier.CourierUsageThink()
+
   TIME = 11
+  COURIER_ACTION = nil
   courier.CourierUsageThink()
 
   luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_RETURN)
+end
+
+function test_CourierUsageThink_burst_action()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  local c = GetCourier()
+  c.health = c.max_health / 2
+
+  COURIER_ACTION = nil
+  courier.CourierUsageThink()
+
+  luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_BURST)
+end
+
+function test_CourierUsageThink_transfer_action()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  COURIER_ACTION = nil
+  COURIER_STATE = COURIER_STATE_IDLE
+  COURIER_VALUE = 400
+  courier.CourierUsageThink()
+
+  luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_TRANSFER_ITEMS)
+end
+
+function test_CourierUsageThink_secret_shop_action()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  COURIER_ACTION = nil
+  COURIER_STATE = COURIER_STATE_IDLE
+  BOT.is_secret_shop_required = true
+  courier.CourierUsageThink()
+
+  luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_SECRET_SHOP)
+end
+
+function test_CourierUsageThink_take_and_transfer_action()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  COURIER_ACTION = nil
+  COURIER_STATE = COURIER_STATE_AT_BASE
+  STASH_VALUE = 400
+  courier.CourierUsageThink()
+
+  luaunit.assertEquals(
+    COURIER_ACTION,
+    COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
 end
 
 os.exit(luaunit.LuaUnit.run())
