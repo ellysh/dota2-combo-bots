@@ -94,7 +94,7 @@ end
 local function OrderSecretShopItem(npc_bot, item)
   local courier = GetCourier(0)
 
-  if courier:DistanceFromSecretShop() <= 250 then
+  if courier:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
     return npc_bot:ActionImmediate_PurchaseItem(item)
             == PURCHASE_ITEM_SUCCESS
   end
@@ -105,7 +105,7 @@ local function OrderSecretShopItem(npc_bot, item)
 end
 
 local function OrderSideShopItem(npc_bot, item)
-  if npc_bot:DistanceFromSideShop() <= 4000 then
+  if npc_bot:DistanceFromSideShop() < constants.SHOP_WALK_RADIUS then
 
     npc_bot.is_side_shop_mode = true
   end
@@ -122,13 +122,13 @@ local function PurchaseItem(npc_bot, item)
   end
 
   if IsItemPurchasedFromSecretShop(item)
-    and npc_bot:DistanceFromSecretShop() > 250 then
+    and npc_bot:DistanceFromSecretShop() > constants.SHOP_USE_RADIUS then
 
     return OrderSecretShopItem(npc_bot, item)
   end
 
   if IsItemPurchasedFromSideShop(item)
-    and npc_bot:DistanceFromSideShop() > 250 then
+    and npc_bot:DistanceFromSideShop() > constants.SHOP_USE_RADIUS then
 
     return OrderSideShopItem(npc_bot, item)
   end

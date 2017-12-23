@@ -1,11 +1,12 @@
-local M = {}
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
 
-local INVENTORY_SIZE = 8
+local M = {}
 
 local function GetItemSlotsCount(npc_bot)
   local result = 0
 
-  for i = 0, INVENTORY_SIZE, 1 do
+  for i = 0, constants.INVENTORY_SIZE, 1 do
     local item = npc_bot:GetItemInSlot(i)
     if item ~= nil then
       result = result + 1
@@ -16,7 +17,7 @@ local function GetItemSlotsCount(npc_bot)
 end
 
 function M.IsItemSlotsFull(npc_bot)
-  return INVENTORY_SIZE <= GetItemSlotsCount(npc_bot)
+  return constants.INVENTORY_SIZE <= GetItemSlotsCount(npc_bot)
 end
 
 function M.GetElementIndexInList(element, list)
@@ -28,6 +29,12 @@ end
 
 function M.IsElementInList(element, list)
   return M.GetElementIndexInList(element, list) ~= -1
+end
+
+function M.IsBotBusy(npcBot)
+  return npcBot:IsChanneling()
+        or npcBot:IsUsingAbility()
+        or npcBot:IsCastingAbility()
 end
 
 -- Provide an access to local functions for unit tests only

@@ -32,12 +32,6 @@ local Towers = {
     TOWER_BASE_2
 }
 
-local function IsBotBusy(npcBot)
-  return npcBot:IsChanneling()
-        or npcBot:IsUsingAbility()
-        or npcBot:IsCastingAbility()
-end
-
 function M.UseGlyph(npcBot)
   if IsBotBusy(npcBot) then return end
 
