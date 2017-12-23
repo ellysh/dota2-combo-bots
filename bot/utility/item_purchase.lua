@@ -175,6 +175,12 @@ end
 M.test_IsTpScrollPresent = IsTpScrollPresent
 M.test_PurchaseCourier = PurchaseCourier
 M.test_PurchaseTpScroll = PurchaseTpScroll
+M.test_IsRecipeItem = IsRecipeItem
+M.test_IsItemAlreadyBought = IsItemAlreadyBought
+M.test_GetInventoryAndStashItems = GetInventoryAndStashItems
+M.test_FindNextComponentToBuy = FindNextComponentToBuy
+M.test_OrderSecretShopItem = OrderSecretShopItem
+M.test_OrderSideShopItem = OrderSideShopItem
 M.test_PurchaseItem = PurchaseItem
 M.test_FindNextItemToBuy = FindNextItemToBuy
 M.test_PurchaseItemList = PurchaseItemList

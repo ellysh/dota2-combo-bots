@@ -31,6 +31,96 @@ function test_PurchaseTpScroll()
     "item_tpscroll")
 end
 
+function test_IsRecipeItem()
+  luaunit.assertFalse(item_purchase.test_IsRecipeItem("item_tango"))
+
+  luaunit.assertFalse(item_purchase.test_IsRecipeItem("item_branches"))
+
+  luaunit.assertTrue(item_purchase.test_IsRecipeItem("item_magic_wand"))
+end
+
+function test_IsItemAlreadyBought()
+  local inventory = {
+    "item_tango",
+    "item_branches"
+  }
+
+  luaunit.assertFalse(
+    item_purchase.test_IsItemAlreadyBought("item_tpscroll", inventory))
+
+  luaunit.assertEquals(inventory[1], "item_tango")
+  luaunit.assertEquals(inventory[2], "item_branches")
+
+  luaunit.assertTrue(
+    item_purchase.test_IsItemAlreadyBought("item_tango", inventory))
+
+  luaunit.assertEquals(inventory[1], "nil")
+  luaunit.assertEquals(inventory[2], "item_branches")
+end
+
+function test_GetInventoryAndStashItems()
+  test_RefreshBot()
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+  }
+
+  local result = item_purchase.test_GetInventoryAndStashItems(GetBot())
+
+  for i = 1, #result - 1 do
+    luaunit.assertEquals(BOT.inventory[i], result[i + 1])
+  end
+end
+
+function test_FindNextComponentToBuy()
+  test_RefreshBot()
+
+  luaunit.assertEquals(
+    item_purchase.test_FindNextComponentToBuy(
+      GetBot(),
+      "item_magic_wand"),
+    "item_branches")
+
+  table.insert(BOT.inventory, "item_branches")
+
+  luaunit.assertEquals(
+    item_purchase.test_FindNextComponentToBuy(
+      GetBot(),
+      "item_magic_wand"),
+    "item_branches")
+
+  table.insert(BOT.inventory, "item_branches")
+
+  luaunit.assertEquals(
+    item_purchase.test_FindNextComponentToBuy(
+      GetBot(),
+      "item_magic_wand"),
+    "item_enchanted_mango")
+
+  table.insert(BOT.inventory, "item_enchanted_mango")
+
+  luaunit.assertEquals(
+    item_purchase.test_FindNextComponentToBuy(
+      GetBot(),
+      "item_magic_wand"),
+    "item_magic_stick")
+end
+
 function test_PurchaseItem_basic()
   test_RefreshBot()
 
