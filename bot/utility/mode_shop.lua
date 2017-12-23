@@ -21,4 +21,26 @@ function M.GetDesire(is_shop_mode, shop_distance)
   return 100 - ((shop_distance * 100) / walk_radius)
 end
 
+local function GetNearestLocation(npc_bot, location_1, location_2)
+  if GetUnitToLocationDistance(npc_bot, location_1) <
+    GetUnitToLocationDistance(npc_bot, location_2) then
+
+    return location_1
+  else
+    return location_2
+  end
+end
+
+function M.ThinkSideShop()
+
+  local npc_bot = GetBot();
+
+  local shop_location = GetNearestLocation(
+    npc_bot,
+    GetShopLocation(GetTeam(), SHOP_SIDE),
+    GetShopLocation(GetTeam(), SHOP_SIDE2))
+
+  npc_bot:Action_MoveToLocation(shop_location);
+end
+
 return M

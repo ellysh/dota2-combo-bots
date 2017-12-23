@@ -9,25 +9,7 @@ function GetDesire()
     npc_bot:DistanceFromSideShop())
 end
 
-local function GetNearestLocation(npc_bot, location_1, location_2)
-  if GetUnitToLocationDistance(npc_bot, location_1) <
-    GetUnitToLocationDistance(npc_bot, location_2) then
-
-    return location_1
-  else
-    return location_2
-  end
-end
-
 function Think()
-
-  local npc_bot = GetBot();
-
-  local shop_location = GetNearestLocation(
-    npc_bot,
-    GetShopLocation(GetTeam(), SHOP_SIDE),
-    GetShopLocation(GetTeam(), SHOP_SIDE2))
-
-  npcBot:Action_MoveToLocation(shop_location);
+  mode_shop.ThinkSideShop()
 end
 
