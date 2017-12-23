@@ -29,7 +29,7 @@ local function PurchaseCourier(npc_bot)
   -- Buy courier only by a player of 5th position
   if players[5] == npc_bot:GetPlayerID() then
 
-    logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought Courier")
+    logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought courier")
 
     npc_bot:ActionImmediate_PurchaseItem("item_courier")
   end

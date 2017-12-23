@@ -10,7 +10,9 @@ function Unit:new()
     max_health = 200,
     offensive_power = 100,
     is_alive = true,
-    location = {0, 0}
+    location = {0, 0},
+    gold = 625,
+    inventory = {}
   }
 
   self.__index = self
@@ -47,6 +49,14 @@ function Unit:DistanceFromSideShop()
   return DISTANCE_FROM_SHOP
 end
 
+function Unit:ActionImmediate_PurchaseItem(item)
+  self.gold = self.gold - GetItemCost(item)
+
+  table.insert(self.inventory, item)
+
+  return PURCHASE_ITEM_SUCCESS
+end
+
 -----------------------------------------------
 
 Item = {}
@@ -66,23 +76,12 @@ end
 Bot = Unit:new()
 
 function Bot:new()
-  local newObj = {
-    gold = 625,
-    inventory = {}
-  }
+  local newObj = {}
   self.__index = self
   return setmetatable(newObj, self)
 end
 
 function Bot:SetNextItemPurchaseValue(cost)
-end
-
-function Bot:ActionImmediate_PurchaseItem(item)
-  self.gold = self.gold - GetItemCost(item)
-
-  table.insert(self.inventory, item)
-
-  return PURCHASE_ITEM_SUCCESS
 end
 
 function Bot:GetItemInSlot(slot)

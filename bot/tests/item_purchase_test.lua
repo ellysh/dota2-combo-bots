@@ -15,6 +15,7 @@ end
 function test_PurchaseCourier()
   test_RefreshBot()
 
+  COURIER = nil
   item_purchase.test_PurchaseCourier(GetBot())
 
   luaunit.assertEquals(
@@ -141,7 +142,7 @@ function test_OrderSideShopItem()
 
   DISTANCE_FROM_SHOP = constants.SHOP_WALK_RADIUS - 1
 
-  luaunit.assertFalse(
+  luaunit.assertTrue(
     item_purchase.test_OrderSideShopItem(GetBot(), "item_tpscroll"))
 
   luaunit.assertTrue(BOT.is_side_shop_mode)
@@ -223,7 +224,7 @@ function test_ItemPurchaseThink()
 
   luaunit.assertEquals(
     GetBot():GetItemInSlot(1):GetName(),
-    "item_courier")
+    "item_tpscroll")
 end
 
 os.exit(luaunit.LuaUnit.run())

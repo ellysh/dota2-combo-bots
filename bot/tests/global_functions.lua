@@ -29,6 +29,7 @@ end
 
 function test_RefreshBot()
   BOT = Bot:new()
+  BOT.inventory = {}
 end
 
 local TestUnit = Unit:new()
@@ -75,14 +76,16 @@ end
 
 --------------------------------------
 
-function GetNumCouriers()
-  return 0
-end
-
 COURIER = Unit:new()
 
 function GetCourier()
   return COURIER
+end
+
+function GetNumCouriers()
+  if COURIER ~= nil then return 1 end
+
+  return 0
 end
 
 function test_RefreshCourier()
