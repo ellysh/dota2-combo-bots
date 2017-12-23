@@ -35,6 +35,16 @@ function Unit:GetRawOffensivePower()
   return self.offensivePower
 end
 
+DISTANCE_FROM_SHOP = 0
+
+function Unit:DistanceFromSecretShop()
+  return DISTANCE_FROM_SHOP
+end
+
+function Unit:DistanceFromSideShop()
+  return DISTANCE_FROM_SHOP
+end
+
 -----------------------------------------------
 
 Item = {}

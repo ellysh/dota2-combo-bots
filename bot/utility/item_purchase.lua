@@ -10,6 +10,9 @@ local item_build = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local M = {}
 
 local function IsTpScrollPresent(npc_bot)

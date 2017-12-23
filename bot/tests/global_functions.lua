@@ -14,6 +14,7 @@ function GetItemCost(item)
     ["item_tpscroll"] = 100,
     ["item_clarity"] = 50,
     ["item_enchanted_mango"] = 100,
+    ["item_ultimate_orb"] = 2150,
     ["item_magic_stick"] = 200
   };
 

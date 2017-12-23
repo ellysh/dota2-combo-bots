@@ -3,6 +3,7 @@ package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 
 local item_purchase = require("item_purchase")
+local constants = require("constants")
 local luaunit = require('luaunit')
 
 function test_IsTpScrollPresent()
@@ -119,6 +120,31 @@ function test_FindNextComponentToBuy()
       GetBot(),
       "item_magic_wand"),
     "item_magic_stick")
+end
+
+function test_OrderSecretShopItem()
+  test_RefreshBot()
+
+  luaunit.assertTrue(
+    item_purchase.test_OrderSecretShopItem(GetBot(), "item_ultimate_orb"))
+
+  DISTANCE_FROM_SHOP = constants.SHOP_WALK_RADIUS
+
+  luaunit.assertFalse(
+    item_purchase.test_OrderSecretShopItem(GetBot(), "item_ultimate_orb"))
+
+  luaunit.assertTrue(BOT.is_secret_shop_mode)
+end
+
+function test_OrderSideShopItem()
+  test_RefreshBot()
+
+  DISTANCE_FROM_SHOP = constants.SHOP_WALK_RADIUS - 1
+
+  luaunit.assertFalse(
+    item_purchase.test_OrderSideShopItem(GetBot(), "item_tpscroll"))
+
+  luaunit.assertTrue(BOT.is_side_shop_mode)
 end
 
 function test_PurchaseItem_basic()
