@@ -1,20 +1,11 @@
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
+local mode_shop = require(
+  GetScriptDirectory() .."/utility/mode_shop")
 
 function GetDesire()
-
   local npc_bot = GetBot();
 
-  if functions.IsBotBusy(npc_bot)
-    or not npc_bot.is_secret_shop_mode then
-    return 0
-  end
-
-  local distance = npc_bot:DistanceFromSecretShop()
-  local walk_radius = constants.SHOP_WALK_RADIUS
-
-  if walk_radius < distance then return 0 end
-
-  return 100 - ((distance * 100) / walk_radius)
+  mode_shop.GetDesire(
+    npc_bot.is_secret_shop_mode,
+    npc_bot:DistanceFromSecretShop())
 end
 
