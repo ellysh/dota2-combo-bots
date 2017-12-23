@@ -14,4 +14,8 @@ function test_IsCourierFree()
   luaunit.assertTrue(courier.test_IsCourierFree(COURIER_STATE_IDLE))
 end
 
+function test_IsCourierIdle()
+  luaunit.assertTrue(courier.test_IsCourierIdle(0, COURIER_STATE_IDLE))
+end
+
 os.exit(luaunit.LuaUnit.run())

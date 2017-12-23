@@ -8,12 +8,12 @@ local function IsCourierFree(state)
          and state ~= COURIER_STATE_DELIVERING_ITEMS
 end
 
-local function IsCourierIdle(time, state)
-  if state ~= COURIER_STATE_IDLE then return end
+local function IsCourierIdle(idle_time, state)
+  if state == COURIER_STATE_IDLE then return true end
 
-  if courier.idle_time == nil then
-    courier.idle_time = GameTime()
-  elseif 10 < (GameTime() - courier.idle_time) then
+  if idle_time == nil then
+    idle_time = DotaTime()
+  elseif 10 < (DotaTime() - idle_time) then
     return true
   end
 
@@ -67,7 +67,7 @@ function M.CourierUsageThink()
       COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
   end
 
-  if IsCourierIdle(courier) then
+  if IsCourierIdle(courier.idle_time, courier_state) then
 
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
 
