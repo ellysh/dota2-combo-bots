@@ -21,8 +21,8 @@ local function IsCourierIdle(courier, state)
 end
 
 local function IsSecretShopRequired(npc_bot)
-  return npc_bot.is_secret_shop_required ~= nil
-         and npc_bot.is_secret_shop_required
+  return npc_bot.is_secret_shop_mode ~= nil
+         and npc_bot.is_secret_shop_mode
          and npc_bot:GetActiveMode() ~= BOT_MODE_SECRET_SHOP
 end
 

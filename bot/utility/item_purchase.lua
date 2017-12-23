@@ -91,6 +91,27 @@ local function FindNextComponentToBuy(npc_bot, item)
   return "nil"
 end
 
+local function OrderSecretShopItem(npc_bot, item)
+  local courier = GetCourier(0)
+
+  if courier:DistanceFromSecretShop() <= 250 then
+    return npc_bot:ActionImmediate_PurchaseItem(item)
+            == PURCHASE_ITEM_SUCCESS
+  end
+
+  npc_bot.is_secret_shop_mode = true
+
+  return false
+end
+
+local function OrderSideShopItem(npc_bot, item)
+  if npc_bot:DistanceFromSideShop() <= 4000 then
+
+    npc_bot.is_side_shop_mode = true
+  end
+  return false
+end
+
 local function PurchaseItem(npc_bot, item)
   if IsRecipeItem(item) then
     item = FindNextComponentToBuy(npc_bot, item)
@@ -100,14 +121,16 @@ local function PurchaseItem(npc_bot, item)
     return false
   end
 
-  if IsItemPurchasedFromSecretShop(item) then
-    -- TODO: Implement this case
-    return false
+  if IsItemPurchasedFromSecretShop(item)
+    and npc_bot:DistanceFromSecretShop() > 250 then
+
+    return OrderSecretShopItem(npc_bot, item)
   end
 
-  if IsItemPurchasedFromSideShop(item) then
-    -- TODO: Implement this case
-    return false
+  if IsItemPurchasedFromSideShop(item)
+    and npc_bot:DistanceFromSideShop() > 250 then
+
+    return OrderSideShopItem(npc_bot, item)
   end
 
   return npc_bot:ActionImmediate_PurchaseItem(item)
