@@ -111,16 +111,22 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   return { TestUnit, TestUnit }
 end
 
+IS_CHANNELING = false
+
 function Bot:IsChanneling()
-  return false
+  return IS_CHANNELING
 end
+
+IS_USING_ABILITY = false
 
 function Bot:IsUsingAbility()
-  return false
+  return IS_USING_ABILITY
 end
 
+IS_CASTING_ABILITY = false
+
 function Bot:IsCastingAbility()
-  return false
+  return IS_CASTING_ABILITY
 end
 
 function Bot:FindAoELocation()
@@ -166,6 +172,12 @@ STASH_VALUE = 0
 
 function Bot:GetStashValue()
   return STASH_VALUE
+end
+
+WAS_DAMAGED = false
+
+function Bot:WasRecentlyDamagedByAnyHero()
+  return WAS_DAMAGED
 end
 
 ------------------------------------------

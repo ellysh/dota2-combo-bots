@@ -1,6 +1,9 @@
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local M = {}
 
 function M.GetDesire(is_shop_mode, shop_distance)
@@ -18,7 +21,7 @@ function M.GetDesire(is_shop_mode, shop_distance)
 
   if walk_radius < shop_distance then return 0 end
 
-  return 100 - ((shop_distance * 100) / walk_radius)
+  return (100 - ((shop_distance * 100) / walk_radius)) / 100.0
 end
 
 local function GetNearestLocation(npc_bot, location_1, location_2)
@@ -42,5 +45,8 @@ function M.ThinkSideShop()
 
   npc_bot:Action_MoveToLocation(shop_location);
 end
+
+-- Provide an access to local functions for unit tests only
+M.test_GetNearestLocation = GetNearestLocation
 
 return M

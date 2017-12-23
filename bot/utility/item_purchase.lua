@@ -108,7 +108,7 @@ local function OrderSecretShopItem(npc_bot, item)
 end
 
 local function OrderSideShopItem(npc_bot, item)
-  if npc_bot:DistanceFromSideShop() < constants.SHOP_WALK_RADIUS then
+  if npc_bot:DistanceFromSideShop() <= constants.SHOP_WALK_RADIUS then
 
     npc_bot.is_side_shop_mode = true
   end
