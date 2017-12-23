@@ -4,7 +4,7 @@ FILES=$(ls *.lua)
 
 lua hero_selection_test.lua
 
-lua item_purchase_utility_test.lua
+lua item_purchase_test.lua
 
 lua functions_test.lua
 
