@@ -8,12 +8,12 @@ local function IsCourierFree(state)
          and state ~= COURIER_STATE_DELIVERING_ITEMS
 end
 
-local function IsCourierIdle(idle_time, state)
-  if state == COURIER_STATE_IDLE then return true end
+local function IsCourierIdle(courier, state)
+  if state ~= COURIER_STATE_IDLE then return false end
 
-  if idle_time == nil then
-    idle_time = DotaTime()
-  elseif 10 < (DotaTime() - idle_time) then
+  if courier.idle_time == nil then
+    courier.idle_time = DotaTime()
+  elseif 10 < (DotaTime() - courier.idle_time) then
     return true
   end
 
@@ -23,7 +23,7 @@ end
 local function IsSecretShopRequired(npc_bot)
   return npc_bot.is_secret_shop_required ~= nil
          and npc_bot.is_secret_shop_required
-         and npc_botGetActiveMode() ~= BOT_MODE_SECRET_SHOP
+         and npc_bot:GetActiveMode() ~= BOT_MODE_SECRET_SHOP
 end
 
 local function IsCourierDamaged(courier)
@@ -67,7 +67,7 @@ function M.CourierUsageThink()
       COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
   end
 
-  if IsCourierIdle(courier.idle_time, courier_state) then
+  if IsCourierIdle(courier, courier_state) then
 
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
 

@@ -6,8 +6,8 @@ Unit = {}
 function Unit:new()
   local newObj = {
     name = "npc_dota_hero_crystal_maiden",
-    health = 100,
-    maxHealth = 200,
+    health = 200,
+    max_health = 200,
     offensivePower = 100}
 
   self.__index = self
@@ -23,7 +23,7 @@ function Unit:GetHealth()
 end
 
 function Unit:GetMaxHealth()
-  return self.maxHealth
+  return self.max_health
 end
 
 function Unit:IsAlive()
@@ -137,12 +137,24 @@ function Bot:GetCourierValue()
   return 0
 end
 
+BOT_MODE = BOT_MODE_NONE
+
+function Bot:GetActiveMode()
+  return BOT_MODE
+end
+
+COURIER_ACTION = nil
+
+function Bot:ActionImmediate_Courier(courier, action)
+  COURIER_ACTION = action
+end
+
 ------------------------------------------
 
 Ability = {}
 
 function Ability:new()
-  local newObj = {castRange = 600}
+  local newObj = {cast_range = 600}
   self.__index = self
   return setmetatable(newObj, self)
 end
@@ -154,7 +166,7 @@ function Bot:GetAbilityByName(abilityName)
 end
 
 function Ability:GetCastRange()
-  return self.castRange
+  return self.cast_range
 end
 
 function Ability:IsFullyCastable()

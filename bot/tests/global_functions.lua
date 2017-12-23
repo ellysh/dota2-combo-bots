@@ -20,14 +20,14 @@ function GetItemCost(item)
   return itemsCost[item]
 end
 
-local TestBot = Bot:new()
+BOT = Bot:new()
 
 function GetBot()
-  return TestBot
+  return BOT
 end
 
 function test_RefreshBot()
-  TestBot = Bot:new()
+  BOT = Bot:new()
 end
 
 local TestUnit = Unit:new()
@@ -64,8 +64,18 @@ function GetNumCouriers()
   return 0
 end
 
-COURIER = nil
+COURIER = Unit:new()
 
 function GetCourier()
   return COURIER
+end
+
+function test_RefreshCourier()
+  COURIER = Unit:new()
+end
+
+COURIER_STATE = COURIER_STATE_IDLE
+
+function GetCourierState(courier)
+  return COURIER_STATE
 end
