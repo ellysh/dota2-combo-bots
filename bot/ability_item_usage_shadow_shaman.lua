@@ -1,5 +1,5 @@
 local utility = require(
-    GetScriptDirectory() .."/utility/ability_item_usage_utility")
+    GetScriptDirectory() .."/utility/ability_item_usage")
 
 function AbilityUsageThink()
   local npcBot = GetBot()

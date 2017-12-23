@@ -2,7 +2,7 @@ package.path = package.path .. ";../utility/?.lua"
 
 require("global_functions")
 
-local item_purchase = require("item_purchase_utility")
+local item_purchase = require("item_purchase")
 local luaunit = require('luaunit')
 
 function test_IsTpScrollPresent()
