@@ -23,7 +23,7 @@ local function PurchaseCourier(npc_bot)
 
   local players = GetTeamPlayers(GetTeam())
 
-  -- Buy courier only by player of 5th position
+  -- Buy courier only by a player of 5th position
   if players[5] == npc_bot:GetPlayerID() then
 
     logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought Courier")
@@ -96,15 +96,22 @@ local function PurchaseItem(npc_bot, item)
     item = FindNextComponentToBuy(npc_bot, item)
   end
 
-  if item ~= "nil" and (npc_bot:GetGold() >= GetItemCost(item)) then
-
-    logger.Print("PurchaseItem() - " .. npc_bot:GetUnitName() .. " bought " .. item)
-
-    return npc_bot:ActionImmediate_PurchaseItem(item)
-            == PURCHASE_ITEM_SUCCESS
+  if item == "nil" or (npc_bot:GetGold() < GetItemCost(item)) then
+    return false
   end
 
-  return false
+  if IsItemPurchasedFromSecretShop(item) then
+    -- TODO: Implement this case
+    return false
+  end
+
+  if IsItemPurchasedFromSideShop(item) then
+    -- TODO: Implement this case
+    return false
+  end
+
+  return npc_bot:ActionImmediate_PurchaseItem(item)
+          == PURCHASE_ITEM_SUCCESS
 end
 
 local function FindNextItemToBuy(item_list)
@@ -122,6 +129,9 @@ local function PurchaseItemList(npc_bot, item_type)
 
   if PurchaseItem(npc_bot, item)
     and IsItemAlreadyBought(item, GetInventoryAndStashItems(npc_bot)) then
+
+    logger.Print("PurchaseItemList() - " .. npc_bot:GetUnitName() ..
+                 " bought " .. item)
 
     -- Mark the item as bought
     item_list[i] = "nil"

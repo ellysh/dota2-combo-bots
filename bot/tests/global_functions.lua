@@ -79,3 +79,13 @@ COURIER_STATE = COURIER_STATE_IDLE
 function GetCourierState(courier)
   return COURIER_STATE
 end
+
+--------------------------------------
+
+function IsItemPurchasedFromSecretShop()
+  return false
+end
+
+function IsItemPurchasedFromSideShop()
+  return false
+end
