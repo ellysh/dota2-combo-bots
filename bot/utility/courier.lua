@@ -44,6 +44,7 @@ function M.CourierUsageThink()
 
   if IsCourierDamaged(courier) then
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_BURST)
+    return
   end
 
   if IsCourierFree(courier_state) and npc_bot:GetCourierValue() > 0
@@ -52,11 +53,13 @@ function M.CourierUsageThink()
     npc_bot:ActionImmediate_Courier(
       courier,
       COURIER_ACTION_TRANSFER_ITEMS)
+    return
   end
 
   if IsCourierFree(courier_state) and IsSecretShopRequired(npc_bot) then
 
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_SECRET_SHOP)
+    return
   end
 
   if courier_state == COURIER_STATE_AT_BASE
@@ -65,13 +68,15 @@ function M.CourierUsageThink()
     npc_bot:ActionImmediate_Courier(
       courier,
       COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
+    return
   end
 
   if IsCourierIdle(courier, courier_state) then
 
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
-
+    return
   end
+
 end
 
 -- Provide an access to local functions for unit tests only
