@@ -100,10 +100,10 @@ function test_PurchaseItemList()
   item_purchase.test_PurchaseItemList(GetBot(), item_list)
 end
 
-function test_MPurchaseItem()
+function test_ItemPurchaseThink()
   test_RefreshBot()
 
-  item_purchase.PurchaseItem()
+  item_purchase.ItemPurchaseThink()
 
   luaunit.assertEquals(
     GetBot():GetItemInSlot(1):GetName(),

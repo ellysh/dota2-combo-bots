@@ -128,7 +128,7 @@ local function PurchaseItemList(npc_bot, item_type)
   end
 end
 
-function M.PurchaseItem()
+function M.ItemPurchaseThink()
   local npc_bot = GetBot()
 
   PurchaseCourier(npc_bot)
