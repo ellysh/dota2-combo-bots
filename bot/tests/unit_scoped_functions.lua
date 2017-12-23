@@ -9,7 +9,9 @@ function Unit:new()
     health = 200,
     max_health = 200,
     offensive_power = 100,
-    is_alive = true}
+    is_alive = true,
+    location = {0, 0}
+  }
 
   self.__index = self
   return setmetatable(newObj, self)
@@ -178,6 +180,14 @@ WAS_DAMAGED = false
 
 function Bot:WasRecentlyDamagedByAnyHero()
   return WAS_DAMAGED
+end
+
+BOT_ACTION = nil
+BOT_MOVE_LOCATION = nil
+
+function Bot:Action_MoveToLocation(location)
+  BOT_ACTION = BOT_ACTION_TYPE_MOVE_TO
+  BOT_MOVE_LOCATION = location
 end
 
 ------------------------------------------

@@ -47,3 +47,8 @@ BOT_MODE_EVASIVE_MANEUVERS = 17
 BOT_MODE_ROSHAN = 18
 BOT_MODE_ITEM = 19
 BOT_MODE_WARD = 20
+
+-----------------------------------------
+
+SHOP_SIDE = 1
+SHOP_SIDE2 = 2

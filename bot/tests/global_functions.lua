@@ -59,6 +59,20 @@ function GetSelectedHeroName(playerId)
   return "npc_dota_hero_venomancer"
 end
 
+function GetUnitToLocationDistance(unit, location)
+  return math.sqrt(
+    math.pow(unit.location[1] + location[1], 2) +
+    math.pow(unit.location[2] + location[2], 2))
+end
+
+function GetShopLocation(team, shop)
+  if shop == SHOP_SIDE then return {10, 10} end
+
+  if shop == SHOP_SIDE2 then return {20, 20} end
+
+  return nil
+end
+
 --------------------------------------
 
 function GetNumCouriers()
