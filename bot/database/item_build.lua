@@ -13,7 +13,8 @@ M.ITEM_BUILD = {
       "item_glimmer_cape",
       "item_force_staff",
       "item_ultimate_scepter",
-      "item_blink"}
+      "item_blink",
+      "item_lotus_orb"}
   },
 
   npc_dota_hero_juggernaut = {
@@ -26,11 +27,13 @@ M.ITEM_BUILD = {
       "item_manta",
       "item_diffusal_blade",
       "item_butterfly",
-      "item_abyssal_blade"}
+      "item_abyssal_blade",
+      "item_skadi"}
   },
 
   npc_dota_hero_sven = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -52,11 +55,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_shadow_shaman = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -78,11 +83,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_obsidian_destroyer = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -104,11 +111,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_queenofpain = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -130,11 +139,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_tidehunter = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -156,11 +167,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_skywrath_mage = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -182,11 +195,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_sand_king = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -208,11 +223,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_faceless_void = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -234,11 +251,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_tiny = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -260,11 +279,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_lina = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
@@ -286,6 +307,7 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
@@ -299,11 +321,13 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "nil",
+      "nil",
       "nil"}
   },
 
   npc_dota_hero_razor = {
     items = {
+      "nil",
       "nil",
       "nil",
       "nil",
