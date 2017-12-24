@@ -64,11 +64,19 @@ local function IsItemAlreadyBought(item, inventory)
 end
 
 local function GetInventoryAndStashItems(npc_bot)
-  return functions.GetItems(npc_bot, constants.INVENTORY_AND_STASH_SIZE)
+  local _, result = functions.GetItems(
+    npc_bot,
+    constants.INVENTORY_AND_STASH_SIZE)
+
+  return result
 end
 
 local function GetInventoryItems(npc_bot)
-  return functions.GetItems(npc_bot, constants.INVENTORY_SIZE)
+  local _, result = functions.GetItems(
+    npc_bot,
+    constants.INVENTORY_SIZE)
+
+  return result
 end
 
 local function FindNextComponentToBuy(npc_bot, item)
