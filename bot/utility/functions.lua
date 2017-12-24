@@ -3,17 +3,23 @@ local constants = require(
 
 local M = {}
 
-local function GetItemSlotsCount(npc_bot)
-  local result = 0
+function M.GetItems(npc_bot, slot_numbers)
+  local result = {}
 
-  for i = 0, constants.INVENTORY_SIZE, 1 do
+  for i = 0, slot_numbers, 1 do
     local item = npc_bot:GetItemInSlot(i)
     if item ~= nil then
-      result = result + 1
+      table.insert(result, item:GetName())
+    else
+      table.insert(result, "nil")
     end
   end
 
   return result
+end
+
+local function GetItemSlotsCount(npc_bot)
+  return #M.GetItems(npc_bot, constants.INVENTORY_SIZE)
 end
 
 function M.IsItemSlotsFull(npc_bot)
