@@ -6,15 +6,75 @@ local functions = require("functions")
 local constants = require("constants")
 local luaunit = require('luaunit')
 
-function test_IsElementInList()
-  local list = {1, 2, 3, 4, 5}
+function test_GetItems()
+  test_RefreshBot()
 
-  luaunit.assertTrue(functions.IsElementInList(1, list))
-  luaunit.assertTrue(functions.IsElementInList(2, list))
-  luaunit.assertTrue(functions.IsElementInList(3, list))
-  luaunit.assertTrue(functions.IsElementInList(4, list))
-  luaunit.assertTrue(functions.IsElementInList(5, list))
-  luaunit.assertFalse(functions.IsElementInList(6, list))
+  local empty_list = {"nil", "nil", "nil", "nil", "nil", "nil",
+                      "nil", "nil", "nil"}
+
+  local size, list = functions.GetItems(
+      GetBot(),
+      constants.INVENTORY_SIZE)
+
+  luaunit.assertEquals(size, 0)
+  luaunit.assertEquals(list, empty_list)
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "item_tango",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil"
+  }
+
+  size, list = functions.GetItems(
+      GetBot(),
+      constants.INVENTORY_SIZE)
+
+  luaunit.assertEquals(size, 3)
+
+  for i = 1, #list - 1 do
+    luaunit.assertEquals(BOT.inventory[i], list[i + 1])
+  end
+
+end
+
+function test_GetItemSlotsCount()
+  test_RefreshBot()
+
+  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 0)
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "item_tango",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil"
+  }
+
+  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 3)
+end
+
+function test_IsItemSlotsFull()
+  test_RefreshBot()
+
+  luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
+
+  table.insert(GetBot().inventory, "item_tango")
+
+  luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
+
+  for i = 0, constants.INVENTORY_SIZE, 1 do
+    table.insert(GetBot().inventory, "item_tango")
+  end
+
+  luaunit.assertTrue(functions.IsItemSlotsFull(GetBot()))
 end
 
 function test_GetElementIndexInList()
@@ -45,32 +105,32 @@ function test_GetElementIndexInList()
     -1)
 end
 
-function test_GetItemSlotsCount()
-  test_RefreshBot()
+function test_IsElementInList()
+  local list = {1, 2, 3, 4, 5}
 
-  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 0)
-
-  table.insert(GetBot().inventory, "item_tango")
-  table.insert(GetBot().inventory, "item_branches")
-  table.insert(GetBot().inventory, "item_tango")
-
-  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 3)
+  luaunit.assertTrue(functions.IsElementInList(1, list))
+  luaunit.assertTrue(functions.IsElementInList(2, list))
+  luaunit.assertTrue(functions.IsElementInList(3, list))
+  luaunit.assertTrue(functions.IsElementInList(4, list))
+  luaunit.assertTrue(functions.IsElementInList(5, list))
+  luaunit.assertFalse(functions.IsElementInList(6, list))
 end
 
-function test_IsItemSlotsFull()
+function test_IsBotBusy()
   test_RefreshBot()
 
-  luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
+  luaunit.assertFalse(functions.IsBotBusy(GetBot()))
 
-  table.insert(GetBot().inventory, "item_tango")
+  IS_CHANNELING = true
+  luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 
-  luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
+  IS_CHANNELING = false
+  IS_USING_ABILITY = true
+  luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 
-  for i = 0, constants.INVENTORY_SIZE, 1 do
-    table.insert(GetBot().inventory, "item_tango")
-  end
-
-  luaunit.assertTrue(functions.IsItemSlotsFull(GetBot()))
+  IS_USING_ABILITY = false
+  IS_CASTING_ABILITY = true
+  luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 end
 
 os.exit(luaunit.LuaUnit.run())

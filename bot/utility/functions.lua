@@ -9,7 +9,7 @@ function M.GetItems(npc_bot, slot_numbers)
 
   for i = 0, slot_numbers, 1 do
     local item = npc_bot:GetItemInSlot(i)
-    if item ~= nil then
+    if item ~= nil and item:GetName() ~= "nil" then
       items_number = items_number + 1
       table.insert(item_list, item:GetName())
     else
@@ -40,10 +40,10 @@ function M.IsElementInList(element, list)
   return M.GetElementIndexInList(element, list) ~= -1
 end
 
-function M.IsBotBusy(npcBot)
-  return npcBot:IsChanneling()
-        or npcBot:IsUsingAbility()
-        or npcBot:IsCastingAbility()
+function M.IsBotBusy(npc_bot)
+  return npc_bot:IsChanneling()
+        or npc_bot:IsUsingAbility()
+        or npc_bot:IsCastingAbility()
 end
 
 -- Provide an access to local functions for unit tests only
