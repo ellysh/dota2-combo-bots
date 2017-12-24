@@ -7,6 +7,9 @@ local item_recipe = require(
 local item_build = require(
   GetScriptDirectory() .."/database/item_build")
 
+local item_sell = require(
+  GetScriptDirectory() .."/database/item_sell")
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
@@ -63,7 +66,7 @@ end
 local function GetInventoryAndStashItems(npc_bot)
   local result = {}
 
-  for i = 0, 16, 1 do
+  for i = 0, constants.INVENTORY_AND_STASH_SIZE, 1 do
     local item = npc_bot:GetItemInSlot(i)
     if item ~= nil then
       table.insert(result, item:GetName())
@@ -173,12 +176,24 @@ local function PurchaseItemList(npc_bot, item_type)
   end
 end
 
+local function SellExtraItem(npc_bot)
+  if not functions.IsItemSlotsFull(npc_bot) then return end
+
+--  for item,condition in pairs(item_sell.ITEM_SELL) do
+--
+--    local index = functions.GetElementIndexInList(item, inventory)
+--  end
+
+end
+
 function M.ItemPurchaseThink()
   local npc_bot = GetBot()
 
   PurchaseCourier(npc_bot)
 
   PurchaseTpScroll(npc_bot)
+
+  SellExtraItem(npc_bot)
 
   PurchaseItemList(npc_bot)
 end

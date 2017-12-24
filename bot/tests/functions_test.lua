@@ -3,6 +3,7 @@ package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 
 local functions = require("functions")
+local constants = require("constants")
 local luaunit = require('luaunit')
 
 function test_IsElementInList()
@@ -65,7 +66,7 @@ function test_IsItemSlotsFull()
 
   luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
 
-  for i = 0, 8, 1 do
+  for i = 0, constants.INVENTORY_SIZE, 1 do
     table.insert(GetBot().inventory, "item_tango")
   end
 
