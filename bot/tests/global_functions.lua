@@ -15,7 +15,11 @@ function GetItemCost(item)
     ["item_clarity"] = 50,
     ["item_enchanted_mango"] = 100,
     ["item_ultimate_orb"] = 2150,
-    ["item_magic_stick"] = 200
+    ["item_magic_stick"] = 200,
+    ["item_ring_of_health"] = 850,
+    ["item_void_stone"] = 850,
+    ["item_platemail"] = 1400,
+    ["item_energy_booster"] = 900,
   };
 
   return itemsCost[item]

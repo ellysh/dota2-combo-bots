@@ -194,6 +194,40 @@ function test_PurchaseItem_recipe()
     "item_magic_stick")
 end
 
+function test_PurchaseItem_recipe_from_recipe_component()
+  test_RefreshBot()
+
+  BOT.gold = 9000
+
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_lotus_orb"))
+
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_lotus_orb"))
+
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_lotus_orb"))
+
+  luaunit.assertTrue(item_purchase.test_PurchaseItem(
+    GetBot(),
+    "item_lotus_orb"))
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_pers")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(2):GetName(),
+    "item_platemail")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(3):GetName(),
+    "item_energy_booster")
+end
+
 function test_FindNextItemToBuy()
   local item_list = {
     "nil",

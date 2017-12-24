@@ -87,7 +87,11 @@ local function FindNextComponentToBuy(npc_bot, item)
     if component ~= "nil"
       and not IsItemAlreadyBought(component, inventory) then
 
-      return component
+      if IsRecipeItem(component) then
+        return FindNextComponentToBuy(npc_bot, component)
+      else
+        return component
+      end
     end
   end
 

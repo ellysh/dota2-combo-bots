@@ -1,6 +1,13 @@
 package.path = package.path .. ";../?.lua"
 require("global_constants")
 
+function GetScriptDirectory()
+  return ".."
+end
+
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 Unit = {}
 
 function Unit:new()
@@ -49,10 +56,26 @@ function Unit:DistanceFromSideShop()
   return DISTANCE_FROM_SHOP
 end
 
+local function AssembleItem(item, inventory)
+  if item ~= "item_ring_of_health" then return false end
+
+  local index = functions.GetElementIndexInList(
+    "item_void_stone",
+    inventory)
+
+  if index == -1 then return false end
+
+  inventory[index] = "item_pers"
+  return true
+end
+
 function Unit:ActionImmediate_PurchaseItem(item)
   self.gold = self.gold - GetItemCost(item)
 
-  table.insert(self.inventory, item)
+  -- Assemble item_pers for the item purchase test
+  if not AssembleItem(item, self.inventory) then
+    table.insert(self.inventory, item)
+  end
 
   return PURCHASE_ITEM_SUCCESS
 end
