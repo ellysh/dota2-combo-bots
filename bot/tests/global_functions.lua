@@ -48,6 +48,10 @@ end
 
 TIME = 0.0
 
+function GameTime()
+  return TIME
+end
+
 function DotaTime()
   return TIME
 end

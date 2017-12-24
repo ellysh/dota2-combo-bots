@@ -77,12 +77,41 @@ function test_GetInventoryAndStashItems()
     "nil",
     "nil",
     "nil",
+    "item_tango",
     "nil",
-    "nil",
-    "nil",
+    "item_branches",
   }
 
   local result = item_purchase.test_GetInventoryAndStashItems(GetBot())
+
+  for i = 1, #result - 1 do
+    luaunit.assertEquals(BOT.inventory[i], result[i + 1])
+  end
+end
+
+function test_GetInventoryItems()
+  test_RefreshBot()
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "item_tango",
+    "nil",
+    "item_branches",
+  }
+
+  local result = item_purchase.test_GetInventoryItems(GetBot())
 
   for i = 1, #result - 1 do
     luaunit.assertEquals(BOT.inventory[i], result[i + 1])
@@ -249,6 +278,90 @@ function test_PurchaseItemList()
   }
 
   item_purchase.test_PurchaseItemList(GetBot(), item_list)
+end
+
+function test_SellItemByIndex_level_match()
+  test_RefreshBot()
+
+  BOT_LEVEL = 15
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches"
+  }
+
+  local condition = {
+    level = 15,
+    time = 30
+  }
+
+  DISTANCE_FROM_SHOP = 0
+  item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_tango")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(2):GetName(),
+    "nil")
+end
+
+function test_SellItemByIndex_time_match()
+  test_RefreshBot()
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches"
+  }
+
+  local condition = {
+    level = 15,
+    time = 30
+  }
+
+  TIME = 30 * 60
+  DISTANCE_FROM_SHOP = 0
+  item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(1):GetName(),
+    "item_tango")
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(2):GetName(),
+    "nil")
+end
+function test_SellExtraItem()
+  test_RefreshBot()
+
+  BOT_LEVEL = 15
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches"
+  }
+
+  DISTANCE_FROM_SHOP = 0
+  item_purchase.test_SellExtraItem(GetBot())
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(2):GetName(),
+    "nil")
 end
 
 function test_ItemPurchaseThink()

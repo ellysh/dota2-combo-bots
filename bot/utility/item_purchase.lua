@@ -181,7 +181,7 @@ local function SellItemByIndex(npc_bot, index, condition)
   local item = npc_bot:GetItemInSlot(index);
 
   if npc_bot:GetLevel() < condition.level
-    and (GameTime() * 60) < condition.time then
+    and GameTime() < (condition.time * 60) then
 
     return
   end
@@ -189,6 +189,9 @@ local function SellItemByIndex(npc_bot, index, condition)
   if npc_bot:DistanceFromFountain() <= constants.BASE_SHOP_USE_RADIUS
     or npc_bot:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
     or npc_bot:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
+
+    logger.Print("SellItemByIndex() - " .. npc_bot:GetUnitName() ..
+                 " sell " .. item:GetName())
 
     npc_bot:ActionImmediate_SellItem(item)
   end
@@ -230,11 +233,14 @@ M.test_PurchaseTpScroll = PurchaseTpScroll
 M.test_IsRecipeItem = IsRecipeItem
 M.test_IsItemAlreadyBought = IsItemAlreadyBought
 M.test_GetInventoryAndStashItems = GetInventoryAndStashItems
+M.test_GetInventoryItems = GetInventoryItems
 M.test_FindNextComponentToBuy = FindNextComponentToBuy
 M.test_OrderSecretShopItem = OrderSecretShopItem
 M.test_OrderSideShopItem = OrderSideShopItem
 M.test_PurchaseItem = PurchaseItem
 M.test_FindNextItemToBuy = FindNextItemToBuy
 M.test_PurchaseItemList = PurchaseItemList
+M.test_SellItemByIndex = SellItemByIndex
+M.test_SellExtraItem = SellExtraItem
 
 return M
