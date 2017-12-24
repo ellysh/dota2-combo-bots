@@ -197,6 +197,10 @@ local function SellItemByIndex(npc_bot, index, condition)
   end
 end
 
+local function GetSlotIndex(inventory_index)
+  return inventory_index - 1
+end
+
 local function SellExtraItem(npc_bot)
   if not functions.IsItemSlotsFull(npc_bot) then return end
 
@@ -207,7 +211,11 @@ local function SellExtraItem(npc_bot)
     local index = functions.GetElementIndexInList(item, inventory)
 
     if index ~= -1 then
-      SellItemByIndex(npc_bot, index, condition)
+
+      SellItemByIndex(
+        npc_bot,
+        GetSlotIndex(index),
+        condition)
       return
     end
   end
