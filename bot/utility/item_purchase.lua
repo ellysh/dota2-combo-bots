@@ -63,10 +63,10 @@ local function IsItemAlreadyBought(item, inventory)
   return false
 end
 
-local function GetInventoryAndStashItems(npc_bot)
+local function GetItems(npc_bot, slot_numbers)
   local result = {}
 
-  for i = 0, constants.INVENTORY_AND_STASH_SIZE, 1 do
+  for i = 0, slot_numbers, 1 do
     local item = npc_bot:GetItemInSlot(i)
     if item ~= nil then
       table.insert(result, item:GetName())
@@ -76,6 +76,14 @@ local function GetInventoryAndStashItems(npc_bot)
   end
 
   return result
+end
+
+local function GetInventoryAndStashItems(npc_bot)
+  return GetItems(npc_bot, constants.INVENTORY_AND_STASH_SIZE)
+end
+
+local function GetInventoryItems(npc_bot)
+  return GetItems(npc_bot, constants.INVENTORY_SIZE)
 end
 
 local function FindNextComponentToBuy(npc_bot, item)
