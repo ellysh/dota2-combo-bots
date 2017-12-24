@@ -228,39 +228,6 @@ function test_PurchaseItem_recipe_from_recipe_component()
     "item_energy_booster")
 end
 
-function test_PurchaseItem_with_full_inventory()
-  test_RefreshBot()
-
-  BOT.gold = 9000
-
-  BOT.inventory = {
-    "item_tango",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches"
-  }
-
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_platemail"))
-
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
-    "item_platemail")
-end
-
 function test_FindNextItemToBuy()
   local item_list = {
     "nil",
@@ -292,6 +259,40 @@ function test_ItemPurchaseThink()
   luaunit.assertEquals(
     GetBot():GetItemInSlot(1):GetName(),
     "item_tpscroll")
+end
+
+function test_ItemPurchaseThink_with_full_inventory()
+  test_RefreshBot()
+
+  BOT.gold = 9000
+  BOT_LEVEL = 15
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches"
+  }
+
+  item_purchase.ItemPurchaseThink()
+
+  -- The first item_branches in the inventory should be sold
+
+  luaunit.assertEquals(
+    GetBot():GetItemInSlot(2):GetName(),
+    "item_clarity")
 end
 
 os.exit(luaunit.LuaUnit.run())

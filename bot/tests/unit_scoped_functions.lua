@@ -8,6 +8,9 @@ end
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 Unit = {}
 
 function Unit:new()
@@ -56,6 +59,10 @@ function Unit:DistanceFromSideShop()
   return DISTANCE_FROM_SHOP
 end
 
+function Unit:DistanceFromFountain()
+  return DISTANCE_FROM_SHOP
+end
+
 local function AssembleItem(item, inventory)
   if item ~= "item_ring_of_health" then return false end
 
@@ -73,11 +80,36 @@ function Unit:ActionImmediate_PurchaseItem(item)
   self.gold = self.gold - GetItemCost(item)
 
   -- Assemble item_pers for the item purchase test
-  if not AssembleItem(item, self.inventory) then
-    table.insert(self.inventory, item)
+  if AssembleItem(item, self.inventory) then
+    return PURCHASE_ITEM_SUCCESS
   end
 
+  if #self.inventory < constants.INVENTORY_AND_STASH_SIZE then
+    table.insert(self.inventory, item)
+    return PURCHASE_ITEM_SUCCESS
+  end
+
+  local index = functions.GetElementIndexInList(
+    "nil",
+    self.inventory)
+
+  if index == -1 then return PURCHASE_ITEM_DISALLOWED_ITEM end
+
+  self.inventory[index] = item
+
   return PURCHASE_ITEM_SUCCESS
+end
+
+function Unit:ActionImmediate_SellItem(item)
+  local index = functions.GetElementIndexInList(
+    item.name,
+    self.inventory)
+
+  if index == -1 then return end
+
+  self.gold = self.gold - GetItemCost(item.name)
+
+  self.inventory[index] = "nil"
 end
 
 -----------------------------------------------
@@ -210,6 +242,12 @@ BOT_MOVE_LOCATION = nil
 function Bot:Action_MoveToLocation(location)
   BOT_ACTION = BOT_ACTION_TYPE_MOVE_TO
   BOT_MOVE_LOCATION = location
+end
+
+BOT_LEVEL = 1
+
+function Bot:GetLevel()
+  return BOT_LEVEL
 end
 
 ------------------------------------------

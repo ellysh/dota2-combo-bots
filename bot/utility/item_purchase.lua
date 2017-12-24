@@ -190,7 +190,7 @@ local function SellItemByIndex(npc_bot, index, condition)
     or npc_bot:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
     or npc_bot:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
 
-    npcBot:ActionImmediate_SellItem(item)
+    npc_bot:ActionImmediate_SellItem(item)
   end
 end
 
@@ -204,7 +204,7 @@ local function SellExtraItem(npc_bot)
     local index = functions.GetElementIndexInList(item, inventory)
 
     if index ~= -1 then
-      SellItemByIndex(index, condition)
+      SellItemByIndex(npc_bot, index, condition)
       return
     end
   end
