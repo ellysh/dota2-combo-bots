@@ -108,10 +108,14 @@ end
 
 --------------------------------------
 
+IS_SECRET_SHOP_ITEM = false
+
 function IsItemPurchasedFromSecretShop()
-  return false
+  return IS_SECRET_SHOP_ITEM
 end
 
+IS_SIDE_SHOP_ITEM = false
+
 function IsItemPurchasedFromSideShop()
-  return false
+  return IS_SIDE_SHOP_ITEM
 end

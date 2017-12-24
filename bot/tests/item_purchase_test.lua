@@ -155,6 +155,7 @@ end
 function test_OrderSecretShopItem()
   test_RefreshBot()
 
+  IS_SECRET_SHOP_ITEM = true
   luaunit.assertTrue(
     item_purchase.test_OrderSecretShopItem(GetBot(), "item_ultimate_orb"))
 
@@ -171,6 +172,7 @@ function test_OrderSideShopItem()
 
   DISTANCE_FROM_SHOP = constants.SHOP_WALK_RADIUS - 1
 
+  IS_SIDE_SHOP_ITEM = true
   luaunit.assertTrue(
     item_purchase.test_OrderSideShopItem(GetBot(), "item_tpscroll"))
 
@@ -338,7 +340,7 @@ function test_SellExtraItem()
   BOT_LEVEL = 15
 
   BOT.inventory = {
-    "item_tango",
+    "item_branches",
     "item_branches",
     "item_branches",
     "item_branches",
@@ -381,7 +383,7 @@ function test_ItemPurchaseThink_with_full_inventory()
   BOT_LEVEL = 15
 
   BOT.inventory = {
-    "item_tango",
+    "item_branches",
     "item_branches",
     "item_branches",
     "item_branches",
