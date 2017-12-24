@@ -360,7 +360,7 @@ function test_SellExtraItem()
   item_purchase.test_SellExtraItem(GetBot())
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(2):GetName(),
+    GetBot():GetItemInSlot(1):GetName(),
     "nil")
 end
 
@@ -404,7 +404,7 @@ function test_ItemPurchaseThink_with_full_inventory()
   -- The first item_branches in the inventory should be sold
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(2):GetName(),
+    GetBot():GetItemInSlot(1):GetName(),
     "item_clarity")
 end
 
