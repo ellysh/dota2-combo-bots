@@ -169,13 +169,37 @@ local function PurchaseItemList(npc_bot, item_type)
   end
 end
 
+local function SellItemByIndex(npc_bot, index, condition)
+  local item = npc_bot:GetItemInSlot(index);
+
+  if npc_bot:GetLevel() < condition.level
+    and (GameTime() * 60) < condition.time then
+
+    return
+  end
+
+  if npc_bot:DistanceFromFountain() <= constants.BASE_SHOP_USE_RADIUS
+    or npc_bot:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
+    or npc_bot:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
+
+    npcBot:ActionImmediate_SellItem(item)
+  end
+end
+
 local function SellExtraItem(npc_bot)
   if not functions.IsItemSlotsFull(npc_bot) then return end
 
---  for item,condition in pairs(item_sell.ITEM_SELL) do
---
---    local index = functions.GetElementIndexInList(item, inventory)
---  end
+  local inventory = GetInventoryItems(npc_bot)
+
+  for item, condition in pairs(item_sell.ITEM_SELL) do
+
+    local index = functions.GetElementIndexInList(item, inventory)
+
+    if index ~= -1 then
+      SellItemByIndex(index, condition)
+      return
+    end
+  end
 
 end
 
