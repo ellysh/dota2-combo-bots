@@ -27,8 +27,25 @@ local function InitAbilities()
   end
 end
 
+local function AbilityLevelUp(npc_bot, ability)
+  if ability ~= nil and ability:CanAbilityBeUpgraded() then
+    npc_bot:ActionImmediate_LevelAbility(ability:GetName())
+    return true
+  end
+
+  return false
+end
+
 function M.AbilityLevelUpThink()
-  -- TODO: Implement this function
+  local npc_bot = GetBot()
+
+  if npc_bot:GetAbilityPoints() < 1 then return end
+
+  local level = npc_bot:GetLevel()
+
+  if not AbilityLevelUp(npc_bot, TALENTS[level]) then
+    AbilityLevelUp(npc_bot, ABILITIES[level])
+  end
 end
 
 return M
