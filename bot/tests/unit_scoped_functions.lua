@@ -250,12 +250,29 @@ function Bot:GetLevel()
   return BOT_LEVEL
 end
 
+BOT_ABILITIES = {}
+
+function Bot:GetAbilityInSlot(slot_number)
+  -- The first ability has the 0 slot in the game.
+  return BOT_ABILITIES[slot_number + 1]
+end
+
+BOT_LEVELUP_ABILITY = nil
+
+function Bot:ActionImmediate_LevelAbility(ability_name)
+  BOT_LEVELUP_ABILITY = ability_name
+end
+
+function Bot:GetAbilityPoints()
+  return 1
+end
+
 ------------------------------------------
 
 Ability = {}
 
-function Ability:new()
-  local newObj = {cast_range = 600}
+function Ability:new(n)
+  local newObj = {name = n, cast_range = 600}
   self.__index = self
   return setmetatable(newObj, self)
 end
@@ -290,8 +307,22 @@ function Ability:IsTrained()
   return true
 end
 
+function Ability:IsTalent()
+  return string.match(self.name, "special_bonus")
+end
+
 function Ability:GetAbilityDamage()
   return 100
+end
+
+function Ability:GetName()
+  return self.name
+end
+
+ABILITY_CAN_BE_UPGRADED = true
+
+function Ability:CanAbilityBeUpgraded()
+  return ABILITY_CAN_BE_UPGRADED
 end
 
 ------------------------------------------------

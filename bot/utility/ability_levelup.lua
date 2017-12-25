@@ -52,4 +52,9 @@ function M.AbilityLevelUpThink()
   end
 end
 
+-- Provide an access to local functions and lists for unit tests only
+M.test_AbilityLevelUp = AbilityLevelUp
+M.test_ABILITIES = ABILITIES
+M.test_TALENTS = TALENTS
+
 return M
