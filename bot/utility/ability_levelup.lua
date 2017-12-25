@@ -6,11 +6,11 @@ local skill_build = require(
 
 local M = {}
 
-ABILITIES = {}
+local ABILITIES = {}
 
-TALENTS = {}
+local TALENTS = {}
 
-local function InitAbilities()
+function M.InitAbilities()
   local npc_bot = GetBot()
 
   for i = 0, 23, 1 do
