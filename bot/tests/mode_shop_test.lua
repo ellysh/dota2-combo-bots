@@ -29,26 +29,26 @@ end
 function test_GetDesire_positive()
   test_RefreshBot()
 
-  luaunit.assertEquals(mode_shop.GetDesire(true, 0), 1.0)
+  luaunit.assertEquals(mode_shop.GetDesire(true, 0), 1.2)
 
   luaunit.assertEquals(
     mode_shop.GetDesire(
       true,
       constants.SHOP_WALK_RADIUS / 2),
-    0.5)
+    0.7)
 
   luaunit.assertAlmostEquals(
     mode_shop.GetDesire(
       true,
       constants.SHOP_WALK_RADIUS / 3),
-    0.666,
+    0.866,
     0.001)
 
   luaunit.assertEquals(
     mode_shop.GetDesire(
       true,
       constants.SHOP_WALK_RADIUS / 4),
-    0.75)
+    0.95)
 end
 
 function test_GetNearestLocation()

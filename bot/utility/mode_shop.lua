@@ -21,7 +21,8 @@ function M.GetDesire(is_shop_mode, shop_distance)
 
   if walk_radius < shop_distance then return 0 end
 
-  return (100 - ((shop_distance * 100) / walk_radius)) / 100.0
+  -- We increase the desire to 20%. Otherwise, it is still to low.
+  return ((100 - ((shop_distance * 100) / walk_radius)) / 100.0) + 0.2
 end
 
 local function GetNearestLocation(npc_bot, location_1, location_2)
