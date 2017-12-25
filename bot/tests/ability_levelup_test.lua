@@ -81,6 +81,8 @@ end
 function test_AbilityLevelUp()
   test_RefreshBot()
 
+  BOT_LEVELUP_ABILITY = nil
+
   luaunit.assertTrue(
     ability_levelup.test_AbilityLevelUp(
       GetBot(),
@@ -105,12 +107,17 @@ function test_AbilityLevelUpThink()
   test_RefreshBot()
 
   ability_levelup.ABILITIES = {
-    Ability:new("crystal_maiden_crystal_nova")
+    Ability:new("crystal_maiden_crystal_nova"),
+    Ability:new("crystal_maiden_frostbite"),
+    Ability:new("crystal_maiden_brilliance_aura")
   }
 
   ABILITY_CAN_BE_UPGRADED = true
+  BOT_LEVELUP_ABILITY = nil
 
   ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(BOT_LEVELUP_ABILITY, "crystal_maiden_frostbite")
 end
 
 os.exit(luaunit.LuaUnit.run())
