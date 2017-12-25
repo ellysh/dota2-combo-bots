@@ -4,7 +4,7 @@ local M = {}
 M.SKILL_BUILD = {
 
   npc_dota_hero_crystal_maiden = {
-    skills = {
+    abilities = {
       [1] = 2,
       [2] = 3,
       [3] = 3,
@@ -30,7 +30,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_juggernaut = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -56,7 +56,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_sven = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -82,7 +82,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_ursa = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -108,7 +108,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_shadow_shaman = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -134,7 +134,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_venomancer = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -160,7 +160,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_obsidian_destroyer = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -186,7 +186,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_death_prophet = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -212,7 +212,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_queenofpain = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -238,7 +238,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_bristleback = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -264,7 +264,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_tidehunter = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -290,7 +290,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_shredder = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -316,7 +316,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_skywrath_mage = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -342,7 +342,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_lion = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -368,7 +368,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_sand_king = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -394,7 +394,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_lich = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -420,7 +420,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_faceless_void = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -446,7 +446,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_nevermore = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -472,7 +472,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_tiny = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -498,7 +498,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_dazzle = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -524,7 +524,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_lina = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -550,7 +550,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_legion_commander = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -576,7 +576,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_drow_ranger = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,
@@ -602,7 +602,7 @@ M.SKILL_BUILD = {
   },
 
   npc_dota_hero_razor = {
-    skills = {
+    abilities = {
       [1] = nil,
       [2] = nil,
       [3] = nil,

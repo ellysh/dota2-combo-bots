@@ -6,9 +6,9 @@ local skill_build = require(
 
 local M = {}
 
-local ABILITIES = {}
+M.ABILITIES = {}
 
-local TALENTS = {}
+M.TALENTS = {}
 
 function M.InitAbilities()
   local npc_bot = GetBot()
@@ -19,9 +19,9 @@ function M.InitAbilities()
 
     if ability ~= nil and ability:GetName() ~= "generic_hidden" then
       if ability:IsTalent() then
-        table.insert(TALENTS, ability)
+        table.insert(M.TALENTS, ability)
       else
-        table.insert(ABILITIES, ability)
+        table.insert(M.ABILITIES, ability)
       end
     end
   end
@@ -47,14 +47,18 @@ function M.AbilityLevelUpThink()
 
   local level = npc_bot:GetLevel()
 
-  if not AbilityLevelUp(npc_bot, TALENTS[level]) then
-    AbilityLevelUp(npc_bot, ABILITIES[level])
+  local talent_index =
+    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].talents[level]
+
+  if not AbilityLevelUp(npc_bot, M.TALENTS[talent_index]) then
+    local ability_index =
+      skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities[level]
+
+    AbilityLevelUp(npc_bot, M.ABILITIES[ability_index])
   end
 end
 
 -- Provide an access to local functions and lists for unit tests only
 M.test_AbilityLevelUp = AbilityLevelUp
-M.test_ABILITIES = ABILITIES
-M.test_TALENTS = TALENTS
 
 return M

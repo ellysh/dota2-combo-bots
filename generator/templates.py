@@ -89,7 +89,7 @@ M.SKILL_BUILD = {
 
 SKILL_BUILD = """
   <0> = {
-    skills = {
+    abilities = {
       [1] = <1>,
       [2] = <2>,
       [3] = <3>,
