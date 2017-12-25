@@ -127,6 +127,11 @@ end
 local function OrderSideShopItem(npc_bot, item)
   if not IsItemPurchasedFromSideShop(item) then return false end
 
+  if npc_bot.is_side_shop_mode
+     and npc_bot:GetActiveMode() ~= BOT_MODE_SIDE_SHOP then
+    return false
+  end
+
   if npc_bot:DistanceFromSideShop() <= constants.SHOP_WALK_RADIUS then
 
     npc_bot.is_side_shop_mode = true
@@ -145,16 +150,18 @@ local function PurchaseItem(npc_bot, item)
     return false
   end
 
+  -- We should try to buy an item in the side shop first. Otherwise,
+  -- it will be bought in the base shop.
+  if OrderSideShopItem(npc_bot, item) then
+    return false
+  end
+
   local purchase_result = npc_bot:ActionImmediate_PurchaseItem(item)
 
   if purchase_result == PURCHASE_ITEM_SUCCESS then
     npc_bot.is_side_shop_mode = false
     npc_bot.is_secret_shop_mode = false
     return true
-  end
-
-  if OrderSideShopItem(npc_bot, item) then
-    return false
   end
 
   return OrderSecretShopItem(npc_bot, item, purchase_result)

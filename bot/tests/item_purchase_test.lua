@@ -182,6 +182,7 @@ end
 function test_PurchaseItem_basic()
   test_RefreshBot()
 
+  IS_SIDE_SHOP_ITEM = false
   luaunit.assertTrue(item_purchase.test_PurchaseItem(
     GetBot(),
     "item_tango"))
