@@ -118,20 +118,23 @@ SKILL_BUILD = """
 #---------------------------------------------
 
 SKILL_USAGE_HEADER = """
+local algorithms = require(
+  GetScriptDirectory() .."/utility/ability_usage_algorithms")
+
 M.SKILL_USAGE = {
 """
 
 SKILL_USAGE = """
   <0> = {
-      any_mode = <1>,
-      team_fight = <2>,
-      BOT_MODE_ROAM = <3>,
-      BOT_MODE_PUSH_TOWER = <4>,
-      BOT_MODE_ATTACK = <5>,
-      BOT_MODE_LANING = <6>,
-      BOT_MODE_FARM = <7>,
-      BOT_MODE_DEFEND_TOWER = <8>,
-      BOT_MODE_RETREAT = <9>,
-      BOT_MODE_DEFEND_ALLY = <10>
+      any_mode = algorithms["<1>"],
+      team_fight = algorithms["<2>"],
+      BOT_MODE_ROAM = algorithms["<3>"],
+      BOT_MODE_PUSH_TOWER = algorithms["<4>"],
+      BOT_MODE_ATTACK = algorithms["<5>"],
+      BOT_MODE_LANING = algorithms["<6>"],
+      BOT_MODE_FARM = algorithms["<7>"],
+      BOT_MODE_DEFEND_TOWER = algorithms["<8>"],
+      BOT_MODE_RETREAT = algorithms["<9>"],
+      BOT_MODE_DEFEND_ALLY = algorithms["<10>"]
   },
 """
