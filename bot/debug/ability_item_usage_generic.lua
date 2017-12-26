@@ -1,5 +1,5 @@
 local courier = require(
-    GetScriptDirectory() .."/utility/courier")
+  GetScriptDirectory() .."/utility/courier")
 
 function CourierUsageThink()
   courier.CourierUsageThink()
