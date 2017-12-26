@@ -4,18 +4,10 @@ local logger = require(
 local ability_levelup = require(
   GetScriptDirectory() .."/utility/ability_levelup")
 
-local M = {}
-
--- TODO: Move all skill usage "algorithms" to the separate module
-function low_hp_enemy_hero_to_kill()
-  -- TODO: Implement this function
-  return BOT_ACTION_DESIRE_HIGH, {0, 0}
-end
-
--- The skill_usage module should be included after a definition
--- of the checking algorithms
 local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
+
+local M = {}
 
 local function GetDesireAndTargetList(abilities)
   --  This function returns list: ability -> {desire, target}
