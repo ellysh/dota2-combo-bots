@@ -6,18 +6,43 @@ local ability_levelup = require(
 
 local M = {}
 
+-- TODO: Move all skill usage "algorithms" to the separate module
+local function low_hp_enemy_hero_to_kill()
+  -- TODO: Implement this function
+  return BOT_ACTION_DESIRE_HIGH, {0, 0}
+end
+
 -- The skill_usage module should be included after a definition
 -- of the checking algorithms
-local skill_build = require(
+local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
 
 local function GetDesireAndTargetList()
-  -- TODO: Return list: ability -> {desire, target}
+  --  This function returns list: ability -> {desire, target}
+  local result = {}
 
   for _, ability in pairs(ability_levelup.ABILITIES) do
-    if skill_build.SKILL_USAGE[ability:GetName()].any_mode() then
+    local skill_algorithms = skill_usage.SKILL_USAGE[ability:GetName()]
+
+    if skill_algorithms == nil then goto continue end
+
+    local any_mode = skill_usage.SKILL_USAGE[ability:GetName()].any_mode
+
+    if any_mode ~= nil then
+      local desire, target = any_mode()
+
+      if desire ~= BOT_ACTION_DESIRE_NONE then
+        result[ability] = {desire, target}
+        goto continue
+      end
     end
+
+    -- TODO: Process the bot mode specific algorithms here
+
+    ::continue::
   end
+
+  return result
 end
 
 local function GetMostDesiredAbility(desire_list)
@@ -31,5 +56,8 @@ function M.AbilityUsageThink()
 
   UseAbility(ability, target)
 end
+
+-- Provide an access to local functions and lists for unit tests only
+M.test_GetDesireAndTargetList = GetDesireAndTargetList
 
 return M
