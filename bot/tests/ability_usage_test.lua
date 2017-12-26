@@ -7,6 +7,14 @@ local luaunit = require('luaunit')
 
 function test_GetDesireAndTargetList()
   test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  abilities = {
+    ability,
+  }
+
+  local result = ability_usage.test_GetDesireAndTargetList(abilities)
 end
 
 os.exit(luaunit.LuaUnit.run())

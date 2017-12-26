@@ -14,5 +14,5 @@ function AbilityLevelUpThink()
 end
 
 function AbilityUsageThink()
-  ability_usage.AbilityUsageThink()
+  ability_usage.AbilityUsageThink(ability_levelup.ABILITIES)
 end

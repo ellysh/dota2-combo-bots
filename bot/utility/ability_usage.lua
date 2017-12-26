@@ -7,7 +7,7 @@ local ability_levelup = require(
 local M = {}
 
 -- TODO: Move all skill usage "algorithms" to the separate module
-local function low_hp_enemy_hero_to_kill()
+function low_hp_enemy_hero_to_kill()
   -- TODO: Implement this function
   return BOT_ACTION_DESIRE_HIGH, {0, 0}
 end
@@ -17,16 +17,16 @@ end
 local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
 
-local function GetDesireAndTargetList()
+local function GetDesireAndTargetList(abilities)
   --  This function returns list: ability -> {desire, target}
   local result = {}
 
-  for _, ability in pairs(ability_levelup.ABILITIES) do
+  for _, ability in pairs(abilities) do
     local skill_algorithms = skill_usage.SKILL_USAGE[ability:GetName()]
 
     if skill_algorithms == nil then goto continue end
 
-    local any_mode = skill_usage.SKILL_USAGE[ability:GetName()].any_mode
+    local any_mode = skill_algorithms.any_mode
 
     if any_mode ~= nil then
       local desire, target = any_mode()
@@ -49,8 +49,8 @@ local function GetMostDesiredAbility(desire_list)
   -- TODO: Return the {ability, target} pair
 end
 
-function M.AbilityUsageThink()
-  local desire_list = GetDesireAndTargetList()
+function M.AbilityUsageThink(abilities)
+  local desire_list = GetDesireAndTargetList(abilities)
 
   local ability, target = GetMostDesiredAbility(desire_list)
 
