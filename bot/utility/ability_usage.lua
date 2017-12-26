@@ -14,7 +14,7 @@ local skill_build = require(
 local function GetDesireAndTargetList()
   -- TODO: Return list: ability -> {desire, target}
 
-  for _, ability in pairs ability_levelup.ABILITIES do
+  for _, ability in pairs(ability_levelup.ABILITIES) do
     if skill_build.SKILL_USAGE[ability:GetName()].any_mode() then
     end
   end
