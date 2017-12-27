@@ -110,7 +110,7 @@ The bot follows the sequence of items on this sheet when buying them. If the inv
 
 ### ITEM_SELL
 
-The `ITEM_BUILD` sheet describes the conditions when the bot should sell the specific items.
+The `ITEM_SELL` sheet describes the conditions when the bot should sell the specific items.
 
 These are columns of this sheet:
 
@@ -119,6 +119,45 @@ These are columns of this sheet:
 3. Time - this is a game time when the current item should be sold.
 
 The bot will sell the specified items when its inventory is full and either Level or Time condition happens.
+
+### SKILL_BUILD
+
+The `SKILL_BUILD` sheet describes a sequence, how the bot will level up abilities and talents when playing on the specific heroes.
+
+These are columns of this sheet:
+
+1. Hero - this is the built-in hero name.
+2. 1..18 level - these are abilities that will be leveled up when the hero reaches the corresponding level. These columns are marked green color.
+3. 10..25 level - these are talents that will be leveled up when the hero reaches the corresponding level. These columns are marked red color.
+
+The abilities are numbered from the 1st:
+
+| Default ability hotkey | Number |
+| -- | -- |
+| Q | 1 |
+| W | 2 |
+| E | 3 |
+| R | 4 |
+
+This is the scheme of the talents numbering
+
+| Talent level | Position in the tree | Number |
+| -- | -- | -- |
+| 10 | right | 1 |
+| 10 | left | 2 |
+| 15 | right | 3 |
+| 15 | left | 4 |
+| 20 | right | 5 |
+| 20 | left | 6 |
+| 25 | right | 7 |
+| 25 | left | 8 |
+
+We use the numbers instead of the abilities and talents names because of two reasons:
+
+1. This way is shorter two write.
+2. [Official documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-In_Ability_Names) is deprecated and uses obsoleted talent names. Please do not use them and read the actual values from the game instead.
+
+The bot will follow rules from this sheet when it gains a new level and updates its abilities.
 
 ## Contributing
 
