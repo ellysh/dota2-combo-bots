@@ -6,10 +6,42 @@ local skill_usage = require(
 
 local M = {}
 
-local function CalculateDesireAndTarget(algorithm, bot_mode)
-  if algorithm == nil then return BOT_ACTION_DESIRE_NONE, 0 end
+local function IsBotModeMatch(npc_bot, bot_mode)
+  if bot_mode == "any_mode" or bot_mode == "team_fight" then
+    return true
+  end
 
-  -- TODO: Check the real bot mode matching here
+  local active_mode = npc_bot:GetActiveMode()
+
+  if bot_mode == BOT_MODE_ROAM then
+    return active_mode == BOT_MODE_ROAM
+           or active_mode == BOT_MODE_TEAM_ROAM
+  end
+
+  -- Actual bot modes are the constant digits but the
+  -- shortcuted modes are strings.
+
+  if bot_mode == "BOT_MODE_PUSH_TOWER" then
+    return active_mode == BOT_MODE_PUSH_TOWER_TOP
+           or active_mode == BOT_MODE_PUSH_TOWER_MID
+           or active_mode == BOT_MODE_PUSH_TOWER_BOT
+  end
+
+  if bot_mode == "BOT_MODE_DEFEND_TOWER" then
+    return active_mode == BOT_MODE_DEFEND_TOWER_TOP
+           or active_mode == BOT_MODE_DEFEND_TOWER_MID
+           or active_mode == BOT_MODE_DEFEND_TOWER_BOT
+  end
+
+  return active_mode == bot_mode
+end
+
+local function CalculateDesireAndTarget(npc_bot, algorithm, bot_mode)
+  if algorithm == nil then return BOT_ACTION_DESIRE_NONE, nil end
+
+  if not IsBotModeMatch(npc_bot, bot_mode) then
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
 
   return algorithm()
 end
@@ -26,7 +58,8 @@ local function ChooseAbilityAndTarget(npc_bot)
     if not ability:IsFullyCastable() then goto continue end
 
     for bot_mode, algorithm in pairs(algorithms) do
-      local desire, target = CalculateDesireAndTarget(algorithm, bot_mode)
+      local desire, target =
+        CalculateDesireAndTarget(npc_bot, algorithm, bot_mode)
 
       if most_desired_target < desire then
         result_ability = ability
