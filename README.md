@@ -50,6 +50,16 @@ More details about installing custom bots you can find in this [Dota 2 AI Quick 
 
 ## Contributing
 
+I will be glad to any help with the development of this project.
+
+If you are familiar with Lua scripting, you can help with the code development. Please, send you patches via email or make push commits on GitHub.
+
+If you are a game expert, you can help with filling the Database. You can send me your `Database.odt` file. Then I will use it to generate Lua scripts and merge new features in the project repository.
+
 ## Acknowledgements
 
 Thanks to [adamqqqplay](https://github.com/adamqqqplay) and his great [Ranked Matchmaking AI](https://github.com/adamqqqplay/dota2ai) project. Some of his ideas and concepts are used here.
+
+## Contacts
+
+You can ask any questions about usage of Combo Bots via email petrsum@gmail.com.
