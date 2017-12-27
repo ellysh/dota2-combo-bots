@@ -52,7 +52,7 @@ More details about installing custom bots you can find in this [Dota 2 AI Quick 
 
 I will be glad to any help with the development of this project.
 
-If you are familiar with Lua scripting, you can help with the code development. Please, send you patches via email or make push commits on GitHub.
+If you are familiar with Lua scripting, you can help with the code development. Please, send your patches via email or make push commits on GitHub.
 
 If you are a game expert, you can help with filling the Database. You can send me your `Database.odt` file. Then I will use it to generate Lua scripts and merge new features in the project repository.
 
