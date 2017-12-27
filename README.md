@@ -84,6 +84,17 @@ The bot uses data from this sheet to select heroes on the draft step.
 
 Now only the All Pick draft mode is supported.
 
+### ITEM_RECIPE
+
+The `ITEM_RECIPE` sheet describes a list of components to assemble the recipe items.
+
+These are columns of this sheet:
+
+* Item - this is a recipe item name to assemble.
+* Components - these are four or fewer components, which are required to assemble the current item. If a component is a recipe item too, you should specify the name of this item here instead of its components.
+
+The bot uses this data in the item purchasing algorithm. Thanks to this sheet, you can specify only final recipe items in the item builds.
+
 ## Contributing
 
 I will be glad to any help with the development of this project.
