@@ -4,6 +4,8 @@
 
 These are bots for Dota 2 and a toolkit to configure them.
 
+A current development state is available in the [`CHANGELOG.md`](CHANGELOG.md) file.
+
 ## Why this project appeared?
 
 Dota has default bots that are fit excellent for new players training. But they are too weak to compete with more experienced players. Therefore, these players do not have reliable computer opponents, which allow them to train some tactics and ideas.
@@ -63,3 +65,7 @@ Thanks to [adamqqqplay](https://github.com/adamqqqplay) and his great [Ranked Ma
 ## Contacts
 
 You can ask any questions about usage of Combo Bots via email petrsum@gmail.com.
+
+## License
+
+This project is distributed under the GPL v3.0 license
