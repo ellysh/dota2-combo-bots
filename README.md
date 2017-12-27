@@ -77,8 +77,8 @@ These are columns of this sheet:
 
 1. Hero - this is the built-in name of the hero to select.
 2. Position - these are two values that match a possible hero's [farm position](http://wiki.teamliquid.net/dota2/Farm_Dependency) in a team.
-3. Combo Heroes - these are three possible heroes that can be effectively combined with the current hero.
-4. Counter Heroes - these are three possible heroes that can be effectively countered by the current hero.
+3. Combo Heroes - these are three possible heroes that can be effectively [combined](http://truepicker.com/en/combo/double) with the current hero.
+4. Counter Heroes - these are three possible heroes that can be effectively [countered](http://dotapicker.com/counterpick) by the current hero.
 
 The bot uses data from this sheet to select heroes on the draft step.
 
