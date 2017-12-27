@@ -3,9 +3,10 @@ package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 
 local ability_usage = require("ability_usage")
+local ability_usage_algorithms = require("ability_usage_algorithms")
 local luaunit = require('luaunit')
 
-function test_IsBotModeMatch_success()
+function test_IsBotModeMatch_succeed()
   test_RefreshBot()
 
   luaunit.assertTrue(
@@ -59,7 +60,7 @@ function test_IsBotModeMatch_success()
       BOT_MODE_ATTACK))
 end
 
-function test_IsBotModeMatch_failes()
+function test_IsBotModeMatch_fails()
   test_RefreshBot()
 
   BOT_MODE = BOT_MODE_ATTACK
@@ -89,6 +90,43 @@ function test_IsBotModeMatch_failes()
     ability_usage.test_IsBotModeMatch(
       GetBot(),
       BOT_MODE_ATTACK))
+end
+
+function test_CalculateDesireAndTarget_succeed()
+  test_RefreshBot()
+
+  local desire, target =
+    ability_usage.test_CalculateDesireAndTarget(
+      GetBot(),
+      ability_usage_algorithms.low_hp_enemy_hero_to_kill,
+      "any_mode")
+
+  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(target, {0, 0})
+end
+
+function test_CalculateDesireAndTarget_fails()
+  test_RefreshBot()
+
+  local desire, target =
+    ability_usage.test_CalculateDesireAndTarget(
+      GetBot(),
+      nil,
+      "any_mode")
+
+  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_NONE)
+  luaunit.assertEquals(target, nil)
+
+  BOT_MODE = BOT_MODE_ATTACK
+
+  local desire, target =
+    ability_usage.test_CalculateDesireAndTarget(
+      GetBot(),
+      ability_usage_algorithms.low_hp_enemy_hero_to_kill,
+      BOT_MODE_LANING)
+
+  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_NONE)
+  luaunit.assertEquals(target, nil)
 end
 
 function test_ChooseAbilityAndTarget()
