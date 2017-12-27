@@ -25,57 +25,60 @@ function test_InitAbilities()
     Ability:new("special_bonus_unique_crystal_maiden_2"),
   }
 
-  ability_levelup.ABILITIES = {}
+  ability_levelup.test_SetAbilities({})
 
   ability_levelup.InitAbilities()
 
+  abilities = ability_levelup.test_GetAbilities()
+  talents = ability_levelup.test_GetTalents()
+
   luaunit.assertEquals(
     BOT_ABILITIES[1],
-    ability_levelup.ABILITIES[1])
+    abilities[1])
 
   luaunit.assertEquals(
     BOT_ABILITIES[2],
-    ability_levelup.ABILITIES[2])
+    abilities[2])
 
   luaunit.assertEquals(
     BOT_ABILITIES[3],
-    ability_levelup.ABILITIES[3])
+    abilities[3])
 
   luaunit.assertEquals(
     BOT_ABILITIES[6],
-    ability_levelup.ABILITIES[4])
+    abilities[4])
 
   luaunit.assertEquals(
     BOT_ABILITIES[7],
-    ability_levelup.TALENTS[1])
+    talents[1])
 
   luaunit.assertEquals(
     BOT_ABILITIES[8],
-    ability_levelup.TALENTS[2])
+    talents[2])
 
   luaunit.assertEquals(
     BOT_ABILITIES[9],
-    ability_levelup.TALENTS[3])
+    talents[3])
 
   luaunit.assertEquals(
     BOT_ABILITIES[10],
-    ability_levelup.TALENTS[4])
+    talents[4])
 
   luaunit.assertEquals(
     BOT_ABILITIES[11],
-    ability_levelup.TALENTS[5])
+    talents[5])
 
   luaunit.assertEquals(
     BOT_ABILITIES[12],
-    ability_levelup.TALENTS[6])
+    talents[6])
 
   luaunit.assertEquals(
     BOT_ABILITIES[13],
-    ability_levelup.TALENTS[7])
+    talents[7])
 
   luaunit.assertEquals(
     BOT_ABILITIES[14],
-    ability_levelup.TALENTS[8])
+    talents[8])
 end
 
 function test_AbilityLevelUp()
@@ -106,11 +109,12 @@ end
 function test_AbilityLevelUpThink()
   test_RefreshBot()
 
-  ability_levelup.ABILITIES = {
-    Ability:new("crystal_maiden_crystal_nova"),
-    Ability:new("crystal_maiden_frostbite"),
-    Ability:new("crystal_maiden_brilliance_aura")
-  }
+  ability_levelup.test_SetAbilities(
+    {
+      Ability:new("crystal_maiden_crystal_nova"),
+      Ability:new("crystal_maiden_frostbite"),
+      Ability:new("crystal_maiden_brilliance_aura")
+    })
 
   ABILITY_CAN_BE_UPGRADED = true
   BOT_LEVELUP_ABILITY = nil
