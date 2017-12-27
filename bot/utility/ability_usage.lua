@@ -1,6 +1,9 @@
 local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
 
@@ -75,7 +78,21 @@ local function ChooseAbilityAndTarget(npc_bot)
 end
 
 local function UseAbility(npc_bot, ability, target)
-  -- TODO: Implement this function
+  if ability == nil then return end
+
+  local behavior = ability:GetBehavior()
+
+  if functions.CheckFlag(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
+    npc_bot:Action_UseAbility(ability)
+    return
+  end
+
+  if functions.CheckFlag(behavior, ABILITY_BEHAVIOR_POINT) then
+    npc_bot:Action_UseAbilityOnLocation(ability, target)
+    return
+  end
+
+  npc_bot:Action_UseAbilityOnEntity(ability, target)
 end
 
 function M.AbilityUsageThink()

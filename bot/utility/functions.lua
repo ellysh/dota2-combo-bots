@@ -48,6 +48,14 @@ function M.IsBotBusy(npc_bot)
         or npc_bot:IsCastingAbility()
 end
 
+-- This function was taken from the Ranked Matchmaking AI project:
+-- https://github.com/adamqqqplay/dota2ai
+function M.CheckFlag(mask, flag)
+  if flag == 0 or mask == 0 then return false end
+
+  return ((mask / flag)) % 2 >= 1
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 
