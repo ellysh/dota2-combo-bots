@@ -50,6 +50,33 @@ More details about installing custom bots you can find in this [Dota 2 AI Quick 
 
 ## Configuration
 
+You can find Combo Bots Database file in the `generator/database/docs/Database.ods` path. It has the standard Excel document format.
+
+There are several sheets in the document:
+
+* HEROES
+* ITEM_RECIPE
+* ITEM_BUILD
+* ITEM_SELL
+* SKILL_BUILD
+* SKILL_USAGE
+
+You should use the internal (built-in) game names of the items, units, heroes, and abilities to fill these sheets. These are links, where you can find this information:
+
+1. Item and hero names:
+https://dota2.gamepedia.com/Cheats
+
+2. Names of the hero abilities:
+https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-In_Ability_Names
+
+3. Names of the items abilities match the items names.
+
+### HEROES
+
+The `HEROES` sheet specifies a list of heroes that can be selected by bot on the draft step.
+
+These are columns of this sheet:
+
 ## Contributing
 
 I will be glad to any help with the development of this project.
