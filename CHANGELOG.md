@@ -1,4 +1,4 @@
-* Dota 2 Combo Bots 0.1
+* version 0.1
   - Implement the items purchasing and selling mechanism
   - Implement the abilities and talents level up mechanism
   - Implement the combo draft mechanism

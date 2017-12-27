@@ -63,12 +63,10 @@ There are several sheets in the document:
 
 You should use the internal (built-in) game names of the items, units, heroes, and abilities to fill these sheets. These are links, where you can find this information:
 
-1. Item and hero names:
+1. Item and hero names:<br/>
 https://dota2.gamepedia.com/Cheats
-
-2. Names of the hero abilities:
+2. Names of the hero abilities:<br/>
 https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-In_Ability_Names
-
 3. Names of the items abilities match the items names.
 
 ### HEROES
@@ -76,6 +74,15 @@ https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-I
 The `HEROES` sheet specifies a list of heroes that can be selected by bot on the draft step.
 
 These are columns of this sheet:
+
+* Hero - this is the built-in hero name to select.
+* Position - these are two values that match a possible hero's [farm position](http://wiki.teamliquid.net/dota2/Farm_Dependency) in a team.
+* Combo Heroes - these are three possible heroes that can be effectively combined with the current hero.
+* Counter Heroes - these are three possible heroes that can be effectively countered by the current hero.
+
+The bot uses data from this sheet to select heroes on the draft step.
+
+Now only the All Pick draft mode is supported.
 
 ## Contributing
 
