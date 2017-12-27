@@ -75,10 +75,10 @@ The `HEROES` sheet specifies a list of heroes that can be selected by bot on the
 
 These are columns of this sheet:
 
-* Hero - this is the built-in name of the hero to select.
-* Position - these are two values that match a possible hero's [farm position](http://wiki.teamliquid.net/dota2/Farm_Dependency) in a team.
-* Combo Heroes - these are three possible heroes that can be effectively combined with the current hero.
-* Counter Heroes - these are three possible heroes that can be effectively countered by the current hero.
+1. Hero - this is the built-in name of the hero to select.
+2. Position - these are two values that match a possible hero's [farm position](http://wiki.teamliquid.net/dota2/Farm_Dependency) in a team.
+3. Combo Heroes - these are three possible heroes that can be effectively combined with the current hero.
+4. Counter Heroes - these are three possible heroes that can be effectively countered by the current hero.
 
 The bot uses data from this sheet to select heroes on the draft step.
 
@@ -90,8 +90,8 @@ The `ITEM_RECIPE` sheet describes a list of components to assemble the recipe it
 
 These are columns of this sheet:
 
-* Item - this is a name of the recipe item to assemble.
-* Components - these are four or fewer components, which are required to assemble the current item. If a component is a recipe item too, you should specify the name of this item here instead of its components.
+1. Item - this is a name of the recipe item to assemble.
+2. Components - these are four or fewer components, which are required to assemble the current item. If a component is a recipe item too, you should specify the name of this item here instead of its components.
 
 The bot uses this data in the item purchasing algorithm. Thanks to this sheet, you can specify only final recipe items in the item builds.
 
@@ -101,12 +101,24 @@ The `ITEM_BUILD` sheet describes a list of items that bot should buy when playin
 
 These are columns of this sheet:
 
-* Hero - this is the built-in hero name.
-* Starting Items - these are three or fewer basic items that will be bought at the beginning of a game.
-* Core Items - these are three or fewer items that will be bought after the starting ones.
-* Extra items - these are four or fewer items that will be bought after the core ones.
+1. Hero - this is the built-in hero name.
+2. Starting Items - these are three or fewer basic items that will be bought at the beginning of a game.
+3. Core Items - these are three or fewer items that will be bought after the starting ones.
+4. Extra items - these are four or fewer items that will be bought after the core ones.
 
-The bot follows the sequence of items on this sheet when buying them. If the inventory of a hero is full, the bot will sell some items according to the rules from the `ITEM_SELL` sheet.
+The bot follows the sequence of items on this sheet when buying them. If the inventory of a hero is full, the bot will sell some items according to conditions from the `ITEM_SELL` sheet.
+
+### ITEM_SELL
+
+The `ITEM_BUILD` sheet describes the conditions when the bot should sell the specific items.
+
+These are columns of this sheet:
+
+1. Item - this is a name of the item to sell.
+2. Level - this is a hero level when the current item should be sold.
+3. Time - this is a game time when the current item should be sold.
+
+The bot will sell the specified items when its inventory is full and either Level or Time condition happens.
 
 ## Contributing
 
