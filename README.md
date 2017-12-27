@@ -69,6 +69,12 @@ https://dota2.gamepedia.com/Cheats
 https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-In_Ability_Names
 3. Names of the items abilities match the items names.
 
+These are steps to generate Lua scripts from the Database document:
+
+1. Save each sheet of the Database document as the CSV file with the `;` field delimiter and `"` text delimiter.
+2. Use the `generator/generator.py` file to create Lua script from each of saved CSV files. The script has three parameters: name of the sheet, number of columns and a name of the input CSV file. You can get examples of the script usage in the `generator/launch.sh` file.
+3. Copy all generated Lua scripts to the `bot/database` directory.
+
 ### HEROES
 
 The `HEROES` sheet specifies a list of heroes that can be selected by bot on the draft step.
@@ -158,6 +164,15 @@ We use the numbers instead of the abilities and talents names because of two rea
 2. [Official documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-In_Ability_Names) is deprecated and uses obsoleted talent names. Please do not use them and read the actual values from the game instead.
 
 The bot will follow rules from this sheet when it gains a new level and updates its abilities.
+
+### SKILL_USAGE
+
+The `SKILL_USAGE` sheet describes conditions when the bot should use each of hero abilities. The conditions are implemented as the functions in the `bot/utility/ability_usage_algorithms.lua` file. If you want to add a new condition, you should implement the function in this file with the corresponding name.
+
+These are columns of this sheet:
+
+1. Skill Name - this is the built-in name of a hero ability.
+2. Any Mode - this is the function name, which will check the condition.
 
 ## Contributing
 
