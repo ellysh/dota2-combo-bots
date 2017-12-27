@@ -83,6 +83,8 @@ function M.AbilityUsageThink()
 end
 
 -- Provide an access to local functions and lists for unit tests only
+M.test_IsBotModeMatch = IsBotModeMatch
+M.test_CalculateDesireAndTarget = CalculateDesireAndTarget
 M.test_ChooseAbilityAndTarget = ChooseAbilityAndTarget
 
 return M
