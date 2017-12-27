@@ -15,6 +15,10 @@ function test_GetDesireAndTargetList()
   }
 
   local result = ability_usage.test_GetDesireAndTargetList(abilities)
+
+  luaunit.assertNotEquals(result, nil)
+  luaunit.assertEquals(result[ability][1], BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(result[ability][2], {0, 0})
 end
 
 os.exit(luaunit.LuaUnit.run())
