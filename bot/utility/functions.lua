@@ -50,7 +50,7 @@ end
 
 -- This function was taken from the Ranked Matchmaking AI project:
 -- https://github.com/adamqqqplay/dota2ai
-function M.CheckFlag(mask, flag)
+function M.IsFlagSet(mask, flag)
   if flag == 0 or mask == 0 then return false end
 
   return ((mask / flag)) % 2 >= 1

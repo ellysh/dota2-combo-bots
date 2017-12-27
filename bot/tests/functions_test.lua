@@ -133,4 +133,15 @@ function test_IsBotBusy()
   luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 end
 
+function test_IsFlagSet()
+  local mask = 0x15
+
+  luaunit.assertTrue(functions.IsFlagSet(mask, 0x1))
+  luaunit.assertTrue(functions.IsFlagSet(mask, 0x4))
+  luaunit.assertTrue(functions.IsFlagSet(mask, 0x10))
+
+  luaunit.assertFalse(functions.IsFlagSet(mask, 0x2))
+  luaunit.assertFalse(functions.IsFlagSet(mask, 0x8))
+end
+
 os.exit(luaunit.LuaUnit.run())

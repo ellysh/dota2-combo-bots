@@ -142,12 +142,36 @@ function test_ChooseAbilityAndTarget()
   luaunit.assertEquals(target, {0, 0})
 end
 
+function test_UseAbility()
+  test_RefreshBot()
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  BOT_ABILITY = nil
+  BOT_ABILITY_LOCATION = nil
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+  local location =  {15, 25}
+
+  ability_usage.test_UseAbility(GetBot(), ability, location)
+
+  luaunit.assertEquals(BOT_ABILITY, ability)
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, location)
+end
+
 function test_AbilityUsageThink()
   test_RefreshBot()
 
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  BOT_ABILITY = nil
+  BOT_ABILITY_LOCATION = nil
+
   ability_usage.AbilityUsageThink()
 
-  -- TODO: Check the used ability here
+  luaunit.assertEquals(
+    BOT_ABILITY,
+    Ability:new("crystal_maiden_crystal_nova"))
+
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, {0, 0})
 end
 
 os.exit(luaunit.LuaUnit.run())

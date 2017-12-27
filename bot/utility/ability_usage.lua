@@ -82,12 +82,12 @@ local function UseAbility(npc_bot, ability, target)
 
   local behavior = ability:GetBehavior()
 
-  if functions.CheckFlag(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
+  if functions.IsFlagSet(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
     npc_bot:Action_UseAbility(ability)
     return
   end
 
-  if functions.CheckFlag(behavior, ABILITY_BEHAVIOR_POINT) then
+  if functions.IsFlagSet(behavior, ABILITY_BEHAVIOR_POINT) then
     npc_bot:Action_UseAbilityOnLocation(ability, target)
     return
   end
@@ -107,5 +107,6 @@ end
 M.test_IsBotModeMatch = IsBotModeMatch
 M.test_CalculateDesireAndTarget = CalculateDesireAndTarget
 M.test_ChooseAbilityAndTarget = ChooseAbilityAndTarget
+M.test_UseAbility = UseAbility
 
 return M

@@ -193,13 +193,23 @@ function Bot:GetLocation()
   return {1.2, 3.4}
 end
 
-function Bot:ActionPush_UseAbilityOnLocation()
+BOT_ABILITY = nil
+BOT_ABILITY_LOCATION = nil
+
+function Bot:Action_UseAbilityOnLocation(ability, location)
+  BOT_ABILITY = ability
+BOT_ABILITY_LOCATION = location
 end
 
-function Bot:Action_UseAbilityOnEntity()
+BOT_ABILITY_ENTITY = nil
+
+function Bot:Action_UseAbilityOnEntity(ability, entity)
+  BOT_ABILITY = ability
+BOT_ABILITY_ENTITY = entity
 end
 
-function Bot:ActionPush_UseAbility()
+function Bot:Action_UseAbility(ability)
+  BOT_ABILITY = ability
 end
 
 function Bot:GetPlayerID()
@@ -321,6 +331,12 @@ ABILITY_CAN_BE_UPGRADED = true
 
 function Ability:CanAbilityBeUpgraded()
   return ABILITY_CAN_BE_UPGRADED
+end
+
+ABILITY_BEHAVIOR = 0
+
+function Ability:GetBehavior()
+  return ABILITY_BEHAVIOR
 end
 
 ------------------------------------------------
