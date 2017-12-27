@@ -33,7 +33,18 @@ The [Lua interpreter](https://www.lua.org/download.html) of the 5.3 and above ve
 
 ## Installation
 
-## Usage
+Now the Combo Bots project is still in development stage. It is not ready for testing by players community. Therefore, it is not available on Steam yet.
+
+You can download the bots and install them manually in the Dota 2 game directory. These are steps to do it:
+
+1. Download the [Combo Bots archive](https://github.com/ellysh/dota2-combo-bots/archive/master.zip).
+2. Unpack the archive.
+3. Copy all files from the `bot` sub-directory to the `$DOTA\dota 2 beta\game\dota\scripts\vscripts\bots` directory.
+4. Start the Dota 2 game.
+5. Create a lobby (Play Dota -> Create Lobby).
+6. Specify the `Local Dev Script` option in the lobby bot settings for one of the teams.
+
+More details about installing custom bots you can find in this [Dota 2 AI Quick Start](http://ruoyusun.com/2017/01/08/dota2-ai-quickstart.html) guide.
 
 ## Configuration
 
