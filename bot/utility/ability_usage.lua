@@ -74,6 +74,10 @@ local function ChooseAbilityAndTarget(npc_bot)
   return result_ability, result_target
 end
 
+local function UseAbility(npc_bot, ability, target)
+  -- TODO: Implement this function
+end
+
 function M.AbilityUsageThink()
   local npc_bot = GetBot()
 

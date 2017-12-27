@@ -142,4 +142,12 @@ function test_ChooseAbilityAndTarget()
   luaunit.assertEquals(target, {0, 0})
 end
 
+function test_AbilityUsageThink()
+  test_RefreshBot()
+
+  ability_usage.AbilityUsageThink()
+
+  -- TODO: Check the used ability here
+end
+
 os.exit(luaunit.LuaUnit.run())
