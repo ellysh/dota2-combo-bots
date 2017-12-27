@@ -5,20 +5,17 @@ require("global_functions")
 local ability_usage = require("ability_usage")
 local luaunit = require('luaunit')
 
-function test_GetDesireAndTargetList()
+function test_ChooseAbilityAndTarget()
   test_RefreshBot()
 
-  local ability = Ability:new("crystal_maiden_crystal_nova")
+  local ability, target =
+    ability_usage.test_ChooseAbilityAndTarget(GetBot())
 
-  abilities = {
+  luaunit.assertEquals(
     ability,
-  }
+    Ability:new("crystal_maiden_crystal_nova"))
 
-  local result = ability_usage.test_GetDesireAndTargetList(abilities)
-
-  luaunit.assertNotEquals(result, nil)
-  luaunit.assertEquals(result[ability][1], BOT_ACTION_DESIRE_HIGH)
-  luaunit.assertEquals(result[ability][2], {0, 0})
+  luaunit.assertEquals(target, {0, 0})
 end
 
 os.exit(luaunit.LuaUnit.run())

@@ -277,10 +277,8 @@ function Ability:new(n)
   return setmetatable(newObj, self)
 end
 
-local TestAbility = Ability:new()
-
 function Bot:GetAbilityByName(abilityName)
-  return TestAbility
+  return Ability:new(abilityName)
 end
 
 function Ability:GetCastRange()

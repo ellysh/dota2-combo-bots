@@ -14,7 +14,7 @@ function AbilityLevelUpThink()
 end
 
 function AbilityUsageThink()
-  ability_usage.AbilityUsageThink(ability_levelup.ABILITIES)
+  ability_usage.AbilityUsageThink()
 end
 
 function CourierUsageThink()
