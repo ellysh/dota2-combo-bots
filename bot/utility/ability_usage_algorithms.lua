@@ -3,7 +3,7 @@ local logger = require(
 
 local M = {}
 
-local function GetEnemyHeroMinHp(radius)
+local function GetEnemyHeroMinHp(npc_bot, radius)
   -- TODO: Implement this function
   return nil
 end
@@ -23,8 +23,8 @@ local function GetTarget(target, ability)
   return nil
 end
 
-function M.low_hp_enemy_hero_to_kill(ability)
-  local enemy_hero = GetEnemyHeroMinHp(ability:GetCastRange())
+function M.low_hp_enemy_hero_to_kill(npc_bot, ability)
+  local enemy_hero = GetEnemyHeroMinHp(npc_bot, ability:GetCastRange())
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero)

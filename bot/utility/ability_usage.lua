@@ -39,14 +39,19 @@ local function IsBotModeMatch(npc_bot, bot_mode)
   return active_mode == bot_mode
 end
 
-local function CalculateDesireAndTarget(npc_bot, algorithm, bot_mode)
+local function CalculateDesireAndTarget(
+  npc_bot,
+  algorithm,
+  bot_mode,
+  ability)
+
   if algorithm == nil then return BOT_ACTION_DESIRE_NONE, nil end
 
   if not IsBotModeMatch(npc_bot, bot_mode) then
     return BOT_ACTION_DESIRE_NONE, nil
   end
 
-  return algorithm()
+  return algorithm(npc_bot, ability)
 end
 
 local function ChooseAbilityAndTarget(npc_bot)
@@ -62,7 +67,7 @@ local function ChooseAbilityAndTarget(npc_bot)
 
     for bot_mode, algorithm in pairs(algorithms) do
       local desire, target =
-        CalculateDesireAndTarget(npc_bot, algorithm, bot_mode)
+        CalculateDesireAndTarget(npc_bot, algorithm, bot_mode, ability)
 
       if most_desired_target < desire then
         result_ability = ability
