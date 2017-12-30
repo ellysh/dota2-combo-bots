@@ -160,7 +160,7 @@ This is the scheme of the talents numbering
 
 We use the numbers instead of the abilities and talents names because of two reasons:
 
-1. This way is shorter two write.
+1. This way is shorter for writing.
 2. [Official documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Built-In_Ability_Names) is deprecated and uses obsoleted talent names. Please do not use them and read the actual values from the game instead.
 
 The bot will follow rules from this sheet when it gains a new level and updates its abilities.
