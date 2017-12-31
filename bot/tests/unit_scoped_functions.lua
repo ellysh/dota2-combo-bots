@@ -320,7 +320,10 @@ end
 Ability = {}
 
 function Ability:new(n)
-  local newObj = {name = n, cast_range = 600}
+  local newObj = {
+    name = n,
+    cast_range = 600}
+
   self.__index = self
   return setmetatable(newObj, self)
 end

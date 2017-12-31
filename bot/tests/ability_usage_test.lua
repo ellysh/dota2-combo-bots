@@ -97,6 +97,9 @@ function test_CalculateDesireAndTarget_succeed()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
+  ABILITY_DAMAGE = 200
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
   local desire, target =
     ability_usage.test_CalculateDesireAndTarget(
       GetBot(),
@@ -104,8 +107,8 @@ function test_CalculateDesireAndTarget_succeed()
       "any_mode",
       ability)
 
-  --luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
-  --luaunit.assertEquals(target, {0, 0})
+  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(target, {20, 20})
 end
 
 function test_CalculateDesireAndTarget_fails()
@@ -135,14 +138,17 @@ end
 function test_ChooseAbilityAndTarget()
   test_RefreshBot()
 
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  ABILITY_DAMAGE = 200
+
   local ability, target =
     ability_usage.test_ChooseAbilityAndTarget(GetBot())
 
-  --luaunit.assertEquals(
-  --  ability,
-  --  Ability:new("crystal_maiden_crystal_nova"))
+  luaunit.assertEquals(
+    ability,
+    Ability:new("crystal_maiden_crystal_nova"))
 
-  --luaunit.assertEquals(target, {0, 0})
+  luaunit.assertEquals(target, {20, 20})
 end
 
 function test_UseAbility()
@@ -161,13 +167,13 @@ function test_UseAbility()
   luaunit.assertEquals(BOT_ABILITY_LOCATION, location)
 end
 
---[[
 function test_AbilityUsageThink()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   BOT_ABILITY = nil
   BOT_ABILITY_LOCATION = nil
+  ABILITY_DAMAGE = 200
 
   ability_usage.AbilityUsageThink()
 
@@ -175,8 +181,7 @@ function test_AbilityUsageThink()
     BOT_ABILITY,
     Ability:new("crystal_maiden_crystal_nova"))
 
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, {0, 0})
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, {20, 20})
 end
---]]
 
 os.exit(luaunit.LuaUnit.run())
