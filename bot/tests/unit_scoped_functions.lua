@@ -22,7 +22,8 @@ function Unit:new()
     is_alive = true,
     location = {0, 0},
     gold = 625,
-    inventory = {}
+    inventory = {},
+    location = {20, 20}
   }
 
   self.__index = self
@@ -140,6 +141,14 @@ function Unit:GetActualIncomingDamage(damage, damage_type)
   return damage
 end
 
+function Unit:GetLocation()
+  return self.location
+end
+
+function Unit:GetExtrapolatedLocation()
+  return self.location
+end
+
 -----------------------------------------------
 
 Item = {}
@@ -220,10 +229,6 @@ end
 
 function Bot:FindAoELocation()
   return {count = 3, {1.2, 3.4}}
-end
-
-function Bot:GetLocation()
-  return {1.2, 3.4}
 end
 
 BOT_ABILITY = nil

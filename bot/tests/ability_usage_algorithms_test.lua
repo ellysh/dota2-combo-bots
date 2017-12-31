@@ -63,4 +63,28 @@ function test_IsEnoughDamageToKill()
       ability))
 end
 
+function test_GetTarget()
+  local unit = Unit:new()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_GetTarget(unit, ability),
+    unit)
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_GetTarget(unit, ability),
+    unit:GetLocation())
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_GetTarget(unit, ability),
+    nil)
+end
+
 os.exit(luaunit.LuaUnit.run())

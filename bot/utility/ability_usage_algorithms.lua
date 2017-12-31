@@ -1,6 +1,12 @@
 local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local function GetEnemyHeroMinHp(npc_bot, radius)
@@ -39,7 +45,17 @@ local function IsEnoughDamageToKill(npc, ability)
 end
 
 local function GetTarget(target, ability)
-  -- TODO: Implement this function
+  local target_type = functions.GetAbilityTargetType(ability)
+
+  if target_type == constants.ABILITY_LOCATION_TARGET then
+    -- TODO: We use constant cast time 0.3 for all abilities
+    return target:GetExtrapolatedLocation(0.3)
+  end
+
+  if target_type == constants.ABILITY_UNIT_TARGET then
+    return target
+  end
+
   return nil
 end
 
