@@ -144,4 +144,26 @@ function test_IsFlagSet()
   luaunit.assertFalse(functions.IsFlagSet(mask, 0x8))
 end
 
+function test_GetAbilityTargetType()
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  luaunit.assertEquals(
+    functions.GetAbilityTargetType(ability),
+    constants.ABILITY_LOCATION_TARGET)
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+
+  luaunit.assertEquals(
+    functions.GetAbilityTargetType(ability),
+    constants.ABILITY_NO_TARGET)
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  luaunit.assertEquals(
+    functions.GetAbilityTargetType(ability),
+    constants.ABILITY_UNIT_TARGET)
+end
+
 os.exit(luaunit.LuaUnit.run())

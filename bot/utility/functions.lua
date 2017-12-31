@@ -56,6 +56,26 @@ function M.IsFlagSet(mask, flag)
   return ((mask / flag)) % 2 >= 1
 end
 
+function M.GetAbilityTargetType(ability)
+  -- This function returns the type of target itself:
+  -- ABILITY_NO_TARGET, ABILITY_UNIT_TARGET or ABILITY_LOCATION_TARGET.
+  -- The API GetTargetType funtion returns the type of a target unit.
+
+  if ability == nil then return nil end
+
+  local behavior = ability:GetBehavior()
+
+  if M.IsFlagSet(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
+    return constants.ABILITY_NO_TARGET
+  end
+
+  if M.IsFlagSet(behavior, ABILITY_BEHAVIOR_POINT) then
+    return constants.ABILITY_LOCATION_TARGET
+  end
+
+  return constants.ABILITY_UNIT_TARGET
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 
