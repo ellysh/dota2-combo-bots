@@ -26,8 +26,10 @@ local function GetEnemyHeroMinHp(npc_bot, radius)
 end
 
 local function IsTargetable(npc)
-  -- TODO: Implement this function
-  return false
+  return npc:CanBeSeen()
+         and not npc:IsMagicImmune()
+         and not npc:IsInvulnerable()
+         and not npc:IsIllusion()
 end
 
 local function IsEnoughDamageToKill(npc, ability)

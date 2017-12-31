@@ -112,6 +112,30 @@ function Unit:ActionImmediate_SellItem(item)
   self.inventory[index] = "nil"
 end
 
+UNIT_CAN_BE_SEEN = true
+
+function Unit:CanBeSeen()
+  return UNIT_CAN_BE_SEEN
+end
+
+UNIT_IS_MAGIC_IMMUNE = false
+
+function Unit:IsMagicImmune()
+  return UNIT_IS_MAGIC_IMMUNE
+end
+
+UNIT_IS_INVULNERABLE = false
+
+function Unit:IsInvulnerable()
+  return UNIT_IS_INVULNERABLE
+end
+
+UNIT_IS_ILLUSION = false
+
+function Unit:IsIllusion()
+  return UNIT_IS_ILLUSION
+end
+
 -----------------------------------------------
 
 Item = {}
