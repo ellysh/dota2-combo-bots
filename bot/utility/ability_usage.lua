@@ -4,6 +4,9 @@ local logger = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
 
@@ -85,15 +88,15 @@ end
 local function UseAbility(npc_bot, ability, target)
   if ability == nil then return end
 
-  local behavior = ability:GetBehavior()
+  local target_type = functions.GetAbilityTargetType(ability)
 
-  if functions.IsFlagSet(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
-    npc_bot:Action_UseAbility(ability)
+  if target_type == constants.ABILITY_LOCATION_TARGET then
+    npc_bot:Action_UseAbilityOnLocation(ability, target)
     return
   end
 
-  if functions.IsFlagSet(behavior, ABILITY_BEHAVIOR_POINT) then
-    npc_bot:Action_UseAbilityOnLocation(ability, target)
+  if target_type == constants.ABILITY_NO_TARGET then
+    npc_bot:Action_UseAbility(ability)
     return
   end
 

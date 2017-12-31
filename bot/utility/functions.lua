@@ -50,7 +50,7 @@ end
 
 -- This function was taken from the Ranked Matchmaking AI project:
 -- https://github.com/adamqqqplay/dota2ai
-function M.IsFlagSet(mask, flag)
+local function IsFlagSet(mask, flag)
   if flag == 0 or mask == 0 then return false end
 
   return ((mask / flag)) % 2 >= 1
@@ -65,11 +65,11 @@ function M.GetAbilityTargetType(ability)
 
   local behavior = ability:GetBehavior()
 
-  if M.IsFlagSet(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
+  if IsFlagSet(behavior, ABILITY_BEHAVIOR_NO_TARGET) then
     return constants.ABILITY_NO_TARGET
   end
 
-  if M.IsFlagSet(behavior, ABILITY_BEHAVIOR_POINT) then
+  if IsFlagSet(behavior, ABILITY_BEHAVIOR_POINT) then
     return constants.ABILITY_LOCATION_TARGET
   end
 
@@ -78,5 +78,6 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
+M.test_IsFlagSet = IsFlagSet
 
 return M
