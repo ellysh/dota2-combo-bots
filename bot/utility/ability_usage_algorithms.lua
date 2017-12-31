@@ -33,8 +33,9 @@ local function IsTargetable(npc)
 end
 
 local function IsEnoughDamageToKill(npc, ability)
-  -- TODO: Implement this function
-  return false
+  return npc:GetHealth() <= npc:GetActualIncomingDamage(
+    ability:GetAbilityDamage(),
+    ability:GetDamageType())
 end
 
 local function GetTarget(target, ability)

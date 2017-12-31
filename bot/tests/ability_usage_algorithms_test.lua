@@ -43,4 +43,24 @@ function test_IsTargetable()
   UNIT_IS_ILLUSION = false
 end
 
+function test_IsEnoughDamageToKill()
+  local unit = Unit:new()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_DAMAGE = 200
+
+  luaunit.assertTrue(
+    ability_usage_algorithms.test_IsEnoughDamageToKill(
+      unit,
+      ability))
+
+  ABILITY_DAMAGE = 150
+
+  luaunit.assertFalse(
+    ability_usage_algorithms.test_IsEnoughDamageToKill(
+      unit,
+      ability))
+end
+
 os.exit(luaunit.LuaUnit.run())

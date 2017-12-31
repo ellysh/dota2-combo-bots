@@ -136,6 +136,10 @@ function Unit:IsIllusion()
   return UNIT_IS_ILLUSION
 end
 
+function Unit:GetActualIncomingDamage(damage, damage_type)
+  return damage
+end
+
 -----------------------------------------------
 
 Item = {}
@@ -184,7 +188,6 @@ function Bot:FindItemSlot(itemName)
 
   return -1
 end
-
 
 function Bot:GetNearbyHeroes(radius, enemies, mode)
   local unit1 = Unit:new()
@@ -349,8 +352,10 @@ function Ability:IsTalent()
   return string.match(self.name, "special_bonus")
 end
 
+ABILITY_DAMAGE = 100
+
 function Ability:GetAbilityDamage()
-  return 100
+  return ABILITY_DAMAGE
 end
 
 function Ability:GetName()
@@ -367,6 +372,10 @@ ABILITY_BEHAVIOR = 0
 
 function Ability:GetBehavior()
   return ABILITY_BEHAVIOR
+end
+
+function Ability:GetDamageType()
+  return DAMAGE_TYPE_MAGICAL
 end
 
 ------------------------------------------------
