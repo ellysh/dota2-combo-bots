@@ -36,4 +36,10 @@ function M.low_hp_enemy_hero_to_kill(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
+-- Provide an access to local functions and lists for unit tests only
+M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
+M.test_IsTargetable = IsTargetable
+M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
+M.test_GetTarget = GetTarget
+
 return M
