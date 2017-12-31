@@ -161,10 +161,16 @@ function Bot:FindItemSlot(itemName)
   return -1
 end
 
-local TestUnit = Unit:new()
 
 function Bot:GetNearbyHeroes(radius, enemies, mode)
-  return { TestUnit, TestUnit }
+  local unit1 = Unit:new()
+  unit1.name = "unit1"
+  unit1.health = 150
+
+  local unit2 = Unit:new()
+  unit2.name = "unit2"
+
+  return { unit1, unit2 }
 end
 
 IS_CHANNELING = false

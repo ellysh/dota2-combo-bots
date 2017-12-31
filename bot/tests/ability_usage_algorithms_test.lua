@@ -8,7 +8,12 @@ local luaunit = require('luaunit')
 function test_GetEnemyHeroMinHp()
   test_RefreshBot()
 
-  -- TODO: Implement this test
+  local unit = ability_usage_algorithms.test_GetEnemyHeroMinHp(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(unit:GetUnitName(), "unit1")
+  luaunit.assertEquals(unit:GetHealth(), 150)
 end
 
 os.exit(luaunit.LuaUnit.run())

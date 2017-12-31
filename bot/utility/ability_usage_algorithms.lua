@@ -4,8 +4,25 @@ local logger = require(
 local M = {}
 
 local function GetEnemyHeroMinHp(npc_bot, radius)
-  -- TODO: Implement this function
-  return nil
+  local enemies = npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+
+  if #enemies == 0 then return nil end
+
+  local min_hp = 10000
+  local result = nil
+
+  for _, enemy in pairs(enemies) do
+    if enemy == nil or not enemy:IsAlive() then goto continue end
+
+    if enemy:GetHealth() < min_hp then
+      min_hp = enemy:GetHealth()
+      result = enemy
+    end
+
+    ::continue::
+  end
+
+  return result
 end
 
 local function IsTargetable(npc)
