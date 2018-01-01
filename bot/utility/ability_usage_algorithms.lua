@@ -109,32 +109,13 @@ function M.channeling_enemy_hero(npc_bot, ability)
 end
 
 local function GetStrongestEnemyHero(npc_bot, radius)
-  -- TODO: Merge this function with the GetEnemyHeroMinHp one
-  local enemies = GetEnemyHeroes(npc_bot, radius)
-
-  if #enemies == 0 then return nil end
-
-  local max_networth = 0
-  local result = nil
-
-  for _, enemy in pairs(enemies) do
-    if enemy == nil or not enemy:IsAlive() then goto continue end
-
-    if max_networth < enemy:GetNetWorth() then
-      max_networth = enemy:GetNetWorth()
-      result = enemy
-    end
-
-    ::continue::
-  end
-
-  return result
-end
-
-function M.strongest_enemy_hero(npc_bot, ability)
   -- We focus on enemy heroes with maximum net worth because
   -- they have a fewer farm position in their team.
 
+  return GetEnemyWith(MAX, 'GetNetWorth', npc_bot, radius)
+end
+
+function M.strongest_enemy_hero(npc_bot, ability)
   local enemy_hero = GetStrongestEnemyHero(
     npc_bot,
     ability:GetCastRange())
