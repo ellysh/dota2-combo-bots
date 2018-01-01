@@ -167,6 +167,12 @@ function Unit:IsCastingAbility()
   return UNIT_IS_CASTING_ABILITY
 end
 
+UNIT_NET_WORTH = 1000
+
+function Unit:GetNetWorth()
+  return UNIT_NET_WORTH
+end
+
 -----------------------------------------------
 
 Item = {}

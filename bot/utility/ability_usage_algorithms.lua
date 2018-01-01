@@ -91,6 +91,44 @@ function M.channeling_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+local function GetStrongestEnemyHero(npc_bot, radius)
+  -- TODO: Merge this function with the GetEnemyHeroMinHp one
+  local enemies = GetEnemyHeroes(npc_bot, radius)
+
+  if #enemies == 0 then return nil end
+
+  local max_networth = 0
+  local result = nil
+
+  for _, enemy in pairs(enemies) do
+    if enemy == nil or not enemy:IsAlive() then goto continue end
+
+    if max_networth < enemy:GetNetWorth() then
+      max_networth = enemy:GetNetWorth()
+      result = enemy
+    end
+
+    ::continue::
+  end
+
+  return result
+end
+
+function M.strongest_enemy_hero(npc_bot, ability)
+  local enemy_hero = GetStrongestEnemyHero(
+    npc_bot,
+    ability:GetCastRange())
+
+  if enemy_hero == nil
+    or not IsTargetable(enemy_hero)
+    or not IsEnoughDamageToKill(enemy_hero, ability) then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+end
+
 -- Provide an access to local functions and lists for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
