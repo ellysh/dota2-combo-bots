@@ -29,7 +29,7 @@ These applications are required to edit the Combo Bot Database:
 * Free [LibreOffice](https://www.libreoffice.org) or MS Office.
 * [Python interpreter](https://www.python.org/downloads) of the 2.x version.
 * Windows, Linux or Mac OS.
-* Bash interpreter to automate Lua scripts generating and unit tests launching (optional)
+* Bash interpreter to automate Lua scripts generating and unit tests launching (optional).
 
 The [Lua interpreter](https://www.lua.org/download.html) of the 5.3 and above version is required to launch unit tests locally.
 
