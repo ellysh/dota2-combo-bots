@@ -111,7 +111,7 @@ function test_low_hp_enemy_hero_to_kill()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
   luaunit.assertEquals(target, {20, 20})
 end
 
@@ -127,7 +127,7 @@ function test_channeling_enemy_hero()
     GetBot(),
     ability)
 
-  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
   luaunit.assertEquals(target, {20, 20})
 end
 
