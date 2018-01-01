@@ -112,7 +112,7 @@ function test_low_hp_enemy_hero_to_kill()
       ability)
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
-  luaunit.assertEquals(target, {20, 20})
+  luaunit.assertEquals(target, {10, 10})
 end
 
 function test_channeling_enemy_hero()
@@ -128,6 +128,21 @@ function test_channeling_enemy_hero()
     ability)
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
+  luaunit.assertEquals(target, {10, 10})
+end
+
+function test_strongest_enemy_hero()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target = ability_usage_algorithms.strongest_enemy_hero(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
   luaunit.assertEquals(target, {20, 20})
 end
 

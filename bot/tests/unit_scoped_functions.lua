@@ -20,10 +20,10 @@ function Unit:new()
     max_health = 200,
     offensive_power = 100,
     is_alive = true,
-    location = {0, 0},
     gold = 625,
     inventory = {},
-    location = {20, 20}
+    location = {10, 10},
+    networth = 500
   }
 
   self.__index = self
@@ -167,10 +167,8 @@ function Unit:IsCastingAbility()
   return UNIT_IS_CASTING_ABILITY
 end
 
-UNIT_NET_WORTH = 1000
-
 function Unit:GetNetWorth()
-  return UNIT_NET_WORTH
+  return self.networth
 end
 
 -----------------------------------------------
@@ -226,9 +224,12 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   local unit1 = Unit:new()
   unit1.name = "unit1"
   unit1.health = 150
+  unit1.location = {10, 10}
 
   local unit2 = Unit:new()
   unit2.name = "unit2"
+  unit2.networth = 1000
+  unit2.location = {20, 20}
 
   return { unit1, unit2 }
 end

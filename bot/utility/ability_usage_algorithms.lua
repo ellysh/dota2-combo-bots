@@ -115,6 +115,9 @@ local function GetStrongestEnemyHero(npc_bot, radius)
 end
 
 function M.strongest_enemy_hero(npc_bot, ability)
+  -- We focus on enemy heroes with maximum net worth because
+  -- they have a fewer farm position in their team.
+
   local enemy_hero = GetStrongestEnemyHero(
     npc_bot,
     ability:GetCastRange())

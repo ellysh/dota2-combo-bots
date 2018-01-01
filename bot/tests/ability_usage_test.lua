@@ -108,7 +108,7 @@ function test_CalculateDesireAndTarget_succeed()
       ability)
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
-  luaunit.assertEquals(target, {20, 20})
+  luaunit.assertEquals(target, {10, 10})
 end
 
 function test_CalculateDesireAndTarget_fails()
@@ -148,7 +148,7 @@ function test_ChooseAbilityAndTarget()
     ability,
     Ability:new("crystal_maiden_crystal_nova"))
 
-  luaunit.assertEquals(target, {20, 20})
+  luaunit.assertEquals(target, {10, 10})
 end
 
 function test_UseAbility()
@@ -181,7 +181,7 @@ function test_AbilityUsageThink()
     BOT_ABILITY,
     Ability:new("crystal_maiden_crystal_nova"))
 
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, {20, 20})
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, {10, 10})
 end
 
 os.exit(luaunit.LuaUnit.run())
