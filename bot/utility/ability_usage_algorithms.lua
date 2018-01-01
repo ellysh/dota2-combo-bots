@@ -13,19 +13,32 @@ local function GetEnemyHeroes(npc_bot, radius)
   return npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
 end
 
-local function GetEnemyHeroMinHp(npc_bot, radius)
+local MIN = 1
+local MAX = 2
+
+local function ternary(condition, a, b)
+  if condition then return a else return b end
+end
+
+local function GetEnemyWith(min_max, get_function, npc_bot, radius)
   local enemies = GetEnemyHeroes(npc_bot, radius)
 
   if #enemies == 0 then return nil end
 
-  local min_hp = 10000
+  local current_value = ternary(min_max == MIN, 1000000, 0)
   local result = nil
 
   for _, enemy in pairs(enemies) do
     if enemy == nil or not enemy:IsAlive() then goto continue end
 
-    if enemy:GetHealth() < min_hp then
-      min_hp = enemy:GetHealth()
+    local enemy_value = enemy[get_function](enemy)
+    local is_positive_comparison = ternary(
+      min_max == MIN,
+      enemy_value < current_value,
+      current_value < enemy_value)
+
+    if is_positive_comparison then
+      current_value = enemy_value
       result = enemy
     end
 
@@ -33,6 +46,10 @@ local function GetEnemyHeroMinHp(npc_bot, radius)
   end
 
   return result
+end
+
+local function GetEnemyHeroMinHp(npc_bot, radius)
+  return GetEnemyWith(MIN, 'GetHealth', npc_bot, radius)
 end
 
 local function IsTargetable(npc)
