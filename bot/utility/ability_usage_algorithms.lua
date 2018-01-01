@@ -92,6 +92,7 @@ function M.channeling_enemy_hero(npc_bot, ability)
 end
 
 -- Provide an access to local functions and lists for unit tests only
+M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill

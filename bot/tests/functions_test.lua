@@ -121,15 +121,15 @@ function test_IsBotBusy()
 
   luaunit.assertFalse(functions.IsBotBusy(GetBot()))
 
-  IS_CHANNELING = true
+  UNIT_IS_CHANNELING = true
   luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 
-  IS_CHANNELING = false
-  IS_USING_ABILITY = true
+  UNIT_IS_CHANNELING = false
+  UNIT_IS_USING_ABILITY = true
   luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 
-  IS_USING_ABILITY = false
-  IS_CASTING_ABILITY = true
+  UNIT_IS_USING_ABILITY = false
+  UNIT_IS_CASTING_ABILITY = true
   luaunit.assertTrue(functions.IsBotBusy(GetBot()))
 end
 

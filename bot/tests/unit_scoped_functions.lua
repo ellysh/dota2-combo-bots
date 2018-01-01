@@ -149,6 +149,24 @@ function Unit:GetExtrapolatedLocation()
   return self.location
 end
 
+UNIT_IS_CHANNELING = false
+
+function Unit:IsChanneling()
+  return UNIT_IS_CHANNELING
+end
+
+UNIT_IS_USING_ABILITY = false
+
+function Unit:IsUsingAbility()
+  return UNIT_IS_USING_ABILITY
+end
+
+UNIT_IS_CASTING_ABILITY = false
+
+function Unit:IsCastingAbility()
+  return UNIT_IS_CASTING_ABILITY
+end
+
 -----------------------------------------------
 
 Item = {}
@@ -207,24 +225,6 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   unit2.name = "unit2"
 
   return { unit1, unit2 }
-end
-
-IS_CHANNELING = false
-
-function Bot:IsChanneling()
-  return IS_CHANNELING
-end
-
-IS_USING_ABILITY = false
-
-function Bot:IsUsingAbility()
-  return IS_USING_ABILITY
-end
-
-IS_CASTING_ABILITY = false
-
-function Bot:IsCastingAbility()
-  return IS_CASTING_ABILITY
 end
 
 function Bot:FindAoELocation()

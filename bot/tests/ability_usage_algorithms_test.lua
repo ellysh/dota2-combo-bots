@@ -8,6 +8,17 @@ local luaunit = require('luaunit')
 function test_GetEnemyHeroMinHp()
   test_RefreshBot()
 
+  local units = ability_usage_algorithms.test_GetEnemyHeroes(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+end
+
+function test_GetEnemyHeroMinHp()
+  test_RefreshBot()
+
   local unit = ability_usage_algorithms.test_GetEnemyHeroMinHp(
     GetBot(),
     1200)
@@ -85,6 +96,39 @@ function test_GetTarget()
   luaunit.assertEquals(
     ability_usage_algorithms.test_GetTarget(unit, ability),
     nil)
+end
+
+function test_low_hp_enemy_hero_to_kill()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  ABILITY_DAMAGE = 200
+
+  local desire, target =
+    ability_usage_algorithms.low_hp_enemy_hero_to_kill(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(target, {20, 20})
+end
+
+function test_channeling_enemy_hero()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  UNIT_IS_CHANNELING = true
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target = ability_usage_algorithms.channeling_enemy_hero(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_HIGH)
+  luaunit.assertEquals(target, {20, 20})
 end
 
 os.exit(luaunit.LuaUnit.run())

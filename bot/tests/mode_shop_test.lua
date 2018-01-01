@@ -9,10 +9,10 @@ local luaunit = require('luaunit')
 function test_GetDesire_null()
   test_RefreshBot()
 
-  IS_CHANNELING = true
+  UNIT_IS_CHANNELING = true
   luaunit.assertEquals(mode_shop.GetDesire(false, 0), 0)
 
-  IS_CHANNELING = false
+  UNIT_IS_CHANNELING = false
   luaunit.assertEquals(mode_shop.GetDesire(false, 0), 0)
 
   WAS_DAMAGED = true
