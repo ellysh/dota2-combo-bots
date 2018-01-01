@@ -76,6 +76,10 @@ function M.GetAbilityTargetType(ability)
   return constants.ABILITY_UNIT_TARGET
 end
 
+function M.ternary(condition, a, b)
+  if condition then return a else return b end
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

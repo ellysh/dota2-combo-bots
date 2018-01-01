@@ -16,23 +16,19 @@ end
 local MIN = 1
 local MAX = 2
 
-local function ternary(condition, a, b)
-  if condition then return a else return b end
-end
-
 local function GetEnemyWith(min_max, get_function, npc_bot, radius)
   local enemies = GetEnemyHeroes(npc_bot, radius)
 
   if #enemies == 0 then return nil end
 
-  local current_value = ternary(min_max == MIN, 1000000, 0)
+  local current_value = functions.ternary(min_max == MIN, 1000000, 0)
   local result = nil
 
   for _, enemy in pairs(enemies) do
     if enemy == nil or not enemy:IsAlive() then goto continue end
 
     local enemy_value = enemy[get_function](enemy)
-    local is_positive_comparison = ternary(
+    local is_positive_comparison = functions.ternary(
       min_max == MIN,
       enemy_value < current_value,
       current_value < enemy_value)
@@ -130,11 +126,16 @@ function M.strongest_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
--- Provide an access to local functions and lists for unit tests only
+-- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
+M.test_GetEnemyWith = GetEnemyWith
 M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
+M.test_GetStrongestEnemyHero = GetStrongestEnemyHero
+
+M.test_MIN = MIN
+M.test_MAX = MAX
 
 return M

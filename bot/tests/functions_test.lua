@@ -166,4 +166,12 @@ function test_GetAbilityTargetType()
     constants.ABILITY_UNIT_TARGET)
 end
 
+function test_ternary()
+  luaunit.assertFalse(functions.ternary(2 > 5, true, false))
+
+  luaunit.assertTrue(functions.ternary(2 > 5, false, true))
+
+  luaunit.assertEquals(functions.ternary(5 > 2, 5, 2), 5)
+end
+
 os.exit(luaunit.LuaUnit.run())

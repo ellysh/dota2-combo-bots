@@ -5,7 +5,7 @@ require("global_functions")
 local ability_usage_algorithms = require("ability_usage_algorithms")
 local luaunit = require('luaunit')
 
-function test_GetEnemyHeroMinHp()
+function test_GetEnemyHeroes()
   test_RefreshBot()
 
   local units = ability_usage_algorithms.test_GetEnemyHeroes(
@@ -14,6 +14,19 @@ function test_GetEnemyHeroMinHp()
 
   luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
   luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+end
+
+function test_GetEnemyWith()
+  test_RefreshBot()
+
+  local unit = ability_usage_algorithms.test_GetEnemyWith(
+    ability_usage_algorithms.test_MIN,
+    'GetHealth',
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(unit:GetUnitName(), "unit1")
+  luaunit.assertEquals(unit:GetHealth(), 150)
 end
 
 function test_GetEnemyHeroMinHp()
@@ -129,6 +142,16 @@ function test_channeling_enemy_hero()
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
   luaunit.assertEquals(target, {10, 10})
+end
+
+function test_GetStrongestEnemyHero()
+  test_RefreshBot()
+
+  local unit = ability_usage_algorithms.test_GetStrongestEnemyHero(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(unit:GetUnitName(), "unit2")
 end
 
 function test_strongest_enemy_hero()
