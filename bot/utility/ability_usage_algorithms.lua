@@ -9,8 +9,12 @@ local functions = require(
 
 local M = {}
 
+local function GetEnemyHeroes(npc_bot, radius)
+  return npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+end
+
 local function GetEnemyHeroMinHp(npc_bot, radius)
-  local enemies = npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+  local enemies = GetEnemyHeroes(npc_bot, radius)
 
   if #enemies == 0 then return nil end
 
@@ -70,6 +74,21 @@ function M.low_hp_enemy_hero_to_kill(npc_bot, ability)
   end
 
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+end
+
+function M.channeling_enemy_hero(npc_bot, ability)
+  local enemies = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+
+  for _, enemy in pairs(enemies) do
+    if enemy ~= nil
+      and enemy:IsChanneling()
+      and IsTargetable(enemy) then
+
+      return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy, ability)
+    end
+  end
+
+  return BOT_ACTION_DESIRE_NONE, nil
 end
 
 -- Provide an access to local functions and lists for unit tests only
