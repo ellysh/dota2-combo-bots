@@ -29,14 +29,13 @@ function test_GetEnemyCreeps()
   luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
 end
 
-function test_GetEnemyWith()
+function test_GetUnitWith()
   test_RefreshBot()
 
-  local unit = ability_usage_algorithms.test_GetEnemyWith(
+  local unit = ability_usage_algorithms.test_GetUnitWith(
     ability_usage_algorithms.test_MIN,
     'GetHealth',
-    GetBot(),
-    1200)
+    GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE))
 
   luaunit.assertEquals(unit:GetUnitName(), "unit1")
   luaunit.assertEquals(unit:GetHealth(), 150)

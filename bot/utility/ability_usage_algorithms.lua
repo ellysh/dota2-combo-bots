@@ -20,26 +20,24 @@ end
 local MIN = 1
 local MAX = 2
 
-local function GetEnemyWith(min_max, get_function, npc_bot, radius)
-  local enemies = GetEnemyHeroes(npc_bot, radius)
-
-  if #enemies == 0 then return nil end
+local function GetUnitWith(min_max, get_function, units)
+  if #units == 0 then return nil end
 
   local current_value = functions.ternary(min_max == MIN, 1000000, 0)
   local result = nil
 
-  for _, enemy in pairs(enemies) do
-    if enemy == nil or not enemy:IsAlive() then goto continue end
+  for _, unit in pairs(units) do
+    if unit == nil or not unit:IsAlive() then goto continue end
 
-    local enemy_value = enemy[get_function](enemy)
+    local unit_value = unit[get_function](unit)
     local is_positive_comparison = functions.ternary(
       min_max == MIN,
-      enemy_value < current_value,
-      current_value < enemy_value)
+      unit_value < current_value,
+      current_value < unit_value)
 
     if is_positive_comparison then
-      current_value = enemy_value
-      result = enemy
+      current_value = unit_value
+      result = unit
     end
 
     ::continue::
@@ -49,7 +47,9 @@ local function GetEnemyWith(min_max, get_function, npc_bot, radius)
 end
 
 local function GetEnemyHeroMinHp(npc_bot, radius)
-  return GetEnemyWith(MIN, 'GetHealth', npc_bot, radius)
+  local enemy_heroes = GetEnemyHeroes(npc_bot, radius)
+
+  return GetUnitWith(MIN, 'GetHealth', enemy_heroes)
 end
 
 local function IsTargetable(npc)
@@ -112,7 +112,9 @@ local function GetStrongestEnemyHero(npc_bot, radius)
   -- We focus on enemy heroes with maximum net worth because
   -- they have a fewer farm position in their team.
 
-  return GetEnemyWith(MAX, 'GetNetWorth', npc_bot, radius)
+  local enemy_heroes = GetEnemyHeroes(npc_bot, radius)
+
+  return GetUnitWith(MAX, 'GetNetWorth', enemy_heroes)
 end
 
 function M.strongest_enemy_hero(npc_bot, ability)
@@ -198,7 +200,7 @@ end
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
-M.test_GetEnemyWith = GetEnemyWith
+M.test_GetUnitWith = GetUnitWith
 M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
