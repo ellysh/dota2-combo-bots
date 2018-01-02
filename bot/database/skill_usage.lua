@@ -36,7 +36,7 @@ M.SKILL_USAGE = {
 
   crystal_maiden_freezing_field = {
       any_mode = algorithms["nil"],
-      team_fight = algorithms["three_and_more_enemy_hero"],
+      team_fight = algorithms["three_and_more_enemy_heroes_aoe"],
       BOT_MODE_ROAM = algorithms["nil"],
       BOT_MODE_TEAM_ROAM = algorithms["nil"],
       BOT_MODE_PUSH_TOWER = algorithms["nil"],

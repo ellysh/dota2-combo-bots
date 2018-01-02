@@ -131,7 +131,7 @@ function M.strongest_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
-function M.three_and_more_enemy_hero(npc_bot, ability)
+function M.three_and_more_enemy_heroes_aoe(npc_bot, ability)
   local enemies = GetEnemyHeroes(npc_bot, ability:GetAOERadius())
 
   if 3 <= #enemies then return BOT_ACTION_DESIRE_HIGH, nil end
@@ -173,7 +173,6 @@ end
 
 function M.three_and_more_creeps(npc_bot, ability)
   local cast_range = ability:GetCastRange()
-  local creeps = GetEnemyCreeps(npc_bot, cast_range)
 
   local target = npc_bot:FindAoELocation(
     true,
@@ -210,6 +209,26 @@ function M.strongest_creep(npc_bot, ability)
   end
 
   return BOT_ACTION_DESIRE_LOW, GetTarget(creep, ability)
+end
+
+function M.three_and_more_enemy_heroes(npc_bot, ability)
+  local cast_range = ability:GetCastRange()
+
+  local target = npc_bot:FindAoELocation(
+    true,
+    true,
+    npc_bot:GetLocation(),
+    cast_range,
+    ability:GetSpecialValueInt("radius"),
+    0,
+    ability:GetAbilityDamage())
+
+  if 3 <= target.count
+    and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
+    return BOT_ACTION_DESIRE_VERYHIGH, target.targetloc
+  end
+
+  return BOT_ACTION_DESIRE_NONE, nil
 end
 
 -- Provide an access to local functions and variables for unit tests only
