@@ -134,6 +134,39 @@ function M.three_and_more_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+function GetLastAttackedEnemyHero(npc_bot, radius)
+  local enemies = GetEnemyHeroes(npc_bot, radius)
+
+  if #enemies == 0 then return nil end
+
+  for _, enemy in pairs(enemies) do
+    if enemy == nil or not enemy:IsAlive() then goto continue end
+
+    if npc_bot:WasRecentlyDamagedByHero(enemy, 2.0) then
+      return enemy
+    end
+
+    ::continue::
+  end
+
+  return nil
+end
+
+function M.last_attacked_enemy_hero(npc_bot, ability)
+  local enemy_hero = GetLastAttackedEnemyHero(
+    npc_bot,
+    ability:GetCastRange())
+
+  if enemy_hero == nil
+    or not IsTargetable(enemy_hero)
+    or not IsEnoughDamageToKill(enemy_hero, ability) then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyWith = GetEnemyWith
