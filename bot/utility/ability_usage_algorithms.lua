@@ -13,6 +13,10 @@ local function GetEnemyHeroes(npc_bot, radius)
   return npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
 end
 
+local function GetEnemyCreeps(npc_bot, radius)
+  return npc_bot:GetNearbyCreeps(radius, true)
+end
+
 local MIN = 1
 local MAX = 2
 
@@ -165,6 +169,27 @@ function M.last_attacked_enemy_hero(npc_bot, ability)
   end
 
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+end
+
+function M.three_and_more_creeps(npc_bot, ability)
+  local cast_range = ability:GetCastRange()
+  local creeps = GetEnemyCreeps(npc_bot, cast_range)
+
+  local target = npc_bot:FindAoELocation(
+    true,
+    false,
+    npc_bot:GetLocation(),
+    cast_range,
+    ability:GetSpecialValueInt("radius"),
+    0,
+    ability:GetAbilityDamage())
+
+  if 3 <= target.count
+    and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
+    return BOT_ACTION_DESIRE_LOW, target.target.targetloc
+  end
+
+  return BOT_ACTION_DESIRE_NONE, nil
 end
 
 -- Provide an access to local functions and variables for unit tests only
