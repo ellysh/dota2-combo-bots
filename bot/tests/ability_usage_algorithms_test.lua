@@ -240,4 +240,31 @@ function test_three_and_more_creeps()
   luaunit.assertEquals(target, {1.2, 3.4})
 end
 
+function test_GetStrongestCreep()
+  test_RefreshBot()
+
+  local unit =
+    ability_usage_algorithms.test_GetStrongestCreep(
+      GetBot(),
+      1200)
+
+  luaunit.assertEquals(unit:GetUnitName(), "creep2")
+end
+
+function test_strongest_creep()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target =
+    ability_usage_algorithms.strongest_creep(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_LOW)
+  luaunit.assertEquals(target, {20, 20})
+end
+
 os.exit(luaunit.LuaUnit.run())

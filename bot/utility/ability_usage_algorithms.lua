@@ -222,6 +222,7 @@ M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_GetStrongestEnemyHero = GetStrongestEnemyHero
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
+M.test_GetStrongestCreep = GetStrongestCreep
 
 M.test_MIN = MIN
 M.test_MAX = MAX
