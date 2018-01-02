@@ -129,12 +129,13 @@ SKILL_USAGE = """
       any_mode = algorithms["<1>"],
       team_fight = algorithms["<2>"],
       BOT_MODE_ROAM = algorithms["<3>"],
-      BOT_MODE_PUSH_TOWER = algorithms["<4>"],
-      BOT_MODE_ATTACK = algorithms["<5>"],
-      BOT_MODE_LANING = algorithms["<6>"],
-      BOT_MODE_FARM = algorithms["<7>"],
-      BOT_MODE_DEFEND_TOWER = algorithms["<8>"],
-      BOT_MODE_RETREAT = algorithms["<9>"],
-      BOT_MODE_DEFEND_ALLY = algorithms["<10>"]
+      BOT_MODE_TEAM_ROAM = algorithms["<4>"],
+      BOT_MODE_PUSH_TOWER = algorithms["<5>"],
+      BOT_MODE_ATTACK = algorithms["<6>"],
+      BOT_MODE_LANING = algorithms["<7>"],
+      BOT_MODE_FARM = algorithms["<8>"],
+      BOT_MODE_DEFEND_TOWER = algorithms["<9>"],
+      BOT_MODE_RETREAT = algorithms["<10>"],
+      BOT_MODE_DEFEND_ALLY = algorithms["<11>"]
   },
 """
