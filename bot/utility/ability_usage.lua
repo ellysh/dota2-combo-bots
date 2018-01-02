@@ -34,7 +34,7 @@ local function IsBotModeMatch(npc_bot, bot_mode)
            or active_mode == BOT_MODE_DEFEND_TOWER_BOT
   end
 
-  return active_mode == bot_mode
+  return active_mode == constants.BOT_MODES[bot_mode]
 end
 
 local function CalculateDesireAndTarget(
