@@ -329,6 +329,10 @@ function Bot:GetAbilityPoints()
   return 1
 end
 
+function Bot:WasRecentlyDamagedByHero(unit, time)
+  return true
+end
+
 ------------------------------------------
 
 Ability = {}
