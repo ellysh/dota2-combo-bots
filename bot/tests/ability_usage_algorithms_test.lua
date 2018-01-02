@@ -198,6 +198,17 @@ function test_three_and_more_enemy_hero()
   luaunit.assertEquals(target, nil)
 end
 
+function test_GetLastAttackedEnemyHero()
+  test_RefreshBot()
+
+  local unit =
+    ability_usage_algorithms.test_GetLastAttackedEnemyHero(
+      GetBot(),
+      1200)
+
+  luaunit.assertEquals(unit:GetUnitName(), "unit1")
+end
+
 function test_last_attacked_enemy_hero()
   test_RefreshBot()
 

@@ -137,7 +137,7 @@ function M.three_and_more_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-function GetLastAttackedEnemyHero(npc_bot, radius)
+local function GetLastAttackedEnemyHero(npc_bot, radius)
   local enemies = GetEnemyHeroes(npc_bot, radius)
 
   if #enemies == 0 then return nil end
@@ -190,6 +190,11 @@ function M.three_and_more_creeps(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+function M.strongest_creep(npc_bot, ability)
+  -- TODO: Implement this function
+  return BOT_ACTION_DESIRE_NONE, nil
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
@@ -199,6 +204,7 @@ M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_GetStrongestEnemyHero = GetStrongestEnemyHero
+M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 
 M.test_MIN = MIN
 M.test_MAX = MAX
