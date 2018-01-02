@@ -192,9 +192,24 @@ function M.three_and_more_creeps(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+local function GetStrongestCreep(npc_bot, radius)
+  local creeps = GetEnemyCreeps(npc_bot, radius)
+
+  return GetUnitWith(MAX, 'GetHealth', creeps)
+end
+
 function M.strongest_creep(npc_bot, ability)
-  -- TODO: Implement this function
-  return BOT_ACTION_DESIRE_NONE, nil
+  local creep = GetStrongestCreep(
+    npc_bot,
+    ability:GetCastRange())
+
+  if creep == nil
+    or not IsTargetable(creep) then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_LOW, GetTarget(creep, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only
