@@ -121,8 +121,7 @@ function M.strongest_enemy_hero(npc_bot, ability)
     ability:GetCastRange())
 
   if enemy_hero == nil
-    or not IsTargetable(enemy_hero)
-    or not IsEnoughDamageToKill(enemy_hero, ability) then
+    or not IsTargetable(enemy_hero) then
 
     return BOT_ACTION_DESIRE_NONE, nil
   end
@@ -162,8 +161,7 @@ function M.last_attacked_enemy_hero(npc_bot, ability)
     ability:GetCastRange())
 
   if enemy_hero == nil
-    or not IsTargetable(enemy_hero)
-    or not IsEnoughDamageToKill(enemy_hero, ability) then
+    or not IsTargetable(enemy_hero) then
 
     return BOT_ACTION_DESIRE_NONE, nil
   end
