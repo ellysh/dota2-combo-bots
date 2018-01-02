@@ -394,6 +394,10 @@ function Ability:GetDamageType()
   return DAMAGE_TYPE_MAGICAL
 end
 
+function Ability:GetAOERadius()
+  return 600
+end
+
 ------------------------------------------------
 
 function GetTeam()

@@ -126,6 +126,14 @@ function M.strongest_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
+function M.three_and_more_enemy_hero(npc_bot, ability)
+  local enemies = GetEnemyHeroes(npc_bot, ability:GetAOERadius())
+
+  if 3 <= #enemies then return BOT_ACTION_DESIRE_HIGH, nil end
+
+  return BOT_ACTION_DESIRE_NONE, nil
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyWith = GetEnemyWith
