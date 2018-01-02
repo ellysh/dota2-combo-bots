@@ -14,6 +14,19 @@ function test_GetEnemyHeroes()
 
   luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
   luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+end
+
+function test_GetEnemyCreeps()
+  test_RefreshBot()
+
+  local units = ability_usage_algorithms.test_GetEnemyCreeps(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
 end
 
 function test_GetEnemyWith()
@@ -199,6 +212,22 @@ function test_last_attacked_enemy_hero()
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
   luaunit.assertEquals(target, {10, 10})
+end
+
+function test_three_and_more_creeps()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_creeps(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_LOW)
+  luaunit.assertEquals(target, {1.2, 3.4})
 end
 
 os.exit(luaunit.LuaUnit.run())

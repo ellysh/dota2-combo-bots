@@ -241,8 +241,29 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   return { unit1, unit2, unit3 }
 end
 
+function Bot:GetNearbyCreeps(radius, enemies)
+  local unit1 = Unit:new()
+  unit1.name = "creep1"
+  unit1.health = 150
+  unit1.location = {10, 10}
+
+  local unit2 = Unit:new()
+  unit2.name = "creep2"
+  unit2.health = 200
+  unit2.networth = 1000
+  unit2.location = {20, 20}
+
+  local unit3 = Unit:new()
+  unit3.name = "creep3"
+  unit3.health = 180
+  unit3.networth = 180
+  unit3.location = {15, 15}
+
+  return { unit1, unit2, unit3 }
+end
+
 function Bot:FindAoELocation()
-  return {count = 3, {1.2, 3.4}}
+  return {count = 3, targetloc = {1.2, 3.4}}
 end
 
 BOT_ABILITY = nil
@@ -405,6 +426,10 @@ function Ability:GetDamageType()
 end
 
 function Ability:GetAOERadius()
+  return 600
+end
+
+function Ability:GetSpecialValueInt(value_name)
   return 600
 end
 

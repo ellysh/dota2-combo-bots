@@ -186,7 +186,7 @@ function M.three_and_more_creeps(npc_bot, ability)
 
   if 3 <= target.count
     and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
-    return BOT_ACTION_DESIRE_LOW, target.target.targetloc
+    return BOT_ACTION_DESIRE_LOW, target.targetloc
   end
 
   return BOT_ACTION_DESIRE_NONE, nil
@@ -194,6 +194,7 @@ end
 
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
+M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetEnemyWith = GetEnemyWith
 M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
 M.test_IsTargetable = IsTargetable
