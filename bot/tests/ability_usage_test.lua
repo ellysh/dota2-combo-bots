@@ -36,7 +36,7 @@ function test_IsBotModeMatch_succeed()
   luaunit.assertTrue(
     ability_usage.test_IsBotModeMatch(
       GetBot(),
-      BOT_MODE_ROAM))
+      BOT_MODE_TEAM_ROAM))
 
   BOT_MODE = BOT_MODE_PUSH_TOWER_MID
 

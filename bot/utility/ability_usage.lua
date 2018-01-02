@@ -19,11 +19,6 @@ local function IsBotModeMatch(npc_bot, bot_mode)
 
   local active_mode = npc_bot:GetActiveMode()
 
-  if bot_mode == BOT_MODE_ROAM then
-    return active_mode == BOT_MODE_ROAM
-           or active_mode == BOT_MODE_TEAM_ROAM
-  end
-
   -- Actual bot modes are the constant digits but the
   -- shortcuted modes are strings.
 
