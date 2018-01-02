@@ -232,7 +232,13 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   unit2.networth = 1000
   unit2.location = {20, 20}
 
-  return { unit1, unit2 }
+  local unit3 = Unit:new()
+  unit3.name = "unit3"
+  unit3.health = 180
+  unit3.networth = 180
+  unit3.location = {15, 15}
+
+  return { unit1, unit2, unit3 }
 end
 
 function Bot:FindAoELocation()
