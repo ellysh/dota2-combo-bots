@@ -181,7 +181,7 @@ function test_strongest_enemy_hero()
   luaunit.assertEquals(target, {20, 20})
 end
 
-function test_three_and_more_enemy_hero()
+function test_three_and_more_enemy_heroes_aoe()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_freezing_field")
@@ -189,7 +189,7 @@ function test_three_and_more_enemy_hero()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
 
   local desire, target =
-    ability_usage_algorithms.three_and_more_enemy_hero(
+    ability_usage_algorithms.three_and_more_enemy_heroes_aoe(
       GetBot(),
       ability)
 
@@ -265,6 +265,22 @@ function test_strongest_creep()
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_LOW)
   luaunit.assertEquals(target, {20, 20})
+end
+
+function test_three_and_more_enemy_heroes()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_enemy_heroes(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target, {1.2, 3.4})
 end
 
 os.exit(luaunit.LuaUnit.run())

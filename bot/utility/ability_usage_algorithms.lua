@@ -225,7 +225,7 @@ function M.three_and_more_enemy_heroes(npc_bot, ability)
 
   if 3 <= target.count
     and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
-    return BOT_ACTION_DESIRE_VERYHIGH, target.targetloc
+    return BOT_ACTION_DESIRE_HIGH, target.targetloc
   end
 
   return BOT_ACTION_DESIRE_NONE, nil
