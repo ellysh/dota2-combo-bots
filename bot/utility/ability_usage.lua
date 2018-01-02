@@ -83,6 +83,9 @@ end
 local function UseAbility(npc_bot, ability, target)
   if ability == nil then return end
 
+  logger.Print("UseAbility() - " .. npc_bot:GetUnitName() ..
+    " use " .. ability:GetName())
+
   local target_type = functions.GetAbilityTargetType(ability)
 
   if target_type == constants.ABILITY_LOCATION_TARGET then
