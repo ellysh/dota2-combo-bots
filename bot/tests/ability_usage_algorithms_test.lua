@@ -240,18 +240,18 @@ function test_three_and_more_creeps()
   luaunit.assertEquals(target, {1.2, 3.4})
 end
 
-function test_GetStrongestCreep()
+function test_GetMaxHpCreep()
   test_RefreshBot()
 
   local unit =
-    ability_usage_algorithms.test_GetStrongestCreep(
+    ability_usage_algorithms.test_GetMaxHpCreep(
       GetBot(),
       1200)
 
   luaunit.assertEquals(unit:GetUnitName(), "creep2")
 end
 
-function test_strongest_creep()
+function test_max_hp_creep()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
@@ -259,7 +259,7 @@ function test_strongest_creep()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
 
   local desire, target =
-    ability_usage_algorithms.strongest_creep(
+    ability_usage_algorithms.max_hp_creep(
       GetBot(),
       ability)
 
