@@ -4,7 +4,8 @@ local BotHeroes = {
   "npc_dota_hero_warlock",
   "npc_dota_hero_skeleton_king",
   --"npc_dota_hero_ursa",
-  "npc_dota_hero_shadow_shaman"
+  --"npc_dota_hero_shadow_shaman"
+  "npc_dota_hero_drow_ranger"
 }
 
 function GetBotNames ()
