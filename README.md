@@ -172,16 +172,17 @@ The `SKILL_USAGE` sheet describes conditions when the bot should use each of her
 These are columns of this sheet:
 
 1. Skill Name - this is the built-in name of a hero ability.
-2. Any Mode - this condition will be checked for any [active mode](https://developer.valvesoftware.com/wiki/Dota_Bot_Scripting#Bot_Modes) of the bot.
-3. Team Fight - this condition will be checked when the bot is in a team fight.
-4. `BOT_MODE_ROAM` - this is a condition for both `BOT_MODE_ROAM` and `BOT_MODE_TEAM_ROAM` modes.
-5. `BOT_MODE_PUSH_TOWER` - this is a condition for any of `BOT_MODE_PUSH_TOWER_TOP`, `BOT_MODE_PUSH_TOWER_MID` and `BOT_MODE_PUSH_TOWER_BOT` modes.
-6. `BOT_MODE_ATTACK` - this is a condition for the `BOT_MODE_ATTACK` mode.
-7. `BOT_MODE_LANING` - this is a condition for the `BOT_MODE_LANING` mode.
-8. `BOT_MODE_FARM` - this is a condition for the `BOT_MODE_FARM` mode.
-9. `BOT_MODE_DEFEND_TOWER` - this is a condition for any of `BOT_MODE_DEFEND_TOWER_TOP`, `BOT_MODE_DEFEND_TOWER_MID` and `BOT_MODE_DEFEND_TOWER_BOT` modes.
-10. `BOT_MODE_RETREAT` - this is a condition for the `BOT_MODE_RETREAT` mode.
-11. `BOT_MODE_DEFEND_ALLY` - this is a condition for the `BOT_MODE_DEFEND_ALLY` mode.
+2. Any Mode - this a condition of the skill usage for any [active mode](https://developer.valvesoftware.com/wiki/Dota_Bot_Scripting#Bot_Modes) of the bot.
+3. Team Fight - this a condition of the skill usage when the bot is in a team fight.
+4. `BOT_MODE_ROAM` - this is a condition for the `BOT_MODE_ROAM` mode.
+5. `BOT_MODE_TEAM_ROAM` - this is a condition for the `BOT_MODE_TEAM_ROAM` mode.
+6. `BOT_MODE_PUSH_TOWER` - this is a condition for any of `BOT_MODE_PUSH_TOWER_TOP`, `BOT_MODE_PUSH_TOWER_MID` and `BOT_MODE_PUSH_TOWER_BOT` modes.
+7. `BOT_MODE_ATTACK` - this is a condition for the `BOT_MODE_ATTACK` mode.
+8. `BOT_MODE_LANING` - this is a condition for the `BOT_MODE_LANING` mode.
+9. `BOT_MODE_FARM` - this is a condition for the `BOT_MODE_FARM` mode.
+10. `BOT_MODE_DEFEND_TOWER` - this is a condition for any of `BOT_MODE_DEFEND_TOWER_TOP`, `BOT_MODE_DEFEND_TOWER_MID` and `BOT_MODE_DEFEND_TOWER_BOT` modes.
+11. `BOT_MODE_RETREAT` - this is a condition for the `BOT_MODE_RETREAT` mode.
+12. `BOT_MODE_DEFEND_ALLY` - this is a condition for the `BOT_MODE_DEFEND_ALLY` mode.
 
 The aggressive bot modes are marked red color on the sheet. Green color marks the defensive modes.
 
