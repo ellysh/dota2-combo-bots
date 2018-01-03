@@ -46,7 +46,7 @@ local function GetUnitWith(min_max, get_function, units)
   return result
 end
 
-local function GetEnemyHeroMinHp(npc_bot, radius)
+local function GetMinHpEnemyHero(npc_bot, radius)
   local enemy_heroes = GetEnemyHeroes(npc_bot, radius)
 
   return GetUnitWith(MIN, 'GetHealth', enemy_heroes)
@@ -81,7 +81,7 @@ local function GetTarget(target, ability)
 end
 
 function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
-  local enemy_hero = GetEnemyHeroMinHp(npc_bot, ability:GetCastRange())
+  local enemy_hero = GetMinHpEnemyHero(npc_bot, ability:GetCastRange())
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero)
@@ -108,7 +108,7 @@ function M.channeling_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-local function GetStrongestEnemyHero(npc_bot, radius)
+local function GetMaxNetworthEnemyHero(npc_bot, radius)
   -- We focus on enemy heroes with maximum net worth because
   -- they have a fewer farm position in their team.
 
@@ -117,8 +117,8 @@ local function GetStrongestEnemyHero(npc_bot, radius)
   return GetUnitWith(MAX, 'GetNetWorth', enemy_heroes)
 end
 
-function M.strongest_enemy_hero(npc_bot, ability)
-  local enemy_hero = GetStrongestEnemyHero(
+function M.max_networth_enemy_hero(npc_bot, ability)
+  local enemy_hero = GetMaxNetworthEnemyHero(
     npc_bot,
     ability:GetCastRange())
 
@@ -259,11 +259,11 @@ end
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetUnitWith = GetUnitWith
-M.test_GetEnemyHeroMinHp = GetEnemyHeroMinHp
+M.test_GetMinHpEnemyHero = GetMinHpEnemyHero
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
-M.test_GetStrongestEnemyHero = GetStrongestEnemyHero
+M.test_GetMaxNetworthEnemyHero = GetMaxNetworthEnemyHero
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 M.test_GetStrongestCreep = GetStrongestCreep
 

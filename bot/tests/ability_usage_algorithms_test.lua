@@ -41,10 +41,10 @@ function test_GetUnitWith()
   luaunit.assertEquals(unit:GetHealth(), 150)
 end
 
-function test_GetEnemyHeroMinHp()
+function test_GetMinHpEnemyHero()
   test_RefreshBot()
 
-  local unit = ability_usage_algorithms.test_GetEnemyHeroMinHp(
+  local unit = ability_usage_algorithms.test_GetMinHpEnemyHero(
     GetBot(),
     1200)
 
@@ -156,24 +156,24 @@ function test_channeling_enemy_hero()
   luaunit.assertEquals(target, {10, 10})
 end
 
-function test_GetStrongestEnemyHero()
+function test_GetMaxNetworthEnemyHero()
   test_RefreshBot()
 
-  local unit = ability_usage_algorithms.test_GetStrongestEnemyHero(
+  local unit = ability_usage_algorithms.test_GetMaxNetworthEnemyHero(
     GetBot(),
     1200)
 
   luaunit.assertEquals(unit:GetUnitName(), "unit2")
 end
 
-function test_strongest_enemy_hero()
+function test_max_networth_enemy_hero()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
 
-  local desire, target = ability_usage_algorithms.strongest_enemy_hero(
+  local desire, target = ability_usage_algorithms.max_networth_enemy_hero(
     GetBot(),
     ability)
 
