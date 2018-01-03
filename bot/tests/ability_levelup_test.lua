@@ -34,51 +34,51 @@ function test_InitAbilities()
 
   luaunit.assertEquals(
     BOT_ABILITIES[1],
-    abilities[1])
+    abilities[GetBot():GetUnitName()][1])
 
   luaunit.assertEquals(
     BOT_ABILITIES[2],
-    abilities[2])
+    abilities[GetBot():GetUnitName()][2])
 
   luaunit.assertEquals(
     BOT_ABILITIES[3],
-    abilities[3])
+    abilities[GetBot():GetUnitName()][3])
 
   luaunit.assertEquals(
     BOT_ABILITIES[6],
-    abilities[4])
+    abilities[GetBot():GetUnitName()][4])
 
   luaunit.assertEquals(
     BOT_ABILITIES[7],
-    talents[1])
+    talents[GetBot():GetUnitName()][1])
 
   luaunit.assertEquals(
     BOT_ABILITIES[8],
-    talents[2])
+    talents[GetBot():GetUnitName()][2])
 
   luaunit.assertEquals(
     BOT_ABILITIES[9],
-    talents[3])
+    talents[GetBot():GetUnitName()][3])
 
   luaunit.assertEquals(
     BOT_ABILITIES[10],
-    talents[4])
+    talents[GetBot():GetUnitName()][4])
 
   luaunit.assertEquals(
     BOT_ABILITIES[11],
-    talents[5])
+    talents[GetBot():GetUnitName()][5])
 
   luaunit.assertEquals(
     BOT_ABILITIES[12],
-    talents[6])
+    talents[GetBot():GetUnitName()][6])
 
   luaunit.assertEquals(
     BOT_ABILITIES[13],
-    talents[7])
+    talents[GetBot():GetUnitName()][7])
 
   luaunit.assertEquals(
     BOT_ABILITIES[14],
-    talents[8])
+    talents[GetBot():GetUnitName()][8])
 end
 
 function test_AbilityLevelUp()

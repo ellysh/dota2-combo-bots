@@ -61,7 +61,7 @@ local function ChooseAbilityAndTarget(npc_bot)
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
     local ability = npc_bot:GetAbilityByName(ability_name)
 
-    if not ability:IsFullyCastable() then goto continue end
+    if ability == nil or not ability:IsFullyCastable() then goto continue end
 
     for bot_mode, algorithm in pairs(algorithms) do
       local desire, target =

@@ -13,15 +13,18 @@ local TALENTS = {}
 function M.InitAbilities()
   local npc_bot = GetBot()
 
+  ABILITIES[npc_bot:GetUnitName()] = {}
+  TALENTS[npc_bot:GetUnitName()] = {}
+
   for i = 0, 23, 1 do
 
     local ability = npc_bot:GetAbilityInSlot(i)
 
     if ability ~= nil and ability:GetName() ~= "generic_hidden" then
       if ability:IsTalent() then
-        table.insert(TALENTS, ability)
+        table.insert(TALENTS[npc_bot:GetUnitName()], ability)
       else
-        table.insert(ABILITIES, ability)
+        table.insert(ABILITIES[npc_bot:GetUnitName()], ability)
       end
     end
   end
