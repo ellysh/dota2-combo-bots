@@ -123,7 +123,7 @@ function test_GetTarget()
     nil)
 end
 
-function test_low_hp_enemy_hero_to_kill()
+function test_min_hp_enemy_hero_to_kill()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
@@ -132,7 +132,7 @@ function test_low_hp_enemy_hero_to_kill()
   ABILITY_DAMAGE = 200
 
   local desire, target =
-    ability_usage_algorithms.low_hp_enemy_hero_to_kill(
+    ability_usage_algorithms.min_hp_enemy_hero_to_kill(
       GetBot(),
       ability)
 

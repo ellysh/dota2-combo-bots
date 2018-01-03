@@ -7,7 +7,7 @@ local algorithms = require(
 M.SKILL_USAGE = {
 
   crystal_maiden_crystal_nova = {
-      any_mode = algorithms["low_hp_enemy_hero_to_kill"],
+      any_mode = algorithms["min_hp_enemy_hero_to_kill"],
       team_fight = algorithms["three_and_more_enemy_heroes"],
       BOT_MODE_ROAM = algorithms["strongest_enemy_hero"],
       BOT_MODE_TEAM_ROAM = algorithms["strongest_enemy_hero"],

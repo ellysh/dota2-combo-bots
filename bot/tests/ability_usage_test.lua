@@ -103,7 +103,7 @@ function test_CalculateDesireAndTarget_succeed()
   local desire, target =
     ability_usage.test_CalculateDesireAndTarget(
       GetBot(),
-      ability_usage_algorithms.low_hp_enemy_hero_to_kill,
+      ability_usage_algorithms.min_hp_enemy_hero_to_kill,
       "any_mode",
       ability)
 
@@ -128,7 +128,7 @@ function test_CalculateDesireAndTarget_fails()
   local desire, target =
     ability_usage.test_CalculateDesireAndTarget(
       GetBot(),
-      ability_usage_algorithms.low_hp_enemy_hero_to_kill,
+      ability_usage_algorithms.min_hp_enemy_hero_to_kill,
       BOT_MODE_LANING)
 
   luaunit.assertEquals(desire, BOT_ACTION_DESIRE_NONE)

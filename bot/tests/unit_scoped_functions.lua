@@ -445,7 +445,7 @@ end
 
 ABILITY_TOGGLE_STATE = false
 
-function Ability:GetToggleState()
+function Ability:GetAutoCastState()
   return ABILITY_TOGGLE_STATE
 end
 

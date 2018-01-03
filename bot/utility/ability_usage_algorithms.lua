@@ -80,7 +80,7 @@ local function GetTarget(target, ability)
   return nil
 end
 
-function M.low_hp_enemy_hero_to_kill(npc_bot, ability)
+function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
   local enemy_hero = GetEnemyHeroMinHp(npc_bot, ability:GetCastRange())
 
   if enemy_hero == nil
