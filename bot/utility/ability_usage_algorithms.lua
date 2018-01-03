@@ -243,7 +243,7 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
       npc_bot:GetUnitName() .. " activates " .. ability:GetName())
 
     ability:ToggleAutoCast()
-  else if ability:GetToggleState() and not target:IsHero() then
+  elseif ability:GetToggleState() and not target:IsHero() then
     -- Disable the ability when we are attacking a creep
 
     logger.Print("toggle_on_attack_enemy_hero() - " ..

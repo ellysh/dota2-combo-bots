@@ -171,6 +171,16 @@ function Unit:GetNetWorth()
   return self.networth
 end
 
+function Unit:GetAttackTarget()
+  return Unit:new()
+end
+
+UNIT_IS_HERO = true
+
+function Unit:IsHero()
+  return UNIT_IS_HERO
+end
+
 -----------------------------------------------
 
 Item = {}
@@ -431,6 +441,16 @@ end
 
 function Ability:GetSpecialValueInt(value_name)
   return 600
+end
+
+ABILITY_TOGGLE_STATE = false
+
+function Ability:GetToggleState()
+  return ABILITY_TOGGLE_STATE
+end
+
+function Ability:ToggleAutoCast()
+  ABILITY_TOGGLE_STATE = not ABILITY_TOGGLE_STATE
 end
 
 ------------------------------------------------
