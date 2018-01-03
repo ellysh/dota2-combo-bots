@@ -236,14 +236,14 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
 
   if target == nil then return BOT_ACTION_DESIRE_NONE, nil end
 
-  if not ability:GetToggleState() and target:IsHero() then
+  if not ability:GetAutoCastState() and target:IsHero() then
     -- Enable the ability when we are attacking an enemy hero
 
     logger.Print("toggle_on_attack_enemy_hero() - " ..
       npc_bot:GetUnitName() .. " activates " .. ability:GetName())
 
     ability:ToggleAutoCast()
-  elseif ability:GetToggleState() and not target:IsHero() then
+  elseif ability:GetAutoCastState() and not target:IsHero() then
     -- Disable the ability when we are attacking a creep
 
     logger.Print("toggle_on_attack_enemy_hero() - " ..
