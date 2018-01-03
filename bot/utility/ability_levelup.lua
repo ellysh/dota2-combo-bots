@@ -53,11 +53,16 @@ function M.AbilityLevelUpThink()
   local talent_index =
     skill_build.SKILL_BUILD[npc_bot:GetUnitName()].talents[level]
 
-  if not AbilityLevelUp(npc_bot, TALENTS[talent_index]) then
+  if not AbilityLevelUp(
+      npc_bot,
+      TALENTS[npc_bot:GetUnitName()][talent_index]) then
+
     local ability_index =
       skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities[level]
 
-    AbilityLevelUp(npc_bot, ABILITIES[ability_index])
+    AbilityLevelUp(
+      npc_bot,
+      ABILITIES[npc_bot:GetUnitName()][ability_index])
   end
 end
 
@@ -72,6 +77,10 @@ end
 
 function M.test_SetAbilities(a)
   ABILITIES = a
+end
+
+function M.test_SetTalents(t)
+  TALENTS = t
 end
 
 function M.test_GetTalents()

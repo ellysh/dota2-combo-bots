@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 FILES=$(ls *.lua)
 
 for FILE in $FILES

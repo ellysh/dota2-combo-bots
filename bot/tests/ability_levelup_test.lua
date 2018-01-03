@@ -111,9 +111,20 @@ function test_AbilityLevelUpThink()
 
   ability_levelup.test_SetAbilities(
     {
-      Ability:new("crystal_maiden_crystal_nova"),
-      Ability:new("crystal_maiden_frostbite"),
-      Ability:new("crystal_maiden_brilliance_aura")
+      npc_dota_hero_crystal_maiden = {
+        Ability:new("crystal_maiden_crystal_nova"),
+        Ability:new("crystal_maiden_frostbite"),
+        Ability:new("crystal_maiden_brilliance_aura")
+      }
+    })
+
+  ability_levelup.test_SetTalents(
+    {
+      npc_dota_hero_crystal_maiden = {
+        Ability:new("special_bonus_magic_resistance_15"),
+        Ability:new("special_bonus_attack_damage_60"),
+        Ability:new("special_bonus_cast_range_125")
+      }
     })
 
   ABILITY_CAN_BE_UPGRADED = true
