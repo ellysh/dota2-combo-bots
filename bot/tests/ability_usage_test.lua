@@ -167,12 +167,13 @@ function test_UseAbility()
   luaunit.assertEquals(BOT_ABILITY_LOCATION, location)
 end
 
-function test_AbilityUsageThink()
+function test_AbilityUsageThink_succeed()
   test_RefreshBot()
 
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   BOT_ABILITY = nil
   BOT_ABILITY_LOCATION = nil
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
 
   ability_usage.AbilityUsageThink()
@@ -182,6 +183,25 @@ function test_AbilityUsageThink()
     Ability:new("crystal_maiden_crystal_nova"))
 
   luaunit.assertEquals(BOT_ABILITY_LOCATION, {10, 10})
+end
+
+function test_AbilityUsageThink_when_bot_channeling_fails()
+  test_RefreshBot()
+
+  BOT_ABILITY = nil
+  BOT_ABILITY_LOCATION = nil
+  UNIT_IS_CHANNELING = true
+
+  ABILITY_DAMAGE = 200
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  ability_usage.AbilityUsageThink()
+
+  luaunit.assertEquals(
+    BOT_ABILITY,
+    nil)
+
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())
