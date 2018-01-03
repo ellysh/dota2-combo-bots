@@ -231,6 +231,30 @@ function M.three_and_more_enemy_heroes(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+function M.toggle_on_attack_enemy_hero(npc_bot, ability)
+  local target = npc_bot:GetAttackTarget()
+
+  if target == nil then return BOT_ACTION_DESIRE_NONE, nil end
+
+  if not ability:GetToggleState() and target:IsHero() then
+    -- Enable the ability when we are attacking an enemy hero
+
+    logger.Print("toggle_on_attack_enemy_hero() - " ..
+      npc_bot:GetUnitName() .. " activates " .. ability:GetName())
+
+    ability:ToggleAutoCast()
+  else if ability:GetToggleState() and not target:IsHero() then
+    -- Disable the ability when we are attacking a creep
+
+    logger.Print("toggle_on_attack_enemy_hero() - " ..
+      npc_bot:GetUnitName() .. " deactivates " .. ability:GetName())
+
+    ability:ToggleAutoCast()
+  end
+
+  return BOT_ACTION_DESIRE_NONE, nil
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
