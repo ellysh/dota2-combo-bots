@@ -48,6 +48,34 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = algorithms["nil"]
   },
 
+  drow_ranger_frost_arrows = {
+      any_mode = algorithms["enemy_hero_attack"],
+      team_fight = algorithms["nil"],
+      BOT_MODE_ROAM = algorithms["nil"],
+      BOT_MODE_TEAM_ROAM = algorithms["nil"],
+      BOT_MODE_PUSH_TOWER = algorithms["nil"],
+      BOT_MODE_ATTACK = algorithms["nil"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["nil"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["nil"]
+  },
+
+  drow_ranger_wave_of_silence = {
+      any_mode = algorithms["nil"],
+      team_fight = algorithms["nil"],
+      BOT_MODE_ROAM = algorithms["strongest_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["strongest_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["strongest_enemy_hero"],
+      BOT_MODE_ATTACK = algorithms["strongest_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["strongest_enemy_hero"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["strongest_enemy_hero"]
+  },
+
 }
 
 return M

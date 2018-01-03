@@ -131,6 +131,70 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
+  item_wraith_band = {
+    components = {
+      "item_circlet",
+      "item_slippers",
+      "item_recipe_wraith_band",
+      "nil"}
+  },
+
+  item_power_treads_a = {
+    components = {
+      "item_boots",
+      "item_gloves",
+      "item_boots_of_elves",
+      "nil"}
+  },
+
+  item_ring_of_aquila = {
+    components = {
+      "item_wraith_band",
+      "item_ring_of_basilius",
+      "nil",
+      "nil"}
+  },
+
+  item_mask_of_madness = {
+    components = {
+      "item_lifesteal",
+      "item_quarterstaff",
+      "nil",
+      "nil"}
+  },
+
+  item_invis_sword = {
+    components = {
+      "item_claymore",
+      "item_shadow_amulet",
+      "nil",
+      "nil"}
+  },
+
+  item_black_king_bar = {
+    components = {
+      "item_mithril_hammer",
+      "item_ogre_axe",
+      "item_recipe_black_king_bar",
+      "nil"}
+  },
+
+  item_mjollnir = {
+    components = {
+      "item_maelstrom",
+      "item_hyperstone",
+      "item_recipe_mjollnir",
+      "nil"}
+  },
+
+  item_maelstrom = {
+    components = {
+      "item_mithril_hammer",
+      "item_gloves",
+      "item_recipe_maelstrom",
+      "nil"}
+  },
+
 }
 
 return M

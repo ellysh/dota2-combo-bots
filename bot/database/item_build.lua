@@ -313,16 +313,16 @@ M.ITEM_BUILD = {
 
   npc_dota_hero_drow_ranger = {
     items = {
+      "item_tango",
+      "item_wraith_band",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil"}
+      "item_power_treads_a",
+      "item_ring_of_aquila",
+      "item_mask_of_madness",
+      "item_invis_sword",
+      "item_black_king_bar",
+      "item_butterfly",
+      "item_mjollnir"}
   },
 
   npc_dota_hero_razor = {

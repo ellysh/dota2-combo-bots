@@ -21,5 +21,5 @@ npc_dota_hero_tiny;;;;;;;;;;
   npc_dota_hero_dazzle;;;;;;;;;;
 npc_dota_hero_lina;;;;;;;;;;
 npc_dota_hero_legion_commander;;;;;;;;;;
-npc_dota_hero_drow_ranger;;;;;;;;;;
+npc_dota_hero_drow_ranger;item_tango;item_wraith_band;;item_power_treads_a;item_ring_of_aquila;  item_mask_of_madness;item_invis_sword;item_black_king_bar;item_butterfly;item_mjollnir
   npc_dota_hero_razor;;;;;;;;;;
