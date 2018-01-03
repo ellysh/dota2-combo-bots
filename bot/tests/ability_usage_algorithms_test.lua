@@ -283,4 +283,28 @@ function test_three_and_more_enemy_heroes()
   luaunit.assertEquals(target, {1.2, 3.4})
 end
 
+function test_toggle_on_attack_enemy_hero()
+  test_RefreshBot()
+
+  local ability = Ability:new("drow_ranger_frost_arrows ")
+
+  ABILITY_TOGGLE_STATE = false
+
+  local desire, target =
+    ability_usage_algorithms.toggle_on_attack_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertTrue(ABILITY_TOGGLE_STATE)
+
+  UNIT_IS_HERO = false
+
+  local desire, target =
+    ability_usage_algorithms.toggle_on_attack_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertFalse(ABILITY_TOGGLE_STATE)
+end
+
 os.exit(luaunit.LuaUnit.run())
