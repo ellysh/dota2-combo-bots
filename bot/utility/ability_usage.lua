@@ -104,6 +104,8 @@ end
 function M.AbilityUsageThink()
   local npc_bot = GetBot()
 
+  if functions.IsBotBusy(npc_bot) then return end
+
   local ability, target = ChooseAbilityAndTarget(npc_bot)
 
   UseAbility(npc_bot, ability, target)
