@@ -1,3 +1,6 @@
+* version 0.2
+  - Implemented the skills usage mechanism
+
 * version 0.1
   - Implement the items purchasing and selling mechanism
   - Implement the abilities and talents level up mechanism
