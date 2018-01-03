@@ -195,6 +195,302 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
+  item_power_treads_s = {
+    components = {
+      "item_boots",
+      "item_gloves",
+      "item_belt_of_strength",
+      "nil"}
+  },
+
+  item_echo_sabre = {
+    components = {
+      "item_ogre_axe",
+      "item_oblivion_staff",
+      "nil",
+      "nil"}
+  },
+
+  item_heart = {
+    components = {
+      "item_reaver",
+      "item_vitality_booster",
+      "item_vitality_booster",
+      "nil"}
+  },
+
+  item_vladmir = {
+    components = {
+      "item_lifesteal",
+      "item_ring_of_basilius",
+      "item_headdress",
+      "nil"}
+  },
+
+  item_monkey_king_bar = {
+    components = {
+      "item_hyperstone",
+      "item_javelin",
+      "item_javelin",
+      "nil"}
+  },
+
+  item_arcane_boots = {
+    components = {
+      "item_boots",
+      "item_energy_booster",
+      "nil",
+      "nil"}
+  },
+
+  item_refresher = {
+    components = {
+      "item_pers",
+      "item_pers",
+      "item_recipe_refresher",
+      "nil"}
+  },
+
+  item_cyclone = {
+    components = {
+      "item_staff_of_wizardry",
+      "item_wind_lace",
+      "item_void_stone",
+      "item_recipe_cyclone"}
+  },
+
+  item_veil_of_discord = {
+    components = {
+      "item_helm_of_iron_will",
+      "item_null_talisman",
+      "item_null_talisman",
+      "item_recipe_veil_of_discord"}
+  },
+
+  item_hurricane_pike = {
+    components = {
+      "item_wraith_band",
+      "item_force_staff",
+      "item_dragon_lance",
+      "nil"}
+  },
+
+  item_shivas_guard = {
+    components = {
+      "item_mystic_staff",
+      "item_platemail",
+      "item_recipe_shivas_guard",
+      "nil"}
+  },
+
+  item_null_talisman = {
+    components = {
+      "item_circlet",
+      "item_mantle",
+      "item_recipe_null_talisman",
+      "nil"}
+  },
+
+  item_power_treads_i = {
+    components = {
+      "item_boots",
+      "item_gloves",
+      "item_robe",
+      "nil"}
+  },
+
+  item_moon_shard = {
+    components = {
+      "item_hyperstone",
+      "item_hyperstone",
+      "nil",
+      "nil"}
+  },
+
+  item_octarine_core = {
+    components = {
+      "item_mystic_staff",
+      "item_soul_booster",
+      "nil",
+      "nil"}
+  },
+
+  item_orchid = {
+    components = {
+      "item_oblivion_staff",
+      "item_oblivion_staff",
+      "item_recipe_orchid",
+      "nil"}
+  },
+
+  item_crimson_guard = {
+    components = {
+      "item_vanguard",
+      "item_platemail",
+      "item_ultimate_orb",
+      "nil"}
+  },
+
+  item_blade_mail = {
+    components = {
+      "item_broadsword",
+      "item_chainmail",
+      "item_robe",
+      "nil"}
+  },
+
+  item_radiance = {
+    components = {
+      "item_relic",
+      "item_recipe_radiance",
+      "nil",
+      "nil"}
+  },
+
+  item_mekansm = {
+    components = {
+      "item_buckler",
+      "item_headdress",
+      "item_recipe_mekansm",
+      "nil"}
+  },
+
+  item_heavens_halberd = {
+    components = {
+      "item_sange",
+      "item_talisman_of_evasion",
+      "nil",
+      "nil"}
+  },
+
+  item_soul_ring = {
+    components = {
+      "item_ring_of_regen",
+      "item_gauntlets",
+      "item_gauntlets",
+      "item_recipe_soul_ring"}
+  },
+
+  item_bloodstone = {
+    components = {
+      "item_pers",
+      "item_soul_booster",
+      "nil",
+      "nil"}
+  },
+
+  item_rod_of_atos = {
+    components = {
+      "item_staff_of_wizardry",
+      "item_bracer",
+      "item_bracer",
+      "item_recipe_rod_of_atos"}
+  },
+
+  item_kaya = {
+    components = {
+      "item_staff_of_wizardry",
+      "item_robe",
+      "item_recipe_kaya",
+      "nil"}
+  },
+
+  item_aether_lens = {
+    components = {
+      "item_energy_booster",
+      "item_void_stone",
+      "item_recipe_aether_lens",
+      "nil"}
+  },
+
+  item_sheepstick = {
+    components = {
+      "item_mystic_staff",
+      "item_ultimate_orb",
+      "item_void_stone",
+      "nil"}
+  },
+
+  item_solar_crest = {
+    components = {
+      "item_medallion_of_courage",
+      "item_talisman_of_evasion",
+      "nil",
+      "nil"}
+  },
+
+  item_ancient_janggo = {
+    components = {
+      "item_bracer",
+      "item_sobi_mask",
+      "item_wind_lace",
+      "item_recipe_ancient_janggo"}
+  },
+
+  item_oblivion_staff = {
+    components = {
+      "item_quarterstaff",
+      "item_robe",
+      "item_sobi_mask",
+      "nil"}
+  },
+
+  item_ring_of_basilius = {
+    components = {
+      "item_sobi_mask",
+      "item_ring_of_protection",
+      "nil",
+      "nil"}
+  },
+
+  item_headdress = {
+    components = {
+      "item_ring_of_regen",
+      "item_branches",
+      "item_recipe_headdress",
+      "nil"}
+  },
+
+  item_dragon_lance = {
+    components = {
+      "item_ogre_axe",
+      "item_boots_of_elves",
+      "item_boots_of_elves",
+      "nil"}
+  },
+
+  item_soul_booster = {
+    components = {
+      "item_point_booster",
+      "item_vitality_booster",
+      "item_energy_booster",
+      "nil"}
+  },
+
+  item_buckler = {
+    components = {
+      "item_chainmail",
+      "item_branches",
+      "item_recipe_buckler",
+      "nil"}
+  },
+
+  item_sange = {
+    components = {
+      "item_ogre_axe",
+      "item_belt_of_strength",
+      "item_recipe_sange",
+      "nil"}
+  },
+
+  item_medallion_of_courage = {
+    components = {
+      "item_chainmail",
+      "item_sobi_mask",
+      "item_blight_stone",
+      "nil"}
+  },
+
 }
 
 return M
