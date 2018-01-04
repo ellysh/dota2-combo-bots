@@ -1,4 +1,4 @@
-# Dota 2 Combo Bots 0.2 version
+# Dota 2 Combo Bots 0.3 version
 
 *This project is still in prototyping and developing stage.*
 

@@ -1,3 +1,7 @@
+* version 0.3
+  - Debug all mechanism of bots on a testing team
+  - Fill a database for a small heroes meta
+
 * version 0.2
   - Implemented the skills usage mechanism
 
