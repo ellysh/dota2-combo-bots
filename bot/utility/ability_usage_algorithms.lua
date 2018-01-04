@@ -46,12 +46,6 @@ local function GetUnitWith(min_max, get_function, units)
   return result
 end
 
-local function GetMinHpEnemyHero(npc_bot, radius)
-  local enemy_heroes = GetEnemyHeroes(npc_bot, radius)
-
-  return GetUnitWith(MIN, 'GetHealth', enemy_heroes)
-end
-
 local function IsTargetable(npc)
   return npc:CanBeSeen()
          and not npc:IsMagicImmune()
@@ -81,7 +75,8 @@ local function GetTarget(target, ability)
 end
 
 function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
-  local enemy_hero = GetMinHpEnemyHero(npc_bot, ability:GetCastRange())
+  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+  local enemy_hero = GetUnitWith(MIN, 'GetHealth', enemy_heroes)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero)
@@ -259,7 +254,6 @@ end
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetUnitWith = GetUnitWith
-M.test_GetMinHpEnemyHero = GetMinHpEnemyHero
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget

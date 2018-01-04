@@ -41,17 +41,6 @@ function test_GetUnitWith()
   luaunit.assertEquals(unit:GetHealth(), 150)
 end
 
-function test_GetMinHpEnemyHero()
-  test_RefreshBot()
-
-  local unit = ability_usage_algorithms.test_GetMinHpEnemyHero(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(unit:GetUnitName(), "unit1")
-  luaunit.assertEquals(unit:GetHealth(), 150)
-end
-
 function test_IsTargetable()
   local unit = Unit:new()
 
