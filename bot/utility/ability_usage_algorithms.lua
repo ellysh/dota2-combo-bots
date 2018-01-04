@@ -36,6 +36,15 @@ local function GetAllyCreeps(npc_bot, radius)
   return npc_bot:GetNearbyCreeps(radius, false)
 end
 
+local function GetEnemyBuildings(npc_bot, radius)
+  radius = SetDefaultRadius(radius)
+  local towers = npc_bot:GetNearbyTowers(radius, true)
+
+  if #towers ~= 0 then return towers end
+
+  return npc_bot:GetNearbyBarracks(radius, true)
+end
+
 local MIN = 1
 local MAX = 2
 
@@ -316,12 +325,28 @@ function M.three_and_more_ally_creeps_aoe(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+function M.min_hp_enemy_building(npc_bot, ability)
+  local enemy_buildings =
+    GetEnemyBuildings(npc_bot, ability:GetCastRange())
+
+  local enemy_building = GetUnitWith(MIN, 'GetHealth', enemy_buildings)
+
+  if enemy_building == nil
+    or not IsTargetable(enemy_building) then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_building, ability)
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_SetDefaultRadius = SetDefaultRadius
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetAllyHeroes = GetAllyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetAllyCreeps = GetAllyCreeps
+M.test_GetEnemyBuildings = GetEnemyBuildings
 M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill

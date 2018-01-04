@@ -279,6 +279,30 @@ function Bot:GetNearbyCreeps(radius, enemies)
   return { unit1, unit2, unit3 }
 end
 
+function Bot:GetNearbyTowers(radius, enemies, mode)
+  local unit1 = Unit:new()
+  unit1.name = "tower1"
+  unit1.health = 10
+  unit1.location = {10, 10}
+  unit1.offensive_power = 100
+
+  local unit2 = Unit:new()
+  unit2.name = "tower2"
+  unit2.health = 200
+  unit2.networth = 1000
+  unit2.location = {20, 20}
+  unit2.offensive_power = 200
+
+  local unit3 = Unit:new()
+  unit3.name = "tower3"
+  unit3.health = 180
+  unit3.networth = 180
+  unit3.location = {15, 15}
+  unit3.offensive_power = 180
+
+  return { unit1, unit2, unit3 }
+end
+
 function Bot:FindAoELocation()
   return {count = 3, targetloc = {1.2, 3.4}}
 end

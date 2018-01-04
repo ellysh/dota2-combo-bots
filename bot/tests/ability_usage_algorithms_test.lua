@@ -437,4 +437,21 @@ function test_three_and_more_ally_creeps_aoe()
   luaunit.assertEquals(target, nil)
 end
 
+function test_min_hp_enemy_building()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local desire, target =
+    ability_usage_algorithms.min_hp_enemy_building(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target:GetUnitName(), "tower1")
+  luaunit.assertEquals(target:GetHealth(), 10)
+end
+
 os.exit(luaunit.LuaUnit.run())
