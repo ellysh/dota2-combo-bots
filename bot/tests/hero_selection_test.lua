@@ -72,9 +72,9 @@ function test_Think()
 
   luaunit.assertEquals(
     SELECTED_HEROES[2],
-    "npc_dota_hero_obsidian_destroyer")
+    "npc_dota_hero_drow_ranger")
 
-  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_bristleback")
+  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_ursa")
   luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_shadow_shaman")
   luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_crystal_maiden")
 end
