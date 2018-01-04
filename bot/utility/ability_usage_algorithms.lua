@@ -276,10 +276,12 @@ function M.max_offensive_power_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
-function M.use_on_attack_enemy_hero(npc_bot, ability)
+function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
   local target = npc_bot:GetAttackTarget()
 
-  if target == nil or not target:IsHero() then
+  if target == nil
+    or not target:IsHero()
+    or ability:GetAOERadius() < GetUnitToUnitDistance(npc_bot, target) then
     return BOT_ACTION_DESIRE_NONE, nil
   end
 

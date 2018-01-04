@@ -353,7 +353,7 @@ function test_max_offensive_power_enemy_hero()
   luaunit.assertEquals(target, {20, 20})
 end
 
-function test_use_on_attack_enemy_hero()
+function test_use_on_attack_enemy_hero_aoe()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
@@ -363,7 +363,7 @@ function test_use_on_attack_enemy_hero()
   UNIT_IS_HERO = true
 
   local desire, target =
-    ability_usage_algorithms.use_on_attack_enemy_hero(
+    ability_usage_algorithms.use_on_attack_enemy_hero_aoe(
       GetBot(),
       ability)
 
@@ -373,7 +373,7 @@ function test_use_on_attack_enemy_hero()
   UNIT_IS_HERO = false
 
   local desire, target =
-    ability_usage_algorithms.use_on_attack_enemy_hero(
+    ability_usage_algorithms.use_on_attack_enemy_hero_aoe(
       GetBot(),
       ability)
 

@@ -74,6 +74,12 @@ function GetUnitToLocationDistance(unit, location)
     math.pow(unit.location[2] + location[2], 2))
 end
 
+function GetUnitToUnitDistance(unit1, unit2)
+  return math.sqrt(
+    math.pow(unit1.location[1] + unit2.location[1], 2) +
+    math.pow(unit1.location[2] + unit2.location[2], 2))
+end
+
 function GetShopLocation(team, shop)
   if shop == SHOP_SIDE then return {10, 10} end
 
