@@ -139,7 +139,7 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
-  item_power_treads_a = {
+  item_power_treads = {
     components = {
       "item_boots",
       "item_gloves",
@@ -192,14 +192,6 @@ M.ITEM_RECIPE = {
       "item_mithril_hammer",
       "item_gloves",
       "item_recipe_maelstrom",
-      "nil"}
-  },
-
-  item_power_treads_s = {
-    components = {
-      "item_boots",
-      "item_gloves",
-      "item_belt_of_strength",
       "nil"}
   },
 
@@ -288,14 +280,6 @@ M.ITEM_RECIPE = {
       "item_circlet",
       "item_mantle",
       "item_recipe_null_talisman",
-      "nil"}
-  },
-
-  item_power_treads_i = {
-    components = {
-      "item_boots",
-      "item_gloves",
-      "item_robe",
       "nil"}
   },
 

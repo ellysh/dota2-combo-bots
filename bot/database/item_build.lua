@@ -316,7 +316,7 @@ M.ITEM_BUILD = {
       "item_tango",
       "item_wraith_band",
       "nil",
-      "item_power_treads_a",
+      "item_power_treads",
       "item_ring_of_aquila",
       "item_mask_of_madness",
       "item_invis_sword",
