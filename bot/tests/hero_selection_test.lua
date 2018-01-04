@@ -56,13 +56,13 @@ end
 function test_GetRandomHero()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
-    "npc_dota_hero_crystal_maiden")
+    "npc_dota_hero_shadow_shaman")
 end
 
 function test_GetComboHero()
   luaunit.assertEquals(
-    hero_selection.test_GetComboHero(4, {"npc_dota_hero_crystal_maiden"}),
-    "npc_dota_hero_shadow_shaman")
+    hero_selection.test_GetComboHero(4, {"npc_dota_hero_shadow_shaman"}),
+    "npc_dota_hero_crystal_maiden")
 end
 
 function test_Think()
@@ -75,8 +75,8 @@ function test_Think()
     "npc_dota_hero_drow_ranger")
 
   luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_ursa")
-  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_shadow_shaman")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_crystal_maiden")
+  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_shadow_shaman")
 end
 
 function test_UpdateLaneAssignments()
