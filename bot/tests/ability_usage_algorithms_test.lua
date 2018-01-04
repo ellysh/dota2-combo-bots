@@ -381,4 +381,20 @@ function test_low_hp_ally_hero()
   luaunit.assertEquals(target:GetUnitName(), "unit1")
 end
 
+function test_three_and_more_ally_creeps_aoe()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_freezing_field")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_ally_creeps_aoe(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target, nil)
+end
+
 os.exit(luaunit.LuaUnit.run())

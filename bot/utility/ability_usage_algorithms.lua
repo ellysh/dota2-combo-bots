@@ -308,7 +308,7 @@ function M.low_hp_ally_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(ally_hero, ability)
 end
 
-function M.three_and_more_ally_creep_aoe(npc_bot, ability)
+function M.three_and_more_ally_creeps_aoe(npc_bot, ability)
   local allies = GetAllyCreeps(npc_bot, ability:GetAOERadius())
 
   if 3 <= #allies then return BOT_ACTION_DESIRE_HIGH, nil end

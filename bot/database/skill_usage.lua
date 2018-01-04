@@ -76,6 +76,20 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = algorithms["max_offensive_power_enemy_hero"]
   },
 
+  drow_ranger_trueshot = {
+      any_mode = algorithms["nil"],
+      team_fight = algorithms["three_and_more_ally_creeps_aoe"],
+      BOT_MODE_ROAM = algorithms["nil"],
+      BOT_MODE_TEAM_ROAM = algorithms["nil"],
+      BOT_MODE_PUSH_TOWER = algorithms["three_and_more_ally_creeps_aoe"],
+      BOT_MODE_ATTACK = algorithms["nil"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["three_and_more_ally_creeps_aoe"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["nil"]
+  },
+
   juggernaut_blade_fury = {
       any_mode = algorithms["nil"],
       team_fight = algorithms["three_and_more_enemy_heroes_aoe"],
