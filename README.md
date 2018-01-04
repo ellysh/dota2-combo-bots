@@ -179,10 +179,11 @@ These are columns of this sheet:
 6. `BOT_MODE_PUSH_TOWER` - this is a condition for any of `BOT_MODE_PUSH_TOWER_TOP`, `BOT_MODE_PUSH_TOWER_MID` and `BOT_MODE_PUSH_TOWER_BOT` modes.
 7. `BOT_MODE_ATTACK` - this is a condition for the `BOT_MODE_ATTACK` mode.
 8. `BOT_MODE_LANING` - this is a condition for the `BOT_MODE_LANING` mode.
-9. `BOT_MODE_FARM` - this is a condition for the `BOT_MODE_FARM` mode.
-10. `BOT_MODE_DEFEND_TOWER` - this is a condition for any of `BOT_MODE_DEFEND_TOWER_TOP`, `BOT_MODE_DEFEND_TOWER_MID` and `BOT_MODE_DEFEND_TOWER_BOT` modes.
-11. `BOT_MODE_RETREAT` - this is a condition for the `BOT_MODE_RETREAT` mode.
-12. `BOT_MODE_DEFEND_ALLY` - this is a condition for the `BOT_MODE_DEFEND_ALLY` mode.
+9. `BOT_MODE_ROSHAN` - this is a condition for the `BOT_MODE_ROSHAN` mode.
+10. `BOT_MODE_FARM` - this is a condition for the `BOT_MODE_FARM` mode.
+11. `BOT_MODE_DEFEND_TOWER` - this is a condition for any of `BOT_MODE_DEFEND_TOWER_TOP`, `BOT_MODE_DEFEND_TOWER_MID` and `BOT_MODE_DEFEND_TOWER_BOT` modes.
+12. `BOT_MODE_RETREAT` - this is a condition for the `BOT_MODE_RETREAT` mode.
+13. `BOT_MODE_DEFEND_ALLY` - this is a condition for the `BOT_MODE_DEFEND_ALLY` mode.
 
 The aggressive bot modes are marked red color on the sheet. Green color marks the defensive modes.
 
