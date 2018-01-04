@@ -124,6 +124,8 @@ function M.three_and_more_enemy_heroes_aoe(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+-- TODO: Generalize this function. We can pass a list of units
+-- as an input parameter.
 local function GetLastAttackedEnemyHero(npc_bot, radius)
   local enemies = GetEnemyHeroes(npc_bot, radius)
 
@@ -231,6 +233,19 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
   end
 
   return BOT_ACTION_DESIRE_NONE, nil
+end
+
+function M.max_offensive_power_enemy_hero(npc_bot, ability)
+  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+  local enemy_hero = GetUnitWith(MAX, 'GetOffensivePower', enemy_heroes)
+
+  if enemy_hero == nil
+    or not IsTargetable(enemy_hero) then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only
