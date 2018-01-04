@@ -68,6 +68,28 @@ function test_GetAllyCreeps()
   luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
 end
 
+function test_GetEnemyBuildings()
+  test_RefreshBot()
+
+  BOT_IS_NEARBY_TOWERS = true
+
+  local units = ability_usage_algorithms.test_GetEnemyBuildings(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "tower1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "tower2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "tower3")
+
+  BOT_IS_NEARBY_TOWERS = false
+
+  units = ability_usage_algorithms.test_GetEnemyBuildings(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "barrak1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "barrak2")
+end
 
 function test_GetUnitWith()
   test_RefreshBot()
@@ -443,6 +465,8 @@ function test_min_hp_enemy_building()
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  BOT_IS_NEARBY_TOWERS = true
 
   local desire, target =
     ability_usage_algorithms.min_hp_enemy_building(
