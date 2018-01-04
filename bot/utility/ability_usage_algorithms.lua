@@ -302,6 +302,18 @@ function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
 end
 
+function M.use_on_attack_enemy_creep_aoe(npc_bot, ability)
+  local target = npc_bot:GetAttackTarget()
+
+  if target == nil
+    or not target:IsCreep()
+    or ability:GetAOERadius() < GetUnitToUnitDistance(npc_bot, target) then
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
+end
+
 function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
   local enemies = GetEnemyCreeps(npc_bot, ability:GetAOERadius())
 
