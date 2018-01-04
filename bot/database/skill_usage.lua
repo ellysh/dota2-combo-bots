@@ -188,6 +188,48 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = algorithms["nil"]
   },
 
+  ursa_earthshock = {
+      any_mode = algorithms["nil"],
+      team_fight = algorithms["three_and_more_enemy_heroes_aoe"],
+      BOT_MODE_ROAM = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["three_and_more_enemy_heroes_aoe"],
+      BOT_MODE_ATTACK = algorithms["three_and_more_enemy_heroes_aoe"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["three_and_more_enemy_heroes_aoe"],
+      BOT_MODE_RETREAT = algorithms["three_and_more_enemy_heroes_aoe"],
+      BOT_MODE_DEFEND_ALLY = algorithms["use_on_attack_enemy_hero"]
+  },
+
+  ursa_overpower = {
+      any_mode = algorithms["nil"],
+      team_fight = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_ROAM = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["nil"],
+      BOT_MODE_ATTACK = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["nil"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["nil"]
+  },
+
+  ursa_enrage = {
+      any_mode = algorithms["nil"],
+      team_fight = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_ROAM = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["nil"],
+      BOT_MODE_ATTACK = algorithms["use_on_attack_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["nil"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["nil"]
+  },
+
 }
 
 return M
