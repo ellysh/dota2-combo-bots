@@ -96,7 +96,7 @@ function test_GetUnitWith()
 
   local unit = ability_usage_algorithms.test_GetUnitWith(
     ability_usage_algorithms.test_MIN,
-    'GetHealth',
+    ability_usage_algorithms.test_GetUnitHealth,
     GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE))
 
   luaunit.assertEquals(unit:GetUnitName(), "unit1")
@@ -335,22 +335,6 @@ function test_toggle_on_attack_enemy_hero()
       ability)
 
   luaunit.assertFalse(ABILITY_TOGGLE_STATE)
-end
-
-function test_max_offensive_power_enemy_hero()
-  test_RefreshBot()
-
-  local ability = Ability:new("crystal_maiden_crystal_nova")
-
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-
-  local desire, target =
-    ability_usage_algorithms.max_offensive_power_enemy_hero(
-      GetBot(),
-      ability)
-
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
-  luaunit.assertEquals(target, {20, 20})
 end
 
 function test_use_on_attack_enemy_hero_aoe()

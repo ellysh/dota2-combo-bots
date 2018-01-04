@@ -48,6 +48,10 @@ end
 local MIN = 1
 local MAX = 2
 
+local function GetUnitHealth(unit)
+  return unit:GetHealth()
+end
+
 local function GetUnitWith(min_max, get_function, units)
   if #units == 0 then return nil end
 
@@ -57,33 +61,7 @@ local function GetUnitWith(min_max, get_function, units)
   for _, unit in pairs(units) do
     if unit == nil or not unit:IsAlive() then goto continue end
 
-    local unit_value = unit[get_function](unit)
-    local is_positive_comparison = functions.ternary(
-      min_max == MIN,
-      unit_value < current_value,
-      current_value < unit_value)
-
-    if is_positive_comparison then
-      current_value = unit_value
-      result = unit
-    end
-
-    ::continue::
-  end
-
-  return result
-end
-
-local function GetHeroWith(min_max, get_function, units)
-  if #units == 0 then return nil end
-
-  local current_value = functions.ternary(min_max == MIN, 1000000, -1)
-  local result = nil
-
-  for _, unit in pairs(units) do
-    if unit == nil or not unit:IsAlive() then goto continue end
-
-    local unit_value = _G[get_function](unit:GetPlayerID())
+    local unit_value = get_function(unit)
     local is_positive_comparison = functions.ternary(
       min_max == MIN,
       unit_value < current_value,
@@ -130,7 +108,7 @@ end
 
 function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetUnitWith(MIN, 'GetHealth', enemy_heroes)
+  local enemy_hero = GetUnitWith(MIN, GetUnitHealth, enemy_heroes)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero)
@@ -159,7 +137,10 @@ end
 
 function M.max_kills_enemy_hero(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetHeroWith(MAX, 'GetHeroKills', enemy_heroes)
+  local enemy_hero = GetUnitWith(
+    MAX,
+    function(unit) return GetHeroKills(unit:GetPlayerID()) end,
+    enemy_heroes)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
@@ -234,7 +215,7 @@ end
 
 function M.max_hp_creep(npc_bot, ability)
   local creeps = GetEnemyCreeps(npc_bot, ability:GetCastRange())
-  local creep = GetUnitWith(MAX, 'GetHealth', creeps)
+  local creep = GetUnitWith(MAX, GetUnitHealth, creeps)
 
   if creep == nil
     or not IsTargetable(creep) then
@@ -289,19 +270,6 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-function M.max_offensive_power_enemy_hero(npc_bot, ability)
-  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetUnitWith(MAX, 'GetOffensivePower', enemy_heroes)
-
-  if enemy_hero == nil
-    or not IsTargetable(enemy_hero) then
-
-    return BOT_ACTION_DESIRE_NONE, nil
-  end
-
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
-end
-
 function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
   local target = npc_bot:GetAttackTarget()
 
@@ -332,7 +300,7 @@ end
 
 function M.low_hp_ally_hero(npc_bot, ability)
   local ally_heroes = GetAllyHeroes(npc_bot, ability:GetCastRange())
-  local ally_hero = GetUnitWith(MIN, 'GetHealth', ally_heroes)
+  local ally_hero = GetUnitWith(MIN, GetUnitHealth, ally_heroes)
 
   if ally_hero == nil
     or not IsTargetable(ally_hero)
@@ -357,7 +325,7 @@ function M.min_hp_enemy_building(npc_bot, ability)
   local enemy_buildings =
     GetEnemyBuildings(npc_bot, ability:GetCastRange())
 
-  local enemy_building = GetUnitWith(MIN, 'GetHealth', enemy_buildings)
+  local enemy_building = GetUnitWith(MIN, GetUnitHealth, enemy_buildings)
 
   if enemy_building == nil
     or not IsTargetable(enemy_building) then
@@ -375,6 +343,7 @@ M.test_GetAllyHeroes = GetAllyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetAllyCreeps = GetAllyCreeps
 M.test_GetEnemyBuildings = GetEnemyBuildings
+M.test_GetUnitHealth = GetUnitHealth
 M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
