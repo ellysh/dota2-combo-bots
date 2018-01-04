@@ -181,14 +181,16 @@ local function PurchaseItemList(npc_bot, item_type)
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if PurchaseItem(npc_bot, item)
-    and IsItemAlreadyBought(item, GetInventoryAndStashItems(npc_bot)) then
+  if IsItemAlreadyBought(item, GetInventoryAndStashItems(npc_bot)) then
+    -- Mark the item as bought
+    item_list[i] = "nil"
+    return
+  end
+
+  if PurchaseItem(npc_bot, item) then
 
     logger.Print("PurchaseItemList() - " .. npc_bot:GetUnitName() ..
                  " bought " .. item)
-
-    -- Mark the item as bought
-    item_list[i] = "nil"
   end
 end
 
