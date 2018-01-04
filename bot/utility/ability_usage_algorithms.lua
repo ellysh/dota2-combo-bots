@@ -103,19 +103,9 @@ function M.channeling_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-local function GetMaxNetworthEnemyHero(npc_bot, radius)
-  -- We focus on enemy heroes with maximum net worth because
-  -- they have a fewer farm position in their team.
-
-  local enemy_heroes = GetEnemyHeroes(npc_bot, radius)
-
-  return GetUnitWith(MAX, 'GetNetWorth', enemy_heroes)
-end
-
 function M.max_networth_enemy_hero(npc_bot, ability)
-  local enemy_hero = GetMaxNetworthEnemyHero(
-    npc_bot,
-    ability:GetCastRange())
+  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+  local enemy_hero = GetUnitWith(MAX, 'GetNetWorth', enemy_heroes)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
@@ -257,7 +247,6 @@ M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
-M.test_GetMaxNetworthEnemyHero = GetMaxNetworthEnemyHero
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 M.test_GetMaxHpCreep = GetMaxHpCreep
 

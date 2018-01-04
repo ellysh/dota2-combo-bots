@@ -145,16 +145,6 @@ function test_channeling_enemy_hero()
   luaunit.assertEquals(target, {10, 10})
 end
 
-function test_GetMaxNetworthEnemyHero()
-  test_RefreshBot()
-
-  local unit = ability_usage_algorithms.test_GetMaxNetworthEnemyHero(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(unit:GetUnitName(), "unit2")
-end
-
 function test_max_networth_enemy_hero()
   test_RefreshBot()
 
