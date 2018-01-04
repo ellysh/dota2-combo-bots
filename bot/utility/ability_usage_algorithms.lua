@@ -266,6 +266,14 @@ function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+function M.low_hp_self(npc_bot, ability)
+  if (npc_bot:GetHealth() / npc_bot:GetMaxHealth()) < 0.15 then
+    return BOT_ACTION_DESIRE_HIGH, GetTarget(npc_bot, ability)
+  end
+
+  return BOT_ACTION_DESIRE_NONE, nil
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
