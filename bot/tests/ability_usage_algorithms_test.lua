@@ -219,17 +219,6 @@ function test_three_and_more_creeps()
   luaunit.assertEquals(target, {1.2, 3.4})
 end
 
-function test_GetMaxHpCreep()
-  test_RefreshBot()
-
-  local unit =
-    ability_usage_algorithms.test_GetMaxHpCreep(
-      GetBot(),
-      1200)
-
-  luaunit.assertEquals(unit:GetUnitName(), "creep2")
-end
-
 function test_max_hp_creep()
   test_RefreshBot()
 

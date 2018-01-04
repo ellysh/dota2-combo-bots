@@ -176,16 +176,9 @@ function M.three_and_more_creeps(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-local function GetMaxHpCreep(npc_bot, radius)
-  local creeps = GetEnemyCreeps(npc_bot, radius)
-
-  return GetUnitWith(MAX, 'GetHealth', creeps)
-end
-
 function M.max_hp_creep(npc_bot, ability)
-  local creep = GetMaxHpCreep(
-    npc_bot,
-    ability:GetCastRange())
+  local creeps = GetEnemyCreeps(npc_bot, ability:GetCastRange())
+  local creep = GetUnitWith(MAX, 'GetHealth', creeps)
 
   if creep == nil
     or not IsTargetable(creep) then
@@ -248,7 +241,6 @@ M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
-M.test_GetMaxHpCreep = GetMaxHpCreep
 
 M.test_MIN = MIN
 M.test_MAX = MAX
