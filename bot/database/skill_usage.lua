@@ -163,13 +163,13 @@ M.SKILL_USAGE = {
   shadow_shaman_shackles = {
       any_mode = algorithms["channeling_enemy_hero"],
       team_fight = algorithms["max_offensive_power_enemy_hero"],
-      BOT_MODE_ROAM = algorithms["nil"],
+      BOT_MODE_ROAM = algorithms["max_offensive_power_enemy_hero"],
       BOT_MODE_TEAM_ROAM = algorithms["max_offensive_power_enemy_hero"],
       BOT_MODE_PUSH_TOWER = algorithms["nil"],
-      BOT_MODE_ATTACK = algorithms["nil"],
+      BOT_MODE_ATTACK = algorithms["max_offensive_power_enemy_hero"],
       BOT_MODE_LANING = algorithms["nil"],
       BOT_MODE_FARM = algorithms["nil"],
-      BOT_MODE_DEFEND_TOWER = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["max_offensive_power_enemy_hero"],
       BOT_MODE_RETREAT = algorithms["nil"],
       BOT_MODE_DEFEND_ALLY = algorithms["max_offensive_power_enemy_hero"]
   },
