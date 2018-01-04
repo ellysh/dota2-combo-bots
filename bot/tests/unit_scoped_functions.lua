@@ -185,6 +185,10 @@ function Unit:GetOffensivePower()
   return self.offensive_power
 end
 
+function Unit:GetPlayerID()
+  return 0
+end
+
 -----------------------------------------------
 
 Item = {}

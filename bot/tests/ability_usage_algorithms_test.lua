@@ -207,19 +207,19 @@ function test_channeling_enemy_hero()
   luaunit.assertEquals(target, {10, 10})
 end
 
-function test_max_networth_enemy_hero()
+function test_max_kills_enemy_hero()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
 
-  local desire, target = ability_usage_algorithms.max_networth_enemy_hero(
+  local desire, target = ability_usage_algorithms.max_kills_enemy_hero(
     GetBot(),
     ability)
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
-  luaunit.assertEquals(target, {20, 20})
+  luaunit.assertEquals(target, {10, 10})
 end
 
 function test_three_and_more_enemy_heroes_aoe()

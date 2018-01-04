@@ -51,13 +51,39 @@ local MAX = 2
 local function GetUnitWith(min_max, get_function, units)
   if #units == 0 then return nil end
 
-  local current_value = functions.ternary(min_max == MIN, 1000000, 0)
+  local current_value = functions.ternary(min_max == MIN, 1000000, -1)
   local result = nil
 
   for _, unit in pairs(units) do
     if unit == nil or not unit:IsAlive() then goto continue end
 
     local unit_value = unit[get_function](unit)
+    local is_positive_comparison = functions.ternary(
+      min_max == MIN,
+      unit_value < current_value,
+      current_value < unit_value)
+
+    if is_positive_comparison then
+      current_value = unit_value
+      result = unit
+    end
+
+    ::continue::
+  end
+
+  return result
+end
+
+local function GetHeroWith(min_max, get_function, units)
+  if #units == 0 then return nil end
+
+  local current_value = functions.ternary(min_max == MIN, 1000000, -1)
+  local result = nil
+
+  for _, unit in pairs(units) do
+    if unit == nil or not unit:IsAlive() then goto continue end
+
+    local unit_value = _G[get_function](unit:GetPlayerID())
     local is_positive_comparison = functions.ternary(
       min_max == MIN,
       unit_value < current_value,
@@ -131,9 +157,9 @@ function M.channeling_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-function M.max_networth_enemy_hero(npc_bot, ability)
+function M.max_kills_enemy_hero(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetUnitWith(MAX, 'GetNetWorth', enemy_heroes)
+  local enemy_hero = GetHeroWith(MAX, 'GetHeroKills', enemy_heroes)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then

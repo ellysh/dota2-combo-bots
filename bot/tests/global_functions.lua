@@ -88,6 +88,10 @@ function GetShopLocation(team, shop)
   return nil
 end
 
+function GetHeroKills(player_id)
+  return 2
+end
+
 --------------------------------------
 
 COURIER = Unit:new()
