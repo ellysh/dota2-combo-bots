@@ -3,9 +3,36 @@ package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 
 local ability_usage_algorithms = require("ability_usage_algorithms")
+local constants = require("constants")
 local luaunit = require('luaunit')
 
+function test_SetDefaultRadius()
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_SetDefaultRadius(1200),
+    1200)
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_SetDefaultRadius(0),
+    constants.DEFAULT_ABILITY_USAGE_RADIUS)
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_SetDefaultRadius(nil),
+    constants.DEFAULT_ABILITY_USAGE_RADIUS)
+end
+
 function test_GetEnemyHeroes()
+  test_RefreshBot()
+
+  local units = ability_usage_algorithms.test_GetEnemyHeroes(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+end
+
+function test_GetAllyHeroes()
   test_RefreshBot()
 
   local units = ability_usage_algorithms.test_GetEnemyHeroes(
@@ -28,6 +55,19 @@ function test_GetEnemyCreeps()
   luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
   luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
 end
+
+function test_GetAllyCreeps()
+  test_RefreshBot()
+
+  local units = ability_usage_algorithms.test_GetEnemyCreeps(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
+end
+
 
 function test_GetUnitWith()
   test_RefreshBot()

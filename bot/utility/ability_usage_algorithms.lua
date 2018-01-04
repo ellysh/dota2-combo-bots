@@ -11,7 +11,7 @@ local M = {}
 
 local function SetDefaultRadius(radius)
   return functions.ternary(
-    radius == 0,
+    radius == nil or radius == 0,
     constants.DEFAULT_ABILITY_USAGE_RADIUS,
     radius)
 end
@@ -319,8 +319,8 @@ end
 -- Provide an access to local functions and variables for unit tests only
 M.test_SetDefaultRadius = SetDefaultRadius
 M.test_GetEnemyHeroes = GetEnemyHeroes
-M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetAllyHeroes = GetAllyHeroes
+M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetAllyCreeps = GetAllyCreeps
 M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
