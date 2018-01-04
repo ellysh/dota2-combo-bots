@@ -28,6 +28,11 @@ M.ITEM_SELL = {
     time = 15
   },
 
+  item_boots = {
+    level = 10,
+    time = 20
+  },
+
   item_orb_of_venom = {
     level = 10,
     time = 20
