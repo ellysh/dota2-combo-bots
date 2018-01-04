@@ -258,6 +258,14 @@ function M.use_on_attack_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
 end
 
+function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
+  local enemies = GetEnemyCreeps(npc_bot, ability:GetAOERadius())
+
+  if 3 <= #enemies then return BOT_ACTION_DESIRE_HIGH, nil end
+
+  return BOT_ACTION_DESIRE_NONE, nil
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
