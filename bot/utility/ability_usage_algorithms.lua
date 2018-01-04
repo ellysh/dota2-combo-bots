@@ -13,6 +13,10 @@ local function GetEnemyHeroes(npc_bot, radius)
   return npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
 end
 
+local function GetAllyHeroes(npc_bot, radius)
+  return npc_bot:GetNearbyHeroes(radius, false, BOT_MODE_NONE)
+end
+
 local function GetEnemyCreeps(npc_bot, radius)
   return npc_bot:GetNearbyCreeps(radius, true)
 end
@@ -267,11 +271,26 @@ function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
 end
 
 function M.low_hp_self(npc_bot, ability)
-  if (npc_bot:GetHealth() / npc_bot:GetMaxHealth()) < 0.15 then
+  if (npc_bot:GetHealth() / npc_bot:GetMaxHealth()) < 0.20 then
     return BOT_ACTION_DESIRE_HIGH, GetTarget(npc_bot, ability)
   end
 
   return BOT_ACTION_DESIRE_NONE, nil
+end
+
+function M.low_hp_ally_hero(npc_bot, ability)
+  local ally_heroes = GetAllyHeroes(npc_bot, ability:GetCastRange())
+  local ally_hero = GetUnitWith(MIN, 'GetHealth', ally_heroes)
+
+  if ally_hero == nil
+    or not IsTargetable(ally_hero)
+    or (ally_hero:GetHealth() / ally_hero:GetMaxHealth()) > 0.20
+    then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(ally_hero, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only

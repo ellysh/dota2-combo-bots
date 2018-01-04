@@ -237,7 +237,7 @@ end
 function Bot:GetNearbyHeroes(radius, enemies, mode)
   local unit1 = Unit:new()
   unit1.name = "unit1"
-  unit1.health = 150
+  unit1.health = 10
   unit1.location = {10, 10}
   unit1.offensive_power = 100
 

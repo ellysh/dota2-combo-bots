@@ -38,7 +38,7 @@ function test_GetUnitWith()
     GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE))
 
   luaunit.assertEquals(unit:GetUnitName(), "unit1")
-  luaunit.assertEquals(unit:GetHealth(), 150)
+  luaunit.assertEquals(unit:GetHealth(), 10)
 end
 
 function test_IsTargetable()
@@ -363,6 +363,22 @@ function test_low_hp_self()
 
   luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
   luaunit.assertEquals(target, nil)
+end
+
+function test_low_hp_ally_hero()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local desire, target =
+    ability_usage_algorithms.low_hp_ally_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target:GetUnitName(), "unit1")
 end
 
 os.exit(luaunit.LuaUnit.run())
