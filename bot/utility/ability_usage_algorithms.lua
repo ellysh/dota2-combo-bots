@@ -9,16 +9,31 @@ local functions = require(
 
 local M = {}
 
+local function SetDefaultRadius(radius)
+  return functions.ternary(
+    radius == 0,
+    constants.DEFAULT_ABILITY_USAGE_RADIUS,
+    radius)
+end
+
 local function GetEnemyHeroes(npc_bot, radius)
+  radius = SetDefaultRadius(radius)
   return npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
 end
 
 local function GetAllyHeroes(npc_bot, radius)
+  radius = SetDefaultRadius(radius)
   return npc_bot:GetNearbyHeroes(radius, false, BOT_MODE_NONE)
 end
 
 local function GetEnemyCreeps(npc_bot, radius)
+  radius = SetDefaultRadius(radius)
   return npc_bot:GetNearbyCreeps(radius, true)
+end
+
+local function GetAllyCreeps(npc_bot, radius)
+  radius = SetDefaultRadius(radius)
+  return npc_bot:GetNearbyCreeps(radius, false)
 end
 
 local MIN = 1
@@ -293,9 +308,20 @@ function M.low_hp_ally_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(ally_hero, ability)
 end
 
+function M.three_and_more_ally_creep_aoe(npc_bot, ability)
+  local allies = GetAllyCreeps(npc_bot, ability:GetAOERadius())
+
+  if 3 <= #allies then return BOT_ACTION_DESIRE_HIGH, nil end
+
+  return BOT_ACTION_DESIRE_NONE, nil
+end
+
 -- Provide an access to local functions and variables for unit tests only
+M.test_SetDefaultRadius = SetDefaultRadius
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
+M.test_GetAllyHeroes = GetAllyHeroes
+M.test_GetAllyCreeps = GetAllyCreeps
 M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
