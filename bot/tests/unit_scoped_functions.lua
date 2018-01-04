@@ -182,6 +182,10 @@ function Unit:IsHero()
   return UNIT_IS_HERO
 end
 
+function Unit:IsCreep()
+  return not UNIT_IS_HERO
+end
+
 function Unit:GetOffensivePower()
   return self.offensive_power
 end

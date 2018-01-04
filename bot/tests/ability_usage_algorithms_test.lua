@@ -389,6 +389,35 @@ function test_use_on_attack_enemy_hero_aoe()
   luaunit.assertEquals(target, nil)
 end
 
+function test_use_on_attack_enemy_creep_aoe()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  UNIT_IS_HERO = false
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_creep_aoe(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target, {10, 10})
+
+  UNIT_IS_HERO = true
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_creep_aoe(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(target, nil)
+end
+
+
 function test_three_and_more_enemy_creeps_aoe()
   test_RefreshBot()
 
