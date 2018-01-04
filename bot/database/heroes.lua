@@ -5,7 +5,7 @@ M.HEROES = {
 
   {
     name = "npc_dota_hero_crystal_maiden",
-    position = {5, nil},
+    position = {4, nil},
     combo_heroes = {
       "npc_dota_hero_juggernaut",
       "npc_dota_hero_sven",
@@ -50,7 +50,7 @@ M.HEROES = {
 
   {
     name = "npc_dota_hero_shadow_shaman",
-    position = {4, 5},
+    position = {5, 4},
     combo_heroes = {
       "npc_dota_hero_ursa",
       "npc_dota_hero_juggernaut",

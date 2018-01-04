@@ -1,6 +1,6 @@
 Hero;Position;;Combo Heroes;;;Counter Heroes;;
-npc_dota_hero_crystal_maiden;5;;npc_dota_hero_juggernaut;  npc_dota_hero_sven;  npc_dota_hero_ursa;npc_dota_hero_elder_titan;npc_dota_hero_earth_spirit;  npc_dota_hero_brewmaster
+npc_dota_hero_crystal_maiden;4;;npc_dota_hero_juggernaut;  npc_dota_hero_sven;  npc_dota_hero_ursa;npc_dota_hero_elder_titan;npc_dota_hero_earth_spirit;  npc_dota_hero_brewmaster
 npc_dota_hero_juggernaut;1;;npc_dota_hero_crystal_maiden;npc_dota_hero_shadow_shaman;npc_dota_hero_venomancer;  npc_dota_hero_ursa;  npc_dota_hero_razor;npc_dota_hero_drow_ranger
 npc_dota_hero_ursa;3;;npc_dota_hero_crystal_maiden;npc_dota_hero_shadow_shaman;;  npc_dota_hero_razor;npc_dota_hero_venomancer;
-npc_dota_hero_shadow_shaman;4;5;  npc_dota_hero_ursa;npc_dota_hero_juggernaut;;npc_dota_hero_drow_ranger;;
+npc_dota_hero_shadow_shaman;5;4;  npc_dota_hero_ursa;npc_dota_hero_juggernaut;;npc_dota_hero_drow_ranger;;
 npc_dota_hero_drow_ranger;2;;  npc_dota_hero_vengefulspirit;npc_dota_hero_visage;  npc_dota_hero_windrunner;;;
