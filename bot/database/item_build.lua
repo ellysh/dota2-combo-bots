@@ -3,7 +3,7 @@ local M = {}
 
 M.ITEM_BUILD = {
 
-  item_power_treads = {
+  npc_dota_hero_crystal_maiden = {
     items = {
       "item_tango",
       "item_clarity",

@@ -1,5 +1,5 @@
 Hero;Starting Items;;;Core Items;;;Extra Items;;;
-item_power_treads;item_tango;item_clarity;;item_magic_wand;item_tranquil_boots;item_glimmer_cape;item_force_staff;  item_ultimate_scepter;item_blink;item_lotus_orb
+npc_dota_hero_crystal_maiden;item_tango;item_clarity;;item_magic_wand;item_tranquil_boots;item_glimmer_cape;item_force_staff;  item_ultimate_scepter;item_blink;item_lotus_orb
 npc_dota_hero_juggernaut;item_tango;item_flask;item_stout_shield;item_magic_wand;item_phase_boots;item_manta;item_diffusal_blade;item_butterfly;item_abyssal_blade;item_skadi
 npc_dota_hero_sven;item_tango;item_flask;item_stout_shield;item_power_treads;  item_mask_of_madness;item_echo_sabre;item_blink;item_black_king_bar;item_satanic;item_heart
 npc_dota_hero_ursa;item_tango;item_flask;item_stout_shield;item_phase_boots;item_vladmir;item_blink;item_black_king_bar;item_monkey_king_bar;item_skadi;item_abyssal_blade
