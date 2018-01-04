@@ -23,7 +23,8 @@ function Unit:new()
     gold = 625,
     inventory = {},
     location = {10, 10},
-    networth = 500
+    networth = 500,
+    damage = 100
   }
 
   self.__index = self
@@ -189,6 +190,15 @@ function Unit:GetPlayerID()
   return 0
 end
 
+function Unit:GetEstimatedDamageToTarget(
+  currently_available,
+  target,
+  duration,
+  damage_type)
+
+  return self.damage
+end
+
 -----------------------------------------------
 
 Item = {}
@@ -243,21 +253,21 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   unit1.name = "unit1"
   unit1.health = 10
   unit1.location = {10, 10}
-  unit1.offensive_power = 100
+  unit1.damage = 100
 
   local unit2 = Unit:new()
   unit2.name = "unit2"
   unit2.health = 200
   unit2.networth = 1000
   unit2.location = {20, 20}
-  unit2.offensive_power = 200
+  unit2.damage = 200
 
   local unit3 = Unit:new()
   unit3.name = "unit3"
   unit3.health = 180
   unit3.networth = 180
   unit3.location = {15, 15}
-  unit3.offensive_power = 180
+  unit3.damage = 180
 
   return { unit1, unit2, unit3 }
 end

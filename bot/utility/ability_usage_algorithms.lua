@@ -270,6 +270,26 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
+function M.max_estimated_damage_enemy_hero(npc_bot, ability)
+  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+  local enemy_hero = GetUnitWith(
+    MAX,
+    function(unit) return unit:GetEstimatedDamageToTarget(
+      true,
+      npc_bot,
+      3.0,
+      DAMAGE_TYPE_ALL) end,
+    enemy_heroes)
+
+  if enemy_hero == nil
+    or not IsTargetable(enemy_hero) then
+
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+end
+
 function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
   local target = npc_bot:GetAttackTarget()
 

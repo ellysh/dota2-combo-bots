@@ -345,6 +345,22 @@ function test_toggle_on_attack_enemy_hero()
   luaunit.assertFalse(ABILITY_TOGGLE_STATE)
 end
 
+function test_max_estimated_damage_enemy_hero()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target =
+    ability_usage_algorithms.max_estimated_damage_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target, {20, 20})
+end
+
 function test_use_on_attack_enemy_hero_aoe()
   test_RefreshBot()
 
