@@ -291,4 +291,32 @@ function test_max_offensive_power_enemy_hero()
   luaunit.assertEquals(target, {20, 20})
 end
 
+function test_use_on_attack_enemy_hero()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  UNIT_IS_HERO = true
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target, {10, 10})
+
+  UNIT_IS_HERO = false
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(target, nil)
+end
+
 os.exit(luaunit.LuaUnit.run())

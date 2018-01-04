@@ -248,6 +248,16 @@ function M.max_offensive_power_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
+function M.use_on_attack_enemy_hero(npc_bot, ability)
+  local target = npc_bot:GetAttackTarget()
+
+  if target == nil or not target:IsHero() then
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_GetEnemyHeroes = GetEnemyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
