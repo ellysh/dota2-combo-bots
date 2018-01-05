@@ -483,6 +483,22 @@ M.ITEM_RECIPE = {
       "item_recipe_armlet"}
   },
 
+  item_greater_crit = {
+    components = {
+      "item_lesser_crit",
+      "item_demon_edge",
+      "item_recipe_greater_crit",
+      "nil"}
+  },
+
+  item_lesser_crit = {
+    components = {
+      "item_broadsword",
+      "item_blades_of_attack",
+      "item_recipe_lesser_crit",
+      "nil"}
+  },
+
 }
 
 return M

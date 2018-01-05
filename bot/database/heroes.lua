@@ -93,6 +93,21 @@ M.HEROES = {
     }
   },
 
+  {
+    name = "npc_dota_hero_sniper",
+    position = {2, 1},
+    combo_heroes = {
+      "npc_dota_hero_ogre_magi",
+      "npc_dota_hero_skeleton_king",
+      "npc_dota_hero_vengefulspirit"
+    },
+    counter_heroes = {
+      "npc_dota_hero_phantom_assassin",
+      "npc_dota_hero_rattletrap",
+      "npc_dota_hero_centaur"
+    }
+  },
+
 }
 
 return M

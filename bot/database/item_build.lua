@@ -353,6 +353,20 @@ M.ITEM_BUILD = {
       "nil"}
   },
 
+  npc_dota_hero_sniper = {
+    items = {
+      "item_tango",
+      "item_wraith_band",
+      "nil",
+      "item_ring_of_aquila",
+      "item_phase_boots",
+      "item_hurricane_pike",
+      "item_mjollnir",
+      "item_invis_sword",
+      "item_greater_crit",
+      "item_butterfly"}
+  },
+
 }
 
 return M
