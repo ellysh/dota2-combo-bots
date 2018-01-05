@@ -46,7 +46,7 @@ local function GetRandomHero(position)
         and GetRandomTrue()
         and not IsHeroPicked(hero.name) then
 
-        logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. hero.position[1])
+        logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. position)
 
         return hero.name
       end
