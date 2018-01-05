@@ -10,9 +10,16 @@ local functions = require(
 local M = {}
 
 local function SetDefaultRadius(radius)
+  if radius == nil or radius == 0 then
+    return constants.DEFAULT_ABILITY_USAGE_RADIUS
+  end
+
+  -- TODO: Trick with MAX_ABILITY_USAGE_RADIUS breaks Sniper's ult.
+  -- But the GetNearbyHeroes function has the maximum radius 1600.
+
   return functions.ternary(
-    radius == nil or radius == 0,
-    constants.DEFAULT_ABILITY_USAGE_RADIUS,
+    constants.MAX_ABILITY_USAGE_RADIUS < radius,
+    constants.MAX_ABILITY_USAGE_RADIUS,
     radius)
 end
 

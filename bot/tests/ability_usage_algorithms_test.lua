@@ -18,6 +18,10 @@ function test_SetDefaultRadius()
   luaunit.assertEquals(
     ability_usage_algorithms.test_SetDefaultRadius(nil),
     constants.DEFAULT_ABILITY_USAGE_RADIUS)
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_SetDefaultRadius(2000),
+    constants.MAX_ABILITY_USAGE_RADIUS)
 end
 
 function test_GetEnemyHeroes()
