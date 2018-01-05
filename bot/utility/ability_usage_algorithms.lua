@@ -322,12 +322,28 @@ function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
     ability:GetAOERadius())
 end
 
+function M.use_on_attack_enemy_hero_melee(npc_bot, ability)
+  return UseOnAttackEnemyUnit(
+    npc_bot,
+    ability,
+    'IsHero',
+    constants.MELEE_ATTACK_RADIUS)
+end
+
 function M.use_on_attack_enemy_creep_aoe(npc_bot, ability)
   return UseOnAttackEnemyUnit(
     npc_bot,
     ability,
     'IsCreep',
     ability:GetAOERadius())
+end
+
+function M.use_on_attack_enemy_creep_melee(npc_bot, ability)
+  return UseOnAttackEnemyUnit(
+    npc_bot,
+    ability,
+    'IsCreep',
+    constants.MELEE_ATTACK_RADIUS)
 end
 
 function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
