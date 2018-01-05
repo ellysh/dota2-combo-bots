@@ -31,6 +31,8 @@ function test_IsIntersectionOfLists()
 end
 
 function test_IsHeroPickedByTeam()
+  SelectHero(1, "npc_dota_hero_venomancer")
+
   luaunit.assertTrue(
     hero_selection.test_IsHeroPickedByTeam("npc_dota_hero_venomancer",
     TEAM_RADIANT))
@@ -56,7 +58,7 @@ end
 function test_GetRandomHero()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
-    "npc_dota_hero_shadow_shaman")
+    "npc_dota_hero_crystal_maiden")
 end
 
 function test_GetComboHero()
@@ -68,15 +70,15 @@ end
 function test_Think()
   Think()
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_juggernaut")
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_ursa")
 
   luaunit.assertEquals(
     SELECTED_HEROES[2],
     "npc_dota_hero_drow_ranger")
 
-  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_ursa")
-  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_shadow_shaman")
+  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
+  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_shadow_shaman")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_crystal_maiden")
 end
 
 function test_UpdateLaneAssignments()

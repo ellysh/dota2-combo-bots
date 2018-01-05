@@ -522,27 +522,3 @@ end
 function Ability:ToggleAutoCast()
   ABILITY_TOGGLE_STATE = not ABILITY_TOGGLE_STATE
 end
-
-------------------------------------------------
-
-function GetTeam()
-  return TEAM_RADIANT
-end
-
-function GetOpposingTeam()
-  return TEAM_DIRE
-end
-
-function GetTeamPlayers(team)
-  return {1, 2, 3, 4, 5}
-end
-
-function IsPlayerBot(playerId)
-  return true
-end
-
-SELECTED_HEROES = {}
-
-function SelectHero(playerId, heroName)
-  SELECTED_HEROES[playerId] = heroName
-end

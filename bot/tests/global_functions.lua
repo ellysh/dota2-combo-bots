@@ -64,8 +64,30 @@ function RandomInt()
   return 2
 end
 
+function GetTeam()
+  return TEAM_RADIANT
+end
+
+function GetOpposingTeam()
+  return TEAM_DIRE
+end
+
+function GetTeamPlayers(team)
+  return {1, 2, 3, 4, 5}
+end
+
+function IsPlayerBot(playerId)
+  return true
+end
+
+SELECTED_HEROES = {}
+
+function SelectHero(playerId, heroName)
+  SELECTED_HEROES[playerId] = heroName
+end
+
 function GetSelectedHeroName(playerId)
-  return "npc_dota_hero_venomancer"
+  return SELECTED_HEROES[playerId]
 end
 
 function GetUnitToLocationDistance(unit, location)

@@ -408,7 +408,7 @@ function test_ItemPurchaseThink_with_full_inventory()
 
   luaunit.assertEquals(
     GetBot():GetItemInSlot(1):GetName(),
-    "item_clarity")
+    "item_tango")
 end
 
 os.exit(luaunit.LuaUnit.run())
