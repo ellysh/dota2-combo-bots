@@ -297,28 +297,37 @@ function M.max_estimated_damage_enemy_hero(npc_bot, ability)
   return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
 end
 
-function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
+local function UseOnAttackEnemyUnit(
+  npc_bot,
+  ability,
+  check_type_function,
+  radius)
+
   local target = npc_bot:GetAttackTarget()
 
   if target == nil
-    or not target:IsHero()
-    or ability:GetAOERadius() < GetUnitToUnitDistance(npc_bot, target) then
+    or not target[check_type_function](target)
+    or radius < GetUnitToUnitDistance(npc_bot, target) then
     return BOT_ACTION_DESIRE_NONE, nil
   end
 
   return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
 end
 
+function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
+  return UseOnAttackEnemyUnit(
+    npc_bot,
+    ability,
+    'IsHero',
+    ability:GetAOERadius())
+end
+
 function M.use_on_attack_enemy_creep_aoe(npc_bot, ability)
-  local target = npc_bot:GetAttackTarget()
-
-  if target == nil
-    or not target:IsCreep()
-    or ability:GetAOERadius() < GetUnitToUnitDistance(npc_bot, target) then
-    return BOT_ACTION_DESIRE_NONE, nil
-  end
-
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
+  return UseOnAttackEnemyUnit(
+    npc_bot,
+    ability,
+    'IsCreep',
+    ability:GetAOERadius())
 end
 
 function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
