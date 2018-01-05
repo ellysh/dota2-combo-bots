@@ -475,6 +475,14 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
+  item_armlet = {
+    components = {
+      "item_helm_of_iron_will",
+      "item_gloves",
+      "item_blades_of_attack",
+      "item_recipe_armlet"}
+  },
+
 }
 
 return M

@@ -5,7 +5,7 @@ M.HEROES = {
 
   {
     name = "npc_dota_hero_crystal_maiden",
-    position = {4, nil},
+    position = {4, 5},
     combo_heroes = {
       "npc_dota_hero_juggernaut",
       "npc_dota_hero_sven",
@@ -20,7 +20,7 @@ M.HEROES = {
 
   {
     name = "npc_dota_hero_juggernaut",
-    position = {1, nil},
+    position = {1, 3},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
       "npc_dota_hero_shadow_shaman",
@@ -35,16 +35,16 @@ M.HEROES = {
 
   {
     name = "npc_dota_hero_ursa",
-    position = {3, nil},
+    position = {3, 1},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
       "npc_dota_hero_shadow_shaman",
-      "nil"
+      "npc_dota_hero_wisp"
     },
     counter_heroes = {
       "npc_dota_hero_razor",
       "npc_dota_hero_venomancer",
-      "nil"
+      "npc_dota_hero_phantom_lancer"
     }
   },
 
@@ -54,27 +54,42 @@ M.HEROES = {
     combo_heroes = {
       "npc_dota_hero_ursa",
       "npc_dota_hero_juggernaut",
-      "nil"
+      "npc_dota_hero_broodmother"
     },
     counter_heroes = {
       "npc_dota_hero_drow_ranger",
-      "nil",
-      "nil"
+      "npc_dota_hero_phantom_lancer",
+      "npc_dota_hero_terrorblade"
     }
   },
 
   {
     name = "npc_dota_hero_drow_ranger",
-    position = {2, nil},
+    position = {1, 2},
     combo_heroes = {
       "npc_dota_hero_vengefulspirit",
       "npc_dota_hero_visage",
       "npc_dota_hero_windrunner"
     },
     counter_heroes = {
-      "nil",
-      "nil",
-      "nil"
+      "npc_dota_hero_phantom_assassin",
+      "npc_dota_hero_phantom_lancer",
+      "npc_dota_hero_broodmother"
+    }
+  },
+
+  {
+    name = "npc_dota_hero_skeleton_king",
+    position = {2, 3},
+    combo_heroes = {
+      "npc_dota_hero_vengefulspirit",
+      "npc_dota_hero_lina",
+      "npc_dota_hero_ursa"
+    },
+    counter_heroes = {
+      "npc_dota_hero_phantom_lancer",
+      "npc_dota_hero_undying",
+      "npc_dota_hero_broodmother"
     }
   },
 

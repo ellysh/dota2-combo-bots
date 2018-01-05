@@ -339,6 +339,20 @@ M.ITEM_BUILD = {
       "item_butterfly"}
   },
 
+  npc_dota_hero_skeleton_king = {
+    items = {
+      "item_tango",
+      "item_flask",
+      "item_stout_shield",
+      "item_power_treads",
+      "item_armlet",
+      "item_blink",
+      "item_radiance",
+      "item_assault",
+      "item_heart",
+      "nil"}
+  },
+
 }
 
 return M
