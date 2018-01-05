@@ -108,6 +108,21 @@ M.HEROES = {
     }
   },
 
+  {
+    name = "npc_dota_hero_lion",
+    position = {5, 4},
+    combo_heroes = {
+      "npc_dota_hero_lina",
+      "npc_dota_hero_legion_commander",
+      "npc_dota_hero_juggernaut"
+    },
+    counter_heroes = {
+      "npc_dota_hero_vengefulspirit",
+      "npc_dota_hero_centaur",
+      "npc_dota_hero_tidehunter"
+    }
+  },
+
 }
 
 return M

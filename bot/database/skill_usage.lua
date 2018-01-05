@@ -291,6 +291,66 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = algorithms["nil"]
   },
 
+  lion_impale = {
+      any_mode = algorithms["min_hp_enemy_hero_to_kill"],
+      team_fight = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_ROAM = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_ATTACK = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_ROSHAN = algorithms["max_hp_creep"],
+      BOT_MODE_FARM = algorithms["max_hp_creep"],
+      BOT_MODE_DEFEND_TOWER = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_RETREAT = algorithms["last_attacked_enemy_hero"],
+      BOT_MODE_DEFEND_ALLY = algorithms["max_kills_enemy_hero"]
+  },
+
+  lion_voodoo = {
+      any_mode = algorithms["channeling_enemy_hero"],
+      team_fight = algorithms["max_estimated_damage_enemy_hero"],
+      BOT_MODE_ROAM = algorithms["max_estimated_damage_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["max_estimated_damage_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["max_estimated_damage_enemy_hero"],
+      BOT_MODE_ATTACK = algorithms["max_estimated_damage_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_ROSHAN = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["max_estimated_damage_enemy_hero"],
+      BOT_MODE_RETREAT = algorithms["last_attacked_enemy_hero"],
+      BOT_MODE_DEFEND_ALLY = algorithms["max_kills_enemy_hero"]
+  },
+
+  lion_mana_drain = {
+      any_mode = algorithms["nil"],
+      team_fight = algorithms["nil"],
+      BOT_MODE_ROAM = algorithms["nil"],
+      BOT_MODE_TEAM_ROAM = algorithms["nil"],
+      BOT_MODE_PUSH_TOWER = algorithms["nil"],
+      BOT_MODE_ATTACK = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_ROSHAN = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["nil"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["nil"]
+  },
+
+  lion_finger_of_death = {
+      any_mode = algorithms["min_hp_enemy_hero_to_kill"],
+      team_fight = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_ROAM = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_TEAM_ROAM = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_PUSH_TOWER = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_ATTACK = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_LANING = algorithms["nil"],
+      BOT_MODE_ROSHAN = algorithms["nil"],
+      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_DEFEND_TOWER = algorithms["max_kills_enemy_hero"],
+      BOT_MODE_RETREAT = algorithms["nil"],
+      BOT_MODE_DEFEND_ALLY = algorithms["max_kills_enemy_hero"]
+  },
+
 }
 
 return M
