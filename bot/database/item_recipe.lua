@@ -262,8 +262,8 @@ M.ITEM_RECIPE = {
   item_hurricane_pike = {
     components = {
       "item_wraith_band",
-      "item_force_staff",
       "item_dragon_lance",
+      "item_force_staff",
       "nil"}
   },
 
