@@ -31,7 +31,9 @@ function M.InitAbilities()
 end
 
 local function AbilityLevelUp(npc_bot, ability)
-  if ability ~= nil and ability:CanAbilityBeUpgraded() then
+  if ability ~= nil
+    and not ability:IsNull()
+    and ability:CanAbilityBeUpgraded() then
 
     logger.Print("AbilityLevelUp() - " .. npc_bot:GetUnitName() ..
                  " level up " .. ability:GetName())
