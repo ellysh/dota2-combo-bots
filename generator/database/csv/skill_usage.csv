@@ -20,5 +20,5 @@ sniper_shrapnel;;three_and_more_enemy_heroes;max_kills_enemy_hero;max_kills_enem
 sniper_assassinate;min_hp_enemy_hero_to_kill;;;;;;;;;;;
 lion_impale;min_hp_enemy_hero_to_kill;max_kills_enemy_hero;max_kills_enemy_hero;max_kills_enemy_hero;max_kills_enemy_hero;max_kills_enemy_hero;;max_hp_creep;max_hp_creep;max_kills_enemy_hero;last_attacked_enemy_hero;max_kills_enemy_hero
 lion_voodoo;channeling_enemy_hero;max_estimated_damage_enemy_hero;max_estimated_damage_enemy_hero;max_estimated_damage_enemy_hero;max_estimated_damage_enemy_hero;max_estimated_damage_enemy_hero;;;;max_estimated_damage_enemy_hero;last_attacked_enemy_hero;max_kills_enemy_hero
-lion_mana_drain;;;;;;max_kills_enemy_hero;;;;;;
+lion_mana_drain;;;;;;;max_estimated_damage_enemy_hero;;;;;
 lion_finger_of_death;min_hp_enemy_hero_to_kill;max_kills_enemy_hero;max_kills_enemy_hero;max_kills_enemy_hero;max_kills_enemy_hero;max_kills_enemy_hero;;;;max_kills_enemy_hero;;max_kills_enemy_hero
