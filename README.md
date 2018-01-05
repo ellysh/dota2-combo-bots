@@ -35,9 +35,9 @@ The [Lua interpreter](https://www.lua.org/download.html) of the 5.3 and above ve
 
 ## Installation
 
-Now the Combo Bots project is still in development stage. It is not ready for testing by players community. Therefore, it is not available on Steam yet.
+You can download a current version of Combo Bots on [Steam](http://steamcommunity.com/sharedfiles/filedetails/?id=1258300901).
 
-You can download the bots and install them manually in the Dota 2 game directory. These are steps to do it:
+These a steps to download the bots and install them manually in the Dota 2 game directory:
 
 1. Download the [Combo Bots archive](https://github.com/ellysh/dota2-combo-bots/archive/master.zip).
 2. Unpack the archive.
@@ -48,7 +48,7 @@ You can download the bots and install them manually in the Dota 2 game directory
 
 More details about installing custom bots you can find in this [Dota 2 AI Quick Start](http://ruoyusun.com/2017/01/08/dota2-ai-quickstart.html) guide.
 
-## Configuration
+## Customization
 
 You can find Combo Bots Database file in the `generator/database/docs/Database.ods` path. It has the standard Excel document format.
 
