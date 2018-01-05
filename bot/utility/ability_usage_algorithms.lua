@@ -412,6 +412,7 @@ M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
+M.test_UseOnAttackEnemyUnit = UseOnAttackEnemyUnit
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 
 M.test_MIN = MIN
