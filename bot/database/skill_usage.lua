@@ -322,15 +322,15 @@ M.SKILL_USAGE = {
   },
 
   lion_mana_drain = {
-      any_mode = algorithms["use_on_attack_enemy_with_mana_when_low_mp"],
+      any_mode = algorithms["nil"],
       team_fight = algorithms["nil"],
       BOT_MODE_ROAM = algorithms["nil"],
       BOT_MODE_TEAM_ROAM = algorithms["nil"],
       BOT_MODE_PUSH_TOWER = algorithms["nil"],
-      BOT_MODE_ATTACK = algorithms["nil"],
-      BOT_MODE_LANING = algorithms["nil"],
-      BOT_MODE_ROSHAN = algorithms["nil"],
-      BOT_MODE_FARM = algorithms["nil"],
+      BOT_MODE_ATTACK = algorithms["use_on_attack_enemy_with_mana_when_low_mp"],
+      BOT_MODE_LANING = algorithms["use_on_attack_enemy_with_mana_when_low_mp"],
+      BOT_MODE_ROSHAN = algorithms["use_on_attack_enemy_with_mana_when_low_mp"],
+      BOT_MODE_FARM = algorithms["use_on_attack_enemy_with_mana_when_low_mp"],
       BOT_MODE_DEFEND_TOWER = algorithms["nil"],
       BOT_MODE_RETREAT = algorithms["nil"],
       BOT_MODE_DEFEND_ALLY = algorithms["nil"]
