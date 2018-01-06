@@ -18,6 +18,8 @@ function Unit:new()
     name = "npc_dota_hero_crystal_maiden",
     health = 200,
     max_health = 200,
+    mana = 200,
+    max_mana = 200,
     offensive_power = 100,
     is_alive = true,
     gold = 625,
@@ -37,6 +39,14 @@ end
 
 function Unit:GetHealth()
   return self.health
+end
+
+function Unit:GetMana()
+  return self.mana
+end
+
+function Unit:GetMaxMana()
+  return self.max_mana
 end
 
 function Unit:GetMaxHealth()

@@ -300,14 +300,15 @@ end
 local function UseOnAttackEnemyUnit(
   npc_bot,
   ability,
-  check_type_function,
+  check_function,
   radius)
 
   local target = npc_bot:GetAttackTarget()
 
   if target == nil
-    or not target[check_type_function](target)
+    or not check_function(target)
     or radius < GetUnitToUnitDistance(npc_bot, target) then
+
     return BOT_ACTION_DESIRE_NONE, nil
   end
 
@@ -318,7 +319,7 @@ function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
   return UseOnAttackEnemyUnit(
     npc_bot,
     ability,
-    'IsHero',
+    function(unit) return unit:IsHero() end,
     ability:GetAOERadius())
 end
 
@@ -326,7 +327,7 @@ function M.use_on_attack_enemy_hero_melee(npc_bot, ability)
   return UseOnAttackEnemyUnit(
     npc_bot,
     ability,
-    'IsHero',
+    function(unit) return unit:IsHero() end,
     constants.MELEE_ATTACK_RADIUS)
 end
 
@@ -334,7 +335,7 @@ function M.use_on_attack_enemy_creep_aoe(npc_bot, ability)
   return UseOnAttackEnemyUnit(
     npc_bot,
     ability,
-    'IsCreep',
+    function(unit) return unit:IsCreep() end,
     ability:GetAOERadius())
 end
 
@@ -342,8 +343,24 @@ function M.use_on_attack_enemy_creep_melee(npc_bot, ability)
   return UseOnAttackEnemyUnit(
     npc_bot,
     ability,
-    'IsCreep',
+    function(unit) return unit:IsCreep() end,
     constants.MELEE_ATTACK_RADIUS)
+end
+
+local function GetUnitManaLevel(unit)
+  return unit:GetMana() / unit:GetMaxMana()
+end
+
+function M.use_on_attack_enemy_with_mana_when_low_mp(npc_bot, ability)
+  if GetUnitManaLevel(npc_bot) > constants.UNIT_LOW_MANA_LEVEL then
+    return BOT_ACTION_DESIRE_NONE, nil
+  end
+
+  return UseOnAttackEnemyUnit(
+    npc_bot,
+    ability,
+    function(unit) return 0 < unit:GetMana() end,
+    ability:GetCastRange())
 end
 
 function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
@@ -359,7 +376,7 @@ local function GetUnitHealthLevel(unit)
 end
 
 function M.low_hp_self(npc_bot, ability)
-  if GetUnitHealthLevel(npc_bot) < constants.UNIT_LOW_HP_LEVEL then
+  if GetUnitHealthLevel(npc_bot) < constants.UNIT_LOW_HEALTH_LEVEL then
     return BOT_ACTION_DESIRE_HIGH, GetTarget(npc_bot, ability)
   end
 
@@ -372,7 +389,7 @@ function M.low_hp_ally_hero(npc_bot, ability)
 
   if ally_hero == nil
     or not IsTargetable(ally_hero)
-    or GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HP_LEVEL
+    or GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HEALTH_LEVEL
     then
 
     return BOT_ACTION_DESIRE_NONE, nil

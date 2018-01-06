@@ -511,6 +511,34 @@ function test_use_on_attack_enemy_creep_melee()
   luaunit.assertEquals(target, nil)
 end
 
+function test_use_on_attack_enemy_with_mana_when_low_mp()
+  test_RefreshBot()
+
+  local npc_bot = GetBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_with_mana_when_low_mp(
+      npc_bot,
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(target, nil)
+
+  npc_bot.mana = npc_bot.max_mana / 4
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_with_mana_when_low_mp(
+      npc_bot,
+      ability)
+
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(target, {10, 10})
+end
+
 function test_UseOnAttackEnemyUnit()
   test_RefreshBot()
 
