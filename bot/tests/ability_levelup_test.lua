@@ -139,4 +139,167 @@ function test_AbilityLevelUpThink()
   luaunit.assertEquals(BOT_LEVELUP_ABILITY, "crystal_maiden_frostbite")
 end
 
+-- We cannot start this test from level 1 because the Database
+-- was changed in the test_AbilityLevelUpThink test.
+
+function test_AbilityLevelUpThink_from_2_to_25_level()
+  test_RefreshBot()
+
+  local npc_bot = GetBot()
+  npc_bot.level = 25
+  npc_bot.ability_points = 18
+
+  ability_levelup.test_SetAbilities(
+    {
+      npc_dota_hero_crystal_maiden = {
+        Ability:new("crystal_maiden_crystal_nova"),
+        Ability:new("crystal_maiden_frostbite"),
+        Ability:new("crystal_maiden_brilliance_aura"),
+        Ability:new("crystal_maiden_freezing_field")
+      }
+    })
+
+  ability_levelup.test_SetTalents(
+    {
+      npc_dota_hero_crystal_maiden = {
+        Ability:new("special_bonus_hp_200"),
+        Ability:new("special_bonus_cast_range_100"),
+        Ability:new("special_bonus_unique_crystal_maiden_4"),
+        Ability:new("special_bonus_gold_income_15"),
+        Ability:new("special_bonus_attack_speed_250"),
+        Ability:new("special_bonus_unique_crystal_maiden_3"),
+        Ability:new("special_bonus_unique_crystal_maiden_1"),
+        Ability:new("special_bonus_unique_crystal_maiden_2")
+      }
+    })
+
+  ABILITY_CAN_BE_UPGRADED = true
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_brilliance_aura")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_brilliance_aura")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_crystal_nova")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_brilliance_aura")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_freezing_field")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_brilliance_aura")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_crystal_nova")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_crystal_nova")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "special_bonus_cast_range_100")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_crystal_nova")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_freezing_field")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_frostbite")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_frostbite")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "special_bonus_unique_crystal_maiden_4")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_frostbite")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_freezing_field")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "special_bonus_unique_crystal_maiden_3")
+
+  BOT_LEVELUP_ABILITY = nil
+  ability_levelup.AbilityLevelUpThink()
+
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "special_bonus_unique_crystal_maiden_2")
+end
+
 os.exit(luaunit.LuaUnit.run())
