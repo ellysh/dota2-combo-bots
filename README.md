@@ -166,23 +166,23 @@ The bot will follow rules from this sheet when it gains a new level and updates 
 
 ### SKILL_USAGE
 
-The `SKILL_USAGE` sheet describes conditions when the bot should use each of hero's abilities. The conditions are implemented as the functions in the `bot/utility/ability_usage_algorithms.lua` file. If you want to add a new condition, you should implement the function in this file with the corresponding name. Each condition-function returns a desire (0.0 to 1.0 value) to use the ability and the target for it.
+The `SKILL_USAGE` sheet describes desires and conditions when the bot should use each of hero's abilities. The conditions are implemented as the functions in the `bot/utility/ability_usage_algorithms.lua` file. If you want to add a new condition, you should implement the function in this file with the corresponding name. Each condition-function returns a boolean result of its checking and the target for the ability.
 
 These are columns of this sheet:
 
 1. Skill Name - this is the built-in name of a hero ability.
-2. Any Mode - this a condition of the skill usage for any [active mode](https://developer.valvesoftware.com/wiki/Dota_Bot_Scripting#Bot_Modes) of the bot.
-3. Team Fight - this a condition of the skill usage when the bot is in a team fight.
-4. `BOT_MODE_ROAM` - this is a condition for the `BOT_MODE_ROAM` mode.
-5. `BOT_MODE_TEAM_ROAM` - this is a condition for the `BOT_MODE_TEAM_ROAM` mode.
-6. `BOT_MODE_PUSH_TOWER` - this is a condition for any of `BOT_MODE_PUSH_TOWER_TOP`, `BOT_MODE_PUSH_TOWER_MID` and `BOT_MODE_PUSH_TOWER_BOT` modes.
-7. `BOT_MODE_ATTACK` - this is a condition for the `BOT_MODE_ATTACK` mode.
-8. `BOT_MODE_LANING` - this is a condition for the `BOT_MODE_LANING` mode.
-9. `BOT_MODE_ROSHAN` - this is a condition for the `BOT_MODE_ROSHAN` mode.
-10. `BOT_MODE_FARM` - this is a condition for the `BOT_MODE_FARM` mode.
-11. `BOT_MODE_DEFEND_TOWER` - this is a condition for any of `BOT_MODE_DEFEND_TOWER_TOP`, `BOT_MODE_DEFEND_TOWER_MID` and `BOT_MODE_DEFEND_TOWER_BOT` modes.
-12. `BOT_MODE_RETREAT` - this is a condition for the `BOT_MODE_RETREAT` mode.
-13. `BOT_MODE_DEFEND_ALLY` - this is a condition for the `BOT_MODE_DEFEND_ALLY` mode.
+2. Any Mode - this a condition of the skill usage for any [active mode](https://developer.valvesoftware.com/wiki/Dota_Bot_Scripting#Bot_Modes) of the bot. The second sub-column contains a desire (from 0.0. to 1.0 value) to use this ability.
+3. Team Fight - this a desire and condition of the skill usage when the bot is in a team fight.
+4. `BOT_MODE_ROAM` - this is a desire and condition for the `BOT_MODE_ROAM` mode.
+5. `BOT_MODE_TEAM_ROAM` - this is a desire and condition for the `BOT_MODE_TEAM_ROAM` mode.
+6. `BOT_MODE_PUSH_TOWER` - this is a desire and condition for any of `BOT_MODE_PUSH_TOWER_TOP`, `BOT_MODE_PUSH_TOWER_MID` and `BOT_MODE_PUSH_TOWER_BOT` modes.
+7. `BOT_MODE_ATTACK` - this is a desire and condition for the `BOT_MODE_ATTACK` mode.
+8. `BOT_MODE_LANING` - this is a desire and condition for the `BOT_MODE_LANING` mode.
+9. `BOT_MODE_ROSHAN` - this is a desire and condition for the `BOT_MODE_ROSHAN` mode.
+10. `BOT_MODE_FARM` - this is a desire and condition for the `BOT_MODE_FARM` mode.
+11. `BOT_MODE_DEFEND_TOWER` - this is a desire and condition for any of `BOT_MODE_DEFEND_TOWER_TOP`, `BOT_MODE_DEFEND_TOWER_MID` and `BOT_MODE_DEFEND_TOWER_BOT` modes.
+12. `BOT_MODE_RETREAT` - this is a desire and condition for the `BOT_MODE_RETREAT` mode.
+13. `BOT_MODE_DEFEND_ALLY` - this is a desire and condition for the `BOT_MODE_DEFEND_ALLY` mode.
 
 The aggressive bot modes are marked red color on the sheet. Green color marks the defensive modes.
 
