@@ -50,6 +50,7 @@ end
 
 -- This function was taken from the Ranked Matchmaking AI project:
 -- https://github.com/adamqqqplay/dota2ai
+
 local function IsFlagSet(mask, flag)
   if flag == 0 or mask == 0 then return false end
 
@@ -82,6 +83,33 @@ end
 
 function M.GetRandomTrue(probability)
   return RandomFloat(0.0, 1.0) < probability
+end
+
+-- This function iterates over the table in a sorted order.
+-- It was taken from here:
+-- https://stackoverflow.com/questions/15706270/sort-a-table-in-lua
+
+function M.spairs(t, order)
+    -- collect the keys
+    local keys = {}
+    for k in pairs(t) do keys[#keys+1] = k end
+
+    -- if order function given, sort by it by passing the table
+    -- and keys a, b, otherwise just sort the keys
+    if order then
+        table.sort(keys, function(a,b) return order(t, a, b) end)
+    else
+        table.sort(keys)
+    end
+
+    -- return the iterator function
+    local i = 0
+    return function()
+        i = i + 1
+        if keys[i] then
+            return keys[i], t[keys[i]]
+        end
+    end
 end
 
 -- Provide an access to local functions for unit tests only
