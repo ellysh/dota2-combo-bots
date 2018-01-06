@@ -203,16 +203,16 @@ M.SKILL_USAGE = {
 
   ursa_earthshock = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["three_and_more_enemy_heroes_aoe"], 0.9},
+      team_fight = {algorithms["use_on_attack_enemy_hero_aoe"], 0.9},
       BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_aoe"], 0.8},
       BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_aoe"], 0.8},
-      BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_enemy_heroes_aoe"], 0.7},
-      BOT_MODE_ATTACK = {algorithms["three_and_more_enemy_heroes_aoe"], 0.6},
+      BOT_MODE_PUSH_TOWER = {algorithms["use_on_attack_enemy_hero_aoe"], 0.7},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_aoe"], 0.6},
       BOT_MODE_LANING = {algorithms["nil"], nil},
-      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_heroes_aoe"], 0.7},
-      BOT_MODE_RETREAT = {algorithms["three_and_more_enemy_heroes_aoe"], 0.6},
+      BOT_MODE_DEFEND_TOWER = {algorithms["use_on_attack_enemy_hero_aoe"], 0.7},
+      BOT_MODE_RETREAT = {algorithms["use_on_attack_enemy_hero_aoe"], 0.6},
       BOT_MODE_DEFEND_ALLY = {algorithms["use_on_attack_enemy_hero_aoe"], 0.5}
   },
 
