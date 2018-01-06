@@ -65,7 +65,7 @@ local function ChooseAbilityAndTarget(npc_bot)
 
     for bot_mode, algorithm in pairs(algorithms) do
       local desire, target =
-        CalculateDesireAndTarget(npc_bot, algorithm, bot_mode, ability)
+        CalculateDesireAndTarget(npc_bot, algorithm[1], bot_mode, ability)
 
       if most_desired_target < desire then
         result_ability = ability
