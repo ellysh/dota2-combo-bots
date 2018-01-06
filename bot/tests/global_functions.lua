@@ -62,21 +62,21 @@ function RealTime()
   return TIME
 end
 
-RANDOM_DISABLE = true
+RANDOM_ENABLE = false
 
 function RandomInt(min, max)
-  if RANDOM_DISABLE then
-    return 2
-  else
+  if RANDOM_ENABLE then
     return math.random(min, max)
+  else
+    return 2
   end
 end
 
 function RandomFloat(min, max)
-  if RANDOM_DISABLE then
-    return 0.4
-  else
+  if RANDOM_ENABLE then
     return math.random(min, max)
+  else
+    return 0.4
   end
 end
 
