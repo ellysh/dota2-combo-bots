@@ -199,7 +199,7 @@ function test_min_hp_enemy_hero_to_kill()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 end
 
@@ -215,7 +215,7 @@ function test_channeling_enemy_hero()
     GetBot(),
     ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 end
 
@@ -230,7 +230,7 @@ function test_max_kills_enemy_hero()
     GetBot(),
     ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 end
 
@@ -246,7 +246,7 @@ function test_three_and_more_enemy_heroes_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, nil)
 end
 
@@ -273,7 +273,7 @@ function test_last_attacked_enemy_hero()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_MODERATE)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 end
 
@@ -289,7 +289,7 @@ function test_three_and_more_creeps()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_LOW)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {1.2, 3.4})
 end
 
@@ -305,7 +305,7 @@ function test_max_hp_creep()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_LOW)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {20, 20})
 end
 
@@ -321,7 +321,7 @@ function test_three_and_more_enemy_heroes()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {1.2, 3.4})
 end
 
@@ -363,7 +363,7 @@ function test_max_estimated_damage_enemy_hero()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {20, 20})
 end
 
@@ -383,7 +383,7 @@ function test_UseOnAttackEnemyUnit()
       'IsHero',
       ability:GetAOERadius())
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 
   UNIT_IS_HERO = false
@@ -395,7 +395,7 @@ function test_UseOnAttackEnemyUnit()
       'IsHero',
       ability:GetAOERadius())
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -413,7 +413,7 @@ function test_use_on_attack_enemy_hero_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 
   UNIT_IS_HERO = false
@@ -423,7 +423,7 @@ function test_use_on_attack_enemy_hero_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -441,7 +441,7 @@ function test_use_on_attack_enemy_hero_melee()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 
   UNIT_IS_HERO = false
@@ -451,7 +451,7 @@ function test_use_on_attack_enemy_hero_melee()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -469,7 +469,7 @@ function test_use_on_attack_enemy_creep_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 
   UNIT_IS_HERO = true
@@ -479,7 +479,7 @@ function test_use_on_attack_enemy_creep_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -497,7 +497,7 @@ function test_use_on_attack_enemy_creep_melee()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 
   UNIT_IS_HERO = true
@@ -507,7 +507,7 @@ function test_use_on_attack_enemy_creep_melee()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -525,7 +525,7 @@ function test_use_on_attack_enemy_with_mana_when_low_mp()
       npc_bot,
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 
   npc_bot.mana = npc_bot.max_mana / 4
@@ -535,7 +535,7 @@ function test_use_on_attack_enemy_with_mana_when_low_mp()
       npc_bot,
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 end
 
@@ -574,7 +574,7 @@ function test_three_and_more_enemy_creeps_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, nil)
 end
 
@@ -594,7 +594,7 @@ function test_low_hp_self()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target:GetUnitName(), npc_bot:GetUnitName())
 
   npc_bot.health = npc_bot.max_health
@@ -604,7 +604,7 @@ function test_low_hp_self()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -620,7 +620,7 @@ function test_low_hp_ally_hero()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target:GetUnitName(), "unit1")
 end
 
@@ -636,7 +636,7 @@ function test_three_and_more_ally_creeps_aoe()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, nil)
 end
 
@@ -654,7 +654,7 @@ function test_min_hp_enemy_building()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target:GetUnitName(), "tower1")
   luaunit.assertEquals(target:GetHealth(), 10)
 end

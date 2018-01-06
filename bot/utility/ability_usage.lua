@@ -43,10 +43,10 @@ local function CalculateDesireAndTarget(
   bot_mode,
   ability)
 
-  if algorithm == nil then return BOT_ACTION_DESIRE_NONE, nil end
+  if algorithm == nil then return false, nil end
 
   if not IsBotModeMatch(npc_bot, bot_mode) then
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
   return algorithm(npc_bot, ability)
@@ -56,7 +56,7 @@ local function ChooseAbilityAndTarget(npc_bot)
   local result_ability = nil
   local result_target = nil
 
-  local most_desired_target = BOT_ACTION_DESIRE_NONE
+  local most_desired_target = 0.0
 
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
     local ability = npc_bot:GetAbilityByName(ability_name)
@@ -64,8 +64,10 @@ local function ChooseAbilityAndTarget(npc_bot)
     if ability == nil or not ability:IsFullyCastable() then goto continue end
 
     for bot_mode, algorithm in pairs(algorithms) do
-      local desire, target =
+      local is_succeed, target =
         CalculateDesireAndTarget(npc_bot, algorithm[1], bot_mode, ability)
+
+      local desire = functions.ternary(is_succeed, algorithm[2], 0.0)
 
       if most_desired_target < desire then
         result_ability = ability

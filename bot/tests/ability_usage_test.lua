@@ -107,7 +107,7 @@ function test_CalculateDesireAndTarget_succeed()
       "any_mode",
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_VERYHIGH)
+  luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
 end
 
@@ -120,7 +120,7 @@ function test_CalculateDesireAndTarget_fails()
       nil,
       "any_mode")
 
-  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 
   BOT_MODE = BOT_MODE_ATTACK
@@ -131,7 +131,7 @@ function test_CalculateDesireAndTarget_fails()
       ability_usage_algorithms.min_hp_enemy_hero_to_kill,
       BOT_MODE_LANING)
 
-  luaunit.assertEquals(desire, BOT_ACTION_DESIRE_NONE)
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
@@ -145,8 +145,7 @@ function test_ChooseAbilityAndTarget()
     ability_usage.test_ChooseAbilityAndTarget(GetBot())
 
   luaunit.assertNotEquals(ability, nil)
-
-  luaunit.assertEquals(target, {10, 10})
+  luaunit.assertNotEquals(target, nil)
 end
 
 function test_UseAbility()
@@ -180,7 +179,7 @@ function test_AbilityUsageThink_succeed()
     BOT_ABILITY,
     Ability:new("crystal_maiden_crystal_nova"))
 
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, {10, 10})
+  luaunit.assertNotEquals(BOT_ABILITY_LOCATION, nil)
 end
 
 function test_AbilityUsageThink_when_bot_channeling_fails()

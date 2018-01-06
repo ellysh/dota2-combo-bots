@@ -121,10 +121,10 @@ function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
     or not IsTargetable(enemy_hero)
     or not IsEnoughDamageToKill(enemy_hero, ability) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_VERYHIGH, GetTarget(enemy_hero, ability)
+  return true, GetTarget(enemy_hero, ability)
 end
 
 function M.channeling_enemy_hero(npc_bot, ability)
@@ -135,11 +135,11 @@ function M.channeling_enemy_hero(npc_bot, ability)
       and enemy:IsChanneling()
       and IsTargetable(enemy) then
 
-      return BOT_ACTION_DESIRE_VERYHIGH, GetTarget(enemy, ability)
+      return true, GetTarget(enemy, ability)
     end
   end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 function M.max_kills_enemy_hero(npc_bot, ability)
@@ -152,18 +152,18 @@ function M.max_kills_enemy_hero(npc_bot, ability)
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+  return true, GetTarget(enemy_hero, ability)
 end
 
 function M.three_and_more_enemy_heroes_aoe(npc_bot, ability)
   local enemies = GetEnemyHeroes(npc_bot, ability:GetAOERadius())
 
-  if 3 <= #enemies then return BOT_ACTION_DESIRE_HIGH, nil end
+  if 3 <= #enemies then return true, nil end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 -- TODO: Generalize this function. We can pass a list of units
@@ -194,10 +194,10 @@ function M.last_attacked_enemy_hero(npc_bot, ability)
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_MODERATE, GetTarget(enemy_hero, ability)
+  return true, GetTarget(enemy_hero, ability)
 end
 
 function M.three_and_more_creeps(npc_bot, ability)
@@ -214,10 +214,10 @@ function M.three_and_more_creeps(npc_bot, ability)
 
   if 3 <= target.count
     and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
-    return BOT_ACTION_DESIRE_LOW, target.targetloc
+    return true, target.targetloc
   end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 function M.max_hp_creep(npc_bot, ability)
@@ -227,10 +227,10 @@ function M.max_hp_creep(npc_bot, ability)
   if creep == nil
     or not IsTargetable(creep) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_LOW, GetTarget(creep, ability)
+  return true, GetTarget(creep, ability)
 end
 
 function M.three_and_more_enemy_heroes(npc_bot, ability)
@@ -247,16 +247,16 @@ function M.three_and_more_enemy_heroes(npc_bot, ability)
 
   if 3 <= target.count
     and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
-    return BOT_ACTION_DESIRE_HIGH, target.targetloc
+    return true, target.targetloc
   end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 function M.toggle_on_attack_enemy_hero(npc_bot, ability)
   local target = npc_bot:GetAttackTarget()
 
-  if target == nil then return BOT_ACTION_DESIRE_NONE, nil end
+  if target == nil then return false, nil end
 
   if not ability:GetAutoCastState() and target:IsHero() then
     -- Enable the ability when we are attacking an enemy hero
@@ -274,7 +274,7 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
     ability:ToggleAutoCast()
   end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 function M.max_estimated_damage_enemy_hero(npc_bot, ability)
@@ -291,10 +291,10 @@ function M.max_estimated_damage_enemy_hero(npc_bot, ability)
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+  return true, GetTarget(enemy_hero, ability)
 end
 
 local function UseOnAttackEnemyUnit(
@@ -309,10 +309,10 @@ local function UseOnAttackEnemyUnit(
     or not check_function(target)
     or radius < GetUnitToUnitDistance(npc_bot, target) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(target, ability)
+  return true, GetTarget(target, ability)
 end
 
 function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
@@ -353,7 +353,7 @@ end
 
 function M.use_on_attack_enemy_with_mana_when_low_mp(npc_bot, ability)
   if GetUnitManaLevel(npc_bot) > constants.UNIT_LOW_MANA_LEVEL then
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
   return UseOnAttackEnemyUnit(
@@ -366,9 +366,9 @@ end
 function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
   local enemies = GetEnemyCreeps(npc_bot, ability:GetAOERadius())
 
-  if 3 <= #enemies then return BOT_ACTION_DESIRE_HIGH, nil end
+  if 3 <= #enemies then return true, nil end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 local function GetUnitHealthLevel(unit)
@@ -377,10 +377,10 @@ end
 
 function M.low_hp_self(npc_bot, ability)
   if GetUnitHealthLevel(npc_bot) < constants.UNIT_LOW_HEALTH_LEVEL then
-    return BOT_ACTION_DESIRE_HIGH, GetTarget(npc_bot, ability)
+    return true, GetTarget(npc_bot, ability)
   end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 function M.low_hp_ally_hero(npc_bot, ability)
@@ -392,18 +392,18 @@ function M.low_hp_ally_hero(npc_bot, ability)
     or GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HEALTH_LEVEL
     then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(ally_hero, ability)
+  return true, GetTarget(ally_hero, ability)
 end
 
 function M.three_and_more_ally_creeps_aoe(npc_bot, ability)
   local allies = GetAllyCreeps(npc_bot, ability:GetAOERadius())
 
-  if 3 <= #allies then return BOT_ACTION_DESIRE_HIGH, nil end
+  if 3 <= #allies then return true, nil end
 
-  return BOT_ACTION_DESIRE_NONE, nil
+  return false, nil
 end
 
 function M.min_hp_enemy_building(npc_bot, ability)
@@ -415,10 +415,10 @@ function M.min_hp_enemy_building(npc_bot, ability)
   if enemy_building == nil
     or not IsTargetable(enemy_building) then
 
-    return BOT_ACTION_DESIRE_NONE, nil
+    return false, nil
   end
 
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_building, ability)
+  return true, GetTarget(enemy_building, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only
