@@ -511,6 +511,29 @@ function test_use_on_attack_enemy_creep_melee()
   luaunit.assertEquals(target, nil)
 end
 
+function test_UseOnAttackEnemyUnit()
+  test_RefreshBot()
+
+  local npc_bot = GetBot()
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_GetUnitHealthLevel(npc_bot),
+    1.0)
+
+  npc_bot.health = npc_bot.max_health / 2
+
+  luaunit.assertEquals(
+    ability_usage_algorithms.test_GetUnitHealthLevel(npc_bot),
+    0.5)
+
+  npc_bot.health = npc_bot.max_health / 3
+
+  luaunit.assertAlmostEquals(
+    ability_usage_algorithms.test_GetUnitHealthLevel(npc_bot),
+    0.333,
+    0.001)
+end
+
 function test_three_and_more_enemy_creeps_aoe()
   test_RefreshBot()
 

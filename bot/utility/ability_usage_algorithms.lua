@@ -354,12 +354,12 @@ function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
   return BOT_ACTION_DESIRE_NONE, nil
 end
 
-local function GetUnitHpLevel(unit)
+local function GetUnitHealthLevel(unit)
   return unit:GetHealth() / unit:GetMaxHealth()
 end
 
 function M.low_hp_self(npc_bot, ability)
-  if GetUnitHpLevel(npc_bot) < constants.UNIT_LOW_HP_LEVEL then
+  if GetUnitHealthLevel(npc_bot) < constants.UNIT_LOW_HP_LEVEL then
     return BOT_ACTION_DESIRE_HIGH, GetTarget(npc_bot, ability)
   end
 
@@ -372,7 +372,7 @@ function M.low_hp_ally_hero(npc_bot, ability)
 
   if ally_hero == nil
     or not IsTargetable(ally_hero)
-    or GetUnitHpLevel(ally_hero) > constants.UNIT_LOW_HP_LEVEL
+    or GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HP_LEVEL
     then
 
     return BOT_ACTION_DESIRE_NONE, nil
@@ -417,6 +417,7 @@ M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_UseOnAttackEnemyUnit = UseOnAttackEnemyUnit
+M.test_GetUnitHealthLevel = GetUnitHealthLevel
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 
 M.test_MIN = MIN
