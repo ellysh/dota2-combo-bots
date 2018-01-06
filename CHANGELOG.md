@@ -1,3 +1,8 @@
+* version 0.4
+  - Fix bugs with skill usages of Sniper, Lion, and Ursa
+  - Fix a bug with level up abilities and talents
+  - Change a format of the SKILL_BUILD table
+
 * version 0.3
   - Debug all mechanism of bots on a testing team
   - Fill a database for a small heroes meta
