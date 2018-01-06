@@ -133,8 +133,7 @@ The `SKILL_BUILD` sheet describes a sequence, how the bot will level up abilitie
 These are columns of this sheet:
 
 1. Hero - this is the built-in hero name.
-2. 1..18 level - these are abilities that will be leveled up when the hero reaches the corresponding level. These columns are marked green color.
-3. 10..25 level - these are talents that will be leveled up when the hero reaches the corresponding level. These columns are marked red color.
+2. 1..25 level - these are abilities and talents that will be leveled up when the hero reaches the corresponding level. The columns with abilities are marked green color. Red color match the column with a talent.
 
 The abilities are numbered from the 1st:
 
