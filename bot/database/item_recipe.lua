@@ -93,9 +93,9 @@ M.ITEM_RECIPE = {
 
   item_butterfly = {
     components = {
-      "item_eagle",
-      "item_talisman_of_evasion",
       "item_quarterstaff",
+      "item_talisman_of_evasion",
+      "item_eagle",
       "nil"}
   },
 
