@@ -35,15 +35,11 @@ local function IsHeroPicked(hero)
          or IsHeroPickedByTeam(hero, GetOpposingTeam())
 end
 
-local function GetRandomTrue()
-  return (RandomInt(0, 100) % 2) == 0
-end
-
 local function GetRandomHero(position)
   while true do
     for _, hero in pairs(heroes.HEROES) do
       if functions.IsElementInList(position, hero.position)
-        and GetRandomTrue()
+        and functions.GetRandomTrue(0.5)
         and not IsHeroPicked(hero.name) then
 
         logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. position)
@@ -126,7 +122,6 @@ M.test_GetBotNames = GetBotNames
 M.test_IsIntersectionOfLists = IsIntersectionOfLists
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked
-M.test_GetRandomTrue = GetRandomTrue
 M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 

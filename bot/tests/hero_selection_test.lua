@@ -43,16 +43,14 @@ function test_IsHeroPickedByTeam()
 end
 
 function test_IsHeroPicked()
+  SelectHero(1, "npc_dota_hero_venomancer")
+
   luaunit.assertTrue(
     hero_selection.test_IsHeroPicked("npc_dota_hero_venomancer"))
 
   luaunit.assertFalse(
     hero_selection.test_IsHeroPicked(
       "npc_dota_hero_crystal_maiden"))
-end
-
-function test_IsHeroPicked()
-  luaunit.assertTrue(hero_selection.test_GetRandomTrue())
 end
 
 function test_GetRandomHero()

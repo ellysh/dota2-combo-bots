@@ -174,4 +174,9 @@ function test_ternary()
   luaunit.assertEquals(functions.ternary(5 > 2, 5, 2), 5)
 end
 
+function test_GetRandomTrue()
+  -- TODO: Improve this test
+  luaunit.assertTrue(functions.GetRandomTrue(1.0))
+end
+
 os.exit(luaunit.LuaUnit.run())

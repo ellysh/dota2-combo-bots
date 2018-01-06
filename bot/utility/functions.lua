@@ -80,6 +80,10 @@ function M.ternary(condition, a, b)
   if condition then return a else return b end
 end
 
+function M.GetRandomTrue(probability)
+  return RandomFloat(0.0, 1.0) < probability
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
