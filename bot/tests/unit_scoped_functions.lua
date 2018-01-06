@@ -532,3 +532,9 @@ end
 function Ability:ToggleAutoCast()
   ABILITY_TOGGLE_STATE = not ABILITY_TOGGLE_STATE
 end
+
+ABILITY_IS_NULL = false
+
+function Ability:IsNull()
+  return ABILITY_IS_NULL
+end

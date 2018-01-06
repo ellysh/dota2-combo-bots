@@ -104,6 +104,14 @@ function test_AbilityLevelUp()
     ability_levelup.test_AbilityLevelUp(
       GetBot(),
       Ability:new("crystal_maiden_crystal_nova")))
+
+  ABILITY_CAN_BE_UPGRADED = true
+  ABILITY_IS_NULL = true
+
+  luaunit.assertFalse(
+    ability_levelup.test_AbilityLevelUp(
+      GetBot(),
+      Ability:new("crystal_maiden_crystal_nova")))
 end
 
 function test_AbilityLevelUpThink()
@@ -131,6 +139,7 @@ function test_AbilityLevelUpThink()
       }
     })
 
+  ABILITY_IS_NULL = false
   ABILITY_CAN_BE_UPGRADED = true
   BOT_LEVELUP_ABILITY = nil
 
