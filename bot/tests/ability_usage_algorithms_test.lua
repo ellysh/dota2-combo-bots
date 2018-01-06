@@ -273,7 +273,7 @@ function test_last_attacked_enemy_hero()
       GetBot(),
       ability)
 
-  luaunit.assertEquals(desire, BOT_MODE_DESIRE_HIGH)
+  luaunit.assertEquals(desire, BOT_MODE_DESIRE_MODERATE)
   luaunit.assertEquals(target, {10, 10})
 end
 

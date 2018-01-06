@@ -197,7 +197,7 @@ function M.last_attacked_enemy_hero(npc_bot, ability)
     return BOT_ACTION_DESIRE_NONE, nil
   end
 
-  return BOT_ACTION_DESIRE_HIGH, GetTarget(enemy_hero, ability)
+  return BOT_ACTION_DESIRE_MODERATE, GetTarget(enemy_hero, ability)
 end
 
 function M.three_and_more_creeps(npc_bot, ability)
