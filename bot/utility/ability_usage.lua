@@ -45,8 +45,6 @@ local function CalculateDesireAndTarget(
 
   if algorithm == nil then return false, nil end
 
-  print("CalculateDesireAndTarget() - bot_mode = " .. bot_mode)
-
   if not IsBotModeMatch(npc_bot, bot_mode) then
     return false, nil
   end
