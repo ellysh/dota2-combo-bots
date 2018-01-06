@@ -1,6 +1,9 @@
 * version 0.5
-  - Fix a bug with level up abilities and talents because of C++ side issue
-  - Add "desire" values to the SKILL_USAGE table
+  - Fix a bug with level up abilities and talents because of
+    C++ side issue.
+  - Add "desire" values to the SKILL_USAGE table.
+  - Use abilities with a probability that equals to the "desire"
+    values in the SKILL_USAGE table.
 
 * version 0.4
   - Fix bugs with skill usages of Sniper, Lion, and Ursa
