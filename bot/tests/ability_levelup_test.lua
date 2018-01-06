@@ -106,26 +106,6 @@ function test_AbilityLevelUp()
       Ability:new("crystal_maiden_crystal_nova")))
 end
 
-function test_GetTableIndex()
-  test_RefreshBot()
-
-  local npc_bot = GetBot()
-
-  npc_bot.level = 1
-  npc_bot.ability_points = 1
-
-  luaunit.assertEquals(
-    ability_levelup.test_GetTableIndex(npc_bot),
-    1)
-
-  npc_bot.level = 3
-  npc_bot.ability_points = 2
-
-  luaunit.assertEquals(
-    ability_levelup.test_GetTableIndex(npc_bot),
-    2)
-end
-
 function test_AbilityLevelUpThink()
   test_RefreshBot()
 

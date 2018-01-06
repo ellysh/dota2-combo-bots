@@ -4,6 +4,9 @@ local logger = require(
 local skill_build = require(
   GetScriptDirectory() .."/database/skill_build")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local ABILITIES = {}
@@ -43,59 +46,40 @@ local function AbilityLevelUp(npc_bot, ability)
   return false
 end
 
-local function GetTalentIndex(npc_bot, table_index)
-  return
-    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].talents[table_index]
-end
-
-local function GetAbilityIndex(npc_bot, table_index)
-  return
-    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities[table_index]
-end
-
-local function GetTableIndex(npc_bot)
-  local table_index = npc_bot:GetLevel() - npc_bot:GetAbilityPoints() + 1
-
-  while GetTalentIndex(npc_bot, table_index) == nil
-    and GetAbilityIndex(npc_bot, table_index) == nil
-    and table_index < 100 do
-
-    table_index = table_index + 1
-  end
-
-  return table_index
-end
+local TALENT_LEVELS = {10, 15, 20, 25}
 
 function M.AbilityLevelUpThink()
   local npc_bot = GetBot()
 
   if npc_bot:GetAbilityPoints() < 1 then return end
 
-  local table_index = GetTableIndex(npc_bot)
+  local abilities_build =
+    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities
 
-  local talent_index = GetTalentIndex(npc_bot, table_index)
+  for level, ability_index in pairs(abilities_build) do
 
-  if talent_index ~= nil
-    and AbilityLevelUp(
+    if functions.IsElementInList(level, TALENT_LEVELS) then
+      if AbilityLevelUp(
+        npc_bot,
+        TALENTS[npc_bot:GetUnitName()][ability_index]) then
+
+        abilities_build[level] = nil
+        return
+      end
+    end
+
+    if AbilityLevelUp(
       npc_bot,
-      TALENTS[npc_bot:GetUnitName()][talent_index]) then
+      ABILITIES[npc_bot:GetUnitName()][ability_index]) then
 
-    return
-  end
-
-  local ability_index = GetAbilityIndex(npc_bot, table_index)
-
-  if ability_index ~= nil then
-
-    AbilityLevelUp(
-      npc_bot,
-      ABILITIES[npc_bot:GetUnitName()][ability_index])
+      abilities_build[level] = nil
+      return
+    end
   end
 end
 
 -- Provide an access to local functions and lists for unit tests only
 M.test_AbilityLevelUp = AbilityLevelUp
-M.test_GetTableIndex = GetTableIndex
 
 -- Provide an access to local variables for unit tests only
 
