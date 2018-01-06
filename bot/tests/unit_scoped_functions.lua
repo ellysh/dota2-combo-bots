@@ -23,6 +23,8 @@ function Unit:new()
     offensive_power = 100,
     is_alive = true,
     gold = 625,
+    ability_points = 1,
+    level = 1,
     inventory = {},
     location = {10, 10},
     networth = 500,
@@ -417,10 +419,8 @@ function Bot:Action_MoveToLocation(location)
   BOT_MOVE_LOCATION = location
 end
 
-BOT_LEVEL = 1
-
 function Bot:GetLevel()
-  return BOT_LEVEL
+  return self.level
 end
 
 BOT_ABILITIES = {}
@@ -437,7 +437,7 @@ function Bot:ActionImmediate_LevelAbility(ability_name)
 end
 
 function Bot:GetAbilityPoints()
-  return 1
+  return self.ability_points
 end
 
 function Bot:WasRecentlyDamagedByHero(unit, time)

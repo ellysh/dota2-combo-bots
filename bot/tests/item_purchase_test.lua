@@ -286,9 +286,10 @@ end
 function test_SellItemByIndex_level_match()
   test_RefreshBot()
 
-  BOT_LEVEL = 15
+  local npc_bot = GetBot()
+  npc_bot.level = 15
 
-  BOT.inventory = {
+  npc_bot.inventory = {
     "item_tango",
     "item_branches"
   }
@@ -302,11 +303,11 @@ function test_SellItemByIndex_level_match()
   item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
+    npc_bot:GetItemInSlot(1):GetName(),
     "item_tango")
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(2):GetName(),
+    npc_bot:GetItemInSlot(2):GetName(),
     "nil")
 end
 
@@ -338,9 +339,10 @@ end
 function test_SellExtraItem()
   test_RefreshBot()
 
-  BOT_LEVEL = 15
+  local npc_bot = GetBot()
+  npc_bot.level = 15
 
-  BOT.inventory = {
+  npc_bot.inventory = {
     "item_branches",
     "item_branches",
     "item_branches",
@@ -380,10 +382,11 @@ end
 function test_ItemPurchaseThink_with_full_inventory()
   test_RefreshBot()
 
-  BOT.gold = 9000
-  BOT_LEVEL = 15
+  local npc_bot = GetBot()
+  npc_bot.level = 15
+  npc_bot.gold = 9000
 
-  BOT.inventory = {
+  npc_bot.inventory = {
     "item_branches",
     "item_branches",
     "item_branches",
@@ -407,7 +410,7 @@ function test_ItemPurchaseThink_with_full_inventory()
   -- The first item_branches in the inventory should be sold
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
+    npc_bot:GetItemInSlot(1):GetName(),
     "item_tango")
 end
 
