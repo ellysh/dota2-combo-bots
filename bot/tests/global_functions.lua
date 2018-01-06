@@ -76,7 +76,7 @@ function RandomFloat(min, max)
   if RANDOM_ENABLE then
     return math.random(min, max)
   else
-    return 0.4
+    return 0.2
   end
 end
 

@@ -45,6 +45,8 @@ local function CalculateDesireAndTarget(
 
   if algorithm == nil then return false, nil end
 
+  print("CalculateDesireAndTarget() - bot_mode = " .. bot_mode)
+
   if not IsBotModeMatch(npc_bot, bot_mode) then
     return false, nil
   end
@@ -52,34 +54,50 @@ local function CalculateDesireAndTarget(
   return algorithm(npc_bot, ability)
 end
 
-local function ChooseAbilityAndTarget(npc_bot)
-  local result_ability = nil
-  local result_target = nil
-
-  local most_desired_target = 0.0
+local function GetDesiredAbilitiesList(npc_bot)
+  local result = {}
 
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
     local ability = npc_bot:GetAbilityByName(ability_name)
 
-    if ability == nil or not ability:IsFullyCastable() then goto continue end
+    if ability == nil
+      or not ability:IsFullyCastable() then goto continue end
 
     for bot_mode, algorithm in pairs(algorithms) do
+
       local is_succeed, target =
         CalculateDesireAndTarget(npc_bot, algorithm[1], bot_mode, ability)
 
       local desire = functions.ternary(is_succeed, algorithm[2], 0.0)
 
-      if desire ~= nil and most_desired_target < desire then
-        result_ability = ability
-        result_target = target
-        most_desired_target = desire
+      if desire ~= nil and desire ~= 0.0 then
+         result[ability] = {target, desire}
       end
     end
 
     ::continue::
   end
 
-  return result_ability, result_target
+  return result
+end
+
+local function ChooseAbilityAndTarget(npc_bot)
+  -- Thanks to the spairs() function we iterate the most desired skills
+  -- first. Then, we use them with the desired probability.
+
+  local desired_abilities = GetDesiredAbilitiesList(npc_bot)
+
+  for ability, target_desire
+    in functions.spairs(
+      desired_abilities,
+      function(t, a, b) return t[b][2] < t[a][2] end) do
+
+    if functions.GetRandomTrue(target_desire[2]) then
+        return ability, target_desire[1]
+    end
+  end
+
+  return nil, nil
 end
 
 local function UseAbility(npc_bot, ability, target)
