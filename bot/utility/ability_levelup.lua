@@ -43,8 +43,27 @@ local function AbilityLevelUp(npc_bot, ability)
   return false
 end
 
-local function CalculateTableIndex(npc_bot)
-  return npc_bot:GetLevel() - npc_bot:GetAbilityPoints() + 1
+local function GetTalentIndex(npc_bot, table_index)
+  return
+    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].talents[table_index]
+end
+
+local function GetAbilityIndex(npc_bot, table_index)
+  return
+    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities[table_index]
+end
+
+local function GetTableIndex(npc_bot)
+  local table_index = npc_bot:GetLevel() - npc_bot:GetAbilityPoints() + 1
+
+  while GetTalentIndex(npc_bot, table_index) == nil
+    and GetAbilityIndex(npc_bot, table_index) == nil
+    and table_index < 100 do
+
+    table_index = table_index + 1
+  end
+
+  return table_index
 end
 
 function M.AbilityLevelUpThink()
@@ -52,17 +71,21 @@ function M.AbilityLevelUpThink()
 
   if npc_bot:GetAbilityPoints() < 1 then return end
 
-  local table_index = CalculateTableIndex(npc_bot)
+  local table_index = GetTableIndex(npc_bot)
 
-  local talent_index =
-    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].talents[table_index]
+  local talent_index = GetTalentIndex(npc_bot, table_index)
 
-  if not AbilityLevelUp(
+  if talent_index ~= nil
+    and AbilityLevelUp(
       npc_bot,
       TALENTS[npc_bot:GetUnitName()][talent_index]) then
 
-    local ability_index =
-      skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities[table_index]
+    return
+  end
+
+  local ability_index = GetAbilityIndex(npc_bot, table_index)
+
+  if ability_index ~= nil then
 
     AbilityLevelUp(
       npc_bot,
@@ -72,7 +95,7 @@ end
 
 -- Provide an access to local functions and lists for unit tests only
 M.test_AbilityLevelUp = AbilityLevelUp
-M.test_CalculateTableIndex = CalculateTableIndex
+M.test_GetTableIndex = GetTableIndex
 
 -- Provide an access to local variables for unit tests only
 
