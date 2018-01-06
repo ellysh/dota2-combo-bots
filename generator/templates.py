@@ -124,17 +124,17 @@ M.SKILL_USAGE = {
 
 SKILL_USAGE = """
   <0> = {
-      any_mode = algorithms["<1>"],
-      team_fight = algorithms["<2>"],
-      BOT_MODE_ROAM = algorithms["<3>"],
-      BOT_MODE_TEAM_ROAM = algorithms["<4>"],
-      BOT_MODE_PUSH_TOWER = algorithms["<5>"],
-      BOT_MODE_ATTACK = algorithms["<6>"],
-      BOT_MODE_LANING = algorithms["<7>"],
-      BOT_MODE_ROSHAN = algorithms["<8>"],
-      BOT_MODE_FARM = algorithms["<9>"],
-      BOT_MODE_DEFEND_TOWER = algorithms["<10>"],
-      BOT_MODE_RETREAT = algorithms["<11>"],
-      BOT_MODE_DEFEND_ALLY = algorithms["<12>"]
+      any_mode = {algorithms["<1>"], <2>},
+      team_fight = {algorithms["<3>"], <4>},
+      BOT_MODE_ROAM = {algorithms["<5>"], <6>},
+      BOT_MODE_TEAM_ROAM = {algorithms["<7>"], <8>},
+      BOT_MODE_PUSH_TOWER = {algorithms["<9>"], <10>},
+      BOT_MODE_ATTACK = {algorithms["<11>"], <12>},
+      BOT_MODE_LANING = {algorithms["<13>"], <14>},
+      BOT_MODE_ROSHAN = {algorithms["<15>"], <16>},
+      BOT_MODE_FARM = {algorithms["<17>"], <18>},
+      BOT_MODE_DEFEND_TOWER = {algorithms["<19>"], <20>},
+      BOT_MODE_RETREAT = {algorithms["<21>"], <22>},
+      BOT_MODE_DEFEND_ALLY = {algorithms["<23>"], <24>}
   },
 """
