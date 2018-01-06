@@ -69,7 +69,7 @@ local function ChooseAbilityAndTarget(npc_bot)
 
       local desire = functions.ternary(is_succeed, algorithm[2], 0.0)
 
-      if most_desired_target < desire then
+      if desire ~= nil and most_desired_target < desire then
         result_ability = ability
         result_target = target
         most_desired_target = desire
