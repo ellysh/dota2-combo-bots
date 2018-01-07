@@ -26,14 +26,14 @@ function M.ally_mega_creeps()
   return true
 end
 
-function M.ally_have_aegis()
+local function IsAllyHaveItem(item_name)
   local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
 
   for _, hero in pairs(ally_heroes) do
 
     if functions.IsElementInList(
       functions.GetInventoryItems(hero),
-      "item_aegis") then
+      item_name) then
 
       return true
     end
@@ -42,9 +42,12 @@ function M.ally_have_aegis()
   return false
 end
 
+function M.ally_have_aegis()
+  return IsAllyHaveItem("item_aegis")
+end
+
 function M.ally_have_cheese()
-  -- TODO: Implement this algorithm
-  return false
+  return IsAllyHaveItem("item_cheese")
 end
 
 function M.max_kills_enemy_hero_alive()
@@ -77,5 +80,8 @@ function M.TeamThink()
   end
 
 end
+
+-- Provide an access to local functions for unit tests only
+M.test_IsAllyHaveItem = IsAllyHaveItem
 
 return M

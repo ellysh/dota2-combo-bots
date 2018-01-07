@@ -13,15 +13,39 @@ function test_ally_mega_creeps()
   luaunit.assertTrue(team_desires.ally_mega_creeps())
 end
 
+function test_IsAllyHaveItem()
+  local test_item = "item_enchanted_mango"
+
+  luaunit.assertFalse(team_desires.test_IsAllyHaveItem(test_item))
+
+  local unit = Unit:new()
+  unit.inventory = { test_item }
+
+  UNITS = { unit }
+
+  luaunit.assertTrue(team_desires.test_IsAllyHaveItem(test_item))
+end
+
 function test_ally_have_aegis()
   luaunit.assertFalse(team_desires.ally_have_aegis())
 
   local unit = Unit:new()
-  unit.inventory = {"item_aegis"}
+  unit.inventory = { "item_aegis" }
 
   UNITS = { unit }
 
   luaunit.assertTrue(team_desires.ally_have_aegis())
+end
+
+function test_ally_have_cheese()
+  luaunit.assertFalse(team_desires.ally_have_cheese())
+
+  local unit = Unit:new()
+  unit.inventory = { "item_cheese" }
+
+  UNITS = { unit }
+
+  luaunit.assertTrue(team_desires.ally_have_cheese())
 end
 
 function test_TeamThink()
