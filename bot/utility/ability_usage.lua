@@ -61,7 +61,7 @@ local function GetDesiredAbilitiesList(npc_bot)
     if ability == nil
       or not ability:IsFullyCastable() then goto continue end
 
-    for bot_mode, algorithm in pairs(algorithms) do
+    for bot_mode, algorithm in functions.spairs(algorithms) do
 
       local is_succeed, target =
         CalculateDesireAndTarget(

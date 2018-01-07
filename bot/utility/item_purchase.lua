@@ -225,7 +225,7 @@ local function SellExtraItem(npc_bot)
 
   local inventory = GetInventoryItems(npc_bot)
 
-  for item, condition in pairs(item_sell.ITEM_SELL) do
+  for item, condition in functions.spairs(item_sell.ITEM_SELL) do
 
     local index = functions.GetElementIndexInList(inventory, item)
 
