@@ -154,6 +154,16 @@ function GetCourierState(courier)
   return COURIER_STATE
 end
 
+BARRAK_HEALTH = 100
+
+function GetBarracks(team, barrack_index)
+  local unit = Unit:new()
+  unit.name = "unit1"
+  unit.health = BARRAK_HEALTH
+
+  return unit
+end
+
 --------------------------------------
 
 IS_SECRET_SHOP_ITEM = false

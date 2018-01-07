@@ -10,8 +10,20 @@ local team_desires = require(
 local M = {}
 
 function M.ally_mega_creeps()
-  -- TODO: Implement this algorithm
-  return false
+  local enemy_team = GetOpposingTeam()
+
+  for i = 1,6,1 do
+    local barrack = GetBarracks(enemy_team, i)
+
+    if barrack ~= nil
+      and not barrack:IsNull()
+      and barrack:IsAlive() then
+
+      return false
+    end
+  end
+
+  return true
 end
 
 function M.ally_have_aegis()

@@ -64,7 +64,7 @@ function test_CourierUsageThink_no_action()
   test_RefreshBot()
 
   local bot = GetBot()
-  bot.is_alive = false
+  bot.health = 0
 
   COURIER_ACTION = nil
   courier.CourierUsageThink()

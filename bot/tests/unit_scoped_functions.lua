@@ -21,7 +21,6 @@ function Unit:new()
     mana = 200,
     max_mana = 200,
     offensive_power = 100,
-    is_alive = true,
     gold = 625,
     ability_points = 1,
     level = 1,
@@ -56,7 +55,7 @@ function Unit:GetMaxHealth()
 end
 
 function Unit:IsAlive()
-  return self.is_alive
+  return 0 < self.health
 end
 
 function Unit:GetRawOffensivePower()
@@ -213,6 +212,10 @@ function Unit:GetEstimatedDamageToTarget(
   damage_type)
 
   return self.damage
+end
+
+function Unit:IsNull()
+  return false
 end
 
 -----------------------------------------------
