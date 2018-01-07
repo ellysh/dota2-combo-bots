@@ -22,7 +22,7 @@ function test_InitAbilities()
     Ability:new("special_bonus_attack_speed_250"),
     Ability:new("special_bonus_unique_crystal_maiden_3"),
     Ability:new("special_bonus_unique_crystal_maiden_1"),
-    Ability:new("special_bonus_unique_crystal_maiden_2"),
+    Ability:new("special_bonus_unique_crystal_maiden_2")
   }
 
   ability_levelup.test_SetAbilities({})
@@ -33,51 +33,51 @@ function test_InitAbilities()
   talents = ability_levelup.test_GetTalents()
 
   luaunit.assertEquals(
-    BOT_ABILITIES[1],
+    BOT_ABILITIES[1]:GetName(),
     abilities[GetBot():GetUnitName()][1])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[2],
+    BOT_ABILITIES[2]:GetName(),
     abilities[GetBot():GetUnitName()][2])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[3],
+    BOT_ABILITIES[3]:GetName(),
     abilities[GetBot():GetUnitName()][3])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[6],
+    BOT_ABILITIES[6]:GetName(),
     abilities[GetBot():GetUnitName()][4])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[7],
+    BOT_ABILITIES[7]:GetName(),
     talents[GetBot():GetUnitName()][1])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[8],
+    BOT_ABILITIES[8]:GetName(),
     talents[GetBot():GetUnitName()][2])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[9],
+    BOT_ABILITIES[9]:GetName(),
     talents[GetBot():GetUnitName()][3])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[10],
+    BOT_ABILITIES[10]:GetName(),
     talents[GetBot():GetUnitName()][4])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[11],
+    BOT_ABILITIES[11]:GetName(),
     talents[GetBot():GetUnitName()][5])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[12],
+    BOT_ABILITIES[12]:GetName(),
     talents[GetBot():GetUnitName()][6])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[13],
+    BOT_ABILITIES[13]:GetName(),
     talents[GetBot():GetUnitName()][7])
 
   luaunit.assertEquals(
-    BOT_ABILITIES[14],
+    BOT_ABILITIES[14]:GetName(),
     talents[GetBot():GetUnitName()][8])
 end
 
@@ -89,7 +89,7 @@ function test_AbilityLevelUp()
   luaunit.assertTrue(
     ability_levelup.test_AbilityLevelUp(
       GetBot(),
-      Ability:new("crystal_maiden_crystal_nova")))
+      "crystal_maiden_crystal_nova"))
 
   luaunit.assertEquals(BOT_LEVELUP_ABILITY, "crystal_maiden_crystal_nova")
 
@@ -103,7 +103,7 @@ function test_AbilityLevelUp()
   luaunit.assertFalse(
     ability_levelup.test_AbilityLevelUp(
       GetBot(),
-      Ability:new("crystal_maiden_crystal_nova")))
+      "crystal_maiden_crystal_nova"))
 
   ABILITY_CAN_BE_UPGRADED = true
   ABILITY_IS_NULL = true
@@ -124,18 +124,18 @@ function test_AbilityLevelUpThink()
   ability_levelup.test_SetAbilities(
     {
       npc_dota_hero_crystal_maiden = {
-        Ability:new("crystal_maiden_crystal_nova"),
-        Ability:new("crystal_maiden_frostbite"),
-        Ability:new("crystal_maiden_brilliance_aura")
+        "crystal_maiden_crystal_nova",
+        "crystal_maiden_frostbite",
+        "crystal_maiden_brilliance_aura"
       }
     })
 
   ability_levelup.test_SetTalents(
     {
       npc_dota_hero_crystal_maiden = {
-        Ability:new("special_bonus_magic_resistance_15"),
-        Ability:new("special_bonus_attack_damage_60"),
-        Ability:new("special_bonus_cast_range_125")
+        "special_bonus_magic_resistance_15",
+        "special_bonus_attack_damage_60",
+        "special_bonus_cast_range_125"
       }
     })
 
@@ -161,24 +161,24 @@ function test_AbilityLevelUpThink_from_2_to_25_level()
   ability_levelup.test_SetAbilities(
     {
       npc_dota_hero_crystal_maiden = {
-        Ability:new("crystal_maiden_crystal_nova"),
-        Ability:new("crystal_maiden_frostbite"),
-        Ability:new("crystal_maiden_brilliance_aura"),
-        Ability:new("crystal_maiden_freezing_field")
+        "crystal_maiden_crystal_nova",
+        "crystal_maiden_frostbite",
+        "crystal_maiden_brilliance_aura",
+        "crystal_maiden_freezing_field"
       }
     })
 
   ability_levelup.test_SetTalents(
     {
       npc_dota_hero_crystal_maiden = {
-        Ability:new("special_bonus_hp_200"),
-        Ability:new("special_bonus_cast_range_100"),
-        Ability:new("special_bonus_unique_crystal_maiden_4"),
-        Ability:new("special_bonus_gold_income_15"),
-        Ability:new("special_bonus_attack_speed_250"),
-        Ability:new("special_bonus_unique_crystal_maiden_3"),
-        Ability:new("special_bonus_unique_crystal_maiden_1"),
-        Ability:new("special_bonus_unique_crystal_maiden_2")
+        "special_bonus_hp_200",
+        "special_bonus_cast_range_100",
+        "special_bonus_unique_crystal_maiden_4",
+        "special_bonus_gold_income_15",
+        "special_bonus_attack_speed_250",
+        "special_bonus_unique_crystal_maiden_3",
+        "special_bonus_unique_crystal_maiden_1",
+        "special_bonus_unique_crystal_maiden_2"
       }
     })
 

@@ -25,23 +25,25 @@ function M.InitAbilities()
 
     if ability ~= nil and ability:GetName() ~= "generic_hidden" then
       if ability:IsTalent() then
-        table.insert(TALENTS[npc_bot:GetUnitName()], ability)
+        table.insert(TALENTS[npc_bot:GetUnitName()], ability:GetName())
       else
-        table.insert(ABILITIES[npc_bot:GetUnitName()], ability)
+        table.insert(ABILITIES[npc_bot:GetUnitName()], ability:GetName())
       end
     end
   end
 end
 
-local function AbilityLevelUp(npc_bot, ability)
-  if ability ~= nil
+local function AbilityLevelUp(npc_bot, ability_name)
+  local ability = npc_bot:GetAbilityByName(ability_name)
+
+  if ability_name ~= nil
     and not ability:IsNull()
     and ability:CanAbilityBeUpgraded() then
 
     logger.Print("AbilityLevelUp() - " .. npc_bot:GetUnitName() ..
-                 " level up " .. ability:GetName())
+                 " level up " .. ability_name)
 
-    npc_bot:ActionImmediate_LevelAbility(ability:GetName())
+    npc_bot:ActionImmediate_LevelAbility(ability_name)
     return true
   end
 
