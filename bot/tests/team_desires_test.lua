@@ -56,6 +56,10 @@ function test_max_kills_ally_hero_alive()
   luaunit.assertTrue(team_desires.max_kills_ally_hero_alive())
 end
 
+function test_time_is_less_5_minutes()
+  luaunit.assertTrue(team_desires.time_is_less_5_minutes())
+end
+
 function test_TeamThink()
   BARRAK_HEALTH = 0
   team_desires.TeamThink()
