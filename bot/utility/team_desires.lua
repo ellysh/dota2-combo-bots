@@ -44,11 +44,12 @@ function M.TeamThink()
   for algorithm, desires in functions.spairs(team_desires.TEAM_DESIRES) do
     if M[algorithm] == nil then goto continue end
 
-    local is_succeed = M[algorithm]()
+    local desire_index = functions.ternary(M[algorithm](), 1, 2)
 
     if is_succeed then
       for name, value in pairs(desires) do
-        M.PUSH_LINES_DESIRE[name] = MPUSH_LINES_DESIRE[name] + value
+        M.PUSH_LINES_DESIRE[name] =
+          M.PUSH_LINES_DESIRE[name] + value[desire_index]
       end
     else
     end
