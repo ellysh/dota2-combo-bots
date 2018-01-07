@@ -15,7 +15,7 @@ end
 
 local function IsIntersectionOfLists(list1, list2)
   for _, e in pairs(list1) do
-    if functions.IsElementInList(e, list2) then return true end
+    if functions.IsElementInList(list2, e) then return true end
   end
   return false
 end
@@ -38,7 +38,7 @@ end
 local function GetRandomHero(position)
   while true do
     for _, hero in pairs(heroes.HEROES) do
-      if functions.IsElementInList(position, hero.position)
+      if functions.IsElementInList(hero.position, position)
         and functions.GetRandomTrue(0.5)
         and not IsHeroPicked(hero.name) then
 
@@ -52,9 +52,9 @@ end
 
 local function GetComboHero(position, combo_heroes)
   for _, hero in pairs(heroes.HEROES) do
-    if functions.IsElementInList(position, hero.position)
+    if functions.IsElementInList(hero.position, position)
       and not IsHeroPicked(hero.name)
-      and IsIntersectionOfLists(combo_heroes, hero.combo_heroes) then
+      and IsIntersectionOfLists(hero.combo_heroes, combo_heroes) then
 
       logger.Print("GetComboHero() - name = " .. hero.name .. " position = " .. hero.position[1])
 

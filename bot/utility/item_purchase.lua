@@ -53,8 +53,8 @@ local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
 end
 
-local function IsItemAlreadyBought(item, inventory)
-  local index = functions.GetElementIndexInList(item, inventory)
+local function IsItemAlreadyBought(inventory, item)
+  local index = functions.GetElementIndexInList(inventory, item)
 
   if index ~= -1 then
     inventory[index] = "nil"
@@ -89,7 +89,7 @@ local function FindNextComponentToBuy(npc_bot, item)
 
   for _, component in pairs(component_list) do
     if component ~= "nil"
-      and not IsItemAlreadyBought(component, inventory) then
+      and not IsItemAlreadyBought(inventory, component) then
 
       if IsRecipeItem(component) then
         return FindNextComponentToBuy(npc_bot, component)
@@ -181,7 +181,7 @@ local function PurchaseItemList(npc_bot, item_type)
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if IsItemAlreadyBought(item, GetInventoryAndStashItems(npc_bot)) then
+  if IsItemAlreadyBought(GetInventoryAndStashItems(npc_bot), item) then
     -- Mark the item as bought
     item_list[i] = "nil"
     return
@@ -225,7 +225,7 @@ local function SellExtraItem(npc_bot)
 
   for item, condition in pairs(item_sell.ITEM_SELL) do
 
-    local index = functions.GetElementIndexInList(item, inventory)
+    local index = functions.GetElementIndexInList(inventory, item)
 
     if index ~= -1 then
 

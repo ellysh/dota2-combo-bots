@@ -58,7 +58,7 @@ function M.IsItemSlotsFull(npc_bot)
   return constants.INVENTORY_SIZE <= GetItemSlotsCount(npc_bot)
 end
 
-function M.GetElementIndexInList(element, list)
+function M.GetElementIndexInList(list, element)
   if list == nil then return nil end
 
   -- We should sort by keys. Otherwise, elements have a random order.
@@ -80,8 +80,8 @@ function M.GetElementInList(list, index)
   return nil
 end
 
-function M.IsElementInList(element, list)
-  return M.GetElementIndexInList(element, list) ~= -1
+function M.IsElementInList(list, index)
+  return M.GetElementIndexInList(list, index) ~= -1
 end
 
 function M.IsBotBusy(npc_bot)

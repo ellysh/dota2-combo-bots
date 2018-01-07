@@ -48,13 +48,13 @@ function test_IsItemAlreadyBought()
   }
 
   luaunit.assertFalse(
-    item_purchase.test_IsItemAlreadyBought("item_tpscroll", inventory))
+    item_purchase.test_IsItemAlreadyBought(inventory, "item_tpscroll"))
 
   luaunit.assertEquals(inventory[1], "item_tango")
   luaunit.assertEquals(inventory[2], "item_branches")
 
   luaunit.assertTrue(
-    item_purchase.test_IsItemAlreadyBought("item_tango", inventory))
+    item_purchase.test_IsItemAlreadyBought(inventory, "item_tango"))
 
   luaunit.assertEquals(inventory[1], "nil")
   luaunit.assertEquals(inventory[2], "item_branches")

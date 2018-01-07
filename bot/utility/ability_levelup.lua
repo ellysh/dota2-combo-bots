@@ -60,7 +60,7 @@ function M.AbilityLevelUpThink()
 
   for level, ability_index in functions.spairs(abilities_build) do
 
-    if functions.IsElementInList(level, TALENT_LEVELS) then
+    if functions.IsElementInList(TALENT_LEVELS, level) then
       if AbilityLevelUp(
         npc_bot,
         functions.GetElementInList(

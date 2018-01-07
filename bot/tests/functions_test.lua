@@ -81,39 +81,67 @@ function test_GetElementIndexInList()
   local list = {5, 4, 3, 2, 1}
 
   luaunit.assertEquals(
-    functions.GetElementIndexInList(5, list),
+    functions.GetElementIndexInList(list, 5),
     1)
 
   luaunit.assertEquals(
-    functions.GetElementIndexInList(4, list),
+    functions.GetElementIndexInList(list, 4),
     2)
 
   luaunit.assertEquals(
-    functions.GetElementIndexInList(3, list),
+    functions.GetElementIndexInList(list, 3),
     3)
 
   luaunit.assertEquals(
-    functions.GetElementIndexInList(2, list),
+    functions.GetElementIndexInList(list, 2),
     4)
 
   luaunit.assertEquals(
-    functions.GetElementIndexInList(1, list),
+    functions.GetElementIndexInList(list, 1),
     5)
 
   luaunit.assertEquals(
-    functions.GetElementIndexInList(0, list),
+    functions.GetElementIndexInList(list, 0),
     -1)
+end
+
+function test_GetElementInList()
+  local list = {"item5", "item3", "item4", "item2", "item1"}
+
+  luaunit.assertEquals(
+    functions.GetElementInList(list, 1),
+    "item5")
+
+  luaunit.assertEquals(
+    functions.GetElementInList(list, 2),
+    "item3")
+
+  luaunit.assertEquals(
+    functions.GetElementInList(list, 3),
+    "item4")
+
+  luaunit.assertEquals(
+    functions.GetElementInList(list, 4),
+    "item2")
+
+  luaunit.assertEquals(
+    functions.GetElementInList(list, 5),
+    "item1")
+
+  luaunit.assertEquals(
+    functions.GetElementInList(list, 6),
+    nil)
 end
 
 function test_IsElementInList()
   local list = {1, 2, 3, 4, 5}
 
-  luaunit.assertTrue(functions.IsElementInList(1, list))
-  luaunit.assertTrue(functions.IsElementInList(2, list))
-  luaunit.assertTrue(functions.IsElementInList(3, list))
-  luaunit.assertTrue(functions.IsElementInList(4, list))
-  luaunit.assertTrue(functions.IsElementInList(5, list))
-  luaunit.assertFalse(functions.IsElementInList(6, list))
+  luaunit.assertTrue(functions.IsElementInList(list, 1))
+  luaunit.assertTrue(functions.IsElementInList(list, 2))
+  luaunit.assertTrue(functions.IsElementInList(list, 3))
+  luaunit.assertTrue(functions.IsElementInList(list, 4))
+  luaunit.assertTrue(functions.IsElementInList(list, 5))
+  luaunit.assertFalse(functions.IsElementInList(list, 6))
 end
 
 function test_IsBotBusy()

@@ -81,8 +81,8 @@ local function AssembleItem(item, inventory)
   if item ~= "item_ring_of_health" then return false end
 
   local index = functions.GetElementIndexInList(
-    "item_void_stone",
-    inventory)
+    inventory,
+    "item_void_stone")
 
   if index == -1 then return false end
 
@@ -104,8 +104,8 @@ function Unit:ActionImmediate_PurchaseItem(item)
   end
 
   local index = functions.GetElementIndexInList(
-    "nil",
-    self.inventory)
+    self.inventory,
+    "nil")
 
   if index == -1 then return PURCHASE_ITEM_DISALLOWED_ITEM end
 
@@ -116,8 +116,8 @@ end
 
 function Unit:ActionImmediate_SellItem(item)
   local index = functions.GetElementIndexInList(
-    item.name,
-    self.inventory)
+    self.inventory,
+    item.name)
 
   if index == -1 then return end
 
