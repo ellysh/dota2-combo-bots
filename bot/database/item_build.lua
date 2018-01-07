@@ -453,10 +453,10 @@ M.ITEM_BUILD = {
       "item_branches",
       "item_boots",
       "item_magic_wand",
-      "nil",
       "item_tranquil_boots",
       "item_blink",
-      "item_glimmer_cape",
+      "item_aether_lens",
+      "nil",
       "item_force_staff",
       "item_ultimate_scepter",
       "item_cyclone"}
