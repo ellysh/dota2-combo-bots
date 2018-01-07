@@ -3,6 +3,33 @@ local constants = require(
 
 local M = {}
 
+-- This function iterates over the table in a sorted order.
+-- It was taken from here:
+-- https://stackoverflow.com/questions/15706270/sort-a-table-in-lua
+
+function M.spairs(t, order)
+    -- collect the keys
+    local keys = {}
+    for k in pairs(t) do keys[#keys+1] = k end
+
+    -- if order function given, sort by it by passing the table
+    -- and keys a, b, otherwise just sort the keys
+    if order then
+        table.sort(keys, function(a,b) return order(t, a, b) end)
+    else
+        table.sort(keys)
+    end
+
+    -- return the iterator function
+    local i = 0
+    return function()
+        i = i + 1
+        if keys[i] then
+            return keys[i], t[keys[i]]
+        end
+    end
+end
+
 -- Indexes in resulting array do not match to slot indexes.
 -- You should shift them -1 to match the slot indexes.
 function M.GetItems(npc_bot, slot_numbers)
@@ -32,10 +59,25 @@ function M.IsItemSlotsFull(npc_bot)
 end
 
 function M.GetElementIndexInList(element, list)
-  for i, e in pairs(list) do
+  if list == nil then return nil end
+
+  -- We should sort by keys. Otherwise, elements have a random order.
+
+  for i, e in M.spairs(list) do
     if e == element then return i end
   end
   return -1
+end
+
+function M.GetElementInList(list, index)
+  if list == nil then return nil end
+
+  -- We should sort by keys. Otherwise, elements have a random order.
+
+  for i, element in M.spairs(list) do
+    if i == index then return element end
+  end
+  return nil
 end
 
 function M.IsElementInList(element, list)
@@ -83,33 +125,6 @@ end
 
 function M.GetRandomTrue(probability)
   return RandomFloat(0.0, 1.0) < probability
-end
-
--- This function iterates over the table in a sorted order.
--- It was taken from here:
--- https://stackoverflow.com/questions/15706270/sort-a-table-in-lua
-
-function M.spairs(t, order)
-    -- collect the keys
-    local keys = {}
-    for k in pairs(t) do keys[#keys+1] = k end
-
-    -- if order function given, sort by it by passing the table
-    -- and keys a, b, otherwise just sort the keys
-    if order then
-        table.sort(keys, function(a,b) return order(t, a, b) end)
-    else
-        table.sort(keys)
-    end
-
-    -- return the iterator function
-    local i = 0
-    return function()
-        i = i + 1
-        if keys[i] then
-            return keys[i], t[keys[i]]
-        end
-    end
 end
 
 -- Provide an access to local functions for unit tests only

@@ -63,7 +63,9 @@ function M.AbilityLevelUpThink()
     if functions.IsElementInList(level, TALENT_LEVELS) then
       if AbilityLevelUp(
         npc_bot,
-        TALENTS[npc_bot:GetUnitName()][ability_index]) then
+        functions.GetElementInList(
+          TALENTS[npc_bot:GetUnitName()],
+          ability_index)) then
 
         abilities_build[level] = nil
         return
@@ -72,7 +74,9 @@ function M.AbilityLevelUpThink()
 
     if AbilityLevelUp(
       npc_bot,
-      ABILITIES[npc_bot:GetUnitName()][ability_index]) then
+      functions.GetElementInList(
+        ABILITIES[npc_bot:GetUnitName()],
+        ability_index)) then
 
       abilities_build[level] = nil
       return
