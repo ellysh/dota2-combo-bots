@@ -58,12 +58,9 @@ function M.TeamThink()
 
     local desire_index = functions.ternary(M[algorithm](), 1, 2)
 
-    if is_succeed then
-      for name, value in pairs(desires) do
-        M.PUSH_LINES_DESIRE[name] =
-          M.PUSH_LINES_DESIRE[name] + value[desire_index]
-      end
-    else
+    for name, value in pairs(desires) do
+      M.PUSH_LINES_DESIRE[name] =
+        M.PUSH_LINES_DESIRE[name] + value[desire_index]
     end
     ::continue::
   end
