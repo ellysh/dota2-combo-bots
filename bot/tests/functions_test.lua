@@ -105,34 +105,6 @@ function test_GetElementIndexInList()
     -1)
 end
 
-function test_GetElementInList()
-  local list = {"item5", "item3", "item4", "item2", "item1"}
-
-  luaunit.assertEquals(
-    functions.GetElementInList(list, 1),
-    "item5")
-
-  luaunit.assertEquals(
-    functions.GetElementInList(list, 2),
-    "item3")
-
-  luaunit.assertEquals(
-    functions.GetElementInList(list, 3),
-    "item4")
-
-  luaunit.assertEquals(
-    functions.GetElementInList(list, 4),
-    "item2")
-
-  luaunit.assertEquals(
-    functions.GetElementInList(list, 5),
-    "item1")
-
-  luaunit.assertEquals(
-    functions.GetElementInList(list, 6),
-    nil)
-end
-
 function test_IsElementInList()
   local list = {1, 2, 3, 4, 5}
 

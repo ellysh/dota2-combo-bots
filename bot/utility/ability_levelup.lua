@@ -63,11 +63,8 @@ function M.AbilityLevelUpThink()
     if functions.IsElementInList(TALENT_LEVELS, level) then
       if AbilityLevelUp(
         npc_bot,
-        functions.GetElementInList(
-          TALENTS[npc_bot:GetUnitName()],
-          ability_index)) then
+        TALENTS[npc_bot:GetUnitName()][ability_index]) then
 
-        -- This is safe because of the spairs(abilities_build)
         abilities_build[level] = nil
         return
       end
@@ -75,11 +72,8 @@ function M.AbilityLevelUpThink()
 
     if AbilityLevelUp(
       npc_bot,
-      functions.GetElementInList(
-        ABILITIES[npc_bot:GetUnitName()],
-        ability_index)) then
+      ABILITIES[npc_bot:GetUnitName()][ability_index]) then
 
-      -- This is safe because of the spairs(abilities_build)
       abilities_build[level] = nil
       return
     end

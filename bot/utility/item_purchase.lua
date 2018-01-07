@@ -30,7 +30,7 @@ local function PurchaseCourier(npc_bot)
   local players = GetTeamPlayers(GetTeam())
 
   -- Buy courier only by a player of 5th position
-  if functions.GetElementInList(players, 5) == npc_bot:GetPlayerID() then
+  if players[5] == npc_bot:GetPlayerID() then
 
     logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought courier")
 

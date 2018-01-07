@@ -64,16 +64,12 @@ local function GetDesiredAbilitiesList(npc_bot)
     for bot_mode, algorithm in functions.spairs(algorithms) do
 
       local is_succeed, target =
-        CalculateDesireAndTarget(
-          npc_bot,
-          functions.GetElementInList(algorithm, 1),
+        CalculateDesireAndTarget(npc_bot,
+          algorithm[1],
           bot_mode,
           ability)
 
-      local desire = functions.ternary(
-        is_succeed,
-        functions.GetElementInList(algorithm, 2),
-        0.0)
+      local desire = functions.ternary(is_succeed, algorithm[2], 0.0)
 
       if desire ~= nil and desire ~= 0.0 then
          result[ability] = {target, desire}
@@ -95,16 +91,11 @@ local function ChooseAbilityAndTarget(npc_bot)
   for ability, target_desire
     in functions.spairs(
       desired_abilities,
-      function(t, a, b)
-        return functions.GetElementInList(t[b], 2)
-          < functions.GetElementInList(t[a], 2)
-      end) do
+      function(t, a, b) return t[b][2] < t[a][2] end) do
 
-    if functions.GetRandomTrue(
-      functions.GetElementInList(target_desire, 2)) then
+    if functions.GetRandomTrue(target_desire[2]) then
 
-        return ability,
-               functions.GetElementInList(target_desire, 1)
+        return ability, target_desire[1]
     end
   end
 

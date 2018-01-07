@@ -69,17 +69,6 @@ function M.GetElementIndexInList(list, element)
   return -1
 end
 
-function M.GetElementInList(list, index)
-  if list == nil then return nil end
-
-  -- We should sort by keys. Otherwise, elements have a random order.
-
-  for i, element in M.spairs(list) do
-    if i == index then return element end
-  end
-  return nil
-end
-
 function M.IsElementInList(list, index)
   return M.GetElementIndexInList(list, index) ~= -1
 end

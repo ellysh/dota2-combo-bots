@@ -10,9 +10,9 @@ end
 
 function UpdatePushLaneDesires()
   return {
-    functions.GetElementInList(team_desires.PUSH_LINES_DESIRE, 1),
-    functions.GetElementInList(team_desires.PUSH_LINES_DESIRE, 2),
-    functions.GetElementInList(team_desires.PUSH_LINES_DESIRE, 3)
+    team_desires.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
+    team_desires.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
+    team_desires.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"]
   }
 end
 
