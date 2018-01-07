@@ -52,37 +52,8 @@ local function GetEnemyBuildings(npc_bot, radius)
   return npc_bot:GetNearbyBarracks(radius, true)
 end
 
-local MIN = 1
-local MAX = 2
-
 local function GetUnitHealth(unit)
   return unit:GetHealth()
-end
-
-local function GetUnitWith(min_max, get_function, units)
-  if #units == 0 then return nil end
-
-  local current_value = functions.ternary(min_max == MIN, 1000000, -1)
-  local result = nil
-
-  for _, unit in pairs(units) do
-    if unit == nil or not unit:IsAlive() then goto continue end
-
-    local unit_value = get_function(unit)
-    local is_positive_comparison = functions.ternary(
-      min_max == MIN,
-      unit_value < current_value,
-      current_value < unit_value)
-
-    if is_positive_comparison then
-      current_value = unit_value
-      result = unit
-    end
-
-    ::continue::
-  end
-
-  return result
 end
 
 local function IsTargetable(npc)
@@ -115,7 +86,10 @@ end
 
 function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetUnitWith(MIN, GetUnitHealth, enemy_heroes)
+  local enemy_hero = functions.GetUnitWith(
+    constants.MIN,
+    GetUnitHealth,
+    enemy_heroes)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero)
@@ -144,8 +118,8 @@ end
 
 function M.max_kills_enemy_hero(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetUnitWith(
-    MAX,
+  local enemy_hero = functions.GetUnitWith(
+    constants.MAX,
     function(unit) return GetHeroKills(unit:GetPlayerID()) end,
     enemy_heroes)
 
@@ -222,7 +196,7 @@ end
 
 function M.max_hp_creep(npc_bot, ability)
   local creeps = GetEnemyCreeps(npc_bot, ability:GetCastRange())
-  local creep = GetUnitWith(MAX, GetUnitHealth, creeps)
+  local creep = functions.GetUnitWith(constants.MAX, GetUnitHealth, creeps)
 
   if creep == nil
     or not IsTargetable(creep) then
@@ -279,8 +253,8 @@ end
 
 function M.max_estimated_damage_enemy_hero(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = GetUnitWith(
-    MAX,
+  local enemy_hero = functions.GetUnitWith(
+    constants.MAX,
     function(unit) return unit:GetEstimatedDamageToTarget(
       true,
       npc_bot,
@@ -385,7 +359,10 @@ end
 
 function M.low_hp_ally_hero(npc_bot, ability)
   local ally_heroes = GetAllyHeroes(npc_bot, ability:GetCastRange())
-  local ally_hero = GetUnitWith(MIN, GetUnitHealth, ally_heroes)
+  local ally_hero = functions.GetUnitWith(
+    constants.MIN,
+    GetUnitHealth,
+    ally_heroes)
 
   if ally_hero == nil
     or not IsTargetable(ally_hero)
@@ -410,7 +387,10 @@ function M.min_hp_enemy_building(npc_bot, ability)
   local enemy_buildings =
     GetEnemyBuildings(npc_bot, ability:GetCastRange())
 
-  local enemy_building = GetUnitWith(MIN, GetUnitHealth, enemy_buildings)
+  local enemy_building = functions.GetUnitWith(
+    constants.MIN,
+    GetUnitHealth,
+    enemy_buildings)
 
   if enemy_building == nil
     or not IsTargetable(enemy_building) then
@@ -429,15 +409,11 @@ M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetAllyCreeps = GetAllyCreeps
 M.test_GetEnemyBuildings = GetEnemyBuildings
 M.test_GetUnitHealth = GetUnitHealth
-M.test_GetUnitWith = GetUnitWith
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_UseOnAttackEnemyUnit = UseOnAttackEnemyUnit
 M.test_GetUnitHealthLevel = GetUnitHealthLevel
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
-
-M.test_MIN = MIN
-M.test_MAX = MAX
 
 return M

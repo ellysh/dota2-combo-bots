@@ -44,4 +44,7 @@ M.BOT_MODES = {
   BOT_MODE_WARD = 22,
 }
 
+M.MIN = 1
+M.MAX = 2
+
 return M

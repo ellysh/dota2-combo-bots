@@ -124,6 +124,35 @@ function M.GetInventoryItems(npc_bot)
   return result
 end
 
+function M.GetUnitWith(min_max, get_function, units)
+  if #units == 0 then return nil end
+
+  local current_value = M.ternary(
+    min_max == constants.MIN,
+    1000000,
+    -1)
+  local result = nil
+
+  for _, unit in pairs(units) do
+    if unit == nil or not unit:IsAlive() then goto continue end
+
+    local unit_value = get_function(unit)
+    local is_positive_comparison = M.ternary(
+      min_max == constants.MIN,
+      unit_value < current_value,
+      current_value < unit_value)
+
+    if is_positive_comparison then
+      current_value = unit_value
+      result = unit
+    end
+
+    ::continue::
+  end
+
+  return result
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

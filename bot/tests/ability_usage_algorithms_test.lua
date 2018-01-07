@@ -103,18 +103,6 @@ function test_GetUnitHealth()
     200)
 end
 
-function test_GetUnitWith()
-  test_RefreshBot()
-
-  local unit = ability_usage_algorithms.test_GetUnitWith(
-    ability_usage_algorithms.test_MIN,
-    ability_usage_algorithms.test_GetUnitHealth,
-    GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE))
-
-  luaunit.assertEquals(unit:GetUnitName(), "unit1")
-  luaunit.assertEquals(unit:GetHealth(), 10)
-end
-
 function test_IsTargetable()
   local unit = Unit:new()
 
