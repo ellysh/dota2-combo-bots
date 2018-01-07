@@ -1,7 +1,7 @@
 
 local M = {}
 
-M.SKILL_BUILD = {
+M.TEAM_DESIRES = {
 
   ally_mega_creeps = {
     [1] = 0.2,

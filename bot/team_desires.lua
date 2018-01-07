@@ -1,8 +1,8 @@
 local team_desires = require(
-    GetScriptDirectory() .."/utility/team_desires")
+  GetScriptDirectory() .."/utility/team_desires")
 
 local functions = require(
-    GetScriptDirectory() .."/utility/functions")
+  GetScriptDirectory() .."/utility/functions")
 
 function TeamThink()
   team_desires.TeamThink()

@@ -145,7 +145,7 @@ SKILL_USAGE = """
 #---------------------------------------------
 
 TEAM_DESIRES_HEADER = """
-M.SKILL_BUILD = {
+M.TEAM_DESIRES = {
 """
 
 TEAM_DESIRES = """
