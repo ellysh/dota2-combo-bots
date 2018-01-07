@@ -1,12 +1,19 @@
 local team_desires = require(
     GetScriptDirectory() .."/utility/team_desires")
 
+local functions = require(
+    GetScriptDirectory() .."/utility/functions")
+
 function TeamThink()
   team_desires.TeamThink()
 end
 
 function UpdatePushLaneDesires()
-  return {0, 0, 0}
+  return {
+    functions.GetElementInList(team_desires.PUSH_LINES_DESIRE, 1),
+    functions.GetElementInList(team_desires.PUSH_LINES_DESIRE, 2),
+    functions.GetElementInList(team_desires.PUSH_LINES_DESIRE, 3)
+  }
 end
 
 --[[
