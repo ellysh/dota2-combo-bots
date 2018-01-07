@@ -150,8 +150,8 @@ M.TEAM_DESIRES = {
 
 TEAM_DESIRES = """
   <0> = {
-    [1] = <1>,
-    [2] = <2>,
-    [3] = <3>
+    PUSH_TOP_LINE_DESIRE = <1>,
+    PUSH_MID_LINE_DESIRE = <2>,
+    PUSH_BOT_LINE_DESIRE = <3>
   },
 """

@@ -35,9 +35,9 @@ function M.max_kills_ally_hero_alive()
 end
 
 M.PUSH_LINES_DESIRE = {
-  0.0,
-  0.0,
-  0.0
+  PUSH_TOP_LINE_DESIRE = 0.0,
+  PUSH_MID_LINE_DESIRE = 0.0,
+  PUSH_BOT_LINE_DESIRE = 0.0
 }
 
 function M.TeamThink()
@@ -47,9 +47,9 @@ function M.TeamThink()
     local is_succeed = M[algorithm]()
 
     if is_succeed then
-      PUSH_LINES_DESIRE[1] = PUSH_LINES_DESIRE[1] + desires[1]
-      PUSH_LINES_DESIRE[2] = PUSH_LINES_DESIRE[2] + desires[2]
-      PUSH_LINES_DESIRE[3] = PUSH_LINES_DESIRE[3] + desires[3]
+      for name, value in pairs(desires) do
+        M.PUSH_LINES_DESIRE[name] = MPUSH_LINES_DESIRE[name] + value
+      end
     else
     end
     ::continue::
