@@ -58,7 +58,7 @@ function M.AbilityLevelUpThink()
   local abilities_build =
     skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities
 
-  for level, ability_index in pairs(abilities_build) do
+  for level, ability_index in functions.spairs(abilities_build) do
 
     if functions.IsElementInList(level, TALENT_LEVELS) then
       if AbilityLevelUp(
