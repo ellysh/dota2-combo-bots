@@ -96,11 +96,7 @@ function M.max_kills_enemy_hero_alive()
 end
 
 function M.max_kills_ally_hero_alive()
-  local npc_bot = GetBot()
-
-  if npc_bot == nil then return false end
-
-  local players = GetTeamPlayers(npc_bot:GetTeam())
+  local players = GetTeamPlayers(functions.GetMyTeam())
   local player = GetPlayerWith(
     constants.MAX,
     function(player) return GetHeroKills(player) end,
@@ -174,7 +170,7 @@ end
 
 function M.more_ally_heroes_alive_then_enemy()
   local ally_number = GetNumberOfPlayersWith(
-    GetTeamPlayers(GetBot():GetTeam()),
+    GetTeamPlayers(functions.GetMyTeam()),
     function(player) return IsHeroAlive(player) end)
 
   local enemy_number = GetNumberOfPlayersWith(

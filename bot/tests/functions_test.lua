@@ -220,4 +220,8 @@ function test_GetUnitWith()
   luaunit.assertEquals(unit:GetHealth(), 10)
 end
 
+function test_GetMyTeam()
+  luaunit.assertEquals(functions.GetMyTeam(), TEAM_RADIANT)
+end
+
 os.exit(luaunit.LuaUnit.run())

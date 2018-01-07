@@ -153,6 +153,13 @@ function M.GetUnitWith(min_max, get_function, units)
   return result
 end
 
+function M.GetMyTeam()
+  return M.ternary(
+    GetOpposingTeam() == TEAM_RADIANT,
+    TEAM_DIRE,
+    TEAM_RADIANT)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
