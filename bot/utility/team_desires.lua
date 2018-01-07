@@ -118,7 +118,7 @@ local function ThreeAndMoreAllyHeroesOnLane(lane)
   local heroes_number = 0
 
   for _, hero in pairs(ally_heroes) do
-    if not hero:IsAlive() or hero:IsIllusion() then goto continue end 
+    if not hero:IsAlive() or hero:IsIllusion() then goto continue end
 
     local disatnce_from_lane =
       GetAmountAlongLane(lane, hero:GetLocation()).distance
@@ -183,5 +183,6 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
+M.test_ThreeAndMoreAllyHeroesOnLane = ThreeAndMoreAllyHeroesOnLane
 
 return M
