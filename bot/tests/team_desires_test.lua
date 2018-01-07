@@ -64,6 +64,26 @@ function test_three_and_more_ally_heroes_on_top()
   luaunit.assertFalse(team_desires.three_and_more_ally_heroes_on_top())
 end
 
+function test_three_and_more_ally_heroes_on_mid()
+  luaunit.assertFalse(team_desires.three_and_more_ally_heroes_on_mid())
+end
+
+function test_three_and_more_ally_heroes_on_bot()
+  luaunit.assertFalse(team_desires.three_and_more_ally_heroes_on_bot())
+end
+
+function test_three_and_more_enemy_heroes_on_top()
+  luaunit.assertFalse(team_desires.three_and_more_enemy_heroes_on_top())
+end
+
+function test_three_and_more_enemy_heroes_on_mid()
+  luaunit.assertFalse(team_desires.three_and_more_enemy_heroes_on_mid())
+end
+
+function test_three_and_more_enemy_heroes_on_bot()
+  luaunit.assertFalse(team_desires.three_and_more_enemy_heroes_on_bot())
+end
+
 function test_ThreeAndMoreUnitsOnLane()
   local unit = Unit:new()
 

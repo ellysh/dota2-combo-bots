@@ -145,6 +145,18 @@ function M.three_and_more_ally_heroes_on_bot()
   return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
 end
 
+function M.three_and_more_enemy_heroes_on_top()
+  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_TOP)
+end
+
+function M.three_and_more_enemy_heroes_on_mid()
+  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_MID)
+end
+
+function M.three_and_more_enemy_heroes_on_bot()
+  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
+end
+
 M.PUSH_LINES_DESIRE = {
   PUSH_TOP_LINE_DESIRE = 0,
   PUSH_MID_LINE_DESIRE = 0,
