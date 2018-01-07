@@ -1,4 +1,7 @@
 * version 0.5
+  - Fix a critical bug with taking elements by indexes of the
+  unsorted tables. The bug can cause issues with level up
+  abilities, purchasing items, abilities usage, and heroes draft.
   - Fix a bug with level up abilities and talents because of
     C++ side issue.
   - Add "desire" values to the SKILL_USAGE table.
