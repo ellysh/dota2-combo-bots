@@ -48,6 +48,10 @@ function test_ally_have_cheese()
   luaunit.assertTrue(team_desires.ally_have_cheese())
 end
 
+function test_max_kills_enemy_hero_alive()
+  luaunit.assertTrue(team_desires.max_kills_enemy_hero_alive())
+end
+
 function test_TeamThink()
   BARRAK_HEALTH = 0
   team_desires.TeamThink()
