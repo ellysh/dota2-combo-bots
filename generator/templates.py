@@ -141,3 +141,17 @@ SKILL_USAGE = """
       BOT_MODE_DEFEND_ALLY = {algorithms["<23>"], <24>}
   },
 """
+
+#---------------------------------------------
+
+TEAM_DESIRES_HEADER = """
+M.SKILL_BUILD = {
+"""
+
+TEAM_DESIRES = """
+  <0> = {
+    [1] = <1>,
+    [2] = <2>,
+    [3] = <3>
+  },
+"""

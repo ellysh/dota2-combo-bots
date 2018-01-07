@@ -14,3 +14,5 @@ RESULT_DIR="../bot/database"
 ./generator.py SKILL_BUILD 20 $CSV_DIR/skill_build.csv > $RESULT_DIR/skill_build.lua
 
 ./generator.py SKILL_USAGE 25 $CSV_DIR/skill_usage.csv > $RESULT_DIR/skill_usage.lua
+
+./generator.py TEAM_DESIRES 4 $CSV_DIR/team_desires.csv > $RESULT_DIR/team_desires.lua
