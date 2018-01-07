@@ -109,8 +109,9 @@ These are columns of this sheet:
 
 1. Hero - this is the built-in hero name.
 2. Starting Items - these are three or fewer basic items that will be bought at the beginning of a game.
-3. Core Items - these are three or fewer items that will be bought after the starting ones.
-4. Extra items - these are four or fewer items that will be bought after the core ones.
+3. Early Game - these are three or fewer items that will be bought at the early stage of a game.
+4. Core Items - these are three or fewer items that will be bought after the starting ones.
+5. Extra items - these are four or fewer items that will be bought after the core ones.
 
 The bot follows the sequence of items on this sheet when buying them. If the inventory of a hero is full, the bot will sell some items according to conditions from the `ITEM_SELL` sheet.
 

@@ -1,3 +1,6 @@
+* version 0.6
+  - Add early game items to the ITEM_BUILD table
+
 * version 0.5
   - Fix a critical bug with taking elements by indexes of the
   unsorted tables. The bug can cause issues with level up
