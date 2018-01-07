@@ -30,7 +30,7 @@ local function PurchaseCourier(npc_bot)
   local players = GetTeamPlayers(GetTeam())
 
   -- Buy courier only by a player of 5th position
-  if players[5] == npc_bot:GetPlayerID() then
+  if functions.GetElementInList(players, 5) == npc_bot:GetPlayerID() then
 
     logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought courier")
 
@@ -57,6 +57,7 @@ local function IsItemAlreadyBought(inventory, item)
   local index = functions.GetElementIndexInList(inventory, item)
 
   if index ~= -1 then
+    -- This is safe because we have used GetElementIndexInList
     inventory[index] = "nil"
     return true
   end
@@ -87,7 +88,7 @@ local function FindNextComponentToBuy(npc_bot, item)
 
   local inventory = GetInventoryAndStashItems(npc_bot)
 
-  for _, component in pairs(component_list) do
+  for _, component in functions.spairs(component_list) do
     if component ~= "nil"
       and not IsItemAlreadyBought(inventory, component) then
 
@@ -169,7 +170,7 @@ local function PurchaseItem(npc_bot, item)
 end
 
 local function FindNextItemToBuy(item_list)
-  for i, item in pairs(item_list) do
+  for i, item in functions.spairs(item_list) do
     if item ~= "nil" then return i, item end
   end
 
@@ -182,7 +183,8 @@ local function PurchaseItemList(npc_bot, item_type)
   local i, item = FindNextItemToBuy(item_list)
 
   if IsItemAlreadyBought(GetInventoryAndStashItems(npc_bot), item) then
-    -- Mark the item as bought
+    -- Mark the item as bought. This is safe because of the "spairs"
+    -- usage in the FindNextItemToBuy.
     item_list[i] = "nil"
     return
   end

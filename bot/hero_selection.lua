@@ -69,28 +69,38 @@ function Think()
   local players = GetTeamPlayers(GetTeam())
 
   local hero_position_5 = GetRandomHero(5)
-  SelectHero(players[5], hero_position_5)
+  SelectHero(
+    functions.GetElementInList(players, 5),
+    hero_position_5)
 
   local hero_position_4 = GetComboHero(4, {hero_position_5})
-  SelectHero(players[4], hero_position_4)
+  SelectHero(
+    functions.GetElementInList(players, 4),
+    hero_position_4)
 
   local hero_position_3 = GetComboHero(
     3,
     {hero_position_4, hero_position_5})
 
-  SelectHero(players[3], hero_position_3)
+  SelectHero(
+    functions.GetElementInList(players, 3),
+    hero_position_3)
 
   local hero_position_2 = GetComboHero(
     2,
     {hero_position_3, hero_position_4, hero_position_5})
 
-  SelectHero(players[2], hero_position_2)
+  SelectHero(
+    functions.GetElementInList(players, 2),
+    hero_position_2)
 
   local hero_position_1 = GetComboHero(
     1,
     {hero_position_2, hero_position_3, hero_position_4, hero_position_5})
 
-  SelectHero(players[1], hero_position_1)
+  SelectHero(
+    functions.GetElementInList(players, 1),
+    hero_position_1)
 end
 
 function UpdateLaneAssignments()

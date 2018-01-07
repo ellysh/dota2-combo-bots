@@ -67,6 +67,7 @@ function M.AbilityLevelUpThink()
           TALENTS[npc_bot:GetUnitName()],
           ability_index)) then
 
+        -- This is safe because of the spairs(abilities_build)
         abilities_build[level] = nil
         return
       end
@@ -78,6 +79,7 @@ function M.AbilityLevelUpThink()
         ABILITIES[npc_bot:GetUnitName()],
         ability_index)) then
 
+      -- This is safe because of the spairs(abilities_build)
       abilities_build[level] = nil
       return
     end
