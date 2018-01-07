@@ -47,4 +47,6 @@ M.BOT_MODES = {
 M.MIN = 1
 M.MAX = 2
 
+M.MAX_HERO_DISTANCE_FROM_LANE = 1200
+
 return M

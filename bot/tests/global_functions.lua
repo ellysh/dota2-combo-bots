@@ -176,6 +176,12 @@ function GetUnitList(list_type)
   return UNITS
 end
 
+LANE_DISTANCE = 200
+
+function GetAmountAlongLane(lane, location)
+  return {amount = 3, distance = LANE_DISTANCE}
+end
+
 --------------------------------------
 
 IS_SECRET_SHOP_ITEM = false

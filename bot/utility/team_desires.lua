@@ -113,6 +113,26 @@ function M.time_is_less_5_minutes()
   return DotaTime() < (5 * 60)
 end
 
+function M.three_and_more_ally_heroes_on_top()
+  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+  local heroes_number = 0
+
+  for _, hero in pairs(ally_heroes) do
+    if not hero:IsAlive() or hero:IsIllusion() then goto continue end
+
+    local disatnce_from_lane =
+      GetAmountAlongLane(LANE_TOP, hero:GetLocation()).distance
+
+    if disatnce_from_lane < constants.MAX_HERO_DISTANCE_FROM_LANE then
+      heroes_number = heroes_number + 1
+    end
+
+    ::continue::
+  end
+
+  return 3 <= heroes_number
+end
+
 M.PUSH_LINES_DESIRE = {
   PUSH_TOP_LINE_DESIRE = 0,
   PUSH_MID_LINE_DESIRE = 0,

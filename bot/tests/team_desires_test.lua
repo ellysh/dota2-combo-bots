@@ -60,27 +60,35 @@ function test_time_is_less_5_minutes()
   luaunit.assertTrue(team_desires.time_is_less_5_minutes())
 end
 
+function test_three_and_more_ally_heroes_on_top()
+  luaunit.assertFalse(team_desires.three_and_more_ally_heroes_on_top())
+end
+
 function test_TeamThink()
   BARRAK_HEALTH = 0
   team_desires.TeamThink()
 
   luaunit.assertEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
-    0.2)
+    0.4)
 
-  luaunit.assertEquals(
+  luaunit.assertAlmostEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
-    0.2)
+    0.3,
+    0.01)
 
-  luaunit.assertEquals(
+  luaunit.assertAlmostEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"],
-    0.2)
+    0.3,
+    0.01)
 end
 
 function test_UpdatePushLaneDesires()
-  luaunit.assertEquals(
-    team_desires.UpdatePushLaneDesires(),
-    {0.2, 0.2, 0.2})
+  local result = team_desires.UpdatePushLaneDesires()
+
+  luaunit.assertAlmostEquals(result[1], 0.4, 0.01)
+  luaunit.assertAlmostEquals(result[2], 0.3, 0.01)
+  luaunit.assertAlmostEquals(result[3], 0.3, 0.01)
 end
 
 os.exit(luaunit.LuaUnit.run())
