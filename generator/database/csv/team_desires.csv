@@ -2,6 +2,6 @@ Algorithm;Push TOP desire;;Push MID desire;;Push BOT desire;;Roam desire;Defend 
 ally_mega_creeps;0.2;0;0.2;0;0.2;0;0.1;-0.2;-0.2;-0.2;-0.2;-0.2;-0.2;0.1
 ally_have_aegis;0.2;0;0.2;0;0.2;0;0.1;;;;;;;
 ally_have_cheese;0.1;0;0.1;0;0.1;0;0.1;;;;;;;
-max_kills_enemy_hero_alive;-0.2;0.2;-0.2;0.2;-0.2;0.2;0.2;;;;;;;
-max_kills_ally_hero_alive;0.2;-0.2;0.2;-0.2;0.2;-0.2;0.1;;;;;;;
-time_is_less_5_minutes;0;-0.2;0;-0.2;0;-0.2;0;;;;;;;
+max_kills_enemy_hero_alive;-0.1;0.2;-0.1;0.2;-0.2;0.2;0.2;;;;;;;
+max_kills_ally_hero_alive;0.1;-0.2;0.1;-0.2;0.2;-0.2;0.1;;;;;;;
+time_is_less_5_minutes;0.2;-0.2;0.2;-0.2;0.2;-0.2;0;;;;;;;
