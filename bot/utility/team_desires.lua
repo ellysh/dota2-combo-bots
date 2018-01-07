@@ -63,8 +63,12 @@ function M.max_kills_enemy_hero_alive()
 end
 
 function M.max_kills_ally_hero_alive()
-  -- TODO: Implement this algorithm
-  return false
+  local ally_hero = functions.GetUnitWith(
+    constants.MAX,
+    function(unit) return GetHeroKills(unit:GetPlayerID()) end,
+    GetUnitList(UNIT_LIST_ALLIED_HEROES))
+
+  return ally_hero:IsAlive()
 end
 
 M.PUSH_LINES_DESIRE = {
