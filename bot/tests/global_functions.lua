@@ -164,6 +164,12 @@ function GetBarracks(team, barrack_index)
   return unit
 end
 
+UNITS = {}
+
+function GetUnitList(list_type)
+  return UNITS
+end
+
 --------------------------------------
 
 IS_SECRET_SHOP_ITEM = false

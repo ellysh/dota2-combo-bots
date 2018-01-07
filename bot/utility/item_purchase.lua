@@ -53,17 +53,6 @@ local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
 end
 
-local function IsItemAlreadyBought(inventory, item)
-  local index = functions.GetElementIndexInList(inventory, item)
-
-  if index ~= -1 then
-    -- This is safe because we have used GetElementIndexInList
-    inventory[index] = "nil"
-    return true
-  end
-  return false
-end
-
 local function GetInventoryAndStashItems(npc_bot)
   local _, result = functions.GetItems(
     npc_bot,
@@ -72,12 +61,16 @@ local function GetInventoryAndStashItems(npc_bot)
   return result
 end
 
-local function GetInventoryItems(npc_bot)
-  local _, result = functions.GetItems(
-    npc_bot,
-    constants.INVENTORY_SIZE)
+local function IsItemAlreadyBought(inventory, item)
+  local index = functions.GetElementIndexInList(inventory, item)
 
-  return result
+  -- This nil assignment is required to process recipes with several
+  -- identical components
+  if index ~= -1 then
+    inventory[index] = "nil"
+    return true
+  end
+  return false
 end
 
 local function FindNextComponentToBuy(npc_bot, item)
@@ -182,9 +175,8 @@ local function PurchaseItemList(npc_bot, item_type)
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if IsItemAlreadyBought(GetInventoryAndStashItems(npc_bot), item) then
-    -- Mark the item as bought. This is safe because of the "spairs"
-    -- usage in the FindNextItemToBuy.
+  if functions.IsElementInList(GetInventoryAndStashItems(npc_bot), item) then
+
     item_list[i] = "nil"
     return
   end
@@ -223,7 +215,7 @@ end
 local function SellExtraItem(npc_bot)
   if not functions.IsItemSlotsFull(npc_bot) then return end
 
-  local inventory = GetInventoryItems(npc_bot)
+  local inventory = functions.GetInventoryItems(npc_bot)
 
   for item, condition in functions.spairs(item_sell.ITEM_SELL) do
 
@@ -260,7 +252,6 @@ M.test_PurchaseTpScroll = PurchaseTpScroll
 M.test_IsRecipeItem = IsRecipeItem
 M.test_IsItemAlreadyBought = IsItemAlreadyBought
 M.test_GetInventoryAndStashItems = GetInventoryAndStashItems
-M.test_GetInventoryItems = GetInventoryItems
 M.test_FindNextComponentToBuy = FindNextComponentToBuy
 M.test_OrderSecretShopItem = OrderSecretShopItem
 M.test_OrderSideShopItem = OrderSideShopItem

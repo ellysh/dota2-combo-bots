@@ -174,6 +174,35 @@ function test_ternary()
   luaunit.assertEquals(functions.ternary(5 > 2, 5, 2), 5)
 end
 
+function test_GetInventoryItems()
+  test_RefreshBot()
+
+  BOT.inventory = {
+    "item_tango",
+    "item_branches",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "nil",
+    "item_tango",
+    "nil",
+    "item_branches",
+  }
+
+  local result = functions.GetInventoryItems(GetBot())
+
+  for i = 1, #result - 1 do
+    luaunit.assertEquals(BOT.inventory[i], result[i + 1])
+  end
+end
+
 function test_GetRandomTrue()
   -- TODO: Improve this test
   luaunit.assertTrue(functions.GetRandomTrue(1.0))

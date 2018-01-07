@@ -13,6 +13,17 @@ function test_ally_mega_creeps()
   luaunit.assertTrue(team_desires.ally_mega_creeps())
 end
 
+function test_ally_have_aegis()
+  luaunit.assertFalse(team_desires.ally_have_aegis())
+
+  local unit = Unit:new()
+  unit.inventory = {"item_aegis"}
+
+  UNITS = { unit }
+
+  luaunit.assertTrue(team_desires.ally_have_aegis())
+end
+
 function test_TeamThink()
   BARRAK_HEALTH = 0
   team_desires.TeamThink()

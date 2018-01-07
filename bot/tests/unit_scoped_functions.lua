@@ -218,6 +218,17 @@ function Unit:IsNull()
   return false
 end
 
+function Unit:GetItemInSlot(slot)
+  local item_in_slot = self.inventory[slot]
+
+  if item_in_slot == nil then return nil end
+
+  local item = Item:new()
+  item.name = self.inventory[slot]
+  return item
+end
+
+
 -----------------------------------------------
 
 Item = {}
@@ -243,16 +254,6 @@ function Bot:new()
 end
 
 function Bot:SetNextItemPurchaseValue(cost)
-end
-
-function Bot:GetItemInSlot(slot)
-  local item_in_slot = self.inventory[slot]
-
-  if item_in_slot == nil then return nil end
-
-  local item = Item:new()
-  item.name = self.inventory[slot]
-  return item
 end
 
 function Bot:GetGold()

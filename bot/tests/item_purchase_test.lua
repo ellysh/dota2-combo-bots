@@ -89,35 +89,6 @@ function test_GetInventoryAndStashItems()
   end
 end
 
-function test_GetInventoryItems()
-  test_RefreshBot()
-
-  BOT.inventory = {
-    "item_tango",
-    "item_branches",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "item_tango",
-    "nil",
-    "item_branches",
-  }
-
-  local result = item_purchase.test_GetInventoryItems(GetBot())
-
-  for i = 1, #result - 1 do
-    luaunit.assertEquals(BOT.inventory[i], result[i + 1])
-  end
-end
-
 function test_FindNextComponentToBuy()
   test_RefreshBot()
 

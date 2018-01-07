@@ -116,6 +116,14 @@ function M.GetRandomTrue(probability)
   return RandomFloat(0.0, 1.0) < probability
 end
 
+function M.GetInventoryItems(npc_bot)
+  local _, result = M.GetItems(
+    npc_bot,
+    constants.INVENTORY_SIZE)
+
+  return result
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

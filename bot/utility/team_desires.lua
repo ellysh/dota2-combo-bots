@@ -27,7 +27,18 @@ function M.ally_mega_creeps()
 end
 
 function M.ally_have_aegis()
-  -- TODO: Implement this algorithm
+  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+
+  for _, hero in pairs(ally_heroes) do
+
+    if functions.IsElementInList(
+      functions.GetInventoryItems(hero),
+      "item_aegis") then
+
+      return true
+    end
+  end
+
   return false
 end
 
