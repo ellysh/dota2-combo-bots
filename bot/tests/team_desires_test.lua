@@ -54,15 +54,15 @@ function test_TeamThink()
 
   luaunit.assertEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
-    0.2)
+    -0.2)
 
   luaunit.assertEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
-    0.2)
+    -0.2)
 
   luaunit.assertEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"],
-    0.2)
+    -0.2)
 end
 
 os.exit(luaunit.LuaUnit.run())

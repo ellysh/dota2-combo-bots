@@ -4,6 +4,9 @@ local logger = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local team_desires = require(
   GetScriptDirectory() .."/database/team_desires")
 
@@ -51,8 +54,12 @@ function M.ally_have_cheese()
 end
 
 function M.max_kills_enemy_hero_alive()
-  -- TODO: Implement this algorithm
-  return false
+  local enemy_hero = functions.GetUnitWith(
+    constants.MAX,
+    function(unit) return GetHeroKills(unit:GetPlayerID()) end,
+    GetUnitList(UNIT_LIST_ENEMY_HEROES))
+
+  return enemy_hero:IsAlive()
 end
 
 function M.max_kills_ally_hero_alive()
