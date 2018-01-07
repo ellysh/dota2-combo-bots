@@ -9,3 +9,5 @@ three_and_more_ally_heroes_on_top;0.2;0;0;-0.1;0;-0.1;;;;;;;;
 three_and_more_ally_heroes_on_mid;0;-0.1;0.2;0;0;-0.1;;;;;;;;
 three_and_more_ally_heroes_on_bot;0;-0.1;0;-0.1;0.2;0;;;;;;;;
 three_and_more_enemy_heroes_on_top;-0.2;0;0.1;0;0.1;0;;;;;;;;
+three_and_more_enemy_heroes_on_mid;0.1;0;-0.2;0;0.1;0;;;;;;;;
+three_and_more_enemy_heroes_on_bot;0.1;0;0.1;0;-0.2;0;;;;;;;;
