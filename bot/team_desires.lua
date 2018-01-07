@@ -6,11 +6,7 @@ function TeamThink()
 end
 
 function UpdatePushLaneDesires()
-  return {
-    team_desires.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
-    team_desires.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
-    team_desires.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"]
-  }
+  return team_desires.UpdatePushLaneDesires()
 end
 
 --[[

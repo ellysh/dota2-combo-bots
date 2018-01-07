@@ -77,4 +77,10 @@ function test_TeamThink()
     0.2)
 end
 
+function test_UpdatePushLaneDesires()
+  luaunit.assertEquals(
+    team_desires.UpdatePushLaneDesires(),
+    {0.2, 0.2, 0.2})
+end
+
 os.exit(luaunit.LuaUnit.run())
