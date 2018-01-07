@@ -11,6 +11,9 @@ end
 local function IsCourierIdle(courier, state)
   if state ~= COURIER_STATE_IDLE then return false end
 
+  -- We use the GameTime here to avoid negative DotaTime value
+  -- before the horn.
+
   if courier.idle_time == nil then
     courier.idle_time = GameTime()
   elseif 10 < (GameTime() - courier.idle_time) then

@@ -71,6 +71,10 @@ function M.max_kills_ally_hero_alive()
   return ally_hero:IsAlive()
 end
 
+function M.time_is_less_5_minutes()
+  return DotaTime() < (5 * 60)
+end
+
 M.PUSH_LINES_DESIRE = {
   PUSH_TOP_LINE_DESIRE = 0.0,
   PUSH_MID_LINE_DESIRE = 0.0,

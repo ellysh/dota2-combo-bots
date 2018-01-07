@@ -192,7 +192,7 @@ local function SellItemByIndex(npc_bot, index, condition)
   local item = npc_bot:GetItemInSlot(index);
 
   if npc_bot:GetLevel() < condition.level
-    and GameTime() < (condition.time * 60) then
+    and DotaTime() < (condition.time * 60) then
 
     return
   end
