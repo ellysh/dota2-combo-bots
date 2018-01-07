@@ -33,10 +33,16 @@ M.TEAM_DESIRES = {
     PUSH_BOT_LINE_DESIRE = {0.2, -0.2}
   },
 
-  time_is_less_5_minutes = {
-    PUSH_TOP_LINE_DESIRE = {-0.2, 0.4},
-    PUSH_MID_LINE_DESIRE = {-0.2, 0.4},
-    PUSH_BOT_LINE_DESIRE = {-0.2, 0.4}
+  time_is_more_5_minutes = {
+    PUSH_TOP_LINE_DESIRE = {0.4, -0.2},
+    PUSH_MID_LINE_DESIRE = {0.4, -0.2},
+    PUSH_BOT_LINE_DESIRE = {0.4, -0.2}
+  },
+
+  time_is_more_15_minutes = {
+    PUSH_TOP_LINE_DESIRE = {0.2, 0},
+    PUSH_MID_LINE_DESIRE = {0.2, 0},
+    PUSH_BOT_LINE_DESIRE = {0.2, 0}
   },
 
   three_and_more_ally_heroes_on_top = {
@@ -70,6 +76,12 @@ M.TEAM_DESIRES = {
   },
 
   three_and_more_enemy_heroes_on_bot = {
+    PUSH_TOP_LINE_DESIRE = {0.2, 0},
+    PUSH_MID_LINE_DESIRE = {0.2, 0},
+    PUSH_BOT_LINE_DESIRE = {-0.2, 0}
+  },
+
+  more_ally_heroes_alive_then_enemy = {
     PUSH_TOP_LINE_DESIRE = {0.2, 0},
     PUSH_MID_LINE_DESIRE = {0.2, 0},
     PUSH_BOT_LINE_DESIRE = {-0.2, 0}

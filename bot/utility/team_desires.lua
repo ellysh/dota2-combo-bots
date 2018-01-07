@@ -109,8 +109,12 @@ function M.max_kills_ally_hero_alive()
   return player ~= nil and IsHeroAlive(player)
 end
 
-function M.time_is_less_5_minutes()
-  return DotaTime() < (5 * 60)
+function M.time_is_more_5_minutes()
+  return (5 * 60) < DotaTime()
+end
+
+function M.time_is_more_15_minutes()
+  return (15 * 60) < DotaTime()
 end
 
 local function ThreeAndMoreUnitsOnLane(unit_type, lane)

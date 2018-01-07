@@ -56,8 +56,19 @@ function test_max_kills_ally_hero_alive()
   luaunit.assertTrue(team_desires.max_kills_ally_hero_alive())
 end
 
-function test_time_is_less_5_minutes()
-  luaunit.assertTrue(team_desires.time_is_less_5_minutes())
+function test_time_is_more_5_minutes()
+  TIME = 1 * 60
+  luaunit.assertFalse(team_desires.time_is_more_5_minutes())
+
+  TIME = 6 * 60
+  luaunit.assertTrue(team_desires.time_is_more_5_minutes())
+end
+
+function test_time_is_more_15_minutes()
+  luaunit.assertFalse(team_desires.time_is_more_15_minutes())
+
+  TIME = 16 * 60
+  luaunit.assertTrue(team_desires.time_is_more_15_minutes())
 end
 
 function test_three_and_more_ally_heroes_on_top()
@@ -108,26 +119,26 @@ function test_TeamThink()
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
-    0.2,
+    -0.1,
     0.01)
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
-    0.2,
+    -0.1,
     0.01)
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"],
-    0.2,
+    -0.2,
     0.01)
 end
 
 function test_UpdatePushLaneDesires()
   local result = team_desires.UpdatePushLaneDesires()
 
-  luaunit.assertAlmostEquals(result[1], 0.2, 0.01)
-  luaunit.assertAlmostEquals(result[2], 0.2, 0.01)
-  luaunit.assertAlmostEquals(result[3], 0.2, 0.01)
+  luaunit.assertAlmostEquals(result[1], -0.1, 0.01)
+  luaunit.assertAlmostEquals(result[2], -0.1, 0.01)
+  luaunit.assertAlmostEquals(result[3], -0.2, 0.01)
 end
 
 os.exit(luaunit.LuaUnit.run())
