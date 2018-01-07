@@ -71,6 +71,24 @@ function test_time_is_more_15_minutes()
   luaunit.assertTrue(team_desires.time_is_more_15_minutes())
 end
 
+function test_ThreeAndMoreUnitsOnLane()
+  local unit = Unit:new()
+
+  UNITS = { unit, unit, unit }
+
+  luaunit.assertTrue(
+    team_desires.test_ThreeAndMoreUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP))
+
+  UNITS = { unit, unit }
+
+  luaunit.assertFalse(
+    team_desires.test_ThreeAndMoreUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP))
+end
+
 function test_three_and_more_ally_heroes_on_top()
   luaunit.assertFalse(team_desires.three_and_more_ally_heroes_on_top())
 end
@@ -95,22 +113,8 @@ function test_three_and_more_enemy_heroes_on_bot()
   luaunit.assertFalse(team_desires.three_and_more_enemy_heroes_on_bot())
 end
 
-function test_ThreeAndMoreUnitsOnLane()
-  local unit = Unit:new()
-
-  UNITS = { unit, unit, unit }
-
-  luaunit.assertTrue(
-    team_desires.test_ThreeAndMoreUnitsOnLane(
-      UNIT_LIST_ALLIED_HEROES,
-      LANE_TOP))
-
-  UNITS = { unit, unit }
-
-  luaunit.assertFalse(
-    team_desires.test_ThreeAndMoreUnitsOnLane(
-      UNIT_LIST_ALLIED_HEROES,
-      LANE_TOP))
+function test_more_ally_heroes_alive_then_enemy()
+  luaunit.assertFalse(team_desires.more_ally_heroes_alive_then_enemy())
 end
 
 function test_TeamThink()

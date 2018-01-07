@@ -84,7 +84,7 @@ M.TEAM_DESIRES = {
   more_ally_heroes_alive_then_enemy = {
     PUSH_TOP_LINE_DESIRE = {0.2, 0},
     PUSH_MID_LINE_DESIRE = {0.2, 0},
-    PUSH_BOT_LINE_DESIRE = {-0.2, 0}
+    PUSH_BOT_LINE_DESIRE = {0.2, 0}
   },
 
 }

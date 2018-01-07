@@ -161,6 +161,29 @@ function M.three_and_more_enemy_heroes_on_bot()
   return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
 end
 
+local function GetNumberOfPlayersWith(players, check_function)
+  local result = 0
+
+  for _, player in pairs(players) do
+    if check_function(player) then
+    end
+  end
+
+  return result
+end
+
+function M.more_ally_heroes_alive_then_enemy()
+  local ally_number = GetNumberOfPlayersWith(
+    GetTeamPlayers(GetBot():GetTeam()),
+    function(player) return IsHeroAlive(player) end)
+
+  local enemy_number = GetNumberOfPlayersWith(
+    GetTeamPlayers(GetOpposingTeam()),
+    function(player) return IsHeroAlive(player) end)
+
+  return enemy_number < ally_number
+end
+
 M.PUSH_LINES_DESIRE = {
   PUSH_TOP_LINE_DESIRE = 0,
   PUSH_MID_LINE_DESIRE = 0,
