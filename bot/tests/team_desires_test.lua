@@ -64,18 +64,22 @@ function test_three_and_more_ally_heroes_on_top()
   luaunit.assertFalse(team_desires.three_and_more_ally_heroes_on_top())
 end
 
-function test_ThreeAndMoreAllyHeroesOnLane()
+function test_ThreeAndMoreUnitsOnLane()
   local unit = Unit:new()
 
   UNITS = { unit, unit, unit }
 
   luaunit.assertTrue(
-    team_desires.test_ThreeAndMoreAllyHeroesOnLane(LANE_TOP))
+    team_desires.test_ThreeAndMoreUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP))
 
   UNITS = { unit, unit }
 
   luaunit.assertFalse(
-    team_desires.test_ThreeAndMoreAllyHeroesOnLane(LANE_TOP))
+    team_desires.test_ThreeAndMoreUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP))
 end
 
 function test_TeamThink()

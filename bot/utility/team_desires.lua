@@ -113,8 +113,8 @@ function M.time_is_less_5_minutes()
   return DotaTime() < (5 * 60)
 end
 
-local function ThreeAndMoreAllyHeroesOnLane(lane)
-  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+local function ThreeAndMoreUnitsOnLane(unit_type, lane)
+  local ally_heroes = GetUnitList(unit_type)
   local heroes_number = 0
 
   for _, hero in pairs(ally_heroes) do
@@ -134,15 +134,15 @@ local function ThreeAndMoreAllyHeroesOnLane(lane)
 end
 
 function M.three_and_more_ally_heroes_on_top()
-  return ThreeAndMoreAllyHeroesOnLane(LANE_TOP)
+  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
 end
 
 function M.three_and_more_ally_heroes_on_mid()
-  return ThreeAndMoreAllyHeroesOnLane(LANE_MID)
+  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
 end
 
 function M.three_and_more_ally_heroes_on_bot()
-  return ThreeAndMoreAllyHeroesOnLane(LANE_BOT)
+  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
 end
 
 M.PUSH_LINES_DESIRE = {
@@ -183,6 +183,6 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
-M.test_ThreeAndMoreAllyHeroesOnLane = ThreeAndMoreAllyHeroesOnLane
+M.test_ThreeAndMoreUnitsOnLane = ThreeAndMoreUnitsOnLane
 
 return M
