@@ -45,6 +45,18 @@ M.TEAM_DESIRES = {
     PUSH_BOT_LINE_DESIRE = {0, -0.1}
   },
 
+  three_and_more_ally_heroes_on_mid = {
+    PUSH_TOP_LINE_DESIRE = {0, -0.1},
+    PUSH_MID_LINE_DESIRE = {0.2, 0},
+    PUSH_BOT_LINE_DESIRE = {0, -0.1}
+  },
+
+  three_and_more_ally_heroes_on_bot = {
+    PUSH_TOP_LINE_DESIRE = {0, -0.1},
+    PUSH_MID_LINE_DESIRE = {0, -0.1},
+    PUSH_BOT_LINE_DESIRE = {0.2, 0}
+  },
+
   three_and_more_enemy_heroes_on_top = {
     PUSH_TOP_LINE_DESIRE = {-0.2, 0},
     PUSH_MID_LINE_DESIRE = {0.1, 0},
