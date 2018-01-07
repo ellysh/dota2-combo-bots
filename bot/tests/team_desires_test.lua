@@ -133,7 +133,7 @@ function test_TeamThink()
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"],
-    -0.2,
+    -0.1,
     0.01)
 end
 
@@ -142,7 +142,7 @@ function test_UpdatePushLaneDesires()
 
   luaunit.assertAlmostEquals(result[1], -0.1, 0.01)
   luaunit.assertAlmostEquals(result[2], -0.1, 0.01)
-  luaunit.assertAlmostEquals(result[3], -0.2, 0.01)
+  luaunit.assertAlmostEquals(result[3], -0.1, 0.01)
 end
 
 os.exit(luaunit.LuaUnit.run())

@@ -24,7 +24,7 @@ M.TEAM_DESIRES = {
   max_kills_enemy_hero_alive = {
     PUSH_TOP_LINE_DESIRE = {-0.1, 0.2},
     PUSH_MID_LINE_DESIRE = {-0.1, 0.2},
-    PUSH_BOT_LINE_DESIRE = {-0.2, 0.2}
+    PUSH_BOT_LINE_DESIRE = {-0.1, 0.2}
   },
 
   max_kills_ally_hero_alive = {
