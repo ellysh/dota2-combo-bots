@@ -228,6 +228,9 @@ function Unit:GetItemInSlot(slot)
   return item
 end
 
+function Unit:GetTeam()
+  return TEAM_RADIANT
+end
 
 -----------------------------------------------
 

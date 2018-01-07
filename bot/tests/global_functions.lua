@@ -130,6 +130,12 @@ function GetHeroKills(player_id)
   return 2
 end
 
+IS_HERO_ALIVE = true
+
+function IsHeroAlive(player_id)
+  return IS_HERO_ALIVE
+end
+
 --------------------------------------
 
 COURIER = Unit:new()
