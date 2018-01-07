@@ -143,7 +143,7 @@ M.ITEM_RECIPE = {
     components = {
       "item_boots",
       "item_gloves",
-      "item_boots_of_elves",
+      "nil",
       "nil"}
   },
 

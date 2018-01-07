@@ -7,7 +7,7 @@ RESULT_DIR="../bot/database"
 
 ./generator.py ITEM_RECIPE 5 $CSV_DIR/item_recipe.csv > $RESULT_DIR/item_recipe.lua
 
-./generator.py ITEM_BUILD 11 $CSV_DIR/item_build.csv > $RESULT_DIR/item_build.lua
+./generator.py ITEM_BUILD 14 $CSV_DIR/item_build.csv > $RESULT_DIR/item_build.lua
 
 ./generator.py ITEM_SELL 3 $CSV_DIR/item_sell.csv > $RESULT_DIR/item_sell.lua
 
