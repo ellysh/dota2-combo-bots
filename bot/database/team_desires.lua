@@ -33,6 +33,12 @@ M.TEAM_DESIRES = {
     PUSH_BOT_LINE_DESIRE = {0.2, -0.2}
   },
 
+  time_is_less_5_minutes = {
+    PUSH_TOP_LINE_DESIRE = {0, -0.2},
+    PUSH_MID_LINE_DESIRE = {0, -0.2},
+    PUSH_BOT_LINE_DESIRE = {0, -0.2}
+  },
+
 }
 
 return M
