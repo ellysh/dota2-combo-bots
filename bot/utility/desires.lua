@@ -7,15 +7,12 @@ local functions = require(
 local team_desires_algorithms = require(
   GetScriptDirectory() .."/utility/team_desires_algorithms")
 
-local team_desires = require(
-  GetScriptDirectory() .."/database/team_desires")
-
 local M = {}
 
-function M.Think()
+function M.Think(database_table)
   local result = {}
 
-  for algorithm, desires in functions.spairs(team_desires.TEAM_DESIRES) do
+  for algorithm, desires in functions.spairs(database_table) do
     if team_desires_algorithms[algorithm] == nil then goto continue end
 
     local desire_index = functions.ternary(

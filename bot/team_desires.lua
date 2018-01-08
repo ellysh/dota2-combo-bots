@@ -1,6 +1,9 @@
 local desires = require(
   GetScriptDirectory() .."/utility/desires")
 
+local team_desires = require(
+  GetScriptDirectory() .."/database/team_desires")
+
 local TEAM_DESIRES = {
   PUSH_TOP_LINE_DESIRE = 0,
   PUSH_MID_LINE_DESIRE = 0,
@@ -8,7 +11,7 @@ local TEAM_DESIRES = {
 }
 
 function TeamThink()
-  TEAM_DESIRES = desires.Think()
+  TEAM_DESIRES = desires.Think(team_desires.TEAM_DESIRES)
 end
 
 function UpdatePushLaneDesires()
