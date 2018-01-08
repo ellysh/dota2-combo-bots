@@ -4,19 +4,16 @@ local logger = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
-local team_desires_algorithms = require(
-  GetScriptDirectory() .."/utility/team_desires_algorithms")
-
 local M = {}
 
-function M.Think(database_table)
+function M.Think(database_table, algorithms_implementation)
   local result = {}
 
   for algorithm, desires in functions.spairs(database_table) do
-    if team_desires_algorithms[algorithm] == nil then goto continue end
+    if algorithms_implementation[algorithm] == nil then goto continue end
 
     local desire_index = functions.ternary(
-      team_desires_algorithms[algorithm](),
+      algorithms_implementation[algorithm](),
       1,
       2)
 
