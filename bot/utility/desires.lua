@@ -12,20 +12,8 @@ local team_desires = require(
 
 local M = {}
 
-M.PUSH_LINES_DESIRE = {
-  PUSH_TOP_LINE_DESIRE = 0,
-  PUSH_MID_LINE_DESIRE = 0,
-  PUSH_BOT_LINE_DESIRE = 0
-}
-
-local function ResetTeamDesires()
-  for key, _ in pairs(M.PUSH_LINES_DESIRE) do
-    M.PUSH_LINES_DESIRE[key] = 0
-  end
-end
-
 function M.Think()
-  ResetTeamDesires()
+  local result = {}
 
   for algorithm, desires in functions.spairs(team_desires.TEAM_DESIRES) do
     if team_desires_algorithms[algorithm] == nil then goto continue end
@@ -36,19 +24,16 @@ function M.Think()
       2)
 
     for key, value in pairs(desires) do
-      M.PUSH_LINES_DESIRE[key] =
-        M.PUSH_LINES_DESIRE[key] + value[desire_index]
+      if result[key] ~= nil then
+        result[key] = result[key] + value[desire_index]
+      else
+        result[key] = value[desire_index]
+      end
     end
     ::continue::
   end
-end
 
-function M.UpdatePushLaneDesires()
-  return {
-    M.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
-    M.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
-    M.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"]
-  }
+  return result
 end
 
 return M
