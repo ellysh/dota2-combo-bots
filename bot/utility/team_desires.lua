@@ -53,54 +53,26 @@ function M.ally_have_cheese()
   return IsAllyHaveItem("item_cheese")
 end
 
--- TODO: Combine this function with the functions.GetUnitWith.
--- The only one difference is the unit:IsAlive() check.
-
-local function GetPlayerWith(min_max, get_function, players)
-  if #players == 0 then return nil end
-
-  local current_value = functions.ternary(
-    min_max == constants.MIN,
-    1000000,
-    -1)
-  local result = nil
-
-  for _, player in pairs(players) do
-    if player == nil then goto continue end
-
-    local player_value = get_function(player)
-    local is_positive_comparison = functions.ternary(
-      min_max == constants.MIN,
-      player_value < current_value,
-      current_value < player_value)
-
-    if is_positive_comparison then
-      current_value = player_value
-      result = player
-    end
-
-    ::continue::
-  end
-
-  return result
+local function CompareMaxHeroKills(t, a, b)
+  return GetHeroKills(t[b]) < GetHeroKills(t[a])
 end
 
 function M.max_kills_enemy_hero_alive()
   local players = GetTeamPlayers(GetOpposingTeam())
-  local player = GetPlayerWith(
-    constants.MAX,
-    function(player) return GetHeroKills(player) end,
-    players)
+  local player = functions.GetElementWith(
+    players,
+    CompareMaxHeroKills,
+    nil)
 
   return player ~= nil and IsHeroAlive(player)
 end
 
 function M.max_kills_ally_hero_alive()
   local players = GetTeamPlayers(functions.GetMyTeam())
-  local player = GetPlayerWith(
-    constants.MAX,
-    function(player) return GetHeroKills(player) end,
-    players)
+  local player = functions.GetElementWith(
+    players,
+    CompareMaxHeroKills,
+    nil)
 
   return player ~= nil and IsHeroAlive(player)
 end
