@@ -95,14 +95,6 @@ function test_GetEnemyBuildings()
   luaunit.assertEquals(units[2]:GetUnitName(), "barrak2")
 end
 
-function test_GetUnitHealth()
-  test_RefreshBot()
-
-  luaunit.assertEquals(
-    ability_usage_algorithms.test_GetUnitHealth(GetBot()),
-    200)
-end
-
 function test_IsTargetable()
   local unit = Unit:new()
 

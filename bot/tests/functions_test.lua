@@ -208,13 +208,13 @@ function test_GetRandomTrue()
   luaunit.assertTrue(functions.GetRandomTrue(1.0))
 end
 
-function test_GetUnitWith()
+function test_GetElementWith()
   test_RefreshBot()
 
-  local unit = functions.GetUnitWith(
-    constants.MIN,
-    function(unit) return unit:GetHealth() end,
-    GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE))
+  local unit = functions.GetElementWith(
+    GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE),
+    function(t, a, b) return t[a]:GetHealth() < t[b]:GetHealth() end,
+    function(unit) return unit:IsAlive() end)
 
   luaunit.assertEquals(unit:GetUnitName(), "unit1")
   luaunit.assertEquals(unit:GetHealth(), 10)

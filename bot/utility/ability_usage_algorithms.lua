@@ -52,15 +52,12 @@ local function GetEnemyBuildings(npc_bot, radius)
   return npc_bot:GetNearbyBarracks(radius, true)
 end
 
-local function GetUnitHealth(unit)
-  return unit:GetHealth()
-end
-
-local function IsTargetable(npc)
-  return npc:CanBeSeen()
-         and not npc:IsMagicImmune()
-         and not npc:IsInvulnerable()
-         and not npc:IsIllusion()
+local function IsTargetable(unit)
+  return unit:CanBeSeen()
+         and unit:IsAlive()
+         and not unit:IsMagicImmune()
+         and not unit:IsInvulnerable()
+         and not unit:IsIllusion()
 end
 
 local function IsEnoughDamageToKill(npc, ability)
@@ -84,12 +81,25 @@ local function GetTarget(target, ability)
   return nil
 end
 
+local function CompareMaxHealth(t, a, b)
+  return t[b]:GetHealth() < t[a]:GetHealth()
+end
+
+local function CompareMinHealth(t, a, b)
+  return t[a]:GetHealth() < t[b]:GetHealth()
+end
+
+local function CompareMaxHeroKills(t, a, b)
+  return GetHeroKills(t[b]:GetPlayerID()) <
+    GetHeroKills(t[a]:GetPlayerID())
+end
+
 function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = functions.GetUnitWith(
-    constants.MIN,
-    GetUnitHealth,
-    enemy_heroes)
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMinHealth,
+    IsTargetable)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero)
@@ -118,10 +128,10 @@ end
 
 function M.max_kills_enemy_hero(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = functions.GetUnitWith(
-    constants.MAX,
-    function(unit) return GetHeroKills(unit:GetPlayerID()) end,
-    enemy_heroes)
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxHeroKills,
+    IsTargetable)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
@@ -196,7 +206,10 @@ end
 
 function M.max_hp_creep(npc_bot, ability)
   local creeps = GetEnemyCreeps(npc_bot, ability:GetCastRange())
-  local creep = functions.GetUnitWith(constants.MAX, GetUnitHealth, creeps)
+  local creep = functions.GetElementWith(
+    creeps,
+    CompareMaxHealth,
+    IsTargetable)
 
   if creep == nil
     or not IsTargetable(creep) then
@@ -251,16 +264,28 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
   return false, nil
 end
 
+local function CompareMaxEstimatedDamage(t, a, b)
+  local b_damage = t[b]:GetEstimatedDamageToTarget(
+    true,
+    GetBot(),
+    3.0,
+    DAMAGE_TYPE_ALL)
+
+  local a_damage = t[a]:GetEstimatedDamageToTarget(
+    true,
+    GetBot(),
+    3.0,
+    DAMAGE_TYPE_ALL)
+
+  return b_damage < a_damage
+end
+
 function M.max_estimated_damage_enemy_hero(npc_bot, ability)
   local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
-  local enemy_hero = functions.GetUnitWith(
-    constants.MAX,
-    function(unit) return unit:GetEstimatedDamageToTarget(
-      true,
-      npc_bot,
-      3.0,
-      DAMAGE_TYPE_ALL) end,
-    enemy_heroes)
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxEstimatedDamage,
+    IsTargetable)
 
   if enemy_hero == nil
     or not IsTargetable(enemy_hero) then
@@ -359,10 +384,10 @@ end
 
 function M.low_hp_ally_hero(npc_bot, ability)
   local ally_heroes = GetAllyHeroes(npc_bot, ability:GetCastRange())
-  local ally_hero = functions.GetUnitWith(
-    constants.MIN,
-    GetUnitHealth,
-    ally_heroes)
+  local ally_hero = functions.GetElementWith(
+    ally_heroes,
+    CompareMinHealth,
+    IsTargetable)
 
   if ally_hero == nil
     or not IsTargetable(ally_hero)
@@ -387,10 +412,10 @@ function M.min_hp_enemy_building(npc_bot, ability)
   local enemy_buildings =
     GetEnemyBuildings(npc_bot, ability:GetCastRange())
 
-  local enemy_building = functions.GetUnitWith(
-    constants.MIN,
-    GetUnitHealth,
-    enemy_buildings)
+  local enemy_building = functions.GetElementWith(
+    enemy_buildings,
+    CompareMinHealth,
+    IsTargetable)
 
   if enemy_building == nil
     or not IsTargetable(enemy_building) then
@@ -408,7 +433,6 @@ M.test_GetAllyHeroes = GetAllyHeroes
 M.test_GetEnemyCreeps = GetEnemyCreeps
 M.test_GetAllyCreeps = GetAllyCreeps
 M.test_GetEnemyBuildings = GetEnemyBuildings
-M.test_GetUnitHealth = GetUnitHealth
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget

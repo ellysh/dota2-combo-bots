@@ -124,33 +124,15 @@ function M.GetInventoryItems(npc_bot)
   return result
 end
 
-function M.GetUnitWith(min_max, get_function, units)
-  if #units == 0 then return nil end
+function M.GetElementWith(list, compare_function, validate_function)
 
-  local current_value = M.ternary(
-    min_max == constants.MIN,
-    1000000,
-    -1)
-  local result = nil
-
-  for _, unit in pairs(units) do
-    if unit == nil or not unit:IsAlive() then goto continue end
-
-    local unit_value = get_function(unit)
-    local is_positive_comparison = M.ternary(
-      min_max == constants.MIN,
-      unit_value < current_value,
-      current_value < unit_value)
-
-    if is_positive_comparison then
-      current_value = unit_value
-      result = unit
+  for _, element in M.spairs(list, compare_function) do
+    if validate_function == nil or validate_function(element) then
+      return element
     end
-
-    ::continue::
   end
 
-  return result
+  return nil
 end
 
 function M.GetMyTeam()
