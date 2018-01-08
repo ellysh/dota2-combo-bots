@@ -120,7 +120,7 @@ SKILL_BUILD = """
 
 SKILL_USAGE_HEADER = """
 local algorithms = require(
-  GetScriptDirectory() .."/utility/ability_usage_algorithms")
+  GetScriptDirectory() .. "/utility/ability_usage_algorithms")
 
 M.SKILL_USAGE = {
 """

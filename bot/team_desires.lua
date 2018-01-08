@@ -1,12 +1,12 @@
-local team_desires = require(
-  GetScriptDirectory() .."/utility/team_desires")
+local desires = require(
+  GetScriptDirectory() .."/utility/desires")
 
 function TeamThink()
-  team_desires.TeamThink()
+  desires.Think()
 end
 
 function UpdatePushLaneDesires()
-  return team_desires.UpdatePushLaneDesires()
+  return desires.UpdatePushLaneDesires()
 end
 
 --[[

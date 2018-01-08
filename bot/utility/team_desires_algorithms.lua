@@ -7,9 +7,6 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
-local team_desires = require(
-  GetScriptDirectory() .."/database/team_desires")
-
 local M = {}
 
 function M.ally_mega_creeps()
@@ -150,42 +147,6 @@ function M.more_ally_heroes_alive_then_enemy()
     function(player) return IsHeroAlive(player) end)
 
   return enemy_number < ally_number
-end
-
-M.PUSH_LINES_DESIRE = {
-  PUSH_TOP_LINE_DESIRE = 0,
-  PUSH_MID_LINE_DESIRE = 0,
-  PUSH_BOT_LINE_DESIRE = 0
-}
-
-local function ResetTeamDesires()
-  for key, _ in pairs(M.PUSH_LINES_DESIRE) do
-    M.PUSH_LINES_DESIRE[key] = 0
-  end
-end
-
-function M.TeamThink()
-  ResetTeamDesires()
-
-  for algorithm, desires in functions.spairs(team_desires.TEAM_DESIRES) do
-    if M[algorithm] == nil then goto continue end
-
-    local desire_index = functions.ternary(M[algorithm](), 1, 2)
-
-    for key, value in pairs(desires) do
-      M.PUSH_LINES_DESIRE[key] =
-        M.PUSH_LINES_DESIRE[key] + value[desire_index]
-    end
-    ::continue::
-  end
-end
-
-function M.UpdatePushLaneDesires()
-  return {
-    M.PUSH_LINES_DESIRE["PUSH_TOP_LINE_DESIRE"],
-    M.PUSH_LINES_DESIRE["PUSH_MID_LINE_DESIRE"],
-    M.PUSH_LINES_DESIRE["PUSH_BOT_LINE_DESIRE"]
-  }
 end
 
 -- Provide an access to local functions for unit tests only
