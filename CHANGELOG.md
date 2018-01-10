@@ -1,4 +1,5 @@
 * version 0.6
+  - Fix a bug with picking heroes for human players
   - Add support for Sven and Lich heroes. Now bots know enough heroes
   to fill both teams.
   - Fix a bug with focusing an invulnerable target hero.
