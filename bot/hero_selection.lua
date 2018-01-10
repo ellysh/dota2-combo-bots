@@ -36,16 +36,15 @@ local function IsHeroPicked(hero)
 end
 
 local function GetRandomHero(position)
-  while true do
-    for _, hero in pairs(heroes.HEROES) do
-      if functions.IsElementInList(hero.position, position)
-        and functions.GetRandomTrue(0.5)
-        and not IsHeroPicked(hero.name) then
+  for _, hero in pairs(heroes.HEROES) do
+    if functions.IsElementInList(hero.position, position)
+      and functions.GetRandomTrue(0.5)
+      and not IsHeroPicked(hero.name)
+      or retry == 0 then
 
-        logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. position)
+      logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. position)
 
-        return hero.name
-      end
+      return hero.name
     end
   end
 end
