@@ -604,6 +604,22 @@ function test_low_hp_ally_hero()
   luaunit.assertEquals(target:GetUnitName(), "unit1")
 end
 
+function test_low_hp_ally_creep()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local desire, target =
+    ability_usage_algorithms.low_hp_ally_creep(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(target:GetUnitName(), "creep1")
+end
+
 function test_three_and_more_ally_creeps_aoe()
   test_RefreshBot()
 

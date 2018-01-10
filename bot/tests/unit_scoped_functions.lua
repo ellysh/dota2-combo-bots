@@ -298,7 +298,7 @@ end
 function Bot:GetNearbyCreeps(radius, enemies)
   local unit1 = Unit:new()
   unit1.name = "creep1"
-  unit1.health = 150
+  unit1.health = 10
   unit1.location = {10, 10}
 
   local unit2 = Unit:new()
