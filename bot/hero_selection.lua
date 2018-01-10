@@ -64,8 +64,25 @@ local function GetComboHero(position, combo_heroes)
   return GetRandomHero(position)
 end
 
+local function IsHumanPlayersPicked()
+  local players = GetTeamPlayers(GetTeam())
+
+  for _, player in pairs(players) do
+    if not IsPlayerBot(player)
+      and GetSelectedHeroName(player) == "" then
+
+      return false
+    end
+  end
+  return true
+end
+
 -- TODO: Now the draft algorithm works only for all pick mode for a team of bots
 function Think()
+  if not IsHumanPlayersPicked() then
+    return
+  end
+
   local players = GetTeamPlayers(GetTeam())
 
   local hero_position_5 = GetRandomHero(5)
