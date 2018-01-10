@@ -1,4 +1,6 @@
 * version 0.6
+  - Add support for Sven and Lich heroes. Now bots know enough heroes
+  to fill both teams.
   - Fix a bug with focusing an invulnerable target hero.
   - Add early game items to the ITEM_BUILD table
 
