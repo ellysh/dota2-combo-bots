@@ -51,7 +51,7 @@ M.ITEM_BUILD = {
       "item_blink",
       "item_black_king_bar",
       "item_satanic",
-      "item_heart"}
+      "item_assault"}
   },
 
   npc_dota_hero_ursa = {
@@ -262,17 +262,17 @@ M.ITEM_BUILD = {
     items = {
       "item_tango",
       "item_clarity",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
+      "item_branches",
+      "item_boots",
       "item_magic_wand",
+      "nil",
+      "nil",
       "item_tranquil_boots",
+      "item_aether_lens",
       "item_force_staff",
-      "item_mekansm",
+      "item_ultimate_scepter",
       "item_sheepstick",
-      "item_orchid",
-      "item_ultimate_scepter"}
+      "item_cyclone"}
   },
 
   npc_dota_hero_faceless_void = {

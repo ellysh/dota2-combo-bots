@@ -123,6 +123,36 @@ M.HEROES = {
     }
   },
 
+  {
+    name = "npc_dota_hero_lich",
+    position = {5, 4},
+    combo_heroes = {
+      "npc_dota_hero_faceless_void",
+      "npc_dota_hero_weaver",
+      "npc_dota_hero_obsidian_destroyer"
+    },
+    counter_heroes = {
+      "npc_dota_hero_sand_king",
+      "npc_dota_hero_weaver",
+      "npc_dota_hero_broodmother"
+    }
+  },
+
+  {
+    name = "npc_dota_hero_sven",
+    position = {1, 3},
+    combo_heroes = {
+      "npc_dota_hero_crystal_maiden",
+      "npc_dota_hero_vengefulspirit",
+      "npc_dota_hero_wisp"
+    },
+    counter_heroes = {
+      "npc_dota_hero_razor",
+      "npc_dota_hero_shredder",
+      "npc_dota_hero_necrolyte"
+    }
+  },
+
 }
 
 return M
