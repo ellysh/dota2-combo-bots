@@ -427,7 +427,7 @@ M.SKILL_USAGE = {
   },
 
   lich_dark_ritual = {
-      any_mode = {algorithms["low_hp_ally_creep"], 0.5},
+      any_mode = {algorithms["low_hp_ally_creep"], 0.7},
       team_fight = {algorithms["nil"], nil},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},

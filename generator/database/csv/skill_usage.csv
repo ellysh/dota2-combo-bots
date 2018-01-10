@@ -27,5 +27,5 @@ sven_warcry;;;use_on_attack_enemy_hero_melee;0.8;use_on_attack_enemy_hero_melee;
 sven_gods_strength;;;use_on_attack_enemy_hero_melee;0.7;use_on_attack_enemy_hero_melee;0.5;use_on_attack_enemy_hero_melee;0.5;;;use_on_attack_enemy_hero_melee;0.5;;;use_on_attack_enemy_creep_melee;0.9;;;;;;;;
 lich_frost_nova;min_hp_enemy_hero_to_kill;0.9;three_and_more_enemy_heroes;0.9;max_kills_enemy_hero;0.7;max_kills_enemy_hero;0.7;three_and_more_creeps;0.9;max_kills_enemy_hero;0.9;three_and_more_creeps;0.5;max_hp_creep;0.7;three_and_more_creeps;0.6;three_and_more_creeps;0.9;last_attacked_enemy_hero;0.3;max_kills_enemy_hero;0.7
 lich_frost_armor;low_hp_self;0.8;low_hp_ally_hero;0.7;;;low_hp_ally_hero;;;;;;;;;;;;;;;;low_hp_ally_hero;0.7
-lich_dark_ritual;low_hp_ally_creep;0.5;;;;;;;;;;;;;;;;;;;;;;
+lich_dark_ritual;low_hp_ally_creep;0.7;;;;;;;;;;;;;;;;;;;;;;
 lich_chain_frost;min_hp_enemy_hero_to_kill;0.9;three_and_more_enemy_heroes;0.9;max_kills_enemy_hero;0.7;max_kills_enemy_hero;0.7;three_and_more_creeps;0.9;max_kills_enemy_hero;0.9;three_and_more_creeps;0.5;max_hp_creep;0.7;three_and_more_creeps;0.6;three_and_more_creeps;0.9;last_attacked_enemy_hero;0.3;max_kills_enemy_hero;0.7

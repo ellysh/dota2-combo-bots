@@ -400,6 +400,24 @@ function M.low_hp_ally_hero(npc_bot, ability)
   return true, GetTarget(ally_hero, ability)
 end
 
+function M.low_hp_ally_creep(npc_bot, ability)
+  local allies = GetAllyCreeps(npc_bot, ability:GetCastRange())
+  local ally_creep = functions.GetElementWith(
+    allies,
+    CompareMinHealth,
+    IsTargetable)
+
+  if ally_creep == nil
+    or not IsTargetable(ally_creep)
+    or GetUnitHealthLevel(ally_creep) > constants.UNIT_LOW_HEALTH_LEVEL
+    then
+
+    return false, nil
+  end
+
+  return true, GetTarget(ally_creep, ability)
+end
+
 function M.three_and_more_ally_creeps_aoe(npc_bot, ability)
   local allies = GetAllyCreeps(npc_bot, ability:GetAOERadius())
 
