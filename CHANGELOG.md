@@ -1,4 +1,5 @@
 * version 0.6
+  - Fix a bug with focusing an invulnerable target hero.
   - Add early game items to the ITEM_BUILD table
 
 * version 0.5
