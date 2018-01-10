@@ -398,7 +398,7 @@ M.SKILL_USAGE = {
 
   lich_frost_nova = {
       any_mode = {algorithms["min_hp_enemy_hero_to_kill"], 0.9},
-      team_fight = {algorithms["three_and_more_enemy_heroes"], 0.9},
+      team_fight = {algorithms["max_kills_enemy_hero"], 0.9},
       BOT_MODE_ROAM = {algorithms["max_kills_enemy_hero"], 0.7},
       BOT_MODE_TEAM_ROAM = {algorithms["max_kills_enemy_hero"], 0.7},
       BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_creeps"], 0.9},
@@ -443,7 +443,7 @@ M.SKILL_USAGE = {
 
   lich_chain_frost = {
       any_mode = {algorithms["min_hp_enemy_hero_to_kill"], 0.9},
-      team_fight = {algorithms["three_and_more_enemy_heroes"], 0.9},
+      team_fight = {algorithms["max_kills_enemy_hero"], 0.9},
       BOT_MODE_ROAM = {algorithms["max_kills_enemy_hero"], 0.7},
       BOT_MODE_TEAM_ROAM = {algorithms["max_kills_enemy_hero"], 0.7},
       BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_creeps"], 0.9},
