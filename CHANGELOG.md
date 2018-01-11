@@ -1,3 +1,6 @@
+* version 0.7
+  - Fix a bug with bot names
+
 * version 0.6
   - Fix a bug with picking heroes for human players
   - Add support for Sven and Lich heroes. Now bots know enough heroes
