@@ -9,10 +9,6 @@ local functions = require(
 
 local M = {}
 
-local function GetBotNames ()
-  return  {"Alfa", "Bravo", "Charlie", "Delta", "Echo"}
-end
-
 local function IsIntersectionOfLists(list1, list2)
   for _, e in pairs(list1) do
     if functions.IsElementInList(list2, e) then return true end
@@ -39,8 +35,7 @@ local function GetRandomHero(position)
   for _, hero in pairs(heroes.HEROES) do
     if functions.IsElementInList(hero.position, position)
       and functions.GetRandomTrue(0.5)
-      and not IsHeroPicked(hero.name)
-      or retry == 0 then
+      and not IsHeroPicked(hero.name) then
 
       logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. position)
 
@@ -131,6 +126,13 @@ function UpdateLaneAssignments()
       [5] = LANE_BOT,
     }
   end
+end
+
+function GetBotNames()
+  return {"Alfa", "Bravo", "Charlie", "Delta", "Echo",
+           "Foxtrot", "Mike", "Juliett", "Oscar", "Papa",
+           "Romeo", "Sierra", "Tango", "Victor", "Yankee",
+         }
 end
 
 -- Provide an access to local functions for unit tests only

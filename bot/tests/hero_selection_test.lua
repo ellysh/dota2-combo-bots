@@ -5,16 +5,6 @@ require("global_functions")
 local hero_selection = require("hero_selection")
 local luaunit = require('luaunit')
 
-function test_GetBotNames()
-  local bot_names = hero_selection.test_GetBotNames()
-
-  luaunit.assertEquals(bot_names[1], "Alfa")
-  luaunit.assertEquals(bot_names[2], "Bravo")
-  luaunit.assertEquals(bot_names[3], "Charlie")
-  luaunit.assertEquals(bot_names[4], "Delta")
-  luaunit.assertEquals(bot_names[5], "Echo")
-end
-
 function test_IsIntersectionOfLists()
   local list1 = {1, 2, 3, 4, 5}
   local list2 = {3, 4, 5, 6}
@@ -87,6 +77,26 @@ function test_UpdateLaneAssignments()
   luaunit.assertEquals(result[3], LANE_TOP)
   luaunit.assertEquals(result[4], LANE_BOT)
   luaunit.assertEquals(result[5], LANE_TOP)
+end
+
+function test_GetBotNames()
+  local bot_names = hero_selection.test_GetBotNames()
+
+  luaunit.assertEquals(bot_names[1], "Alfa")
+  luaunit.assertEquals(bot_names[2], "Bravo")
+  luaunit.assertEquals(bot_names[3], "Charlie")
+  luaunit.assertEquals(bot_names[4], "Delta")
+  luaunit.assertEquals(bot_names[5], "Echo")
+  luaunit.assertEquals(bot_names[6], "Foxtrot")
+  luaunit.assertEquals(bot_names[7], "Mike")
+  luaunit.assertEquals(bot_names[8], "Juliett")
+  luaunit.assertEquals(bot_names[9], "Oscar")
+  luaunit.assertEquals(bot_names[10], "Papa")
+  luaunit.assertEquals(bot_names[11], "Romeo")
+  luaunit.assertEquals(bot_names[12], "Sierra")
+  luaunit.assertEquals(bot_names[13], "Tango")
+  luaunit.assertEquals(bot_names[14], "Victor")
+  luaunit.assertEquals(bot_names[15], "Yankee")
 end
 
 os.exit(luaunit.LuaUnit.run())
