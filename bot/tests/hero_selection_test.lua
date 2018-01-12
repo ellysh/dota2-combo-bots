@@ -58,6 +58,12 @@ function test_IsHeroPicked()
       "npc_dota_hero_crystal_maiden"))
 end
 
+function test_GetHeroPositions()
+  luaunit.assertEquals(
+    hero_selection.test_GetHeroPositions("npc_dota_hero_shadow_shaman"),
+    {4, 5})
+end
+
 function test_GetRandomHero()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
@@ -68,6 +74,10 @@ function test_GetComboHero()
   luaunit.assertEquals(
     hero_selection.test_GetComboHero(4, {"npc_dota_hero_shadow_shaman"}),
     "npc_dota_hero_crystal_maiden")
+end
+
+function test_IsHumanPlayersPicked()
+  luaunit.assertTrue(hero_selection.test_IsHumanPlayersPicked())
 end
 
 function test_Think()

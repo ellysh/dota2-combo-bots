@@ -38,6 +38,14 @@ local function IsHeroPicked(hero)
          or IsHeroPickedByTeam(hero, GetOpposingTeam())
 end
 
+local function GetHeroPositions(hero)
+  if heroes.HEROES[hero] ~= nil then
+    return heroes.HEROES[hero].position
+  else
+    return nil
+  end
+end
+
 local function GetRandomHero(position)
   local hero = functions.GetElementWith(
     heroes.HEROES,
@@ -145,12 +153,14 @@ function GetBotNames()
 end
 
 -- Provide an access to local functions for unit tests only
-M.test_GetBotNames = GetBotNames
 M.test_IsIntersectionOfLists = IsIntersectionOfLists
 M.test_GetPickedHeroesList = GetPickedHeroesList
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked
+M.test_GetHeroPositions = GetHeroPositions
 M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
+M.test_IsHumanPlayersPicked = IsHumanPlayersPicked
+M.test_GetBotNames = GetBotNames
 
 return M
