@@ -39,30 +39,33 @@ local function IsHeroPicked(hero)
 end
 
 local function GetRandomHero(position)
-  for _, hero in pairs(heroes.HEROES) do
-    if functions.IsElementInList(hero.position, position)
-      and functions.GetRandomTrue(0.5)
-      and not IsHeroPicked(hero.name) then
+  local hero = functions.GetElementWith(
+    heroes.HEROES,
+    nil,
+    function(hero)
+      return functions.IsElementInList(hero.position, position)
+             and not IsHeroPicked(hero.name)
+             and functions.GetRandomTrue(0.5)
+    end)
 
-      logger.Print("GetRandomHero() - name = " .. hero.name .. " position = " .. position)
-
-      return hero.name
-    end
-  end
+  if hero ~= nil then return hero.name else return nil end
 end
 
 local function GetComboHero(position, combo_heroes)
-  for _, hero in pairs(heroes.HEROES) do
-    if functions.IsElementInList(hero.position, position)
-      and not IsHeroPicked(hero.name)
-      and IsIntersectionOfLists(hero.combo_heroes, combo_heroes) then
+  local hero = functions.GetElementWith(
+    heroes.HEROES,
+    nil,
+    function(hero)
+      return functions.IsElementInList(hero.position, position)
+             and not IsHeroPicked(hero.name)
+             and IsIntersectionOfLists(hero.combo_heroes, combo_heroes)
+    end)
 
-      logger.Print("GetComboHero() - name = " .. hero.name .. " position = " .. hero.position[1])
-
-      return hero.name
-    end
+  if hero ~= nil then
+    return hero.name
+  else
+    return GetRandomHero(position)
   end
-  return GetRandomHero(position)
 end
 
 local function IsHumanPlayersPicked()
