@@ -81,7 +81,7 @@ function test_IsHumanPlayersPicked()
 end
 
 function test_Think()
-  SELECTED_HEROES = {}
+  SELECTED_HEROES = {"npc_dota_hero_sven"}
 
   Think()
 

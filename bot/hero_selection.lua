@@ -9,6 +9,7 @@ local functions = require(
 
 local M = {}
 
+-- TODO: Move this function in the functions module
 local function IsIntersectionOfLists(list1, list2)
   for _, e in pairs(list1) do
     if functions.IsElementInList(list2, e) then return true end
@@ -76,6 +77,7 @@ local function GetComboHero(position, combo_heroes)
   end
 end
 
+-- TODO: Rewrite this function with the GetElementWith() function
 local function IsHumanPlayersPicked()
   local players = GetTeamPlayers(GetTeam())
 
@@ -89,36 +91,57 @@ local function IsHumanPlayersPicked()
   return true
 end
 
+local function IsPickRequired(heroes)
+  return #heroes < 5
+end
+
+local function GetRequiredPosition(heroes)
+  local positions = {
+    [1] = "empty",
+    [2] = "empty",
+    [3] = "empty",
+    [4] = "empty",
+    [5] = "empty"
+  }
+
+  for _, hero in pairs(heroes) do
+    local hero_position = GetHeroPositions(hero)
+    if positions[hero_position[1]] == "empty" then
+      positions[hero_position[1]] = hero
+    elseif positions[hero_position[2]] == "empty" then
+      positions[hero_position[2]] = hero
+    end
+  end
+
+  return functions.GetKeyWith(
+    positions,
+    nil,
+    function(position, hero) return hero ~= "empty" end)
+end
+
+local function PickHero(position, combo_heroes)
+  local hero = GetComboHero(position, combo_heroes)
+
+  if hero ~= nil then
+    local players = GetTeamPlayers(GetTeam())
+    if combo_heroes == nil then
+      SelectHero(players[1], hero)
+    else
+      SelectHero(players[#combo_heroes + 1], hero)
+    end
+  end
+end
+
 function Think()
   if not IsHumanPlayersPicked() then
     return
   end
 
-  local players = GetTeamPlayers(GetTeam())
+  local team_heroes = GetPickedHeroesList(GetTeam())
 
-  local hero_position_5 = GetRandomHero(5)
-  SelectHero(players[5], hero_position_5)
+  if not IsPickRequired(team_heroes) then return end
 
-  local hero_position_4 = GetComboHero(4, {hero_position_5})
-  SelectHero(players[4], hero_position_4)
-
-  local hero_position_3 = GetComboHero(
-    3,
-    {hero_position_4, hero_position_5})
-
-  SelectHero(players[3], hero_position_3)
-
-  local hero_position_2 = GetComboHero(
-    2,
-    {hero_position_3, hero_position_4, hero_position_5})
-
-  SelectHero(players[2], hero_position_2)
-
-  local hero_position_1 = GetComboHero(
-    1,
-    {hero_position_2, hero_position_3, hero_position_4, hero_position_5})
-
-  SelectHero(players[1], hero_position_1)
+  PickHero(GetRequiredPosition(team_heroes))
 end
 
 function UpdateLaneAssignments()
