@@ -20,7 +20,20 @@ function test_IsIntersectionOfLists()
     hero_selection.test_IsIntersectionOfLists(list2, list3))
 end
 
+function test_GetPickedHeroesList()
+  SELECTED_HEROES = {}
+
+  SelectHero(1, "npc_dota_hero_venomancer")
+  SelectHero(2, "npc_dota_hero_crystal_maiden")
+
+  luaunit.assertEquals(
+    hero_selection.test_GetPickedHeroesList(TEAM_RADIANT),
+    {"npc_dota_hero_venomancer", "npc_dota_hero_crystal_maiden"})
+end
+
 function test_IsHeroPickedByTeam()
+  SELECTED_HEROES = {}
+
   SelectHero(1, "npc_dota_hero_venomancer")
 
   luaunit.assertTrue(
@@ -33,6 +46,8 @@ function test_IsHeroPickedByTeam()
 end
 
 function test_IsHeroPicked()
+  SELECTED_HEROES = {}
+
   SelectHero(1, "npc_dota_hero_venomancer")
 
   luaunit.assertTrue(
@@ -46,7 +61,7 @@ end
 function test_GetRandomHero()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
-    "npc_dota_hero_crystal_maiden")
+    "npc_dota_hero_shadow_shaman")
 end
 
 function test_GetComboHero()
@@ -56,6 +71,8 @@ function test_GetComboHero()
 end
 
 function test_Think()
+  SELECTED_HEROES = {}
+
   Think()
 
   luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_ursa")

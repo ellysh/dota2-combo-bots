@@ -16,14 +16,21 @@ local function IsIntersectionOfLists(list1, list2)
   return false
 end
 
-local function IsHeroPickedByTeam(hero, team)
+local function GetPickedHeroesList(team)
   local players = GetTeamPlayers(team)
+  local result = {}
 
   for _, player in pairs(players) do
-    if hero == GetSelectedHeroName(player) then return true end
+    table.insert(result, GetSelectedHeroName(player))
   end
 
-  return false
+  return result
+end
+
+local function IsHeroPickedByTeam(hero, team)
+  return functions.IsElementInList(
+    GetPickedHeroesList(team),
+    hero)
 end
 
 local function IsHeroPicked(hero)
@@ -71,7 +78,6 @@ local function IsHumanPlayersPicked()
   return true
 end
 
--- TODO: Now the draft algorithm works only for all pick mode for a team of bots
 function Think()
   if not IsHumanPlayersPicked() then
     return
@@ -138,6 +144,7 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_GetBotNames = GetBotNames
 M.test_IsIntersectionOfLists = IsIntersectionOfLists
+M.test_GetPickedHeroesList = GetPickedHeroesList
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked
 M.test_GetRandomHero = GetRandomHero
