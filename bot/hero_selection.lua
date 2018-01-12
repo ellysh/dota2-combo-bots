@@ -77,18 +77,17 @@ local function GetComboHero(position, combo_heroes)
   end
 end
 
--- TODO: Rewrite this function with the GetElementWith() function
 local function IsHumanPlayersPicked()
   local players = GetTeamPlayers(GetTeam())
+  local no_pick_player = functions.GetElementWith(
+    players,
+    nil,
+    function(player)
+      return not IsPlayerBot(player)
+             and GetSelectedHeroName(player) == ""
+    end)
 
-  for _, player in pairs(players) do
-    if not IsPlayerBot(player)
-      and GetSelectedHeroName(player) == "" then
-
-      return false
-    end
-  end
-  return true
+    return no_pick_player == nil
 end
 
 local function IsPickRequired(heroes)
