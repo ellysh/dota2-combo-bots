@@ -14,8 +14,7 @@ M.HEROES = {
 """
 
 HEROES = """
-  {
-    name = "<0>",
+  <0> = {
     position = {<1>, <2>},
     combo_heroes = {
       "<3>",

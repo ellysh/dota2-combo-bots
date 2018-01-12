@@ -135,6 +135,17 @@ function M.GetElementWith(list, compare_function, validate_function)
   return nil
 end
 
+function M.GetKeyWith(list, compare_function, validate_function)
+
+  for key, element in M.spairs(list, compare_function) do
+    if validate_function == nil or validate_function(key, element) then
+      return key
+    end
+  end
+
+  return nil
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

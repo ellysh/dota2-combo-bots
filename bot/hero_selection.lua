@@ -47,30 +47,30 @@ local function GetHeroPositions(hero)
 end
 
 local function GetRandomHero(position)
-  local hero = functions.GetElementWith(
+  local hero = functions.GetKeyWith(
     heroes.HEROES,
     nil,
-    function(hero)
-      return functions.IsElementInList(hero.position, position)
-             and not IsHeroPicked(hero.name)
+    function(hero, details)
+      return functions.IsElementInList(details.position, position)
+             and not IsHeroPicked(hero)
              and functions.GetRandomTrue(0.5)
     end)
 
-  if hero ~= nil then return hero.name else return nil end
+  return hero
 end
 
 local function GetComboHero(position, combo_heroes)
-  local hero = functions.GetElementWith(
+  local hero = functions.GetKeyWith(
     heroes.HEROES,
     nil,
-    function(hero)
-      return functions.IsElementInList(hero.position, position)
-             and not IsHeroPicked(hero.name)
-             and IsIntersectionOfLists(hero.combo_heroes, combo_heroes)
+    function(hero, details)
+      return functions.IsElementInList(details.position, position)
+             and not IsHeroPicked(hero)
+             and IsIntersectionOfLists(details.combo_heroes, combo_heroes)
     end)
 
   if hero ~= nil then
-    return hero.name
+    return hero
   else
     return GetRandomHero(position)
   end

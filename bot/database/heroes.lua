@@ -3,8 +3,7 @@ local M = {}
 
 M.HEROES = {
 
-  {
-    name = "npc_dota_hero_crystal_maiden",
+  npc_dota_hero_crystal_maiden = {
     position = {4, 5},
     combo_heroes = {
       "npc_dota_hero_juggernaut",
@@ -18,8 +17,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_juggernaut",
+  npc_dota_hero_juggernaut = {
     position = {1, 3},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -33,8 +31,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_ursa",
+  npc_dota_hero_ursa = {
     position = {3, 1},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
@@ -48,8 +45,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_shadow_shaman",
+  npc_dota_hero_shadow_shaman = {
     position = {5, 4},
     combo_heroes = {
       "npc_dota_hero_ursa",
@@ -63,8 +59,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_drow_ranger",
+  npc_dota_hero_drow_ranger = {
     position = {1, 2},
     combo_heroes = {
       "npc_dota_hero_vengefulspirit",
@@ -78,8 +73,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_skeleton_king",
+  npc_dota_hero_skeleton_king = {
     position = {2, 3},
     combo_heroes = {
       "npc_dota_hero_vengefulspirit",
@@ -93,8 +87,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_sniper",
+  npc_dota_hero_sniper = {
     position = {2, 1},
     combo_heroes = {
       "npc_dota_hero_ogre_magi",
@@ -108,8 +101,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_lion",
+  npc_dota_hero_lion = {
     position = {5, 4},
     combo_heroes = {
       "npc_dota_hero_lina",
@@ -123,8 +115,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_lich",
+  npc_dota_hero_lich = {
     position = {5, 4},
     combo_heroes = {
       "npc_dota_hero_faceless_void",
@@ -138,8 +129,7 @@ M.HEROES = {
     }
   },
 
-  {
-    name = "npc_dota_hero_sven",
+  npc_dota_hero_sven = {
     position = {1, 3},
     combo_heroes = {
       "npc_dota_hero_crystal_maiden",
