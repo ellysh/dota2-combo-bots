@@ -14,7 +14,10 @@ local function GetPickedHeroesList(team)
   local result = {}
 
   for _, player in pairs(players) do
-    table.insert(result, GetSelectedHeroName(player))
+    local hero = GetSelectedHeroName(player)
+    if hero ~= "" then
+      table.insert(result, hero)
+    end
   end
 
   return result
@@ -126,9 +129,7 @@ local function PickHero(position, combo_heroes)
 end
 
 function Think()
-  if not IsHumanPlayersPicked() then
-    return
-  end
+  if not IsHumanPlayersPicked() then return end
 
   local team_heroes = GetPickedHeroesList(GetTeam())
 
