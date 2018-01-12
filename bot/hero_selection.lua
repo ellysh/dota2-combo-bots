@@ -92,7 +92,7 @@ local function IsHumanPlayersPicked()
 end
 
 local function IsPickRequired(heroes)
-  return #heroes < 5
+  return heroes == nil or #heroes < 5
 end
 
 local function GetRequiredPosition(heroes)
@@ -141,7 +141,7 @@ function Think()
 
   if not IsPickRequired(team_heroes) then return end
 
-  PickHero(GetRequiredPosition(team_heroes))
+  PickHero(GetRequiredPosition(team_heroes), team_heroes)
 end
 
 function UpdateLaneAssignments()
