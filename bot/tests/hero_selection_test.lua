@@ -80,6 +80,70 @@ function test_IsHumanPlayersPicked()
   luaunit.assertTrue(hero_selection.test_IsHumanPlayersPicked())
 end
 
+function test_IsPickRequired()
+  luaunit.assertTrue(hero_selection.test_IsPickRequired({}))
+
+  luaunit.assertTrue(
+    hero_selection.test_IsPickRequired(
+      {
+        "hero1",
+      }))
+
+  luaunit.assertTrue(
+    hero_selection.test_IsPickRequired(
+      {
+        "hero1",
+        "hero2",
+        "hero3",
+        "hero4",
+      }))
+
+  luaunit.assertFalse(
+    hero_selection.test_IsPickRequired(
+      {
+        "hero1",
+        "hero2",
+        "hero3",
+        "hero4",
+        "hero5",
+      }))
+end
+
+function test_GetRequiredPosition()
+  SELECTED_HEROES = {"npc_dota_hero_sven"}
+
+  luaunit.assertEquals(
+    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
+    2)
+
+  table.insert(SELECTED_HEROES, "npc_dota_hero_drow_ranger")
+
+  luaunit.assertEquals(
+    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
+    3)
+
+  table.insert(SELECTED_HEROES, "npc_dota_hero_ursa")
+
+  luaunit.assertEquals(
+    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
+    4)
+
+  table.insert(SELECTED_HEROES, "npc_dota_hero_shadow_shaman")
+
+  luaunit.assertEquals(
+    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
+    5)
+end
+
+function test_PickHero()
+  SELECTED_HEROES = {"npc_dota_hero_sven"}
+
+  hero_selection.test_PickHero(2, SELECTED_HEROES)
+
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_sven")
+  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
+end
+
 function test_Think()
   SELECTED_HEROES = {"npc_dota_hero_sven"}
 

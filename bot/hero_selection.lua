@@ -184,6 +184,9 @@ M.test_GetHeroPositions = GetHeroPositions
 M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 M.test_IsHumanPlayersPicked = IsHumanPlayersPicked
+M.test_IsPickRequired = IsPickRequired
+M.test_GetRequiredPosition = GetRequiredPosition
+M.test_PickHero = PickHero
 M.test_GetBotNames = GetBotNames
 
 return M
