@@ -102,7 +102,11 @@ local function GetRequiredPosition(heroes)
 
   for _, hero in pairs(heroes) do
     local hero_position = GetHeroPositions(hero)
-    if positions[hero_position[1]] == "empty" then
+
+    -- TODO: We choose the position 1 for unknown player's hero
+    if hero_position == nil then
+      positions[1] = hero
+    elseif positions[hero_position[1]] == "empty" then
       positions[hero_position[1]] = hero
     elseif positions[hero_position[2]] == "empty" then
       positions[hero_position[2]] = hero
