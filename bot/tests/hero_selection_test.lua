@@ -5,21 +5,6 @@ require("global_functions")
 local hero_selection = require("hero_selection")
 local luaunit = require('luaunit')
 
-function test_IsIntersectionOfLists()
-  local list1 = {1, 2, 3, 4, 5}
-  local list2 = {3, 4, 5, 6}
-  local list3 = {10, 11, 12}
-
-  luaunit.assertTrue(
-    hero_selection.test_IsIntersectionOfLists(list1, list2))
-
-  luaunit.assertFalse(
-    hero_selection.test_IsIntersectionOfLists(list1, list3))
-
-  luaunit.assertFalse(
-    hero_selection.test_IsIntersectionOfLists(list2, list3))
-end
-
 function test_GetPickedHeroesList()
   SELECTED_HEROES = {}
 

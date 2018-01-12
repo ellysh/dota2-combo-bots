@@ -116,6 +116,18 @@ function test_IsElementInList()
   luaunit.assertFalse(functions.IsElementInList(list, 6))
 end
 
+function test_IsIntersectionOfLists()
+  local list1 = {1, 2, 3, 4, 5}
+  local list2 = {3, 4, 5, 6}
+  local list3 = {10, 11, 12}
+
+  luaunit.assertTrue(functions.IsIntersectionOfLists(list1, list2))
+
+  luaunit.assertFalse(functions.IsIntersectionOfLists(list1, list3))
+
+  luaunit.assertFalse(functions.IsIntersectionOfLists(list2, list3))
+end
+
 function test_IsBotBusy()
   test_RefreshBot()
 

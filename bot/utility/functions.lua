@@ -73,6 +73,13 @@ function M.IsElementInList(list, index)
   return M.GetElementIndexInList(list, index) ~= -1
 end
 
+function M.IsIntersectionOfLists(list1, list2)
+  for _, e in pairs(list1) do
+    if M.IsElementInList(list2, e) then return true end
+  end
+  return false
+end
+
 function M.IsBotBusy(npc_bot)
   return npc_bot:IsChanneling()
         or npc_bot:IsUsingAbility()

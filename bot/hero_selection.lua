@@ -9,14 +9,6 @@ local functions = require(
 
 local M = {}
 
--- TODO: Move this function in the functions module
-local function IsIntersectionOfLists(list1, list2)
-  for _, e in pairs(list1) do
-    if functions.IsElementInList(list2, e) then return true end
-  end
-  return false
-end
-
 local function GetPickedHeroesList(team)
   local players = GetTeamPlayers(team)
   local result = {}
@@ -67,7 +59,9 @@ local function GetComboHero(position, combo_heroes)
     function(hero, details)
       return functions.IsElementInList(details.position, position)
              and not IsHeroPicked(hero)
-             and IsIntersectionOfLists(details.combo_heroes, combo_heroes)
+             and functions.IsIntersectionOfLists(
+              details.combo_heroes,
+              combo_heroes)
     end)
 
   if hero ~= nil then
@@ -175,7 +169,6 @@ function GetBotNames()
 end
 
 -- Provide an access to local functions for unit tests only
-M.test_IsIntersectionOfLists = IsIntersectionOfLists
 M.test_GetPickedHeroesList = GetPickedHeroesList
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked
