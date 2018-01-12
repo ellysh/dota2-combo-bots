@@ -2,7 +2,6 @@
 
 import sys
 import csv
-import common as c
 import templates as t
 
 _USAGE = """Usage: heroes.py <table> <column_number> <in_file>
@@ -13,6 +12,10 @@ _USAGE = """Usage: heroes.py <table> <column_number> <in_file>
 Example:
     generator.py HEROES 9 database/csv/heroes.csv
 """
+
+def print_usage(usage):
+  sys.stderr.write(usage)
+  sys.exit(1)
 
 def skip_header_lines(reader):
   reader.next()
@@ -45,7 +48,7 @@ def parse_lines(table, column_number, reader):
     print_element(table, column_number, line)
 
 def parse_csv_file(table, column_number, filename):
-  with c.open_file(filename, "rU") as file_obj:
+  with open(filename, "rU") as file_obj:
     reader = csv.reader(file_obj, delimiter=';')
     parse_lines(table, column_number, reader)
 
@@ -55,7 +58,7 @@ def main():
     column_number = int(sys.argv[2])
     filename = sys.argv[3]
   else:
-    c.print_usage(_USAGE)
+    print_usage(_USAGE)
 
   print_header(table)
 
