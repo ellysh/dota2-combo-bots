@@ -135,13 +135,6 @@ function M.GetElementWith(list, compare_function, validate_function)
   return nil
 end
 
-function M.GetMyTeam()
-  return M.ternary(
-    GetOpposingTeam() == TEAM_RADIANT,
-    TEAM_DIRE,
-    TEAM_RADIANT)
-end
-
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

@@ -65,7 +65,7 @@ function M.max_kills_enemy_hero_alive()
 end
 
 function M.max_kills_ally_hero_alive()
-  local players = GetTeamPlayers(functions.GetMyTeam())
+  local players = GetTeamPlayers(GetTeam())
   local player = functions.GetElementWith(
     players,
     CompareMaxHeroKills,
@@ -139,7 +139,7 @@ end
 
 function M.more_ally_heroes_alive_then_enemy()
   local ally_number = GetNumberOfPlayersWith(
-    GetTeamPlayers(functions.GetMyTeam()),
+    GetTeamPlayers(GetTeam()),
     function(player) return IsHeroAlive(player) end)
 
   local enemy_number = GetNumberOfPlayersWith(
