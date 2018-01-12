@@ -132,7 +132,13 @@ function test_GetRequiredPosition()
 
   luaunit.assertEquals(
     hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
-    5)
+    4)
+
+  table.insert(SELECTED_HEROES, "npc_dota_hero_crystal_maiden")
+
+  luaunit.assertEquals(
+    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
+    nil)
 end
 
 function test_PickHero()
@@ -155,8 +161,8 @@ function test_Think()
   luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_sven")
   luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
   luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
-  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_sniper")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_ursa")
+  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lion")
 end
 
 function test_UpdateLaneAssignments()

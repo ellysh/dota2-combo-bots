@@ -116,7 +116,7 @@ local function GetRequiredPosition(heroes)
   return functions.GetKeyWith(
     positions,
     nil,
-    function(position, hero) return hero ~= "empty" end)
+    function(position, hero) return hero == "empty" end)
 end
 
 local function PickHero(position, combo_heroes)
