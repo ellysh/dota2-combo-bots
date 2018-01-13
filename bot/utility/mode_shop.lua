@@ -9,19 +9,11 @@ local constants = require(
 
 local M = {}
 
-local function IsSideShopRequired(bot)
+local function IsShopRequired(bot, check_shop_func)
   return not functions.IsBotBusy(bot)
          and not bot:WasRecentlyDamagedByAnyHero(5.0)
          and functions.GetItemToBuy(bot) ~= nil
-         and IsItemPurchasedFromSideShop(
-               functions.GetItemToBuy(bot))
-end
-
-local function IsSecretShopRequired(bot)
-  return not functions.IsBotBusy(bot)
-         and not bot:WasRecentlyDamagedByAnyHero(5.0)
-         and functions.GetItemToBuy(bot) ~= nil
-         and IsItemPurchasedFromSecretShop(
+         and check_shop_func(
                functions.GetItemToBuy(bot))
 end
 
@@ -43,7 +35,7 @@ end
 function M.GetDesireSideShop()
   local bot = GetBot();
 
-  if not IsSideShopRequired(bot)
+  if not IsShopRequired(bot, IsItemPurchasedFromSideShop)
     or IsBotInFightingMode(bot)
     or constants.SHOP_WALK_RADIUS < bot:DistanceFromSideShop() then
 
@@ -56,7 +48,7 @@ end
 function M.GetDesireSecretShop()
   local bot = GetBot();
 
-  if not IsSecretShopRequired(bot)
+  if not IsShopRequired(bot, IsItemPurchasedFromSecretShop)
     or IsBotInFightingMode(bot)
     or constants.SHOP_WALK_RADIUS < bot:DistanceFromSecretShop() then
 
