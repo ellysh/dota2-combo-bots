@@ -1,8 +1,9 @@
 * version 0.7
-  - Fix a bug with bot names
+  - Basic implementation of a pushing lanes strategy.
   - Rework the draft system. Now bots consider the already picked
   heroes when drafting. If the human players pick the unkown heroes,
   bot decide that they have position 1.
+  - Fix a bug with bot names
 
 * version 0.6
   - Fix a bug with picking heroes for human players
