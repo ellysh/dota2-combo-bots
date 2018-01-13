@@ -182,6 +182,12 @@ function GetAmountAlongLane(lane, location)
   return {amount = 3, distance = LANE_DISTANCE}
 end
 
+PUSH_LANE_DESIRE = 0
+
+function GetPushLaneDesire(lane)
+  return PUSH_LANE_DESIRE
+end
+
 --------------------------------------
 
 IS_SECRET_SHOP_ITEM = false
