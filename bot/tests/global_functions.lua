@@ -8,23 +8,7 @@ function GetScriptDirectory()
 end
 
 function GetItemCost(item)
-  local itemsCost = {
-    ["item_tango"] = 150,
-    ["item_branches"] = 50,
-    ["item_flask"] = 110,
-    ["item_courier"] = 200,
-    ["item_tpscroll"] = 100,
-    ["item_clarity"] = 50,
-    ["item_enchanted_mango"] = 100,
-    ["item_ultimate_orb"] = 2150,
-    ["item_magic_stick"] = 200,
-    ["item_ring_of_health"] = 850,
-    ["item_void_stone"] = 850,
-    ["item_platemail"] = 1400,
-    ["item_energy_booster"] = 900,
-  };
-
-  return itemsCost[item]
+  return 150
 end
 
 BOT = Bot:new()

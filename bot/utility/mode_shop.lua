@@ -32,7 +32,7 @@ function M.GetDesire()
   local bot = GetBot();
 
   if not IsSideShopRequired(bot)
-    and not IsBotInFightingMode(bot)
+    or IsBotInFightingMode(bot)
     or constants.SHOP_WALK_RADIUS < bot:DistanceFromSideShop() then
 
     return 0
