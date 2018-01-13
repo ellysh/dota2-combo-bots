@@ -16,6 +16,9 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+BUY_ITEMS_LIST = {}
+SELL_ITEMS_LIST = {}
+
 local M = {}
 
 local function IsTpScrollPresent(npc_bot)
@@ -96,70 +99,16 @@ local function FindNextComponentToBuy(npc_bot, item)
   return "nil"
 end
 
-local function OrderSecretShopItem(npc_bot, item, purchase_result)
-  if not IsItemPurchasedFromSecretShop(item)
-     or purchase_result ~= PURCHASE_ITEM_NOT_AT_SECRET_SHOP then
-
-    return false
-  end
-
-  local courier = GetCourier(0)
-
-  if courier ~= nil
-     and courier:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
-    npc_bot.is_secret_shop_mode = false
-
-    return courier:ActionImmediate_PurchaseItem(item)
-            == PURCHASE_ITEM_SUCCESS
-  end
-
-  npc_bot.is_secret_shop_mode = true
-
-  return false
-end
-
-local function OrderSideShopItem(npc_bot, item)
-  if not IsItemPurchasedFromSideShop(item) then return false end
-
-  if npc_bot.is_side_shop_mode
-     and npc_bot:GetActiveMode() ~= BOT_MODE_SIDE_SHOP then
-    return false
-  end
-
-  if npc_bot:DistanceFromSideShop() <= constants.SHOP_WALK_RADIUS then
-
-    npc_bot.is_side_shop_mode = true
-    return true
-  end
-
-  return false
-end
-
 local function PurchaseItem(npc_bot, item)
   if IsRecipeItem(item) then
     item = FindNextComponentToBuy(npc_bot, item)
   end
 
   if item == "nil" or (npc_bot:GetGold() < GetItemCost(item)) then
-    return false
+    return
   end
 
-  -- We should try to buy an item in the side shop first. Otherwise,
-  -- it will be bought in the base shop.
-  if OrderSideShopItem(npc_bot, item) then
-    return false
-  end
-
-  local purchase_result = npc_bot:ActionImmediate_PurchaseItem(item)
-
-  if purchase_result == PURCHASE_ITEM_SUCCESS then
-    npc_bot.is_side_shop_mode = false
-    npc_bot.is_secret_shop_mode = false
-    return true
-  end
-
-  return OrderSecretShopItem(npc_bot, item, purchase_result)
-
+  table.insert(BUY_ITEMS_LIST, item)
 end
 
 local function FindNextItemToBuy(item_list)
@@ -175,17 +124,16 @@ local function PurchaseItemList(npc_bot, item_type)
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if functions.IsElementInList(GetInventoryAndStashItems(npc_bot), item) then
+  if functions.IsElementInList(
+    GetInventoryAndStashItems(
+      npc_bot),
+      item) then
 
     item_list[i] = "nil"
     return
   end
 
-  if PurchaseItem(npc_bot, item) then
-
-    logger.Print("PurchaseItemList() - " .. npc_bot:GetUnitName() ..
-                 " bought " .. item)
-  end
+  PurchaseItem(npc_bot, item)
 end
 
 local function SellItemByIndex(npc_bot, index, condition)
@@ -201,10 +149,7 @@ local function SellItemByIndex(npc_bot, index, condition)
     or npc_bot:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
     or npc_bot:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
 
-    logger.Print("SellItemByIndex() - " .. npc_bot:GetUnitName() ..
-                 " sell " .. item:GetName())
-
-    npc_bot:ActionImmediate_SellItem(item)
+    table.insert(SELL_ITEMS_LIST, item)
   end
 end
 
