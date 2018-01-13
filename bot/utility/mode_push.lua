@@ -10,9 +10,15 @@ local player_desires_algorithms = require(
 local M = {}
 
 local PLAYER_DESIRES = {
-  [LANE_TOP] = 0,
-  [LANE_MID] = 0,
-  [LANE_BOT] = 0
+  PUSH_TOP_LINE_DESIRE = 0,
+  PUSH_MID_LINE_DESIRE = 0,
+  PUSH_BOT_LINE_DESIRE = 0
+}
+
+local LANE_TO_DESIRE= {
+  [LANE_TOP] = "PUSH_TOP_LINE_DESIRE",
+  [LANE_MID] = "PUSH_MID_LINE_DESIRE",
+  [LANE_BOT] = "PUSH_BOT_LINE_DESIRE"
 }
 
 function M.GetDesire(lane)
@@ -20,7 +26,7 @@ function M.GetDesire(lane)
     player_desires.PLAYER_DESIRES,
     player_desires_algorithms)
 
-  return GetPushLaneDesire(lane) + PLAYER_DESIRES[lane]
+  return GetPushLaneDesire(lane) + PLAYER_DESIRES[LANE_TO_DESIRE[lane]]
 end
 
 function M.Think(lane)
