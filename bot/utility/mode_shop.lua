@@ -67,12 +67,12 @@ local function GetNearestLocation(bot, location_1, location_2)
   end
 end
 
-function M.ThinkSideShop()
+local function Think(get_distance_func, shop1, shop2)
   local bot = GetBot();
 
   local buy_item = functions.GetItemToBuy(bot)
 
-  if bot:DistanceFromSideShop() < constants.SHOP_USE_RADIUS then
+  if bot[get_distance_func]() < constants.SHOP_USE_RADIUS then
     if PURCHASE_ITEM_SUCCESS ==
       bot:ActionImmediate_PurchaseItem(buy_item) then
 
@@ -87,36 +87,18 @@ function M.ThinkSideShop()
 
   local shop_location = GetNearestLocation(
     bot,
-    GetShopLocation(GetTeam(), SHOP_SIDE),
-    GetShopLocation(GetTeam(), SHOP_SIDE2))
+    GetShopLocation(GetTeam(), shop1),
+    GetShopLocation(GetTeam(), shop2))
 
   bot:Action_MoveToLocation(shop_location);
 end
 
+function M.ThinkSideShop()
+  Think("DistanceFromSideShop", SHOP_SECRET, SHOP_SECRET2)
+end
+
 function M.ThinkSecretShop()
-  local bot = GetBot();
-
-  local buy_item = functions.GetItemToBuy(bot)
-
-  if bot:DistanceFromSecretShop() < constants.SHOP_USE_RADIUS then
-    if PURCHASE_ITEM_SUCCESS ==
-      bot:ActionImmediate_PurchaseItem(buy_item) then
-
-      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. buy_item)
-
-      functions.SetItemToBuy(bot, nil)
-    end
-
-    return
-  end
-
-  local shop_location = GetNearestLocation(
-    bot,
-    GetShopLocation(GetTeam(), SHOP_SECRET),
-    GetShopLocation(GetTeam(), SHOP_SECRET2))
-
-  bot:Action_MoveToLocation(shop_location);
+  Think("DistanceFromSecretShop", SHOP_SIDE, SHOP_SIDE2)
 end
 
 -- Provide an access to local functions for unit tests only
