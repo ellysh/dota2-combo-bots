@@ -361,7 +361,7 @@ function test_UseOnAttackEnemyUnit()
     ability_usage_algorithms.test_UseOnAttackEnemyUnit(
       GetBot(),
       ability,
-      'IsHero',
+      function(unit) return unit:IsHero() end,
       ability:GetAOERadius())
 
   luaunit.assertEquals(desire, true)
@@ -373,7 +373,7 @@ function test_UseOnAttackEnemyUnit()
     ability_usage_algorithms.test_UseOnAttackEnemyUnit(
       GetBot(),
       ability,
-      'IsHero',
+      function(unit) return unit:IsHero() end,
       ability:GetAOERadius())
 
   luaunit.assertEquals(desire, false)
@@ -518,29 +518,6 @@ function test_use_on_attack_enemy_with_mana_when_low_mp()
 
   luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
-end
-
-function test_UseOnAttackEnemyUnit()
-  test_RefreshBot()
-
-  local npc_bot = GetBot()
-
-  luaunit.assertEquals(
-    functions.GetUnitHealthLevel(npc_bot),
-    1.0)
-
-  npc_bot.health = npc_bot.max_health / 2
-
-  luaunit.assertEquals(
-    functions.GetUnitHealthLevel(npc_bot),
-    0.5)
-
-  npc_bot.health = npc_bot.max_health / 3
-
-  luaunit.assertAlmostEquals(
-    functions.GetUnitHealthLevel(npc_bot),
-    0.333,
-    0.001)
 end
 
 function test_three_and_more_enemy_creeps_aoe()

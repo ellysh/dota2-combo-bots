@@ -232,4 +232,27 @@ function test_GetElementWith()
   luaunit.assertEquals(unit:GetHealth(), 10)
 end
 
+function test_GetUnitHealthLevel()
+  test_RefreshBot()
+
+  local npc_bot = GetBot()
+
+  luaunit.assertEquals(
+    functions.GetUnitHealthLevel(npc_bot),
+    1.0)
+
+  npc_bot.health = npc_bot.max_health / 2
+
+  luaunit.assertEquals(
+    functions.GetUnitHealthLevel(npc_bot),
+    0.5)
+
+  npc_bot.health = npc_bot.max_health / 3
+
+  luaunit.assertAlmostEquals(
+    functions.GetUnitHealthLevel(npc_bot),
+    0.333,
+    0.001)
+end
+
 os.exit(luaunit.LuaUnit.run())
