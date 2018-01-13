@@ -4,6 +4,7 @@ require("global_functions")
 
 local mode_shop = require("mode_shop")
 local constants = require("constants")
+local functions = require("functions")
 local luaunit = require('luaunit')
 
 function test_GetDesireSideShop_negative()
@@ -25,7 +26,7 @@ end
 function test_GetDesire_positive()
   test_RefreshBot()
 
-  NEXT_BUY_ITEM = "item_boots"
+  functions.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
 
   luaunit.assertEquals(mode_shop.GetDesireSideShop(), 1.0)

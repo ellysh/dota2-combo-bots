@@ -16,13 +16,6 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
--- Format of this list:
--- { hero_name = {ITEM_TO_BUY = "item_name", ITEM_TO_SELL = item_handle},
--- ...
--- }
-
-PURCHASE_LIST = {}
-
 local M = {}
 
 local function IsTpScrollPresent(npc_bot)
@@ -151,7 +144,7 @@ local function SellItemByIndex(npc_bot, index, condition)
     return
   end
 
-  functions.SetItemToSell(bot, item)
+  functions.SetItemToSell(npc_bot, item)
 end
 
 local function GetSlotIndex(inventory_index)

@@ -164,6 +164,14 @@ function M.IsUnitHaveItems(unit, items)
   return M.IsIntersectionOfLists(inventory, items)
 end
 
+
+-- Format of this list:
+-- { hero_name = {ITEM_TO_BUY = "item_name", ITEM_TO_SELL = item_handle},
+-- ...
+-- }
+
+PURCHASE_LIST = {}
+
 function M.GetItemToSell(bot)
   if PURCHASE_LIST == nil or PURCHASE_LIST[bot:GetUnitName()] == nil then
     return nil
