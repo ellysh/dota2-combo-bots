@@ -1,6 +1,6 @@
 local mode_shop = require(
   GetScriptDirectory() .."/utility/mode_shop")
-
+--[[
 function GetDesire()
   local npc_bot = GetBot();
 
@@ -8,4 +8,4 @@ function GetDesire()
     npc_bot.is_secret_shop_mode,
     npc_bot:DistanceFromSecretShop())
 end
-
+--]]

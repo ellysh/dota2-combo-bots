@@ -6,28 +6,44 @@ local constants = require(
 
 local M = {}
 
-function M.GetDesire(is_shop_mode, shop_distance)
+local function IsSideShopRequired(bot)
+  return not functions.IsBotBusy(bot)
+         and not bot:WasRecentlyDamagedByAnyHero(5.0)
+         and NEXT_BUY_ITEM ~= nil
+         and IsItemPurchasedFromSideShop(NEXT_BUY_ITEM)
+end
 
-  local npc_bot = GetBot();
+local function IsBotInFightingMode(bot)
+  local mode = bot:GetActiveMode()
 
-  if functions.IsBotBusy(npc_bot)
-    or not is_shop_mode
-    or npc_bot:WasRecentlyDamagedByAnyHero(5.0) then
+  return mode == BOT_MODE_ATTACK
+         or mode == BOT_MODE_PUSH_TOWER_TOP
+         or mode == BOT_MODE_PUSH_TOWER_MID
+         or mode == BOT_MODE_PUSH_TOWER_BOT
+         or mode == BOT_MODE_DEFEND_ALLY
+         or mode == BOT_MODE_RETREAT
+         or mode == BOT_MODE_ROSHAN
+         or mode == BOT_MODE_DEFEND_TOWER_TOP
+         or mode == BOT_MODE_DEFEND_TOWER_MID
+         or mode == BOT_MODE_DEFEND_TOWER_BOT
+end
+
+function M.GetDesire()
+  local bot = GetBot();
+
+  if not IsSideShopRequired(bot)
+    and not IsBotInFightingMode(bot)
+    or constants.SHOP_WALK_RADIUS < bot:DistanceFromSideShop() then
 
     return 0
   end
 
-  local walk_radius = constants.SHOP_WALK_RADIUS
-
-  if walk_radius < shop_distance then return 0 end
-
-  -- We increase the desire to 20%. Otherwise, it is still to low.
-  return ((100 - ((shop_distance * 100) / walk_radius)) / 100.0) + 0.2
+  return 1.0
 end
 
-local function GetNearestLocation(npc_bot, location_1, location_2)
-  if GetUnitToLocationDistance(npc_bot, location_1) <
-    GetUnitToLocationDistance(npc_bot, location_2) then
+local function GetNearestLocation(bot, location_1, location_2)
+  if GetUnitToLocationDistance(bot, location_1) <
+    GetUnitToLocationDistance(bot, location_2) then
 
     return location_1
   else
@@ -35,16 +51,25 @@ local function GetNearestLocation(npc_bot, location_1, location_2)
   end
 end
 
-function M.ThinkSideShop()
+function M.Think()
+  local bot = GetBot();
 
-  local npc_bot = GetBot();
+  if bot:DistanceFromSideShop() < constants.SHOP_USE_RADIUS then
+    if PURCHASE_ITEM_SUCCESS ==
+      bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+
+      NEXT_BUY_ITEM = nil
+    end
+
+    return
+  end
 
   local shop_location = GetNearestLocation(
-    npc_bot,
+    bot,
     GetShopLocation(GetTeam(), SHOP_SIDE),
     GetShopLocation(GetTeam(), SHOP_SIDE2))
 
-  npc_bot:Action_MoveToLocation(shop_location);
+  bot:Action_MoveToLocation(shop_location);
 end
 
 -- Provide an access to local functions for unit tests only
