@@ -27,20 +27,18 @@ function M.ally_mega_creeps()
 end
 
 local function IsAllyHaveItem(item_name)
-  -- TODO: Rewrite this function with GetElementWith()
   local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
 
-  for _, hero in pairs(ally_heroes) do
+  local hero = functions.GetElementWith(
+    ally_heroes,
+    nil,
+    function(hero)
+      return functions.IsElementInList(
+        functions.GetInventoryItems(hero),
+        item_name)
+    end)
 
-    if functions.IsElementInList(
-      functions.GetInventoryItems(hero),
-      item_name) then
-
-      return true
-    end
-  end
-
-  return false
+  return hero ~= nil
 end
 
 function M.ally_have_aegis()
