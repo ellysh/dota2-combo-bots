@@ -12,15 +12,17 @@ local M = {}
 local function IsSideShopRequired(bot)
   return not functions.IsBotBusy(bot)
          and not bot:WasRecentlyDamagedByAnyHero(5.0)
-         and NEXT_BUY_ITEM ~= nil
-         and IsItemPurchasedFromSideShop(NEXT_BUY_ITEM)
+         and functions.GetItemToBuy(bot) ~= nil
+         and IsItemPurchasedFromSideShop(
+               functions.GetItemToBuy(bot))
 end
 
 local function IsSecretShopRequired(bot)
   return not functions.IsBotBusy(bot)
          and not bot:WasRecentlyDamagedByAnyHero(5.0)
-         and NEXT_BUY_ITEM ~= nil
-         and IsItemPurchasedFromSecretShop(NEXT_BUY_ITEM)
+         and functions.GetItemToBuy(bot) ~= nil
+         and IsItemPurchasedFromSecretShop(
+               functions.GetItemToBuy(bot))
 end
 
 local function IsBotInFightingMode(bot)
@@ -77,14 +79,16 @@ end
 function M.ThinkSideShop()
   local bot = GetBot();
 
+  local buy_item = functions.GetItemToBuy(bot)
+
   if bot:DistanceFromSideShop() < constants.SHOP_USE_RADIUS then
     if PURCHASE_ITEM_SUCCESS ==
-      bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+      bot:ActionImmediate_PurchaseItem(buy_item) then
 
       logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. NEXT_BUY_ITEM)
+                   " bought " .. buy_item)
 
-      NEXT_BUY_ITEM = nil
+      functions.SetItemToBuy(bot, nil)
     end
 
     return
@@ -101,14 +105,16 @@ end
 function M.ThinkSecretShop()
   local bot = GetBot();
 
+  local buy_item = functions.GetItemToBuy(bot)
+
   if bot:DistanceFromSecretShop() < constants.SHOP_USE_RADIUS then
     if PURCHASE_ITEM_SUCCESS ==
-      bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+      bot:ActionImmediate_PurchaseItem(buy_item) then
 
       logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. NEXT_BUY_ITEM)
+                   " bought " .. buy_item)
 
-      NEXT_BUY_ITEM = nil
+      functions.SetItemToBuy(bot, nil)
     end
 
     return

@@ -16,8 +16,12 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
-NEXT_BUY_ITEM = nil
-NEXT_SELL_ITEM = nil
+-- Format of this list:
+-- { hero_name = {ITEM_TO_BUY = "item_name", ITEM_TO_SELL = item_handle},
+-- ...
+-- }
+
+PURCHASE_LIST = {}
 
 local M = {}
 
@@ -99,16 +103,16 @@ local function FindNextComponentToBuy(npc_bot, item)
   return "nil"
 end
 
-local function PurchaseItem(npc_bot, item)
+local function PurchaseItem(bot, item)
   if IsRecipeItem(item) then
-    item = FindNextComponentToBuy(npc_bot, item)
+    item = FindNextComponentToBuy(bot, item)
   end
 
-  if item == "nil" or (npc_bot:GetGold() < GetItemCost(item)) then
+  if item == "nil" or (bot:GetGold() < GetItemCost(item)) then
     return
   end
 
-  NEXT_BUY_ITEM = item
+  functions.SetItemToBuy(bot, item)
 end
 
 local function FindNextItemToBuy(item_list)
@@ -120,7 +124,7 @@ local function FindNextItemToBuy(item_list)
 end
 
 local function PurchaseItemList(npc_bot, item_type)
-  if NEXT_BUY_ITEM ~= nil then return end
+  if functions.GetItemToBuy(bot) ~= nil then return end
 
   local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
 
@@ -147,7 +151,7 @@ local function SellItemByIndex(npc_bot, index, condition)
     return
   end
 
-  NEXT_SELL_ITEM = item
+  functions.SetItemToSell(bot, item)
 end
 
 local function GetSlotIndex(inventory_index)
@@ -155,7 +159,7 @@ local function GetSlotIndex(inventory_index)
 end
 
 local function SellExtraItem(npc_bot)
-  if NEXT_SELL_ITEM ~= nil then return end
+  if functions.GetItemToSell(bot) ~= nil then return end
 
   if not functions.IsItemSlotsFull(npc_bot) then return end
 
@@ -184,23 +188,27 @@ local function PerformPlannedPurchaseAndSell(bot)
     return
   end
 
-  if NEXT_SELL_ITEM ~= nil then
+  local sell_item = functions.GetItemToSell(bot)
+
+  if sell_item ~= nil then
 
     logger.Print("SellItemByIndex() - " .. bot:GetUnitName() ..
-                 " sell " .. NEXT_SELL_ITEM:GetName())
+                 " sell " .. sell_item:GetName())
 
-    bot:ActionImmediate_SellItem(item)
-    NEXT_SELL_ITEM = nil
+    bot:ActionImmediate_SellItem(sell_item)
+    functions.SetItemToSell(bot, nil)
   end
 
-  if NEXT_BUY_ITEM ~= nil then
+  local buy_item = functions.GetItemToBuy(bot)
+
+  if buy_item ~= nil then
     if PURCHASE_ITEM_SUCCESS ==
-      bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+      bot:ActionImmediate_PurchaseItem(buy_item) then
 
       logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. NEXT_BUY_ITEM)
+                   " bought " .. buy_item)
 
-      NEXT_BUY_ITEM = nil
+      functions.SetItemToBuy(bot, nil)
     end
   end
 end
@@ -210,7 +218,7 @@ function M.ItemPurchaseThink()
 
   PerformPlannedPurchaseAndSell(bot)
 
-  PurchaseCourier(bot)
+  --PurchaseCourier(bot)
 
   PurchaseTpScroll(bot)
 

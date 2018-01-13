@@ -164,6 +164,22 @@ function M.IsUnitHaveItems(unit, items)
   return M.IsIntersectionOfLists(inventory, items)
 end
 
+function M.GetItemToSell(bot)
+  return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL
+end
+
+function M.GetItemToBuy(bot)
+  return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY
+end
+
+function M.SetItemToSell(bot, item)
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL = item
+end
+
+function M.SetItemToBuy(bot, item)
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY = item
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
