@@ -79,31 +79,42 @@ function test_time_is_more_15_minutes()
   luaunit.assertTrue(algorithms.time_is_more_15_minutes())
 end
 
-function test_ThreeAndMoreUnitsOnLane()
+function test_NumberUnitsOnLane()
   local unit = Unit:new()
 
   UNITS = { unit, unit, unit }
 
   LANE_DISTANCE = 200
 
-  luaunit.assertTrue(
-    algorithms.test_ThreeAndMoreUnitsOnLane(
+  luaunit.assertEquals(
+    algorithms.test_NumberUnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
-      LANE_TOP))
+      LANE_TOP),
+    3)
+
+  UNITS = { unit }
+
+  luaunit.assertEquals(
+    algorithms.test_NumberUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP),
+    1)
+
+  UNITS = {}
+
+  luaunit.assertEquals(
+    algorithms.test_NumberUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP),
+    0)
 
   LANE_DISTANCE = 3000
 
-  luaunit.assertFalse(
-    algorithms.test_ThreeAndMoreUnitsOnLane(
+  luaunit.assertEquals(
+    algorithms.test_NumberUnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
-      LANE_TOP))
-
-  UNITS = { unit, unit }
-
-  luaunit.assertFalse(
-    algorithms.test_ThreeAndMoreUnitsOnLane(
-      UNIT_LIST_ALLIED_HEROES,
-      LANE_TOP))
+      LANE_TOP),
+    0)
 end
 
 function test_three_and_more_ally_heroes_on_top()

@@ -79,48 +79,49 @@ function M.time_is_more_15_minutes()
   return (15 * 60) < DotaTime()
 end
 
-local function ThreeAndMoreUnitsOnLane(unit_type, lane)
-  local ally_heroes = GetUnitList(unit_type)
-  local heroes_number = 0
+local function NumberUnitsOnLane(unit_type, lane)
+  local units = GetUnitList(unit_type)
 
-  for _, hero in pairs(ally_heroes) do
-    if not hero:IsAlive() or hero:IsIllusion() then goto continue end
+  local units_number = 0
+
+  for _, unit in pairs(units) do
+    if not unit:IsAlive() or unit:IsIllusion() then goto continue end
 
     local disatnce_from_lane =
-      GetAmountAlongLane(lane, hero:GetLocation()).distance
+      GetAmountAlongLane(lane, unit:GetLocation()).distance
 
     if disatnce_from_lane < constants.MAX_HERO_DISTANCE_FROM_LANE then
-      heroes_number = heroes_number + 1
+      units_number = units_number + 1
     end
 
     ::continue::
   end
 
-  return 3 <= heroes_number
+  return units_number
 end
 
 function M.three_and_more_ally_heroes_on_top()
-  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
+  return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
 end
 
 function M.three_and_more_ally_heroes_on_mid()
-  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
+  return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
 end
 
 function M.three_and_more_ally_heroes_on_bot()
-  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
+  return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
 end
 
 function M.three_and_more_enemy_heroes_on_top()
-  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_TOP)
+  return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_TOP)
 end
 
 function M.three_and_more_enemy_heroes_on_mid()
-  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_MID)
+  return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_MID)
 end
 
 function M.three_and_more_enemy_heroes_on_bot()
-  return ThreeAndMoreUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
+  return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
 end
 
 local function GetNumberOfPlayersWith(players, check_function)
@@ -149,7 +150,7 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
-M.test_ThreeAndMoreUnitsOnLane = ThreeAndMoreUnitsOnLane
+M.test_NumberUnitsOnLane = NumberUnitsOnLane
 M.test_GetNumberOfPlayersWith = GetNumberOfPlayersWith
 
 return M
