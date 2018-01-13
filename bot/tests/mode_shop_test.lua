@@ -6,24 +6,20 @@ local mode_shop = require("mode_shop")
 local constants = require("constants")
 local luaunit = require('luaunit')
 
-function test_GetDesire_negative()
+function test_GetDesireSideShop_negative()
   test_RefreshBot()
 
   UNIT_IS_CHANNELING = true
-  luaunit.assertEquals(mode_shop.GetDesire(), 0)
+  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 
   UNIT_IS_CHANNELING = false
-  luaunit.assertEquals(mode_shop.GetDesire(), 0)
+  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 
   WAS_DAMAGED = true
-  luaunit.assertEquals(mode_shop.GetDesire(), 0)
+  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 
   WAS_DAMAGED = false
-  luaunit.assertEquals(
-    mode_shop.GetDesire(
-      true,
-      constants.SHOP_WALK_RADIUS + 1),
-    0)
+  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 end
 
 function test_GetDesire_positive()
@@ -32,7 +28,7 @@ function test_GetDesire_positive()
   NEXT_BUY_ITEM = "item_boots"
   IS_SIDE_SHOP_ITEM = true
 
-  luaunit.assertEquals(mode_shop.GetDesire(), 1.0)
+  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 1.0)
 end
 
 function test_GetNearestLocation()
@@ -53,7 +49,7 @@ function test_Think()
   test_RefreshBot()
 
   DISTANCE_FROM_SHOP = 1000
-  mode_shop.Think()
+  mode_shop.ThinkSideShop()
 
   luaunit.assertEquals(BOT_ACTION, BOT_ACTION_TYPE_MOVE_TO)
 
