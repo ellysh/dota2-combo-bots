@@ -18,7 +18,7 @@ function GetDesire()
     player_desires.PLAYER_DESIRES,
     player_desires_algorithms)
 
-  return GetPushLaneDesire(LANE_BOT) + PLAYER_DESIRES.PUSH_TOP_LINE_DESIRE
+  return GetPushLaneDesire(LANE_BOT) + PLAYER_DESIRES.PUSH_BOT_LINE_DESIRE
 end
 
 function Think()
