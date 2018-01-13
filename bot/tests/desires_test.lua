@@ -17,17 +17,17 @@ function test_Think()
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_TOP_LINE_DESIRE,
-    -0.5,
+    -0.4,
     0.01)
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_MID_LINE_DESIRE,
-    -0.5,
+    -0.4,
     0.01)
 
   luaunit.assertAlmostEquals(
     team_desires.PUSH_BOT_LINE_DESIRE,
-    -0.5,
+    -0.4,
     0.01)
 end
 

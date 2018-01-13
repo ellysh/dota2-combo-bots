@@ -1,4 +1,5 @@
-local constants = require(
+
+  local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
 local M = {}
@@ -155,6 +156,12 @@ end
 
 function M.GetUnitHealthLevel(unit)
   return unit:GetHealth() / unit:GetMaxHealth()
+end
+
+function M.IsUnitHaveItems(unit, items)
+  local inventory = M.GetInventoryItems(unit)
+
+  return M.IsIntersectionOfLists(inventory, items)
 end
 
 -- Provide an access to local functions for unit tests only

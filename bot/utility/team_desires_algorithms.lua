@@ -33,9 +33,7 @@ local function IsAllyHaveItem(item_name)
     ally_heroes,
     nil,
     function(hero)
-      return functions.IsElementInList(
-        functions.GetInventoryItems(hero),
-        item_name)
+      return functions.IsUnitHaveItems(hero, {item_name})
     end)
 
   return hero ~= nil
