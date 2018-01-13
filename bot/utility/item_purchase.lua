@@ -147,12 +147,7 @@ local function SellItemByIndex(npc_bot, index, condition)
     return
   end
 
-  if npc_bot:DistanceFromFountain() <= constants.BASE_SHOP_USE_RADIUS
-    or npc_bot:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
-    or npc_bot:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
-
-    NEXT_SELL_ITEM = item
-  end
+  NEXT_SELL_ITEM = item
 end
 
 local function GetSlotIndex(inventory_index)
@@ -179,19 +174,42 @@ local function SellExtraItem(npc_bot)
       return
     end
   end
+end
 
+local function PerformPlannedPurchaseAndSell(bot)
+  if constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()
+    and constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()
+    and constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop() then
+
+    return
+  end
+
+  if NEXT_SELL_ITEM ~= nil then
+    bot:ActionImmediate_SellItem(item)
+    NEXT_SELL_ITEM = nil
+  end
+
+  if NEXT_BUY_ITEM ~= nil then
+    if PURCHASE_ITEM_SUCCESS ==
+      bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+
+      NEXT_BUY_ITEM = nil
+    end
+  end
 end
 
 function M.ItemPurchaseThink()
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
-  PurchaseCourier(npc_bot)
+  PerformPlannedPurchaseAndSell(bot)
 
-  PurchaseTpScroll(npc_bot)
+  PurchaseCourier(bot)
 
-  SellExtraItem(npc_bot)
+  PurchaseTpScroll(bot)
 
-  PurchaseItemList(npc_bot)
+  SellExtraItem(bot)
+
+  PurchaseItemList(bot)
 end
 
 -- Provide an access to local functions for unit tests only
