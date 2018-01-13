@@ -23,7 +23,7 @@ function test_GetDesireSideShop_negative()
   luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 end
 
-function test_GetDesire_positive()
+function test_GetDesireSideShop_positive()
   test_RefreshBot()
 
   functions.SetItemToBuy(GetBot(), "item_boots")

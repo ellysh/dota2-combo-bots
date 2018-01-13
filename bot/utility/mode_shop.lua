@@ -32,12 +32,12 @@ local function IsBotInFightingMode(bot)
          or mode == BOT_MODE_DEFEND_TOWER_BOT
 end
 
-function M.GetDesireSideShop()
+local function GetDesire(check_shop_func, get_distance_func)
   local bot = GetBot();
 
-  if not IsShopRequired(bot, IsItemPurchasedFromSideShop)
+  if not IsShopRequired(bot, check_shop_func)
     or IsBotInFightingMode(bot)
-    or constants.SHOP_WALK_RADIUS < bot:DistanceFromSideShop() then
+    or constants.SHOP_WALK_RADIUS < bot[get_distance_func]() then
 
     return 0
   end
@@ -45,17 +45,16 @@ function M.GetDesireSideShop()
   return 1.0
 end
 
+function M.GetDesireSideShop()
+  return GetDesire(
+    IsItemPurchasedFromSideShop,
+    "DistanceFromSideShop")
+end
+
 function M.GetDesireSecretShop()
-  local bot = GetBot();
-
-  if not IsShopRequired(bot, IsItemPurchasedFromSecretShop)
-    or IsBotInFightingMode(bot)
-    or constants.SHOP_WALK_RADIUS < bot:DistanceFromSecretShop() then
-
-    return 0
-  end
-
-  return 1.0
+  return GetDesire(
+    IsItemPurchasedFromSecretShop,
+    "DistanceFromSecretShop")
 end
 
 local function GetNearestLocation(bot, location_1, location_2)
