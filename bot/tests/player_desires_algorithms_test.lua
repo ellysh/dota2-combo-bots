@@ -20,13 +20,41 @@ end
 function test_PlayerOnLane()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
-
   luaunit.assertTrue(algorithms.test_PlayerOnLane(LANE_TOP))
 
   LANE_DISTANCE = 3000
 
   luaunit.assertFalse(algorithms.test_PlayerOnLane(LANE_TOP))
+end
+
+function test_player_on_top()
+  test_RefreshBot()
+
+  LANE_DISTANCE = 200
+  luaunit.assertTrue(algorithms.player_on_top())
+
+  LANE_DISTANCE = 3000
+  luaunit.assertFalse(algorithms.player_on_top())
+end
+
+function test_player_on_mid()
+  test_RefreshBot()
+
+  LANE_DISTANCE = 200
+  luaunit.assertTrue(algorithms.player_on_mid())
+
+  LANE_DISTANCE = 3000
+  luaunit.assertFalse(algorithms.player_on_mid())
+end
+
+function test_player_on_bot()
+  test_RefreshBot()
+
+  LANE_DISTANCE = 200
+  luaunit.assertTrue(algorithms.player_on_bot())
+
+  LANE_DISTANCE = 3000
+  luaunit.assertFalse(algorithms.player_on_bot())
 end
 
 os.exit(luaunit.LuaUnit.run())
