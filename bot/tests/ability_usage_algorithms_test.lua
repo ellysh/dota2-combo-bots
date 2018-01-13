@@ -3,6 +3,7 @@ package.path = package.path .. ";../utility/?.lua"
 require("global_functions")
 
 local ability_usage_algorithms = require("ability_usage_algorithms")
+local functions = require("functions")
 local constants = require("constants")
 local luaunit = require('luaunit')
 
@@ -525,19 +526,19 @@ function test_UseOnAttackEnemyUnit()
   local npc_bot = GetBot()
 
   luaunit.assertEquals(
-    ability_usage_algorithms.test_GetUnitHealthLevel(npc_bot),
+    functions.GetUnitHealthLevel(npc_bot),
     1.0)
 
   npc_bot.health = npc_bot.max_health / 2
 
   luaunit.assertEquals(
-    ability_usage_algorithms.test_GetUnitHealthLevel(npc_bot),
+    functions.GetUnitHealthLevel(npc_bot),
     0.5)
 
   npc_bot.health = npc_bot.max_health / 3
 
   luaunit.assertAlmostEquals(
-    ability_usage_algorithms.test_GetUnitHealthLevel(npc_bot),
+    functions.GetUnitHealthLevel(npc_bot),
     0.333,
     0.001)
 end

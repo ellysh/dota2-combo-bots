@@ -370,12 +370,10 @@ function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
   return false, nil
 end
 
-local function GetUnitHealthLevel(unit)
-  return unit:GetHealth() / unit:GetMaxHealth()
-end
-
 function M.low_hp_self(npc_bot, ability)
-  if GetUnitHealthLevel(npc_bot) < constants.UNIT_LOW_HEALTH_LEVEL then
+  if functions.GetUnitHealthLevel(npc_bot)
+     < constants.UNIT_LOW_HEALTH_LEVEL then
+
     return true, GetTarget(npc_bot, ability)
   end
 
@@ -391,8 +389,7 @@ function M.low_hp_ally_hero(npc_bot, ability)
 
   if ally_hero == nil
     or not IsTargetable(ally_hero)
-    or GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HEALTH_LEVEL
-    then
+    or functions.GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HEALTH_LEVEL then
 
     return false, nil
   end
@@ -409,7 +406,7 @@ function M.low_hp_ally_creep(npc_bot, ability)
 
   if ally_creep == nil
     or not IsTargetable(ally_creep)
-    or GetUnitHealthLevel(ally_creep) > constants.UNIT_LOW_HEALTH_LEVEL
+    or functions.GetUnitHealthLevel(ally_creep) > constants.UNIT_LOW_HEALTH_LEVEL
     then
 
     return false, nil
@@ -455,7 +452,7 @@ M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_UseOnAttackEnemyUnit = UseOnAttackEnemyUnit
-M.test_GetUnitHealthLevel = GetUnitHealthLevel
+M.test_GetUnitManaLevel = GetUnitManaLevel
 M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 
 return M

@@ -153,6 +153,10 @@ function M.GetKeyWith(list, compare_function, validate_function)
   return nil
 end
 
+function M.GetUnitHealthLevel(unit)
+  return unit:GetHealth() / unit:GetMaxHealth()
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
