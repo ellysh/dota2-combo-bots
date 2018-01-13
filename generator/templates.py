@@ -154,3 +154,17 @@ TEAM_DESIRES = """
     PUSH_BOT_LINE_DESIRE = {<5>, <6>}
   },
 """
+
+#---------------------------------------------
+
+PLAYER_DESIRES_HEADER = """
+M.PLAYER_DESIRES = {
+"""
+
+PLAYER_DESIRES = """
+  <0> = {
+    PUSH_TOP_LINE_DESIRE = {<1>, <2>},
+    PUSH_MID_LINE_DESIRE = {<3>, <4>},
+    PUSH_BOT_LINE_DESIRE = {<5>, <6>}
+  },
+"""
