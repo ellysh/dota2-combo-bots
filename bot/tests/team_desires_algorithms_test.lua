@@ -84,7 +84,16 @@ function test_ThreeAndMoreUnitsOnLane()
 
   UNITS = { unit, unit, unit }
 
+  LANE_DISTANCE = 200
+
   luaunit.assertTrue(
+    algorithms.test_ThreeAndMoreUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP))
+
+  LANE_DISTANCE = 3000
+
+  luaunit.assertFalse(
     algorithms.test_ThreeAndMoreUnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP))

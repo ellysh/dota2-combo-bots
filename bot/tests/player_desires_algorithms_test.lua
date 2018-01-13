@@ -17,4 +17,16 @@ function test_have_low_hp()
   luaunit.assertFalse(algorithms.have_low_hp(npc_bot, ability))
 end
 
+function test_PlayerOnLane()
+  test_RefreshBot()
+
+  local npc_bot = GetBot()
+
+  luaunit.assertTrue(algorithms.test_PlayerOnLane(LANE_TOP))
+
+  LANE_DISTANCE = 3000
+
+  luaunit.assertFalse(algorithms.test_PlayerOnLane(LANE_TOP))
+end
+
 os.exit(luaunit.LuaUnit.run())

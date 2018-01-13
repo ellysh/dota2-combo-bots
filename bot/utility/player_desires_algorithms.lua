@@ -38,4 +38,7 @@ function M.player_on_bot()
   return PlayerOnLane(LANE_BOT)
 end
 
+-- Provide an access to local functions for unit tests only
+M.test_PlayerOnLane = PlayerOnLane
+
 return M
