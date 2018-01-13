@@ -185,6 +185,10 @@ local function PerformPlannedPurchaseAndSell(bot)
   end
 
   if NEXT_SELL_ITEM ~= nil then
+
+    logger.Print("SellItemByIndex() - " .. bot:GetUnitName() ..
+                 " sell " .. NEXT_SELL_ITEM:GetName())
+
     bot:ActionImmediate_SellItem(item)
     NEXT_SELL_ITEM = nil
   end
@@ -192,6 +196,9 @@ local function PerformPlannedPurchaseAndSell(bot)
   if NEXT_BUY_ITEM ~= nil then
     if PURCHASE_ITEM_SUCCESS ==
       bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+
+      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
+                   " bought " .. NEXT_BUY_ITEM)
 
       NEXT_BUY_ITEM = nil
     end

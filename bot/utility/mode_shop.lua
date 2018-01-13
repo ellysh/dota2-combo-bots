@@ -1,3 +1,6 @@
+local logger = require(
+  GetScriptDirectory() .."/utility/logger")
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
@@ -78,6 +81,9 @@ function M.ThinkSideShop()
     if PURCHASE_ITEM_SUCCESS ==
       bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
 
+      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
+                   " bought " .. NEXT_BUY_ITEM)
+
       NEXT_BUY_ITEM = nil
     end
 
@@ -98,6 +104,9 @@ function M.ThinkSecretShop()
   if bot:DistanceFromSecretShop() < constants.SHOP_USE_RADIUS then
     if PURCHASE_ITEM_SUCCESS ==
       bot:ActionImmediate_PurchaseItem(NEXT_BUY_ITEM) then
+
+      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
+                   " bought " .. NEXT_BUY_ITEM)
 
       NEXT_BUY_ITEM = nil
     end
