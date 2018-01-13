@@ -549,7 +549,7 @@ function test_low_hp_self()
 
   local desire, target =
     ability_usage_algorithms.low_hp_self(
-      GetBot(),
+      npc_bot,
       ability)
 
   luaunit.assertEquals(desire, true)
@@ -559,7 +559,7 @@ function test_low_hp_self()
 
   local desire, target =
     ability_usage_algorithms.low_hp_self(
-      GetBot(),
+      npc_bot,
       ability)
 
   luaunit.assertEquals(desire, false)
