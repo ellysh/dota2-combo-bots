@@ -123,112 +123,72 @@ function test_FindNextComponentToBuy()
     "item_magic_stick")
 end
 
-function test_OrderSecretShopItem()
-  test_RefreshBot()
-
-  IS_SECRET_SHOP_ITEM = true
-  luaunit.assertTrue(
-    item_purchase.test_OrderSecretShopItem(GetBot(), "item_ultimate_orb"))
-
-  DISTANCE_FROM_SHOP = constants.SHOP_WALK_RADIUS
-
-  luaunit.assertFalse(
-    item_purchase.test_OrderSecretShopItem(GetBot(), "item_ultimate_orb"))
-
-  luaunit.assertTrue(BOT.is_secret_shop_mode)
-end
-
-function test_OrderSideShopItem()
-  test_RefreshBot()
-
-  DISTANCE_FROM_SHOP = constants.SHOP_WALK_RADIUS - 1
-
-  IS_SIDE_SHOP_ITEM = true
-  luaunit.assertTrue(
-    item_purchase.test_OrderSideShopItem(GetBot(), "item_tpscroll"))
-
-  luaunit.assertTrue(BOT.is_side_shop_mode)
-end
-
 function test_PurchaseItem_basic()
   test_RefreshBot()
 
-  IS_SIDE_SHOP_ITEM = false
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_tango"))
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(GetBot(), "item_tango")
 
-  luaunit.assertEquals(GetBot():GetItemInSlot(1):GetName(), "item_tango")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_tango")
 end
 
 function test_PurchaseItem_recipe()
   test_RefreshBot()
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_magic_wand"))
+  local bot = GetBot()
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_magic_wand"))
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(bot, "item_magic_wand")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_branches")
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_magic_wand"))
+  table.insert(bot.inventory, "item_branches")
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_magic_wand"))
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(bot, "item_magic_wand")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_branches")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
-    "item_branches")
+  table.insert(bot.inventory, "item_branches")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(2):GetName(),
-    "item_branches")
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(bot, "item_magic_wand")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_enchanted_mango")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(3):GetName(),
-    "item_enchanted_mango")
+  table.insert(bot.inventory, "item_enchanted_mango")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(4):GetName(),
-    "item_magic_stick")
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(bot, "item_magic_wand")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_magic_stick")
 end
 
 function test_PurchaseItem_recipe_from_recipe_component()
   test_RefreshBot()
 
-  BOT.gold = 9000
+  local bot = GetBot()
+  bot.gold = 9000
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_lotus_orb"))
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_void_stone")
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_lotus_orb"))
+  table.insert(bot.inventory, "item_void_stone")
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_lotus_orb"))
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_ring_of_health")
 
-  luaunit.assertTrue(item_purchase.test_PurchaseItem(
-    GetBot(),
-    "item_lotus_orb"))
+  table.insert(bot.inventory, "item_pers")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
-    "item_pers")
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_platemail")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(2):GetName(),
-    "item_platemail")
+  table.insert(bot.inventory, "item_platemail")
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(3):GetName(),
-    "item_energy_booster")
+  NEXT_BUY_ITEM = nil
+  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  luaunit.assertEquals(NEXT_BUY_ITEM, "item_energy_booster")
+
+  table.insert(bot.inventory, "item_energy_booster")
 end
 
 function test_FindNextItemToBuy()
@@ -270,16 +230,11 @@ function test_SellItemByIndex_level_match()
     time = 30
   }
 
-  DISTANCE_FROM_SHOP = 0
+  NEXT_SELL_ITEM = nil
   item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
 
   luaunit.assertEquals(
-    npc_bot:GetItemInSlot(1):GetName(),
-    "item_tango")
-
-  luaunit.assertEquals(
-    npc_bot:GetItemInSlot(2):GetName(),
-    "nil")
+    NEXT_SELL_ITEM, {name = "item_branches"})
 end
 
 function test_SellItemByIndex_time_match()
@@ -296,17 +251,13 @@ function test_SellItemByIndex_time_match()
   }
 
   TIME = 30 * 60
-  DISTANCE_FROM_SHOP = 0
+  NEXT_SELL_ITEM = nil
   item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
-    "item_tango")
-
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(2):GetName(),
-    "nil")
+    NEXT_SELL_ITEM, {name = "item_branches"})
 end
+
 function test_SellExtraItem()
   test_RefreshBot()
 
@@ -332,12 +283,10 @@ function test_SellExtraItem()
     "item_branches"
   }
 
-  DISTANCE_FROM_SHOP = 0
+  NEXT_SELL_ITEM = nil
   item_purchase.test_SellExtraItem(GetBot())
 
-  luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
-    "nil")
+  luaunit.assertEquals(NEXT_SELL_ITEM, {name = "item_branches"})
 end
 
 function test_ItemPurchaseThink()
@@ -376,12 +325,14 @@ function test_ItemPurchaseThink_with_full_inventory()
     "item_branches"
   }
 
+  NEXT_BUY_ITEM = nil
+
   item_purchase.ItemPurchaseThink()
 
   -- The first item_branches in the inventory should be sold
 
   luaunit.assertEquals(
-    npc_bot:GetItemInSlot(1):GetName(),
+    NEXT_BUY_ITEM,
     "item_tango")
 end
 

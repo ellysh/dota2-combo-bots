@@ -16,8 +16,8 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
-BUY_ITEMS_LIST = {}
-SELL_ITEMS_LIST = {}
+NEXT_BUY_ITEM = nil
+NEXT_SELL_ITEM = nil
 
 local M = {}
 
@@ -108,7 +108,7 @@ local function PurchaseItem(npc_bot, item)
     return
   end
 
-  table.insert(BUY_ITEMS_LIST, item)
+  NEXT_BUY_ITEM = item
 end
 
 local function FindNextItemToBuy(item_list)
@@ -120,6 +120,8 @@ local function FindNextItemToBuy(item_list)
 end
 
 local function PurchaseItemList(npc_bot, item_type)
+  if NEXT_BUY_ITEM ~= nil then return end
+
   local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
 
   local i, item = FindNextItemToBuy(item_list)
@@ -149,7 +151,7 @@ local function SellItemByIndex(npc_bot, index, condition)
     or npc_bot:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
     or npc_bot:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS then
 
-    table.insert(SELL_ITEMS_LIST, item)
+    NEXT_SELL_ITEM = item
   end
 end
 
@@ -158,6 +160,8 @@ local function GetSlotIndex(inventory_index)
 end
 
 local function SellExtraItem(npc_bot)
+  if NEXT_SELL_ITEM ~= nil then return end
+
   if not functions.IsItemSlotsFull(npc_bot) then return end
 
   local inventory = functions.GetInventoryItems(npc_bot)
@@ -198,8 +202,6 @@ M.test_IsRecipeItem = IsRecipeItem
 M.test_IsItemAlreadyBought = IsItemAlreadyBought
 M.test_GetInventoryAndStashItems = GetInventoryAndStashItems
 M.test_FindNextComponentToBuy = FindNextComponentToBuy
-M.test_OrderSecretShopItem = OrderSecretShopItem
-M.test_OrderSideShopItem = OrderSideShopItem
 M.test_PurchaseItem = PurchaseItem
 M.test_FindNextItemToBuy = FindNextItemToBuy
 M.test_PurchaseItemList = PurchaseItemList

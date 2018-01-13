@@ -76,39 +76,10 @@ function Unit:DistanceFromFountain()
   return DISTANCE_FROM_SHOP
 end
 
-local function AssembleItem(item, inventory)
-  if item ~= "item_ring_of_health" then return false end
-
-  local index = functions.GetElementIndexInList(
-    inventory,
-    "item_void_stone")
-
-  if index == -1 then return false end
-
-  inventory[index] = "item_pers"
-  return true
-end
-
 function Unit:ActionImmediate_PurchaseItem(item)
   self.gold = self.gold - GetItemCost(item)
 
-  -- Assemble item_pers for the item purchase test
-  if AssembleItem(item, self.inventory) then
-    return PURCHASE_ITEM_SUCCESS
-  end
-
-  if #self.inventory < constants.INVENTORY_AND_STASH_SIZE then
-    table.insert(self.inventory, item)
-    return PURCHASE_ITEM_SUCCESS
-  end
-
-  local index = functions.GetElementIndexInList(
-    self.inventory,
-    "nil")
-
-  if index == -1 then return PURCHASE_ITEM_DISALLOWED_ITEM end
-
-  self.inventory[index] = item
+  table.insert(self.inventory, item)
 
   return PURCHASE_ITEM_SUCCESS
 end
