@@ -24,6 +24,7 @@ end
 function Think()
   -- TODO: Use TP scrolls and TP boots here
 
+  local npc_bot = GetBot()
   local target = GetLaneFrontLocation(GetTeam(), LANE_MID, 0.5)
-  Action_AttackMove(target)
+  npc_bot:Action_AttackMove(target)
 end
