@@ -59,6 +59,8 @@ There are several sheets in the document:
 * ITEM_SELL
 * SKILL_BUILD
 * SKILL_USAGE
+* TEAM_DESIRES
+* PLAYER_DESIRES
 
 You should use the internal (built-in) game names of the items, units, heroes, and abilities to fill these sheets. These are links, where you can find this information:
 
@@ -187,6 +189,25 @@ These are columns of this sheet:
 The aggressive bot modes are marked red color on the sheet. Green color marks the defensive modes.
 
 The bot will use the most desired ability when checking all of them with the condition, which matches to its active mode.
+
+## TEAM_DESIRES
+
+The `TEAM_DESIRES` sheet describes desires to choose a specific mode for all bots on the team level.
+
+These are columns of this sheet:
+
+1. Algorithm - this is a name of Lua function that returns a boolean value. If the function returns `true`, the positive number will be added to a corresponding desire. Otherwise, the desire will be decreased. All algorithm functions should be implemented in the `bot/utility/team_desires_algorithms.lua` module.
+2. Push TOP desire - this is a pair of positive and negative numbers (weights) that affect the resulting desire to choose the `BOT_MODE_PUSH_TOWER_TOP` mode.
+3. Push MID desire - these are weights to choose the `BOT_MODE_PUSH_TOWER_MID` mode.
+4. Push BOT desire - these are weights to choose the `BOT_MODE_PUSH_TOWER_BOT` mode.
+
+The team desires for all modes will be passed down to each bot. Then, the bot considers team desires to choose an own mode.
+
+## PLAYER_DESIRES
+
+The `PLAYER_DESIRES` sheet describes desires to choose a specific mode on the bot player level. It has the same structure as the `TEAM_DESIRES` sheet. Algorithms, which are specified in the first column, should be implemented in the `bot/utility/player_desires_algorithms.lua` module.
+
+The bot will summarize the team desire and player desire to choose own current mode.
 
 ## Contributing
 
