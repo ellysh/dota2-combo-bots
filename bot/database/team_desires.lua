@@ -16,9 +16,9 @@ M.TEAM_DESIRES = {
   },
 
   ally_have_cheese = {
-    PUSH_TOP_LINE_DESIRE = {0.1, 0},
-    PUSH_MID_LINE_DESIRE = {0.1, 0},
-    PUSH_BOT_LINE_DESIRE = {0.1, 0}
+    PUSH_TOP_LINE_DESIRE = {0.05, 0},
+    PUSH_MID_LINE_DESIRE = {0.05, 0},
+    PUSH_BOT_LINE_DESIRE = {0.05, 0}
   },
 
   max_kills_enemy_hero_alive = {
@@ -47,43 +47,61 @@ M.TEAM_DESIRES = {
 
   three_and_more_ally_heroes_on_top = {
     PUSH_TOP_LINE_DESIRE = {0.1, 0},
-    PUSH_MID_LINE_DESIRE = {0, -0.05},
-    PUSH_BOT_LINE_DESIRE = {0, -0.05}
+    PUSH_MID_LINE_DESIRE = {0, 0},
+    PUSH_BOT_LINE_DESIRE = {0, 0}
   },
 
   three_and_more_ally_heroes_on_mid = {
-    PUSH_TOP_LINE_DESIRE = {0, -0.05},
+    PUSH_TOP_LINE_DESIRE = {0, 0},
     PUSH_MID_LINE_DESIRE = {0.1, 0},
-    PUSH_BOT_LINE_DESIRE = {0, -0.05}
+    PUSH_BOT_LINE_DESIRE = {0, 0}
   },
 
   three_and_more_ally_heroes_on_bot = {
-    PUSH_TOP_LINE_DESIRE = {0, -0.05},
-    PUSH_MID_LINE_DESIRE = {0, -0.05},
+    PUSH_TOP_LINE_DESIRE = {0, 0},
+    PUSH_MID_LINE_DESIRE = {0, 0},
     PUSH_BOT_LINE_DESIRE = {0.1, 0}
   },
 
   three_and_more_enemy_heroes_on_top = {
-    PUSH_TOP_LINE_DESIRE = {-0.05, 0},
-    PUSH_MID_LINE_DESIRE = {0.1, 0},
-    PUSH_BOT_LINE_DESIRE = {0.1, 0}
+    PUSH_TOP_LINE_DESIRE = {-0.1, 0},
+    PUSH_MID_LINE_DESIRE = {0, 0},
+    PUSH_BOT_LINE_DESIRE = {0, 0}
   },
 
   three_and_more_enemy_heroes_on_mid = {
-    PUSH_TOP_LINE_DESIRE = {0.1, 0},
-    PUSH_MID_LINE_DESIRE = {-0.05, 0},
-    PUSH_BOT_LINE_DESIRE = {0.1, 0}
+    PUSH_TOP_LINE_DESIRE = {0, 0},
+    PUSH_MID_LINE_DESIRE = {-0.1, 0},
+    PUSH_BOT_LINE_DESIRE = {0, 0}
   },
 
   three_and_more_enemy_heroes_on_bot = {
-    PUSH_TOP_LINE_DESIRE = {0.1, 0},
-    PUSH_MID_LINE_DESIRE = {0.1, 0},
-    PUSH_BOT_LINE_DESIRE = {-0.05, 0}
+    PUSH_TOP_LINE_DESIRE = {0, 0},
+    PUSH_MID_LINE_DESIRE = {0, 0},
+    PUSH_BOT_LINE_DESIRE = {-0.1, 0}
   },
 
   more_ally_heroes_alive_then_enemy = {
+    PUSH_TOP_LINE_DESIRE = {0.1, -0.1},
+    PUSH_MID_LINE_DESIRE = {0.1, -0.1},
+    PUSH_BOT_LINE_DESIRE = {0.1, -0.1}
+  },
+
+  no_enemy_heroes_on_top = {
     PUSH_TOP_LINE_DESIRE = {0.1, 0},
+    PUSH_MID_LINE_DESIRE = {0, 0},
+    PUSH_BOT_LINE_DESIRE = {0, 0}
+  },
+
+  no_enemy_heroes_on_mid = {
+    PUSH_TOP_LINE_DESIRE = {0, 0},
     PUSH_MID_LINE_DESIRE = {0.1, 0},
+    PUSH_BOT_LINE_DESIRE = {0, 0}
+  },
+
+  no_enemy_heroes_on_bot = {
+    PUSH_TOP_LINE_DESIRE = {0, 0},
+    PUSH_MID_LINE_DESIRE = {0, 0},
     PUSH_BOT_LINE_DESIRE = {0.1, 0}
   },
 
