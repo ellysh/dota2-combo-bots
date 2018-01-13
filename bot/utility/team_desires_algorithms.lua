@@ -124,6 +124,17 @@ function M.three_and_more_enemy_heroes_on_bot()
   return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
 end
 
+function M.no_enemy_heroes_on_top()
+  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_TOP)
+end
+
+function M.no_enemy_heroes_on_mid()
+  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_MID)
+end
+
+function M.no_enemy_heroes_on_bot()
+  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
+end
 local function GetNumberOfPlayersWith(players, check_function)
   local result = 0
 

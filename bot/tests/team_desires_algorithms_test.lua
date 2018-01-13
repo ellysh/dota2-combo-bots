@@ -117,32 +117,26 @@ function test_NumberUnitsOnLane()
     0)
 end
 
-function test_three_and_more_ally_heroes_on_top()
+function test_three_and_more_ally_heroes_on_lane()
   luaunit.assertFalse(algorithms.three_and_more_ally_heroes_on_top())
-end
-
-function test_three_and_more_ally_heroes_on_mid()
   luaunit.assertFalse(algorithms.three_and_more_ally_heroes_on_mid())
-end
-
-function test_three_and_more_ally_heroes_on_bot()
   luaunit.assertFalse(algorithms.three_and_more_ally_heroes_on_bot())
 end
 
-function test_three_and_more_enemy_heroes_on_top()
+function test_three_and_more_enemy_heroes_on_lane()
   luaunit.assertFalse(algorithms.three_and_more_enemy_heroes_on_top())
-end
-
-function test_three_and_more_enemy_heroes_on_mid()
   luaunit.assertFalse(algorithms.three_and_more_enemy_heroes_on_mid())
-end
-
-function test_three_and_more_enemy_heroes_on_bot()
   luaunit.assertFalse(algorithms.three_and_more_enemy_heroes_on_bot())
 end
 
 function test_more_ally_heroes_alive_then_enemy()
   luaunit.assertFalse(algorithms.more_ally_heroes_alive_then_enemy())
+end
+
+function test_no_enemy_heroes_on_lane()
+  luaunit.assertTrue(algorithms.no_enemy_heroes_on_top())
+  luaunit.assertTrue(algorithms.no_enemy_heroes_on_mid())
+  luaunit.assertTrue(algorithms.no_enemy_heroes_on_bot())
 end
 
 function test_GetNumberOfPlayersWith()
