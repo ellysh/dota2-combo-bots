@@ -182,6 +182,12 @@ function GetAmountAlongLane(lane, location)
   return {amount = 3, distance = LANE_DISTANCE}
 end
 
+FRONT_LOCATION = {10, 10}
+
+function GetLaneFrontLocation(team, lane, delta)
+  return FRONT_LOCATION
+end
+
 PUSH_LANE_DESIRE = 0
 
 function GetPushLaneDesire(lane)

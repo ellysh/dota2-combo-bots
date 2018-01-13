@@ -443,6 +443,12 @@ function Bot:ActionImmediate_LevelAbility(ability_name)
   BOT_LEVELUP_ABILITY = ability_name
 end
 
+ATTACK_MOVE_LOCATION = nil
+
+function Bot:Action_AttackMove(location)
+  ATTACK_MOVE_LOCATION = location
+end
+
 function Bot:GetAbilityPoints()
   return self.ability_points
 end
