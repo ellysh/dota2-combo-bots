@@ -38,7 +38,8 @@ local function GetHeroPositions(hero)
   if heroes.HEROES[hero] ~= nil then
     return heroes.HEROES[hero].position
   else
-    return nil
+    -- TODO: We choose the positions 1 and 2 for unknown player's hero
+    return {1, 2}
   end
 end
 
@@ -103,10 +104,7 @@ local function GetRequiredPosition(heroes)
   for _, hero in pairs(heroes) do
     local hero_position = GetHeroPositions(hero)
 
-    -- TODO: We choose the position 1 for unknown player's hero
-    if hero_position == nil then
-      positions[1] = hero
-    elseif positions[hero_position[1]] == "empty" then
+    if positions[hero_position[1]] == "empty" then
       positions[hero_position[1]] = hero
     elseif positions[hero_position[2]] == "empty" then
       positions[hero_position[2]] = hero
