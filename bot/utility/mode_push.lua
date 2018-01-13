@@ -9,11 +9,10 @@ local player_desires_algorithms = require(
 
 local M = {}
 
--- TODO: Keys of this table should be LANE_BOT, LANE_TOP, LANE_MID
 local PLAYER_DESIRES = {
-  PUSH_TOP_LINE_DESIRE = 0,
-  PUSH_MID_LINE_DESIRE = 0,
-  PUSH_BOT_LINE_DESIRE = 0
+  [LANE_TOP] = 0,
+  [LANE_MID] = 0,
+  [LANE_BOT] = 0
 }
 
 function M.GetDesire(lane)
