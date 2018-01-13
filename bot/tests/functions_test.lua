@@ -255,4 +255,22 @@ function test_GetUnitHealthLevel()
     0.001)
 end
 
+function test_IsUnitHaveItems()
+  test_RefreshBot()
+
+  local unit = Unit:new()
+
+  unit.inventory = { "item_tpscroll", "item_travel_boots_1" }
+
+  luaunit.assertTrue(
+    functions.IsUnitHaveItems(
+      unit,
+      {"item_travel_boots_1"}))
+
+  luaunit.assertFalse(
+    functions.IsUnitHaveItems(
+      unit,
+      {"item_tango"}))
+end
+
 os.exit(luaunit.LuaUnit.run())

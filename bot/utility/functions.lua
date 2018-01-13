@@ -33,12 +33,12 @@ end
 
 -- Indexes in resulting array do not match to slot indexes.
 -- You should shift them -1 to match the slot indexes.
-function M.GetItems(npc_bot, slot_numbers)
+function M.GetItems(unit, slot_numbers)
   local item_list = {}
   local items_number = 0
 
   for i = 0, slot_numbers, 1 do
-    local item = npc_bot:GetItemInSlot(i)
+    local item = unit:GetItemInSlot(i)
     if item ~= nil and item:GetName() ~= "nil" then
       items_number = items_number + 1
       table.insert(item_list, item:GetName())
