@@ -124,7 +124,7 @@ local function FindNextItemToBuy(item_list)
 end
 
 local function PurchaseItemList(npc_bot, item_type)
-  if functions.GetItemToBuy(bot) ~= nil then return end
+  if functions.GetItemToBuy(npc_bot) ~= nil then return end
 
   local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
 
@@ -159,7 +159,7 @@ local function GetSlotIndex(inventory_index)
 end
 
 local function SellExtraItem(npc_bot)
-  if functions.GetItemToSell(bot) ~= nil then return end
+  if functions.GetItemToSell(npc_bot) ~= nil then return end
 
   if not functions.IsItemSlotsFull(npc_bot) then return end
 

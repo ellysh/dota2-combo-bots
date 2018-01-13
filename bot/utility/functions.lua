@@ -165,19 +165,35 @@ function M.IsUnitHaveItems(unit, items)
 end
 
 function M.GetItemToSell(bot)
+  if PURCHASE_LIST == nil or PURCHASE_LIST[bot:GetUnitName()] == nil then
+    return nil
+  end
+
   return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL
 end
 
 function M.GetItemToBuy(bot)
+  if PURCHASE_LIST == nil or PURCHASE_LIST[bot:GetUnitName()] == nil then
+    return nil
+  end
+
   return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY
 end
 
 function M.SetItemToSell(bot, item)
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL = item
+  if PURCHASE_LIST == nil or PURCHASE_LIST[bot:GetUnitName()] == nil then
+    PURCHASE_LIST[bot:GetUnitName()] = {}
+  end
+
+  PURCHASE_LIST[bot:GetUnitName()]["ITEM_TO_SELL"] = item
 end
 
 function M.SetItemToBuy(bot, item)
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY = item
+  if PURCHASE_LIST == nil or PURCHASE_LIST[bot:GetUnitName()] == nil then
+    PURCHASE_LIST[bot:GetUnitName()] = {}
+  end
+
+  PURCHASE_LIST[bot:GetUnitName()]["ITEM_TO_BUY"] = item
 end
 
 -- Provide an access to local functions for unit tests only
