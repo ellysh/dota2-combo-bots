@@ -57,4 +57,21 @@ function test_player_on_bot()
   luaunit.assertFalse(algorithms.player_on_bot())
 end
 
+function test_have_tp_scrol_or_travel_boots()
+  test_RefreshBot()
+
+  luaunit.assertFalse(algorithms.have_tp_scrol_or_travel_boots())
+
+  local npc_bot = GetBot()
+
+  npc_bot.inventory = { "item_tpscroll" }
+  luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
+
+  npc_bot.inventory = { "item_travel_boots_1" }
+  luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
+
+  npc_bot.inventory = { "item_travel_boots_2" }
+  luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
+end
+
 os.exit(luaunit.LuaUnit.run())
