@@ -49,11 +49,19 @@ function test_ally_have_cheese()
 end
 
 function test_max_kills_enemy_hero_alive()
+  IS_HERO_ALIVE = true
   luaunit.assertTrue(algorithms.max_kills_enemy_hero_alive())
+
+  IS_HERO_ALIVE = false
+  luaunit.assertFalse(algorithms.max_kills_enemy_hero_alive())
 end
 
 function test_max_kills_ally_hero_alive()
+  IS_HERO_ALIVE = true
   luaunit.assertTrue(algorithms.max_kills_ally_hero_alive())
+
+  IS_HERO_ALIVE = false
+  luaunit.assertFalse(algorithms.max_kills_ally_hero_alive())
 end
 
 function test_time_is_more_5_minutes()
@@ -115,6 +123,28 @@ end
 
 function test_more_ally_heroes_alive_then_enemy()
   luaunit.assertFalse(algorithms.more_ally_heroes_alive_then_enemy())
+end
+
+function test_GetNumberOfPlayersWith()
+  local unit = Unit:new()
+
+  PLAYERS = { 1, 2, 3 }
+
+  IS_HERO_ALIVE = true
+
+  luaunit.assertEquals(
+    algorithms.test_GetNumberOfPlayersWith(
+      PLAYERS,
+      function(player) return IsHeroAlive(player) end),
+    3)
+
+  IS_HERO_ALIVE = false
+
+  luaunit.assertEquals(
+    algorithms.test_GetNumberOfPlayersWith(
+      PLAYERS,
+      function(player) return IsHeroAlive(player) end),
+    0)
 end
 
 os.exit(luaunit.LuaUnit.run())
