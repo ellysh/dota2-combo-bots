@@ -38,6 +38,14 @@ function M.player_on_bot()
   return PlayerOnLane(LANE_BOT)
 end
 
+function M.have_tp_scrol_or_travel_boots()
+  local inventory = functions.GetInventoryItems(GetBot())
+
+  return functions.IsElementInList(inventory, "item_tpscroll")
+      or functions.IsElementInList(inventory, "item_travel_boots_1")
+      or functions.IsElementInList(inventory, "item_travel_boots_2")
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 
