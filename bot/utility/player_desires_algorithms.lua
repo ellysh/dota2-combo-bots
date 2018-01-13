@@ -19,4 +19,23 @@ function M.have_low_hp()
   return false
 end
 
+local function PlayerOnLane(lane)
+  local disatnce_from_lane =
+    GetAmountAlongLane(lane, GetBot():GetLocation()).distance
+
+  return disatnce_from_lane < constants.MAX_HERO_DISTANCE_FROM_LANE
+end
+
+function M.player_on_top()
+  return PlayerOnLane(LANE_TOP)
+end
+
+function M.player_on_mid()
+  return PlayerOnLane(LANE_MID)
+end
+
+function M.player_on_bot()
+  return PlayerOnLane(LANE_BOT)
+end
+
 return M
