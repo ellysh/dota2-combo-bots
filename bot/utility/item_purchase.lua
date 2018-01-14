@@ -206,8 +206,22 @@ local function PerformPlannedPurchaseAndSell(bot)
   end
 end
 
+local function CancelPlannedPurchase(bot)
+  local buy_item = functions.GetItemToBuy(bot)
+
+  if buy_item == nil then return end
+
+  if bot:GetGold() < GetItemCost(buy_item) then
+    functions.SetItemToBuy(bot, nil)
+  end
+end
+
 function M.ItemPurchaseThink()
   local bot = GetBot()
+
+  -- This action is required if a bot was killed and lose money
+  -- before he buy the planned item
+  CancelPlannedPurchase(bot)
 
   PerformPlannedPurchaseAndSell(bot)
 
