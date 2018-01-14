@@ -56,7 +56,7 @@ end
 local function GetInventoryAndStashItems(npc_bot)
   local _, result = functions.GetItems(
     npc_bot,
-    constants.INVENTORY_AND_STASH_SIZE)
+    constants.INVENTORY_AND_STASH_MAX_INDEX)
 
   return result
 end

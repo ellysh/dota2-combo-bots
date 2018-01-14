@@ -20,7 +20,7 @@ function test_PurchaseCourier()
   item_purchase.test_PurchaseCourier(GetBot())
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
+    GetBot():GetItemInSlot(0):GetName(),
     "item_courier")
 end
 
@@ -30,7 +30,7 @@ function test_PurchaseTpScroll()
   item_purchase.test_PurchaseTpScroll(GetBot())
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
+    GetBot():GetItemInSlot(0):GetName(),
     "item_tpscroll")
 end
 
@@ -64,10 +64,11 @@ end
 function test_GetInventoryAndStashItems()
   test_RefreshBot()
 
-  BOT.inventory = {
+  local bot = GetBot()
+
+  bot.inventory = {
     "item_tango",
     "item_branches",
-    "nil",
     "nil",
     "nil",
     "nil",
@@ -83,10 +84,12 @@ function test_GetInventoryAndStashItems()
     "item_branches",
   }
 
-  local result = item_purchase.test_GetInventoryAndStashItems(GetBot())
+  local result = item_purchase.test_GetInventoryAndStashItems(bot)
 
-  for i = 1, #result - 1 do
-    luaunit.assertEquals(BOT.inventory[i], result[i + 1])
+  luaunit.assertEquals(#bot.inventory, #result)
+
+  for i = 1, #result do
+    luaunit.assertEquals(bot.inventory[i], result[i])
   end
 end
 
@@ -236,7 +239,7 @@ function test_SellItemByIndex_level_match()
   }
 
   functions.SetItemToSell(bot, nil)
-  item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
+  item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
   luaunit.assertEquals(
     functions.GetItemToSell(bot),
@@ -260,7 +263,7 @@ function test_SellItemByIndex_time_match()
 
   TIME = 30 * 60
   functions.SetItemToSell(bot, nil)
-  item_purchase.test_SellItemByIndex(GetBot(), 2, condition)
+  item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
   luaunit.assertEquals(
     functions.GetItemToSell(bot),
@@ -306,7 +309,7 @@ function test_ItemPurchaseThink()
   item_purchase.ItemPurchaseThink()
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(1):GetName(),
+    GetBot():GetItemInSlot(0):GetName(),
     "item_tpscroll")
 end
 

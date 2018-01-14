@@ -12,19 +12,20 @@ function test_GetItems()
   local empty_list = {"nil", "nil", "nil", "nil", "nil", "nil",
                       "nil", "nil", "nil"}
 
+  local bot = GetBot()
+
   local size, list = functions.GetItems(
-      GetBot(),
+      bot,
       constants.INVENTORY_MAX_INDEX)
 
   luaunit.assertEquals(size, 0)
   luaunit.assertEquals(list, empty_list)
 
-  local bot = GetBot()
-
   bot.inventory = {
     "item_tango",
     "item_branches",
     "item_tango",
+    "nil",
     "nil",
     "nil",
     "nil",
@@ -47,7 +48,9 @@ end
 function test_GetItemSlotsCount()
   test_RefreshBot()
 
-  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 0)
+  local bot = GetBot()
+
+  luaunit.assertEquals(functions.test_GetItemSlotsCount(bot), 0)
 
   BOT.inventory = {
     "item_tango",
@@ -60,7 +63,7 @@ function test_GetItemSlotsCount()
     "nil"
   }
 
-  luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 3)
+  luaunit.assertEquals(functions.test_GetItemSlotsCount(bot), 3)
 end
 
 function test_IsInventoryFull()
@@ -136,18 +139,20 @@ end
 function test_IsBotBusy()
   test_RefreshBot()
 
-  luaunit.assertFalse(functions.IsBotBusy(GetBot()))
+  local bot = GetBot()
+
+  luaunit.assertFalse(functions.IsBotBusy(bot))
 
   UNIT_IS_CHANNELING = true
-  luaunit.assertTrue(functions.IsBotBusy(GetBot()))
+  luaunit.assertTrue(functions.IsBotBusy(bot))
 
   UNIT_IS_CHANNELING = false
   UNIT_IS_USING_ABILITY = true
-  luaunit.assertTrue(functions.IsBotBusy(GetBot()))
+  luaunit.assertTrue(functions.IsBotBusy(bot))
 
   UNIT_IS_USING_ABILITY = false
   UNIT_IS_CASTING_ABILITY = true
-  luaunit.assertTrue(functions.IsBotBusy(GetBot()))
+  luaunit.assertTrue(functions.IsBotBusy(bot))
 end
 
 function test_IsFlagSet()
@@ -206,16 +211,11 @@ function test_GetInventoryItems()
     "nil",
     "nil",
     "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "item_tango",
-    "nil",
-    "item_branches",
   }
 
   local result = functions.GetInventoryItems(bot)
+
+  luaunit.assertEquals(#bot.inventory, #result)
 
   for i = 1, #result do
     luaunit.assertEquals(bot.inventory[i], result[i])
@@ -242,22 +242,22 @@ end
 function test_GetUnitHealthLevel()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
   luaunit.assertEquals(
-    functions.GetUnitHealthLevel(npc_bot),
+    functions.GetUnitHealthLevel(bot),
     1.0)
 
-  npc_bot.health = npc_bot.max_health / 2
+  bot.health = bot.max_health / 2
 
   luaunit.assertEquals(
-    functions.GetUnitHealthLevel(npc_bot),
+    functions.GetUnitHealthLevel(bot),
     0.5)
 
-  npc_bot.health = npc_bot.max_health / 3
+  bot.health = bot.max_health / 3
 
   luaunit.assertAlmostEquals(
-    functions.GetUnitHealthLevel(npc_bot),
+    functions.GetUnitHealthLevel(bot),
     0.333,
     0.001)
 end
