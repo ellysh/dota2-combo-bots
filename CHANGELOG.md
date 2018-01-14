@@ -1,9 +1,14 @@
 * version 0.7
+  - Add the Chaos Knight hero.
+  - Add the Phantom Assassin hero.
+  - Rework the purchasing items mechanism. Now bots can walk to a side
+    and secret shops.
   - Basic implementation of a pushing lanes strategy.
   - Rework the draft system. Now bots consider the already picked
-  heroes when drafting. If the human players pick the unkown heroes,
-  bot decide that they have position 1.
-  - Fix a bug with bot names
+  heroes when drafting. If the human players pick the unknown heroes,
+  bot decides that they have position 1.
+  - Fix a bug with bot names.
+  - Use the luacov util to generate unit tests code coverage reports.
 
 * version 0.6
   - Fix a bug with picking heroes for human players
