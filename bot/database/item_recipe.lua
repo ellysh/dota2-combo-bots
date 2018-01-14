@@ -499,6 +499,14 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
+  item_assault = {
+    components = {
+      "item_platemail",
+      "item_hyperstone",
+      "item_chainmail",
+      "item_recipe_assault"}
+  },
+
 }
 
 return M

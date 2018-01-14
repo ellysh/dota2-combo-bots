@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/bash -x
+
+set -e
 
 CSV_DIR="database/csv"
 RESULT_DIR="../bot/database"
