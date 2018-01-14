@@ -37,12 +37,12 @@ local function GetDesire(check_shop_func, get_distance_func)
 
   if not IsShopRequired(bot, check_shop_func)
     or IsBotInFightingMode(bot)
-    or constants.SHOP_WALK_RADIUS < bot[get_distance_func]() then
+    or constants.SHOP_WALK_RADIUS < bot[get_distance_func](bot) then
 
     return 0
   end
 
-  return 1.0
+  return 0.7
 end
 
 function M.GetDesireSideShop()
