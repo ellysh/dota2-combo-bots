@@ -437,6 +437,34 @@ function test_use_on_attack_enemy_hero_melee()
   luaunit.assertEquals(target, nil)
 end
 
+function test_use_on_attack_enemy_hero_ranged()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  UNIT_IS_HERO = true
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_hero_ranged(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(target, {10, 10})
+
+  UNIT_IS_HERO = false
+
+  local desire, target =
+    ability_usage_algorithms.use_on_attack_enemy_hero_ranged(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
 function test_use_on_attack_enemy_creep_aoe()
   test_RefreshBot()
 
