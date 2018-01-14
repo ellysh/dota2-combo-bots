@@ -30,7 +30,7 @@ function test_GetDesireSideShop_positive()
   functions.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
 
-  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 1.0)
+  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0.9)
 end
 
 function test_GetDesireSecretShop_positive()
@@ -39,7 +39,7 @@ function test_GetDesireSecretShop_positive()
   functions.SetItemToBuy(GetBot(), "item_vitality_booster")
   IS_SECRET_SHOP_ITEM = true
 
-  luaunit.assertEquals(mode_shop.GetDesireSecretShop(), 1.0)
+  luaunit.assertEquals(mode_shop.GetDesireSecretShop(), 0.9)
 end
 
 function test_GetNearestLocation()
