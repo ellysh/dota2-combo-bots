@@ -3,8 +3,9 @@ package.path = package.path .. ";../utility/?.lua"
 pcall(require, "luacov")
 require("global_functions")
 
-local courier = require("courier")
 local luaunit = require('luaunit')
+local courier = require("courier")
+local functions = require("functions")
 
 function test_IsCourierFree()
   luaunit.assertFalse(courier.test_IsCourierFree(COURIER_STATE_MOVING))
@@ -36,12 +37,12 @@ function test_IsSecretShopRequired()
   luaunit.assertFalse(
     courier.test_IsSecretShopRequired(GetBot()))
 
-  BOT.is_secret_shop_mode = true
-
+  IS_SECRET_SHOP_ITEM = true
+  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
   luaunit.assertTrue(
     courier.test_IsSecretShopRequired(GetBot()))
 
-  BOT.is_secret_shop_mode = true
+  IS_SECRET_SHOP_ITEM = false
   BOT_MODE = BOT_MODE_SECRET_SHOP
 
   luaunit.assertFalse(
@@ -128,7 +129,9 @@ function test_CourierUsageThink_secret_shop_action()
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
-  BOT.is_secret_shop_mode = true
+  IS_SECRET_SHOP_ITEM = true
+  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+
   courier.CourierUsageThink()
 
   luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_SECRET_SHOP)
@@ -141,6 +144,7 @@ function test_CourierUsageThink_take_and_transfer_action()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE
   STASH_VALUE = 400
+  functions.SetItemToBuy(GetBot(), nil)
   courier.CourierUsageThink()
 
   luaunit.assertEquals(

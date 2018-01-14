@@ -24,7 +24,9 @@ local function IsCourierIdle(courier, state)
 end
 
 local function IsSecretShopRequired(bot)
-  return IsItemPurchasedFromSecretShop(functions.GetItemToBuy(bot))
+  local buy_item = functions.GetItemToBuy(bot)
+  return buy_item ~= nil
+         and IsItemPurchasedFromSecretShop(buy_item)
          and bot:GetActiveMode() ~= BOT_MODE_SECRET_SHOP
 end
 
