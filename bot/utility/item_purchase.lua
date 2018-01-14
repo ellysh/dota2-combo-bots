@@ -154,7 +154,7 @@ end
 local function SellExtraItem(npc_bot)
   if functions.GetItemToSell(npc_bot) ~= nil then return end
 
-  if not functions.IsItemSlotsFull(npc_bot) then return end
+  if not functions.IsInventoryFull(npc_bot) then return end
 
   local inventory = functions.GetInventoryItems(npc_bot)
 

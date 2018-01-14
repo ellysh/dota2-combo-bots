@@ -190,12 +190,12 @@ function Unit:IsNull()
 end
 
 function Unit:GetItemInSlot(slot)
-  local item_in_slot = self.inventory[slot]
+  local item_in_slot = self.inventory[slot + 1]
 
   if item_in_slot == nil then return nil end
 
   local item = Item:new()
-  item.name = self.inventory[slot]
+  item.name = self.inventory[slot + 1]
   return item
 end
 

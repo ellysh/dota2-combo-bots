@@ -14,12 +14,14 @@ function test_GetItems()
 
   local size, list = functions.GetItems(
       GetBot(),
-      constants.INVENTORY_SIZE)
+      constants.INVENTORY_MAX_INDEX)
 
   luaunit.assertEquals(size, 0)
   luaunit.assertEquals(list, empty_list)
 
-  BOT.inventory = {
+  local bot = GetBot()
+
+  bot.inventory = {
     "item_tango",
     "item_branches",
     "item_tango",
@@ -31,13 +33,13 @@ function test_GetItems()
   }
 
   size, list = functions.GetItems(
-      GetBot(),
-      constants.INVENTORY_SIZE)
+      bot,
+      constants.INVENTORY_MAX_INDEX)
 
   luaunit.assertEquals(size, 3)
 
-  for i = 1, #list - 1 do
-    luaunit.assertEquals(BOT.inventory[i], list[i + 1])
+  for i = 1, #list do
+    luaunit.assertEquals(bot.inventory[i], list[i])
   end
 
 end
@@ -61,20 +63,23 @@ function test_GetItemSlotsCount()
   luaunit.assertEquals(functions.test_GetItemSlotsCount(GetBot()), 3)
 end
 
-function test_IsItemSlotsFull()
+function test_IsInventoryFull()
   test_RefreshBot()
 
-  luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
+  local bot = GetBot()
+  bot.inventory = {}
 
-  table.insert(GetBot().inventory, "item_tango")
+  luaunit.assertFalse(functions.IsInventoryFull(bot))
 
-  luaunit.assertFalse(functions.IsItemSlotsFull(GetBot()))
+  table.insert(bot.inventory, "item_tango")
 
-  for i = 0, constants.INVENTORY_SIZE, 1 do
-    table.insert(GetBot().inventory, "item_tango")
+  luaunit.assertFalse(functions.IsInventoryFull(bot))
+
+  for i = 1, constants.INVENTORY_SIZE - 1, 1 do
+    table.insert(bot.inventory, "item_tango")
   end
 
-  luaunit.assertTrue(functions.IsItemSlotsFull(GetBot()))
+  luaunit.assertTrue(functions.IsInventoryFull(bot))
 end
 
 function test_GetElementIndexInList()
@@ -189,7 +194,9 @@ end
 function test_GetInventoryItems()
   test_RefreshBot()
 
-  BOT.inventory = {
+  local bot = GetBot()
+
+  bot.inventory = {
     "item_tango",
     "item_branches",
     "nil",
@@ -208,10 +215,10 @@ function test_GetInventoryItems()
     "item_branches",
   }
 
-  local result = functions.GetInventoryItems(GetBot())
+  local result = functions.GetInventoryItems(bot)
 
-  for i = 1, #result - 1 do
-    luaunit.assertEquals(BOT.inventory[i], result[i + 1])
+  for i = 1, #result do
+    luaunit.assertEquals(bot.inventory[i], result[i])
   end
 end
 

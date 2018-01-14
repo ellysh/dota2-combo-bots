@@ -51,11 +51,11 @@ function M.GetItems(unit, slot_numbers)
 end
 
 local function GetItemSlotsCount(npc_bot)
-  local result, _ = M.GetItems(npc_bot, constants.INVENTORY_SIZE)
+  local result, _ = M.GetItems(npc_bot, constants.INVENTORY_MAX_INDEX)
   return result
 end
 
-function M.IsItemSlotsFull(npc_bot)
+function M.IsInventoryFull(npc_bot)
   return constants.INVENTORY_SIZE <= GetItemSlotsCount(npc_bot)
 end
 
@@ -127,7 +127,7 @@ end
 function M.GetInventoryItems(npc_bot)
   local _, result = M.GetItems(
     npc_bot,
-    constants.INVENTORY_SIZE)
+    constants.INVENTORY_MAX_INDEX)
 
   return result
 end
