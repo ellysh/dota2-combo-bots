@@ -440,6 +440,7 @@ function test_PerformPlannedPurchaseAndSell_buy_succeed()
 
   functions.SetItemToBuy(bot, "item_branches")
 
+  COURIER = nil
   item_purchase.test_PerformPlannedPurchaseAndSell(bot)
 
   luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
