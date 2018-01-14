@@ -1,5 +1,6 @@
 package.path = package.path .. ";../?.lua"
 
+require("luacov")
 require("global_functions")
 
 local hero_selection = require("hero_selection")

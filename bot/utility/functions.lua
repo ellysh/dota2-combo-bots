@@ -1,5 +1,4 @@
-
-  local constants = require(
+local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
 local M = {}

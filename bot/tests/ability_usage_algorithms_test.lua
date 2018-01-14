@@ -1,5 +1,6 @@
 package.path = package.path .. ";../utility/?.lua"
 
+require("luacov")
 require("global_functions")
 
 local ability_usage_algorithms = require("ability_usage_algorithms")

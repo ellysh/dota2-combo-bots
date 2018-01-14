@@ -1,5 +1,6 @@
 package.path = package.path .. ";../utility/?.lua"
 
+require("luacov")
 require("global_functions")
 
 local item_purchase = require("item_purchase")
