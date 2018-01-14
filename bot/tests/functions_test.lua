@@ -281,4 +281,16 @@ function test_IsUnitHaveItems()
       {"item_tango"}))
 end
 
+function test_SetItemToSell_first_time()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  PURCHASE_LIST = {}
+  functions.SetItemToSell(bot, "item_tpscroll")
+
+  PURCHASE_LIST[bot:GetUnitName()] = {}
+  functions.SetItemToSell(bot, "item_tpscroll")
+end
+
 os.exit(luaunit.LuaUnit.run())

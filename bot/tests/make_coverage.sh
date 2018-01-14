@@ -3,3 +3,4 @@
 set -e
 
 luacov
+dos2unix *.out
