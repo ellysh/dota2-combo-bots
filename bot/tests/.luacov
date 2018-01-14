@@ -1,0 +1,15 @@
+modules = {
+  ["hero_selection"] = "../hero_selection.lua",
+  ["ability_levelup"] = "../utility/ability_levelup.lua",
+  ["ability_usage"] = "../utility/ability_usage.lua",
+  ["ability_usage_algorithms"] = "../utility/ability_usage_algorithms.lua",
+  ["constants"] = "../utility/constants.lua",
+  ["courier"] = "../utility/courier.lua",
+  ["desires"] = "../utility/desires.lua",
+  ["functions"] = "../utility/functions.lua",
+  ["item_purchase"] = "../utility/item_purchase.lua",
+  ["mode_push"] = "../utility/mode_push.lua",
+  ["mode_shop"] = "../utility/mode_shop.lua",
+  ["player_desires_algorithms"] = "../utility/player_desires_algorithms.lua",
+  ["team_desires_algorithms"] = "../utility/team_desires_algorithms.lua",
+}
