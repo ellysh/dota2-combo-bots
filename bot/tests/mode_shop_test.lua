@@ -33,6 +33,15 @@ function test_GetDesireSideShop_positive()
   luaunit.assertEquals(mode_shop.GetDesireSideShop(), 1.0)
 end
 
+function test_GetDesireSecretShop_positive()
+  test_RefreshBot()
+
+  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+  IS_SECRET_SHOP_ITEM = true
+
+  luaunit.assertEquals(mode_shop.GetDesireSecretShop(), 1.0)
+end
+
 function test_GetNearestLocation()
   test_RefreshBot()
 
@@ -45,13 +54,31 @@ function test_GetNearestLocation()
       location_1,
       location_2),
     location_2)
+
+  luaunit.assertEquals(
+    mode_shop.test_GetNearestLocation(
+      GetBot(),
+      location_2,
+      location_1),
+    location_2)
 end
 
-function test_Think()
+function test_ThinkSideShop()
   test_RefreshBot()
 
   DISTANCE_FROM_SHOP = 1000
   mode_shop.ThinkSideShop()
+
+  luaunit.assertEquals(BOT_ACTION, BOT_ACTION_TYPE_MOVE_TO)
+
+  luaunit.assertEquals(BOT_MOVE_LOCATION, {10, 10})
+end
+
+function test_ThinkSecretShop()
+  test_RefreshBot()
+
+  DISTANCE_FROM_SHOP = 1000
+  mode_shop.ThinkSecretShop()
 
   luaunit.assertEquals(BOT_ACTION, BOT_ACTION_TYPE_MOVE_TO)
 
