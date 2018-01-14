@@ -206,6 +206,10 @@ local function PerformPlannedPurchaseAndSell(bot)
                    " bought " .. buy_item)
 
       functions.SetItemToBuy(bot, nil)
+
+      -- We should return the cancelled item to the buy list.
+      local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
+      item_list[1] = buy_item
     end
   end
 end

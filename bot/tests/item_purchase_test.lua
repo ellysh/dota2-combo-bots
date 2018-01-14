@@ -256,15 +256,15 @@ function test_PurchaseItemList()
   item_purchase.test_PurchaseItemList(bot)
 
   luaunit.assertEquals(
-    functions.GetItemToBuy(bot, "item_tango"),
-    "item_tango")
+    functions.GetItemToBuy(bot, "item_branches"),
+    "item_branches")
 end
 
 function test_PurchaseItemList_for_already_bought_item_fails()
   test_RefreshBot()
 
   local bot = GetBot()
-  bot.inventory = { "item_tango" }
+  bot.inventory = { "item_branches" }
 
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_PurchaseItemList(bot)
