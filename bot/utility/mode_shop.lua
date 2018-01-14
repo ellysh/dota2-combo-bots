@@ -35,12 +35,17 @@ end
 local function GetDesire(check_shop_func, get_distance_func)
   local bot = GetBot();
 
+  local shop_distance = bot[get_distance_func](bot)
+
   if not IsShopRequired(bot, check_shop_func)
-    or IsBotInFightingMode(bot)
-    or constants.SHOP_WALK_RADIUS < bot[get_distance_func](bot) then
+    or constants.SHOP_WALK_RADIUS < shop_distance then
 
     return 0
   end
+
+  if shop_distance < constants.SHOP_WALK_RADIUS / 3 then return 1.0 end
+
+  if IsBotInFightingMode(bot) then return 0 end
 
   return 0.7
 end
