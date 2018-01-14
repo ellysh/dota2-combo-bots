@@ -330,6 +330,14 @@ function M.use_on_attack_enemy_hero_melee(npc_bot, ability)
     constants.MELEE_ATTACK_RADIUS)
 end
 
+function M.use_on_attack_enemy_hero_ranged(npc_bot, ability)
+  return UseOnAttackEnemyUnit(
+    npc_bot,
+    ability,
+    function(unit) return unit:IsHero() end,
+    ability:GetCastRange())
+end
+
 function M.use_on_attack_enemy_creep_aoe(npc_bot, ability)
   return UseOnAttackEnemyUnit(
     npc_bot,
