@@ -1,6 +1,6 @@
 package.path = package.path .. ";../utility/?.lua"
 
-require("luacov")
+pcall(require, "luacov")
 require("global_functions")
 
 local ability_usage = require("ability_usage")
