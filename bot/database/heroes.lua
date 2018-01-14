@@ -157,6 +157,20 @@ M.HEROES = {
     }
   },
 
+  npc_dota_hero_chaos_knight = {
+    position = {1, 2},
+    combo_heroes = {
+      "npc_dota_hero_crystal_maiden",
+      "npc_dota_hero_wisp",
+      "npc_dota_hero_rattletrap"
+    },
+    counter_heroes = {
+      "npc_dota_hero_sven",
+      "npc_dota_hero_medusa",
+      "npc_dota_hero_bristleback"
+    }
+  },
+
 }
 
 return M

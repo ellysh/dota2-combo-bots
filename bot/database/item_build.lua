@@ -479,6 +479,23 @@ M.ITEM_BUILD = {
       "item_abyssal_blade"}
   },
 
+  npc_dota_hero_chaos_knight = {
+    items = {
+      "item_tango",
+      "item_clarity",
+      "item_stout_shield",
+      "item_magic_wand",
+      "item_boots",
+      "item_belt_of_strength",
+      "item_power_treads",
+      "item_armlet",
+      "item_echo_sabre",
+      "item_heart",
+      "item_skadi",
+      "item_black_king_bar",
+      "item_assault"}
+  },
+
 }
 
 return M
