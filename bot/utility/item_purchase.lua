@@ -193,7 +193,7 @@ local function PurchaseViaCourier(bot)
       courier:ActionImmediate_PurchaseItem(buy_item) then
 
       logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. buy_item)
+                   " bought " .. buy_item .. " via courier")
 
       functions.SetItemToBuy(bot, nil)
 
@@ -290,6 +290,7 @@ M.test_FindNextItemToBuy = FindNextItemToBuy
 M.test_PurchaseItemList = PurchaseItemList
 M.test_SellItemByIndex = SellItemByIndex
 M.test_SellExtraItem = SellExtraItem
+M.test_PurchaseViaCourier = PurchaseViaCourier
 M.test_PerformPlannedPurchaseAndSell = PerformPlannedPurchaseAndSell
 M.test_CancelPlannedPurchase = CancelPlannedPurchase
 

@@ -417,6 +417,21 @@ function test_SellExtraItem_because_of_buying_new()
     {name = "item_branches"})
 end
 
+function test_PurchaseViaCourier_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  functions.SetItemToBuy(bot, "item_branches")
+
+  COURIER = Unit:new()
+  DISTANCE_FROM_SHOP = 200
+
+  luaunit.assertEquals(
+    item_purchase.test_PurchaseViaCourier(bot),
+    PURCHASE_ITEM_SUCCESS)
+end
+
 function test_PerformPlannedPurchaseAndSell_sell_succeed()
   test_RefreshBot()
 
