@@ -196,6 +196,8 @@ local function PerformPlannedPurchaseAndSell(bot)
     functions.SetItemToSell(bot, nil)
   end
 
+  if functions.IsInventoryFull(bot) then return end
+
   local buy_item = functions.GetItemToBuy(bot)
 
   if buy_item ~= nil then
