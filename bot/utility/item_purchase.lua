@@ -43,9 +43,7 @@ local function PurchaseTpScroll(npc_bot)
 
   if (npc_bot:GetGold() >= GetItemCost("item_tpscroll")) then
 
-    logger.Print("PurchaseTpScroll() - " .. npc_bot:GetUnitName() .. " bought TpScroll")
-
-    npc_bot:ActionImmediate_PurchaseItem("item_tpscroll")
+    functions.SetItemToBuy(npc_bot, "item_tpscroll")
   end
 end
 

@@ -30,7 +30,7 @@ function test_PurchaseTpScroll()
   item_purchase.test_PurchaseTpScroll(GetBot())
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(0):GetName(),
+    functions.GetItemToBuy(GetBot()),
     "item_tpscroll")
 end
 
@@ -309,7 +309,7 @@ function test_ItemPurchaseThink()
   item_purchase.ItemPurchaseThink()
 
   luaunit.assertEquals(
-    GetBot():GetItemInSlot(0):GetName(),
+    functions.GetItemToBuy(GetBot()),
     "item_tpscroll")
 end
 
@@ -321,7 +321,7 @@ function test_ItemPurchaseThink_with_full_inventory()
   bot.gold = 9000
 
   bot.inventory = {
-    "item_branches",
+    "item_tpscroll",
     "item_branches",
     "item_branches",
     "item_branches",
