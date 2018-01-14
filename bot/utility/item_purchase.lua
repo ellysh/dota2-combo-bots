@@ -239,7 +239,7 @@ function M.ItemPurchaseThink()
 
   PerformPlannedPurchaseAndSell(bot)
 
-  --PurchaseCourier(bot)
+  PurchaseCourier(bot)
 
   PurchaseTpScroll(bot)
 
