@@ -239,6 +239,7 @@ function test_SellItemByIndex_level_match()
   }
 
   functions.SetItemToSell(bot, nil)
+  functions.SetItemToBuy(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
   luaunit.assertEquals(
@@ -262,6 +263,7 @@ function test_SellItemByIndex_time_match()
   }
 
   TIME = 30 * 60
+  functions.SetItemToBuy(bot, nil)
   functions.SetItemToSell(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
@@ -275,9 +277,9 @@ function test_SellExtraItem()
 
   local bot = GetBot()
   bot.level = 15
+  TIME = 1
 
   bot.inventory = {
-    "item_branches",
     "item_branches",
     "item_branches",
     "item_branches",
@@ -295,6 +297,41 @@ function test_SellExtraItem()
     "item_branches"
   }
 
+  functions.SetItemToBuy(bot, nil)
+  functions.SetItemToSell(bot, nil)
+  item_purchase.test_SellExtraItem(GetBot())
+
+  luaunit.assertEquals(
+    functions.GetItemToSell(bot),
+    {name = "item_branches"})
+end
+
+function test_SellExtraItem_because_of_buying_new()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.level = 1
+  TIME = 1
+
+  bot.inventory = {
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches"
+  }
+
+  functions.SetItemToBuy(bot, "item_branches")
   functions.SetItemToSell(bot, nil)
   item_purchase.test_SellExtraItem(GetBot())
 
