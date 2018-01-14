@@ -207,8 +207,8 @@ end
 
 Item = {}
 
-function Item:new()
-  local newObj = { name = nil }
+function Item:new(n)
+  local newObj = { name = n }
   self.__index = self
   return setmetatable(newObj, self)
 end

@@ -28,6 +28,7 @@ end
 function test_PurchaseTpScroll()
   test_RefreshBot()
 
+  ITEM_COST = 50
   item_purchase.test_PurchaseTpScroll(GetBot())
 
   luaunit.assertEquals(
@@ -97,35 +98,58 @@ end
 function test_FindNextComponentToBuy()
   test_RefreshBot()
 
+  local bot = GetBot()
+
   luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(
-      GetBot(),
-      "item_magic_wand"),
+    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
     "item_branches")
 
-  table.insert(BOT.inventory, "item_branches")
+  table.insert(bot.inventory, "item_branches")
 
   luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(
-      GetBot(),
-      "item_magic_wand"),
+    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
     "item_branches")
 
-  table.insert(BOT.inventory, "item_branches")
+  table.insert(bot.inventory, "item_branches")
 
   luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(
-      GetBot(),
-      "item_magic_wand"),
+    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
     "item_enchanted_mango")
 
-  table.insert(BOT.inventory, "item_enchanted_mango")
+  table.insert(bot.inventory, "item_enchanted_mango")
 
   luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(
-      GetBot(),
-      "item_magic_wand"),
+    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
     "item_magic_stick")
+
+  table.insert(bot.inventory, "item_magic_stick")
+
+  luaunit.assertEquals(
+    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
+    "nil")
+end
+
+function test_PurchaseItem_when_nil_item_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  functions.SetItemToBuy(bot, nil)
+  item_purchase.test_PurchaseItem(bot, "nil")
+
+  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
+end
+
+function test_PurchaseItem_when_not_enough_gold_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  ITEM_COST = 999999
+  functions.SetItemToBuy(bot, nil)
+  item_purchase.test_PurchaseItem(bot, "item_magic_stick")
+
+  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
 end
 
 function test_PurchaseItem_basic()
@@ -212,15 +236,40 @@ function test_FindNextItemToBuy()
   luaunit.assertEquals(item, "item_tango")
 end
 
+function test_FindNextItemToBuy_with_empty_list_fails()
+  local item_list = {
+    "nil",
+    "nil"
+  }
+
+  index, item = item_purchase.test_FindNextItemToBuy(item_list)
+
+  luaunit.assertEquals(index, -1)
+  luaunit.assertEquals(item, "nil")
+end
+
 function test_PurchaseItemList()
   test_RefreshBot()
 
-  local item_list = {
-    "nil",
-    "item_tango"
-  }
+  local bot = GetBot()
+  functions.SetItemToBuy(bot, nil)
+  item_purchase.test_PurchaseItemList(bot)
 
-  item_purchase.test_PurchaseItemList(GetBot(), item_list)
+  luaunit.assertEquals(
+    functions.GetItemToBuy(bot, "item_tango"),
+    "item_tango")
+end
+
+function test_PurchaseItemList_for_already_bought_item_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = { "item_tango" }
+
+  functions.SetItemToBuy(bot, nil)
+  item_purchase.test_PurchaseItemList(bot)
+
+  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
 end
 
 function test_SellItemByIndex_level_match()
@@ -272,6 +321,30 @@ function test_SellItemByIndex_time_match()
     functions.GetItemToSell(bot),
     {name = "item_branches"})
 end
+
+function test_SellItemByIndex_all_checks_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  bot.inventory = {
+    "item_tango",
+    "item_branches"
+  }
+
+  local condition = {
+    level = 15,
+    time = 30
+  }
+
+  TIME = 1
+  functions.SetItemToBuy(bot, nil)
+  functions.SetItemToSell(bot, nil)
+  item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
+
+  luaunit.assertEquals(functions.GetItemToSell(bot), nil)
+end
+
 
 function test_SellExtraItem()
   test_RefreshBot()
@@ -341,6 +414,49 @@ function test_SellExtraItem_because_of_buying_new()
     {name = "item_branches"})
 end
 
+function test_PerformPlannedPurchaseAndSell_sell_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = { "item_branches" }
+
+  local item = Item:new("item_branches")
+
+  functions.SetItemToSell(bot, item)
+
+  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+
+  luaunit.assertEquals(functions.GetItemToSell(bot), nil)
+  luaunit.assertEquals(bot.inventory[1], "nil")
+end
+
+function test_PerformPlannedPurchaseAndSell_buy_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  functions.SetItemToBuy(bot, "item_branches")
+
+  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+
+  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
+  luaunit.assertEquals(bot.inventory[1], "item_branches")
+end
+
+function test_PerformPlannedPurchaseAndSell_too_far_from_shops_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  DISTANCE_FROM_SHOP = 9000
+  functions.SetItemToBuy(bot, "item_branches")
+
+  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+
+  luaunit.assertEquals(functions.GetItemToBuy(bot), "item_branches")
+  luaunit.assertEquals(bot.inventory[1], nil)
+end
+
 function test_ItemPurchaseThink()
   test_RefreshBot()
 
@@ -349,6 +465,19 @@ function test_ItemPurchaseThink()
   luaunit.assertEquals(
     functions.GetItemToBuy(GetBot()),
     "item_tpscroll")
+end
+
+function test_CancelPlannedPurchase_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  bot.gold = 0
+  functions.SetItemToBuy(bot, "item_branches")
+
+  item_purchase.test_CancelPlannedPurchase(bot)
+
+  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
 end
 
 function test_ItemPurchaseThink_with_full_inventory()

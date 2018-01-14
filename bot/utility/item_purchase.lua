@@ -111,20 +111,22 @@ local function FindNextItemToBuy(item_list)
     if item ~= "nil" then return i, item end
   end
 
-  return "nil"
+  return -1, "nil"
 end
 
-local function PurchaseItemList(npc_bot, item_type)
+local function PurchaseItemList(npc_bot)
   if functions.GetItemToBuy(npc_bot) ~= nil then return end
 
   local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
 
   local i, item = FindNextItemToBuy(item_list)
 
-  if functions.IsElementInList(
-    GetInventoryAndStashItems(
-      npc_bot),
-      item) then
+  if i ~= -1
+    and item ~= "nil"
+    and functions.IsElementInList(
+      GetInventoryAndStashItems(
+        npc_bot),
+        item) then
 
     item_list[i] = "nil"
     return
@@ -249,5 +251,8 @@ M.test_FindNextItemToBuy = FindNextItemToBuy
 M.test_PurchaseItemList = PurchaseItemList
 M.test_SellItemByIndex = SellItemByIndex
 M.test_SellExtraItem = SellExtraItem
+M.test_PerformPlannedPurchaseAndSell = PerformPlannedPurchaseAndSell
+M.test_CancelPlannedPurchase = CancelPlannedPurchase
+
 
 return M

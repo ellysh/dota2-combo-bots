@@ -7,8 +7,10 @@ function GetScriptDirectory()
   return ".."
 end
 
+ITEM_COST = 150
+
 function GetItemCost(item)
-  return 150
+  return ITEM_COST
 end
 
 BOT = Bot:new()
