@@ -31,6 +31,7 @@ These applications are required to edit the Combo Bot Database:
 * Windows, Linux or Mac OS.
 * Bash interpreter to automate Lua scripts generating and unit tests launching (optional).
 * The [Lua interpreter](https://www.lua.org/download.html) of the 5.3 and above version is required to launch unit tests locally.
+* The [luacov](https://github.com/keplerproject/luacov) Lua module to get a test coverage statistic.
 
 ## Installation
 
