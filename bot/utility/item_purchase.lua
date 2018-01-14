@@ -177,18 +177,39 @@ local function SellExtraItem(npc_bot)
   end
 end
 
-local function IsCourierNearSecretShop()
+local function PurchaseViaCourier(bot)
   local courier = GetCourier(0)
 
-  return courier ~= nil
-         and courier:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS
+  if courier == nil
+     or constants.SHOP_USE_RADIUS < courier:DistanceFromSecretShop() then
+
+     return PURCHASE_ITEM_DISALLOWED_ITEM
+   end
+
+  local buy_item = functions.GetItemToBuy(bot)
+
+  if buy_item ~= nil then
+    if PURCHASE_ITEM_SUCCESS ==
+      courier:ActionImmediate_PurchaseItem(buy_item) then
+
+      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
+                   " bought " .. buy_item)
+
+      functions.SetItemToBuy(bot, nil)
+
+      return PURCHASE_ITEM_SUCCESS
+    end
+  end
+
+  return PURCHASE_ITEM_DISALLOWED_ITEM
 end
 
 local function PerformPlannedPurchaseAndSell(bot)
+  if PURCHASE_ITEM_SUCCESS == PurchaseViaCourier(bot) then return end
+
   if constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()
     and constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()
-    and constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop()
-    and not IsCourierNearSecretShop() then
+    and constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop() then
 
     return
   end
@@ -204,8 +225,7 @@ local function PerformPlannedPurchaseAndSell(bot)
     functions.SetItemToSell(bot, nil)
   end
 
-  if not IsCourierNearSecretShop()
-    and functions.IsInventoryFull(bot) then return end
+  if functions.IsInventoryFull(bot) then return end
 
   local buy_item = functions.GetItemToBuy(bot)
 

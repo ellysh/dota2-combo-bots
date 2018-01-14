@@ -51,7 +51,8 @@ function M.CourierUsageThink()
     return
   end
 
-  if IsCourierFree(courier_state) and npc_bot:GetCourierValue() > 0
+  if IsCourierFree(courier_state)
+    and npc_bot:GetCourierValue() > 0
     and not functions.IsInventoryFull(npc_bot) then
 
     npc_bot:ActionImmediate_Courier(
@@ -60,7 +61,8 @@ function M.CourierUsageThink()
     return
   end
 
-  if IsCourierFree(courier_state) and IsSecretShopRequired(npc_bot) then
+  if IsCourierFree(courier_state)
+    and IsSecretShopRequired(npc_bot) then
 
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_SECRET_SHOP)
     return
@@ -80,7 +82,6 @@ function M.CourierUsageThink()
     npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
     return
   end
-
 end
 
 -- Provide an access to local functions for unit tests only
