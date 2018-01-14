@@ -137,7 +137,7 @@ function test_PickHero()
   hero_selection.test_PickHero(2, SELECTED_HEROES)
 
   luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_sven")
-  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
+  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_chaos_knight")
 end
 
 function test_Think()
@@ -149,7 +149,7 @@ function test_Think()
   Think()
 
   luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_sven")
-  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
+  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_chaos_knight")
   luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
   luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
   luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lion")
