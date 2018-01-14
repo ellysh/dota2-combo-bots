@@ -68,23 +68,9 @@ local function GetNearestLocation(bot, location_1, location_2)
 end
 
 local function Think(get_distance_func, shop1, shop2)
-  local bot = GetBot();
+  -- We do all purchase and sell operations in the item_purchase module
 
-  local buy_item = functions.GetItemToBuy(bot)
-
-  if bot[get_distance_func]() < constants.SHOP_USE_RADIUS then
-    if PURCHASE_ITEM_SUCCESS ==
-      bot:ActionImmediate_PurchaseItem(buy_item) then
-
-      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. buy_item)
-
-      functions.SetItemToBuy(bot, nil)
-    end
-
-    return
-  end
-
+  local bot = GetBot()
   local shop_location = GetNearestLocation(
     bot,
     GetShopLocation(GetTeam(), shop1),
