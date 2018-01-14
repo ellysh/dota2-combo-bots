@@ -507,6 +507,14 @@ M.ITEM_RECIPE = {
       "item_recipe_assault"}
   },
 
+  item_desolator = {
+    components = {
+      "item_mithril_hammer",
+      "item_mithril_hammer",
+      "item_blight_stone",
+      "nil"}
+  },
+
 }
 
 return M

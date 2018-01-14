@@ -462,6 +462,23 @@ M.ITEM_BUILD = {
       "item_cyclone"}
   },
 
+  npc_dota_hero_phantom_assassin = {
+    items = {
+      "item_tango",
+      "item_flask",
+      "item_stout_shield",
+      "item_boots",
+      "item_blight_stone",
+      "nil",
+      "item_phase_boots",
+      "item_mask_of_madness",
+      "item_desolator",
+      "item_black_king_bar",
+      "item_satanic",
+      "item_skadi",
+      "item_abyssal_blade"}
+  },
+
 }
 
 return M

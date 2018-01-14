@@ -143,6 +143,20 @@ M.HEROES = {
     }
   },
 
+  npc_dota_hero_phantom_assassin = {
+    position = {1, 2},
+    combo_heroes = {
+      "npc_dota_hero_ogre_magi",
+      "npc_dota_hero_omniknight",
+      "npc_dota_hero_shadow_shaman"
+    },
+    counter_heroes = {
+      "npc_dota_hero_axe",
+      "npc_dota_hero_dragon_knight",
+      "npc_dota_hero_sand_king"
+    }
+  },
+
 }
 
 return M

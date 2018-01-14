@@ -456,6 +456,36 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["max_kills_enemy_hero"], 0.7}
   },
 
+  phantom_assassin_stifling_dagger = {
+      any_mode = {algorithms["min_hp_enemy_hero_to_kill"], 0.9},
+      team_fight = {algorithms["max_kills_enemy_hero"], 0.9},
+      BOT_MODE_ROAM = {algorithms["max_kills_enemy_hero"], 0.7},
+      BOT_MODE_TEAM_ROAM = {algorithms["max_kills_enemy_hero"], 0.7},
+      BOT_MODE_PUSH_TOWER = {algorithms["max_kills_enemy_hero"], 0.6},
+      BOT_MODE_ATTACK = {algorithms["max_kills_enemy_hero"], 0.9},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["max_hp_creep"], 0.7},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["max_kills_enemy_hero"], 0.6},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 0.3},
+      BOT_MODE_DEFEND_ALLY = {algorithms["max_kills_enemy_hero"], 0.5}
+  },
+
+  phantom_assassin_phantom_strike = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["max_kills_enemy_hero"], 0.8},
+      BOT_MODE_ROAM = {algorithms["max_kills_enemy_hero"], 0.6},
+      BOT_MODE_TEAM_ROAM = {algorithms["max_kills_enemy_hero"], 0.6},
+      BOT_MODE_PUSH_TOWER = {algorithms["max_kills_enemy_hero"], 0.5},
+      BOT_MODE_ATTACK = {algorithms["max_kills_enemy_hero"], 0.8},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["max_hp_creep"], 0.6},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["max_kills_enemy_hero"], 0.5},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
 }
 
 return M
