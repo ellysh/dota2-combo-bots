@@ -136,8 +136,12 @@ end
 local function SellItemByIndex(npc_bot, index, condition)
   local item = npc_bot:GetItemInSlot(index);
 
-  if npc_bot:GetLevel() < condition.level
-    and DotaTime() < (condition.time * 60) then
+  -- We should sell an item despite the condition if we want to buy
+  -- item and an inventory is full.
+
+  if functions.GetItemToBuy(npc_bot) == nil
+     and npc_bot:GetLevel() < condition.level
+     and DotaTime() < (condition.time * 60) then
 
     return
   end
