@@ -145,7 +145,7 @@ function test_PurchaseItem_when_not_enough_gold_fails()
 
   local bot = GetBot()
 
-  ITEM_COST = 999999
+  bot.gold = 0
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_stick")
 
@@ -252,6 +252,9 @@ function test_PurchaseItemList()
   test_RefreshBot()
 
   local bot = GetBot()
+
+  bot.inventory = {}
+
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_PurchaseItemList(bot)
 
@@ -489,32 +492,36 @@ function test_ItemPurchaseThink_with_full_inventory()
 
   bot.inventory = {
     "item_tpscroll",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches",
-    "item_branches"
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
+    "item_tango",
   }
 
   functions.SetItemToBuy(bot, nil)
+  functions.SetItemToSell(bot, nil)
 
   item_purchase.ItemPurchaseThink()
 
   -- The first item_branches in the inventory should be sold
 
   luaunit.assertEquals(
+    functions.GetItemToSell(bot),
+    {name = "item_tango"})
+
+  luaunit.assertEquals(
     functions.GetItemToBuy(bot),
-    "item_tango")
+    "item_branches")
 end
 
 os.exit(luaunit.LuaUnit.run())
