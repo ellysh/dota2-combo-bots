@@ -11,7 +11,7 @@ local M = {}
 
 local function IsShopRequired(bot, check_shop_func)
   return not functions.IsBotBusy(bot)
-         and not bot:WasRecentlyDamagedByAnyHero(5.0)
+         and not bot:WasRecentlyDamagedByAnyHero(3.0)
          and functions.GetItemToBuy(bot) ~= nil
          and check_shop_func(
                functions.GetItemToBuy(bot))
@@ -32,7 +32,7 @@ local function IsBotInFightingMode(bot)
          or mode == BOT_MODE_DEFEND_TOWER_BOT
 end
 
-local function GetDesire(check_shop_func, get_distance_func)
+local function GetDesire(check_shop_func, get_distance_func, base_desire)
   local bot = GetBot();
 
   local shop_distance = bot[get_distance_func](bot)
@@ -43,23 +43,29 @@ local function GetDesire(check_shop_func, get_distance_func)
     return 0
   end
 
-  if shop_distance < constants.SHOP_WALK_RADIUS / 3 then return 1.0 end
+  if shop_distance < constants.SHOP_WALK_RADIUS / 3 then
+    return 0.9
+  end
 
-  if IsBotInFightingMode(bot) then return 0 end
+  if IsBotInFightingMode(bot) then
+    return 0
+  end
 
-  return 0.7
+  return (shop_distance / constants.SHOP_WALK_RADIUS) + base_desire
 end
 
 function M.GetDesireSideShop()
   return GetDesire(
     IsItemPurchasedFromSideShop,
-    "DistanceFromSideShop")
+    "DistanceFromSideShop",
+    0.3)
 end
 
 function M.GetDesireSecretShop()
   return GetDesire(
     IsItemPurchasedFromSecretShop,
-    "DistanceFromSecretShop")
+    "DistanceFromSecretShop",
+    0.2)
 end
 
 local function GetNearestLocation(bot, location_1, location_2)
@@ -85,11 +91,11 @@ local function Think(get_distance_func, shop1, shop2)
 end
 
 function M.ThinkSideShop()
-  Think("DistanceFromSideShop", SHOP_SECRET, SHOP_SECRET2)
+  Think("DistanceFromSideShop", SHOP_SIDE, SHOP_SIDE2)
 end
 
 function M.ThinkSecretShop()
-  Think("DistanceFromSecretShop", SHOP_SIDE, SHOP_SIDE2)
+  Think("DistanceFromSecretShop", SHOP_SECRET, SHOP_SECRET2)
 end
 
 -- Provide an access to local functions for unit tests only
