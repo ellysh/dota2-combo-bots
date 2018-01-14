@@ -6,6 +6,9 @@ local M = {}
 local function IsCourierFree(state)
   return state ~= COURIER_STATE_MOVING
          and state ~= COURIER_STATE_DELIVERING_ITEMS
+         and state ~= COURIER_ACTION_TRANSFER_ITEMS
+         and state ~= COURIER_ACTION_TAKE_STASH_ITEMS
+         and state ~= COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS
 end
 
 local function IsCourierIdle(courier, state)
