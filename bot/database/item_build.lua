@@ -474,9 +474,9 @@ M.ITEM_BUILD = {
       "item_mask_of_madness",
       "item_desolator",
       "item_black_king_bar",
-      "item_satanic",
-      "item_skadi",
-      "item_abyssal_blade"}
+      "item_butterfly",
+      "item_monkey_king_bar",
+      "item_skadi"}
   },
 
   npc_dota_hero_chaos_knight = {
@@ -490,9 +490,9 @@ M.ITEM_BUILD = {
       "item_power_treads",
       "item_armlet",
       "item_echo_sabre",
-      "item_heart",
-      "item_skadi",
+      "item_blink",
       "item_black_king_bar",
+      "item_heart",
       "item_assault"}
   },
 
