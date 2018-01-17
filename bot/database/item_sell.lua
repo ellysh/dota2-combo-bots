@@ -103,6 +103,21 @@ M.ITEM_SELL = {
     time = 35
   },
 
+  item_armlet = {
+    level = 20,
+    time = 35
+  },
+
+  item_mask_of_madness = {
+    level = 20,
+    time = 35
+  },
+
+  item_ancient_janggo = {
+    level = 20,
+    time = 35
+  },
+
 }
 
 return M
