@@ -28,9 +28,11 @@ end
 
 local function IsSecretShopRequired(bot)
   local buy_item = functions.GetItemToBuy(bot)
+
   return buy_item ~= nil
          and IsItemPurchasedFromSecretShop(buy_item)
          and bot:GetActiveMode() ~= BOT_MODE_SECRET_SHOP
+         and GetItemCost(buy_item) <= bot:GetGold()
 end
 
 local function IsCourierDamaged(courier)

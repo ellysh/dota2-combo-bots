@@ -41,10 +41,7 @@ end
 local function PurchaseTpScroll(npc_bot)
   if IsTpScrollPresent(npc_bot) then return end
 
-  if (npc_bot:GetGold() >= GetItemCost("item_tpscroll")) then
-
-    functions.SetItemToBuy(npc_bot, "item_tpscroll")
-  end
+  functions.SetItemToBuy(npc_bot, "item_tpscroll")
 end
 
 local function IsRecipeItem(item)
@@ -99,9 +96,7 @@ local function PurchaseItem(bot, item)
     item = FindNextComponentToBuy(bot, item)
   end
 
-  if item == "nil" or (bot:GetGold() < GetItemCost(item)) then
-    return
-  end
+  if item == "nil" then return end
 
   functions.SetItemToBuy(bot, item)
 end
@@ -225,9 +220,10 @@ local function PerformPlannedPurchaseAndSell(bot)
     functions.SetItemToSell(bot, nil)
   end
 
-  if functions.IsInventoryFull(bot) then return end
-
   local buy_item = functions.GetItemToBuy(bot)
+
+  if functions.IsInventoryFull(bot)
+     or bot:GetGold() < GetItemCost(buy_item) then return end
 
   if buy_item ~= nil then
     if PURCHASE_ITEM_SUCCESS ==
@@ -241,30 +237,8 @@ local function PerformPlannedPurchaseAndSell(bot)
   end
 end
 
-local function CancelPlannedPurchase(bot)
-  local buy_item = functions.GetItemToBuy(bot)
-
-  if buy_item == nil then return end
-
-  if bot:GetGold() < GetItemCost(buy_item) then
-
-    logger.Print("CancelPlannedPurchase() - " .. bot:GetUnitName() ..
-                 " cancel " .. buy_item)
-
-    functions.SetItemToBuy(bot, nil)
-
-    -- We should return the cancelled item to the buy list.
-    local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
-    item_list[1] = buy_item
-  end
-end
-
 function M.ItemPurchaseThink()
   local bot = GetBot()
-
-  -- This action is required if a bot was killed and lose money
-  -- before he buy the planned item
-  CancelPlannedPurchase(bot)
 
   PerformPlannedPurchaseAndSell(bot)
 
