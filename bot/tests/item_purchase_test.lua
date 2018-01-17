@@ -140,7 +140,7 @@ function test_PurchaseItem_when_nil_item_fails()
   luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
 end
 
-function test_PurchaseItem_when_not_enough_gold_fails()
+function test_PurchaseItem_when_not_enough_gold_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -149,7 +149,7 @@ function test_PurchaseItem_when_not_enough_gold_fails()
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_stick")
 
-  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
+  luaunit.assertEquals(functions.GetItemToBuy(bot), "item_magic_stick")
 end
 
 function test_PurchaseItem_basic()
@@ -259,15 +259,15 @@ function test_PurchaseItemList()
   item_purchase.test_PurchaseItemList(bot)
 
   luaunit.assertEquals(
-    functions.GetItemToBuy(bot, "item_branches"),
-    "item_branches")
+    functions.GetItemToBuy(bot),
+    "item_tango")
 end
 
 function test_PurchaseItemList_for_already_bought_item_fails()
   test_RefreshBot()
 
   local bot = GetBot()
-  bot.inventory = { "item_branches" }
+  bot.inventory = { "item_tango" }
 
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_PurchaseItemList(bot)
@@ -486,19 +486,6 @@ function test_ItemPurchaseThink()
     "item_tpscroll")
 end
 
-function test_CancelPlannedPurchase_succeed()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  bot.gold = 0
-  functions.SetItemToBuy(bot, "item_branches")
-
-  item_purchase.test_CancelPlannedPurchase(bot)
-
-  luaunit.assertEquals(functions.GetItemToBuy(bot), nil)
-end
-
 function test_ItemPurchaseThink_with_full_inventory()
   test_RefreshBot()
 
@@ -508,20 +495,20 @@ function test_ItemPurchaseThink_with_full_inventory()
 
   bot.inventory = {
     "item_tpscroll",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
-    "item_tango",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
   }
 
   functions.SetItemToBuy(bot, nil)
@@ -533,11 +520,11 @@ function test_ItemPurchaseThink_with_full_inventory()
 
   luaunit.assertEquals(
     functions.GetItemToSell(bot),
-    {name = "item_tango"})
+    {name = "item_branches"})
 
   luaunit.assertEquals(
     functions.GetItemToBuy(bot),
-    "item_branches")
+    "item_tango")
 end
 
 os.exit(luaunit.LuaUnit.run())

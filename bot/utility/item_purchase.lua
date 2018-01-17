@@ -266,7 +266,5 @@ M.test_SellItemByIndex = SellItemByIndex
 M.test_SellExtraItem = SellExtraItem
 M.test_PurchaseViaCourier = PurchaseViaCourier
 M.test_PerformPlannedPurchaseAndSell = PerformPlannedPurchaseAndSell
-M.test_CancelPlannedPurchase = CancelPlannedPurchase
-
 
 return M
