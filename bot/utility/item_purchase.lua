@@ -38,12 +38,6 @@ local function PurchaseCourier(npc_bot)
   end
 end
 
-local function PurchaseTpScroll(npc_bot)
-  if IsTpScrollPresent(npc_bot) then return end
-
-  functions.SetItemToBuy(npc_bot, "item_tpscroll")
-end
-
 local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
 end
@@ -91,22 +85,33 @@ local function FindNextComponentToBuy(npc_bot, item)
   return "nil"
 end
 
-local function PurchaseItem(bot, item)
-  if IsRecipeItem(item) then
-    item = FindNextComponentToBuy(bot, item)
-  end
-
-  if item == "nil" then return end
-
-  functions.SetItemToBuy(bot, item)
-end
-
 local function FindNextItemToBuy(item_list)
   for i, item in functions.spairs(item_list) do
     if item ~= "nil" then return i, item end
   end
 
   return -1, "nil"
+end
+
+local function PurchaseItem(bot, item)
+  if IsRecipeItem(item) then
+    item = FindNextComponentToBuy(bot, item)
+  end
+
+  if item == "nil"
+     or (functions.IsInventoryFull(bot)
+         and functions.GetItemToSell(bot) == nil) then
+
+     return
+  end
+
+  functions.SetItemToBuy(bot, item)
+end
+
+local function PurchaseTpScroll(npc_bot)
+  if IsTpScrollPresent(npc_bot) then return end
+
+  PurchaseItem(npc_bot, "item_tpscroll")
 end
 
 local function PurchaseItemList(npc_bot)
