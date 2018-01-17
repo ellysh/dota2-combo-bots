@@ -18,10 +18,10 @@ local constants = require(
 
 local M = {}
 
-local function IsTpScrollPresent(npc_bot)
-  local tp_scroll = npc_bot:FindItemSlot("item_tpscroll")
+local function IsTpScrollPresent(bot)
+  local tp_scroll = bot:FindItemSlot("item_tpscroll")
 
-  return tp_scroll ~= -1
+  return tp_scroll ~= -1 or bot:GetCourierValue() > 0
 end
 
 local function PurchaseCourier(npc_bot)
