@@ -20,6 +20,7 @@ local function IsCourierIdle(courier, state)
   if courier.idle_time == nil then
     courier.idle_time = GameTime()
   elseif 10 < (GameTime() - courier.idle_time) then
+    courier.idle_time = nil
     return true
   end
 
