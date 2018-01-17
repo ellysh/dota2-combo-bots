@@ -21,7 +21,7 @@ local M = {}
 local function IsTpScrollPresent(bot)
   local tp_scroll = bot:FindItemSlot("item_tpscroll")
 
-  return tp_scroll ~= -1 or bot:GetCourierValue() > 0
+  return tp_scroll ~= -1
 end
 
 local function PurchaseCourier(npc_bot)
@@ -63,9 +63,6 @@ local function IsItemAlreadyBought(inventory, item)
 end
 
 local function FindNextComponentToBuy(npc_bot, item)
-  -- Do not buy anything until curier bring some items
-  if npc_bot:GetCourierValue() > 0 then return "nil" end
-
   local component_list = item_recipe.ITEM_RECIPE[item].components
 
   local inventory = GetInventoryAndStashItems(npc_bot)
@@ -94,6 +91,9 @@ local function FindNextItemToBuy(item_list)
 end
 
 local function PurchaseItem(bot, item)
+  -- Do not add anything to the purchase slot until curier bring something
+  if bot:GetCourierValue() > 0 then return end
+
   if IsRecipeItem(item) then
     item = FindNextComponentToBuy(bot, item)
   end
