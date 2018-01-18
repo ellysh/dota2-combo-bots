@@ -27,7 +27,7 @@ local function IsFreeState(state)
 end
 
 local function FreeCourier(courier, state)
-  if not IsFreeState(state) then return false end
+  if not IsFreeState(state) then return end
 
   -- We use the GameTime here to avoid negative DotaTime value
   -- before the horn.
@@ -38,10 +38,7 @@ local function FreeCourier(courier, state)
     courier.idle_time = nil
     COURIER_OWNER = nil
     CURRENT_ACTION = nil
-    return true
   end
-
-  return false
 end
 
 local function IsSecretShopRequired(bot)

@@ -29,6 +29,8 @@ function test_PurchaseTpScroll()
   test_RefreshBot()
 
   ITEM_COST = 50
+  functions.SetItemToBuy(GetBot(), nil)
+
   item_purchase.test_PurchaseTpScroll(GetBot())
 
   luaunit.assertEquals(

@@ -7,28 +7,32 @@ local luaunit = require('luaunit')
 local courier = require("courier")
 local functions = require("functions")
 
-function test_IsCourierFree()
-  luaunit.assertFalse(courier.test_IsCourierFree(COURIER_STATE_MOVING))
+function test_IsCourierAvailable()
+  local bot = GetBot()
 
-  luaunit.assertFalse(
-    courier.test_IsCourierFree(COURIER_STATE_DELIVERING_ITEMS))
-
-  luaunit.assertTrue(courier.test_IsCourierFree(COURIER_STATE_IDLE))
+  luaunit.assertTrue(courier.test_IsCourierAvailable(bot))
 end
 
-function test_IsCourierIdle()
+function test_FreeCourier()
   test_RefreshCourier()
 
   local c = GetCourier()
-  luaunit.assertFalse(courier.test_IsCourierIdle(c, COURIER_STATE_MOVING))
 
-  luaunit.assertFalse(courier.test_IsCourierIdle(
+  c.idle_time = 1
+
+  courier.test_FreeCourier(
     c,
-    COURIER_STATE_DELIVERING_ITEMS))
+    COURIER_STATE_MOVING)
 
-  TIME = 11
-  c.idle_time = 0
-  luaunit.assertTrue(courier.test_IsCourierIdle(c, COURIER_STATE_IDLE))
+  luaunit.assertEquals(c.idle_time, 1)
+
+  TIME = 12
+  c.idle_time = 1
+  courier.test_FreeCourier(
+    c,
+    COURIER_STATE_IDLE)
+
+  luaunit.assertEquals(c.idle_time, nil)
 end
 
 function test_IsSecretShopRequired()
@@ -83,21 +87,6 @@ function test_CourierUsageThink_no_action()
   luaunit.assertEquals(COURIER_ACTION, nil)
 end
 
-function test_CourierUsageThink_return_action()
-  test_RefreshCourier()
-  test_RefreshBot()
-
-  COURIER_STATE = COURIER_STATE_IDLE
-  TIME = 0
-  courier.CourierUsageThink()
-
-  TIME = 11
-  COURIER_ACTION = nil
-  courier.CourierUsageThink()
-
-  luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_RETURN)
-end
-
 function test_CourierUsageThink_burst_action()
   test_RefreshCourier()
   test_RefreshBot()
@@ -111,9 +100,17 @@ function test_CourierUsageThink_burst_action()
   luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_BURST)
 end
 
+local function FreeCourier()
+  courier.test_FreeCourier(GetCourier(), COURIER_STATE_IDLE)
+  TIME = TIME + 11
+  courier.test_FreeCourier(GetCourier(), COURIER_STATE_IDLE)
+end
+
 function test_CourierUsageThink_transfer_action()
   test_RefreshCourier()
   test_RefreshBot()
+
+  FreeCourier()
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
@@ -126,6 +123,8 @@ end
 function test_CourierUsageThink_secret_shop_action()
   test_RefreshCourier()
   test_RefreshBot()
+
+  FreeCourier()
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
@@ -140,6 +139,8 @@ end
 function test_CourierUsageThink_take_and_transfer_action()
   test_RefreshCourier()
   test_RefreshBot()
+
+  FreeCourier()
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE
