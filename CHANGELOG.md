@@ -1,3 +1,7 @@
+* version 0.8
+  - Fix a bug with sending courier to base after each transfer
+  - Fix a bug with buying the same items several times
+
 * version 0.7
   - Add the Chaos Knight hero.
   - Add the Phantom Assassin hero.
