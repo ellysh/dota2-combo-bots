@@ -3,13 +3,31 @@ local functions = require(
 
 local M = {}
 
-local function IsCourierFree(state)
-  return state == COURIER_STATE_IDLE
+local COURIER_OWNER = nil
+local CURRENT_ACTION = nil
+
+local function IsCourierAvailable(bot)
+  return (COURIER_OWNER == nil
+         or COURIER_OWNER == bot:GetUnitName())
+         and CURRENT_ACTION == nil
+end
+
+local function SetCourierAction(bot, courier, action)
+  COURIER_OWNER = bot:GetUnitName()
+
+  bot:ActionImmediate_Courier(courier, action)
+
+  CURRENT_ACTION = action
+end
+
+local function IsFreeState(state)
+  return state == COURIER_STATE_RETURNING_TO_BASE
+         or state == COURIER_STATE_IDLE
          or state == COURIER_STATE_AT_BASE
 end
 
-local function IsCourierIdle(courier, state)
-  if state ~= COURIER_STATE_IDLE then return false end
+local function FreeCourier(courier, state)
+  if not IsFreeState(state) then return false end
 
   -- We use the GameTime here to avoid negative DotaTime value
   -- before the horn.
@@ -18,6 +36,8 @@ local function IsCourierIdle(courier, state)
     courier.idle_time = GameTime()
   elseif 10 < (GameTime() - courier.idle_time) then
     courier.idle_time = nil
+    COURIER_OWNER = nil
+    CURRENT_ACTION = nil
     return true
   end
 
@@ -38,10 +58,10 @@ local function IsCourierDamaged(courier)
 end
 
 function M.CourierUsageThink()
-  local npc_bot = GetBot()
+  local bot = GetBot()
   local courier = GetCourier(0)
 
-  if not npc_bot:IsAlive() or courier == nil then
+  if not bot:IsAlive() or courier == nil then
     return
   end
 
@@ -50,46 +70,40 @@ function M.CourierUsageThink()
   if state == COURIER_STATE_DEAD then return end
 
   if IsCourierDamaged(courier) then
-    npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_BURST)
+    SetCourierAction(bot, courier, COURIER_ACTION_BURST)
     return
   end
 
-  if IsCourierFree(courier_state)
-    and npc_bot:GetCourierValue() > 0
-    and not functions.IsInventoryFull(npc_bot) then
+  if IsCourierAvailable(bot)
+    and bot:GetCourierValue() > 0
+    and not functions.IsInventoryFull(bot) then
 
-    npc_bot:ActionImmediate_Courier(
-      courier,
-      COURIER_ACTION_TRANSFER_ITEMS)
+    SetCourierAction(bot, courier, COURIER_ACTION_TRANSFER_ITEMS)
     return
   end
 
-  if IsCourierFree(courier_state)
-    and IsSecretShopRequired(npc_bot) then
+  if IsCourierAvailable(bot)
+    and IsSecretShopRequired(bot) then
 
-    npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_SECRET_SHOP)
+    SetCourierAction(bot, courier, COURIER_ACTION_SECRET_SHOP)
     return
   end
 
-  if courier_state == COURIER_STATE_AT_BASE
-    and npc_bot:GetStashValue() > 0 then
+  if IsCourierAvailable(bot)
+    and bot:GetStashValue() > 0 then
 
-    npc_bot:ActionImmediate_Courier(
-      courier,
-      COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
+    SetCourierAction(bot, courier, COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
     return
   end
 
-  if IsCourierIdle(courier, courier_state) then
-
-    npc_bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
-    return
-  end
+  FreeCourier(courier, courier_state)
 end
 
 -- Provide an access to local functions for unit tests only
-M.test_IsCourierFree = IsCourierFree
-M.test_IsCourierIdle = IsCourierIdle
+M.test_IsCourierAvailable = IsCourierAvailable
+M.test_SetCourierAction = SetCourierAction
+M.test_IsFreeState = IsFreeState
+M.test_FreeCourier = FreeCourier
 M.test_IsSecretShopRequired = IsSecretShopRequired
 M.test_IsCourierDamaged = IsCourierDamaged
 
