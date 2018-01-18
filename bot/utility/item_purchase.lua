@@ -24,17 +24,17 @@ local function IsTpScrollPresent(bot)
   return tp_scroll ~= -1
 end
 
-local function PurchaseCourier(npc_bot)
+local function PurchaseCourier(bot)
   if GetNumCouriers() > 0 then return end
 
   local players = GetTeamPlayers(GetTeam())
 
   -- Buy courier only by a player of 5th position
-  if players[5] == npc_bot:GetPlayerID() then
+  if players[5] == bot:GetPlayerID() then
 
-    logger.Print("PurchaseCourier() - " .. npc_bot:GetUnitName() .. " bought courier")
+    logger.Print("PurchaseCourier() - " .. bot:GetUnitName() .. " bought courier")
 
-    npc_bot:ActionImmediate_PurchaseItem("item_courier")
+    bot:ActionImmediate_PurchaseItem("item_courier")
   end
 end
 
@@ -42,9 +42,9 @@ local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
 end
 
-local function GetInventoryAndStashItems(npc_bot)
+local function GetInventoryAndStashItems(bot)
   local _, result = functions.GetItems(
-    npc_bot,
+    bot,
     constants.INVENTORY_AND_STASH_MAX_INDEX)
 
   return result
@@ -62,17 +62,17 @@ local function IsItemAlreadyBought(inventory, item)
   return false
 end
 
-local function FindNextComponentToBuy(npc_bot, item)
+local function FindNextComponentToBuy(bot, item)
   local component_list = item_recipe.ITEM_RECIPE[item].components
 
-  local inventory = GetInventoryAndStashItems(npc_bot)
+  local inventory = GetInventoryAndStashItems(bot)
 
   for _, component in functions.spairs(component_list) do
     if component ~= "nil"
       and not IsItemAlreadyBought(inventory, component) then
 
       if IsRecipeItem(component) then
-        return FindNextComponentToBuy(npc_bot, component)
+        return FindNextComponentToBuy(bot, component)
       else
         return component
       end
@@ -113,18 +113,18 @@ local function PurchaseItem(bot, item)
   functions.SetItemToBuy(bot, item)
 end
 
-local function PurchaseTpScroll(npc_bot)
-  if IsTpScrollPresent(npc_bot) then return end
+local function PurchaseTpScroll(bot)
+  if IsTpScrollPresent(bot) then return end
 
-  PurchaseItem(npc_bot, "item_tpscroll")
+  PurchaseItem(bot, "item_tpscroll")
 end
 
-local function PurchaseItemList(npc_bot)
+local function PurchaseItemList(bot)
   -- We do this check here because the long algorithm of finding an
   -- item to buy is not make sense if the purchase is not possible.
   if not IsPurchasePossible(bot) then return end
 
-  local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
+  local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
 
   local i, item = FindNextItemToBuy(item_list)
 
@@ -132,42 +132,42 @@ local function PurchaseItemList(npc_bot)
     and item ~= "nil"
     and functions.IsElementInList(
       GetInventoryAndStashItems(
-        npc_bot),
+        bot),
         item) then
 
     item_list[i] = "nil"
     return
   end
 
-  PurchaseItem(npc_bot, item)
+  PurchaseItem(bot, item)
 end
 
-local function SellItemByIndex(npc_bot, index, condition)
-  local item = npc_bot:GetItemInSlot(index);
+local function SellItemByIndex(bot, index, condition)
+  local item = bot:GetItemInSlot(index);
 
   -- We should sell an item despite the condition if we want to buy
   -- item and an inventory is full.
 
-  if functions.GetItemToBuy(npc_bot) == nil
-     and npc_bot:GetLevel() < condition.level
+  if functions.GetItemToBuy(bot) == nil
+     and bot:GetLevel() < condition.level
      and DotaTime() < (condition.time * 60) then
 
     return
   end
 
-  functions.SetItemToSell(npc_bot, item)
+  functions.SetItemToSell(bot, item)
 end
 
 local function GetSlotIndex(inventory_index)
   return inventory_index - 1
 end
 
-local function SellExtraItem(npc_bot)
-  if functions.GetItemToSell(npc_bot) ~= nil then return end
+local function SellExtraItem(bot)
+  if functions.GetItemToSell(bot) ~= nil then return end
 
-  if not functions.IsInventoryFull(npc_bot) then return end
+  if not functions.IsInventoryFull(bot) then return end
 
-  local inventory = functions.GetInventoryItems(npc_bot)
+  local inventory = functions.GetInventoryItems(bot)
 
   for item, condition in functions.spairs(item_sell.ITEM_SELL) do
 
@@ -176,7 +176,7 @@ local function SellExtraItem(npc_bot)
     if index ~= -1 then
 
       SellItemByIndex(
-        npc_bot,
+        bot,
         GetSlotIndex(index),
         condition)
       return

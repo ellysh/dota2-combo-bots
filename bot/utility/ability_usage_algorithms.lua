@@ -23,33 +23,33 @@ local function SetDefaultRadius(radius)
     radius)
 end
 
-local function GetEnemyHeroes(npc_bot, radius)
+local function GetEnemyHeroes(bot, radius)
   radius = SetDefaultRadius(radius)
-  return npc_bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+  return bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
 end
 
-local function GetAllyHeroes(npc_bot, radius)
+local function GetAllyHeroes(bot, radius)
   radius = SetDefaultRadius(radius)
-  return npc_bot:GetNearbyHeroes(radius, false, BOT_MODE_NONE)
+  return bot:GetNearbyHeroes(radius, false, BOT_MODE_NONE)
 end
 
-local function GetEnemyCreeps(npc_bot, radius)
+local function GetEnemyCreeps(bot, radius)
   radius = SetDefaultRadius(radius)
-  return npc_bot:GetNearbyCreeps(radius, true)
+  return bot:GetNearbyCreeps(radius, true)
 end
 
-local function GetAllyCreeps(npc_bot, radius)
+local function GetAllyCreeps(bot, radius)
   radius = SetDefaultRadius(radius)
-  return npc_bot:GetNearbyCreeps(radius, false)
+  return bot:GetNearbyCreeps(radius, false)
 end
 
-local function GetEnemyBuildings(npc_bot, radius)
+local function GetEnemyBuildings(bot, radius)
   radius = SetDefaultRadius(radius)
-  local towers = npc_bot:GetNearbyTowers(radius, true)
+  local towers = bot:GetNearbyTowers(radius, true)
 
   if #towers ~= 0 then return towers end
 
-  return npc_bot:GetNearbyBarracks(radius, true)
+  return bot:GetNearbyBarracks(radius, true)
 end
 
 local function IsTargetable(unit)
@@ -94,8 +94,8 @@ local function CompareMaxHeroKills(t, a, b)
     GetHeroKills(t[a]:GetPlayerID())
 end
 
-function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
-  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+function M.min_hp_enemy_hero_to_kill(bot, ability)
+  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMinHealth,
@@ -111,8 +111,8 @@ function M.min_hp_enemy_hero_to_kill(npc_bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
-function M.channeling_enemy_hero(npc_bot, ability)
-  local enemies = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+function M.channeling_enemy_hero(bot, ability)
+  local enemies = GetEnemyHeroes(bot, ability:GetCastRange())
 
   for _, enemy in pairs(enemies) do
     if enemy ~= nil
@@ -126,8 +126,8 @@ function M.channeling_enemy_hero(npc_bot, ability)
   return false, nil
 end
 
-function M.max_kills_enemy_hero(npc_bot, ability)
-  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+function M.max_kills_enemy_hero(bot, ability)
+  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMaxHeroKills,
@@ -142,8 +142,8 @@ function M.max_kills_enemy_hero(npc_bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
-function M.three_and_more_enemy_heroes_aoe(npc_bot, ability)
-  local enemies = GetEnemyHeroes(npc_bot, ability:GetAOERadius())
+function M.three_and_more_enemy_heroes_aoe(bot, ability)
+  local enemies = GetEnemyHeroes(bot, ability:GetAOERadius())
 
   if 3 <= #enemies then return true, nil end
 
@@ -152,15 +152,15 @@ end
 
 -- TODO: Generalize this function. We can pass a list of units
 -- as an input parameter.
-local function GetLastAttackedEnemyHero(npc_bot, radius)
-  local enemies = GetEnemyHeroes(npc_bot, radius)
+local function GetLastAttackedEnemyHero(bot, radius)
+  local enemies = GetEnemyHeroes(bot, radius)
 
   if #enemies == 0 then return nil end
 
   for _, enemy in pairs(enemies) do
     if enemy == nil or not enemy:IsAlive() then goto continue end
 
-    if npc_bot:WasRecentlyDamagedByHero(enemy, 2.0) then
+    if bot:WasRecentlyDamagedByHero(enemy, 2.0) then
       return enemy
     end
 
@@ -170,9 +170,9 @@ local function GetLastAttackedEnemyHero(npc_bot, radius)
   return nil
 end
 
-function M.last_attacked_enemy_hero(npc_bot, ability)
+function M.last_attacked_enemy_hero(bot, ability)
   local enemy_hero = GetLastAttackedEnemyHero(
-    npc_bot,
+    bot,
     ability:GetCastRange())
 
   if enemy_hero == nil
@@ -184,28 +184,28 @@ function M.last_attacked_enemy_hero(npc_bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
-function M.three_and_more_creeps(npc_bot, ability)
+function M.three_and_more_creeps(bot, ability)
   local cast_range = ability:GetCastRange()
 
-  local target = npc_bot:FindAoELocation(
+  local target = bot:FindAoELocation(
     true,
     false,
-    npc_bot:GetLocation(),
+    bot:GetLocation(),
     cast_range,
     ability:GetSpecialValueInt("radius"),
     0,
     ability:GetAbilityDamage())
 
   if 3 <= target.count
-    and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
+    and GetUnitToLocationDistance(bot, target.targetloc) < cast_range then
     return true, target.targetloc
   end
 
   return false, nil
 end
 
-function M.max_hp_creep(npc_bot, ability)
-  local creeps = GetEnemyCreeps(npc_bot, ability:GetCastRange())
+function M.max_hp_creep(bot, ability)
+  local creeps = GetEnemyCreeps(bot, ability:GetCastRange())
   local creep = functions.GetElementWith(
     creeps,
     CompareMaxHealth,
@@ -220,28 +220,28 @@ function M.max_hp_creep(npc_bot, ability)
   return true, GetTarget(creep, ability)
 end
 
-function M.three_and_more_enemy_heroes(npc_bot, ability)
+function M.three_and_more_enemy_heroes(bot, ability)
   local cast_range = ability:GetCastRange()
 
-  local target = npc_bot:FindAoELocation(
+  local target = bot:FindAoELocation(
     true,
     true,
-    npc_bot:GetLocation(),
+    bot:GetLocation(),
     cast_range,
     ability:GetSpecialValueInt("radius"),
     0,
     ability:GetAbilityDamage())
 
   if 3 <= target.count
-    and GetUnitToLocationDistance(npc_bot, target.targetloc) < cast_range then
+    and GetUnitToLocationDistance(bot, target.targetloc) < cast_range then
     return true, target.targetloc
   end
 
   return false, nil
 end
 
-function M.toggle_on_attack_enemy_hero(npc_bot, ability)
-  local target = npc_bot:GetAttackTarget()
+function M.toggle_on_attack_enemy_hero(bot, ability)
+  local target = bot:GetAttackTarget()
 
   if target == nil then return false, nil end
 
@@ -249,14 +249,14 @@ function M.toggle_on_attack_enemy_hero(npc_bot, ability)
     -- Enable the ability when we are attacking an enemy hero
 
     logger.Print("toggle_on_attack_enemy_hero() - " ..
-      npc_bot:GetUnitName() .. " activates " .. ability:GetName())
+      bot:GetUnitName() .. " activates " .. ability:GetName())
 
     ability:ToggleAutoCast()
   elseif ability:GetAutoCastState() and not target:IsHero() then
     -- Disable the ability when we are attacking a creep
 
     logger.Print("toggle_on_attack_enemy_hero() - " ..
-      npc_bot:GetUnitName() .. " deactivates " .. ability:GetName())
+      bot:GetUnitName() .. " deactivates " .. ability:GetName())
 
     ability:ToggleAutoCast()
   end
@@ -280,8 +280,8 @@ local function CompareMaxEstimatedDamage(t, a, b)
   return b_damage < a_damage
 end
 
-function M.max_estimated_damage_enemy_hero(npc_bot, ability)
-  local enemy_heroes = GetEnemyHeroes(npc_bot, ability:GetCastRange())
+function M.max_estimated_damage_enemy_hero(bot, ability)
+  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMaxEstimatedDamage,
@@ -297,16 +297,16 @@ function M.max_estimated_damage_enemy_hero(npc_bot, ability)
 end
 
 local function UseOnAttackEnemyUnit(
-  npc_bot,
+  bot,
   ability,
   check_function,
   radius)
 
-  local target = npc_bot:GetAttackTarget()
+  local target = bot:GetAttackTarget()
 
   if target == nil
     or not check_function(target)
-    or radius < GetUnitToUnitDistance(npc_bot, target) then
+    or radius < GetUnitToUnitDistance(bot, target) then
 
     return false, nil
   end
@@ -314,41 +314,41 @@ local function UseOnAttackEnemyUnit(
   return true, GetTarget(target, ability)
 end
 
-function M.use_on_attack_enemy_hero_aoe(npc_bot, ability)
+function M.use_on_attack_enemy_hero_aoe(bot, ability)
   return UseOnAttackEnemyUnit(
-    npc_bot,
+    bot,
     ability,
     function(unit) return unit:IsHero() end,
     ability:GetAOERadius())
 end
 
-function M.use_on_attack_enemy_hero_melee(npc_bot, ability)
+function M.use_on_attack_enemy_hero_melee(bot, ability)
   return UseOnAttackEnemyUnit(
-    npc_bot,
+    bot,
     ability,
     function(unit) return unit:IsHero() end,
     constants.MELEE_ATTACK_RADIUS)
 end
 
-function M.use_on_attack_enemy_hero_ranged(npc_bot, ability)
+function M.use_on_attack_enemy_hero_ranged(bot, ability)
   return UseOnAttackEnemyUnit(
-    npc_bot,
+    bot,
     ability,
     function(unit) return unit:IsHero() end,
     ability:GetCastRange())
 end
 
-function M.use_on_attack_enemy_creep_aoe(npc_bot, ability)
+function M.use_on_attack_enemy_creep_aoe(bot, ability)
   return UseOnAttackEnemyUnit(
-    npc_bot,
+    bot,
     ability,
     function(unit) return unit:IsCreep() end,
     ability:GetAOERadius())
 end
 
-function M.use_on_attack_enemy_creep_melee(npc_bot, ability)
+function M.use_on_attack_enemy_creep_melee(bot, ability)
   return UseOnAttackEnemyUnit(
-    npc_bot,
+    bot,
     ability,
     function(unit) return unit:IsCreep() end,
     constants.MELEE_ATTACK_RADIUS)
@@ -358,38 +358,38 @@ local function GetUnitManaLevel(unit)
   return unit:GetMana() / unit:GetMaxMana()
 end
 
-function M.use_on_attack_enemy_with_mana_when_low_mp(npc_bot, ability)
-  if GetUnitManaLevel(npc_bot) > constants.UNIT_LOW_MANA_LEVEL then
+function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
+  if GetUnitManaLevel(bot) > constants.UNIT_LOW_MANA_LEVEL then
     return false, nil
   end
 
   return UseOnAttackEnemyUnit(
-    npc_bot,
+    bot,
     ability,
     function(unit) return 0 < unit:GetMana() end,
     ability:GetCastRange())
 end
 
-function M.three_and_more_enemy_creeps_aoe(npc_bot, ability)
-  local enemies = GetEnemyCreeps(npc_bot, ability:GetAOERadius())
+function M.three_and_more_enemy_creeps_aoe(bot, ability)
+  local enemies = GetEnemyCreeps(bot, ability:GetAOERadius())
 
   if 3 <= #enemies then return true, nil end
 
   return false, nil
 end
 
-function M.low_hp_self(npc_bot, ability)
-  if functions.GetUnitHealthLevel(npc_bot)
+function M.low_hp_self(bot, ability)
+  if functions.GetUnitHealthLevel(bot)
      < constants.UNIT_LOW_HEALTH_LEVEL then
 
-    return true, GetTarget(npc_bot, ability)
+    return true, GetTarget(bot, ability)
   end
 
   return false, nil
 end
 
-function M.low_hp_ally_hero(npc_bot, ability)
-  local ally_heroes = GetAllyHeroes(npc_bot, ability:GetCastRange())
+function M.low_hp_ally_hero(bot, ability)
+  local ally_heroes = GetAllyHeroes(bot, ability:GetCastRange())
   local ally_hero = functions.GetElementWith(
     ally_heroes,
     CompareMinHealth,
@@ -405,8 +405,8 @@ function M.low_hp_ally_hero(npc_bot, ability)
   return true, GetTarget(ally_hero, ability)
 end
 
-function M.low_hp_ally_creep(npc_bot, ability)
-  local allies = GetAllyCreeps(npc_bot, ability:GetCastRange())
+function M.low_hp_ally_creep(bot, ability)
+  local allies = GetAllyCreeps(bot, ability:GetCastRange())
   local ally_creep = functions.GetElementWith(
     allies,
     CompareMinHealth,
@@ -423,17 +423,17 @@ function M.low_hp_ally_creep(npc_bot, ability)
   return true, GetTarget(ally_creep, ability)
 end
 
-function M.three_and_more_ally_creeps_aoe(npc_bot, ability)
-  local allies = GetAllyCreeps(npc_bot, ability:GetAOERadius())
+function M.three_and_more_ally_creeps_aoe(bot, ability)
+  local allies = GetAllyCreeps(bot, ability:GetAOERadius())
 
   if 3 <= #allies then return true, nil end
 
   return false, nil
 end
 
-function M.min_hp_enemy_building(npc_bot, ability)
+function M.min_hp_enemy_building(bot, ability)
   local enemy_buildings =
-    GetEnemyBuildings(npc_bot, ability:GetCastRange())
+    GetEnemyBuildings(bot, ability:GetCastRange())
 
   local enemy_building = functions.GetElementWith(
     enemy_buildings,

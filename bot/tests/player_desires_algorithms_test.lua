@@ -9,13 +9,13 @@ local luaunit = require('luaunit')
 function test_have_low_hp()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
-  npc_bot.health = 10
-  luaunit.assertTrue(algorithms.have_low_hp(npc_bot, ability))
+  bot.health = 10
+  luaunit.assertTrue(algorithms.have_low_hp(bot, ability))
 
-  npc_bot.health = npc_bot.max_health
-  luaunit.assertFalse(algorithms.have_low_hp(npc_bot, ability))
+  bot.health = bot.max_health
+  luaunit.assertFalse(algorithms.have_low_hp(bot, ability))
 end
 
 function test_PlayerOnLane()
@@ -63,15 +63,15 @@ function test_have_tp_scrol_or_travel_boots()
 
   luaunit.assertFalse(algorithms.have_tp_scrol_or_travel_boots())
 
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
-  npc_bot.inventory = { "item_tpscroll" }
+  bot.inventory = { "item_tpscroll" }
   luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
 
-  npc_bot.inventory = { "item_travel_boots_1" }
+  bot.inventory = { "item_travel_boots_1" }
   luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
 
-  npc_bot.inventory = { "item_travel_boots_2" }
+  bot.inventory = { "item_travel_boots_2" }
   luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
 end
 

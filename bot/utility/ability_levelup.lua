@@ -14,36 +14,36 @@ local ABILITIES = {}
 local TALENTS = {}
 
 function M.InitAbilities()
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
-  ABILITIES[npc_bot:GetUnitName()] = {}
-  TALENTS[npc_bot:GetUnitName()] = {}
+  ABILITIES[bot:GetUnitName()] = {}
+  TALENTS[bot:GetUnitName()] = {}
 
   for i = 0, 23, 1 do
 
-    local ability = npc_bot:GetAbilityInSlot(i)
+    local ability = bot:GetAbilityInSlot(i)
 
     if ability ~= nil and ability:GetName() ~= "generic_hidden" then
       if ability:IsTalent() then
-        table.insert(TALENTS[npc_bot:GetUnitName()], ability:GetName())
+        table.insert(TALENTS[bot:GetUnitName()], ability:GetName())
       else
-        table.insert(ABILITIES[npc_bot:GetUnitName()], ability:GetName())
+        table.insert(ABILITIES[bot:GetUnitName()], ability:GetName())
       end
     end
   end
 end
 
-local function AbilityLevelUp(npc_bot, ability_name)
-  local ability = npc_bot:GetAbilityByName(ability_name)
+local function AbilityLevelUp(bot, ability_name)
+  local ability = bot:GetAbilityByName(ability_name)
 
   if ability_name ~= nil
     and not ability:IsNull()
     and ability:CanAbilityBeUpgraded() then
 
-    logger.Print("AbilityLevelUp() - " .. npc_bot:GetUnitName() ..
+    logger.Print("AbilityLevelUp() - " .. bot:GetUnitName() ..
                  " level up " .. ability_name)
 
-    npc_bot:ActionImmediate_LevelAbility(ability_name)
+    bot:ActionImmediate_LevelAbility(ability_name)
     return true
   end
 
@@ -53,19 +53,19 @@ end
 local TALENT_LEVELS = {10, 15, 20, 25}
 
 function M.AbilityLevelUpThink()
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
-  if npc_bot:GetAbilityPoints() < 1 then return end
+  if bot:GetAbilityPoints() < 1 then return end
 
   local abilities_build =
-    skill_build.SKILL_BUILD[npc_bot:GetUnitName()].abilities
+    skill_build.SKILL_BUILD[bot:GetUnitName()].abilities
 
   for level, ability_index in functions.spairs(abilities_build) do
 
     if functions.IsElementInList(TALENT_LEVELS, level) then
       if AbilityLevelUp(
-        npc_bot,
-        TALENTS[npc_bot:GetUnitName()][ability_index]) then
+        bot,
+        TALENTS[bot:GetUnitName()][ability_index]) then
 
         abilities_build[level] = nil
         return
@@ -73,8 +73,8 @@ function M.AbilityLevelUpThink()
     end
 
     if AbilityLevelUp(
-      npc_bot,
-      ABILITIES[npc_bot:GetUnitName()][ability_index]) then
+      bot,
+      ABILITIES[bot:GetUnitName()][ability_index]) then
 
       abilities_build[level] = nil
       return

@@ -524,7 +524,7 @@ end
 function test_use_on_attack_enemy_with_mana_when_low_mp()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
@@ -532,17 +532,17 @@ function test_use_on_attack_enemy_with_mana_when_low_mp()
 
   local desire, target =
     ability_usage_algorithms.use_on_attack_enemy_with_mana_when_low_mp(
-      npc_bot,
+      bot,
       ability)
 
   luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 
-  npc_bot.mana = npc_bot.max_mana / 4
+  bot.mana = bot.max_mana / 4
 
   local desire, target =
     ability_usage_algorithms.use_on_attack_enemy_with_mana_when_low_mp(
-      npc_bot,
+      bot,
       ability)
 
   luaunit.assertEquals(desire, true)
@@ -568,27 +568,27 @@ end
 function test_low_hp_self()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
 
-  npc_bot.health = 10
+  bot.health = 10
 
   local desire, target =
     ability_usage_algorithms.low_hp_self(
-      npc_bot,
+      bot,
       ability)
 
   luaunit.assertEquals(desire, true)
-  luaunit.assertEquals(target:GetUnitName(), npc_bot:GetUnitName())
+  luaunit.assertEquals(target:GetUnitName(), bot:GetUnitName())
 
-  npc_bot.health = npc_bot.max_health
+  bot.health = bot.max_health
 
   local desire, target =
     ability_usage_algorithms.low_hp_self(
-      npc_bot,
+      bot,
       ability)
 
   luaunit.assertEquals(desire, false)

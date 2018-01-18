@@ -118,9 +118,9 @@ end
 function test_AbilityLevelUpThink()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
-  npc_bot.level = 1
-  npc_bot.ability_points = 1
+  local bot = GetBot()
+  bot.level = 1
+  bot.ability_points = 1
 
   ability_levelup.test_SetAbilities(
     {
@@ -155,9 +155,9 @@ end
 function test_AbilityLevelUpThink_from_2_to_25_level()
   test_RefreshBot()
 
-  local npc_bot = GetBot()
-  npc_bot.level = 25
-  npc_bot.ability_points = 18
+  local bot = GetBot()
+  bot.level = 25
+  bot.ability_points = 18
 
   ability_levelup.test_SetAbilities(
     {

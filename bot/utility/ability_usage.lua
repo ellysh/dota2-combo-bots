@@ -12,12 +12,12 @@ local skill_usage = require(
 
 local M = {}
 
-local function IsBotModeMatch(npc_bot, bot_mode)
+local function IsBotModeMatch(bot, bot_mode)
   if bot_mode == "any_mode" or bot_mode == "team_fight" then
     return true
   end
 
-  local active_mode = npc_bot:GetActiveMode()
+  local active_mode = bot:GetActiveMode()
 
   -- Actual bot modes are the constant digits but the
   -- shortcuted modes are strings.
@@ -38,25 +38,25 @@ local function IsBotModeMatch(npc_bot, bot_mode)
 end
 
 local function CalculateDesireAndTarget(
-  npc_bot,
+  bot,
   algorithm,
   bot_mode,
   ability)
 
   if algorithm == nil then return false, nil end
 
-  if not IsBotModeMatch(npc_bot, bot_mode) then
+  if not IsBotModeMatch(bot, bot_mode) then
     return false, nil
   end
 
-  return algorithm(npc_bot, ability)
+  return algorithm(bot, ability)
 end
 
-local function GetDesiredAbilitiesList(npc_bot)
+local function GetDesiredAbilitiesList(bot)
   local result = {}
 
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
-    local ability = npc_bot:GetAbilityByName(ability_name)
+    local ability = bot:GetAbilityByName(ability_name)
 
     if ability == nil
       or not ability:IsFullyCastable() then goto continue end
@@ -64,7 +64,7 @@ local function GetDesiredAbilitiesList(npc_bot)
     for bot_mode, algorithm in functions.spairs(algorithms) do
 
       local is_succeed, target =
-        CalculateDesireAndTarget(npc_bot,
+        CalculateDesireAndTarget(bot,
           algorithm[1],
           bot_mode,
           ability)
@@ -82,11 +82,11 @@ local function GetDesiredAbilitiesList(npc_bot)
   return result
 end
 
-local function ChooseAbilityAndTarget(npc_bot)
+local function ChooseAbilityAndTarget(bot)
   -- Thanks to the spairs() function we iterate the most desired skills
   -- first. Then, we use them with the desired probability.
 
-  local desired_abilities = GetDesiredAbilitiesList(npc_bot)
+  local desired_abilities = GetDesiredAbilitiesList(bot)
 
   for ability, target_desire
     in functions.spairs(
@@ -102,35 +102,35 @@ local function ChooseAbilityAndTarget(npc_bot)
   return nil, nil
 end
 
-local function UseAbility(npc_bot, ability, target)
+local function UseAbility(bot, ability, target)
   if ability == nil then return end
 
-  logger.Print("UseAbility() - " .. npc_bot:GetUnitName() ..
+  logger.Print("UseAbility() - " .. bot:GetUnitName() ..
     " use " .. ability:GetName())
 
   local target_type = functions.GetAbilityTargetType(ability)
 
   if target_type == constants.ABILITY_LOCATION_TARGET then
-    npc_bot:Action_UseAbilityOnLocation(ability, target)
+    bot:Action_UseAbilityOnLocation(ability, target)
     return
   end
 
   if target_type == constants.ABILITY_NO_TARGET then
-    npc_bot:Action_UseAbility(ability)
+    bot:Action_UseAbility(ability)
     return
   end
 
-  npc_bot:Action_UseAbilityOnEntity(ability, target)
+  bot:Action_UseAbilityOnEntity(ability, target)
 end
 
 function M.AbilityUsageThink()
-  local npc_bot = GetBot()
+  local bot = GetBot()
 
-  if functions.IsBotBusy(npc_bot) then return end
+  if functions.IsBotBusy(bot) then return end
 
-  local ability, target = ChooseAbilityAndTarget(npc_bot)
+  local ability, target = ChooseAbilityAndTarget(bot)
 
-  UseAbility(npc_bot, ability, target)
+  UseAbility(bot, ability, target)
 end
 
 -- Provide an access to local functions and lists for unit tests only

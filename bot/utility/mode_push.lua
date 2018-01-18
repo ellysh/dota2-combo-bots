@@ -32,9 +32,9 @@ end
 function M.Think(lane)
   -- TODO: Use TP scrolls and TP boots here
 
-  local npc_bot = GetBot()
+  local bot = GetBot()
   local target = GetLaneFrontLocation(GetTeam(), lane, 0.5)
-  npc_bot:Action_AttackMove(target)
+  bot:Action_AttackMove(target)
 end
 
 return M

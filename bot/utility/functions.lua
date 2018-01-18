@@ -49,13 +49,13 @@ function M.GetItems(unit, slot_numbers)
   return items_number, item_list
 end
 
-local function GetItemSlotsCount(npc_bot)
-  local result, _ = M.GetItems(npc_bot, constants.INVENTORY_MAX_INDEX)
+local function GetItemSlotsCount(bot)
+  local result, _ = M.GetItems(bot, constants.INVENTORY_MAX_INDEX)
   return result
 end
 
-function M.IsInventoryFull(npc_bot)
-  return constants.INVENTORY_SIZE <= GetItemSlotsCount(npc_bot)
+function M.IsInventoryFull(bot)
+  return constants.INVENTORY_SIZE <= GetItemSlotsCount(bot)
 end
 
 function M.GetElementIndexInList(list, element)
@@ -80,10 +80,10 @@ function M.IsIntersectionOfLists(list1, list2)
   return false
 end
 
-function M.IsBotBusy(npc_bot)
-  return npc_bot:IsChanneling()
-        or npc_bot:IsUsingAbility()
-        or npc_bot:IsCastingAbility()
+function M.IsBotBusy(bot)
+  return bot:IsChanneling()
+        or bot:IsUsingAbility()
+        or bot:IsCastingAbility()
 end
 
 -- This function was taken from the Ranked Matchmaking AI project:
@@ -123,9 +123,9 @@ function M.GetRandomTrue(probability)
   return RandomFloat(0.0, 1.0) < probability
 end
 
-function M.GetInventoryItems(npc_bot)
+function M.GetInventoryItems(bot)
   local _, result = M.GetItems(
-    npc_bot,
+    bot,
     constants.INVENTORY_MAX_INDEX)
 
   return result
