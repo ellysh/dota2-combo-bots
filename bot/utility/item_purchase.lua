@@ -103,12 +103,7 @@ local function PurchaseItem(bot, item)
     item = FindNextComponentToBuy(bot, item)
   end
 
-  if item == "nil"
-     or (functions.IsInventoryFull(bot)
-         and functions.GetItemToSell(bot) == nil) then
-
-     return
-  end
+  if item == "nil" then return end
 
   functions.SetItemToBuy(bot, item)
 end
