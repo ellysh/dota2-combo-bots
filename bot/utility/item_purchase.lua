@@ -90,9 +90,14 @@ local function FindNextItemToBuy(item_list)
   return -1, "nil"
 end
 
-local function PurchaseItem(bot, item)
+local function IsPurchasePossible(bot)
   -- Do not add anything to the purchase slot until curier bring something
-  if bot:GetCourierValue() > 0 then return end
+  return bot:GetCourierValue() == 0
+         and functions.GetItemToBuy(bot) == nil
+end
+
+local function PurchaseItem(bot, item)
+  if not IsPurchasePossible(bot) then return end
 
   if IsRecipeItem(item) then
     item = FindNextComponentToBuy(bot, item)
@@ -115,7 +120,9 @@ local function PurchaseTpScroll(npc_bot)
 end
 
 local function PurchaseItemList(npc_bot)
-  if functions.GetItemToBuy(npc_bot) ~= nil then return end
+  -- We do this check here because the long algorithm of finding an
+  -- item to buy is not make sense if the purchase is not possible.
+  if not IsPurchasePossible(bot) then return end
 
   local item_list = item_build.ITEM_BUILD[npc_bot:GetUnitName()].items
 
