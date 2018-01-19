@@ -1,0 +1,163 @@
+Run ability_levelup_test.lua:
+0.0: Combo Bots version 0.7
+
+Started on Thu Jan 18 22:50:28 2018
+    test_AbilityLevelUp ... 0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_crystal_nova
+
+Ok
+    test_AbilityLevelUpThink ... 0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_frostbite
+
+Ok
+    test_AbilityLevelUpThink_from_2_to_25_level ... 0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_brilliance_aura
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_brilliance_aura
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_crystal_nova
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_brilliance_aura
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_freezing_field
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_brilliance_aura
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_crystal_nova
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_crystal_nova
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up special_bonus_cast_range_100
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_crystal_nova
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_freezing_field
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_frostbite
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_frostbite
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up special_bonus_unique_crystal_maiden_4
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_frostbite
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up crystal_maiden_freezing_field
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up special_bonus_unique_crystal_maiden_3
+
+0.0: AbilityLevelUp() - npc_dota_hero_crystal_maiden level up special_bonus_unique_crystal_maiden_2
+
+Ok
+    test_InitAbilities ... Ok
+    test_RefreshBot ... Ok
+    test_RefreshCourier ... Ok
+=========================================================
+Ran 6 tests in 0.007 seconds
+OK 
+Run ability_usage_algorithms_test.lua:
+0.0: Combo Bots version 0.7
+
+Started on Thu Jan 18 22:50:28 2018
+    test_GetAllyCreeps ... Ok
+    test_GetAllyHeroes ... Ok
+    test_GetEnemyBuildings ... Ok
+    test_GetEnemyCreeps ... Ok
+    test_GetEnemyHeroes ... Ok
+    test_GetLastAttackedEnemyHero ... Ok
+    test_GetTarget ... Ok
+    test_IsEnoughDamageToKill ... Ok
+    test_IsTargetable ... Ok
+    test_RefreshBot ... Ok
+    test_RefreshCourier ... Ok
+    test_SetDefaultRadius ... Ok
+    test_UseOnAttackEnemyUnit ... Ok
+    test_channeling_enemy_hero ... Ok
+    test_last_attacked_enemy_hero ... Ok
+    test_low_hp_ally_creep ... Ok
+    test_low_hp_ally_hero ... Ok
+    test_low_hp_self ... Ok
+    test_max_estimated_damage_enemy_hero ... Ok
+    test_max_hp_creep ... Ok
+    test_max_kills_enemy_hero ... Ok
+    test_min_hp_enemy_building ... Ok
+    test_min_hp_enemy_hero_to_kill ... Ok
+    test_three_and_more_ally_creeps_aoe ... Ok
+    test_three_and_more_creeps ... Ok
+    test_three_and_more_enemy_creeps_aoe ... Ok
+    test_three_and_more_enemy_heroes ... Ok
+    test_three_and_more_enemy_heroes_aoe ... Ok
+    test_toggle_on_attack_enemy_hero ... 0.0: toggle_on_attack_enemy_hero() - npc_dota_hero_crystal_maiden activates drow_ranger_frost_arrows 
+
+0.0: toggle_on_attack_enemy_hero() - npc_dota_hero_crystal_maiden deactivates drow_ranger_frost_arrows 
+
+Ok
+    test_use_on_attack_enemy_creep_aoe ... Ok
+    test_use_on_attack_enemy_creep_melee ... Ok
+    test_use_on_attack_enemy_hero_aoe ... Ok
+    test_use_on_attack_enemy_hero_melee ... Ok
+    test_use_on_attack_enemy_hero_ranged ... Ok
+    test_use_on_attack_enemy_with_mana_when_low_mp ... Ok
+=========================================================
+Ran 35 tests in 0.012 seconds
+OK 
+Run ability_usage_test.lua:
+0.0: Combo Bots version 0.7
+
+Started on Thu Jan 18 22:50:28 2018
+    test_AbilityUsageThink_succeed ... 0.0: UseAbility() - npc_dota_hero_crystal_maiden use crystal_maiden_crystal_nova
+
+Ok
+    test_AbilityUsageThink_when_bot_channeling_fails ... Ok
+    test_CalculateDesireAndTarget_fails ... Ok
+    test_CalculateDesireAndTarget_succeed ... Ok
+    test_ChooseAbilityAndTarget ... Ok
+    test_IsBotModeMatch_fails ... Ok
+    test_IsBotModeMatch_succeed ... Ok
+    test_RefreshBot ... Ok
+    test_RefreshCourier ... Ok
+    test_UseAbility ... 0.0: UseAbility() - npc_dota_hero_crystal_maiden use crystal_maiden_crystal_nova
+
+Ok
+=========================================================
+Ran 10 tests in 0.009 seconds
+OK 
+Run courier_test.lua:
+Started on Thu Jan 18 22:50:28 2018
+    test_CourierUsageThink_burst_action ... Ok
+    test_CourierUsageThink_no_action ... Ok
+    test_CourierUsageThink_secret_shop_action ... FreeCourier() - LABEL #1
+FreeCourier() - LABEL #2
+FreeCourier() - LABEL #3
+FreeCourier() - LABEL #1
+FreeCourier() - LABEL #2
+FreeCourier() - LABEL #4
+Ok
+    test_CourierUsageThink_take_and_transfer_action ... FreeCourier() - LABEL #1
+FreeCourier() - LABEL #2
+FreeCourier() - LABEL #3
+FreeCourier() - LABEL #1
+FreeCourier() - LABEL #2
+FreeCourier() - LABEL #4
+Ok
+    test_CourierUsageThink_transfer_action ... FreeCourier() - LABEL #1
+FreeCourier() - LABEL #2
+FreeCourier() - LABEL #3
+FreeCourier() - LABEL #1
+FreeCourier() - LABEL #2
+FreeCourier() - LABEL #4
+Ok
+    test_FreeCourier ... FreeCourier() - LABEL #1
+FAIL
+courier_test.lua:27: expected: 1, actual: nil
+    test_IsCourierAvailable ... Ok
+    test_IsCourierDamaged ... Ok
+    test_IsSecretShopRequired ... Ok
+    test_RefreshBot ... Ok
+    test_RefreshCourier ... Ok
+=========================================================
+Failed tests:
+-------------
+1) test_FreeCourier
+courier_test.lua:27: expected: 1, actual: nil
+stack traceback:
+	courier_test.lua:27: in function 'test_FreeCourier'
+
+Ran 11 tests in 0.004 seconds
+FAILED (failures=1)
