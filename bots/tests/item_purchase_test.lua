@@ -38,6 +38,19 @@ function test_PurchaseTpScroll()
     "item_tpscroll")
 end
 
+function test_PurchaseTpScroll_when_another_item_in_purchase_slot_fails()
+  test_RefreshBot()
+
+  ITEM_COST = 50
+  functions.SetItemToBuy(GetBot(), "item_branches")
+
+  item_purchase.test_PurchaseTpScroll(GetBot())
+
+  luaunit.assertEquals(
+    functions.GetItemToBuy(GetBot()),
+    "item_branches")
+end
+
 function test_IsRecipeItem()
   luaunit.assertFalse(item_purchase.test_IsRecipeItem("item_tango"))
 
