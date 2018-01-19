@@ -202,28 +202,64 @@ function test_PurchaseItem_recipe_from_recipe_component()
   bot.gold = 9000
 
   functions.SetItemToBuy(bot, nil)
-  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(functions.GetItemToBuy(bot), "item_void_stone")
 
   table.insert(bot.inventory, "item_void_stone")
 
   functions.SetItemToBuy(bot, nil)
-  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(functions.GetItemToBuy(bot), "item_ring_of_health")
 
   table.insert(bot.inventory, "item_pers")
 
   functions.SetItemToBuy(bot, nil)
-  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(functions.GetItemToBuy(bot), "item_platemail")
 
   table.insert(bot.inventory, "item_platemail")
 
   functions.SetItemToBuy(bot, nil)
-  item_purchase.test_PurchaseItem(GetBot(), "item_lotus_orb")
+  item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(functions.GetItemToBuy(bot), "item_energy_booster")
 
   table.insert(bot.inventory, "item_energy_booster")
+end
+
+function test_PurchaseItem_when_inventory_full_succeed()
+  -- This behavior is required for a bot to make a decision that he should
+  -- sell something. After the PurchaseItem call, he has a full inventory
+  -- and an item in the "purchase slot".
+
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  bot.inventory = {
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches"
+  }
+
+  functions.SetItemToBuy(bot, nil)
+  functions.SetItemToSell(bot, nil)
+  item_purchase.test_PurchaseItem(bot, "item_tango")
+
+  luaunit.assertEquals(
+    functions.GetItemToBuy(bot),
+    "item_tango")
 end
 
 function test_FindNextItemToBuy()
