@@ -43,7 +43,8 @@ local function CalculateDesireAndTarget(
   bot_mode,
   ability)
 
-  if algorithm == nil then return false, nil end
+  if algorithm == nil then
+    return false, nil end
 
   if not IsBotModeMatch(bot, bot_mode) then
     return false, nil
@@ -103,7 +104,8 @@ local function ChooseAbilityAndTarget(bot)
 end
 
 local function UseAbility(bot, ability, target)
-  if ability == nil then return end
+  if ability == nil then
+    return end
 
   logger.Print("UseAbility() - " .. bot:GetUnitName() ..
     " use " .. ability:GetName())
@@ -126,7 +128,8 @@ end
 function M.AbilityUsageThink()
   local bot = GetBot()
 
-  if functions.IsBotBusy(bot) then return end
+  if functions.IsBotBusy(bot) then
+    return end
 
   local ability, target = ChooseAbilityAndTarget(bot)
 

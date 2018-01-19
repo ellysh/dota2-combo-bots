@@ -10,7 +10,8 @@ function M.Think(database_table, algorithms_implementation)
   local result = {}
 
   for algorithm, desires in functions.spairs(database_table) do
-    if algorithms_implementation[algorithm] == nil then goto continue end
+    if algorithms_implementation[algorithm] == nil then
+      goto continue end
 
     local desire_index = functions.ternary(
       algorithms_implementation[algorithm](),

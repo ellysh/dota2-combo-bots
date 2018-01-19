@@ -27,7 +27,8 @@ local function IsFreeState(state)
 end
 
 local function FreeCourier(courier, state)
-  if not IsFreeState(state) then return end
+  if not IsFreeState(state) then
+    return end
 
   -- We use the GameTime here to avoid negative DotaTime value
   -- before the horn.
@@ -64,7 +65,8 @@ function M.CourierUsageThink()
 
   local courier_state = GetCourierState(courier)
 
-  if state == COURIER_STATE_DEAD then return end
+  if state == COURIER_STATE_DEAD then
+    return end
 
   if IsCourierDamaged(courier) then
     SetCourierAction(bot, courier, COURIER_ACTION_BURST)

@@ -59,12 +59,14 @@ function M.IsInventoryFull(bot)
 end
 
 function M.GetElementIndexInList(list, element)
-  if list == nil then return nil end
+  if list == nil then
+    return nil end
 
   -- We should sort by keys. Otherwise, elements have a random order.
 
   for i, e in M.spairs(list) do
-    if e == element then return i end
+    if e == element then
+      return i end
   end
   return -1
 end
@@ -75,7 +77,8 @@ end
 
 function M.IsIntersectionOfLists(list1, list2)
   for _, e in pairs(list1) do
-    if M.IsElementInList(list2, e) then return true end
+    if M.IsElementInList(list2, e) then
+      return true end
   end
   return false
 end
@@ -90,7 +93,8 @@ end
 -- https://github.com/adamqqqplay/dota2ai
 
 local function IsFlagSet(mask, flag)
-  if flag == 0 or mask == 0 then return false end
+  if flag == 0 or mask == 0 then
+    return false end
 
   return ((mask / flag)) % 2 >= 1
 end
@@ -100,7 +104,8 @@ function M.GetAbilityTargetType(ability)
   -- ABILITY_NO_TARGET, ABILITY_UNIT_TARGET or ABILITY_LOCATION_TARGET.
   -- The API GetTargetType funtion returns the type of a target unit.
 
-  if ability == nil then return nil end
+  if ability == nil then
+    return nil end
 
   local behavior = ability:GetBehavior()
 
@@ -116,7 +121,11 @@ function M.GetAbilityTargetType(ability)
 end
 
 function M.ternary(condition, a, b)
-  if condition then return a else return b end
+  if condition then
+    return a
+  else
+    return b
+  end
 end
 
 function M.GetRandomTrue(probability)

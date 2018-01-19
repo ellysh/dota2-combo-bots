@@ -47,7 +47,8 @@ local function GetEnemyBuildings(bot, radius)
   radius = SetDefaultRadius(radius)
   local towers = bot:GetNearbyTowers(radius, true)
 
-  if #towers ~= 0 then return towers end
+  if #towers ~= 0 then
+    return towers end
 
   return bot:GetNearbyBarracks(radius, true)
 end
@@ -145,7 +146,8 @@ end
 function M.three_and_more_enemy_heroes_aoe(bot, ability)
   local enemies = GetEnemyHeroes(bot, ability:GetAOERadius())
 
-  if 3 <= #enemies then return true, nil end
+  if 3 <= #enemies then
+    return true, nil end
 
   return false, nil
 end
@@ -155,10 +157,12 @@ end
 local function GetLastAttackedEnemyHero(bot, radius)
   local enemies = GetEnemyHeroes(bot, radius)
 
-  if #enemies == 0 then return nil end
+  if #enemies == 0 then
+    return nil end
 
   for _, enemy in pairs(enemies) do
-    if enemy == nil or not enemy:IsAlive() then goto continue end
+    if enemy == nil or not enemy:IsAlive() then
+      goto continue end
 
     if bot:WasRecentlyDamagedByHero(enemy, 2.0) then
       return enemy
@@ -243,7 +247,8 @@ end
 function M.toggle_on_attack_enemy_hero(bot, ability)
   local target = bot:GetAttackTarget()
 
-  if target == nil then return false, nil end
+  if target == nil then
+    return false, nil end
 
   if not ability:GetAutoCastState() and target:IsHero() then
     -- Enable the ability when we are attacking an enemy hero
@@ -373,7 +378,8 @@ end
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
   local enemies = GetEnemyCreeps(bot, ability:GetAOERadius())
 
-  if 3 <= #enemies then return true, nil end
+  if 3 <= #enemies then
+    return true, nil end
 
   return false, nil
 end
@@ -426,7 +432,8 @@ end
 function M.three_and_more_ally_creeps_aoe(bot, ability)
   local allies = GetAllyCreeps(bot, ability:GetAOERadius())
 
-  if 3 <= #allies then return true, nil end
+  if 3 <= #allies then
+    return true, nil end
 
   return false, nil
 end

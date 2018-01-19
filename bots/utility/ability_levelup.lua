@@ -55,7 +55,8 @@ local TALENT_LEVELS = {10, 15, 20, 25}
 function M.AbilityLevelUpThink()
   local bot = GetBot()
 
-  if bot:GetAbilityPoints() < 1 then return end
+  if bot:GetAbilityPoints() < 1 then
+    return end
 
   local abilities_build =
     skill_build.SKILL_BUILD[bot:GetUnitName()].abilities

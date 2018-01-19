@@ -25,7 +25,8 @@ local function IsTpScrollPresent(bot)
 end
 
 local function PurchaseCourier(bot)
-  if GetNumCouriers() > 0 then return end
+  if GetNumCouriers() > 0 then
+    return end
 
   local players = GetTeamPlayers(GetTeam())
 
@@ -84,7 +85,8 @@ end
 
 local function FindNextItemToBuy(item_list)
   for i, item in functions.spairs(item_list) do
-    if item ~= "nil" then return i, item end
+    if item ~= "nil" then
+      return i, item end
   end
 
   return -1, "nil"
@@ -97,19 +99,22 @@ local function IsPurchasePossible(bot)
 end
 
 local function PurchaseItem(bot, item)
-  if not IsPurchasePossible(bot) then return end
+  if not IsPurchasePossible(bot) then
+    return end
 
   if IsRecipeItem(item) then
     item = FindNextComponentToBuy(bot, item)
   end
 
-  if item == "nil" then return end
+  if item == "nil" then
+    return end
 
   functions.SetItemToBuy(bot, item)
 end
 
 local function PurchaseTpScroll(bot)
-  if IsTpScrollPresent(bot) then return end
+  if IsTpScrollPresent(bot) then
+    return end
 
   PurchaseItem(bot, "item_tpscroll")
 end
@@ -117,7 +122,8 @@ end
 local function PurchaseItemList(bot)
   -- We do this check here because the long algorithm of finding an
   -- item to buy is not make sense if the purchase is not possible.
-  if not IsPurchasePossible(bot) then return end
+  if not IsPurchasePossible(bot) then
+    return end
 
   local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
 
@@ -158,9 +164,11 @@ local function GetSlotIndex(inventory_index)
 end
 
 local function SellExtraItem(bot)
-  if functions.GetItemToSell(bot) ~= nil then return end
+  if functions.GetItemToSell(bot) ~= nil then
+    return end
 
-  if not functions.IsInventoryFull(bot) then return end
+  if not functions.IsInventoryFull(bot) then
+    return end
 
   local inventory = functions.GetInventoryItems(bot)
 
@@ -207,7 +215,8 @@ local function PurchaseViaCourier(bot)
 end
 
 local function PerformPlannedPurchaseAndSell(bot)
-  if PURCHASE_ITEM_SUCCESS == PurchaseViaCourier(bot) then return end
+  if PURCHASE_ITEM_SUCCESS == PurchaseViaCourier(bot) then
+    return end
 
   if constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()
     and constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()
