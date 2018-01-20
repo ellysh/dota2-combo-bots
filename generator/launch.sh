@@ -3,7 +3,7 @@
 set -e
 
 CSV_DIR="database/csv"
-RESULT_DIR="../bot/database"
+RESULT_DIR="../bots/database"
 
 ./generator.py HEROES 9 $CSV_DIR/heroes.csv > $RESULT_DIR/heroes.lua
 

@@ -515,6 +515,14 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
+  item_satanic = {
+    components = {
+      "item_lifesteal",
+      "item_claymore",
+      "item_reaver",
+      "nil"}
+  },
+
 }
 
 return M
