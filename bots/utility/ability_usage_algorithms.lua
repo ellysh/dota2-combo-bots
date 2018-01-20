@@ -158,38 +158,19 @@ function M.three_and_more_enemy_heroes_aoe(bot, ability)
   return false, nil
 end
 
--- TODO: Generalize this function. We can pass a list of units
--- as an input parameter.
-local function GetLastAttackedEnemyHero(bot, radius)
-  local enemies = GetEnemyHeroes(bot, radius)
-
-  if #enemies == 0 then
-    return nil end
-
-  for _, enemy in pairs(enemies) do
-    if enemy == nil or not enemy:IsAlive() then
-      goto continue end
-
-    if bot:WasRecentlyDamagedByHero(enemy, 2.0) then
-      return enemy
-    end
-
-    ::continue::
-  end
-
-  return nil
-end
-
 function M.last_attacked_enemy_hero(bot, ability)
-  local enemy_hero = GetLastAttackedEnemyHero(
-    bot,
-    ability:GetCastRange())
+  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
 
-  if enemy_hero == nil
-    or not IsTargetable(enemy_hero) then
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxHeroKills,
+    function(hero)
+      return bot:WasRecentlyDamagedByHero(hero, 2.0)
+             and IsTargetable(hero)
+    end)
 
-    return false, nil
-  end
+  if enemy_hero == nil then
+    return false, nil end
 
   return true, GetTarget(enemy_hero, ability)
 end
@@ -482,6 +463,5 @@ M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_UseOnAttackEnemyUnit = UseOnAttackEnemyUnit
 M.test_GetUnitManaLevel = GetUnitManaLevel
-M.test_GetLastAttackedEnemyHero = GetLastAttackedEnemyHero
 
 return M
