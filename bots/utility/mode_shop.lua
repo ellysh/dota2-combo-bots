@@ -102,5 +102,7 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_GetNearestLocation = GetNearestLocation
+M.test_IsBotInFightingMode = IsBotInFightingMode
+M.test_GetDesire = GetDesire
 
 return M

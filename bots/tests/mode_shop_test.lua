@@ -8,6 +8,46 @@ local constants = require("constants")
 local functions = require("functions")
 local luaunit = require('luaunit')
 
+function test_IsBotInFightingMode_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  local test_modes = {
+    BOT_MODE_ATTACK,
+    BOT_MODE_PUSH_TOWER_TOP,
+    BOT_MODE_PUSH_TOWER_MID,
+    BOT_MODE_PUSH_TOWER_BOT,
+    BOT_MODE_DEFEND_ALLY,
+    BOT_MODE_RETREAT,
+    BOT_MODE_ROSHAN,
+    BOT_MODE_DEFEND_TOWER_TOP,
+    BOT_MODE_DEFEND_TOWER_MID,
+    BOT_MODE_DEFEND_TOWER_BOT
+  }
+
+  for _, mode in pairs(test_modes) do
+    BOT_MODE = mode
+    luaunit.assertTrue(mode_shop.test_IsBotInFightingMode(bot))
+  end
+end
+
+function test_GetDesire_in_fight_mode_negative()
+  test_RefreshBot()
+
+  functions.SetItemToBuy(GetBot(), "item_boots")
+  IS_SIDE_SHOP_ITEM = true
+  DISTANCE_FROM_SHOP = 2000
+  BOT_MODE = BOT_MODE_ATTACK
+
+  luaunit.assertEquals(
+    mode_shop.test_GetDesire(
+      IsItemPurchasedFromSideShop,
+      "DistanceFromSideShop",
+      0.3),
+    0)
+end
+
 function test_GetDesireSideShop_negative()
   test_RefreshBot()
 
