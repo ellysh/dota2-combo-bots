@@ -239,7 +239,8 @@ local function PerformPlannedPurchaseAndSell(bot)
   local buy_item = functions.GetItemToBuy(bot)
 
   if functions.IsInventoryFull(bot)
-     or bot:GetGold() < GetItemCost(buy_item) then return end
+     or bot:GetGold() < GetItemCost(buy_item) then
+     return end
 
   if buy_item ~= nil then
     if PURCHASE_ITEM_SUCCESS ==

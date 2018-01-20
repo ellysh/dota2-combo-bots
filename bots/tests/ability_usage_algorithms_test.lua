@@ -256,6 +256,7 @@ function test_three_and_more_enemy_heroes_aoe_succeed()
   local ability = Ability:new("crystal_maiden_freezing_field")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  UNIT_CAN_BE_SEEN = true
 
   local desire, target =
     ability_usage_algorithms.three_and_more_enemy_heroes_aoe(
@@ -263,6 +264,23 @@ function test_three_and_more_enemy_heroes_aoe_succeed()
       ability)
 
   luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_three_and_more_enemy_heroes_aoe_not_targetable_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_freezing_field")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  UNIT_CAN_BE_SEEN = false
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_enemy_heroes_aoe(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
