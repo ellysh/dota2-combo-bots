@@ -84,7 +84,7 @@ function test_IsCourierDamaged()
   luaunit.assertTrue(courier.test_IsCourierDamaged(c))
 end
 
-function test_CourierUsageThink_no_action()
+function test_CourierUsageThink_no_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
@@ -106,7 +106,7 @@ function test_CourierUsageThink_no_action()
   luaunit.assertEquals(COURIER_ACTION, nil)
 end
 
-function test_CourierUsageThink_burst_action()
+function test_CourierUsageThink_burst_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
@@ -125,7 +125,7 @@ local function FreeCourier()
   courier.test_FreeCourier(GetCourier(), COURIER_STATE_IDLE)
 end
 
-function test_CourierUsageThink_transfer_action()
+function test_CourierUsageThink_transfer_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
@@ -139,7 +139,7 @@ function test_CourierUsageThink_transfer_action()
   luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_TRANSFER_ITEMS)
 end
 
-function test_CourierUsageThink_secret_shop_action()
+function test_CourierUsageThink_secret_shop_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
@@ -155,7 +155,7 @@ function test_CourierUsageThink_secret_shop_action()
   luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_SECRET_SHOP)
 end
 
-function test_CourierUsageThink_take_and_transfer_action()
+function test_CourierUsageThink_take_and_transfer_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
@@ -170,6 +170,22 @@ function test_CourierUsageThink_take_and_transfer_action()
   luaunit.assertEquals(
     COURIER_ACTION,
     COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS)
+end
+
+function test_CourierUsageThink_dead_fails()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  FreeCourier()
+
+  COURIER_ACTION = nil
+  COURIER_STATE = COURIER_STATE_DEAD
+  IS_SECRET_SHOP_ITEM = true
+  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+
+  courier.CourierUsageThink()
+
+  luaunit.assertEquals(COURIER_ACTION, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())

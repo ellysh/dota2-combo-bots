@@ -66,7 +66,7 @@ function M.CourierUsageThink()
 
   local courier_state = GetCourierState(courier)
 
-  if state == COURIER_STATE_DEAD then
+  if courier_state == COURIER_STATE_DEAD then
     return end
 
   if IsCourierDamaged(courier) then
