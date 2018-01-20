@@ -240,6 +240,29 @@ function test_GetElementWith()
   luaunit.assertEquals(unit:GetHealth(), 10)
 end
 
+function test_GetNumberOfElementsWith()
+  local unit = Unit:new()
+
+  PLAYERS = { 1, 2, 3 }
+
+  IS_HERO_ALIVE = true
+
+  luaunit.assertEquals(
+    functions.GetNumberOfElementsWith(
+      PLAYERS,
+      function(player) return IsHeroAlive(player) end),
+    3)
+
+  IS_HERO_ALIVE = false
+
+  luaunit.assertEquals(
+    functions.GetNumberOfElementsWith(
+      PLAYERS,
+      function(player) return IsHeroAlive(player) end),
+    0)
+end
+
+
 function test_GetUnitHealthLevel()
   test_RefreshBot()
 

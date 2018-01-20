@@ -140,26 +140,4 @@ function test_no_enemy_heroes_on_lane()
   luaunit.assertTrue(algorithms.no_enemy_heroes_on_bot())
 end
 
-function test_GetNumberOfPlayersWith()
-  local unit = Unit:new()
-
-  PLAYERS = { 1, 2, 3 }
-
-  IS_HERO_ALIVE = true
-
-  luaunit.assertEquals(
-    algorithms.test_GetNumberOfPlayersWith(
-      PLAYERS,
-      function(player) return IsHeroAlive(player) end),
-    3)
-
-  IS_HERO_ALIVE = false
-
-  luaunit.assertEquals(
-    algorithms.test_GetNumberOfPlayersWith(
-      PLAYERS,
-      function(player) return IsHeroAlive(player) end),
-    0)
-end
-
 os.exit(luaunit.LuaUnit.run())
