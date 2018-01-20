@@ -400,7 +400,7 @@ function test_SellItemByIndex_all_checks_fails()
 end
 
 
-function test_SellExtraItem()
+function test_SellExtraItem_because_of_level_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -434,7 +434,7 @@ function test_SellExtraItem()
     {name = "item_branches"})
 end
 
-function test_SellExtraItem_because_of_buying_new()
+function test_SellExtraItem_because_of_buying_new_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -466,6 +466,40 @@ function test_SellExtraItem_because_of_buying_new()
   luaunit.assertEquals(
     functions.GetItemToSell(bot),
     {name = "item_branches"})
+end
+
+function test_SellExtraItem_when_already_planned_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.level = 1
+  TIME = 1
+
+  bot.inventory = {
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_tango"
+  }
+
+  functions.SetItemToBuy(bot, "item_branches")
+  functions.SetItemToSell(bot, {name = "item_tango"})
+  item_purchase.test_SellExtraItem(GetBot())
+
+  luaunit.assertEquals(
+    functions.GetItemToSell(bot),
+    {name = "item_tango"})
 end
 
 function test_PurchaseViaCourier_succeed()
@@ -525,6 +559,21 @@ function test_PerformPlannedPurchaseAndSell_too_far_from_shops_fails()
 
   luaunit.assertEquals(functions.GetItemToBuy(bot), "item_branches")
   luaunit.assertEquals(bot.inventory[1], nil)
+end
+
+function test_PerformPlannedPurchaseAndSell_via_courier_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  COURIER = Unit:new()
+  DISTANCE_FROM_SHOP = 100
+
+  functions.SetItemToBuy(bot, "item_branches")
+
+  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+
+  luaunit.assertEquals(GetCourier().inventory[1], "item_branches")
 end
 
 function test_ItemPurchaseThink()
