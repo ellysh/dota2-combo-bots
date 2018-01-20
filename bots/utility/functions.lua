@@ -1,6 +1,9 @@
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local heroes = require(
+  GetScriptDirectory() .."/database/heroes")
+
 local M = {}
 
 -- This function iterates over the table in a sorted order.
@@ -222,6 +225,15 @@ function M.SetItemToBuy(bot, item)
   end
 
   PURCHASE_LIST[bot:GetUnitName()]["ITEM_TO_BUY"] = item
+end
+
+function M.GetHeroPositions(hero)
+  if heroes.HEROES[hero] ~= nil then
+    return heroes.HEROES[hero].position
+  else
+    -- TODO: We choose the positions 1 and 2 for unknown player's hero
+    return {1, 2}
+  end
 end
 
 -- Provide an access to local functions for unit tests only

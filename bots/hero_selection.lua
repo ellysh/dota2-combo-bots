@@ -34,15 +34,6 @@ local function IsHeroPicked(hero)
          or IsHeroPickedByTeam(hero, GetOpposingTeam())
 end
 
-local function GetHeroPositions(hero)
-  if heroes.HEROES[hero] ~= nil then
-    return heroes.HEROES[hero].position
-  else
-    -- TODO: We choose the positions 1 and 2 for unknown player's hero
-    return {1, 2}
-  end
-end
-
 local function GetRandomHero(position)
   local hero = functions.GetKeyWith(
     heroes.HEROES,
@@ -102,7 +93,7 @@ local function GetRequiredPosition(heroes)
   }
 
   for _, hero in pairs(heroes) do
-    local hero_position = GetHeroPositions(hero)
+    local hero_position = functions.GetHeroPositions(hero)
 
     if positions[hero_position[1]] == "empty" then
       positions[hero_position[1]] = hero
@@ -175,7 +166,6 @@ end
 M.test_GetPickedHeroesList = GetPickedHeroesList
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked
-M.test_GetHeroPositions = GetHeroPositions
 M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 M.test_IsHumanPlayersPicked = IsHumanPlayersPicked

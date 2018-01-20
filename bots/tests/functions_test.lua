@@ -316,4 +316,14 @@ function test_SetItemToSell_first_time()
   functions.SetItemToSell(bot, "item_tpscroll")
 end
 
+function test_GetHeroPositions()
+  luaunit.assertEquals(
+    functions.GetHeroPositions("npc_dota_hero_shadow_shaman"),
+    {5, 4})
+
+  luaunit.assertEquals(
+    functions.GetHeroPositions("npc_dota_hero_unknown"),
+    {1, 2})
+end
+
 os.exit(luaunit.LuaUnit.run())

@@ -44,16 +44,6 @@ function test_IsHeroPicked()
       "npc_dota_hero_crystal_maiden"))
 end
 
-function test_GetHeroPositions()
-  luaunit.assertEquals(
-    hero_selection.test_GetHeroPositions("npc_dota_hero_shadow_shaman"),
-    {5, 4})
-
-  luaunit.assertEquals(
-    hero_selection.test_GetHeroPositions("npc_dota_hero_unknown"),
-    {1, 2})
-end
-
 function test_GetRandomHero()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
