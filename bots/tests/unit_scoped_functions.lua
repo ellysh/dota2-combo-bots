@@ -449,8 +449,11 @@ function Ability:GetCastRange()
   return self.cast_range
 end
 
+ABILITY_IS_FULLY_CASTABLE = true
+
 function Ability:IsFullyCastable()
-  return string.find(self.name, "crystal_maiden") ~= nil
+  return ABILITY_IS_FULLY_CASTABLE
+         and string.find(self.name, "crystal_maiden") ~= nil
 end
 
 function Ability:IsAbilityCastable()

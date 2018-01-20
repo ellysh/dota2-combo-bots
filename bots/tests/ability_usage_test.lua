@@ -93,6 +93,16 @@ function test_IsBotModeMatch_fails()
       BOT_MODE_ATTACK))
 end
 
+function test_GetDesiredAbilitiesList_with_not_castable_fails()
+  test_RefreshBot()
+
+  ABILITY_IS_FULLY_CASTABLE = false
+
+  luaunit.assertEquals(
+    ability_usage.test_GetDesiredAbilitiesList(GetBot()),
+    {})
+end
+
 function test_CalculateDesireAndTarget_succeed()
   test_RefreshBot()
 
@@ -136,7 +146,7 @@ function test_CalculateDesireAndTarget_fails()
   luaunit.assertEquals(target, nil)
 end
 
-function test_ChooseAbilityAndTarget()
+function test_ChooseAbilityAndTarget_succeed()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
@@ -149,7 +159,21 @@ function test_ChooseAbilityAndTarget()
   luaunit.assertNotEquals(target, nil)
 end
 
-function test_UseAbility()
+function test_ChooseAbilityAndTarget_with_not_castable_fails()
+  test_RefreshBot()
+
+  ABILITY_IS_FULLY_CASTABLE = false
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  ABILITY_DAMAGE = 200
+
+  local ability, target =
+    ability_usage.test_ChooseAbilityAndTarget(GetBot())
+
+  luaunit.assertEquals(ability, nil)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_UseAbility_behavior_point_succeed()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
@@ -163,6 +187,22 @@ function test_UseAbility()
 
   luaunit.assertEquals(BOT_ABILITY, ability)
   luaunit.assertEquals(BOT_ABILITY_LOCATION, location)
+end
+
+function test_UseAbility_behavior_no_target_succeed()
+  test_RefreshBot()
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  BOT_ABILITY = nil
+  BOT_ABILITY_LOCATION = nil
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+  local location =  {15, 25}
+
+  ability_usage.test_UseAbility(GetBot(), ability, location)
+
+  luaunit.assertEquals(BOT_ABILITY, ability)
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
 end
 
 function test_AbilityUsageThink_succeed()

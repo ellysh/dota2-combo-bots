@@ -60,7 +60,10 @@ local function GetDesiredAbilitiesList(bot)
     local ability = bot:GetAbilityByName(ability_name)
 
     if ability == nil
-      or not ability:IsFullyCastable() then goto continue end
+      or not ability:IsFullyCastable() then
+      -- We need "do end" around otherwse a code coverage does not work
+      do goto continue end
+    end
 
     for bot_mode, algorithm in functions.spairs(algorithms) do
 
@@ -139,6 +142,7 @@ end
 -- Provide an access to local functions and lists for unit tests only
 M.test_IsBotModeMatch = IsBotModeMatch
 M.test_CalculateDesireAndTarget = CalculateDesireAndTarget
+M.test_GetDesiredAbilitiesList = GetDesiredAbilitiesList
 M.test_ChooseAbilityAndTarget = ChooseAbilityAndTarget
 M.test_UseAbility = UseAbility
 
