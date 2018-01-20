@@ -100,31 +100,29 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMinHealth,
-    IsTargetable)
+    function(hero)
+      return IsTargetable(hero) and IsEnoughDamageToKill(hero, ability)
+    end)
 
-  if enemy_hero == nil
-    or not IsTargetable(enemy_hero)
-    or not IsEnoughDamageToKill(enemy_hero, ability) then
-
-    return false, nil
-  end
+  if enemy_hero == nil then
+    return false, nil end
 
   return true, GetTarget(enemy_hero, ability)
 end
 
 function M.channeling_enemy_hero(bot, ability)
   local enemies = GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemy_hero = functions.GetElementWith(
+    enemies,
+    CompareMaxHeroKills,
+    function(hero)
+      return IsTargetable(hero) and hero:IsChanneling()
+    end)
 
-  for _, enemy in pairs(enemies) do
-    if enemy ~= nil
-      and enemy:IsChanneling()
-      and IsTargetable(enemy) then
+  if enemy_hero == nil then
+    return false, nil end
 
-      return true, GetTarget(enemy, ability)
-    end
-  end
-
-  return false, nil
+  return true, GetTarget(enemy_hero, ability)
 end
 
 function M.max_kills_enemy_hero(bot, ability)
