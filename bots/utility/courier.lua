@@ -115,16 +115,8 @@ function M.test_SetCourierIdleTime(time)
   COURIER_IDLE_TIME = time
 end
 
-function M.test_GetCourierOwner()
-  return COURIER_OWNER
-end
-
 function M.test_SetCourierOwner(owner)
   COURIER_OWNER = owner
-end
-
-function M.test_GetCourierCurrentAction()
-  return COURIER_CURRENT_ACTION
 end
 
 function M.test_SetCourierCurrentAction(action)
