@@ -205,6 +205,37 @@ function test_UseAbility_behavior_no_target_succeed()
   luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
 end
 
+function test_UseAbility_behavior_unit_target_succeed()
+  test_RefreshBot()
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  BOT_ABILITY = nil
+  BOT_ABILITY_LOCATION = nil
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+  local location =  {15, 25}
+
+  ability_usage.test_UseAbility(GetBot(), ability, location)
+
+  luaunit.assertEquals(BOT_ABILITY, ability)
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
+end
+
+function test_UseAbility_nil_fails()
+  test_RefreshBot()
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  BOT_ABILITY = nil
+  BOT_ABILITY_LOCATION = nil
+
+  local location =  {15, 25}
+
+  ability_usage.test_UseAbility(GetBot(), nil, location)
+
+  luaunit.assertEquals(BOT_ABILITY, nil)
+  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
+end
+
 function test_AbilityUsageThink_succeed()
   test_RefreshBot()
 

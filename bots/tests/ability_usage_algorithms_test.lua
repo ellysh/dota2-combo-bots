@@ -168,7 +168,7 @@ function test_GetTarget()
     nil)
 end
 
-function test_min_hp_enemy_hero_to_kill()
+function test_min_hp_enemy_hero_to_kill_succeed()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
@@ -183,6 +183,23 @@ function test_min_hp_enemy_hero_to_kill()
 
   luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {10, 10})
+end
+
+function test_min_hp_enemy_hero_to_kill_not_enough_damage_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  ABILITY_DAMAGE = 0
+
+  local desire, target =
+    ability_usage_algorithms.min_hp_enemy_hero_to_kill(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
 end
 
 function test_channeling_enemy_hero()
@@ -201,12 +218,13 @@ function test_channeling_enemy_hero()
   luaunit.assertEquals(target, {10, 10})
 end
 
-function test_max_kills_enemy_hero()
+function test_max_kills_enemy_hero_succeed()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = true
 
   local desire, target = ability_usage_algorithms.max_kills_enemy_hero(
     GetBot(),
@@ -216,7 +234,23 @@ function test_max_kills_enemy_hero()
   luaunit.assertEquals(target, {10, 10})
 end
 
-function test_three_and_more_enemy_heroes_aoe()
+function test_max_kills_enemy_hero_not_targetable_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = false
+
+  local desire, target = ability_usage_algorithms.max_kills_enemy_hero(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_three_and_more_enemy_heroes_aoe_succeed()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_freezing_field")
