@@ -48,6 +48,23 @@ function test_GetDesire_in_fight_mode_negative()
     0)
 end
 
+function test_GetDesire_succeed()
+  test_RefreshBot()
+
+  functions.SetItemToBuy(GetBot(), "item_boots")
+  IS_SIDE_SHOP_ITEM = true
+  DISTANCE_FROM_SHOP = 2000
+  BOT_MODE = BOT_MODE_NONE
+
+  luaunit.assertAlmostEquals(
+    mode_shop.test_GetDesire(
+      IsItemPurchasedFromSideShop,
+      "DistanceFromSideShop",
+      0.3),
+    0.63,
+    0.01)
+end
+
 function test_GetDesireSideShop_negative()
   test_RefreshBot()
 
