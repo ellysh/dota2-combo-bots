@@ -332,8 +332,10 @@ function Bot:GetNearbyBarracks(radius, enemies, mode)
   return { unit1, unit2 }
 end
 
+FIND_AOE_LOCATION_COUNT = 3
+
 function Bot:FindAoELocation()
-  return {count = 3, targetloc = {1.2, 3.4}}
+  return {count = FIND_AOE_LOCATION_COUNT, targetloc = {1.2, 3.4}}
 end
 
 BOT_ABILITY = nil

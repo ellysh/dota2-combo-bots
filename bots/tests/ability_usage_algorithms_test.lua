@@ -284,12 +284,13 @@ function test_three_and_more_enemy_heroes_aoe_not_targetable_fails()
   luaunit.assertEquals(target, nil)
 end
 
-function test_last_attacked_enemy_hero()
+function test_last_attacked_enemy_hero_succeed()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = true
 
   local desire, target =
     ability_usage_algorithms.last_attacked_enemy_hero(
@@ -300,12 +301,30 @@ function test_last_attacked_enemy_hero()
   luaunit.assertEquals(target, {10, 10})
 end
 
-function test_three_and_more_creeps()
+function test_last_attacked_enemy_hero_not_targetable_fails()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = false
+
+  local desire, target =
+    ability_usage_algorithms.last_attacked_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_three_and_more_creeps_succeed()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = true
 
   local desire, target =
     ability_usage_algorithms.three_and_more_creeps(
@@ -314,6 +333,42 @@ function test_three_and_more_creeps()
 
   luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target, {1.2, 3.4})
+end
+
+function test_three_and_more_creeps_not_targetable_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = false
+  FIND_AOE_LOCATION_COUNT = 3
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_creeps(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_three_and_more_creeps_two_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = true
+  FIND_AOE_LOCATION_COUNT = 2
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_creeps(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
 end
 
 function test_max_hp_creep()
@@ -338,6 +393,7 @@ function test_three_and_more_enemy_heroes()
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  FIND_AOE_LOCATION_COUNT = 3
 
   local desire, target =
     ability_usage_algorithms.three_and_more_enemy_heroes(
