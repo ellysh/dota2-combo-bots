@@ -86,7 +86,8 @@ local function NumberUnitsOnLane(unit_type, lane)
 
   for _, unit in pairs(units) do
     if not unit:IsAlive() or unit:IsIllusion() then
-      goto continue end
+      do goto continue end
+    end
 
     local disatnce_from_lane =
       GetAmountAlongLane(lane, unit:GetLocation()).distance

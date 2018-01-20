@@ -80,7 +80,7 @@ function test_time_is_more_15_minutes()
   luaunit.assertTrue(algorithms.time_is_more_15_minutes())
 end
 
-function test_NumberUnitsOnLane()
+function test_NumberUnitsOnLane_succed()
   local unit = Unit:new()
 
   UNITS = { unit, unit, unit }
@@ -100,6 +100,10 @@ function test_NumberUnitsOnLane()
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP),
     1)
+end
+
+function test_NumberUnitsOnLane_fails()
+  local unit = Unit:new()
 
   UNITS = {}
 
@@ -109,7 +113,18 @@ function test_NumberUnitsOnLane()
       LANE_TOP),
     0)
 
+  UNITS = { unit }
   LANE_DISTANCE = 3000
+
+  luaunit.assertEquals(
+    algorithms.test_NumberUnitsOnLane(
+      UNIT_LIST_ALLIED_HEROES,
+      LANE_TOP),
+    0)
+
+  unit.health = 0
+  UNITS = { unit }
+  LANE_DISTANCE = 200
 
   luaunit.assertEquals(
     algorithms.test_NumberUnitsOnLane(
@@ -135,6 +150,8 @@ function test_more_ally_heroes_alive_then_enemy()
 end
 
 function test_no_enemy_heroes_on_lane()
+  LANE_DISTANCE = 3000
+
   luaunit.assertTrue(algorithms.no_enemy_heroes_on_top())
   luaunit.assertTrue(algorithms.no_enemy_heroes_on_mid())
   luaunit.assertTrue(algorithms.no_enemy_heroes_on_bot())
