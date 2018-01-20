@@ -1,6 +1,9 @@
 * version 0.8
-  - Fix a bug with sending courier to base after each transfer
-  - Fix a bug with buying the same items several times
+  - Fix item builds of Chaos Knight and Phantom Assasin.
+  - Fix a bug with casting AoE abilities to non-targetable units.
+  - Fix a bug with a desire calculating to visit secret and side shops.
+  - Fix a bug with sending courier to base after each transfer.
+  - Fix a bug with buying the same items several times.
 
 * version 0.7
   - Add the Chaos Knight hero.
