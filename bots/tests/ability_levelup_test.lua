@@ -115,12 +115,12 @@ function test_AbilityLevelUp()
       Ability:new("crystal_maiden_crystal_nova")))
 end
 
-function test_AbilityLevelUpThink()
+function test_AbilityLevelUpThink_without_ability_points_fails()
   test_RefreshBot()
 
   local bot = GetBot()
   bot.level = 1
-  bot.ability_points = 1
+  bot.ability_points = 0
 
   ability_levelup.test_SetAbilities(
     {
@@ -146,13 +146,13 @@ function test_AbilityLevelUpThink()
 
   ability_levelup.AbilityLevelUpThink()
 
-  luaunit.assertEquals(BOT_LEVELUP_ABILITY, "crystal_maiden_frostbite")
+  luaunit.assertEquals(BOT_LEVELUP_ABILITY, nil)
 end
 
--- We cannot start this test from level 1 because the Database
--- was changed in the test_AbilityLevelUpThink test.
+-- Succeed AbilityLevelUpThink should be done in one function
+-- becuase this function changes the Database.
 
-function test_AbilityLevelUpThink_from_2_to_25_level()
+function test_AbilityLevelUpThink_from_1_to_25_level_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -184,10 +184,15 @@ function test_AbilityLevelUpThink_from_2_to_25_level()
     })
 
   ABILITY_CAN_BE_UPGRADED = true
-
+  ABILITY_IS_NULL = false
   BOT_LEVELUP_ABILITY = nil
-  ability_levelup.AbilityLevelUpThink()
 
+  ability_levelup.AbilityLevelUpThink()
+  luaunit.assertEquals(
+    BOT_LEVELUP_ABILITY,
+    "crystal_maiden_frostbite")
+
+  ability_levelup.AbilityLevelUpThink()
   luaunit.assertEquals(
     BOT_LEVELUP_ABILITY,
     "crystal_maiden_brilliance_aura")

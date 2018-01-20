@@ -66,12 +66,18 @@ function RandomFloat(min, max)
   end
 end
 
+TEAM = TEAM_RADIANT
+
 function GetTeam()
-  return TEAM_RADIANT
+  return TEAM
 end
 
 function GetOpposingTeam()
-  return TEAM_DIRE
+  if TEAM == TEAM_RADIANT then
+    return TEAM_DIRE
+  else
+    return TEAM_RADIANT
+  end
 end
 
 function GetTeamPlayers(team)

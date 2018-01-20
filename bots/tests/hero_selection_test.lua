@@ -132,12 +132,19 @@ function test_GetRequiredPosition()
 end
 
 function test_PickHero()
-  SELECTED_HEROES = {"npc_dota_hero_sven"}
+  SELECTED_HEROES = {}
 
+  hero_selection.test_PickHero(1, nil)
   hero_selection.test_PickHero(2, SELECTED_HEROES)
+  hero_selection.test_PickHero(3, SELECTED_HEROES)
+  hero_selection.test_PickHero(4, SELECTED_HEROES)
+  hero_selection.test_PickHero(5, SELECTED_HEROES)
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_sven")
-  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_chaos_knight")
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_chaos_knight")
+  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
+  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
+  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lion")
 end
 
 function test_Think()
@@ -156,6 +163,7 @@ function test_Think()
 end
 
 function test_UpdateLaneAssignments()
+  TEAM = TEAM_RADIANT
   local result = UpdateLaneAssignments()
 
   luaunit.assertEquals(result[1], LANE_BOT)
@@ -163,6 +171,15 @@ function test_UpdateLaneAssignments()
   luaunit.assertEquals(result[3], LANE_TOP)
   luaunit.assertEquals(result[4], LANE_BOT)
   luaunit.assertEquals(result[5], LANE_TOP)
+
+  TEAM = TEAM_DIRE
+  local result = UpdateLaneAssignments()
+
+  luaunit.assertEquals(result[1], LANE_TOP)
+  luaunit.assertEquals(result[2], LANE_MID)
+  luaunit.assertEquals(result[3], LANE_BOT)
+  luaunit.assertEquals(result[4], LANE_TOP)
+  luaunit.assertEquals(result[5], LANE_BOT)
 end
 
 function test_GetBotNames()
