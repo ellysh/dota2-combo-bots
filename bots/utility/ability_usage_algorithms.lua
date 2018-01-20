@@ -143,10 +143,16 @@ function M.max_kills_enemy_hero(bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
+local function NumberOfTargetableUnits(units)
+  return functions.GetNumberOfElementsWith(
+    units,
+    function(unit) return IsTargetable(unit) end)
+end
+
 function M.three_and_more_enemy_heroes_aoe(bot, ability)
   local enemies = GetEnemyHeroes(bot, ability:GetAOERadius())
 
-  if 3 <= #enemies then
+  if 3 <= NumberOfTargetableUnits(enemies) then
     return true, nil end
 
   return false, nil
@@ -190,6 +196,10 @@ end
 
 function M.three_and_more_creeps(bot, ability)
   local cast_range = ability:GetCastRange()
+  local enemies = GetEnemyCreeps(bot, cast_range)
+
+  if NumberOfTargetableUnits(enemies) < 3 then
+    return false, nil end
 
   local target = bot:FindAoELocation(
     true,
@@ -226,6 +236,10 @@ end
 
 function M.three_and_more_enemy_heroes(bot, ability)
   local cast_range = ability:GetCastRange()
+  local enemies = GetEnemyHeroes(bot, cast_range)
+
+  if NumberOfTargetableUnits(enemies) < 3 then
+    return false, nil end
 
   local target = bot:FindAoELocation(
     true,
@@ -378,7 +392,7 @@ end
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
   local enemies = GetEnemyCreeps(bot, ability:GetAOERadius())
 
-  if 3 <= #enemies then
+  if 3 <= NumberOfTargetableUnits(enemies) then
     return true, nil end
 
   return false, nil

@@ -92,8 +92,7 @@ local function ChooseAbilityAndTarget(bot)
 
   local desired_abilities = GetDesiredAbilitiesList(bot)
 
-  for ability, target_desire
-    in functions.spairs(
+  for ability, target_desire in functions.spairs(
       desired_abilities,
       function(t, a, b) return t[b][2] < t[a][2] end) do
 

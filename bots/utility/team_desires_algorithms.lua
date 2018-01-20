@@ -136,24 +136,13 @@ end
 function M.no_enemy_heroes_on_bot()
   return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
 end
-local function GetNumberOfPlayersWith(players, check_function)
-  local result = 0
-
-  for _, player in pairs(players) do
-    if check_function(player) then
-      result = result + 1
-    end
-  end
-
-  return result
-end
 
 function M.more_ally_heroes_alive_then_enemy()
-  local ally_number = GetNumberOfPlayersWith(
+  local ally_number = functions.GetNumberOfElementsWith(
     GetTeamPlayers(GetTeam()),
     function(player) return IsHeroAlive(player) end)
 
-  local enemy_number = GetNumberOfPlayersWith(
+  local enemy_number = functions.GetNumberOfElementsWith(
     GetTeamPlayers(GetOpposingTeam()),
     function(player) return IsHeroAlive(player) end)
 
@@ -163,6 +152,5 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_NumberUnitsOnLane = NumberUnitsOnLane
-M.test_GetNumberOfPlayersWith = GetNumberOfPlayersWith
 
 return M

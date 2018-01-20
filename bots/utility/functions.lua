@@ -151,6 +151,18 @@ function M.GetElementWith(list, compare_function, validate_function)
   return nil
 end
 
+function M.GetNumberOfElementsWith(list, check_function)
+  local result = 0
+
+  for _, element in pairs(list) do
+    if check_function(element) then
+      result = result + 1
+    end
+  end
+
+  return result
+end
+
 function M.GetKeyWith(list, compare_function, validate_function)
 
   for key, element in M.spairs(list, compare_function) do
