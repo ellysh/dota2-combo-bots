@@ -266,6 +266,8 @@ function Bot:GetNearbyHeroes(radius, enemies, mode)
   return { unit1, unit2, unit3 }
 end
 
+NEARBY_CREEPS_COUNT = 3
+
 function Bot:GetNearbyCreeps(radius, enemies)
   local unit1 = Unit:new()
   unit1.name = "creep1"
@@ -284,7 +286,11 @@ function Bot:GetNearbyCreeps(radius, enemies)
   unit3.networth = 180
   unit3.location = {15, 15}
 
-  return { unit1, unit2, unit3 }
+  if NEARBY_CREEPS_COUNT == 3 then
+    return { unit1, unit2, unit3 }
+  else
+    return { unit1, unit2 }
+  end
 end
 
 BOT_IS_NEARBY_TOWERS = true

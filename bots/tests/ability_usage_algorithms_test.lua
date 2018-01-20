@@ -325,6 +325,7 @@ function test_three_and_more_creeps_succeed()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_CAN_BE_SEEN = true
+  NEARBY_CREEPS_COUNT = 3
 
   local desire, target =
     ability_usage_algorithms.three_and_more_creeps(
@@ -724,7 +725,7 @@ function test_low_hp_ally_creep()
   luaunit.assertEquals(target:GetUnitName(), "creep1")
 end
 
-function test_three_and_more_ally_creeps_aoe()
+function test_three_and_more_ally_creeps_aoe_succeed()
   test_RefreshBot()
 
   local ability = Ability:new("crystal_maiden_freezing_field")
@@ -737,6 +738,23 @@ function test_three_and_more_ally_creeps_aoe()
       ability)
 
   luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_three_and_more_ally_creeps_aoe_two_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_freezing_field")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  NEARBY_CREEPS_COUNT = 2
+
+  local desire, target =
+    ability_usage_algorithms.three_and_more_ally_creeps_aoe(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 end
 
