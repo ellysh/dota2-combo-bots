@@ -1,4 +1,5 @@
 * version 0.8
+  - Fix a bug with the Satanic item recipe.
   - Fix item builds of Chaos Knight and Phantom Assasin.
   - Fix a bug with casting AoE abilities to non-targetable units.
   - Fix a bug with a desire calculating to visit secret and side shops.
