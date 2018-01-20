@@ -5,6 +5,7 @@ local M = {}
 
 local COURIER_OWNER = nil
 local CURRENT_ACTION = nil
+local COURIER_IDLE_TIME = nil
 
 local function IsCourierAvailable(bot)
   return (COURIER_OWNER == nil
@@ -33,10 +34,10 @@ local function FreeCourier(courier, state)
   -- We use the GameTime here to avoid negative DotaTime value
   -- before the horn.
 
-  if courier.idle_time == nil then
-    courier.idle_time = GameTime()
-  elseif 10 < (GameTime() - courier.idle_time) then
-    courier.idle_time = nil
+  if COURIER_IDLE_TIME == nil then
+    COURIER_IDLE_TIME = GameTime()
+  elseif 10 < (GameTime() - COURIER_IDLE_TIME) then
+    COURIER_IDLE_TIME = nil
     COURIER_OWNER = nil
     CURRENT_ACTION = nil
   end
@@ -105,5 +106,13 @@ M.test_IsFreeState = IsFreeState
 M.test_FreeCourier = FreeCourier
 M.test_IsSecretShopRequired = IsSecretShopRequired
 M.test_IsCourierDamaged = IsCourierDamaged
+
+function M.test_GetCourierIdleTime()
+  return COURIER_IDLE_TIME
+end
+
+function M.test_SetCourierIdleTime(time)
+  COURIER_IDLE_TIME = time
+end
 
 return M

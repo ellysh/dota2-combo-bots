@@ -16,23 +16,21 @@ end
 function test_FreeCourier()
   test_RefreshCourier()
 
-  local c = GetCourier()
-
-  c.idle_time = 1
+  courier.test_SetCourierIdleTime(1)
 
   courier.test_FreeCourier(
-    c,
+    GetCourier(),
     COURIER_STATE_MOVING)
 
-  luaunit.assertEquals(c.idle_time, 1)
+  luaunit.assertEquals(courier.test_GetCourierIdleTime(), 1)
 
   TIME = 12
-  c.idle_time = 1
+  courier.test_SetCourierIdleTime(1)
   courier.test_FreeCourier(
-    c,
+    GetCourier(),
     COURIER_STATE_IDLE)
 
-  luaunit.assertEquals(c.idle_time, nil)
+  luaunit.assertEquals(courier.test_GetCourierIdleTime(), nil)
 end
 
 function test_IsSecretShopRequired()
