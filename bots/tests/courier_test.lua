@@ -7,10 +7,31 @@ local luaunit = require('luaunit')
 local courier = require("courier")
 local functions = require("functions")
 
-function test_IsCourierAvailable()
+function test_IsCourierAvailable_succeed()
   local bot = GetBot()
 
+  courier.test_SetCourierOwner(nil)
+  courier.test_SetCourierCurrentAction(nil)
+
   luaunit.assertTrue(courier.test_IsCourierAvailable(bot))
+end
+
+function test_IsCourierAvailable_another_owner_fails()
+  local bot = GetBot()
+
+  courier.test_SetCourierOwner("npc_dota_hero_sniper")
+  courier.test_SetCourierCurrentAction(nil)
+
+  luaunit.assertFalse(courier.test_IsCourierAvailable(bot))
+end
+
+function test_IsCourierAvailable_action_fails()
+  local bot = GetBot()
+
+  courier.test_SetCourierOwner(nil)
+  courier.test_SetCourierCurrentAction(COURIER_ACTION_SECRET_SHOP)
+
+  luaunit.assertFalse(courier.test_IsCourierAvailable(bot))
 end
 
 function test_FreeCourier()

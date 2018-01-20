@@ -4,13 +4,13 @@ local functions = require(
 local M = {}
 
 local COURIER_OWNER = nil
-local CURRENT_ACTION = nil
+local COURIER_CURRENT_ACTION = nil
 local COURIER_IDLE_TIME = nil
 
 local function IsCourierAvailable(bot)
   return (COURIER_OWNER == nil
          or COURIER_OWNER == bot:GetUnitName())
-         and CURRENT_ACTION == nil
+         and COURIER_CURRENT_ACTION == nil
 end
 
 local function SetCourierAction(bot, courier, action)
@@ -18,7 +18,7 @@ local function SetCourierAction(bot, courier, action)
 
   bot:ActionImmediate_Courier(courier, action)
 
-  CURRENT_ACTION = action
+  COURIER_CURRENT_ACTION = action
 end
 
 local function IsFreeState(state)
@@ -39,7 +39,7 @@ local function FreeCourier(courier, state)
   elseif 10 < (GameTime() - COURIER_IDLE_TIME) then
     COURIER_IDLE_TIME = nil
     COURIER_OWNER = nil
-    CURRENT_ACTION = nil
+    COURIER_CURRENT_ACTION = nil
   end
 end
 
@@ -113,6 +113,22 @@ end
 
 function M.test_SetCourierIdleTime(time)
   COURIER_IDLE_TIME = time
+end
+
+function M.test_GetCourierOwner()
+  return COURIER_OWNER
+end
+
+function M.test_SetCourierOwner(owner)
+  COURIER_OWNER = owner
+end
+
+function M.test_GetCourierCurrentAction()
+  return COURIER_CURRENT_ACTION
+end
+
+function M.test_SetCourierCurrentAction(action)
+  COURIER_CURRENT_ACTION = action
 end
 
 return M
