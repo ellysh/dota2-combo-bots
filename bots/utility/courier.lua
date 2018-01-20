@@ -8,8 +8,13 @@ local COURIER_CURRENT_ACTION = nil
 local COURIER_IDLE_TIME = nil
 
 local function IsCourierAvailable(bot)
+  -- TODO: We compare only the primary position of
+  -- the courier owner and the current bot.
+
   return (COURIER_OWNER == nil
-         or COURIER_OWNER == bot:GetUnitName())
+         or COURIER_OWNER == bot:GetUnitName()
+         or functions.GetHeroPositions(bot:GetUnitName())[1]
+            < functions.GetHeroPositions(COURIER_OWNER)[1])
          and COURIER_CURRENT_ACTION == nil
 end
 

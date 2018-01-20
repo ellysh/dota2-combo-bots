@@ -16,6 +16,16 @@ function test_IsCourierAvailable_succeed()
   luaunit.assertTrue(courier.test_IsCourierAvailable(bot))
 end
 
+function test_IsCourierAvailable_for_fewer_position_hero_succeed()
+  local bot = GetBot()
+  bot.name = "npc_dota_hero_ursa"
+
+  courier.test_SetCourierOwner("npc_dota_hero_shadow_shaman")
+  courier.test_SetCourierCurrentAction(nil)
+
+  luaunit.assertTrue(courier.test_IsCourierAvailable(bot))
+end
+
 function test_IsCourierAvailable_another_owner_fails()
   local bot = GetBot()
 
