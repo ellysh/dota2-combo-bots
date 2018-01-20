@@ -132,11 +132,8 @@ function M.max_kills_enemy_hero(bot, ability)
     CompareMaxHeroKills,
     IsTargetable)
 
-  if enemy_hero == nil
-    or not IsTargetable(enemy_hero) then
-
-    return false, nil
-  end
+  if enemy_hero == nil then
+    return false, nil end
 
   return true, GetTarget(enemy_hero, ability)
 end
@@ -204,11 +201,8 @@ function M.max_hp_creep(bot, ability)
     CompareMaxHealth,
     IsTargetable)
 
-  if creep == nil
-    or not IsTargetable(creep) then
-
-    return false, nil
-  end
+  if creep == nil then
+    return false, nil end
 
   return true, GetTarget(creep, ability)
 end
@@ -285,11 +279,8 @@ function M.max_estimated_damage_enemy_hero(bot, ability)
     CompareMaxEstimatedDamage,
     IsTargetable)
 
-  if enemy_hero == nil
-    or not IsTargetable(enemy_hero) then
-
-    return false, nil
-  end
+  if enemy_hero == nil then
+    return false, nil end
 
   return true, GetTarget(enemy_hero, ability)
 end
@@ -392,14 +383,14 @@ function M.low_hp_ally_hero(bot, ability)
   local ally_hero = functions.GetElementWith(
     ally_heroes,
     CompareMinHealth,
-    IsTargetable)
+    function(unit)
+      return IsTargetable(unit)
+             and functions.GetUnitHealthLevel(unit)
+                 <= constants.UNIT_LOW_HEALTH_LEVEL
+    end)
 
-  if ally_hero == nil
-    or not IsTargetable(ally_hero)
-    or functions.GetUnitHealthLevel(ally_hero) > constants.UNIT_LOW_HEALTH_LEVEL then
-
-    return false, nil
-  end
+  if ally_hero == nil then
+    return false, nil end
 
   return true, GetTarget(ally_hero, ability)
 end
@@ -409,15 +400,14 @@ function M.low_hp_ally_creep(bot, ability)
   local ally_creep = functions.GetElementWith(
     allies,
     CompareMinHealth,
-    IsTargetable)
+    function(unit)
+      return IsTargetable(unit)
+             and functions.GetUnitHealthLevel(unit)
+                 <= constants.UNIT_LOW_HEALTH_LEVEL
+    end)
 
-  if ally_creep == nil
-    or not IsTargetable(ally_creep)
-    or functions.GetUnitHealthLevel(ally_creep) > constants.UNIT_LOW_HEALTH_LEVEL
-    then
-
-    return false, nil
-  end
+  if ally_creep == nil then
+    return false, nil end
 
   return true, GetTarget(ally_creep, ability)
 end
@@ -440,11 +430,8 @@ function M.min_hp_enemy_building(bot, ability)
     CompareMinHealth,
     IsTargetable)
 
-  if enemy_building == nil
-    or not IsTargetable(enemy_building) then
-
-    return false, nil
-  end
+  if enemy_building == nil then
+    return false, nil end
 
   return true, GetTarget(enemy_building, ability)
 end
