@@ -225,7 +225,9 @@ end
 
 function test_GetRandomTrue()
   -- TODO: Improve this test
-  luaunit.assertTrue(functions.GetRandomTrue(1.0))
+  luaunit.assertTrue(functions.GetRandomTrue(100))
+
+  luaunit.assertFalse(functions.GetRandomTrue(0))
 end
 
 function test_GetElementWith()

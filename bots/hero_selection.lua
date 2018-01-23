@@ -41,7 +41,7 @@ local function GetRandomHero(position)
     function(hero, details)
       return functions.IsElementInList(details.position, position)
              and not IsHeroPicked(hero)
-             and functions.GetRandomTrue(0.5)
+             and functions.GetRandomTrue(50)
     end)
 
   return hero

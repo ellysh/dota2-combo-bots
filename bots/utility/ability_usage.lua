@@ -73,9 +73,9 @@ local function GetDesiredAbilitiesList(bot)
           bot_mode,
           ability)
 
-      local desire = functions.ternary(is_succeed, algorithm[2], 0.0)
+      local desire = functions.ternary(is_succeed, algorithm[2], 0)
 
-      if desire ~= nil and desire ~= 0.0 then
+      if desire ~= nil and desire ~= 0 then
          result[ability] = {target, desire}
       end
     end

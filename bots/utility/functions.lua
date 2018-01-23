@@ -132,7 +132,8 @@ function M.ternary(condition, a, b)
 end
 
 function M.GetRandomTrue(probability)
-  return RandomFloat(0.0, 1.0) < probability
+  -- The probability is the 0% to 100% value
+  return RandomFloat(0, 100) < probability
 end
 
 function M.GetInventoryItems(bot)
