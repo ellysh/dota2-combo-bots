@@ -436,6 +436,10 @@ function Bot:WasRecentlyDamagedByHero(unit, time)
   return true
 end
 
+function Bot:GetCurrentVisionRange()
+  return 1600
+end
+
 ------------------------------------------
 
 Ability = {}
