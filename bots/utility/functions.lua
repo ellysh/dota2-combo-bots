@@ -136,6 +136,10 @@ function M.GetRandomTrue(probability)
   return RandomFloat(0, 100) < probability
 end
 
+function M.PercentToDesire(percent)
+  return percent / 100
+end
+
 function M.GetInventoryItems(bot)
   local _, result = M.GetItems(
     bot,
