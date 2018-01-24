@@ -6,6 +6,8 @@ local attack_target = require(
 
 local M = {}
 
+-- TODO: Move the algorithms to the separate module
+
 -- TODO: Fix the code duplication below. We have the same code in the
 -- ability_usage_algorithms.lua module.
 
@@ -103,6 +105,23 @@ function M.last_hit_hp_creep(bot, radius)
 
   return true, creep
 end
+
+function M.min_hp_enemy_building(bot, radius)
+  local enemy_buildings =
+    functions.GetEnemyBuildings(bot, radius)
+
+  local enemy_building = functions.GetElementWith(
+    enemy_buildings,
+    CompareMinHealth,
+    IsTargetable)
+
+  if enemy_building == nil then
+    return false, nil end
+
+  return true, enemy_building
+end
+
+-----------
 
 local function GetDesire(bot, mode_desires)
   for mode, desire in pairs(mode_desires) do

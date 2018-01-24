@@ -42,15 +42,28 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 0
   },
 
-  min_hp_creep = {
+  last_hit_hp_creep = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,
-      BOT_MODE_PUSH_TOWER = 50,
-      BOT_MODE_ATTACK = 50,
+      BOT_MODE_PUSH_TOWER = 60,
+      BOT_MODE_ATTACK = 60,
       BOT_MODE_LANING = 50,
       BOT_MODE_ROSHAN = 0,
       BOT_MODE_FARM = 10,
       BOT_MODE_DEFEND_TOWER = 50,
+      BOT_MODE_RETREAT = 0,
+      BOT_MODE_DEFEND_ALLY = 0
+  },
+
+  min_hp_enemy_building = {
+      BOT_MODE_ROAM = 0,
+      BOT_MODE_TEAM_ROAM = 0,
+      BOT_MODE_PUSH_TOWER = 70,
+      BOT_MODE_ATTACK = 70,
+      BOT_MODE_LANING = 0,
+      BOT_MODE_ROSHAN = 0,
+      BOT_MODE_FARM = 0,
+      BOT_MODE_DEFEND_TOWER = 0,
       BOT_MODE_RETREAT = 0,
       BOT_MODE_DEFEND_ALLY = 0
   },
