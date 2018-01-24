@@ -19,16 +19,19 @@ function M.max_kills_enemy_hero(bot, radius)
   return true, enemy_hero
 end
 
-local function GetDesire(bot, desire)
-  -- TODO: Implement this function
-  return 1
+local function GetDesire(bot, mode_desires)
+  for mode, desire in pairs(mode_desires) do
+    if functions.IsBotModeMatch(bot, mode) then
+      return desire end
+  end
+  return 0
 end
 
 local function ChooseTarget(bot)
   local radius = bot:GetCurrentVisionRange()
   local targets = {}
 
-  for algorithm, desire in pairs(attack_target.ATTACK_TARGET) do
+  for algorithm, mode_desires in pairs(attack_target.ATTACK_TARGET) do
     if M[algorithm] == nil then
       do goto continue end
     end
@@ -36,7 +39,7 @@ local function ChooseTarget(bot)
     local is_succeed, target = M[algorithm](bot, radius)
 
     if is_succeed then
-      targets[GetDesire(bot, desire)] = target
+      targets[GetDesire(bot, mode_desires)] = target
     end
     ::continue::
   end

@@ -328,4 +328,90 @@ function test_GetHeroPositions()
     {1, 2})
 end
 
+function test_IsBotModeMatch_succeed()
+  test_RefreshBot()
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "any_mode"))
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "team_fight"))
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "team_fight"))
+
+  BOT_MODE = BOT_MODE_ROAM
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_ROAM"))
+
+  BOT_MODE = BOT_MODE_TEAM_ROAM
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_TEAM_ROAM"))
+
+  BOT_MODE = BOT_MODE_PUSH_TOWER_MID
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_PUSH_TOWER"))
+
+  BOT_MODE = BOT_MODE_DEFEND_TOWER_MID
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_DEFEND_TOWER"))
+
+  BOT_MODE = BOT_MODE_ATTACK
+
+  luaunit.assertTrue(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_ATTACK"))
+end
+
+function test_IsBotModeMatch_fails()
+  test_RefreshBot()
+
+  BOT_MODE = BOT_MODE_ATTACK
+
+  luaunit.assertFalse(
+    functions.IsBotModeMatch(
+      GetBot(),
+      BOT_MODE_ROAM))
+
+  BOT_MODE = BOT_MODE_DEFEND_TOWER_MID
+
+  luaunit.assertFalse(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_PUSH_TOWER"))
+
+  BOT_MODE = BOT_MODE_PUSH_TOWER_MID
+
+  luaunit.assertFalse(
+    functions.IsBotModeMatch(
+      GetBot(),
+      "BOT_MODE_DEFEND_TOWER"))
+
+  BOT_MODE = BOT_MODE_NONE
+
+  luaunit.assertFalse(
+    functions.IsBotModeMatch(
+      GetBot(),
+      BOT_MODE_ATTACK))
+end
+
 os.exit(luaunit.LuaUnit.run())

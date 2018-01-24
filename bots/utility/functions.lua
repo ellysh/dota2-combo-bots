@@ -241,6 +241,31 @@ function M.GetHeroPositions(hero)
   end
 end
 
+function M.IsBotModeMatch(bot, bot_mode)
+  if bot_mode == "any_mode" or bot_mode == "team_fight" then
+    return true
+  end
+
+  local active_mode = bot:GetActiveMode()
+
+  -- Actual bot modes are the constant digits but the
+  -- shortcuted modes are strings.
+
+  if bot_mode == "BOT_MODE_PUSH_TOWER" then
+    return active_mode == BOT_MODE_PUSH_TOWER_TOP
+           or active_mode == BOT_MODE_PUSH_TOWER_MID
+           or active_mode == BOT_MODE_PUSH_TOWER_BOT
+  end
+
+  if bot_mode == "BOT_MODE_DEFEND_TOWER" then
+    return active_mode == BOT_MODE_DEFEND_TOWER_TOP
+           or active_mode == BOT_MODE_DEFEND_TOWER_MID
+           or active_mode == BOT_MODE_DEFEND_TOWER_BOT
+  end
+
+  return active_mode == constants.BOT_MODES[bot_mode]
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
