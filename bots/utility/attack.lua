@@ -9,6 +9,13 @@ local M = {}
 -- TODO: Fix the code duplication below. We have the same code in the
 -- ability_usage_algorithms.lua module.
 
+local function IsTargetable(unit)
+  return unit:CanBeSeen()
+         and unit:IsAlive()
+         and not unit:IsInvulnerable()
+         and not unit:IsIllusion()
+end
+
 local function CompareMaxHeroKills(t, a, b)
   return GetHeroKills(t[b]:GetPlayerID()) <
     GetHeroKills(t[a]:GetPlayerID())
@@ -78,12 +85,18 @@ function M.max_hp_creep(bot, radius)
   return true, creep
 end
 
-function M.min_hp_creep(bot, radius)
+local function IsLastHit(bot, unit)
+  return unit:GetHealth() <= bot:GetAttackDamage()
+end
+
+function M.last_hit_hp_creep(bot, radius)
   local creeps = functions.GetEnemyCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
     CompareMinHealth,
-    IsTargetable)
+    function(unit)
+      return IsTargetable() and IsLastHit(bot, unit)
+    end)
 
   if creep == nil then
     return false, nil end
