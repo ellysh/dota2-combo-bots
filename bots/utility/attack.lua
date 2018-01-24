@@ -97,7 +97,7 @@ function M.last_hit_hp_creep(bot, radius)
     creeps,
     CompareMinHealth,
     function(unit)
-      return IsTargetable() and IsLastHit(bot, unit)
+      return IsTargetable(unit) and IsLastHit(bot, unit)
     end)
 
   if creep == nil then
