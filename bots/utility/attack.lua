@@ -6,6 +6,14 @@ local attack_target = require(
 
 local M = {}
 
+-- TODO: Fix the code duplication below. We have the same code in the
+-- ability_usage_algorithms.lua module.
+
+local function CompareMaxHeroKills(t, a, b)
+  return GetHeroKills(t[b]:GetPlayerID()) <
+    GetHeroKills(t[a]:GetPlayerID())
+end
+
 function M.max_kills_enemy_hero(bot, radius)
   local enemy_heroes = bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
   local enemy_hero = functions.GetElementWith(
@@ -17,6 +25,70 @@ function M.max_kills_enemy_hero(bot, radius)
     return false, nil end
 
   return true, enemy_hero
+end
+
+local function CompareMaxEstimatedDamage(t, a, b)
+  local b_damage = t[b]:GetEstimatedDamageToTarget(
+    true,
+    GetBot(),
+    3.0,
+    DAMAGE_TYPE_ALL)
+
+  local a_damage = t[a]:GetEstimatedDamageToTarget(
+    true,
+    GetBot(),
+    3.0,
+    DAMAGE_TYPE_ALL)
+
+  return b_damage < a_damage
+end
+
+function M.max_estimated_damage_enemy_hero(bot, radius)
+  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
+
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxEstimatedDamage,
+    IsTargetable)
+
+  if enemy_hero == nil then
+    return false, nil end
+
+  return true, enemy_hero
+end
+
+local function CompareMaxHealth(t, a, b)
+  return t[b]:GetHealth() < t[a]:GetHealth()
+end
+
+local function CompareMinHealth(t, a, b)
+  return t[a]:GetHealth() < t[b]:GetHealth()
+end
+
+function M.max_hp_creep(bot, radius)
+  local creeps = functions.GetEnemyCreeps(bot, radius)
+  local creep = functions.GetElementWith(
+    creeps,
+    CompareMaxHealth,
+    IsTargetable)
+
+  if creep == nil then
+    return false, nil end
+
+  return true, creep
+end
+
+function M.min_hp_creep(bot, radius)
+  local creeps = functions.GetEnemyCreeps(bot, radius)
+  local creep = functions.GetElementWith(
+    creeps,
+    CompareMinHealth,
+    IsTargetable)
+
+  if creep == nil then
+    return false, nil end
+
+  return true, creep
 end
 
 local function GetDesire(bot, mode_desires)
