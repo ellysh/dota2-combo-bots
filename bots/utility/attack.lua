@@ -7,7 +7,7 @@ local attack_target = require(
 local M = {}
 
 function M.max_kills_enemy_hero(bot, radius)
-  local enemy_heroes = GetEnemyHeroes(bot, radius)
+  local enemy_heroes = bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMaxHeroKills,
@@ -19,16 +19,16 @@ function M.max_kills_enemy_hero(bot, radius)
   return true, enemy_hero
 end
 
-local function GetDesire(bot)
+local function GetDesire(bot, desire)
   -- TODO: Implement this function
-  return 0
+  return 1
 end
 
 local function ChooseTarget(bot)
   local radius = bot:GetCurrentVisionRange()
   local targets = {}
 
-  for _, algorithm in pairs(attack_target.ATTACK_TARGET) do
+  for algorithm, desire in pairs(attack_target.ATTACK_TARGET) do
     if M[algorithm] == nil then
       do goto continue end
     end
@@ -36,7 +36,7 @@ local function ChooseTarget(bot)
     local is_succeed, target = M[algorithm](bot, radius)
 
     if is_succeed then
-      targets[target] = GetDesire(bot)
+      targets[GetDesire(bot, desire)] = target
     end
     ::continue::
   end
@@ -44,7 +44,7 @@ local function ChooseTarget(bot)
   return functions.GetElementWith(
     targets,
     function(t, a, b)
-      return t[b] < t[a]
+      return b < a
     end)
 end
 

@@ -32,9 +32,10 @@ end
 function test_Think()
   test_RefreshBot()
 
+  ATTACK_TARGET = nil
   mode_push.Think(LANE_TOP)
 
-  luaunit.assertEquals(ATTACK_MOVE_LOCATION, FRONT_LOCATION)
+  luaunit.assertNotEquals(ATTACK_TARGET, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())

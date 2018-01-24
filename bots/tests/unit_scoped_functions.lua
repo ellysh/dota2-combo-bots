@@ -440,7 +440,10 @@ function Bot:GetCurrentVisionRange()
   return 1600
 end
 
+ATTACK_TARGET = nil
+
 function Bot:Action_AttackUnit(target, is_once)
+  ATTACK_TARGET = target
 end
 
 ------------------------------------------
