@@ -446,6 +446,10 @@ function Bot:Action_AttackUnit(target, is_once)
   ATTACK_TARGET = target
 end
 
+function Bot:GetAttackDamage()
+  return 60
+end
+
 ------------------------------------------
 
 Ability = {}
