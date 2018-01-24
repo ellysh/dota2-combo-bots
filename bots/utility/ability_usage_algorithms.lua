@@ -9,50 +9,6 @@ local functions = require(
 
 local M = {}
 
-local function SetDefaultRadius(radius)
-  if radius == nil or radius == 0 then
-    return constants.DEFAULT_ABILITY_USAGE_RADIUS
-  end
-
-  -- TODO: Trick with MAX_ABILITY_USAGE_RADIUS breaks Sniper's ult.
-  -- But the GetNearbyHeroes function has the maximum radius 1600.
-
-  return functions.ternary(
-    constants.MAX_ABILITY_USAGE_RADIUS < radius,
-    constants.MAX_ABILITY_USAGE_RADIUS,
-    radius)
-end
-
-local function GetEnemyHeroes(bot, radius)
-  radius = SetDefaultRadius(radius)
-  return bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
-end
-
-local function GetAllyHeroes(bot, radius)
-  radius = SetDefaultRadius(radius)
-  return bot:GetNearbyHeroes(radius, false, BOT_MODE_NONE)
-end
-
-local function GetEnemyCreeps(bot, radius)
-  radius = SetDefaultRadius(radius)
-  return bot:GetNearbyCreeps(radius, true)
-end
-
-local function GetAllyCreeps(bot, radius)
-  radius = SetDefaultRadius(radius)
-  return bot:GetNearbyCreeps(radius, false)
-end
-
-local function GetEnemyBuildings(bot, radius)
-  radius = SetDefaultRadius(radius)
-  local towers = bot:GetNearbyTowers(radius, true)
-
-  if #towers ~= 0 then
-    return towers end
-
-  return bot:GetNearbyBarracks(radius, true)
-end
-
 local function IsTargetable(unit)
   return unit:CanBeSeen()
          and unit:IsAlive()
@@ -96,7 +52,10 @@ local function CompareMaxHeroKills(t, a, b)
 end
 
 function M.min_hp_enemy_hero_to_kill(bot, ability)
-  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemy_heroes = functions.GetEnemyHeroes(
+    bot,
+    ability:GetCastRange())
+
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMinHealth,
@@ -111,7 +70,7 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
 end
 
 function M.channeling_enemy_hero(bot, ability)
-  local enemies = GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemies = functions.GetEnemyHeroes(bot, ability:GetCastRange())
   local enemy_hero = functions.GetElementWith(
     enemies,
     CompareMaxHeroKills,
@@ -126,7 +85,10 @@ function M.channeling_enemy_hero(bot, ability)
 end
 
 function M.max_kills_enemy_hero(bot, ability)
-  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemy_heroes = functions.GetEnemyHeroes(
+    bot,
+    ability:GetCastRange())
+
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMaxHeroKills,
@@ -145,7 +107,7 @@ local function NumberOfTargetableUnits(units)
 end
 
 function M.three_and_more_enemy_heroes_aoe(bot, ability)
-  local enemies = GetEnemyHeroes(bot, ability:GetAOERadius())
+  local enemies = functions.GetEnemyHeroes(bot, ability:GetAOERadius())
 
   if 3 <= NumberOfTargetableUnits(enemies) then
     return true, nil end
@@ -154,7 +116,9 @@ function M.three_and_more_enemy_heroes_aoe(bot, ability)
 end
 
 function M.last_attacked_enemy_hero(bot, ability)
-  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemy_heroes = functions.GetEnemyHeroes(
+    bot,
+    ability:GetCastRange())
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
@@ -172,7 +136,7 @@ end
 
 function M.three_and_more_creeps(bot, ability)
   local cast_range = ability:GetCastRange()
-  local enemies = GetEnemyCreeps(bot, cast_range)
+  local enemies = functions.GetEnemyCreeps(bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
     return false, nil end
@@ -195,7 +159,7 @@ function M.three_and_more_creeps(bot, ability)
 end
 
 function M.max_hp_creep(bot, ability)
-  local creeps = GetEnemyCreeps(bot, ability:GetCastRange())
+  local creeps = functions.GetEnemyCreeps(bot, ability:GetCastRange())
   local creep = functions.GetElementWith(
     creeps,
     CompareMaxHealth,
@@ -209,7 +173,7 @@ end
 
 function M.three_and_more_enemy_heroes(bot, ability)
   local cast_range = ability:GetCastRange()
-  local enemies = GetEnemyHeroes(bot, cast_range)
+  local enemies = functions.GetEnemyHeroes(bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
     return false, nil end
@@ -273,7 +237,10 @@ local function CompareMaxEstimatedDamage(t, a, b)
 end
 
 function M.max_estimated_damage_enemy_hero(bot, ability)
-  local enemy_heroes = GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemy_heroes = functions.GetEnemyHeroes(
+    bot,
+    ability:GetCastRange())
+
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMaxEstimatedDamage,
@@ -360,7 +327,7 @@ function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
 end
 
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
-  local enemies = GetEnemyCreeps(bot, ability:GetAOERadius())
+  local enemies = functions.GetEnemyCreeps(bot, ability:GetAOERadius())
 
   if 3 <= NumberOfTargetableUnits(enemies) then
     return true, nil end
@@ -379,7 +346,7 @@ function M.low_hp_self(bot, ability)
 end
 
 function M.low_hp_ally_hero(bot, ability)
-  local ally_heroes = GetAllyHeroes(bot, ability:GetCastRange())
+  local ally_heroes = functions.GetAllyHeroes(bot, ability:GetCastRange())
   local ally_hero = functions.GetElementWith(
     ally_heroes,
     CompareMinHealth,
@@ -396,7 +363,7 @@ function M.low_hp_ally_hero(bot, ability)
 end
 
 function M.low_hp_ally_creep(bot, ability)
-  local allies = GetAllyCreeps(bot, ability:GetCastRange())
+  local allies = functions.GetAllyCreeps(bot, ability:GetCastRange())
   local ally_creep = functions.GetElementWith(
     allies,
     CompareMinHealth,
@@ -413,7 +380,7 @@ function M.low_hp_ally_creep(bot, ability)
 end
 
 function M.three_and_more_ally_creeps_aoe(bot, ability)
-  local allies = GetAllyCreeps(bot, ability:GetAOERadius())
+  local allies = functions.GetAllyCreeps(bot, ability:GetAOERadius())
 
   if 3 <= #allies then
     return true, nil end
@@ -423,7 +390,7 @@ end
 
 function M.min_hp_enemy_building(bot, ability)
   local enemy_buildings =
-    GetEnemyBuildings(bot, ability:GetCastRange())
+    functions.GetEnemyBuildings(bot, ability:GetCastRange())
 
   local enemy_building = functions.GetElementWith(
     enemy_buildings,
@@ -437,12 +404,6 @@ function M.min_hp_enemy_building(bot, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only
-M.test_SetDefaultRadius = SetDefaultRadius
-M.test_GetEnemyHeroes = GetEnemyHeroes
-M.test_GetAllyHeroes = GetAllyHeroes
-M.test_GetEnemyCreeps = GetEnemyCreeps
-M.test_GetAllyCreeps = GetAllyCreeps
-M.test_GetEnemyBuildings = GetEnemyBuildings
 M.test_IsTargetable = IsTargetable
 M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget

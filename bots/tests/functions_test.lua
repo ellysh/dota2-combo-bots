@@ -414,4 +414,93 @@ function test_IsBotModeMatch_fails()
       BOT_MODE_ATTACK))
 end
 
+function test_GetNormalizedRadius()
+  luaunit.assertEquals(
+    functions.test_GetNormalizedRadius(1200),
+    1200)
+
+  luaunit.assertEquals(
+    functions.test_GetNormalizedRadius(0),
+    constants.DEFAULT_ABILITY_USAGE_RADIUS)
+
+  luaunit.assertEquals(
+    functions.test_GetNormalizedRadius(nil),
+    constants.DEFAULT_ABILITY_USAGE_RADIUS)
+
+  luaunit.assertEquals(
+    functions.test_GetNormalizedRadius(2000),
+    constants.MAX_ABILITY_USAGE_RADIUS)
+end
+
+function test_GetEnemyHeroes()
+  test_RefreshBot()
+
+  local units = functions.GetEnemyHeroes(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+end
+
+function test_GetAllyHeroes()
+  test_RefreshBot()
+
+  local units = functions.GetEnemyHeroes(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+end
+
+function test_GetEnemyCreeps()
+  test_RefreshBot()
+
+  local units = functions.GetEnemyCreeps(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
+end
+
+function test_GetAllyCreeps()
+  test_RefreshBot()
+
+  local units = functions.GetEnemyCreeps(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
+end
+
+function test_GetEnemyBuildings()
+  test_RefreshBot()
+
+  BOT_IS_NEARBY_TOWERS = true
+
+  local units = functions.GetEnemyBuildings(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "tower1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "tower2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "tower3")
+
+  BOT_IS_NEARBY_TOWERS = false
+
+  units = functions.GetEnemyBuildings(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "barrak1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "barrak2")
+end
+
 os.exit(luaunit.LuaUnit.run())

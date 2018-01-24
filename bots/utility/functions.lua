@@ -266,7 +266,53 @@ function M.IsBotModeMatch(bot, bot_mode)
   return active_mode == constants.BOT_MODES[bot_mode]
 end
 
+local function GetNormalizedRadius(radius)
+  if radius == nil or radius == 0 then
+    return constants.DEFAULT_ABILITY_USAGE_RADIUS
+  end
+
+  -- TODO: Trick with MAX_ABILITY_USAGE_RADIUS breaks Sniper's ult.
+  -- But the GetNearbyHeroes function has the maximum radius 1600.
+
+  return M.ternary(
+    constants.MAX_ABILITY_USAGE_RADIUS < radius,
+    constants.MAX_ABILITY_USAGE_RADIUS,
+    radius)
+end
+
+function M.GetEnemyHeroes(bot, radius)
+  return bot:GetNearbyHeroes(
+    GetNormalizedRadius(radius),
+    true,
+    BOT_MODE_NONE)
+end
+
+function M.GetAllyHeroes(bot, radius)
+  return bot:GetNearbyHeroes(
+    GetNormalizedRadius(radius),
+    false,
+    BOT_MODE_NONE)
+end
+
+function M.GetEnemyCreeps(bot, radius)
+  return bot:GetNearbyCreeps(GetNormalizedRadius(radius), true)
+end
+
+function M.GetAllyCreeps(bot, radius)
+  return bot:GetNearbyCreeps(GetNormalizedRadius(radius), false)
+end
+
+function M.GetEnemyBuildings(bot, radius)
+  local towers = bot:GetNearbyTowers(GetNormalizedRadius(radius), true)
+
+  if #towers ~= 0 then
+    return towers end
+
+  return bot:GetNearbyBarracks(GetNormalizedRadius(radius), true)
+end
+
 -- Provide an access to local functions for unit tests only
+M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
 
