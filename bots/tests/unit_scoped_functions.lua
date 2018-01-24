@@ -440,6 +440,9 @@ function Bot:GetCurrentVisionRange()
   return 1600
 end
 
+function Bot:Action_AttackUnit(target, is_once)
+end
+
 ------------------------------------------
 
 Ability = {}

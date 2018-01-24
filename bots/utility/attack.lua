@@ -29,11 +29,16 @@ local function ChooseTarget(bot)
   local targets = {}
 
   for _, algorithm in pairs(attack_target.ATTACK_TARGET) do
+    if M[algorithm] == nil then
+      do goto continue end
+    end
+
     local is_succeed, target = M[algorithm](bot, radius)
 
     if is_succeed then
       targets[target] = GetDesire(bot)
     end
+    ::continue::
   end
 
   return functions.GetElementWith(
