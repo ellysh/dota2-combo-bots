@@ -42,7 +42,7 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 0
   },
 
-  last_hit_hp_creep = {
+  last_hit_creep = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,
       BOT_MODE_PUSH_TOWER = 60,

@@ -86,7 +86,7 @@ local function IsLastHit(bot, unit)
   return unit:GetHealth() <= bot:GetAttackDamage()
 end
 
-function M.last_hit_hp_creep(bot, radius)
+function M.last_hit_creep(bot, radius)
   local creeps = functions.GetEnemyCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
@@ -115,5 +115,9 @@ function M.min_hp_enemy_building(bot, radius)
 
   return true, enemy_building
 end
+
+-- Provide an access to local functions and variables for unit tests only
+M.test_IsTargetable = IsTargetable
+M.test_IsLastHit = IsLastHit
 
 return M

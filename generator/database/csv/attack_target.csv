@@ -2,5 +2,5 @@ Algorithm;BOT_MODE_ROAM;BOT_MODE_TEAM_ROAM;BOT_MODE_PUSH_TOWER;BOT_MODE_ATTACK;B
 max_kills_enemy_hero;90;90;90;90;0;0;0;90;0;90
 max_estimated_damage_enemy_hero;80;80;80;80;0;0;0;80;0;80
 max_hp_creep;0;0;10;10;0;90;90;10;0;0
-last_hit_hp_creep;0;0;60;60;50;0;10;50;0;0
+last_hit_creep;0;0;60;60;50;0;10;50;0;0
 min_hp_enemy_building;0;0;70;70;0;0;0;0;0;0
