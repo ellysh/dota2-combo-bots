@@ -52,4 +52,8 @@ function M.Attack(bot)
   bot:Action_AttackUnit(target, false)
 end
 
+-- Provide an access to local functions for unit tests only
+M.test_GetDesire = GetDesire
+M.test_ChooseTarget = ChooseTarget
+
 return M
