@@ -58,7 +58,7 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMinHealth,
+    CompareMaxHeroKillCompareMaxHeroKills,
     function(hero)
       return IsTargetable(hero) and IsEnoughDamageToKill(hero, ability)
     end)
@@ -84,28 +84,13 @@ function M.channeling_enemy_hero(bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
-function M.max_kills_enemy_hero(bot, ability)
-  local enemy_heroes = functions.GetEnemyHeroes(
-    bot,
-    ability:GetCastRange())
-
-  local enemy_hero = functions.GetElementWith(
-    enemy_heroes,
-    CompareMaxHeroKills,
-    IsTargetable)
-
-  if enemy_hero == nil then
-    return false, nil end
-
-  return true, GetTarget(enemy_hero, ability)
-end
-
 function M.attacked_enemy_hero(bot, ability)
   local target = bot:GetAttackTarget()
 
   if target == nil
      or not target:IsHero()
-     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target) then
+     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or not IsTargetable(target) then
     return false, nil end
 
   return true, GetTarget(target, ability)
@@ -229,38 +214,6 @@ function M.toggle_on_attack_enemy_hero(bot, ability)
   end
 
   return false, nil
-end
-
-local function CompareMaxEstimatedDamage(t, a, b)
-  local b_damage = t[b]:GetEstimatedDamageToTarget(
-    true,
-    GetBot(),
-    3.0,
-    DAMAGE_TYPE_ALL)
-
-  local a_damage = t[a]:GetEstimatedDamageToTarget(
-    true,
-    GetBot(),
-    3.0,
-    DAMAGE_TYPE_ALL)
-
-  return b_damage < a_damage
-end
-
-function M.max_estimated_damage_enemy_hero(bot, ability)
-  local enemy_heroes = functions.GetEnemyHeroes(
-    bot,
-    ability:GetCastRange())
-
-  local enemy_hero = functions.GetElementWith(
-    enemy_heroes,
-    CompareMaxEstimatedDamage,
-    IsTargetable)
-
-  if enemy_hero == nil then
-    return false, nil end
-
-  return true, GetTarget(enemy_hero, ability)
 end
 
 local function UseOnAttackEnemyUnit(
