@@ -100,6 +100,17 @@ function M.max_kills_enemy_hero(bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
+function M.attacked_enemy_hero(bot, ability)
+  local target = bot:GetAttackTarget()
+
+  if target == nil
+     or not target:IsHero()
+     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target) then
+    return false, nil end
+
+  return true, GetTarget(target, ability)
+end
+
 local function NumberOfTargetableUnits(units)
   return functions.GetNumberOfElementsWith(
     units,
