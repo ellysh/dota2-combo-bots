@@ -44,7 +44,6 @@ function test_Attack_succeed()
   attack.Attack(GetBot())
 
   luaunit.assertNotEquals(ATTACK_TARGET, nil)
-  luaunit.assertNotEquals(ATTACK_TARGET:GetUnitName(), "unit1")
 end
 
 function test_Attack_when_bot_is_busy_fails()
