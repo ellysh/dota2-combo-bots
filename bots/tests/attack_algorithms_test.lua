@@ -124,4 +124,30 @@ function test_min_hp_enemy_building_succeed()
   luaunit.assertEquals(target:GetUnitName(), "tower1")
 end
 
+function test_low_hp_enemy_hero_succeed()
+  test_RefreshBot()
+
+  UNIT_CAN_BE_SEEN = true
+
+  local desire, target = algorithms.low_hp_enemy_hero(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(target:GetUnitName(), "unit1")
+end
+
+function test_low_hp_enemy_building_succeed()
+  test_RefreshBot()
+
+  UNIT_CAN_BE_SEEN = true
+
+  local desire, target = algorithms.low_hp_enemy_building(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(target:GetUnitName(), "tower1")
+end
+
 os.exit(luaunit.LuaUnit.run())
