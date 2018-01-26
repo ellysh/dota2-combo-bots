@@ -242,6 +242,40 @@ function test_GetElementWith()
   luaunit.assertEquals(unit:GetHealth(), 10)
 end
 
+function test_GetKeyAndElementWith()
+  test_RefreshBot()
+
+  local abilities = {
+    ability1 = {"unit1", 0.2},
+    ability2 = {"unit2", 0.9},
+    ability3 = {"unit3", 0.7}
+  }
+
+  local ability, target_desire = functions.GetKeyAndElementWith(
+    abilities,
+    function(t, a, b) return t[b][2] < t[a][2] end)
+
+  luaunit.assertEquals(ability, "ability2")
+  luaunit.assertEquals(target_desire[1], "unit2")
+  luaunit.assertEquals(target_desire[2], 0.9)
+end
+
+function test_GetKeyWith()
+  test_RefreshBot()
+
+  local abilities = {
+    ability1 = {"unit1", 0.2},
+    ability2 = {"unit2", 0.9},
+    ability3 = {"unit3", 0.7}
+  }
+
+  local ability = functions.GetKeyWith(
+    abilities,
+    function(t, a, b) return t[b][2] < t[a][2] end)
+
+  luaunit.assertEquals(ability, "ability2")
+end
+
 function test_GetNumberOfElementsWith()
   local unit = Unit:new()
 

@@ -62,22 +62,16 @@ local function GetDesiredAbilitiesList(bot)
 end
 
 local function ChooseAbilityAndTarget(bot)
-  -- Thanks to the spairs() function we iterate the most desired skills
-  -- first. Then, we use them with the desired probability.
-
   local desired_abilities = GetDesiredAbilitiesList(bot)
 
-  for ability, target_desire in functions.spairs(
-      desired_abilities,
-      function(t, a, b) return t[b][2] < t[a][2] end) do
+  local ability, target_desire = functions.GetKeyAndElementWith(
+    desired_abilities,
+    function(t, a, b) return t[b][2] < t[a][2] end)
 
-    if functions.GetRandomTrue(target_desire[2]) then
+  if ability == nil then
+    return nil, nil end
 
-        return ability, target_desire[1]
-    end
-  end
-
-  return nil, nil
+  return ability, target_desire[1]
 end
 
 local function UseAbility(bot, ability, target)

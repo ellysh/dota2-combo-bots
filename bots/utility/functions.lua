@@ -159,6 +159,17 @@ function M.GetElementWith(list, compare_function, validate_function)
   return nil
 end
 
+function M.GetKeyAndElementWith(list, compare_function, validate_function)
+
+  for key, element in M.spairs(list, compare_function) do
+    if validate_function == nil or validate_function(element) then
+      return key, element
+    end
+  end
+
+  return nil, nil
+end
+
 function M.GetNumberOfElementsWith(list, check_function)
   local result = 0
 
