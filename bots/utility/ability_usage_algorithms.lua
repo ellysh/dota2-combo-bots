@@ -38,10 +38,6 @@ local function GetTarget(target, ability)
   return nil
 end
 
-local function CompareMaxHealth(t, a, b)
-  return t[b]:GetHealth() < t[a]:GetHealth()
-end
-
 local function CompareMinHealth(t, a, b)
   return t[a]:GetHealth() < t[b]:GetHealth()
 end
@@ -176,19 +172,6 @@ function M.three_and_more_creeps(bot, ability)
   end
 
   return false, nil
-end
-
-function M.max_hp_creep(bot, ability)
-  local creeps = functions.GetEnemyCreeps(bot, ability:GetCastRange())
-  local creep = functions.GetElementWith(
-    creeps,
-    CompareMaxHealth,
-    IsTargetable)
-
-  if creep == nil then
-    return false, nil end
-
-  return true, GetTarget(creep, ability)
 end
 
 function M.three_and_more_enemy_heroes(bot, ability)
@@ -374,21 +357,6 @@ function M.three_and_more_ally_creeps_aoe(bot, ability)
     return true, nil end
 
   return false, nil
-end
-
-function M.min_hp_enemy_building(bot, ability)
-  local enemy_buildings =
-    functions.GetEnemyBuildings(bot, ability:GetCastRange())
-
-  local enemy_building = functions.GetElementWith(
-    enemy_buildings,
-    CompareMinHealth,
-    IsTargetable)
-
-  if enemy_building == nil then
-    return false, nil end
-
-  return true, GetTarget(enemy_building, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only
