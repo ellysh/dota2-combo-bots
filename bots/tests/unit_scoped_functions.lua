@@ -168,6 +168,12 @@ function Unit:IsCreep()
   return not UNIT_IS_HERO
 end
 
+UNIT_IS_BUILDING = true
+
+function Unit:IsBuilding()
+  return UNIT_IS_BUILDING
+end
+
 function Unit:GetOffensivePower()
   return self.offensive_power
 end

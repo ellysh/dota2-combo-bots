@@ -3,9 +3,6 @@ local functions = require(
 
 local M = {}
 
--- TODO: Fix the code duplication below. We have the same code in the
--- ability_usage_algorithms.lua module.
-
 local function IsTargetable(unit)
   return unit:CanBeSeen()
          and unit:IsAlive()

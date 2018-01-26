@@ -149,6 +149,100 @@ function test_attacked_enemy_hero()
     "npc_dota_hero_crystal_maiden")
 end
 
+function test_attacked_enemy_hero_not_hero_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_HERO = false
+  ATTACK_TARGET = Unit:new()
+
+  local desire, target = ability_usage_algorithms.attacked_enemy_hero(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_attacked_enemy_creep()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_HERO = false
+  ATTACK_TARGET = Unit:new()
+
+  local desire, target = ability_usage_algorithms.attacked_enemy_creep(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(
+    target:GetUnitName(),
+    "npc_dota_hero_crystal_maiden")
+end
+
+function test_attacked_enemy_creep_not_creep_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_HERO = true
+  ATTACK_TARGET = Unit:new()
+
+  local desire, target = ability_usage_algorithms.attacked_enemy_creep(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
+function test_attacked_enemy_building()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_BUILDING = true
+  ATTACK_TARGET = Unit:new()
+
+  local desire, target = ability_usage_algorithms.attacked_enemy_building(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, true)
+  luaunit.assertEquals(
+    target:GetUnitName(),
+    "npc_dota_hero_crystal_maiden")
+end
+
+function test_attacked_enemy_building_not_building_fails()
+  test_RefreshBot()
+
+  local ability = Ability:new("crystal_maiden_crystal_nova")
+
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_BUILDING = false
+  ATTACK_TARGET = Unit:new()
+
+  local desire, target = ability_usage_algorithms.attacked_enemy_building(
+    GetBot(),
+    ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
+end
+
 function test_three_and_more_enemy_heroes_aoe_succeed()
   test_RefreshBot()
 

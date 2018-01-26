@@ -96,6 +96,30 @@ function M.attacked_enemy_hero(bot, ability)
   return true, GetTarget(target, ability)
 end
 
+function M.attacked_enemy_creep(bot, ability)
+  local target = bot:GetAttackTarget()
+
+  if target == nil
+     or not target:IsCreep()
+     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or not IsTargetable(target) then
+    return false, nil end
+
+  return true, GetTarget(target, ability)
+end
+
+function M.attacked_enemy_building(bot, ability)
+  local target = bot:GetAttackTarget()
+
+  if target == nil
+     or not target:IsBuilding()
+     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or not IsTargetable(target) then
+    return false, nil end
+
+  return true, GetTarget(target, ability)
+end
+
 local function NumberOfTargetableUnits(units)
   return functions.GetNumberOfElementsWith(
     units,
