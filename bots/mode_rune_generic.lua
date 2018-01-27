@@ -47,4 +47,8 @@ function GetDesire()
 end
 
 function Think()
+  local bot = GetBot()
+  local rune, distance = GetClosestRune(bot)
+
+  bot:Action_PickUpRune(rune)
 end
