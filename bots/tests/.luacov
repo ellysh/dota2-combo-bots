@@ -1,5 +1,6 @@
 modules = {
   ["hero_selection"] = "../hero_selection.lua",
+  ["mode_rune_generic"] = "../mode_rune_generic.lua",
   ["ability_levelup"] = "../utility/ability_levelup.lua",
   ["ability_usage"] = "../utility/ability_usage.lua",
   ["ability_usage_algorithms"] = "../utility/ability_usage_algorithms.lua",
