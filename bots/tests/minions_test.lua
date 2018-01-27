@@ -6,10 +6,14 @@ require("global_functions")
 local minions = require("minions")
 local luaunit = require('luaunit')
 
-function test_MinionThink()
-  -- TODO: Implement this test
+function test_MinionThink_move_to_hero_succeed()
+  test_RefreshBot()
 
-  minions.MinionThink(Unit:new())
+  local bot = GetBot()
+  bot.location = {500, 500}
+
+  -- TODO: Finish this test
+  --minions.MinionThink(Unit:new())
 end
 
 os.exit(luaunit.LuaUnit.run())
