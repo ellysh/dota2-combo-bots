@@ -38,11 +38,12 @@ local function IsBeginningOfMatch()
   return DotaTime() < 0
 end
 
-local function IsRuneAppearSoon()
+local function IsRuneAppeared()
   local time = DotaTime()
   local last_appear = time - (time % 2)
 
-  return 1.9 <= (time - last_appear)
+  return 1.8 <= (time - last_appear)
+         or (time - last_appear) <= 0.2
 end
 
 function GetDesire()
@@ -60,7 +61,7 @@ function GetDesire()
     return 0.75 end
 
   if GetRuneStatus(rune) == RUNE_STATUS_MISSING
-     and not IsRuneAppearSoon() then
+     and not IsRuneAppeared() then
     return 0 end
 
   if GetRuneStatus(rune) == RUNE_STATUS_AVAILABLE then
