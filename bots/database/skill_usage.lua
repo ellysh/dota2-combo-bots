@@ -531,6 +531,51 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
   },
 
+  phantom_lancer_spirit_lance = {
+      any_mode = {algorithms["min_hp_enemy_hero_to_kill"], 90},
+      team_fight = {algorithms["attacked_enemy_hero"], 90},
+      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 90},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 50}
+  },
+
+  phantom_lancer_doppelwalk = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["use_on_attack_enemy_hero_ranged"], 80},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_ranged"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_ranged"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_ranged"], 60},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
+  phantom_lancer_phantom_edge = {
+      any_mode = {algorithms["toggle_on_attack_enemy_hero"], 90},
+      team_fight = {algorithms["nil"], nil},
+      BOT_MODE_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["nil"], nil},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
 }
 
 return M

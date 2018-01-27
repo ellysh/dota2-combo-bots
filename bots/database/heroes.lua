@@ -171,6 +171,20 @@ M.HEROES = {
     }
   },
 
+  npc_dota_hero_phantom_lancer = {
+    position = {1, nil},
+    combo_heroes = {
+      "npc_dota_hero_keeper_of_the_light",
+      "npc_dota_hero_dazzle",
+      "npc_dota_hero_lich"
+    },
+    counter_heroes = {
+      "npc_dota_hero_axe",
+      "npc_dota_hero_sand_king",
+      "npc_dota_hero_sven"
+    }
+  },
+
 }
 
 return M

@@ -489,11 +489,28 @@ M.ITEM_BUILD = {
       "item_belt_of_strength",
       "item_power_treads",
       "item_armlet",
-      "item_echo_sabre",
       "item_blink",
+      "item_echo_sabre",
       "item_black_king_bar",
       "item_heart",
       "item_assault"}
+  },
+
+  npc_dota_hero_phantom_lancer = {
+    items = {
+      "item_tango",
+      "item_flask",
+      "item_stout_shield",
+      "item_magic_wand",
+      "item_boots",
+      "item_boots_of_elves",
+      "item_power_treads",
+      "item_ring_of_aquila",
+      "item_diffusal_blade",
+      "item_manta",
+      "item_heart",
+      "item_butterfly",
+      "item_skadi"}
   },
 
 }
