@@ -342,6 +342,15 @@ function M.DistanceToDesire(distance, max_distance, base_desire)
   return (1 - (distance / max_distance)) + base_desire
 end
 
+function M.IsEnemyNear(bot)
+  local radius = bot:GetCurrentVisionRange()
+
+  return 0 < #bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+         or 0 < #bot:GetNearbyCreeps(radius, true)
+         or 0 < #bot:GetNearbyTowers(radius, true)
+         or 0 < #bot:GetNearbyBarracks(radius, true)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount

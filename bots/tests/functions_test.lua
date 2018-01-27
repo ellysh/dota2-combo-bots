@@ -584,4 +584,10 @@ function test_IsBotInFightingMode_fails()
   end
 end
 
+function test_IsEnemyNear()
+  test_RefreshBot()
+
+  luaunit.assertTrue(functions.IsEnemyNear(GetBot()))
+end
+
 os.exit(luaunit.LuaUnit.run())

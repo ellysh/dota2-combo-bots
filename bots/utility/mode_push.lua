@@ -10,6 +10,9 @@ local player_desires_algorithms = require(
 local attack = require(
   GetScriptDirectory() .."/utility/attack")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local LANE_TO_DESIRE= {
@@ -26,22 +29,13 @@ function M.GetDesire(lane)
   return GetPushLaneDesire(lane) + desires_list[LANE_TO_DESIRE[lane]]
 end
 
-local function IsEnemyNear(bot)
-  local radius = bot:GetCurrentVisionRange()
-
-  return 0 < #bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
-         or 0 < #bot:GetNearbyCreeps(radius, true)
-         or 0 < #bot:GetNearbyTowers(radius, true)
-         or 0 < #bot:GetNearbyBarracks(radius, true)
-end
-
 function M.Think(lane)
   -- TODO: Use TP scrolls and TP boots here
 
   local bot = GetBot()
   local target = GetLaneFrontLocation(GetTeam(), lane, 0.5)
 
-  if IsEnemyNear(bot) then
+  if functions.IsEnemyNear(bot) then
      attack.Attack(bot)
   else
     bot:Action_AttackMove(target)
