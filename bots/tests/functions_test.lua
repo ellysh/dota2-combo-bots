@@ -537,4 +537,51 @@ function test_GetEnemyBuildings()
   luaunit.assertEquals(units[2]:GetUnitName(), "barrak2")
 end
 
+function test_IsBotInFightingMode_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  local test_modes = {
+    BOT_MODE_ATTACK,
+    BOT_MODE_PUSH_TOWER_TOP,
+    BOT_MODE_PUSH_TOWER_MID,
+    BOT_MODE_PUSH_TOWER_BOT,
+    BOT_MODE_DEFEND_ALLY,
+    BOT_MODE_RETREAT,
+    BOT_MODE_ROSHAN,
+    BOT_MODE_DEFEND_TOWER_TOP,
+    BOT_MODE_DEFEND_TOWER_MID,
+    BOT_MODE_DEFEND_TOWER_BOT,
+    BOT_MODE_EVASIVE_MANEUVERS
+  }
+
+  for _, mode in pairs(test_modes) do
+    BOT_MODE = mode
+    luaunit.assertTrue(functions.IsBotInFightingMode(bot))
+  end
+end
+
+function test_IsBotInFightingMode_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  local test_modes = {
+    BOT_MODE_NONE,
+    BOT_MODE_LANING,
+    BOT_MODE_SECRET_SHOP,
+    BOT_MODE_SIDE_SHOP,
+    BOT_MODE_ASSEMBLE,
+    BOT_MODE_FARM,
+    BOT_MODE_ITEM,
+    BOT_MODE_WARD
+  }
+
+  for _, mode in pairs(test_modes) do
+    BOT_MODE = mode
+    luaunit.assertFalse(functions.IsBotInFightingMode(bot))
+  end
+end
+
 os.exit(luaunit.LuaUnit.run())

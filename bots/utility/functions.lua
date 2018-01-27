@@ -322,6 +322,22 @@ function M.GetEnemyBuildings(bot, radius)
   return bot:GetNearbyBarracks(GetNormalizedRadius(radius), true)
 end
 
+function M.IsBotInFightingMode(bot)
+  local mode = bot:GetActiveMode()
+
+  return mode == BOT_MODE_ATTACK
+         or mode == BOT_MODE_PUSH_TOWER_TOP
+         or mode == BOT_MODE_PUSH_TOWER_MID
+         or mode == BOT_MODE_PUSH_TOWER_BOT
+         or mode == BOT_MODE_DEFEND_ALLY
+         or mode == BOT_MODE_RETREAT
+         or mode == BOT_MODE_ROSHAN
+         or mode == BOT_MODE_DEFEND_TOWER_TOP
+         or mode == BOT_MODE_DEFEND_TOWER_MID
+         or mode == BOT_MODE_DEFEND_TOWER_BOT
+         or mode == BOT_MODE_EVASIVE_MANEUVERS
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount

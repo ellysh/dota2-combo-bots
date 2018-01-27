@@ -19,21 +19,6 @@ local function IsShopRequired(bot, check_shop_func)
          and GetItemCost(buy_item) <= bot:GetGold()
 end
 
-local function IsBotInFightingMode(bot)
-  local mode = bot:GetActiveMode()
-
-  return mode == BOT_MODE_ATTACK
-         or mode == BOT_MODE_PUSH_TOWER_TOP
-         or mode == BOT_MODE_PUSH_TOWER_MID
-         or mode == BOT_MODE_PUSH_TOWER_BOT
-         or mode == BOT_MODE_DEFEND_ALLY
-         or mode == BOT_MODE_RETREAT
-         or mode == BOT_MODE_ROSHAN
-         or mode == BOT_MODE_DEFEND_TOWER_TOP
-         or mode == BOT_MODE_DEFEND_TOWER_MID
-         or mode == BOT_MODE_DEFEND_TOWER_BOT
-end
-
 local function GetDesire(check_shop_func, get_distance_func, base_desire)
   local bot = GetBot();
 
@@ -49,7 +34,7 @@ local function GetDesire(check_shop_func, get_distance_func, base_desire)
     return 0.9
   end
 
-  if IsBotInFightingMode(bot) then
+  if functions.IsBotInFightingMode(bot) then
     return 0
   end
 
@@ -102,7 +87,6 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_GetNearestLocation = GetNearestLocation
-M.test_IsBotInFightingMode = IsBotInFightingMode
 M.test_GetDesire = GetDesire
 
 return M
