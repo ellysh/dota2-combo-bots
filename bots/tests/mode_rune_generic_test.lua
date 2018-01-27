@@ -59,24 +59,24 @@ function test_Think_move_succeed()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_AVAILABLE
-  BOT_MOVE_LOCATION = nil
+  UNIT_MOVE_LOCATION = nil
   RUNE_LOCATION = {2000, 2000}
 
   Think()
 
-  luaunit.assertEquals(BOT_MOVE_LOCATION, RUNE_LOCATION)
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, RUNE_LOCATION)
 end
 
 function test_Think_pickup_succeed()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_AVAILABLE
-  BOT_PICKUP_RUNE = nil
+  UNIT_PICKUP_RUNE = nil
   RUNE_LOCATION = {20, 20}
 
   Think()
 
-  luaunit.assertNotEquals(BOT_PICKUP_RUNE, nil)
+  luaunit.assertNotEquals(UNIT_PICKUP_RUNE, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())

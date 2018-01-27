@@ -39,22 +39,26 @@ end
 function test_CalculateDesireAndTarget_fails()
   test_RefreshBot()
 
+  local ability = Ability:new()
+
   local desire, target =
     ability_usage.test_CalculateDesireAndTarget(
       GetBot(),
       nil,
-      "any_mode")
+      "any_mode",
+      ability)
 
   luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
 
-  BOT_MODE = BOT_MODE_ATTACK
+  UNIT_MODE = BOT_MODE_ATTACK
 
   local desire, target =
     ability_usage.test_CalculateDesireAndTarget(
       GetBot(),
       ability_usage_algorithms.min_hp_enemy_hero_to_kill,
-      BOT_MODE_LANING)
+      BOT_MODE_LANING,
+      ability)
 
   luaunit.assertEquals(desire, false)
   luaunit.assertEquals(target, nil)
@@ -91,70 +95,70 @@ function test_UseAbility_behavior_point_succeed()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  BOT_ABILITY = nil
-  BOT_ABILITY_LOCATION = nil
+  UNIT_ABILITY = nil
+  UNIT_ABILITY_LOCATION = nil
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
   local location =  {15, 25}
 
   ability_usage.test_UseAbility(GetBot(), ability, location)
 
-  luaunit.assertEquals(BOT_ABILITY, ability)
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, location)
+  luaunit.assertEquals(UNIT_ABILITY, ability)
+  luaunit.assertEquals(UNIT_ABILITY_LOCATION, location)
 end
 
 function test_UseAbility_behavior_no_target_succeed()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  BOT_ABILITY = nil
-  BOT_ABILITY_LOCATION = nil
+  UNIT_ABILITY = nil
+  UNIT_ABILITY_LOCATION = nil
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
   local location =  {15, 25}
 
   ability_usage.test_UseAbility(GetBot(), ability, location)
 
-  luaunit.assertEquals(BOT_ABILITY, ability)
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
+  luaunit.assertEquals(UNIT_ABILITY, ability)
+  luaunit.assertEquals(UNIT_ABILITY_LOCATION, nil)
 end
 
 function test_UseAbility_behavior_unit_target_succeed()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
-  BOT_ABILITY = nil
-  BOT_ABILITY_LOCATION = nil
+  UNIT_ABILITY = nil
+  UNIT_ABILITY_LOCATION = nil
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
   local location =  {15, 25}
 
   ability_usage.test_UseAbility(GetBot(), ability, location)
 
-  luaunit.assertEquals(BOT_ABILITY, ability)
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
+  luaunit.assertEquals(UNIT_ABILITY, ability)
+  luaunit.assertEquals(UNIT_ABILITY_LOCATION, nil)
 end
 
 function test_UseAbility_nil_fails()
   test_RefreshBot()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  BOT_ABILITY = nil
-  BOT_ABILITY_LOCATION = nil
+  UNIT_ABILITY = nil
+  UNIT_ABILITY_LOCATION = nil
 
   local location =  {15, 25}
 
   ability_usage.test_UseAbility(GetBot(), nil, location)
 
-  luaunit.assertEquals(BOT_ABILITY, nil)
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
+  luaunit.assertEquals(UNIT_ABILITY, nil)
+  luaunit.assertEquals(UNIT_ABILITY_LOCATION, nil)
 end
 
 function test_AbilityUsageThink_succeed()
   test_RefreshBot()
 
-  BOT_ABILITY = nil
-  BOT_ABILITY_LOCATION = nil
+  UNIT_ABILITY = nil
+  UNIT_ABILITY_LOCATION = nil
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
@@ -162,17 +166,17 @@ function test_AbilityUsageThink_succeed()
   ability_usage.AbilityUsageThink()
 
   luaunit.assertEquals(
-    BOT_ABILITY,
+    UNIT_ABILITY,
     Ability:new("crystal_maiden_crystal_nova"))
 
-  luaunit.assertNotEquals(BOT_ABILITY_LOCATION, nil)
+  luaunit.assertNotEquals(UNIT_ABILITY_LOCATION, nil)
 end
 
-function test_AbilityUsageThink_when_bot_channeling_fails()
+function test_AbilityUsageThink_when_UNIT_channeling_fails()
   test_RefreshBot()
 
-  BOT_ABILITY = nil
-  BOT_ABILITY_LOCATION = nil
+  UNIT_ABILITY = nil
+  UNIT_ABILITY_LOCATION = nil
   UNIT_IS_CHANNELING = true
 
   ABILITY_DAMAGE = 200
@@ -181,10 +185,10 @@ function test_AbilityUsageThink_when_bot_channeling_fails()
   ability_usage.AbilityUsageThink()
 
   luaunit.assertEquals(
-    BOT_ABILITY,
+    UNIT_ABILITY,
     nil)
 
-  luaunit.assertEquals(BOT_ABILITY_LOCATION, nil)
+  luaunit.assertEquals(UNIT_ABILITY_LOCATION, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())

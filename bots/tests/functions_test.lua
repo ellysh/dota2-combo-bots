@@ -380,35 +380,35 @@ function test_IsBotModeMatch_succeed()
       GetBot(),
       "team_fight"))
 
-  BOT_MODE = BOT_MODE_ROAM
+  UNIT_MODE = BOT_MODE_ROAM
 
   luaunit.assertTrue(
     functions.IsBotModeMatch(
       GetBot(),
       "BOT_MODE_ROAM"))
 
-  BOT_MODE = BOT_MODE_TEAM_ROAM
+  UNIT_MODE = BOT_MODE_TEAM_ROAM
 
   luaunit.assertTrue(
     functions.IsBotModeMatch(
       GetBot(),
       "BOT_MODE_TEAM_ROAM"))
 
-  BOT_MODE = BOT_MODE_PUSH_TOWER_MID
+  UNIT_MODE = BOT_MODE_PUSH_TOWER_MID
 
   luaunit.assertTrue(
     functions.IsBotModeMatch(
       GetBot(),
       "BOT_MODE_PUSH_TOWER"))
 
-  BOT_MODE = BOT_MODE_DEFEND_TOWER_MID
+  UNIT_MODE = BOT_MODE_DEFEND_TOWER_MID
 
   luaunit.assertTrue(
     functions.IsBotModeMatch(
       GetBot(),
       "BOT_MODE_DEFEND_TOWER"))
 
-  BOT_MODE = BOT_MODE_ATTACK
+  UNIT_MODE = BOT_MODE_ATTACK
 
   luaunit.assertTrue(
     functions.IsBotModeMatch(
@@ -419,28 +419,28 @@ end
 function test_IsBotModeMatch_fails()
   test_RefreshBot()
 
-  BOT_MODE = BOT_MODE_ATTACK
+  UNIT_MODE = BOT_MODE_ATTACK
 
   luaunit.assertFalse(
     functions.IsBotModeMatch(
       GetBot(),
       BOT_MODE_ROAM))
 
-  BOT_MODE = BOT_MODE_DEFEND_TOWER_MID
+  UNIT_MODE = BOT_MODE_DEFEND_TOWER_MID
 
   luaunit.assertFalse(
     functions.IsBotModeMatch(
       GetBot(),
       "BOT_MODE_PUSH_TOWER"))
 
-  BOT_MODE = BOT_MODE_PUSH_TOWER_MID
+  UNIT_MODE = BOT_MODE_PUSH_TOWER_MID
 
   luaunit.assertFalse(
     functions.IsBotModeMatch(
       GetBot(),
       "BOT_MODE_DEFEND_TOWER"))
 
-  BOT_MODE = BOT_MODE_NONE
+  UNIT_MODE = BOT_MODE_NONE
 
   luaunit.assertFalse(
     functions.IsBotModeMatch(
@@ -517,7 +517,7 @@ end
 function test_GetEnemyBuildings()
   test_RefreshBot()
 
-  BOT_IS_NEARBY_TOWERS = true
+  UNIT_IS_NEARBY_TOWERS = true
 
   local units = functions.GetEnemyBuildings(
     GetBot(),
@@ -527,7 +527,7 @@ function test_GetEnemyBuildings()
   luaunit.assertEquals(units[2]:GetUnitName(), "tower2")
   luaunit.assertEquals(units[3]:GetUnitName(), "tower3")
 
-  BOT_IS_NEARBY_TOWERS = false
+  UNIT_IS_NEARBY_TOWERS = false
 
   units = functions.GetEnemyBuildings(
     GetBot(),
@@ -557,7 +557,7 @@ function test_IsBotInFightingMode_succeed()
   }
 
   for _, mode in pairs(test_modes) do
-    BOT_MODE = mode
+    UNIT_MODE = mode
     luaunit.assertTrue(functions.IsBotInFightingMode(bot))
   end
 end
@@ -579,7 +579,7 @@ function test_IsBotInFightingMode_fails()
   }
 
   for _, mode in pairs(test_modes) do
-    BOT_MODE = mode
+    UNIT_MODE = mode
     luaunit.assertFalse(functions.IsBotInFightingMode(bot))
   end
 end

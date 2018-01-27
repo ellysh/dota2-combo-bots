@@ -13,14 +13,14 @@ function GetItemCost(item)
   return ITEM_COST
 end
 
-BOT = Bot:new()
+BOT = Unit:new()
 
 function GetBot()
   return BOT
 end
 
 function test_RefreshBot()
-  BOT = Bot:new()
+  BOT = Unit:new()
   BOT.inventory = {}
 end
 

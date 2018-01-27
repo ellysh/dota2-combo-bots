@@ -219,24 +219,14 @@ function Item:GetName()
   return self.name
 end
 
------------------------------------------------
-
-Bot = Unit:new()
-
-function Bot:new()
-  local newObj = {}
-  self.__index = self
-  return setmetatable(newObj, self)
+function Unit:SetNextItemPurchaseValue(cost)
 end
 
-function Bot:SetNextItemPurchaseValue(cost)
-end
-
-function Bot:GetGold()
+function Unit:GetGold()
   return self.gold
 end
 
-function Bot:FindItemSlot(itemName)
+function Unit:FindItemSlot(itemName)
   for i, item in pairs(self.inventory) do
     if item == itemName then return i end
   end
@@ -244,7 +234,7 @@ function Bot:FindItemSlot(itemName)
   return -1
 end
 
-function Bot:GetNearbyHeroes(radius, enemies, mode)
+function Unit:GetNearbyHeroes(radius, enemies, mode)
   local unit1 = Unit:new()
   unit1.name = "unit1"
   unit1.health = 10
@@ -270,7 +260,7 @@ end
 
 NEARBY_CREEPS_COUNT = 3
 
-function Bot:GetNearbyCreeps(radius, enemies)
+function Unit:GetNearbyCreeps(radius, enemies)
   local unit1 = Unit:new()
   unit1.name = "creep1"
   unit1.health = 10
@@ -295,10 +285,10 @@ function Bot:GetNearbyCreeps(radius, enemies)
   end
 end
 
-BOT_IS_NEARBY_TOWERS = true
+UNIT_IS_NEARBY_TOWERS = true
 
-function Bot:GetNearbyTowers(radius, enemies, mode)
-  if not BOT_IS_NEARBY_TOWERS then return {} end
+function Unit:GetNearbyTowers(radius, enemies, mode)
+  if not UNIT_IS_NEARBY_TOWERS then return {} end
 
   local unit1 = Unit:new()
   unit1.name = "tower1"
@@ -323,7 +313,7 @@ function Bot:GetNearbyTowers(radius, enemies, mode)
   return { unit1, unit2, unit3 }
 end
 
-function Bot:GetNearbyBarracks(radius, enemies, mode)
+function Unit:GetNearbyBarracks(radius, enemies, mode)
   local unit1 = Unit:new()
   unit1.name = "barrak1"
   unit1.health = 10
@@ -342,131 +332,131 @@ end
 
 FIND_AOE_LOCATION_COUNT = 3
 
-function Bot:FindAoELocation()
+function Unit:FindAoELocation()
   return {count = FIND_AOE_LOCATION_COUNT, targetloc = {1.2, 3.4}}
 end
 
-BOT_ABILITY = nil
-BOT_ABILITY_LOCATION = nil
+UNIT_ABILITY = nil
+UNIT_ABILITY_LOCATION = nil
 
-function Bot:Action_UseAbilityOnLocation(ability, location)
-  BOT_ABILITY = ability
-BOT_ABILITY_LOCATION = location
+function Unit:Action_UseAbilityOnLocation(ability, location)
+  UNIT_ABILITY = ability
+UNIT_ABILITY_LOCATION = location
 end
 
-BOT_ABILITY_ENTITY = nil
+UNIT_ABILITY_ENTITY = nil
 
-function Bot:Action_UseAbilityOnEntity(ability, entity)
-  BOT_ABILITY = ability
-BOT_ABILITY_ENTITY = entity
+function Unit:Action_UseAbilityOnEntity(ability, entity)
+  UNIT_ABILITY = ability
+UNIT_ABILITY_ENTITY = entity
 end
 
-function Bot:Action_UseAbility(ability)
-  BOT_ABILITY = ability
+function Unit:Action_UseAbility(ability)
+  UNIT_ABILITY = ability
 end
 
-function Bot:GetPlayerID()
+function Unit:GetPlayerID()
   return 5
 end
 
 COURIER_VALUE = 0
 
-function Bot:GetCourierValue()
+function Unit:GetCourierValue()
   return COURIER_VALUE
 end
 
-BOT_MODE = BOT_MODE_NONE
+UNIT_MODE = BOT_MODE_NONE
 
-function Bot:GetActiveMode()
-  return BOT_MODE
+function Unit:GetActiveMode()
+  return UNIT_MODE
 end
 
 COURIER_ACTION = nil
 
-function Bot:ActionImmediate_Courier(courier, action)
+function Unit:ActionImmediate_Courier(courier, action)
   COURIER_ACTION = action
 end
 
 STASH_VALUE = 0
 
-function Bot:GetStashValue()
+function Unit:GetStashValue()
   return STASH_VALUE
 end
 
 WAS_DAMAGED = false
 
-function Bot:WasRecentlyDamagedByAnyHero()
+function Unit:WasRecentlyDamagedByAnyHero()
   return WAS_DAMAGED
 end
 
-BOT_ACTION = nil
-BOT_MOVE_LOCATION = nil
+UNIT_ACTION = nil
+UNIT_MOVE_LOCATION = nil
 
-function Bot:Action_MoveToLocation(location)
-  BOT_ACTION = BOT_ACTION_TYPE_MOVE_TO
-  BOT_MOVE_LOCATION = location
+function Unit:Action_MoveToLocation(location)
+  UNIT_ACTION = UNIT_ACTION_TYPE_MOVE_TO
+  UNIT_MOVE_LOCATION = location
 end
 
-BOT_PICKUP_RUNE = nil
+UNIT_PICKUP_RUNE = nil
 
-function Bot:Action_PickUpRune(rune)
-  BOT_PICKUP_RUNE = rune
+function Unit:Action_PickUpRune(rune)
+  UNIT_PICKUP_RUNE = rune
 end
 
-function Bot:GetLevel()
+function Unit:GetLevel()
   return self.level
 end
 
-BOT_ABILITIES = {}
+UNIT_ABILITIES = {}
 
-function Bot:GetAbilityInSlot(slot_number)
+function Unit:GetAbilityInSlot(slot_number)
   -- The first ability has the 0 slot in the game.
-  return BOT_ABILITIES[slot_number + 1]
+  return UNIT_ABILITIES[slot_number + 1]
 end
 
-BOT_LEVELUP_ABILITY = nil
+UNIT_LEVELUP_ABILITY = nil
 
-function Bot:ActionImmediate_LevelAbility(ability_name)
-  BOT_LEVELUP_ABILITY = ability_name
+function Unit:ActionImmediate_LevelAbility(ability_name)
+  UNIT_LEVELUP_ABILITY = ability_name
 end
 
 ATTACK_MOVE_LOCATION = nil
 
-function Bot:Action_AttackMove(location)
+function Unit:Action_AttackMove(location)
   ATTACK_MOVE_LOCATION = location
 end
 
-function Bot:GetAbilityPoints()
+function Unit:GetAbilityPoints()
   return self.ability_points
 end
 
-function Bot:WasRecentlyDamagedByHero(unit, time)
+function Unit:WasRecentlyDamagedByHero(unit, time)
   return true
 end
 
-function Bot:GetCurrentVisionRange()
+function Unit:GetCurrentVisionRange()
   return 1600
 end
 
 ATTACK_TARGET = nil
 
-function Bot:Action_AttackUnit(target, is_once)
+function Unit:Action_AttackUnit(target, is_once)
   ATTACK_TARGET = target
 end
 
-function Bot:SetTarget(target)
+function Unit:SetTarget(target)
   ATTACK_TARGET = target
 end
 
-function Bot:GetTarget(target)
+function Unit:GetTarget(target)
   return ATTACK_TARGET
 end
 
-function Bot:GetAttackTarget()
+function Unit:GetAttackTarget()
   return ATTACK_TARGET
 end
 
-function Bot:GetAttackDamage()
+function Unit:GetAttackDamage()
   return 60
 end
 
@@ -483,7 +473,7 @@ function Ability:new(n)
   return setmetatable(newObj, self)
 end
 
-function Bot:GetAbilityByName(abilityName)
+function Unit:GetAbilityByName(abilityName)
   return Ability:new(abilityName)
 end
 

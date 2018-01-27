@@ -22,14 +22,14 @@ function test_GetDesire_succeed()
       BOT_MODE_DEFEND_ALLY = 40
   }
 
-  BOT_MODE = BOT_MODE_ROAM
+  UNIT_MODE = BOT_MODE_ROAM
   luaunit.assertEquals(attack.test_GetDesire(GetBot(), mode_desires), 90)
 end
 
 function test_ChooseTarget_succeed()
   test_RefreshBot()
 
-  BOT_MODE = BOT_MODE_ROAM
+  UNIT_MODE = BOT_MODE_ROAM
 
   local target = attack.test_ChooseTarget(GetBot())
   luaunit.assertNotEquals(target, nil)
