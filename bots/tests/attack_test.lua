@@ -39,9 +39,11 @@ end
 function test_Attack_succeed()
   test_RefreshBot()
 
+  local bot = GetBot()
   ATTACK_TARGET = nil
   UNIT_IS_CHANNELING = false
-  attack.Attack(GetBot())
+
+  attack.Attack(bot, bot:GetCurrentVisionRange())
 
   luaunit.assertNotEquals(ATTACK_TARGET, nil)
 end
@@ -49,9 +51,10 @@ end
 function test_Attack_when_bot_is_busy_fails()
   test_RefreshBot()
 
+  local bot = GetBot()
   ATTACK_TARGET = nil
   UNIT_IS_CHANNELING = true
-  attack.Attack(GetBot())
+  attack.Attack(bot, bot:GetCurrentVisionRange())
 
   luaunit.assertEquals(ATTACK_TARGET, nil)
 end

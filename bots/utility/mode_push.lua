@@ -36,7 +36,7 @@ function M.Think(lane)
   local target = GetLaneFrontLocation(GetTeam(), lane, 0.5)
 
   if functions.IsEnemyNear(bot) then
-     attack.Attack(bot)
+     attack.Attack(bot, bot:GetCurrentVisionRange())
   else
     bot:Action_AttackMove(target)
   end

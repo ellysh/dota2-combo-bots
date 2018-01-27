@@ -17,8 +17,7 @@ local function GetDesire(bot, mode_desires)
   return 0
 end
 
-local function ChooseTarget(bot)
-  local radius = bot:GetCurrentVisionRange()
+local function ChooseTarget(bot, radius)
   local targets = {}
 
   for algorithm, mode_desires in pairs(attack_target.ATTACK_TARGET) do
@@ -41,18 +40,16 @@ local function ChooseTarget(bot)
     end)
 end
 
-function M.Attack(bot)
-  local bot = GetBot()
-
-  if functions.IsBotBusy(bot) then
+function M.Attack(unit, radius)
+  if functions.IsBotBusy(unit) then
     return end
 
-  local target = ChooseTarget(bot)
+  local target = ChooseTarget(unit, radius)
 
   -- This SetTarget is required to start casting skills
-  bot:SetTarget(target)
+  unit:SetTarget(target)
 
-  bot:Action_AttackUnit(target, false)
+  unit:Action_AttackUnit(target, false)
 end
 
 -- Provide an access to local functions for unit tests only

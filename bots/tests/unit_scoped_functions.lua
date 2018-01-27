@@ -483,6 +483,14 @@ function Unit:GetBuybackCost()
   return 500
 end
 
+function Unit:GetBaseMovementSpeed()
+  return 150
+end
+
+function Unit:GetAttackRange()
+  return 550
+end
+
 ------------------------------------------
 
 Ability = {}

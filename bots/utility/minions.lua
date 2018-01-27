@@ -25,7 +25,12 @@ function M.MinionThink(minion)
   elseif not IsMinionsOwnerNear(bot, minion)
         and functions.IsEnemyNear(minion) then
 
-    attack.Attack(minion)
+    local radius = functions.ternary(
+      minion:GetBaseMovementSpeed() == 0,
+      minion:GetAttackRange(),
+      minion:GetCurrentVisionRange())
+
+    attack.Attack(minion, radius)
 
   elseif not IsMinionsOwnerNear(bot, minion) then
 
