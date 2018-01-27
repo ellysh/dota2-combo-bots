@@ -38,7 +38,10 @@ local function GetDesire(check_shop_func, get_distance_func, base_desire)
     return 0
   end
 
-  return (1 - (shop_distance / constants.SHOP_WALK_RADIUS)) + base_desire
+  return functions.DistanceToDesire(
+    shop_distance,
+    constants.SHOP_WALK_RADIUS,
+    base_desire)
 end
 
 function M.GetDesireSideShop()

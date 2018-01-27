@@ -67,9 +67,10 @@ function GetDesire()
   if GetRuneStatus(rune) == RUNE_STATUS_AVAILABLE then
     return 0.75 end
 
-  -- TODO: This code is the same as one ine the mode_shop.lua, GetDesire()
-  -- Move it to a separate function.
-  return (1 - (distance / constants.MAX_HERO_DISTANCE_FROM_RUNE)) + 0.3
+  return functions.DistanceToDesire(
+    distance,
+    constants.MAX_HERO_DISTANCE_FROM_RUNE,
+    0.3)
 end
 
 function Think()

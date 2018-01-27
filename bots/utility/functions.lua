@@ -338,6 +338,10 @@ function M.IsBotInFightingMode(bot)
          or mode == BOT_MODE_EVASIVE_MANEUVERS
 end
 
+function M.DistanceToDesire(distance, max_distance, base_desire)
+  return (1 - (distance / max_distance)) + base_desire
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount
