@@ -3,17 +3,17 @@ local M = {}
 
 M.HEROES = {
 
-  npc_dota_hero_phantom_assassin = {
-    position = {1, 2},
+  npc_dota_hero_phantom_lancer = {
+    position = {1, nil},
     combo_heroes = {
-      "npc_dota_hero_ogre_magi",
-      "npc_dota_hero_omniknight",
-      "npc_dota_hero_shadow_shaman"
+      "npc_dota_hero_keeper_of_the_light",
+      "npc_dota_hero_dazzle",
+      "npc_dota_hero_lich"
     },
     counter_heroes = {
       "npc_dota_hero_axe",
-      "npc_dota_hero_dragon_knight",
-      "npc_dota_hero_sand_king"
+      "npc_dota_hero_sand_king",
+      "npc_dota_hero_sven"
     }
   },
 
@@ -31,17 +31,17 @@ M.HEROES = {
     }
   },
 
-  npc_dota_hero_chaos_knight = {
+  npc_dota_hero_sniper = {
     position = {2, 1},
     combo_heroes = {
-      "npc_dota_hero_crystal_maiden",
-      "npc_dota_hero_wisp",
-      "npc_dota_hero_rattletrap"
+      "npc_dota_hero_ogre_magi",
+      "npc_dota_hero_skeleton_king",
+      "npc_dota_hero_vengefulspirit"
     },
     counter_heroes = {
-      "npc_dota_hero_sven",
-      "npc_dota_hero_medusa",
-      "npc_dota_hero_bristleback"
+      "npc_dota_hero_phantom_assassin",
+      "npc_dota_hero_rattletrap",
+      "npc_dota_hero_centaur"
     }
   },
 
