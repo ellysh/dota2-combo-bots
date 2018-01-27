@@ -460,6 +460,16 @@ function Unit:GetAttackDamage()
   return 60
 end
 
+UNIT_HAS_BUYBACK = true
+
+function Unit:HasBuyback()
+  return UNIT_HAS_BUYBACK
+end
+
+function Unit:GetBuybackCost()
+  return 500
+end
+
 ------------------------------------------
 
 Ability = {}

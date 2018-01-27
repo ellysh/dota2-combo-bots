@@ -33,6 +33,12 @@ M.PLAYER_DESIRES = {
     PUSH_BOT_LINE_DESIRE = {5, -5}
   },
 
+  have_buyback = {
+    PUSH_TOP_LINE_DESIRE = {0, -5},
+    PUSH_MID_LINE_DESIRE = {0, -5},
+    PUSH_BOT_LINE_DESIRE = {0, -5}
+  },
+
 }
 
 return M

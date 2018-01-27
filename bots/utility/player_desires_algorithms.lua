@@ -48,6 +48,13 @@ function M.have_tp_scrol_or_travel_boots()
     })
 end
 
+function M.have_buyback()
+  local bot = GetBot()
+
+  return bot:HasBuyback()
+         and bot:GetBuybackCost() <= bot:GetGold()
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 

@@ -75,4 +75,19 @@ function test_have_tp_scrol_or_travel_boots()
   luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
 end
 
+function test_player_have_buyback()
+  test_RefreshBot()
+
+  UNIT_HAS_BUYBACK = true
+  luaunit.assertTrue(algorithms.have_buyback())
+
+  local bot = GetBot()
+  bot.gold = 10
+  luaunit.assertFalse(algorithms.have_buyback())
+
+  UNIT_HAS_BUYBACK = false
+  bot.gold = bot:GetBuybackCost() + 100
+  luaunit.assertFalse(algorithms.have_buyback())
+end
+
 os.exit(luaunit.LuaUnit.run())
