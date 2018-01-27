@@ -12,8 +12,23 @@ function test_MinionThink_move_to_hero_succeed()
   local bot = GetBot()
   bot.location = {500, 500}
 
-  -- TODO: Finish this test
-  --minions.MinionThink(Unit:new())
+  minions.MinionThink(Unit:new())
+
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, bot.location)
+end
+
+function test_MinionThink_attack_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  local target = Unit:new()
+
+  ATTACK_TARGET = nil
+  bot:SetTarget(target)
+
+  minions.MinionThink(Unit:new())
+
+  luaunit.assertEquals(ATTACK_TARGET, target)
 end
 
 os.exit(luaunit.LuaUnit.run())
