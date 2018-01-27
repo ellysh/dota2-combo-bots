@@ -1,4 +1,5 @@
 * version 0.8
+  - Add the Phantom Lancer hero.
   - Fix a bug when Chaos Knight's illusions do not attack creeps
   and buildings.
   - Fix a bug with picking up a rune while fighting or killing Roshan.
