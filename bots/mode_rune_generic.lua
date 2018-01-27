@@ -4,6 +4,8 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local M = {}
+
 local RUNES = {
     RUNE_POWERUP_1,
     RUNE_POWERUP_2,
@@ -70,7 +72,7 @@ function GetDesire()
 
   -- TODO: This code is the same as one ine the mode_shop.lua, GetDesire()
   -- Move it to a separate function.
-  return (1 - (distance / constants.MAX_HERO_DISTANCE_FROM_RUNE)) + 0.3
+  return (1 - (distance / constants.MAX_HERO_DISTANCE_FROM_RUNE)) + 0.2
 end
 
 function Think()
@@ -86,3 +88,5 @@ function Think()
     bot:Action_PickUpRune(rune)
   end
 end
+
+return M

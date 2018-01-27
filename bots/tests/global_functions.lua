@@ -203,3 +203,11 @@ IS_SIDE_SHOP_ITEM = false
 function IsItemPurchasedFromSideShop()
   return IS_SIDE_SHOP_ITEM
 end
+
+function GetRuneSpawnLocation(rune)
+  return {20, 20}
+end
+
+function GetRuneStatus(rune)
+  return RUNE_STATUS_AVAILABLE
+end
