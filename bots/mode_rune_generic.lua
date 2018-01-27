@@ -40,10 +40,6 @@ end
 
 local function IsRuneAppearSoon()
   local time = DotaTime()
-
-  if time < 0 then
-    return false end
-
   local last_appear = time - (time % 2)
 
   return 1.9 <= (time - last_appear)

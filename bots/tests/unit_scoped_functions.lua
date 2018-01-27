@@ -411,6 +411,12 @@ function Bot:Action_MoveToLocation(location)
   BOT_MOVE_LOCATION = location
 end
 
+BOT_PICKUP_RUNE = nil
+
+function Bot:Action_PickUpRune(rune)
+  BOT_PICKUP_RUNE = rune
+end
+
 function Bot:GetLevel()
   return self.level
 end

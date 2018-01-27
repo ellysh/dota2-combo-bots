@@ -204,10 +204,14 @@ function IsItemPurchasedFromSideShop()
   return IS_SIDE_SHOP_ITEM
 end
 
+RUNE_LOCATION = {20, 20}
+
 function GetRuneSpawnLocation(rune)
-  return {20, 20}
+  return RUNE_LOCATION
 end
 
+RUNE_STATUS = RUNE_STATUS_UNKNOWN
+
 function GetRuneStatus(rune)
-  return RUNE_STATUS_AVAILABLE
+  return RUNE_STATUS
 end
