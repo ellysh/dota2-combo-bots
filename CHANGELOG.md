@@ -1,4 +1,5 @@
 * version 0.8
+  - Fix a bug with buying extra components for upgradable items.
   - Add the Phantom Lancer hero.
   - Fix a bug when Chaos Knight's illusions do not attack creeps
   and buildings.
