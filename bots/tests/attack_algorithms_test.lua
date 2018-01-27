@@ -141,6 +141,7 @@ function test_low_hp_enemy_building_succeed()
   test_RefreshBot()
 
   UNIT_CAN_BE_SEEN = true
+  UNIT_IS_NEARBY_TOWERS = true
 
   local desire, target = algorithms.low_hp_enemy_building(
     GetBot(),

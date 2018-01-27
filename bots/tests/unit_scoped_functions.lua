@@ -234,7 +234,12 @@ function Unit:FindItemSlot(itemName)
   return -1
 end
 
+UNIT_NO_NEARBY_UNITS = false
+
 function Unit:GetNearbyHeroes(radius, enemies, mode)
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
   local unit1 = Unit:new()
   unit1.name = "unit1"
   unit1.health = 10
@@ -261,6 +266,9 @@ end
 NEARBY_CREEPS_COUNT = 3
 
 function Unit:GetNearbyCreeps(radius, enemies)
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
   local unit1 = Unit:new()
   unit1.name = "creep1"
   unit1.health = 10
@@ -285,10 +293,12 @@ function Unit:GetNearbyCreeps(radius, enemies)
   end
 end
 
-UNIT_IS_NEARBY_TOWERS = true
-
 function Unit:GetNearbyTowers(radius, enemies, mode)
-  if not UNIT_IS_NEARBY_TOWERS then return {} end
+  if not UNIT_IS_NEARBY_TOWERS then
+    return {} end
+
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
 
   local unit1 = Unit:new()
   unit1.name = "tower1"
@@ -314,6 +324,9 @@ function Unit:GetNearbyTowers(radius, enemies, mode)
 end
 
 function Unit:GetNearbyBarracks(radius, enemies, mode)
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
   local unit1 = Unit:new()
   unit1.name = "barrak1"
   unit1.health = 10

@@ -11,6 +11,7 @@ function test_MinionThink_move_to_hero_succeed()
 
   local bot = GetBot()
   bot.location = {500, 500}
+  UNIT_NO_NEARBY_UNITS = true
 
   minions.MinionThink(Unit:new())
 
@@ -20,15 +21,11 @@ end
 function test_MinionThink_attack_succeed()
   test_RefreshBot()
 
-  local bot = GetBot()
-  local target = Unit:new()
-
-  ATTACK_TARGET = nil
-  bot:SetTarget(target)
+  UNIT_NO_NEARBY_UNITS = false
 
   minions.MinionThink(Unit:new())
 
-  luaunit.assertEquals(ATTACK_TARGET, target)
+  luaunit.assertNotEquals(ATTACK_TARGET, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())
