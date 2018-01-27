@@ -6,16 +6,16 @@ require("global_functions")
 local algorithms = require("player_desires_algorithms")
 local luaunit = require('luaunit')
 
-function test_have_low_hp()
+function test_has_low_hp()
   test_RefreshBot()
 
   local bot = GetBot()
 
   bot.health = 10
-  luaunit.assertTrue(algorithms.have_low_hp(bot, ability))
+  luaunit.assertTrue(algorithms.has_low_hp(bot, ability))
 
   bot.health = bot.max_health
-  luaunit.assertFalse(algorithms.have_low_hp(bot, ability))
+  luaunit.assertFalse(algorithms.has_low_hp(bot, ability))
 end
 
 function test_PlayerOnLane()
@@ -58,36 +58,36 @@ function test_player_on_bot()
   luaunit.assertFalse(algorithms.player_on_bot())
 end
 
-function test_have_tp_scrol_or_travel_boots()
+function test_has_tp_scrol_or_travel_boots()
   test_RefreshBot()
 
-  luaunit.assertFalse(algorithms.have_tp_scrol_or_travel_boots())
+  luaunit.assertFalse(algorithms.has_tp_scrol_or_travel_boots())
 
   local bot = GetBot()
 
   bot.inventory = { "item_tpscroll" }
-  luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
+  luaunit.assertTrue(algorithms.has_tp_scrol_or_travel_boots())
 
   bot.inventory = { "item_travel_boots_1" }
-  luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
+  luaunit.assertTrue(algorithms.has_tp_scrol_or_travel_boots())
 
   bot.inventory = { "item_travel_boots_2" }
-  luaunit.assertTrue(algorithms.have_tp_scrol_or_travel_boots())
+  luaunit.assertTrue(algorithms.has_tp_scrol_or_travel_boots())
 end
 
-function test_player_have_buyback()
+function test_player_has_buyback()
   test_RefreshBot()
 
   UNIT_HAS_BUYBACK = true
-  luaunit.assertTrue(algorithms.have_buyback())
+  luaunit.assertTrue(algorithms.has_buyback())
 
   local bot = GetBot()
   bot.gold = 10
-  luaunit.assertFalse(algorithms.have_buyback())
+  luaunit.assertFalse(algorithms.has_buyback())
 
   UNIT_HAS_BUYBACK = false
   bot.gold = bot:GetBuybackCost() + 100
-  luaunit.assertFalse(algorithms.have_buyback())
+  luaunit.assertFalse(algorithms.has_buyback())
 end
 
 os.exit(luaunit.LuaUnit.run())

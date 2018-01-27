@@ -9,7 +9,7 @@ local constants = require(
 
 local M = {}
 
-function M.have_low_hp()
+function M.has_low_hp()
   if functions.GetUnitHealthLevel(GetBot())
      < constants.UNIT_LOW_HEALTH_LEVEL then
 
@@ -38,7 +38,7 @@ function M.player_on_bot()
   return PlayerOnLane(LANE_BOT)
 end
 
-function M.have_tp_scrol_or_travel_boots()
+function M.has_tp_scrol_or_travel_boots()
   return functions.IsUnitHaveItems(
     GetBot(),
     {
@@ -48,7 +48,7 @@ function M.have_tp_scrol_or_travel_boots()
     })
 end
 
-function M.have_buyback()
+function M.has_buyback()
   local bot = GetBot()
 
   return bot:HasBuyback()

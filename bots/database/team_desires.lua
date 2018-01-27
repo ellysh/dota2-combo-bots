@@ -9,13 +9,13 @@ M.TEAM_DESIRES = {
     PUSH_BOT_LINE_DESIRE = {10, 0}
   },
 
-  ally_have_aegis = {
+  ally_has_aegis = {
     PUSH_TOP_LINE_DESIRE = {10, 0},
     PUSH_MID_LINE_DESIRE = {10, 0},
     PUSH_BOT_LINE_DESIRE = {10, 0}
   },
 
-  ally_have_cheese = {
+  ally_has_cheese = {
     PUSH_TOP_LINE_DESIRE = {5, 0},
     PUSH_MID_LINE_DESIRE = {5, 0},
     PUSH_BOT_LINE_DESIRE = {5, 0}

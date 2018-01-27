@@ -27,26 +27,26 @@ function test_IsAllyHaveItem()
   luaunit.assertTrue(algorithms.test_IsAllyHaveItem(test_item))
 end
 
-function test_ally_have_aegis()
-  luaunit.assertFalse(algorithms.ally_have_aegis())
+function test_ally_has_aegis()
+  luaunit.assertFalse(algorithms.ally_has_aegis())
 
   local unit = Unit:new()
   unit.inventory = { "item_aegis" }
 
   UNITS = { unit }
 
-  luaunit.assertTrue(algorithms.ally_have_aegis())
+  luaunit.assertTrue(algorithms.ally_has_aegis())
 end
 
-function test_ally_have_cheese()
-  luaunit.assertFalse(algorithms.ally_have_cheese())
+function test_ally_has_cheese()
+  luaunit.assertFalse(algorithms.ally_has_cheese())
 
   local unit = Unit:new()
   unit.inventory = { "item_cheese" }
 
   UNITS = { unit }
 
-  luaunit.assertTrue(algorithms.ally_have_cheese())
+  luaunit.assertTrue(algorithms.ally_has_cheese())
 end
 
 function test_max_kills_enemy_hero_alive()

@@ -39,11 +39,11 @@ local function IsAllyHaveItem(item_name)
   return hero ~= nil
 end
 
-function M.ally_have_aegis()
+function M.ally_has_aegis()
   return IsAllyHaveItem("item_aegis")
 end
 
-function M.ally_have_cheese()
+function M.ally_has_cheese()
   return IsAllyHaveItem("item_cheese")
 end
 
