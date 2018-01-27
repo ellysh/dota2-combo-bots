@@ -81,7 +81,7 @@ function M.channeling_enemy_hero(bot, ability)
 end
 
 function M.attacked_enemy_hero(bot, ability)
-  local target = bot:GetAttackTarget()
+  local target = bot:GetTarget()
 
   if target == nil
      or not target:IsHero()
@@ -93,7 +93,7 @@ function M.attacked_enemy_hero(bot, ability)
 end
 
 function M.attacked_enemy_creep(bot, ability)
-  local target = bot:GetAttackTarget()
+  local target = bot:GetTarget()
 
   if target == nil
      or not target:IsCreep()
@@ -105,7 +105,7 @@ function M.attacked_enemy_creep(bot, ability)
 end
 
 function M.attacked_enemy_building(bot, ability)
-  local target = bot:GetAttackTarget()
+  local target = bot:GetTarget()
 
   if target == nil
      or not target:IsBuilding()
@@ -199,7 +199,7 @@ function M.three_and_more_enemy_heroes(bot, ability)
 end
 
 function M.toggle_on_attack_enemy_hero(bot, ability)
-  local target = bot:GetAttackTarget()
+  local target = bot:GetTarget()
 
   if target == nil then
     return false, nil end
@@ -229,7 +229,7 @@ local function UseOnAttackEnemyUnit(
   check_function,
   radius)
 
-  local target = bot:GetAttackTarget()
+  local target = bot:GetTarget()
 
   if target == nil
     or not check_function(target)

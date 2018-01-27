@@ -49,6 +49,9 @@ function M.Attack(bot)
 
   local target = ChooseTarget(bot)
 
+  -- This SetTarget is required to start casting skills
+  bot:SetTarget(target)
+
   bot:Action_AttackUnit(target, false)
 end
 

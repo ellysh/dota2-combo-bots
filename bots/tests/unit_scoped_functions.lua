@@ -154,10 +154,6 @@ function Unit:GetNetWorth()
   return self.networth
 end
 
-function Unit:GetAttackTarget()
-  return Unit:new()
-end
-
 UNIT_IS_HERO = true
 
 function Unit:IsHero()
@@ -456,6 +452,18 @@ ATTACK_TARGET = nil
 
 function Bot:Action_AttackUnit(target, is_once)
   ATTACK_TARGET = target
+end
+
+function Bot:SetTarget(target)
+  ATTACK_TARGET = target
+end
+
+function Bot:GetTarget(target)
+  return ATTACK_TARGET
+end
+
+function Bot:GetAttackTarget()
+  return ATTACK_TARGET
 end
 
 function Bot:GetAttackDamage()

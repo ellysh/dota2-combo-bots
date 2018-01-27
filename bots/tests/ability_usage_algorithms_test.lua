@@ -415,6 +415,7 @@ function test_UseOnAttackEnemyUnit()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
 
+  ATTACK_TARGET = Unit:new()
   UNIT_IS_HERO = true
 
   local desire, target =
