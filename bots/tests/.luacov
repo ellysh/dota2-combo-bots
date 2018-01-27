@@ -15,4 +15,5 @@ modules = {
   ["team_desires_algorithms"] = "../utility/team_desires_algorithms.lua",
   ["attack"] = "../utility/attack.lua",
   ["attack_algorithms"] = "../utility/attack_algorithms.lua",
+  ["minions"] = "../utility/minions.lua",
 }
