@@ -9,15 +9,28 @@ local attack = require(
 
 local M = {}
 
+local function IsMinionsOwnerNear(bot, minion)
+  return GetUnitToUnitDistance(bot, minion)
+         <= constants.MAX_MINION_DISTANCE_FROM_HERO
+end
+
 function M.MinionThink(minion)
   local bot = GetBot()
+  local target = bot:GetTarget()
 
-  if functions.IsEnemyNear(minion) then
+  if IsMinionsOwnerNear(bot, minion) and target ~= nil then
+
+    minion:Action_AttackUnit(target, false)
+
+  elseif not IsMinionsOwnerNear(bot, minion)
+        and functions.IsEnemyNear(minion) then
+
     attack.Attack(minion)
-  elseif constants.MAX_MINION_DISTANCE_FROM_HERO
-         < GetUnitToUnitDistance(bot, minion) then
+
+  elseif not IsMinionsOwnerNear(bot, minion) then
 
     minion:Action_MoveToLocation(bot:GetExtrapolatedLocation(3.0))
+
   end
 end
 
