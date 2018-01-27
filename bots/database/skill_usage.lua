@@ -188,7 +188,7 @@ M.SKILL_USAGE = {
 
   shadow_shaman_mass_serpent_ward = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["three_and_more_enemy_heroes"], 90},
+      team_fight = {algorithms["attacked_enemy_hero"], 90},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
       BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_building"], 90},
