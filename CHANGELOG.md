@@ -1,4 +1,6 @@
 * version 0.8
+  - Fix a bug when Chaos Knight's illusions do not attack creeps
+  and buildings.
   - Fix a bug with picking up a rune while fighting or killing Roshan.
   - Add the ATTACK_TARGET table that allows adding algorithms for
   choosing the most desirable target for attacking.
