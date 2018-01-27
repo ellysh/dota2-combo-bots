@@ -93,8 +93,13 @@ local function FindNextItemToBuy(item_list)
 end
 
 local function IsPurchasePossible(bot)
-  -- Do not add anything to the purchase slot until curier bring something
+
+  -- Do not add anything to the purchase slot until courier bring
+  -- something or the stash is not empty. Otherwise, we are not sure
+  -- that upgradable items are assembled.
+
   return bot:GetCourierValue() == 0
+         and bot:GetStashValue() == 0
          and functions.GetItemToBuy(bot) == nil
 end
 
