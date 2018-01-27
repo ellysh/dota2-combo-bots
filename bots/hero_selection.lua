@@ -111,6 +111,9 @@ end
 local function PickHero(position, combo_heroes)
   local hero = GetComboHero(position, combo_heroes)
 
+  logger.Print("PickHero() - position = " .. position ..
+    " hero = " .. tostring(hero))
+
   if hero ~= nil then
     local players = GetTeamPlayers(GetTeam())
     if combo_heroes == nil then

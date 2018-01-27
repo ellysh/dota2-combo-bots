@@ -133,7 +133,7 @@ end
 
 function M.GetRandomTrue(probability)
   -- The probability is the 0% to 100% value
-  return RandomFloat(0, 100) < probability
+  return RandomInt(0, 100) < probability
 end
 
 function M.PercentToDesire(percent)
