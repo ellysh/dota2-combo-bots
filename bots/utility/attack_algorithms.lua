@@ -19,7 +19,7 @@ local function CompareMaxHeroKills(t, a, b)
 end
 
 function M.max_kills_enemy_hero(bot, radius)
-  local enemy_heroes = bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMaxHeroKills,
@@ -117,7 +117,7 @@ function M.min_hp_enemy_building(bot, radius)
 end
 
 function M.low_hp_enemy_hero(bot, radius)
-  local enemy_heroes = bot:GetNearbyHeroes(radius, true, BOT_MODE_NONE)
+  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     CompareMinHealth,
