@@ -16,6 +16,26 @@ function test_GetDesire_when_rune_missing_negative()
   luaunit.assertEquals(GetDesire(), 0)
 end
 
+function test_GetDesire_when_bot_fighting_negative()
+  test_RefreshBot()
+
+  RUNE_STATUS = RUNE_STATUS_AVAILABLE
+  RUNE_LOCATION = {500, 500}
+  UNIT_MODE = BOT_MODE_ATTACK
+
+  luaunit.assertEquals(GetDesire(), 0)
+end
+
+function test_GetDesire_when_bot_fighting_but_rune_close_positive()
+  test_RefreshBot()
+
+  RUNE_STATUS = RUNE_STATUS_AVAILABLE
+  RUNE_LOCATION = {100, 100}
+  UNIT_MODE = BOT_MODE_ATTACK
+
+  luaunit.assertEquals(GetDesire(), 0.75)
+end
+
 function test_GetDesire_when_rune_too_far_negative()
   test_RefreshBot()
 

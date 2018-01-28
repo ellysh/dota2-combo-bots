@@ -53,13 +53,13 @@ end
 
 function GetDesire()
   local bot = GetBot()
-
-  if functions.IsBotInFightingMode(bot) then
-    return 0 end
-
   local rune, distance = GetClosestRune(bot)
 
   if rune == nil then
+    return 0 end
+
+  if functions.IsBotInFightingMode(bot)
+     and constants.MIN_HERO_DISTANCE_FROM_RUNE < distance then
     return 0 end
 
   if IsBeginningOfMatch()
