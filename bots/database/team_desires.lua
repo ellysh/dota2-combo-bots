@@ -22,15 +22,15 @@ M.TEAM_DESIRES = {
   },
 
   max_kills_enemy_hero_alive = {
-    PUSH_TOP_LINE_DESIRE = {-10, 10},
-    PUSH_MID_LINE_DESIRE = {-10, 10},
-    PUSH_BOT_LINE_DESIRE = {-10, 10}
+    PUSH_TOP_LINE_DESIRE = {-10, 20},
+    PUSH_MID_LINE_DESIRE = {-10, 20},
+    PUSH_BOT_LINE_DESIRE = {-10, 20}
   },
 
   max_kills_ally_hero_alive = {
-    PUSH_TOP_LINE_DESIRE = {10, -10},
-    PUSH_MID_LINE_DESIRE = {10, -10},
-    PUSH_BOT_LINE_DESIRE = {10, -10}
+    PUSH_TOP_LINE_DESIRE = {10, -20},
+    PUSH_MID_LINE_DESIRE = {10, -20},
+    PUSH_BOT_LINE_DESIRE = {10, -20}
   },
 
   time_is_more_5_minutes = {
