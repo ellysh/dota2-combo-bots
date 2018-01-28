@@ -513,6 +513,23 @@ M.ITEM_BUILD = {
       "item_skadi"}
   },
 
+  npc_dota_hero_warlock = {
+    items = {
+      "item_tango",
+      "item_null_talisman",
+      "nil",
+      "item_boots",
+      "nil",
+      "nil",
+      "item_arcane_boots",
+      "item_recipe_hand_of_midas",
+      "item_ultimate_scepte",
+      "item_force_staff",
+      "item_refresher",
+      "item_octarine_core",
+      "item_guardian_greaves"}
+  },
+
 }
 
 return M

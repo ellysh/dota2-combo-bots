@@ -523,6 +523,22 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
+  item_recipe_hand_of_midas = {
+    components = {
+      "item_gloves",
+      "item_recipe_hand_of_midas",
+      "nil",
+      "nil"}
+  },
+
+  item_guardian_greaves = {
+    components = {
+      "item_arcane_boots",
+      "item_mekansm",
+      "item_recipe_guardian_greaves",
+      "nil"}
+  },
+
 }
 
 return M

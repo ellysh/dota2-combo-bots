@@ -37,3 +37,7 @@ chaos_knight_phantasm;;;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_he
 phantom_lancer_spirit_lance;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;attacked_enemy_hero;60;last_attacked_enemy_hero;30;attacked_enemy_hero;50
 phantom_lancer_doppelwalk;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;
 phantom_lancer_phantom_edge;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;
+warlock_fatal_bonds;;;attacked_enemy_hero;80;;;;;attacked_enemy_hero;60;attacked_enemy_hero;60;;;;;;;attacked_enemy_hero;60;;;;
+warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;75;low_hp_self;90;low_hp_ally_hero;80
+warlock_upheaval;;;three_and_more_enemy_heroes;70;attacked_enemy_hero;60;attacked_enemy_hero;60;three_and_more_enemy_heroes;50;attacked_enemy_hero;40;;;;;;;three_and_more_enemy_heroes;70;;;;
+warlock_rain_of_chaos;;;three_and_more_enemy_heroes;90;;;;;three_and_more_enemy_heroes;90;attacked_enemy_hero;20;;;;;;;three_and_more_enemy_heroes;90;;;;

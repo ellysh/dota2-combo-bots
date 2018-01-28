@@ -185,6 +185,20 @@ M.HEROES = {
     }
   },
 
+  npc_dota_hero_warlock = {
+    position = {2, 4},
+    combo_heroes = {
+      "npc_dota_hero_beastmaster",
+      "npc_dota_hero_lycan",
+      "npc_dota_hero_abaddon"
+    },
+    counter_heroes = {
+      "npc_dota_hero_antimage",
+      "npc_dota_hero_lycan",
+      "npc_dota_hero_abaddon"
+    }
+  },
+
 }
 
 return M

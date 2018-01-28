@@ -576,6 +576,66 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
   },
 
+  warlock_fatal_bonds = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["attacked_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
+  warlock_shadow_word = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["attacked_enemy_hero"], 75},
+      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 90},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 90},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
+      BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 60},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 75},
+      BOT_MODE_RETREAT = {algorithms["low_hp_self"], 90},
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 80}
+  },
+
+  warlock_upheaval = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["three_and_more_enemy_heroes"], 70},
+      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_enemy_heroes"], 50},
+      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 40},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_heroes"], 70},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
+  warlock_rain_of_chaos = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["three_and_more_enemy_heroes"], 90},
+      BOT_MODE_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_enemy_heroes"], 90},
+      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 20},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_heroes"], 90},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
 }
 
 return M
