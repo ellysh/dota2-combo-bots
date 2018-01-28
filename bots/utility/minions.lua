@@ -16,14 +16,8 @@ end
 
 function M.MinionThink(minion)
   local bot = GetBot()
-  local target = bot:GetTarget()
 
-  if IsMinionsOwnerNear(bot, minion) and target ~= nil then
-
-    minion:Action_AttackUnit(target, false)
-
-  elseif not IsMinionsOwnerNear(bot, minion)
-        and functions.IsEnemyNear(minion) then
+  if functions.IsEnemyNear(minion) then
 
     local radius = functions.ternary(
       minion:GetBaseMovementSpeed() == 0,
