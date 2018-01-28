@@ -508,6 +508,10 @@ function Unit:GetAbilityByName(abilityName)
   return Ability:new(abilityName)
 end
 
+function Unit:GetCurrentActiveAbility()
+  return Ability:new("crystal_maiden_freezing_field")
+end
+
 function Ability:GetCastRange()
   return self.cast_range
 end

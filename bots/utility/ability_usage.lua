@@ -96,8 +96,30 @@ local function UseAbility(bot, ability, target)
   bot:Action_UseAbilityOnEntity(ability, target)
 end
 
+local function CancelAbility(bot)
+  local ability = bot:GetCurrentActiveAbility()
+
+  if not bot:IsChanneling() and ability == nil then
+    return end
+
+  local radius = functions.ternary(
+    ability:GetCastRange() ~= 0,
+    ability:GetCastRange(),
+    ability:GetAOERadius())
+
+  if #functions.GetEnemyHeroes(bot, radius) == 0 then
+
+    logger.Print("CancelAbility() - " .. bot:GetUnitName() ..
+      " cancel " .. ability:GetName())
+
+    bot:Action_ClearActions(true)
+  end
+end
+
 function M.AbilityUsageThink()
   local bot = GetBot()
+
+  CancelAbility(bot)
 
   if functions.IsBotBusy(bot) then
     return end
