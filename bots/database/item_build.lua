@@ -522,7 +522,7 @@ M.ITEM_BUILD = {
       "nil",
       "nil",
       "item_arcane_boots",
-      "item_recipe_hand_of_midas",
+      "item_hand_of_midas",
       "item_ultimate_scepte",
       "item_force_staff",
       "item_refresher",

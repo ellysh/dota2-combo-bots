@@ -523,7 +523,7 @@ M.ITEM_RECIPE = {
       "nil"}
   },
 
-  item_recipe_hand_of_midas = {
+  item_hand_of_midas = {
     components = {
       "item_gloves",
       "item_recipe_hand_of_midas",
