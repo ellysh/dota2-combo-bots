@@ -161,7 +161,7 @@ local function SellItemByIndex(bot, index, condition)
     return
   end
 
-  functions.SetItemToSell(bot, item)
+  functions.SetItemToSell(bot, item:GetName())
 end
 
 local function GetSlotIndex(inventory_index)
@@ -235,9 +235,14 @@ local function PerformPlannedPurchaseAndSell(bot)
   if sell_item ~= nil then
 
     logger.Print("SellItemByIndex() - " .. bot:GetUnitName() ..
-                 " sell " .. sell_item:GetName())
+                 " sell " .. sell_item)
 
-    bot:ActionImmediate_SellItem(sell_item)
+    local item_handle = bot:GetItemInSlot(bot:FindItemSlot(sell_item))
+
+    if item_handle ~= nil then
+      bot:ActionImmediate_SellItem(item_handle)
+    end
+
     functions.SetItemToSell(bot, nil)
   end
 

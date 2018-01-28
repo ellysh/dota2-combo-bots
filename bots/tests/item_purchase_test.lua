@@ -346,9 +346,7 @@ function test_SellItemByIndex_level_match()
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
-  luaunit.assertEquals(
-    functions.GetItemToSell(bot),
-    {name = "item_branches"})
+  luaunit.assertEquals(functions.GetItemToSell(bot), "item_branches")
 end
 
 function test_SellItemByIndex_time_match()
@@ -371,9 +369,7 @@ function test_SellItemByIndex_time_match()
   functions.SetItemToSell(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
-  luaunit.assertEquals(
-    functions.GetItemToSell(bot),
-    {name = "item_branches"})
+  luaunit.assertEquals(functions.GetItemToSell(bot), "item_branches")
 end
 
 function test_SellItemByIndex_all_checks_fails()
@@ -429,9 +425,7 @@ function test_SellExtraItem_because_of_level_succeed()
   functions.SetItemToSell(bot, nil)
   item_purchase.test_SellExtraItem(GetBot())
 
-  luaunit.assertEquals(
-    functions.GetItemToSell(bot),
-    {name = "item_branches"})
+  luaunit.assertEquals(functions.GetItemToSell(bot), "item_branches")
 end
 
 function test_SellExtraItem_because_of_buying_new_succeed()
@@ -463,9 +457,7 @@ function test_SellExtraItem_because_of_buying_new_succeed()
   functions.SetItemToSell(bot, nil)
   item_purchase.test_SellExtraItem(GetBot())
 
-  luaunit.assertEquals(
-    functions.GetItemToSell(bot),
-    {name = "item_branches"})
+  luaunit.assertEquals(functions.GetItemToSell(bot), "item_branches")
 end
 
 function test_SellExtraItem_when_already_planned_fails()
@@ -523,9 +515,7 @@ function test_PerformPlannedPurchaseAndSell_sell_succeed()
   local bot = GetBot()
   bot.inventory = { "item_branches" }
 
-  local item = Item:new("item_branches")
-
-  functions.SetItemToSell(bot, item)
+  functions.SetItemToSell(bot, "item_branches")
 
   item_purchase.test_PerformPlannedPurchaseAndSell(bot)
 
@@ -539,6 +529,7 @@ function test_PerformPlannedPurchaseAndSell_buy_succeed()
   local bot = GetBot()
 
   functions.SetItemToBuy(bot, "item_branches")
+  functions.SetItemToSell(bot, nil)
 
   COURIER = nil
   item_purchase.test_PerformPlannedPurchaseAndSell(bot)
@@ -620,7 +611,7 @@ function test_ItemPurchaseThink_with_full_inventory()
 
   luaunit.assertEquals(
     functions.GetItemToSell(bot),
-    {name = "item_branches"})
+    "item_branches")
 
   luaunit.assertEquals(
     functions.GetItemToBuy(bot),

@@ -228,7 +228,8 @@ end
 
 function Unit:FindItemSlot(itemName)
   for i, item in pairs(self.inventory) do
-    if item == itemName then return i end
+    if item == itemName then
+      return (i - 1) end
   end
 
   return -1
