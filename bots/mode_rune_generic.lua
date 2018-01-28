@@ -62,9 +62,13 @@ function GetDesire()
      and constants.MIN_HERO_DISTANCE_FROM_RUNE < distance then
     return 0 end
 
-  if IsBeginningOfMatch()
-     and not IsPowerRune(rune) then
-    return 0.75 end
+  if IsBeginningOfMatch() then
+    if not IsPowerRune(rune) then
+      return 0.75
+    else
+      return 0
+    end
+  end
 
   if GetRuneStatus(rune) == RUNE_STATUS_MISSING
      and not IsRuneAppeared() then

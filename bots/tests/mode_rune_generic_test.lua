@@ -32,6 +32,7 @@ function test_GetDesire_when_bot_fighting_but_rune_close_positive()
   RUNE_STATUS = RUNE_STATUS_AVAILABLE
   RUNE_LOCATION = {100, 100}
   UNIT_MODE = BOT_MODE_ATTACK
+  RUNE_TYPE = RUNE_BOUNTY_1
 
   luaunit.assertEquals(GetDesire(), 0.75)
 end
