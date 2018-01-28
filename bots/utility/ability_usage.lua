@@ -99,7 +99,7 @@ end
 local function CancelAbility(bot)
   local ability = bot:GetCurrentActiveAbility()
 
-  if not bot:IsChanneling() and ability == nil then
+  if not bot:IsChanneling() or ability == nil then
     return end
 
   local radius = functions.ternary(
