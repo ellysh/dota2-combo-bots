@@ -18,7 +18,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_shadow_shaman = {
-    position = {5, 4},
+    position = {5, nil},
     combo_heroes = {
       "npc_dota_hero_ursa",
       "npc_dota_hero_juggernaut",
@@ -31,22 +31,8 @@ M.HEROES = {
     }
   },
 
-  npc_dota_hero_sniper = {
-    position = {2, 1},
-    combo_heroes = {
-      "npc_dota_hero_ogre_magi",
-      "npc_dota_hero_skeleton_king",
-      "npc_dota_hero_vengefulspirit"
-    },
-    counter_heroes = {
-      "npc_dota_hero_phantom_assassin",
-      "npc_dota_hero_rattletrap",
-      "npc_dota_hero_centaur"
-    }
-  },
-
   npc_dota_hero_skeleton_king = {
-    position = {2, 3},
+    position = {3, nil},
     combo_heroes = {
       "npc_dota_hero_vengefulspirit",
       "npc_dota_hero_lina",
@@ -59,8 +45,23 @@ M.HEROES = {
     }
   },
 
+  npc_dota_hero_warlock = {
+    position = {2, nil},
+    combo_heroes = {
+      "npc_dota_hero_beastmaster",
+      "npc_dota_hero_lycan",
+      "npc_dota_hero_abaddon"
+    },
+    counter_heroes = {
+      "npc_dota_hero_antimage",
+      "npc_dota_hero_lycan",
+      "npc_dota_hero_abaddon"
+    }
+  },
+
+
   npc_dota_hero_lich = {
-    position = {4, 5},
+    position = {4, nil},
     combo_heroes = {
       "npc_dota_hero_faceless_void",
       "npc_dota_hero_weaver",
