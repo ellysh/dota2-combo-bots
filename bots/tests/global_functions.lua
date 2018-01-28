@@ -205,9 +205,14 @@ function IsItemPurchasedFromSideShop()
 end
 
 RUNE_LOCATION = {20, 20}
+RUNE_TYPE = RUNE_BOUNTY_1
 
 function GetRuneSpawnLocation(rune)
-  return RUNE_LOCATION
+  if rune ~= RUNE_TYPE then
+    return {9000, 9000}
+  else
+    return RUNE_LOCATION
+  end
 end
 
 RUNE_STATUS = RUNE_STATUS_UNKNOWN

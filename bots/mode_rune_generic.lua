@@ -46,6 +46,11 @@ local function IsRuneAppeared()
          or (time - last_appear) <= 0.2
 end
 
+local function IsPowerRune(rune)
+  return rune == RUNE_POWERUP_1
+         or rune == RUNE_POWERUP_2
+end
+
 function GetDesire()
   local bot = GetBot()
 
@@ -57,7 +62,8 @@ function GetDesire()
   if rune == nil then
     return 0 end
 
-  if IsBeginningOfMatch() then
+  if IsBeginningOfMatch()
+     and not IsPowerRune(rune) then
     return 0.75 end
 
   if GetRuneStatus(rune) == RUNE_STATUS_MISSING
