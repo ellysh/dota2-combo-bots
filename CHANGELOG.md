@@ -1,4 +1,6 @@
 * version 0.8
+  - Fix bugs with the Lich skills usage.
+  - Fix a bug with selling items.
   - Add the Warlock hero.
   - Fix a bug with buying extra components for upgradable items.
   - Add the Phantom Lancer hero.
