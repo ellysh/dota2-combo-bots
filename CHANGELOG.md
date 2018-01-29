@@ -1,3 +1,7 @@
+* version 0.8a
+  - Fix a bug with a timing to check runes.
+  - Make team desires more situation depended.
+
 * version 0.8
   - Fix bugs with the Lich skills usage.
   - Fix a bug with selling items.
