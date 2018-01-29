@@ -35,7 +35,8 @@ local function GetClosestRune(bot)
 end
 
 local function IsBeginningOfMatch()
-  return DotaTime() < 0
+  -- Bot will try to pick up a rune after 20 seconds after its appearing
+  return DotaTime() < 0.2
 end
 
 local function IsRuneAppeared()
