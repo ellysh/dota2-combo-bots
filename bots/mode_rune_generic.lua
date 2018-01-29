@@ -43,8 +43,7 @@ local function IsRuneAppeared()
   local time = DotaTime()
   local last_appear = time - (time % (2 * 60))
 
-  return 100 <= (time - last_appear)
-         or (time - last_appear) <= 20
+  return 110 <= (time - last_appear)
 end
 
 local function IsPowerRune(rune)

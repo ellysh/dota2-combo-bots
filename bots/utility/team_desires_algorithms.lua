@@ -75,10 +75,6 @@ function M.time_is_more_5_minutes()
   return (5 * 60) < DotaTime()
 end
 
-function M.time_is_more_15_minutes()
-  return (15 * 60) < DotaTime()
-end
-
 local function NumberUnitsOnLane(unit_type, lane)
   local units = GetUnitList(unit_type)
 

@@ -54,7 +54,7 @@ function test_GetDesire_when_rune_appear_soon_positive()
   TIME = 1.9
   RUNE_LOCATION = {20, 20}
 
-  luaunit.assertAlmostEquals(GetDesire(), 1.28, 0.01)
+  luaunit.assertAlmostEquals(GetDesire(), 0.75, 0.01)
 end
 
 function test_GetDesire_on_beginning_bounty_rune_positive()

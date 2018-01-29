@@ -39,12 +39,6 @@ M.TEAM_DESIRES = {
     PUSH_BOT_LINE_DESIRE = {10, -30}
   },
 
-  time_is_more_15_minutes = {
-    PUSH_TOP_LINE_DESIRE = {10, 0},
-    PUSH_MID_LINE_DESIRE = {10, 0},
-    PUSH_BOT_LINE_DESIRE = {10, 0}
-  },
-
   three_and_more_ally_heroes_on_top = {
     PUSH_TOP_LINE_DESIRE = {20, 0},
     PUSH_MID_LINE_DESIRE = {0, 0},

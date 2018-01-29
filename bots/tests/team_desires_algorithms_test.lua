@@ -73,13 +73,6 @@ function test_time_is_more_5_minutes()
   luaunit.assertTrue(algorithms.time_is_more_5_minutes())
 end
 
-function test_time_is_more_15_minutes()
-  luaunit.assertFalse(algorithms.time_is_more_15_minutes())
-
-  TIME = 16 * 60
-  luaunit.assertTrue(algorithms.time_is_more_15_minutes())
-end
-
 function test_NumberUnitsOnLane_succed()
   local unit = Unit:new()
 

@@ -5,7 +5,6 @@ ally_has_cheese;5;0;5;0;5;0;;;;;
 max_kills_enemy_hero_alive;-20;30;-20;30;-20;30;;;;;
 max_kills_ally_hero_alive;10;-20;10;-20;10;-20;;;;;
 time_is_more_5_minutes;10;-30;10;-30;10;-30;;;;;
-time_is_more_15_minutes;10;0;10;0;10;0;;;;;
 three_and_more_ally_heroes_on_top;20;0;0;0;0;0;;;;;
 three_and_more_ally_heroes_on_mid;0;0;20;0;0;0;;;;;
 three_and_more_ally_heroes_on_bot;0;0;0;0;20;0;;;;;
