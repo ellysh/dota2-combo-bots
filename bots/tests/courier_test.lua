@@ -198,4 +198,21 @@ function test_CourierUsageThink_dead_fails()
   luaunit.assertEquals(COURIER_ACTION, nil)
 end
 
+function test_CourierUsageThink_free_succeed()
+  test_RefreshCourier()
+  test_RefreshBot()
+
+  FreeCourier()
+
+  COURIER_ACTION = nil
+  COURIER_STATE = COURIER_STATE_AT_BASE
+  STASH_VALUE = 0
+  functions.SetItemToBuy(GetBot(), nil)
+  courier.CourierUsageThink()
+
+  luaunit.assertEquals(
+    COURIER_ACTION,
+    nil)
+end
+
 os.exit(luaunit.LuaUnit.run())

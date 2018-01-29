@@ -69,6 +69,7 @@ function test_ChooseAbilityAndTarget_succeed()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
+  UNIT_NO_NEARBY_UNITS = false
 
   local ability, target =
     ability_usage.test_ChooseAbilityAndTarget(GetBot())
@@ -152,6 +153,17 @@ function test_UseAbility_nil_fails()
 
   luaunit.assertEquals(UNIT_ABILITY, nil)
   luaunit.assertEquals(UNIT_ABILITY_LOCATION, nil)
+end
+
+function test_CancelAbility_succeed()
+  test_RefreshBot()
+
+  UNIT_IS_CHANNELING = true
+  UNIT_CLEAR_ACTIONS = false
+  UNIT_NO_NEARBY_UNITS = true
+
+  ability_usage.test_CancelAbility(GetBot())
+  luaunit.assertTrue(UNIT_CLEAR_ACTIONS)
 end
 
 function test_AbilityUsageThink_succeed()

@@ -134,5 +134,6 @@ M.test_CalculateDesireAndTarget = CalculateDesireAndTarget
 M.test_GetDesiredAbilitiesList = GetDesiredAbilitiesList
 M.test_ChooseAbilityAndTarget = ChooseAbilityAndTarget
 M.test_UseAbility = UseAbility
+M.test_CancelAbility = CancelAbility
 
 return M

@@ -100,6 +100,18 @@ function test_Think_move_succeed()
   luaunit.assertEquals(UNIT_MOVE_LOCATION, RUNE_LOCATION)
 end
 
+function test_Think_move_rune_too_far_fails()
+  test_RefreshBot()
+
+  RUNE_STATUS = RUNE_STATUS_AVAILABLE
+  UNIT_MOVE_LOCATION = nil
+  RUNE_LOCATION = {9000, 9000}
+
+  Think()
+
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, nil)
+end
+
 function test_Think_pickup_succeed()
   test_RefreshBot()
 

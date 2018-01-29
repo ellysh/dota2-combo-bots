@@ -86,6 +86,7 @@ function test_min_hp_enemy_hero_to_kill_succeed()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
+  UNIT_NO_NEARBY_UNITS = false
 
   local desire, target =
     ability_usage_algorithms.min_hp_enemy_hero_to_kill(
@@ -387,8 +388,8 @@ function test_toggle_on_attack_enemy_hero()
 
   local ability = Ability:new("drow_ranger_frost_arrows ")
 
+  ATTACK_TARGET = Unit:new()
   ABILITY_TOGGLE_STATE = false
-
   UNIT_IS_HERO = true
 
   local desire, target =
@@ -398,7 +399,19 @@ function test_toggle_on_attack_enemy_hero()
 
   luaunit.assertTrue(ABILITY_TOGGLE_STATE)
 
+  ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = false
+
+  local desire, target =
+    ability_usage_algorithms.toggle_on_attack_enemy_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertFalse(ABILITY_TOGGLE_STATE)
+
+  ATTACK_TARGET = nil
+  ABILITY_TOGGLE_STATE = false
+  UNIT_IS_HERO = true
 
   local desire, target =
     ability_usage_algorithms.toggle_on_attack_enemy_hero(
@@ -532,6 +545,7 @@ function test_use_on_attack_enemy_creep_aoe()
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
 
+  ATTACK_TARGET = Unit:new()
   UNIT_IS_HERO = false
 
   local desire, target =
@@ -661,6 +675,7 @@ function test_low_hp_ally_hero()
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_NO_NEARBY_UNITS = false
 
   local desire, target =
     ability_usage_algorithms.low_hp_ally_hero(
@@ -669,6 +684,16 @@ function test_low_hp_ally_hero()
 
   luaunit.assertEquals(desire, true)
   luaunit.assertEquals(target:GetUnitName(), "unit1")
+
+  UNIT_NO_NEARBY_UNITS = true
+
+  local desire, target =
+    ability_usage_algorithms.low_hp_ally_hero(
+      GetBot(),
+      ability)
+
+  luaunit.assertEquals(desire, false)
+  luaunit.assertEquals(target, nil)
 end
 
 function test_low_hp_ally_creep()

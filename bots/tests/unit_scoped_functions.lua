@@ -205,6 +205,12 @@ function Unit:GetTeam()
   return TEAM_RADIANT
 end
 
+UNIT_CLEAR_ACTIONS = false
+
+function Unit:Action_ClearActions()
+  UNIT_CLEAR_ACTIONS = true
+end
+
 -----------------------------------------------
 
 Item = {}
