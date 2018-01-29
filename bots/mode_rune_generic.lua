@@ -36,15 +36,15 @@ end
 
 local function IsBeginningOfMatch()
   -- Bot will try to pick up a rune after 20 seconds after its appearing
-  return DotaTime() < 0.2
+  return DotaTime() < 20
 end
 
 local function IsRuneAppeared()
   local time = DotaTime()
-  local last_appear = time - (time % 2)
+  local last_appear = time - (time % (2 * 60))
 
-  return 1.8 <= (time - last_appear)
-         or (time - last_appear) <= 0.2
+  return 100 <= (time - last_appear)
+         or (time - last_appear) <= 20
 end
 
 local function IsPowerRune(rune)
