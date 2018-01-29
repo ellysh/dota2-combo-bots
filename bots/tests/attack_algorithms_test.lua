@@ -34,7 +34,6 @@ function test_IsTargetable()
 end
 
 local function test_algorithm_pattern_succeed(algorithm, expect_target)
-
   test_RefreshBot()
 
   local desire, target = algorithms[algorithm](
@@ -46,7 +45,6 @@ local function test_algorithm_pattern_succeed(algorithm, expect_target)
 end
 
 local function test_algorithm_pattern_fails(algorithm)
-
   test_RefreshBot()
 
   local desire, target = algorithms[algorithm](
