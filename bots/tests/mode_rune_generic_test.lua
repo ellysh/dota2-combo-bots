@@ -34,7 +34,7 @@ function test_GetDesire_when_bot_fighting_but_rune_close_positive()
   UNIT_MODE = BOT_MODE_ATTACK
   RUNE_TYPE = RUNE_BOUNTY_1
 
-  luaunit.assertEquals(GetDesire(), 0.75)
+  luaunit.assertEquals(GetDesire(), 0.6)
 end
 
 function test_GetDesire_when_rune_too_far_negative()
@@ -54,7 +54,7 @@ function test_GetDesire_when_rune_appear_soon_positive()
   TIME = 1 * 60 + 50
   RUNE_LOCATION = {20, 20}
 
-  luaunit.assertAlmostEquals(GetDesire(), 1.28, 0.01)
+  luaunit.assertAlmostEquals(GetDesire(), 0.6, 0.01)
 end
 
 function test_GetDesire_on_beginning_bounty_rune_positive()
@@ -65,7 +65,7 @@ function test_GetDesire_on_beginning_bounty_rune_positive()
   RUNE_LOCATION = {20, 20}
   RUNE_TYPE = RUNE_BOUNTY_1
 
-  luaunit.assertEquals(GetDesire(), 0.75)
+  luaunit.assertEquals(GetDesire(), 0.6)
 end
 
 function test_GetDesire_on_beginning_power_rune_negative()
@@ -85,7 +85,7 @@ function test_GetDesire_when_rune_available_positive()
   RUNE_STATUS = RUNE_STATUS_AVAILABLE
   RUNE_LOCATION = {20, 20}
 
-  luaunit.assertEquals(GetDesire(), 0.75)
+  luaunit.assertEquals(GetDesire(), 0.6)
 end
 
 function test_Think_move_succeed()

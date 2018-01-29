@@ -194,14 +194,15 @@ end
 
 local function PurchaseViaCourier(bot)
   local courier = GetCourier(0)
+  local buy_item = functions.GetItemToBuy(bot)
 
   if courier == nil
-     or constants.SHOP_USE_RADIUS < courier:DistanceFromSecretShop() then
+     or (IsItemPurchasedFromSecretShop(buy_item)
+         and constants.SHOP_USE_RADIUS < courier:DistanceFromSecretShop())
+     or constants.SHOP_USE_RADIUS < courier:DistanceFromFountain() then
 
      return PURCHASE_ITEM_DISALLOWED_ITEM
    end
-
-  local buy_item = functions.GetItemToBuy(bot)
 
   if buy_item ~= nil then
     if PURCHASE_ITEM_SUCCESS ==
