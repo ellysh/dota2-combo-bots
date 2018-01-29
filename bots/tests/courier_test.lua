@@ -47,21 +47,26 @@ end
 function test_FreeCourier()
   test_RefreshCourier()
 
+  local bot = GetBot()
+
   courier.test_SetCourierIdleTime(1)
 
   courier.test_FreeCourier(
+    bot,
     GetCourier(),
     COURIER_STATE_MOVING)
 
   luaunit.assertEquals(courier.test_GetCourierIdleTime(), 1)
 
   TIME = 12
-  courier.test_SetCourierIdleTime(1)
+  courier.test_SetCourierIdleTime(3)
   courier.test_FreeCourier(
+    bot,
     GetCourier(),
     COURIER_STATE_IDLE)
 
   luaunit.assertEquals(courier.test_GetCourierIdleTime(), nil)
+  luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_RETURN)
 end
 
 function test_IsSecretShopRequired()
@@ -139,7 +144,8 @@ function test_CourierUsageThink_transfer_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
-  FreeCourier()
+  courier.test_SetCourierOwner(nil)
+  courier.test_SetCourierCurrentAction(nil)
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
@@ -153,7 +159,8 @@ function test_CourierUsageThink_secret_shop_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
-  FreeCourier()
+  courier.test_SetCourierOwner(nil)
+  courier.test_SetCourierCurrentAction(nil)
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
@@ -169,7 +176,8 @@ function test_CourierUsageThink_take_and_transfer_action_succeed()
   test_RefreshCourier()
   test_RefreshBot()
 
-  FreeCourier()
+  courier.test_SetCourierOwner(nil)
+  courier.test_SetCourierCurrentAction(nil)
 
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE

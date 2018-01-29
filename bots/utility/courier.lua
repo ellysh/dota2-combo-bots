@@ -15,7 +15,8 @@ local function IsCourierAvailable(bot)
          or COURIER_OWNER == bot:GetUnitName()
          or functions.GetHeroPositions(bot:GetUnitName())[1]
             < functions.GetHeroPositions(COURIER_OWNER)[1])
-         and COURIER_CURRENT_ACTION == nil
+         and (COURIER_CURRENT_ACTION == nil
+              or COURIER_CURRENT_ACTION == COURIER_ACTION_RETURN)
 end
 
 local function SetCourierAction(bot, courier, action)
@@ -32,7 +33,7 @@ local function IsFreeState(state)
          or state == COURIER_STATE_AT_BASE
 end
 
-local function FreeCourier(courier, state)
+local function FreeCourier(bot, courier, state)
   if not IsFreeState(state) then
     return end
 
@@ -41,10 +42,12 @@ local function FreeCourier(courier, state)
 
   if COURIER_IDLE_TIME == nil then
     COURIER_IDLE_TIME = GameTime()
-  elseif 10 < (GameTime() - COURIER_IDLE_TIME) then
+  elseif 2 < (GameTime() - COURIER_IDLE_TIME) then
     COURIER_IDLE_TIME = nil
     COURIER_OWNER = nil
     COURIER_CURRENT_ACTION = nil
+
+    bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
   end
 end
 
@@ -101,7 +104,7 @@ function M.CourierUsageThink()
     return
   end
 
-  FreeCourier(courier, courier_state)
+  FreeCourier(bot, courier, courier_state)
 end
 
 -- Provide an access to local functions for unit tests only
