@@ -10,7 +10,7 @@ function test_GetDesire_when_rune_missing_negative()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = 0.4
+  TIME = 40
   RUNE_LOCATION = {20, 20}
 
   luaunit.assertEquals(GetDesire(), 0)
@@ -41,7 +41,7 @@ function test_GetDesire_when_rune_too_far_negative()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = 1.9
+  TIME = 1 * 60 + 50
   RUNE_LOCATION = {4000, 4000}
 
   luaunit.assertEquals(GetDesire(), 0)
@@ -51,17 +51,17 @@ function test_GetDesire_when_rune_appear_soon_positive()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = 1.9
+  TIME = 1 * 60 + 50
   RUNE_LOCATION = {20, 20}
 
-  luaunit.assertAlmostEquals(GetDesire(), 0.75, 0.01)
+  luaunit.assertAlmostEquals(GetDesire(), 1.28, 0.01)
 end
 
 function test_GetDesire_on_beginning_bounty_rune_positive()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = -1.0
+  TIME = -60
   RUNE_LOCATION = {20, 20}
   RUNE_TYPE = RUNE_BOUNTY_1
 
@@ -72,7 +72,7 @@ function test_GetDesire_on_beginning_power_rune_negative()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = -1.0
+  TIME = -60
   RUNE_LOCATION = {20, 20}
   RUNE_TYPE = RUNE_POWERUP_1
 
