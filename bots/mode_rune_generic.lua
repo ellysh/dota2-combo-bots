@@ -35,8 +35,7 @@ local function GetClosestRune(bot)
 end
 
 local function IsBeginningOfMatch()
-  -- Bot will try to pick up a rune after 20 seconds after its appearing
-  return DotaTime() < 20
+  return DotaTime() < 0
 end
 
 local function IsRuneAppeared()
@@ -64,7 +63,7 @@ function GetDesire()
 
   if IsBeginningOfMatch() then
     if not IsPowerRune(rune) then
-      return 0.75
+      return 0.6
     else
       return 0
     end
@@ -75,12 +74,15 @@ function GetDesire()
     return 0 end
 
   if GetRuneStatus(rune) == RUNE_STATUS_AVAILABLE then
-    return 0.75 end
+    return 0.6 end
 
-  return functions.DistanceToDesire(
+
+  local desire = functions.DistanceToDesire(
     distance,
     constants.MAX_HERO_DISTANCE_FROM_RUNE,
     0.3)
+
+  return functions.ternary(0.6 < desire, 0.6, desire)
 end
 
 function Think()
