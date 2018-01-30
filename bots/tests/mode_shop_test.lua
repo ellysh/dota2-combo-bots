@@ -29,7 +29,7 @@ function test_GetDesire_succeed()
 
   functions.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
-  DISTANCE_FROM_SHOP = 2000
+  DISTANCE_FROM_SHOP = 2200
   UNIT_MODE = BOT_MODE_NONE
 
   luaunit.assertAlmostEquals(
@@ -37,7 +37,7 @@ function test_GetDesire_succeed()
       IsItemPurchasedFromSideShop,
       "DistanceFromSideShop",
       0.3),
-    0.63,
+    0.56,
     0.01)
 end
 
@@ -63,7 +63,9 @@ function test_GetDesireSideShop_positive()
   functions.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
 
-  luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0.9)
+  luaunit.assertEquals(
+    mode_shop.GetDesireSideShop(),
+    constants.MAX_RUNE_AND_SHOP_DESIRE)
 end
 
 function test_GetDesireSecretShop_positive()
@@ -72,7 +74,9 @@ function test_GetDesireSecretShop_positive()
   functions.SetItemToBuy(GetBot(), "item_vitality_booster")
   IS_SECRET_SHOP_ITEM = true
 
-  luaunit.assertEquals(mode_shop.GetDesireSecretShop(), 0.9)
+  luaunit.assertEquals(
+    mode_shop.GetDesireSecretShop(),
+    constants.MAX_RUNE_AND_SHOP_DESIRE)
 end
 
 function test_GetNearestLocation()

@@ -63,7 +63,7 @@ function GetDesire()
 
   if IsBeginningOfMatch() then
     if not IsPowerRune(rune) then
-      return 0.6
+      return constants.MAX_RUNE_AND_SHOP_DESIRE
     else
       return 0
     end
@@ -74,15 +74,13 @@ function GetDesire()
     return 0 end
 
   if GetRuneStatus(rune) == RUNE_STATUS_AVAILABLE then
-    return 0.6 end
+    return constants.MAX_RUNE_AND_SHOP_DESIRE end
 
-
-  local desire = functions.DistanceToDesire(
+  return functions.DistanceToDesire(
     distance,
     constants.MAX_HERO_DISTANCE_FROM_RUNE,
-    0.3)
-
-  return functions.ternary(0.6 < desire, 0.6, desire)
+    0.3,
+    constants.MAX_RUNE_AND_SHOP_DESIRE)
 end
 
 function Think()
