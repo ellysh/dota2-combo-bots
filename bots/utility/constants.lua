@@ -27,6 +27,7 @@ M.MAX_HERO_DISTANCE_FROM_RUNE = 3000
 M.MIN_HERO_DISTANCE_FROM_RUNE = 200
 M.MAX_MINION_DISTANCE_FROM_HERO = 300
 
+-- This is a mapping string from database to the numeric constants for API
 M.BOT_MODES = {
   BOT_MODE_NONE = 0,
   BOT_MODE_LANING = 1,

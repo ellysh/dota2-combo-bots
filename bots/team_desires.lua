@@ -8,9 +8,9 @@ local team_desires_algorithms = require(
   GetScriptDirectory() .."/utility/team_desires_algorithms")
 
 local TEAM_DESIRES = {
-  PUSH_TOP_LINE_DESIRE = 0,
-  PUSH_MID_LINE_DESIRE = 0,
-  PUSH_BOT_LINE_DESIRE = 0
+  BOT_MODE_PUSH_TOWER_TOP = 0,
+  BOT_MODE_PUSH_TOWER_MID = 0,
+  BOT_MODE_PUSH_TOWER_BOT = 0
 }
 
 function TeamThink()
@@ -21,9 +21,9 @@ end
 
 function UpdatePushLaneDesires()
   return {
-    TEAM_DESIRES.PUSH_TOP_LINE_DESIRE,
-    TEAM_DESIRES.PUSH_MID_LINE_DESIRE,
-    TEAM_DESIRES.PUSH_BOT_LINE_DESIRE}
+    TEAM_DESIRES.BOT_MODE_PUSH_TOWER_TOP,
+    TEAM_DESIRES.BOT_MODE_PUSH_TOWER_MID,
+    TEAM_DESIRES.BOT_MODE_PUSH_TOWER_BOT}
 end
 
 --[[

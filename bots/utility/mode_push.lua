@@ -16,9 +16,9 @@ local functions = require(
 local M = {}
 
 local LANE_TO_DESIRE= {
-  [LANE_TOP] = "PUSH_TOP_LINE_DESIRE",
-  [LANE_MID] = "PUSH_MID_LINE_DESIRE",
-  [LANE_BOT] = "PUSH_BOT_LINE_DESIRE"
+  [LANE_TOP] = "BOT_MODE_PUSH_TOWER_TOP",
+  [LANE_MID] = "BOT_MODE_PUSH_TOWER_MID",
+  [LANE_BOT] = "BOT_MODE_PUSH_TOWER_BOT"
 }
 
 function M.GetDesire(lane)

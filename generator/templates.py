@@ -149,9 +149,9 @@ M.TEAM_DESIRES = {
 
 TEAM_DESIRES = """
   <0> = {
-    PUSH_TOP_LINE_DESIRE = {<1>, <2>},
-    PUSH_MID_LINE_DESIRE = {<3>, <4>},
-    PUSH_BOT_LINE_DESIRE = {<5>, <6>}
+    BOT_MODE_PUSH_TOWER_TOP = {<1>, <2>},
+    BOT_MODE_PUSH_TOWER_MID = {<3>, <4>},
+    BOT_MODE_PUSH_TOWER_BOT = {<5>, <6>}
   },
 """
 
@@ -163,9 +163,9 @@ M.PLAYER_DESIRES = {
 
 PLAYER_DESIRES = """
   <0> = {
-    PUSH_TOP_LINE_DESIRE = {<1>, <2>},
-    PUSH_MID_LINE_DESIRE = {<3>, <4>},
-    PUSH_BOT_LINE_DESIRE = {<5>, <6>}
+    BOT_MODE_PUSH_TOWER_TOP = {<1>, <2>},
+    BOT_MODE_PUSH_TOWER_MID = {<3>, <4>},
+    BOT_MODE_PUSH_TOWER_BOT = {<5>, <6>}
   },
 """
 

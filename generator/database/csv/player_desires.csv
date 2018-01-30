@@ -1,7 +1,7 @@
-Algorithm;Push TOP desire;;Push MID desire;;Push BOT desire;;Roam desire;Roshan desire;Defend TOP desire;Defend MID desire;Defend BOT desire
-has_low_hp;-10;0;-10;0;-10;0;;;;;
-player_on_top;5;0;-5;0;-5;0;;;;;
-player_on_mid;-5;0;5;0;-5;0;;;;;
-player_on_bot;-5;0;-5;0;5;0;;;;;
-has_tp_scroll_or_travel_boots;5;-5;5;-5;5;-5;;;;;
-has_buyback;0;-5;0;-5;0;-5;;;;;
+Algorithm;Push TOP desire;;Push MID desire;;Push BOT desire;;Retreat desire;Roam desire;Roshan desire;Defend TOP desire;Defend MID desire;Defend BOT desire
+has_low_hp;-10;0;-10;0;-10;0;60;;;;;
+player_on_top;5;0;-5;0;-5;0;0;;;;;
+player_on_mid;-5;0;5;0;-5;0;0;;;;;
+player_on_bot;-5;0;-5;0;5;0;0;;;;;
+has_tp_scroll_or_travel_boots;5;-5;5;-5;5;-5;0;;;;;
+has_buyback;0;-5;0;-5;0;-5;0;;;;;
