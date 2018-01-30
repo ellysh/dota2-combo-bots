@@ -1,6 +1,5 @@
 modules = {
   ["hero_selection"] = "../hero_selection.lua",
-  ["mode_rune_generic"] = "../mode_rune_generic.lua",
   ["ability_levelup"] = "../utility/ability_levelup.lua",
   ["ability_usage"] = "../utility/ability_usage.lua",
   ["ability_usage_algorithms"] = "../utility/ability_usage_algorithms.lua",
@@ -16,4 +15,6 @@ modules = {
   ["attack"] = "../utility/attack.lua",
   ["attack_algorithms"] = "../utility/attack_algorithms.lua",
   ["minions"] = "../utility/minions.lua",
+  ["mode_rune_generic"] = "../mode_rune_generic.lua",
+  ["mode_retreat_generic"] = "../mode_retreat_generic.lua",
 }
