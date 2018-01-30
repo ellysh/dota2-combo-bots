@@ -10,28 +10,19 @@ local luaunit = require('luaunit')
 function test_GetDesire()
   test_RefreshBot()
 
-  PUSH_LANE_DESIRE = 0
   luaunit.assertAlmostEquals(
-    player_desires.GetDesire(
-      "BOT_MODE_PUSH_TOWER_TOP",
-      BOT_MODE_PUSH_TOWER_TOP),
+    player_desires.GetDesire("BOT_MODE_PUSH_TOWER_TOP"),
     -0.05,
     0.001)
 
-  PUSH_LANE_DESIRE = 0.5
   luaunit.assertAlmostEquals(
-    player_desires.GetDesire(
-      "BOT_MODE_PUSH_TOWER_MID",
-      BOT_MODE_PUSH_TOWER_MIT),
-    0.45,
+    player_desires.GetDesire("BOT_MODE_PUSH_TOWER_MID"),
+    -0.05,
     0.001)
 
-  PUSH_LANE_DESIRE = 0.7
   luaunit.assertAlmostEquals(
-    player_desires.GetDesire(
-      "BOT_MODE_PUSH_TOWER_BOT",
-      BOT_MODE_PUSH_TOWER_BOT),
-    0.65,
+    player_desires.GetDesire("BOT_MODE_PUSH_TOWER_BOT"),
+    -0.05,
     0.001)
 end
 

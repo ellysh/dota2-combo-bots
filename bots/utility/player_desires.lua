@@ -11,15 +11,14 @@ local M = {}
 
 PLAYER_DESIRES = {}
 
-function M.GetDesire(mode_name, mode_id)
+function M.GetDesire(mode_name)
   local bot = GetBot()
 
   PLAYER_DESIRES[bot:GetUnitName()] = desires.Think(
     player_desires.PLAYER_DESIRES,
     player_desires_algorithms)
 
-  return GetPushLaneDesire(mode_id)
-         + PLAYER_DESIRES[bot:GetUnitName()][mode_name]
+  return PLAYER_DESIRES[bot:GetUnitName()][mode_name]
 end
 
 return M

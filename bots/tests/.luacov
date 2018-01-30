@@ -17,5 +17,5 @@ modules = {
   ["attack_algorithms"] = "../utility/attack_algorithms.lua",
   ["minions"] = "../utility/minions.lua",
   ["mode_rune_generic"] = "../mode_rune_generic.lua",
-  ["mode_retreat_generic"] = "../mode_retreat_generic.lua",
+  ["mode_retreat_generic"] = "../mode_retreat_generic.lua"
 }
