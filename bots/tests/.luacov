@@ -11,6 +11,7 @@ modules = {
   ["mode_push"] = "../utility/mode_push.lua",
   ["mode_shop"] = "../utility/mode_shop.lua",
   ["player_desires_algorithms"] = "../utility/player_desires_algorithms.lua",
+  ["player_desires"] = "../utility/player_desires.lua",
   ["team_desires_algorithms"] = "../utility/team_desires_algorithms.lua",
   ["attack"] = "../utility/attack.lua",
   ["attack_algorithms"] = "../utility/attack_algorithms.lua",

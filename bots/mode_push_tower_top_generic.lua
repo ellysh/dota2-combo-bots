@@ -2,7 +2,9 @@ local mode_push = require(
   GetScriptDirectory() .."/utility/mode_push")
 
 function GetDesire()
-  return mode_push.GetDesire(LANE_TOP)
+  return player_desires.GetDesire(
+    "BOT_MODE_PUSH_TOWER_TOP",
+    BOT_MODE_PUSH_TOWER_TOP)
 end
 
 function Think()
