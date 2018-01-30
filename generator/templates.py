@@ -165,7 +165,8 @@ PLAYER_DESIRES = """
   <0> = {
     BOT_MODE_PUSH_TOWER_TOP = {<1>, <2>},
     BOT_MODE_PUSH_TOWER_MID = {<3>, <4>},
-    BOT_MODE_PUSH_TOWER_BOT = {<5>, <6>}
+    BOT_MODE_PUSH_TOWER_BOT = {<5>, <6>},
+    BOT_MODE_RETREAT = {<7>, <8>}
   },
 """
 
