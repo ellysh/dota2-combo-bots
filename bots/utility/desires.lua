@@ -20,8 +20,7 @@ function M.Think(database_table, algorithms_implementation)
 
     for key, value in pairs(desires) do
       if result[key] ~= nil then
-        result[key] =
-          result[key] + functions.PercentToDesire(value[desire_index])
+        result[key] = result[key] + functions.PercentToDesire(value[desire_index])
       else
         result[key] = functions.PercentToDesire(value[desire_index])
       end
