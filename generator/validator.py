@@ -20,35 +20,46 @@ def print_usage(usage):
 def skip_header_lines(reader):
   reader.next()
 
-def get_value(line, index):
-  return line[index].strip() if line[index] else 'nil'
-
-def print_element(line):
-  sys.stdout.write(get_value(line, 0) + '\n')
+def get_value(word):
+  return word.strip() if not word.lstrip("-").isdigit() else None
 
 def parse_lines(reader):
   skip_header_lines(reader)
 
-  for line in reader:
-    print_element(line)
+  dictionary = set()
 
-def generate_dictionary(filename):
-  with open(filename, "rU") as file_obj:
+  for line in reader:
+    for word in line:
+      word = get_value(word)
+      if word: dictionary.add(word)
+
+  sorted(dictionary)
+
+  return dictionary
+
+def write_dictionary(dictionary_file, dictionary):
+  with open(dictionary_file, "a") as file_obj:
+    for word in dictionary:
+        file_obj.write(word + "\n")
+
+def generate_dictionary(check_file, dictionary_file):
+  with open(check_file, "rU") as file_obj:
     reader = csv.reader(file_obj, delimiter=';')
-    parse_lines(reader)
+    dictionary = parse_lines(reader)
+    write_dictionary(dictionary_file, dictionary)
 
 def main():
   if len(sys.argv) == 4:
-    filename = sys.argv[1]
-    dictionary = sys.argv[2]
+    check_file = sys.argv[1]
+    dictionary_file = sys.argv[2]
     is_first_run = True if int(sys.argv[3]) == 1 else False
   else:
     print_usage(_USAGE)
 
   if is_first_run:
-    generate_dictionary(filename)
+    generate_dictionary(check_file, dictionary_file)
   else:
-    check_file(filename, dictionary)
+    check_file(check_file, dictionary_file)
 
 if __name__ == '__main__':
   main()
