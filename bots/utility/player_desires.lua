@@ -1,22 +1,25 @@
 local desires = require(
   GetScriptDirectory() .."/utility/desires")
 
-local team_desires = require(
-  GetScriptDirectory() .."/database/team_desires")
+local player_desires = require(
+  GetScriptDirectory() .."/database/player_desires")
 
-local team_desires_algorithms = require(
-  GetScriptDirectory() .."/utility/team_desires_algorithms")
+local player_desires_algorithms = require(
+  GetScriptDirectory() .."/utility/player_desires_algorithms")
 
 local M = {}
 
-PLAYER_DESIRES = {
-  BOT_MODE_PUSH_TOWER_TOP = 0,
-  BOT_MODE_PUSH_TOWER_MID = 0,
-  BOT_MODE_PUSH_TOWER_BOT = 0,
-}
+PLAYER_DESIRES = {}
 
-function Think()
-  --TODO: Implement this function
+function M.GetDesire(mode_name, mode_id)
+  local bot = GetBot()
+
+  PLAYER_DESIRES[bot:GetUnitName()] = desires.Think(
+    player_desires.PLAYER_DESIRES,
+    player_desires_algorithms)
+
+  return GetPushLaneDesire(mode_id)
+         + PLAYER_DESIRES[bot:GetUnitName()][mode_name]
 end
 
 return M
