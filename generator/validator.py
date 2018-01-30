@@ -48,6 +48,23 @@ def generate_dictionary(check_file, dictionary_file):
     dictionary = parse_lines(reader)
     write_dictionary(dictionary_file, dictionary)
 
+def check_lines(reader, dictionary):
+  skip_header_lines(reader)
+
+  for line in reader:
+    for word in line:
+      word = get_value(word)
+      if word and not word in dictionary:
+        sys.stderr.write("Undefined word: %s\n" % word)
+
+def check(check_file, dictionary_file):
+  with open(dictionary_file, "rU") as file_obj:
+    dictionary = file_obj.read().splitlines()
+
+  with open(check_file, "rU") as file_obj:
+    reader = csv.reader(file_obj, delimiter=';')
+    check_lines(reader, dictionary)
+
 def main():
   if len(sys.argv) == 4:
     check_file = sys.argv[1]
@@ -59,7 +76,7 @@ def main():
   if is_first_run:
     generate_dictionary(check_file, dictionary_file)
   else:
-    check_file(check_file, dictionary_file)
+    check(check_file, dictionary_file)
 
 if __name__ == '__main__':
   main()
