@@ -13,9 +13,13 @@ local constants = require(
 
 Unit = {}
 
-function Unit:new()
+function Unit:new(name)
   local newObj = {
-    name = "npc_dota_hero_crystal_maiden",
+    name = functions.ternary(
+      name ~= nil,
+      name,
+      "npc_dota_hero_crystal_maiden"),
+
     health = 200,
     max_health = 200,
     mana = 200,

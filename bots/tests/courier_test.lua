@@ -29,10 +29,23 @@ end
 function test_IsCourierAvailable_another_owner_fails()
   local bot = GetBot()
 
+  UNITS = { Unit:new("npc_dota_hero_sniper") }
   courier.test_SetCourierOwner("npc_dota_hero_sniper")
   courier.test_SetCourierCurrentAction(nil)
 
   luaunit.assertFalse(courier.test_IsCourierAvailable(bot))
+end
+
+function test_IsCourierAvailable_owner_dead_succeed()
+  local bot = GetBot()
+
+  local owner = Unit:new("npc_dota_hero_sniper")
+  owner.health = 0
+  UNITS = { owner }
+  courier.test_SetCourierOwner("npc_dota_hero_sniper")
+  courier.test_SetCourierCurrentAction(nil)
+
+  luaunit.assertTrue(courier.test_IsCourierAvailable(bot))
 end
 
 function test_IsCourierAvailable_action_fails()

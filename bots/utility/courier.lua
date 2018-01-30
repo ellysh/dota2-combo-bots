@@ -7,6 +7,19 @@ local COURIER_OWNER = nil
 local COURIER_CURRENT_ACTION = nil
 local COURIER_IDLE_TIME = nil
 
+local function IsAllyHeroDead(name)
+  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+
+  local hero = functions.GetElementWith(
+    ally_heroes,
+    nil,
+    function(unit)
+      return unit:GetUnitName() == name
+    end)
+
+    return not hero:IsAlive()
+end
+
 local function IsCourierAvailable(bot)
   -- TODO: We compare only the primary position of
   -- the courier owner and the current bot.
@@ -14,7 +27,8 @@ local function IsCourierAvailable(bot)
   return (COURIER_OWNER == nil
          or COURIER_OWNER == bot:GetUnitName()
          or functions.GetHeroPositions(bot:GetUnitName())[1]
-            < functions.GetHeroPositions(COURIER_OWNER)[1])
+            < functions.GetHeroPositions(COURIER_OWNER)[1]
+         or IsAllyHeroDead(COURIER_OWNER))
          and (COURIER_CURRENT_ACTION == nil
               or COURIER_CURRENT_ACTION == COURIER_ACTION_RETURN)
 end
