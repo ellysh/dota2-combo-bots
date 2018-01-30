@@ -56,6 +56,7 @@ def check_lines(reader, dictionary):
       word = get_value(word)
       if word and not word in dictionary:
         sys.stderr.write("Undefined word: %s\n" % word)
+        sys.exit(1)
 
 def check(check_file, dictionary_file):
   with open(dictionary_file, "rU") as file_obj:
