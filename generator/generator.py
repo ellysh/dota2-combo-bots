@@ -4,7 +4,7 @@ import sys
 import csv
 import templates as t
 
-_USAGE = """Usage: heroes.py <table> <column_number> <in_file>
+_USAGE = """Usage: generator.py <table> <column_number> <in_file>
     table - name of the table to generate
     column_number - number of columns in the table
     in_file - input CSV file
