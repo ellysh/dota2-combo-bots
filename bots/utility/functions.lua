@@ -63,7 +63,7 @@ end
 
 function M.GetElementIndexInList(list, element)
   if list == nil then
-    return nil end
+    return -1 end
 
   -- We should sort by keys. Otherwise, elements have a random order.
 
