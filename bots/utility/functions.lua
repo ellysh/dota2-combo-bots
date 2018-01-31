@@ -33,6 +33,14 @@ function M.spairs(t, order)
     end
 end
 
+-- You should use this function for any table without numeric indexes
+function M.GetTableSize(table)
+  local count = 0
+
+  for _ in pairs(table) do count = count + 1 end
+  return count
+end
+
 -- Indexes in resulting array do not match to slot indexes.
 -- You should shift them -1 to match the slot indexes.
 function M.GetItems(unit, slot_numbers)

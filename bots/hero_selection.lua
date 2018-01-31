@@ -35,13 +35,17 @@ local function IsHeroPicked(hero)
 end
 
 local function GetRandomHero(position)
+  local start_index = RandomInt(1, functions.GetTableSize(heroes.HEROES))
+  local index = 1
+
   local hero = functions.GetKeyWith(
     heroes.HEROES,
     nil,
     function(hero, details)
-      return functions.IsElementInList(details.position, position)
+      index = index + 1
+      return start_index <= index
+             and functions.IsElementInList(details.position, position)
              and not IsHeroPicked(hero)
-             and functions.GetRandomTrue(50)
     end)
 
   return hero
