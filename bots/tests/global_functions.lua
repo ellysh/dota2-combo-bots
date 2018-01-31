@@ -1,8 +1,6 @@
 package.path = package.path .. ";../?.lua"
 require("unit_scoped_functions")
 
-math.randomseed(os.clock() * 100000)
-
 function GetScriptDirectory()
   return ".."
 end
@@ -46,6 +44,10 @@ end
 
 function RealTime()
   return TIME
+end
+
+function RandomSeed()
+  math.randomseed(os.clock() * 100000)
 end
 
 RANDOM_ENABLE = false
