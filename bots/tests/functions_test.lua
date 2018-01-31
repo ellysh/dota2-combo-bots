@@ -156,7 +156,7 @@ function test_IsBotBusy()
   luaunit.assertTrue(functions.IsBotBusy(bot))
 end
 
-function test_IsFlagSet()
+function test_IsFlagSet_succeed()
   local mask = 0x15
 
   luaunit.assertTrue(functions.test_IsFlagSet(mask, 0x1))
@@ -167,7 +167,12 @@ function test_IsFlagSet()
   luaunit.assertFalse(functions.test_IsFlagSet(mask, 0x8))
 end
 
-function test_GetAbilityTargetType()
+function test_IsFlagSet_with_zeroed_input_fails()
+  luaunit.assertFalse(functions.test_IsFlagSet(0x10, 0))
+  luaunit.assertFalse(functions.test_IsFlagSet(0, 0x10))
+end
+
+function test_GetAbilityTargetType_succeed()
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
@@ -187,6 +192,12 @@ function test_GetAbilityTargetType()
   luaunit.assertEquals(
     functions.GetAbilityTargetType(ability),
     constants.ABILITY_UNIT_TARGET)
+end
+
+function test_GetAbilityTargetType_with_nil_input_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+
+  luaunit.assertEquals(functions.GetAbilityTargetType(nil), nil)
 end
 
 function test_ternary()
@@ -223,14 +234,20 @@ function test_GetInventoryItems()
   end
 end
 
-function test_GetRandomTrue()
+function test_GetRandomTrue_succeed()
   -- TODO: Improve this test
   luaunit.assertTrue(functions.GetRandomTrue(100))
 
   luaunit.assertFalse(functions.GetRandomTrue(0))
 end
 
-function test_GetElementWith()
+function test_PercentToDesire_succeed()
+  luaunit.assertEquals(functions.PercentToDesire(100), 1.0)
+  luaunit.assertEquals(functions.PercentToDesire(0), 0)
+  luaunit.assertEquals(functions.PercentToDesire(50), 0.5)
+end
+
+function test_GetElementWith_succeed()
   test_RefreshBot()
 
   local unit = functions.GetElementWith(
@@ -242,7 +259,18 @@ function test_GetElementWith()
   luaunit.assertEquals(unit:GetHealth(), 10)
 end
 
-function test_GetKeyAndElementWith()
+function test_GetElementWith_not_present_element_fails()
+  test_RefreshBot()
+
+  local unit = functions.GetElementWith(
+    GetBot():GetNearbyHeroes(1200, true, BOT_MODE_NONE),
+    function(t, a, b) return t[a]:GetHealth() < t[b]:GetHealth() end,
+    function(unit) return not unit:IsAlive() end)
+
+  luaunit.assertEquals(unit, nil)
+end
+
+function test_GetKeyAndElementWith_succeed()
   test_RefreshBot()
 
   local abilities = {
@@ -253,14 +281,33 @@ function test_GetKeyAndElementWith()
 
   local ability, target_desire = functions.GetKeyAndElementWith(
     abilities,
-    function(t, a, b) return t[b][2] < t[a][2] end)
+    function(t, a, b) return t[b][2] < t[a][2] end,
+    function(ability, params) return params[2] == 0.9 end)
 
   luaunit.assertEquals(ability, "ability2")
   luaunit.assertEquals(target_desire[1], "unit2")
   luaunit.assertEquals(target_desire[2], 0.9)
 end
 
-function test_GetKeyWith()
+function test_GetKeyAndElementWith_not_present_element_fails()
+  test_RefreshBot()
+
+  local abilities = {
+    ability1 = {"unit1", 0.2},
+    ability2 = {"unit2", 0.9},
+    ability3 = {"unit3", 0.7}
+  }
+
+  local ability, target_desire = functions.GetKeyAndElementWith(
+    abilities,
+    function(t, a, b) return t[b][2] < t[a][2] end,
+    function(ability, params) return params[2] == 0.5 end)
+
+  luaunit.assertEquals(ability, nil)
+  luaunit.assertEquals(target_desire, nil)
+end
+
+function test_GetKeyWith_succeed()
   test_RefreshBot()
 
   local abilities = {
@@ -271,9 +318,27 @@ function test_GetKeyWith()
 
   local ability = functions.GetKeyWith(
     abilities,
-    function(t, a, b) return t[b][2] < t[a][2] end)
+    function(t, a, b) return t[b][2] < t[a][2] end,
+    function(ability, params) return params[2] == 0.9 end)
 
   luaunit.assertEquals(ability, "ability2")
+end
+
+function test_GetKeyWith_not_present_element_fails()
+  test_RefreshBot()
+
+  local abilities = {
+    ability1 = {"unit1", 0.2},
+    ability2 = {"unit2", 0.9},
+    ability3 = {"unit3", 0.7}
+  }
+
+  local ability = functions.GetKeyWith(
+    abilities,
+    function(t, a, b) return t[b][2] < t[a][2] end,
+    function(ability, params) return params[2] == 0.5 end)
+
+  luaunit.assertEquals(ability, nil)
 end
 
 function test_GetNumberOfElementsWith()
@@ -297,7 +362,6 @@ function test_GetNumberOfElementsWith()
       function(player) return IsHeroAlive(player) end),
     0)
 end
-
 
 function test_GetUnitHealthLevel()
   test_RefreshBot()

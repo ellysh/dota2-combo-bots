@@ -162,7 +162,7 @@ end
 function M.GetKeyAndElementWith(list, compare_function, validate_function)
 
   for key, element in M.spairs(list, compare_function) do
-    if validate_function == nil or validate_function(element) then
+    if validate_function == nil or validate_function(key, element) then
       return key, element
     end
   end
