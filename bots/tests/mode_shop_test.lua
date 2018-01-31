@@ -79,27 +79,6 @@ function test_GetDesireSecretShop_positive()
     constants.MAX_RUNE_AND_SHOP_DESIRE)
 end
 
-function test_GetNearestLocation()
-  test_RefreshBot()
-
-  local location_1 = {20, 10}
-  local location_2 = {10, 10}
-
-  luaunit.assertEquals(
-    mode_shop.test_GetNearestLocation(
-      GetBot(),
-      location_1,
-      location_2),
-    location_2)
-
-  luaunit.assertEquals(
-    mode_shop.test_GetNearestLocation(
-      GetBot(),
-      location_2,
-      location_1),
-    location_2)
-end
-
 function test_ThinkSideShop()
   test_RefreshBot()
 

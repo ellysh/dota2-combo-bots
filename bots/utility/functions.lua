@@ -360,6 +360,15 @@ function M.IsEnemyNear(bot)
          or 0 < #M.GetEnemyBuildings(bot, radius)
 end
 
+function M.GetNearestLocation(bot, locations_list)
+  return M.GetElementWith(
+    locations_list,
+    function(t, a, b)
+      return GetUnitToLocationDistance(bot, t[a])
+             < GetUnitToLocationDistance(bot, t[b])
+    end)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount

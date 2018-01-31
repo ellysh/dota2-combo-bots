@@ -688,4 +688,19 @@ function test_DistanceToDesire_succeed()
     0.01)
 end
 
+function test_GetNearestLocation_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  local location_1 = {20, 10}
+  local location_2 = {10, 10}
+
+  luaunit.assertEquals(
+    functions.GetNearestLocation(
+      bot,
+      {location_1,
+       location_2}),
+    location_2)
+end
+
 os.exit(luaunit.LuaUnit.run())

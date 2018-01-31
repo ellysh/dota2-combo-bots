@@ -59,24 +59,14 @@ function M.GetDesireSecretShop()
     0.2)
 end
 
-local function GetNearestLocation(bot, location_1, location_2)
-  if GetUnitToLocationDistance(bot, location_1) <
-    GetUnitToLocationDistance(bot, location_2) then
-
-    return location_1
-  else
-    return location_2
-  end
-end
-
 local function Think(get_distance_func, shop1, shop2)
   -- We do all purchase and sell operations in the item_purchase module
 
   local bot = GetBot()
-  local shop_location = GetNearestLocation(
+  local shop_location = functions.GetNearestLocation(
     bot,
-    GetShopLocation(GetTeam(), shop1),
-    GetShopLocation(GetTeam(), shop2))
+    {GetShopLocation(GetTeam(), shop1),
+     GetShopLocation(GetTeam(), shop2)})
 
   bot:Action_MoveToLocation(shop_location);
 end
@@ -90,7 +80,6 @@ function M.ThinkSecretShop()
 end
 
 -- Provide an access to local functions for unit tests only
-M.test_GetNearestLocation = GetNearestLocation
 M.test_GetDesire = GetDesire
 
 return M
