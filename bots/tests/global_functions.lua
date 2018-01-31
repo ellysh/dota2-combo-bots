@@ -119,6 +119,8 @@ function GetShopLocation(team, shop)
 
   if shop == SHOP_SECRET2 then return {20, 20} end
 
+  if shop == SHOP_HOME then return {1, 1} end
+
   return nil
 end
 

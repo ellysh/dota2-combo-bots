@@ -9,5 +9,8 @@ function GetDesire()
 end
 
 function Think()
-  -- TOOD: Implement this function
+  local bot = GetBot()
+  local fountain_location = GetShopLocation(GetTeam(), SHOP_HOME)
+
+  bot:Action_MoveToLocation(fountain_location);
 end

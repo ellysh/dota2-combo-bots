@@ -57,6 +57,9 @@ BOT_MODE_WARD = 22
 
 SHOP_SIDE = 1
 SHOP_SIDE2 = 2
+SHOP_SECRET = 3
+SHOP_SECRET2 = 4
+SHOP_HOME = 5
 
 -----------------------------------------
 
