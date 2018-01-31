@@ -18,7 +18,7 @@ function test_GetDesire_when_low_hp_positive()
   local bot = GetBot()
   bot.health = 50
 
-  luaunit.assertEquals(GetDesire(), 0.6)
+  luaunit.assertEquals(GetDesire(), 0.85)
 end
 
 function test_Think_move_succeed()

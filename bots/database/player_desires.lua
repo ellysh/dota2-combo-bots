@@ -7,7 +7,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
     BOT_MODE_PUSH_TOWER_MID = {-10, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
-    BOT_MODE_RETREAT = {60, 0}
+    BOT_MODE_RETREAT = {85, 0}
   },
 
   player_on_top = {
