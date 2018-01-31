@@ -1,3 +1,7 @@
+* version 0.9
+  - Improve the algorithm for picking a random hero.
+  - Implementation of the mode retreat.
+
 * version 0.8a
   - Fix a bug with a timing to check runes.
   - Make team desires more situation depended.
