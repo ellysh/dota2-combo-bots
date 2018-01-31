@@ -18,7 +18,7 @@ function M.Think(lane)
   if functions.IsEnemyNear(bot) then
      attack.Attack(bot, bot:GetCurrentVisionRange())
   else
-    bot:Action_AttackMove(target)
+    bot:Action_MoveToLocation(target)
   end
 end
 
