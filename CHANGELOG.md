@@ -1,4 +1,5 @@
 * version 0.9
+  - Implement the shrine usage mechanism.
   - Improve the algorithm for picking a random hero.
   - Implementation of the mode retreat.
 
