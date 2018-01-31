@@ -1,18 +1,13 @@
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
-
-local M = {}
+local player_desires = require(
+  GetScriptDirectory() .."/utility/player_desires")
 
 function GetDesire()
-  -- TOOD: Implement this function
-  return 0
+  return player_desires.GetDesire("BOT_MODE_RETREAT")
 end
 
 function Think()
   -- TOOD: Implement this function
 end
-
-return M
