@@ -240,13 +240,6 @@ function test_GetInventoryItems()
   end
 end
 
-function test_GetRandomTrue_succeed()
-  -- TODO: Improve this test
-  luaunit.assertTrue(functions.GetRandomTrue(100))
-
-  luaunit.assertFalse(functions.GetRandomTrue(0))
-end
-
 function test_PercentToDesire_succeed()
   luaunit.assertEquals(functions.PercentToDesire(100), 1.0)
   luaunit.assertEquals(functions.PercentToDesire(0), 0)
