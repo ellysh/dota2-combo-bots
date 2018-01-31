@@ -1,9 +1,10 @@
-package.path = package.path .. ";../?.lua"
+package.path = package.path .. ";../?.lua;;../utility/?.lua"
 
 pcall(require, "luacov")
 require("global_functions")
 
 local hero_selection = require("hero_selection")
+local functions = require("functions")
 local luaunit = require('luaunit')
 
 function test_Think()
@@ -31,7 +32,7 @@ function test_Think()
     end
   end
 
-  for hero, counter in pairs(hero_counter) do
+  for hero, counter in functions.spairs(hero_counter) do
     print("hero = " .. hero .. " counter = " .. tostring(counter))
   end
 end
