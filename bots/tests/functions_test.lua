@@ -7,7 +7,20 @@ local functions = require("functions")
 local constants = require("constants")
 local luaunit = require('luaunit')
 
-function test_GetItems()
+function test_GetTableSize_succeed()
+  test_RefreshBot()
+
+  local table = {
+    test = 123,
+    [1] = 1,
+    [2] = 2
+  }
+
+  luaunit.assertEquals(functions.GetTableSize(table), 3)
+  luaunit.assertNotEquals(functions.GetTableSize(table), #table)
+end
+
+function test_GetItems_succeed()
   test_RefreshBot()
 
   local empty_list = {"nil", "nil", "nil", "nil", "nil", "nil",
@@ -46,7 +59,7 @@ function test_GetItems()
 
 end
 
-function test_GetItemSlotsCount()
+function test_GetItemSlotsCount_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -67,7 +80,7 @@ function test_GetItemSlotsCount()
   luaunit.assertEquals(functions.test_GetItemSlotsCount(bot), 3)
 end
 
-function test_IsInventoryFull()
+function test_IsInventoryFull_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
