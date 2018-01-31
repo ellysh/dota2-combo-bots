@@ -17,7 +17,7 @@ local function IsAllyHeroDead(name)
       return unit:GetUnitName() == name
     end)
 
-    return not hero:IsAlive()
+    return hero == nil or not hero:IsAlive()
 end
 
 local function IsCourierAvailable(bot)
