@@ -12,10 +12,11 @@ function GetDesire()
 end
 
 local function AddShrineToList(shrine, list)
-  if GetShrineCooldown(shrine) == 0
-     and not IsShrineHealing(shrine) then
+  local unit = GetShrine(GetTeam(), shrine)
 
-    local unit = GetShrine(GetTeam(), shrine)
+  if GetShrineCooldown(unit) == 0
+     and not IsShrineHealing(unit) then
+
     table.insert(list, unit:GetLocation())
   end
 end
