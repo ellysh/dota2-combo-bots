@@ -24,11 +24,28 @@ end
 function test_Think_move_succeed()
   test_RefreshBot()
 
+  UNIT_NO_NEARBY_UNITS = true
   UNIT_MOVE_LOCATION = nil
 
   Think()
 
-  luaunit.assertEquals(UNIT_MOVE_LOCATION, {1, 1})
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, {900, 900})
 end
+
+function test_Think_use_shrine_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.location = {10, 10}
+
+  UNIT_NO_NEARBY_UNITS = false
+  UNIT_USE_SHRINE = nil
+  SHRINE_DISTANCE = {100, 100}
+
+  Think()
+
+  luaunit.assertNotEquals(UNIT_USE_SHRINE, nil)
+end
+
 
 os.exit(luaunit.LuaUnit.run())

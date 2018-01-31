@@ -7,12 +7,12 @@ local constants = require(
 local M = {}
 
 local RUNES = {
-    RUNE_POWERUP_1,
-    RUNE_POWERUP_2,
-    RUNE_BOUNTY_1,
-    RUNE_BOUNTY_2,
-    RUNE_BOUNTY_3,
-    RUNE_BOUNTY_4,
+  RUNE_POWERUP_1,
+  RUNE_POWERUP_2,
+  RUNE_BOUNTY_1,
+  RUNE_BOUNTY_2,
+  RUNE_BOUNTY_3,
+  RUNE_BOUNTY_4,
 }
 
 local function GetClosestRune(bot)

@@ -354,6 +354,19 @@ function Unit:GetNearbyBarracks(radius, enemies, mode)
   return { unit1, unit2 }
 end
 
+function Unit:GetNearbyShrines(radius, enemy)
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
+  local unit1 = Unit:new()
+  unit1.name = "shrine1"
+  unit1.health = 10
+  unit1.location = {900, 900}
+  unit1.offensive_power = 100
+
+  return { unit1 }
+end
+
 FIND_AOE_LOCATION_COUNT = 3
 
 function Unit:FindAoELocation()
@@ -425,6 +438,12 @@ UNIT_PICKUP_RUNE = nil
 
 function Unit:Action_PickUpRune(rune)
   UNIT_PICKUP_RUNE = rune
+end
+
+UNIT_USE_SHRINE = nil
+
+function Unit:Action_UseShrine(shrine)
+  UNIT_USE_SHRINE = shrine
 end
 
 function Unit:GetLevel()

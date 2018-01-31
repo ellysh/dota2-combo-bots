@@ -102,14 +102,14 @@ end
 
 function GetUnitToLocationDistance(unit, location)
   return math.sqrt(
-    math.pow(unit.location[1] + location[1], 2) +
-    math.pow(unit.location[2] + location[2], 2))
+    math.pow(unit.location[1] - location[1], 2) +
+    math.pow(unit.location[2] - location[2], 2))
 end
 
 function GetUnitToUnitDistance(unit1, unit2)
   return math.sqrt(
-    math.pow(unit1.location[1] + unit2.location[1], 2) +
-    math.pow(unit1.location[2] + unit2.location[2], 2))
+    math.pow(unit1.location[1] - unit2.location[1], 2) +
+    math.pow(unit1.location[2] - unit2.location[2], 2))
 end
 
 function GetShopLocation(team, shop)
@@ -121,7 +121,7 @@ function GetShopLocation(team, shop)
 
   if shop == SHOP_SECRET2 then return {20, 20} end
 
-  if shop == SHOP_HOME then return {1, 1} end
+  if shop == SHOP_HOME then return {1000, 1000} end
 
   return nil
 end
@@ -223,4 +223,26 @@ RUNE_STATUS = RUNE_STATUS_UNKNOWN
 
 function GetRuneStatus(rune)
   return RUNE_STATUS
+end
+
+SHRINE_COOLDOWN = 0
+
+function GetShrineCooldown(shrine)
+  return SHRINE_COOLDOWN
+end
+
+function IsShrineHealing(shrine)
+  return false
+end
+
+SHRINE_DISTANCE = {900, 900}
+
+function GetShrine(team, shrine)
+  local unit1 = Unit:new()
+  unit1.name = "shrine1"
+  unit1.health = 10
+  unit1.location = SHRINE_DISTANCE
+  unit1.offensive_power = 100
+
+  return unit1
 end
