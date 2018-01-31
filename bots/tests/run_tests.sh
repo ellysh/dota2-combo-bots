@@ -6,6 +6,9 @@ FILES=$(ls *.lua)
 
 for FILE in $FILES
 do
-  echo "Run $FILE:"
-  lua $FILE $1
+  if [ $FILE != "hero_selection_integration_test.lua" ]
+  then
+    echo "Run $FILE:"
+    lua $FILE $1
+  fi
 done
