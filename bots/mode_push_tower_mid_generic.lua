@@ -5,7 +5,7 @@ local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
 function GetDesire()
-  return GetPushLaneDesire(BOT_MODE_PUSH_TOWER_MID)
+  return GetPushLaneDesire(LANE_MID)
          + player_desires.GetDesire("BOT_MODE_PUSH_TOWER_MID")
 end
 
