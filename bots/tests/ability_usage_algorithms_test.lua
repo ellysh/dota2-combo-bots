@@ -39,7 +39,7 @@ function test_IsEnoughDamageToKill_succeed()
   local unit = Unit:new()
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
-  ABILITY_DAMAGE = 200
+  ABILITY_DAMAGE = 400
 
   luaunit.assertTrue(
     ability_usage_algorithms.test_IsEnoughDamageToKill(

@@ -307,9 +307,7 @@ function M.three_and_more_enemy_creeps_aoe(bot, ability)
 end
 
 function M.low_hp_self(bot, ability)
-  if functions.GetUnitHealthLevel(bot)
-     < constants.UNIT_LOW_HEALTH_LEVEL then
-
+  if functions.IsUnitLowHp(bot) then
     return true, GetTarget(bot, ability)
   end
 
@@ -322,9 +320,7 @@ function M.low_hp_ally_hero(bot, ability)
     ally_heroes,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit)
-             and functions.GetUnitHealthLevel(unit)
-                 <= constants.UNIT_LOW_HEALTH_LEVEL
+      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
     end)
 
   if ally_hero == nil then
@@ -339,9 +335,7 @@ function M.low_hp_ally_creep(bot, ability)
     allies,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit)
-             and functions.GetUnitHealthLevel(unit)
-                 <= constants.UNIT_LOW_HEALTH_LEVEL
+      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
     end)
 
   if ally_creep == nil then

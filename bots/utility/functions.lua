@@ -369,6 +369,12 @@ function M.GetNearestLocation(bot, locations_list)
     end)
 end
 
+function M.IsUnitLowHp(unit)
+  return unit:GetHealth() <= constants.UNIT_LOW_HEALTH
+         or M.GetUnitHealthLevel(unit)
+            <= constants.UNIT_LOW_HEALTH_LEVEL
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount

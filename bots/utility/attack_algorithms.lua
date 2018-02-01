@@ -122,9 +122,7 @@ function M.low_hp_enemy_hero(bot, radius)
     enemy_heroes,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit)
-             and functions.GetUnitHealthLevel(unit)
-                 <= constants.UNIT_LOW_HEALTH_LEVEL
+      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
     end)
 
   if enemy_hero == nil then
@@ -141,9 +139,7 @@ function M.low_hp_enemy_building(bot, radius)
     enemy_buildings,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit)
-             and functions.GetUnitHealthLevel(unit)
-                 <= constants.UNIT_LOW_HEALTH_LEVEL
+      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
     end)
 
   if enemy_building == nil then

@@ -20,8 +20,8 @@ function Unit:new(name)
       name,
       "npc_dota_hero_crystal_maiden"),
 
-    health = 200,
-    max_health = 200,
+    health = 400,
+    max_health = 400,
     mana = 200,
     max_mana = 200,
     offensive_power = 100,

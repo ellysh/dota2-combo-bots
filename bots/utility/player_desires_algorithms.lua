@@ -10,10 +10,7 @@ local constants = require(
 local M = {}
 
 function M.has_low_hp()
-  local bot = GetBot()
-  return bot:GetHealth() < constants.UNIT_LOW_HEALTH
-         or functions.GetUnitHealthLevel(bot)
-            < constants.UNIT_LOW_HEALTH_LEVEL
+  return functions.IsUnitLowHp(GetBot())
 end
 
 local function PlayerOnLane(lane)
