@@ -98,7 +98,10 @@ local function IsPurchasePossible(bot)
   -- something or the stash is not empty. Otherwise, we are not sure
   -- that upgradable items are assembled.
 
-  return bot:GetCourierValue() == 0
+  local courier = GetCourier(0)
+
+  return courier:IsAlive()
+         and bot:GetCourierValue() == 0
          and bot:GetStashValue() == 0
          and functions.GetItemToBuy(bot) == nil
 end

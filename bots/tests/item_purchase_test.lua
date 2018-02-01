@@ -306,6 +306,7 @@ function test_PurchaseItemList()
 
   bot.inventory = {}
 
+  COURIER = Unit:new()
   functions.SetItemToBuy(bot, nil)
   item_purchase.test_PurchaseItemList(bot)
 
