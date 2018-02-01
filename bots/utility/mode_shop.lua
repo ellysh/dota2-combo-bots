@@ -13,7 +13,7 @@ local function IsShopRequired(bot, check_shop_func)
   local buy_item = functions.GetItemToBuy(bot)
 
   return not functions.IsBotBusy(bot)
-         and not bot:WasRecentlyDamagedByAnyHero(3.0)
+         and not bot:WasRecentlyDamagedByAnyHero(5.0)
          and buy_item ~= nil
          and check_shop_func(buy_item)
          and GetItemCost(buy_item) <= bot:GetGold()
