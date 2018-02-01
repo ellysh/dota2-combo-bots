@@ -90,4 +90,10 @@ function test_player_has_buyback()
   luaunit.assertFalse(algorithms.has_buyback())
 end
 
+function test_more_enemy_heroes_around_then_ally()
+  test_RefreshBot()
+
+  luaunit.assertFalse(algorithms.more_enemy_heroes_around_then_ally())
+end
+
 os.exit(luaunit.LuaUnit.run())

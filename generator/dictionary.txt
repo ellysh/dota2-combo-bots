@@ -201,6 +201,7 @@ max_kills_enemy_hero_alive
 min_hp_enemy_building
 min_hp_enemy_hero_to_kill
 more_ally_heroes_alive_then_enemy
+more_enemy_heroes_around_then_ally
 move_target
 no_enemy_heroes_on_bot
 no_enemy_heroes_on_mid
