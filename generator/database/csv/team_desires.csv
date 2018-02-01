@@ -15,3 +15,6 @@ more_ally_heroes_alive_then_enemy;20;-30;20;-30;20;-30;;;;;
 no_enemy_heroes_on_top;10;0;0;0;0;0;;;;;
 no_enemy_heroes_on_mid;0;0;10;0;0;0;;;;;
 no_enemy_heroes_on_bot;0;0;0;0;10;0;;;;;
+more_ally_heroes_on_top_then_enemy;20;-20;0;0;0;0;;;;;
+more_ally_heroes_on_mid_then_enemy;0;0;20;-20;0;0;;;;;
+more_ally_heroes_on_bot_then_enemy;0;0;0;0;20;-20;;;;;

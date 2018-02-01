@@ -17,6 +17,7 @@ function test_GetDesire_when_low_hp_positive()
 
   local bot = GetBot()
   bot.health = 50
+  UNIT_NO_NEARBY_UNITS = true
 
   luaunit.assertEquals(GetDesire(), 0.85)
 end

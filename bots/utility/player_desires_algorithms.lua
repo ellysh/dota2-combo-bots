@@ -54,7 +54,7 @@ function M.more_enemy_heroes_around_then_ally()
   local enemies = functions.GetEnemyHeroes(bot, 1600)
   local allies = functions.GetAllyHeroes(bot, 1600)
 
-  return #allies < (#enemies - 2)
+  return #allies < (#enemies - 1)
 end
 
 -- Provide an access to local functions for unit tests only

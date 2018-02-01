@@ -98,6 +98,27 @@ local function NumberUnitsOnLane(unit_type, lane)
   return units_number
 end
 
+function M.more_ally_heroes_on_top_then_enemy()
+  local allies = NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
+  local enemies = NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_TOP)
+
+  return allies < (enemies - 1)
+end
+
+function M.more_ally_heroes_on_mid_then_enemy()
+  local allies = NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
+  local enemies = NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_MID)
+
+  return allies < (enemies - 1)
+end
+
+function M.more_ally_heroes_on_bot_then_enemy()
+  local allies = NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
+  local enemies = NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
+
+  return allies < (enemies - 1)
+end
+
 function M.three_and_more_ally_heroes_on_top()
   return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
 end

@@ -18,17 +18,17 @@ function test_Think()
 
   luaunit.assertAlmostEquals(
     team_desires.BOT_MODE_PUSH_TOWER_TOP,
-    -0.5,
+    -0.7,
     0.01)
 
   luaunit.assertAlmostEquals(
     team_desires.BOT_MODE_PUSH_TOWER_MID,
-    -0.5,
+    -0.7,
     0.01)
 
   luaunit.assertAlmostEquals(
     team_desires.BOT_MODE_PUSH_TOWER_BOT,
-    -0.5,
+    -0.7,
     0.01)
 end
 
