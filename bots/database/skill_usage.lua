@@ -711,6 +711,21 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70}
   },
 
+  item_cyclone = {
+      any_mode = {algorithms["channeling_enemy_hero"], 90},
+      team_fight = {algorithms["attacked_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
+  },
+
 }
 
 return M
