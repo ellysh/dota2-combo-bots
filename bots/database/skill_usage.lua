@@ -646,7 +646,7 @@ M.SKILL_USAGE = {
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["move_target"], 90},
       BOT_MODE_RETREAT = {algorithms["move_target"], 90},
       BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
   },
