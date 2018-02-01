@@ -235,8 +235,8 @@ M.ITEM_BUILD = {
       "item_magic_wand",
       "item_tranquil_boots",
       "item_blink",
-      "item_glimmer_cape",
       "item_aether_lens",
+      "item_glimmer_cape",
       "item_ultimate_scepter",
       "item_force_staff"}
   },
