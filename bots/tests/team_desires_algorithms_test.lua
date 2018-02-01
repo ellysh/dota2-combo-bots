@@ -126,16 +126,10 @@ function test_NumberUnitsOnLane_fails()
     0)
 end
 
-function test_three_and_more_ally_heroes_on_lane()
-  luaunit.assertFalse(algorithms.three_and_more_ally_heroes_on_top())
-  luaunit.assertFalse(algorithms.three_and_more_ally_heroes_on_mid())
-  luaunit.assertFalse(algorithms.three_and_more_ally_heroes_on_bot())
-end
-
-function test_three_and_more_enemy_heroes_on_lane()
-  luaunit.assertFalse(algorithms.three_and_more_enemy_heroes_on_top())
-  luaunit.assertFalse(algorithms.three_and_more_enemy_heroes_on_mid())
-  luaunit.assertFalse(algorithms.three_and_more_enemy_heroes_on_bot())
+function test_more_ally_heroes_on_lane_then_enemy()
+  luaunit.assertFalse(algorithms.more_ally_heroes_on_top_then_enemy())
+  luaunit.assertFalse(algorithms.more_ally_heroes_on_mid_then_enemy())
+  luaunit.assertFalse(algorithms.more_ally_heroes_on_bot_then_enemy())
 end
 
 function test_more_ally_heroes_alive_then_enemy()

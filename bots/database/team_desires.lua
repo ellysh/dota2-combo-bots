@@ -39,46 +39,10 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_BOT = {10, -30}
   },
 
-  three_and_more_ally_heroes_on_top = {
-    BOT_MODE_PUSH_TOWER_TOP = {20, 0},
-    BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {0, 0}
-  },
-
-  three_and_more_ally_heroes_on_mid = {
-    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {20, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {0, 0}
-  },
-
-  three_and_more_ally_heroes_on_bot = {
-    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {20, 0}
-  },
-
-  three_and_more_enemy_heroes_on_top = {
-    BOT_MODE_PUSH_TOWER_TOP = {-20, 0},
-    BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {0, 0}
-  },
-
-  three_and_more_enemy_heroes_on_mid = {
-    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {-20, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {0, 0}
-  },
-
-  three_and_more_enemy_heroes_on_bot = {
-    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {-20, 0}
-  },
-
   more_ally_heroes_alive_then_enemy = {
-    BOT_MODE_PUSH_TOWER_TOP = {20, -30},
-    BOT_MODE_PUSH_TOWER_MID = {20, -30},
-    BOT_MODE_PUSH_TOWER_BOT = {20, -30}
+    BOT_MODE_PUSH_TOWER_TOP = {20, -20},
+    BOT_MODE_PUSH_TOWER_MID = {20, -20},
+    BOT_MODE_PUSH_TOWER_BOT = {20, -20}
   },
 
   no_enemy_heroes_on_top = {

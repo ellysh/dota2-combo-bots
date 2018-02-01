@@ -119,40 +119,16 @@ function M.more_ally_heroes_on_bot_then_enemy()
   return allies < (enemies - 1)
 end
 
-function M.three_and_more_ally_heroes_on_top()
-  return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
-end
-
-function M.three_and_more_ally_heroes_on_mid()
-  return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
-end
-
-function M.three_and_more_ally_heroes_on_bot()
-  return 3 <= NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
-end
-
-function M.three_and_more_enemy_heroes_on_top()
-  return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_TOP)
-end
-
-function M.three_and_more_enemy_heroes_on_mid()
-  return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_MID)
-end
-
-function M.three_and_more_enemy_heroes_on_bot()
-  return 3 <= NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
-end
-
 function M.no_enemy_heroes_on_top()
-  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_TOP)
+  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_TOP)
 end
 
 function M.no_enemy_heroes_on_mid()
-  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_MID)
+  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_MID)
 end
 
 function M.no_enemy_heroes_on_bot()
-  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES , LANE_BOT)
+  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
 end
 
 function M.more_ally_heroes_alive_then_enemy()
