@@ -696,6 +696,21 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
   },
 
+  item_lotus_orb = {
+      any_mode = {algorithms["low_hp_self"], 80},
+      team_fight = {algorithms["low_hp_ally_hero"], 70},
+      BOT_MODE_ROAM = {algorithms["low_hp_ally_hero"], 50},
+      BOT_MODE_TEAM_ROAM = {algorithms["low_hp_ally_hero"], 50},
+      BOT_MODE_PUSH_TOWER = {algorithms["low_hp_ally_hero"], 50},
+      BOT_MODE_ATTACK = {algorithms["low_hp_ally_hero"], 50},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["low_hp_ally_hero"], 40},
+      BOT_MODE_FARM = {algorithms["low_hp_self"], 20},
+      BOT_MODE_DEFEND_TOWER = {algorithms["low_hp_ally_hero"], 40},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70}
+  },
+
 }
 
 return M
