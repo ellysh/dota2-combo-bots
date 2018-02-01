@@ -26,7 +26,7 @@ sven_storm_bolt;channeling_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_h
 sven_warcry;;;use_on_attack_enemy_hero_melee;80;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;70;;;use_on_attack_enemy_hero_melee;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;
 sven_gods_strength;;;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;50;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_creep_melee;90;;;;;;;;
 lich_frost_nova;channeling_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;70;last_attacked_enemy_hero;50;attacked_enemy_hero;80
-lich_frost_armor;low_hp_self;80;low_hp_ally_hero;70;;;low_hp_ally_hero;;;;;;;;;;;;;;;;low_hp_ally_hero;70
+lich_frost_armor;low_hp_self;80;low_hp_ally_hero;70;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;40;;;low_hp_ally_hero;70
 lich_dark_ritual;low_hp_ally_creep;70;;;;;;;;;;;;;;;;;;;;;;
 lich_chain_frost;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;;;;;attacked_enemy_hero;70
 phantom_assassin_stifling_dagger ;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;attacked_enemy_hero;60;last_attacked_enemy_hero;30;attacked_enemy_hero;50
@@ -42,3 +42,6 @@ warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_ene
 warlock_upheaval;;;three_and_more_enemy_heroes;70;attacked_enemy_hero;60;attacked_enemy_hero;60;three_and_more_enemy_heroes;50;attacked_enemy_hero;40;;;;;;;three_and_more_enemy_heroes;70;;;;
 warlock_rain_of_chaos;;;three_and_more_enemy_heroes;90;;;;;three_and_more_enemy_heroes;90;attacked_enemy_hero;20;;;;;;;three_and_more_enemy_heroes;90;;;;
 item_tpscroll;;;;;;;;;;;;;;;;;;;;;move_target;90;;
+item_glimmer_cape;low_hp_self;80;low_hp_ally_hero;70;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;40;;;low_hp_ally_hero;70
+item_rod_of_atos;channeling_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;;;;;;;attacked_enemy_hero;70;last_attacked_enemy_hero;30;attacked_enemy_hero;40
+item_sheepstick;channeling_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;;;;;;;attacked_enemy_hero;70;last_attacked_enemy_hero;30;attacked_enemy_hero;40
