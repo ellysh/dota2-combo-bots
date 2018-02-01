@@ -13,10 +13,10 @@ M.ITEM_BUILD = {
       "item_magic_wand",
       "nil",
       "item_tranquil_boots",
-      "item_aether_lens",
+      "item_glimmer_cape",
       "item_force_staff",
+      "item_rod_of_atos",
       "item_ultimate_scepter",
-      "item_blink",
       "item_lotus_orb"}
   },
 
@@ -272,7 +272,7 @@ M.ITEM_BUILD = {
       "item_force_staff",
       "item_ultimate_scepter",
       "item_sheepstick",
-      "item_cyclone"}
+      "item_rod_of_atos"}
   },
 
   npc_dota_hero_faceless_void = {
