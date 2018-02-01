@@ -14,7 +14,7 @@ M.ITEM_BUILD = {
       "nil",
       "item_tranquil_boots",
       "item_glimmer_cape",
-      "item_force_staff",
+      "item_aether_lens",
       "item_rod_of_atos",
       "item_ultimate_scepter",
       "item_lotus_orb"}
@@ -84,8 +84,8 @@ M.ITEM_BUILD = {
       "item_aether_lens",
       "item_ultimate_scepter",
       "item_refresher",
-      "item_force_staff",
-      "item_cyclone"}
+      "item_glimmer_cape",
+      "item_lotus_orb"}
   },
 
   npc_dota_hero_venomancer = {
@@ -235,10 +235,10 @@ M.ITEM_BUILD = {
       "item_magic_wand",
       "item_tranquil_boots",
       "item_blink",
+      "item_glimmer_cape",
       "item_aether_lens",
-      "item_force_staff",
       "item_ultimate_scepter",
-      "item_cyclone"}
+      "item_force_staff"}
   },
 
   npc_dota_hero_sand_king = {
