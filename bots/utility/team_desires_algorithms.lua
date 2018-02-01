@@ -143,6 +143,11 @@ function M.more_ally_heroes_alive_then_enemy()
   return enemy_number < ally_number
 end
 
+function M.is_night()
+  return GetTimeOfDay() < 0.25
+         or 0.75 < GetTimeOfDay()
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_NumberUnitsOnLane = NumberUnitsOnLane

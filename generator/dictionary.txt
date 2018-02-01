@@ -17,6 +17,7 @@ drow_ranger_wave_of_silence
 has_buyback
 has_low_hp
 has_tp_scroll_or_travel_boots
+is_night
 item_abyssal_blade
 item_aether_lens
 item_ancient_janggo

@@ -246,3 +246,7 @@ function GetShrine(team, shrine)
 
   return unit1
 end
+
+function GetTimeOfDay()
+  return 0.5
+end

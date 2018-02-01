@@ -81,6 +81,12 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_BOT = {20, -20}
   },
 
+  is_night = {
+    BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
+    BOT_MODE_PUSH_TOWER_MID = {-10, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {-10, 0}
+  },
+
 }
 
 return M
