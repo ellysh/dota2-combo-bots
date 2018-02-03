@@ -53,8 +53,20 @@ function test_GetDesire_when_rune_appear_soon_positive()
   RUNE_STATUS = RUNE_STATUS_MISSING
   TIME = 1 * 60 + 50
   RUNE_LOCATION = {20, 20}
+  UNIT_MODE = BOT_MODE_NONE
 
   luaunit.assertAlmostEquals(GetDesire(), 0.6, 0.01)
+end
+
+function test_GetDesire_when_rune_appear_soon_and_fight_negative()
+  test_RefreshBot()
+
+  RUNE_STATUS = RUNE_STATUS_MISSING
+  TIME = 1 * 60 + 50
+  RUNE_LOCATION = {20, 20}
+  UNIT_MODE = BOT_MODE_ATTACK
+
+  luaunit.assertEquals(GetDesire(), 0)
 end
 
 function test_GetDesire_on_beginning_bounty_rune_positive()

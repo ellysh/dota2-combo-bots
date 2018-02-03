@@ -58,7 +58,8 @@ function GetDesire()
     return 0 end
 
   if functions.IsBotInFightingMode(bot)
-     and constants.MIN_HERO_DISTANCE_FROM_RUNE < distance then
+     and (constants.MIN_HERO_DISTANCE_FROM_RUNE < distance
+          or GetRuneStatus(rune) == RUNE_STATUS_MISSING) then
     return 0 end
 
   if IsBeginningOfMatch() then
