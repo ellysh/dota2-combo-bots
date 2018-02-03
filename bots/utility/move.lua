@@ -4,6 +4,9 @@ local constants = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local logger = require(
+  GetScriptDirectory() .."/utility/logger")
+
 local M = {}
 
 local function GetTpScrollAbility(unit)
@@ -20,7 +23,13 @@ local function CanUseTpScroll(unit, target_location)
 end
 
 function M.Move(unit, target_location)
+  if functions.IsBotBusy(unit) then
+    return end
+
   if CanUseTpScroll(unit, target_location) then
+
+    logger.Print("M.Move() - unit = " .. unit:GetUnitName() ..
+      " use tp to " .. target_location[1] .. ", " .. target_location[2])
 
     unit:Action_UseAbilityOnLocation(
       GetTpScrollAbility(unit),
