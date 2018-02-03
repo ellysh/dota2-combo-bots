@@ -1,14 +1,18 @@
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local function GetTpScrollAbility(unit)
-  return unit:GetAbilityByName("item_tpscroll")
+  return functions.GetItem(unit, "item_tpscroll")
 end
 
 local function CanUseTpScroll(unit, target_location)
   local tp_ability = GetTpScrollAbility(unit)
+
   return tp_ability ~= nil
          and tp_ability:IsFullyCastable()
          and constants.MIN_TELEPORT_RADIUS

@@ -46,7 +46,8 @@ end
 local function GetInventoryAndStashItems(bot)
   local _, result = functions.GetItems(
     bot,
-    constants.INVENTORY_AND_STASH_MAX_INDEX)
+    constants.INVENTORY_AND_STASH_MAX_INDEX,
+    function(item) return item:GetName() end)
 
   return result
 end

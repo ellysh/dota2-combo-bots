@@ -17,7 +17,7 @@ function M.spairs(t, order)
 
     -- if order function given, sort by it by passing the table
     -- and keys a, b, otherwise just sort the keys
-    if order then
+    if order ~= nil then
         table.sort(keys, function(a,b) return order(t, a, b) end)
     else
         table.sort(keys)
@@ -43,7 +43,7 @@ end
 
 -- Indexes in resulting array do not match to slot indexes.
 -- You should shift them -1 to match the slot indexes.
-function M.GetItems(unit, slot_numbers)
+function M.GetItems(unit, slot_numbers, get_function)
   local item_list = {}
   local items_number = 0
 
@@ -51,7 +51,7 @@ function M.GetItems(unit, slot_numbers)
     local item = unit:GetItemInSlot(i)
     if item ~= nil and item:GetName() ~= "nil" then
       items_number = items_number + 1
-      table.insert(item_list, item:GetName())
+      table.insert(item_list, get_function(item))
     else
       table.insert(item_list, "nil")
     end
@@ -60,8 +60,31 @@ function M.GetItems(unit, slot_numbers)
   return items_number, item_list
 end
 
+function M.GetItem(unit, item_name)
+  local number, items = M.GetItems(
+    unit,
+    constants.INVENTORY_MAX_INDEX,
+    function(item) return item end)
+
+  if number == 0 then
+    return nil end
+
+  return M.GetElementWith(
+    items,
+    nil,
+    function(item)
+      return item ~= nil
+             and item ~= "nil"
+             and item:GetName() == item_name
+    end)
+end
+
 local function GetItemSlotsCount(bot)
-  local result, _ = M.GetItems(bot, constants.INVENTORY_MAX_INDEX)
+  local result, _ = M.GetItems(
+    bot,
+    constants.INVENTORY_MAX_INDEX,
+    function(item) return item:GetName() end)
+
   return result
 end
 
@@ -146,7 +169,8 @@ end
 function M.GetInventoryItems(bot)
   local _, result = M.GetItems(
     bot,
-    constants.INVENTORY_MAX_INDEX)
+    constants.INVENTORY_MAX_INDEX,
+    function(item) return item:GetName() end)
 
   return result
 end

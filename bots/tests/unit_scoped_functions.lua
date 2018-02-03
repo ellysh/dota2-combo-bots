@@ -197,16 +197,6 @@ function Unit:IsNull()
   return false
 end
 
-function Unit:GetItemInSlot(slot)
-  local item_in_slot = self.inventory[slot + 1]
-
-  if item_in_slot == nil then return nil end
-
-  local item = Item:new()
-  item.name = self.inventory[slot + 1]
-  return item
-end
-
 function Unit:GetTeam()
   return TEAM_RADIANT
 end
@@ -227,9 +217,27 @@ function Item:new(n)
   return setmetatable(newObj, self)
 end
 
+function Unit:GetItemInSlot(slot)
+  local item_in_slot = self.inventory[slot + 1]
+
+  if item_in_slot == nil then return nil end
+
+  local item = Item:new()
+  item.name = self.inventory[slot + 1]
+  return item
+end
+
 function Item:GetName()
   return self.name
 end
+
+ITEM_IS_FULLY_CASTABLE = true
+
+function Item:IsFullyCastable()
+  return ITEM_IS_FULLY_CASTABLE
+end
+
+-----------------------------------------------
 
 function Unit:SetNextItemPurchaseValue(cost)
 end
@@ -537,12 +545,7 @@ function Ability:new(n)
   return setmetatable(newObj, self)
 end
 
-UNIT_GET_NIL_ABILITY = false
-
 function Unit:GetAbilityByName(abilityName)
-  if UNIT_GET_NIL_ABILITY then
-    return nil end
-
   return Ability:new(abilityName)
 end
 

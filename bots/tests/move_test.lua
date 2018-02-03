@@ -20,18 +20,18 @@ end
 function test_GetTpScrollAbility_succeed()
   test_RefreshBot()
 
-  local ability = Ability:new("item_tpscroll")
-  UNIT_GET_NIL_ABILITY = false
-
-  luaunit.assertEquals(move.test_GetTpScrollAbility(GetBot()), ability)
+  luaunit.assertEquals(move.test_GetTpScrollAbility(GetBot()))
 end
 
 function test_CanUseTpScroll_succeed()
   test_RefreshBot()
 
+  local bot = GetBot()
+  bot.inventory = { "item_tpscroll" }
+
   local target_location = {3000, 3000}
-  UNIT_GET_NIL_ABILITY = false
-  ABILITY_IS_FULLY_CASTABLE = true
+
+  ITEM_IS_FULLY_CASTABLE = true
 
   luaunit.assertTrue(
     move.test_CanUseTpScroll(GetBot(), target_location))
@@ -42,7 +42,7 @@ function test_CanUseTpScroll_tp_scroll_absent_fails()
 
   local target_location = {3000, 3000}
   UNIT_GET_NIL_ABILITY = true
-  ABILITY_IS_FULLY_CASTABLE = true
+  ITEM_IS_FULLY_CASTABLE = true
 
   luaunit.assertFalse(
     move.test_CanUseTpScroll(GetBot(), target_location))
@@ -51,16 +51,19 @@ end
 function test_Move_use_tp_scroll_succeed()
   test_RefreshBot()
 
-  local ability = Ability:new("item_tpscroll")
+  local bot = GetBot()
+  bot.inventory = { "item_tpscroll" }
+
+  local item = Item:new("item_tpscroll")
   local target_location = {3000, 3000}
 
   UNIT_ABILITY = nil
   UNIT_ABILITY_LOCATION = nil
-  ABILITY_IS_FULLY_CASTABLE = true
+  ITEM_IS_FULLY_CASTABLE = true
 
   move.Move(GetBot(), target_location)
 
-  luaunit.assertEquals(UNIT_ABILITY, ability)
+  luaunit.assertEquals(UNIT_ABILITY, item)
   luaunit.assertEquals(UNIT_ABILITY_LOCATION, target_location)
 end
 

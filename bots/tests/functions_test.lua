@@ -49,7 +49,8 @@ function test_GetItems_succeed()
 
   size, list = functions.GetItems(
       bot,
-      constants.INVENTORY_MAX_INDEX)
+      constants.INVENTORY_MAX_INDEX,
+      function(item) return item:GetName() end)
 
   luaunit.assertEquals(size, 3)
 
