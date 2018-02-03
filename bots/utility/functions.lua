@@ -364,15 +364,8 @@ function M.IsBotInFightingMode(bot)
          or mode == BOT_MODE_EVASIVE_MANEUVERS
 end
 
-function M.DistanceToDesire(
-  distance,
-  max_distance,
-  base_desire,
-  max_desire)
-
-  local desire = (1 - (distance / max_distance)) + base_desire
-
-  return M.ternary(max_desire < desire, max_desire, desire)
+function M.DistanceToDesire(distance, max_distance, base_desire)
+  return (1 - (distance / max_distance)) + base_desire
 end
 
 function M.IsEnemyNear(bot)
@@ -396,6 +389,10 @@ function M.IsUnitLowHp(unit)
   return unit:GetHealth() <= constants.UNIT_LOW_HEALTH
          or M.GetUnitHealthLevel(unit)
             <= constants.UNIT_LOW_HEALTH_LEVEL
+end
+
+function M.GetNormalizedDesire(desire, max_desire)
+  return M.ternary(max_desire < desire, max_desire, desire)
 end
 
 -- Provide an access to local functions for unit tests only

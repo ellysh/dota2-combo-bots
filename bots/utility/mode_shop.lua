@@ -38,11 +38,12 @@ local function GetDesire(check_shop_func, get_distance_func, base_desire)
     return 0
   end
 
-  return functions.DistanceToDesire(
-    shop_distance,
-    constants.SHOP_WALK_RADIUS,
-    base_desire,
-    constants.MAX_RUNE_AND_SHOP_DESIRE)
+  return functions.GetNormalizedDesire(
+           functions.DistanceToDesire(
+             shop_distance,
+             constants.SHOP_WALK_RADIUS,
+             base_desire),
+           constants.MAX_RUNE_AND_SHOP_DESIRE)
 end
 
 function M.GetDesireSideShop()

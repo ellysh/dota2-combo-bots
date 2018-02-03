@@ -77,11 +77,12 @@ function GetDesire()
   if GetRuneStatus(rune) == RUNE_STATUS_AVAILABLE then
     return constants.MAX_RUNE_AND_SHOP_DESIRE end
 
-  return functions.DistanceToDesire(
-    distance,
-    constants.MAX_HERO_DISTANCE_FROM_RUNE,
-    0.3,
-    constants.MAX_RUNE_AND_SHOP_DESIRE)
+  return functions.GetNormalizedDesire(
+           functions.DistanceToDesire(
+             distance,
+             constants.MAX_HERO_DISTANCE_FROM_RUNE,
+             0.3),
+           constants.MAX_RUNE_AND_SHOP_DESIRE)
 end
 
 function Think()

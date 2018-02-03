@@ -675,16 +675,17 @@ end
 
 function test_DistanceToDesire_succeed()
   luaunit.assertAlmostEquals(
-    functions.DistanceToDesire(2500, 3000, 0.3, 0.6),
+    functions.DistanceToDesire(2500, 3000, 0.3),
     0.46,
     0.01)
 
-  luaunit.assertEquals(
-    functions.DistanceToDesire(2000, 3000, 0.3, 0.6),
-    0.6)
+  luaunit.assertAlmostEquals(
+    functions.DistanceToDesire(2000, 3000, 0.3),
+    0.63,
+    0.01)
 
   luaunit.assertAlmostEquals(
-    functions.DistanceToDesire(2999, 3000, 0.3, 0.6),
+    functions.DistanceToDesire(2999, 3000, 0.3),
     0.3,
     0.01)
 end
