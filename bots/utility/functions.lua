@@ -61,22 +61,7 @@ function M.GetItems(unit, slot_numbers, get_function)
 end
 
 function M.GetItem(unit, item_name)
-  local number, items = M.GetItems(
-    unit,
-    constants.INVENTORY_MAX_INDEX,
-    function(item) return item end)
-
-  if number == 0 then
-    return nil end
-
-  return M.GetElementWith(
-    items,
-    nil,
-    function(item)
-      return item ~= nil
-             and item ~= "nil"
-             and item:GetName() == item_name
-    end)
+  return unit:GetItemInSlot(unit:FindItemSlot(item_name))
 end
 
 local function GetItemSlotsCount(bot)

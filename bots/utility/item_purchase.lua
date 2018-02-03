@@ -242,7 +242,7 @@ local function PerformPlannedPurchaseAndSell(bot)
     logger.Print("SellItemByIndex() - " .. bot:GetUnitName() ..
                  " sell " .. sell_item)
 
-    local item_handle = bot:GetItemInSlot(bot:FindItemSlot(sell_item))
+    local item_handle = functions.GetItem(bot, sell_item)
 
     if item_handle ~= nil then
       bot:ActionImmediate_SellItem(item_handle)
