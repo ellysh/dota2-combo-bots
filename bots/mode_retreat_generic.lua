@@ -4,6 +4,9 @@ local constants = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local move = require(
+  GetScriptDirectory() .."/utility/move")
+
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
@@ -59,8 +62,9 @@ function Think()
 
     if 0 < #shrines then
       bot:Action_UseShrine(shrines[1]) end
+
   else
-    bot:Action_MoveToLocation(target_location);
+    move.Move(bot, target_location)
   end
 end
 
