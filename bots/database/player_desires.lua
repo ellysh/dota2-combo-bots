@@ -52,6 +52,13 @@ M.PLAYER_DESIRES = {
     BOT_MODE_RETREAT = {80, 0}
   },
 
+  is_shrine_healing_and_no_enemy = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_RETREAT = {75, 0}
+  },
+
 }
 
 return M

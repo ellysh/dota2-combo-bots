@@ -57,6 +57,25 @@ function M.more_enemy_heroes_around_then_ally()
   return #allies < (#enemies - 1)
 end
 
+function M.is_shrine_healing_and_no_enemy()
+  local bot = GetBot()
+
+ local shrines = bot:GetNearbyShrines(
+      constants.SHRINE_AURA_RADIUS,
+      false)
+
+  if #shrines == 0
+     or not IsShrineHealing(shrines[1]) then
+    return false end
+
+  local enemies = functions.GetEnemyHeroes(bot, 1600)
+
+  if 0 < #enemies then
+    return false end
+
+  return true
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 

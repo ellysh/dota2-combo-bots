@@ -51,7 +51,7 @@ function Think()
       constants.SHRINE_USE_RADIUS,
       false)
 
-    if shrines ~= nil and 0 < #shrines then
+    if 0 < #shrines then
       bot:Action_UseShrine(shrines[1]) end
   else
     bot:Action_MoveToLocation(target_location);

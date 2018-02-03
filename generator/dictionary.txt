@@ -18,6 +18,7 @@ has_buyback
 has_low_hp
 has_tp_scroll_or_travel_boots
 is_night
+is_shrine_healing_and_no_enemy
 item_abyssal_blade
 item_aether_lens
 item_ancient_janggo
