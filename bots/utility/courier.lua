@@ -11,13 +11,11 @@ local COURIER_STATE = {
     COURIER_OWNER = nil,
     COURIER_CURRENT_ACTION = nil,
     COURIER_IDLE_TIME = nil,
-    COURIER_PREVIOUS_LOCATION = nil
   },
   [TEAM_DIRE] = {
     COURIER_OWNER = nil,
     COURIER_CURRENT_ACTION = nil,
     COURIER_IDLE_TIME = nil,
-    COURIER_PREVIOUS_LOCATION = nil
   }
 }
 
@@ -57,21 +55,6 @@ local function SetCourierAction(bot, courier, action)
   COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = action
 end
 
-local function IsLocationChanged(courier)
-  local previos_location =
-    COURIER_STATE[GetTeam()].COURIER_PREVIOUS_LOCATION
-
-  COURIER_STATE[GetTeam()].COURIER_PREVIOUS_LOCATION =
-    courier:GetLocation()
-
-  if previos_location == nil then
-    return false end
-
-  return not functions.IsLocationsEquals(
-    previos_location,
-    courier:GetLocation())
-end
-
 local function IsFreeState(state)
   return state == COURIER_STATE_RETURNING_TO_BASE
          or state == COURIER_STATE_IDLE
@@ -79,7 +62,7 @@ local function IsFreeState(state)
 end
 
 local function FreeCourier(bot, courier, state)
-  if not IsFreeState(state) or IsLocationChanged(courier) then
+  if not IsFreeState(state) then
     return
   end
 
@@ -176,10 +159,6 @@ end
 
 function M.test_SetCourierCurrentAction(action)
   COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = action
-end
-
-function M.test_SetCourierPreviousLocation(location)
-  COURIER_STATE[GetTeam()].COURIER_PREVIOUS_LOCATION = location
 end
 
 return M

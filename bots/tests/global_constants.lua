@@ -21,10 +21,11 @@ COURIER_STATE_DEAD = 5
 
 -----------------------------------------
 
-TEAM_RADIANT = 0
-TEAM_DIRE = 1
-
 -- This is tested and match the game values
+
+TEAM_RADIANT = 2
+TEAM_DIRE = 3
+
 LANE_TOP = 1
 LANE_MID = 2
 LANE_BOT = 3

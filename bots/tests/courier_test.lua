@@ -57,28 +57,6 @@ function test_IsCourierAvailable_action_fails()
   luaunit.assertFalse(courier.test_IsCourierAvailable(bot))
 end
 
-function test_IsLocationChanged_succeed()
-  test_RefreshCourier()
-
-  local c = GetCourier(0)
-  c.location = {20, 20}
-
-  courier.test_SetCourierPreviousLocation({10, 10})
-
-  luaunit.assertTrue(courier.test_IsLocationChanged(c))
-end
-
-function test_IsLocationChanged_when_unchanged_fails()
-  test_RefreshCourier()
-
-  local c = GetCourier(0)
-  c.location = {10, 10}
-
-  courier.test_SetCourierPreviousLocation({10, 10})
-
-  luaunit.assertFalse(courier.test_IsLocationChanged(c))
-end
-
 function test_FreeCourier_moving_fails()
   test_RefreshCourier()
 
@@ -101,7 +79,6 @@ function test_FreeCourier_succeed()
 
   TIME = 12
   courier.test_SetCourierIdleTime(3)
-  courier.test_SetCourierPreviousLocation(nil)
   courier.test_FreeCourier(
     bot,
     GetCourier(),
