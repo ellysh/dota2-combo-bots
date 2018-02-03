@@ -11,13 +11,22 @@ function GetDesire()
   return player_desires.GetDesire("BOT_MODE_RETREAT")
 end
 
-local function AddShrineToList(shrine, list)
-  local unit = GetShrine(GetTeam(), shrine)
+local function IsHealingByShrine(bot, shrine)
+  return IsShrineHealing(shrine)
+         and GetUnitToUnitDistance(bot, shrine)
+             <= constants.SHRINE_AURA_RADIUS
+end
 
-  if GetShrineCooldown(unit) == 0
-     and not IsShrineHealing(unit) then
+local function IsShrineFull(shrine)
+  return GetShrineCooldown(shrine) == 0
+end
 
-    table.insert(list, unit:GetLocation())
+local function AddShrineToList(bot, shrine_id, list)
+  local shrine = GetShrine(GetTeam(), shrine_id)
+
+  if IsHealingByShrine(bot, shrine)
+     or IsShrineFull(shrine) then
+    table.insert(list, shrine:GetLocation())
   end
 end
 
@@ -36,8 +45,8 @@ function Think()
 
   local retreat_locations = { GetShopLocation(GetTeam(), SHOP_HOME) }
 
-  for _, shrine in pairs(SHRINES) do
-    AddShrineToList(shrine, retreat_locations)
+  for _, shrine_id in pairs(SHRINES) do
+    AddShrineToList(bot, shrine_id, retreat_locations)
   end
 
   local target_location = functions.GetNearestLocation(
