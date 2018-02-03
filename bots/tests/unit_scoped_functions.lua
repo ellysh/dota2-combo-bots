@@ -532,6 +532,12 @@ function Unit:GetAttackRange()
   return 550
 end
 
+UNIT_ITEM_SLOT_TYPE = ITEM_SLOT_TYPE_MAIN
+
+function Unit:GetItemSlotType()
+  return UNIT_ITEM_SLOT_TYPE
+end
+
 ------------------------------------------
 
 Ability = {}
