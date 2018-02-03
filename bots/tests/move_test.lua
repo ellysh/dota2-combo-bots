@@ -29,9 +29,21 @@ function test_CanUseTpScroll_succeed()
   test_RefreshBot()
 
   local target_location = {3000, 3000}
+  UNIT_GET_NIL_ABILITY = false
   ABILITY_IS_FULLY_CASTABLE = true
 
   luaunit.assertTrue(
+    move.test_CanUseTpScroll(GetBot(), target_location))
+end
+
+function test_CanUseTpScroll_tp_scroll_absent_fails()
+  test_RefreshBot()
+
+  local target_location = {3000, 3000}
+  UNIT_GET_NIL_ABILITY = true
+  ABILITY_IS_FULLY_CASTABLE = true
+
+  luaunit.assertFalse(
     move.test_CanUseTpScroll(GetBot(), target_location))
 end
 

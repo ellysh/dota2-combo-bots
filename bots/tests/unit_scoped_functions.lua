@@ -537,7 +537,12 @@ function Ability:new(n)
   return setmetatable(newObj, self)
 end
 
+UNIT_GET_NIL_ABILITY = false
+
 function Unit:GetAbilityByName(abilityName)
+  if UNIT_GET_NIL_ABILITY then
+    return nil end
+
   return Ability:new(abilityName)
 end
 

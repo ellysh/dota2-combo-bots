@@ -8,7 +8,9 @@ local function GetTpScrollAbility(unit)
 end
 
 local function CanUseTpScroll(unit, target_location)
-  return GetTpScrollAbility(unit):IsFullyCastable()
+  local tp_ability = GetTpScrollAbility(unit)
+  return tp_ability ~= nil
+         and tp_ability:IsFullyCastable()
          and constants.MIN_TELEPORT_RADIUS
              < GetUnitToLocationDistance(unit, target_location)
 end
