@@ -3,7 +3,7 @@ package.path = package.path .. ";../utility/?.lua"
 pcall(require, "luacov")
 require("global_functions")
 
-local ability_usage_algorithms = require("ability_usage_algorithms")
+local algorithms = require("ability_usage_algorithms")
 local functions = require("functions")
 local constants = require("constants")
 local luaunit = require('luaunit')
@@ -11,28 +11,46 @@ local luaunit = require('luaunit')
 function test_IsTargetable()
   local unit = Unit:new()
 
-  luaunit.assertTrue(ability_usage_algorithms.test_IsTargetable(unit))
+  luaunit.assertTrue(algorithms.test_IsTargetable(unit))
 
   UNIT_CAN_BE_SEEN = false
 
-  luaunit.assertFalse(ability_usage_algorithms.test_IsTargetable(unit))
+  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
 
   UNIT_CAN_BE_SEEN = true
   UNIT_IS_MAGIC_IMMUNE = true
 
-  luaunit.assertFalse(ability_usage_algorithms.test_IsTargetable(unit))
+  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
 
   UNIT_IS_MAGIC_IMMUNE = false
   UNIT_IS_INVULNERABLE = true
 
-  luaunit.assertFalse(ability_usage_algorithms.test_IsTargetable(unit))
+  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
 
   UNIT_IS_INVULNERABLE = false
   UNIT_IS_ILLUSION = true
 
-  luaunit.assertFalse(ability_usage_algorithms.test_IsTargetable(unit))
+  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
 
   UNIT_IS_ILLUSION = false
+end
+
+function test_NumberOfTargetableUnits_succeed()
+  local units = { Unit:new(), Unit:new(), Unit:new() }
+
+  luaunit.assertEquals(
+    algorithms.test_NumberOfTargetableUnits(units),
+    3)
+end
+
+function test_NumberOfTargetableUnits_when_targets_immune_fails()
+  local units = { Unit:new(), Unit:new(), Unit:new() }
+
+  UNIT_IS_MAGIC_IMMUNE = true
+
+  luaunit.assertEquals(
+    algorithms.test_NumberOfTargetableUnits(units),
+    0)
 end
 
 function test_IsEnoughDamageToKill_succeed()
@@ -42,7 +60,7 @@ function test_IsEnoughDamageToKill_succeed()
   ABILITY_DAMAGE = 400
 
   luaunit.assertTrue(
-    ability_usage_algorithms.test_IsEnoughDamageToKill(
+    algorithms.test_IsEnoughDamageToKill(
       unit,
       ability))
 end
@@ -54,7 +72,7 @@ function test_IsEnoughDamageToKill_fails()
   ABILITY_DAMAGE = 150
 
   luaunit.assertFalse(
-    ability_usage_algorithms.test_IsEnoughDamageToKill(
+    algorithms.test_IsEnoughDamageToKill(
       unit,
       ability))
 end
@@ -67,27 +85,26 @@ function test_GetTarget_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
 
   luaunit.assertEquals(
-    ability_usage_algorithms.test_GetTarget(unit, ability),
+    algorithms.test_GetTarget(unit, ability),
     unit)
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
 
   luaunit.assertEquals(
-    ability_usage_algorithms.test_GetTarget(unit, ability),
+    algorithms.test_GetTarget(unit, ability),
     unit:GetLocation())
 
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
 
   luaunit.assertEquals(
-    ability_usage_algorithms.test_GetTarget(unit, ability),
+    algorithms.test_GetTarget(unit, ability),
     nil)
 end
 
 local function test_algorithm_pattern_succeed(algorithm, expect_target)
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
-  -- TODO: Rename the "ability_usage_algorithms" variable to "algorithms"
-  local desire, target = ability_usage_algorithms[algorithm](
+  local desire, target = algorithms[algorithm](
     GetBot(),
     ability)
 
@@ -100,8 +117,7 @@ local function test_algorithm_pattern_fails(algorithm)
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
-  -- TODO: Rename the "ability_usage_algorithms" variable to "algorithms"
-  local desire, target = ability_usage_algorithms[algorithm](
+  local desire, target = algorithms[algorithm](
     GetBot(),
     ability)
 
@@ -127,8 +143,17 @@ end
 function test_channeling_enemy_hero_succeed()
   UNIT_IS_CHANNELING = true
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_NO_NEARBY_UNITS = false
 
   test_algorithm_pattern_succeed("channeling_enemy_hero", {10, 10})
+end
+
+function test_channeling_enemy_hero_no_hero_fails()
+  UNIT_IS_CHANNELING = true
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_NO_NEARBY_UNITS = true
+
+  test_algorithm_pattern_fails("channeling_enemy_hero")
 end
 
 function test_attacked_enemy_hero_succeed()
@@ -171,6 +196,7 @@ function test_attacked_enemy_building_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
   UNIT_CAN_BE_SEEN = true
   UNIT_IS_BUILDING = true
+  UNIT_IS_MAGIC_IMMUNE = false
   ATTACK_TARGET = Unit:new()
 
   test_algorithm_pattern_succeed("attacked_enemy_building", ATTACK_TARGET)
@@ -198,9 +224,7 @@ function test_three_and_more_enemy_heroes_aoe_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   UNIT_CAN_BE_SEEN = false
 
-  test_algorithm_pattern_fails(
-    "three_and_more_enemy_heroes_aoe",
-    nil)
+  test_algorithm_pattern_fails("three_and_more_enemy_heroes_aoe")
 end
 
 function test_last_attacked_enemy_hero_succeed()
@@ -241,22 +265,38 @@ function test_three_and_more_creeps_two_fails()
   test_algorithm_pattern_fails("three_and_more_creeps")
 end
 
-function test_three_and_more_enemy_heroes()
+function test_three_and_more_enemy_heroes_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   FIND_AOE_LOCATION_COUNT = 3
+  UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed(
     "three_and_more_enemy_heroes",
     {1.2, 3.4})
 end
 
+function test_three_and_more_enemy_heroes_when_targets_immune_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  FIND_AOE_LOCATION_COUNT = 3
+  UNIT_IS_MAGIC_IMMUNE = true
+
+  test_algorithm_pattern_fails("three_and_more_enemy_heroes")
+end
+
+function test_three_and_more_enemy_heroes_when_hits_only_2_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  FIND_AOE_LOCATION_COUNT = 2
+  UNIT_IS_MAGIC_IMMUNE = false
+
+  test_algorithm_pattern_fails("three_and_more_enemy_heroes")
+end
 local function test_toggle_on_attack_enemy_hero_pattern(expected_state)
   test_RefreshBot()
 
   local ability = Ability:new("drow_ranger_frost_arrows")
 
   local desire, target =
-    ability_usage_algorithms.toggle_on_attack_enemy_hero(
+    algorithms.toggle_on_attack_enemy_hero(
       GetBot(),
       ability)
 
@@ -297,7 +337,7 @@ local function test_UseOnAttackEnemyUnit_pattern(
   ATTACK_TARGET = Unit:new()
 
   local desire, target =
-    ability_usage_algorithms.test_UseOnAttackEnemyUnit(
+    algorithms.test_UseOnAttackEnemyUnit(
       GetBot(),
       ability,
       function(unit) return unit:IsHero() end,
@@ -371,6 +411,7 @@ function test_use_on_attack_enemy_creep_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ATTACK_TARGET = Unit:new()
   UNIT_IS_HERO = false
+  UNIT_EXTRAPOLATED_LOCATION = {10, 10}
 
   test_algorithm_pattern_succeed(
     "use_on_attack_enemy_creep_aoe",
@@ -455,8 +496,8 @@ local function test_algorithm_unit_pattern_succeed(
 
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
-  -- TODO: Rename the "ability_usage_algorithms" variable to "algorithms"
-  local desire, target = ability_usage_algorithms[algorithm](
+  -- TODO: Rename the "algorithms" variable to "algorithms"
+  local desire, target = algorithms[algorithm](
     GetBot(),
     ability)
 
@@ -499,6 +540,15 @@ function test_three_and_more_ally_creeps_aoe_two_fails()
   NEARBY_CREEPS_COUNT = 2
 
   test_algorithm_pattern_fails("three_and_more_ally_creeps_aoe")
+end
+
+function test_move_target()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_EXTRAPOLATED_LOCATION = {3000, 3000}
+
+  test_algorithm_pattern_succeed(
+    "move_target",
+    UNIT_EXTRAPOLATED_LOCATION)
 end
 
 os.exit(luaunit.LuaUnit.run())

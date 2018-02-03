@@ -231,8 +231,10 @@ function GetShrineCooldown(shrine)
   return SHRINE_COOLDOWN
 end
 
+IS_SHRINE_HEALING = false
+
 function IsShrineHealing(shrine)
-  return false
+  return IS_SHRINE_HEALING
 end
 
 SHRINE_DISTANCE = {900, 900}
@@ -247,6 +249,8 @@ function GetShrine(team, shrine)
   return unit1
 end
 
+TIME_OF_DAY = 0.5
+
 function GetTimeOfDay()
-  return 0.5
+  return TIME_OF_DAY
 end

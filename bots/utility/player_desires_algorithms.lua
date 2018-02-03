@@ -60,7 +60,7 @@ end
 function M.is_shrine_healing_and_no_enemy()
   local bot = GetBot()
 
- local shrines = bot:GetNearbyShrines(
+  local shrines = bot:GetNearbyShrines(
       constants.SHRINE_AURA_RADIUS,
       false)
 

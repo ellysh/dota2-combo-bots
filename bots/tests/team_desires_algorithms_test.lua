@@ -144,4 +144,18 @@ function test_no_enemy_heroes_on_lane()
   luaunit.assertTrue(algorithms.no_enemy_heroes_on_bot())
 end
 
+function test_is_night_succeed()
+  TIME_OF_DAY = 0.24
+  luaunit.assertTrue(algorithms.is_night())
+
+  TIME_OF_DAY = 0.26
+  luaunit.assertFalse(algorithms.is_night())
+
+  TIME_OF_DAY = 0.74
+  luaunit.assertFalse(algorithms.is_night())
+
+  TIME_OF_DAY = 0.76
+  luaunit.assertTrue(algorithms.is_night())
+end
+
 os.exit(luaunit.LuaUnit.run())

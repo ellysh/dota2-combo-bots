@@ -132,8 +132,10 @@ function Unit:GetLocation()
   return self.location
 end
 
+UNIT_EXTRAPOLATED_LOCATION = {10, 10}
+
 function Unit:GetExtrapolatedLocation()
-  return self.location
+  return UNIT_EXTRAPOLATED_LOCATION
 end
 
 UNIT_IS_CHANNELING = false
@@ -246,9 +248,13 @@ function Unit:FindItemSlot(itemName)
 end
 
 UNIT_NO_NEARBY_UNITS = false
+UNIT_NO_NEARBY_ALLIES = false
 
 function Unit:GetNearbyHeroes(radius, enemies, mode)
   if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
+  if UNIT_NO_NEARBY_ALLIES and not enemies then
     return {} end
 
   local unit1 = Unit:new()
@@ -355,9 +361,6 @@ function Unit:GetNearbyBarracks(radius, enemies, mode)
 end
 
 function Unit:GetNearbyShrines(radius, enemy)
-  if UNIT_NO_NEARBY_UNITS then
-    return {} end
-
   local unit1 = Unit:new()
   unit1.name = "shrine1"
   unit1.health = 10

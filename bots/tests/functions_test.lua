@@ -703,4 +703,22 @@ function test_GetNearestLocation_succeed()
     location_2)
 end
 
+function test_IsUnitLowHp_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 10
+
+  luaunit.assertTrue(functions.IsUnitLowHp(bot))
+end
+
+function test_IsUnitLowHp_full_hp_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = bot.max_health
+
+  luaunit.assertFalse(functions.IsUnitLowHp(bot))
+end
+
 os.exit(luaunit.LuaUnit.run())
