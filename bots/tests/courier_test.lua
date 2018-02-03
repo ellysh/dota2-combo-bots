@@ -62,14 +62,16 @@ function test_FreeCourier_moving_fails()
 
   local bot = GetBot()
 
-  courier.test_SetCourierIdleTime(1)
+  courier.test_SetCourierCurrentAction(COURIER_ACTION_SECRET_SHOP)
 
   courier.test_FreeCourier(
     bot,
     GetCourier(),
     COURIER_STATE_MOVING)
 
-  luaunit.assertEquals(courier.test_GetCourierIdleTime(), 1)
+  luaunit.assertEquals(
+    courier.test_GetCourierCurrentAction(),
+    COURIER_ACTION_SECRET_SHOP)
 end
 
 function test_FreeCourier_succeed()
@@ -78,13 +80,11 @@ function test_FreeCourier_succeed()
   local bot = GetBot()
 
   TIME = 12
-  courier.test_SetCourierIdleTime(3)
   courier.test_FreeCourier(
     bot,
     GetCourier(),
     COURIER_STATE_IDLE)
 
-  luaunit.assertEquals(courier.test_GetCourierIdleTime(), nil)
   luaunit.assertEquals(COURIER_ACTION, COURIER_ACTION_RETURN)
 end
 

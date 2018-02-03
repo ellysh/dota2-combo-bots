@@ -10,12 +10,10 @@ local COURIER_STATE = {
   [TEAM_RADIANT] = {
     COURIER_OWNER = nil,
     COURIER_CURRENT_ACTION = nil,
-    COURIER_IDLE_TIME = nil,
   },
   [TEAM_DIRE] = {
     COURIER_OWNER = nil,
     COURIER_CURRENT_ACTION = nil,
-    COURIER_IDLE_TIME = nil,
   }
 }
 
@@ -43,8 +41,7 @@ local function IsCourierAvailable(bot)
          or functions.GetHeroPositions(bot:GetUnitName())[1]
             < functions.GetHeroPositions(courier_owner)[1]
          or IsAllyHeroDead(courier_owner))
-         and (courier_action == nil
-              or courier_action == COURIER_ACTION_RETURN)
+         and courier_action == nil
 end
 
 local function SetCourierAction(bot, courier, action)
@@ -55,28 +52,9 @@ local function SetCourierAction(bot, courier, action)
   COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = action
 end
 
-local function IsFreeState(state)
-  return state == COURIER_STATE_RETURNING_TO_BASE
-         or state == COURIER_STATE_IDLE
-         or state == COURIER_STATE_AT_BASE
-end
-
 local function FreeCourier(bot, courier, state)
-  if not IsFreeState(state) then
-    return
-  end
-
-  -- We use the GameTime here to avoid negative DotaTime value
-  -- before the horn.
-
-  if COURIER_STATE[GetTeam()].COURIER_IDLE_TIME == nil then
-    COURIER_STATE[GetTeam()].COURIER_IDLE_TIME = GameTime()
-  elseif 2 < (GameTime() - COURIER_STATE[GetTeam()].COURIER_IDLE_TIME) then
-    COURIER_STATE[GetTeam()].COURIER_IDLE_TIME = nil
-    COURIER_STATE[GetTeam()].COURIER_OWNER = nil
-    COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = nil
-
-    bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
+  if state == COURIER_STATE_IDLE then
+    SetCourierAction(bot, courier, COURIER_ACTION_RETURN)
   end
 end
 
@@ -145,20 +123,16 @@ M.test_FreeCourier = FreeCourier
 M.test_IsSecretShopRequired = IsSecretShopRequired
 M.test_IsCourierDamaged = IsCourierDamaged
 
-function M.test_GetCourierIdleTime()
-  return COURIER_STATE[GetTeam()].COURIER_IDLE_TIME
-end
-
-function M.test_SetCourierIdleTime(time)
-  COURIER_STATE[GetTeam()].COURIER_IDLE_TIME = time
-end
-
 function M.test_SetCourierOwner(owner)
   COURIER_STATE[GetTeam()].COURIER_OWNER = owner
 end
 
 function M.test_SetCourierCurrentAction(action)
   COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = action
+end
+
+function M.test_GetCourierCurrentAction(action)
+  return COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION
 end
 
 return M
