@@ -175,6 +175,8 @@ function test_AbilityUsageThink_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
 
+  ABILITY_CASTABLE_NAME = "crystal_maiden_crystal_nova"
+
   ability_usage.AbilityUsageThink()
 
   luaunit.assertEquals(

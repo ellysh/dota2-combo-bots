@@ -550,10 +550,13 @@ function Ability:GetCastRange()
 end
 
 ABILITY_IS_FULLY_CASTABLE = true
+ABILITY_CASTABLE_NAME = nil
 
 function Ability:IsFullyCastable()
   return ABILITY_IS_FULLY_CASTABLE
-         and string.find(self.name, "crystal_maiden") ~= nil
+         and (ABILITY_CASTABLE_NAME == nil or
+              (ABILITY_CASTABLE_NAME ~= nil and
+               self.name == ABILITY_CASTABLE_NAME))
 end
 
 function Ability:IsAbilityCastable()
