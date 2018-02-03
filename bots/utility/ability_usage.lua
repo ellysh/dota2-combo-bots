@@ -28,11 +28,21 @@ local function CalculateDesireAndTarget(
   return algorithm(bot, ability)
 end
 
+local function GetAbility(bot, ability_name)
+  local ability = bot:GetAbilityByName(ability_name)
+
+  if ability == nil then
+    ability = functions.GetItem(bot, ability_name)
+  end
+
+  return ability
+end
+
 local function GetDesiredAbilitiesList(bot)
   local result = {}
 
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
-    local ability = bot:GetAbilityByName(ability_name)
+    local ability = GetAbility(bot, ability_name)
 
     if ability == nil
       or not ability:IsFullyCastable() then
