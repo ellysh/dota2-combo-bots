@@ -64,21 +64,21 @@ M.TEAM_DESIRES = {
   },
 
   more_ally_heroes_on_top_then_enemy = {
-    BOT_MODE_PUSH_TOWER_TOP = {50, -20},
+    BOT_MODE_PUSH_TOWER_TOP = {30, -20},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0}
   },
 
   more_ally_heroes_on_mid_then_enemy = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {50, -20},
+    BOT_MODE_PUSH_TOWER_MID = {30, -20},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0}
   },
 
   more_ally_heroes_on_bot_then_enemy = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {50, -20}
+    BOT_MODE_PUSH_TOWER_BOT = {30, -20}
   },
 
   is_night = {

@@ -172,7 +172,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_phantom_lancer = {
-    position = {1, nil},
+    position = {1, 3},
     combo_heroes = {
       "npc_dota_hero_keeper_of_the_light",
       "npc_dota_hero_dazzle",
