@@ -3,10 +3,23 @@ local functions = require(
 
 local M = {}
 
-local COURIER_OWNER = nil
-local COURIER_CURRENT_ACTION = nil
-local COURIER_IDLE_TIME = nil
-local COURIER_PREVIOUS_LOCATION = nil
+-- This table is required because global variables are shared between
+-- both teams.
+
+local COURIER_STATE = {
+  [TEAM_RADIANT] = {
+    COURIER_OWNER = nil,
+    COURIER_CURRENT_ACTION = nil,
+    COURIER_IDLE_TIME = nil,
+    COURIER_PREVIOUS_LOCATION = nil
+  },
+  [TEAM_DIRE] = {
+    COURIER_OWNER = nil,
+    COURIER_CURRENT_ACTION = nil,
+    COURIER_IDLE_TIME = nil,
+    COURIER_PREVIOUS_LOCATION = nil
+  }
+}
 
 local function IsAllyHeroDead(name)
   local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
@@ -24,27 +37,32 @@ end
 local function IsCourierAvailable(bot)
   -- TODO: We compare only the primary position of
   -- the courier owner and the current bot.
+  local courier_owner = COURIER_STATE[GetTeam()].COURIER_OWNER
+  local courier_action = COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION
 
-  return (COURIER_OWNER == nil
-         or COURIER_OWNER == bot:GetUnitName()
+  return (courier_owner == nil
+         or courier_owner == bot:GetUnitName()
          or functions.GetHeroPositions(bot:GetUnitName())[1]
-            < functions.GetHeroPositions(COURIER_OWNER)[1]
-         or IsAllyHeroDead(COURIER_OWNER))
-         and (COURIER_CURRENT_ACTION == nil
-              or COURIER_CURRENT_ACTION == COURIER_ACTION_RETURN)
+            < functions.GetHeroPositions(courier_owner)[1]
+         or IsAllyHeroDead(courier_owner))
+         and (courier_action == nil
+              or courier_action == COURIER_ACTION_RETURN)
 end
 
 local function SetCourierAction(bot, courier, action)
-  COURIER_OWNER = bot:GetUnitName()
+  COURIER_STATE[GetTeam()].COURIER_OWNER = bot:GetUnitName()
 
   bot:ActionImmediate_Courier(courier, action)
 
-  COURIER_CURRENT_ACTION = action
+  COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = action
 end
 
 local function IsLocationChanged(courier)
-  local previos_location = COURIER_PREVIOUS_LOCATION
-  COURIER_PREVIOUS_LOCATION = courier:GetLocation()
+  local previos_location =
+    COURIER_STATE[GetTeam()].COURIER_PREVIOUS_LOCATION
+
+  COURIER_STATE[GetTeam()].COURIER_PREVIOUS_LOCATION =
+    courier:GetLocation()
 
   if previos_location == nil then
     return false end
@@ -68,12 +86,12 @@ local function FreeCourier(bot, courier, state)
   -- We use the GameTime here to avoid negative DotaTime value
   -- before the horn.
 
-  if COURIER_IDLE_TIME == nil then
-    COURIER_IDLE_TIME = GameTime()
-  elseif 2 < (GameTime() - COURIER_IDLE_TIME) then
-    COURIER_IDLE_TIME = nil
-    COURIER_OWNER = nil
-    COURIER_CURRENT_ACTION = nil
+  if COURIER_STATE[GetTeam()].COURIER_IDLE_TIME == nil then
+    COURIER_STATE[GetTeam()].COURIER_IDLE_TIME = GameTime()
+  elseif 2 < (GameTime() - COURIER_STATE[GetTeam()].COURIER_IDLE_TIME) then
+    COURIER_STATE[GetTeam()].COURIER_IDLE_TIME = nil
+    COURIER_STATE[GetTeam()].COURIER_OWNER = nil
+    COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = nil
 
     bot:ActionImmediate_Courier(courier, COURIER_ACTION_RETURN)
   end
@@ -145,23 +163,23 @@ M.test_IsSecretShopRequired = IsSecretShopRequired
 M.test_IsCourierDamaged = IsCourierDamaged
 
 function M.test_GetCourierIdleTime()
-  return COURIER_IDLE_TIME
+  return COURIER_STATE[GetTeam()].COURIER_IDLE_TIME
 end
 
 function M.test_SetCourierIdleTime(time)
-  COURIER_IDLE_TIME = time
+  COURIER_STATE[GetTeam()].COURIER_IDLE_TIME = time
 end
 
 function M.test_SetCourierOwner(owner)
-  COURIER_OWNER = owner
+  COURIER_STATE[GetTeam()].COURIER_OWNER = owner
 end
 
 function M.test_SetCourierCurrentAction(action)
-  COURIER_CURRENT_ACTION = action
+  COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = action
 end
 
 function M.test_SetCourierPreviousLocation(location)
-  COURIER_PREVIOUS_LOCATION = location
+  COURIER_STATE[GetTeam()].COURIER_PREVIOUS_LOCATION = location
 end
 
 return M
