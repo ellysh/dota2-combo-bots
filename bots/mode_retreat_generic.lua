@@ -33,11 +33,6 @@ local function AddShrineToList(bot, shrine_id, list)
 end
 
 local SHRINES = {
-  SHRINE_BASE_1,
-  SHRINE_BASE_2,
-  SHRINE_BASE_3,
-  SHRINE_BASE_4,
-  SHRINE_BASE_5,
   SHRINE_JUNGLE_1,
   SHRINE_JUNGLE_2,
 }
