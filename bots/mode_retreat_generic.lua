@@ -7,6 +7,8 @@ local functions = require(
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
+local M = {}
+
 function GetDesire()
   return player_desires.GetDesire("BOT_MODE_RETREAT")
 end
@@ -66,3 +68,9 @@ function Think()
     bot:Action_MoveToLocation(target_location);
   end
 end
+
+-- Provide an access to local functions and variables for unit tests only
+M.test_IsHealingByShrine = IsHealingByShrine
+M.test_IsShrineFull = IsShrineFull
+
+return M

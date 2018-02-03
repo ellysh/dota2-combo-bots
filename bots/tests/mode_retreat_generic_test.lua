@@ -6,6 +6,48 @@ require("global_functions")
 local mode_retreat = require("mode_retreat_generic")
 local luaunit = require('luaunit')
 
+function test_IsHealingByShrine_succeed()
+  test_RefreshBot()
+
+  IS_SHRINE_HEALING = true
+
+  luaunit.assertTrue(
+    mode_retreat.test_IsHealingByShrine(GetBot(), Unit:new()))
+end
+
+function test_IsHealingByShrine_when_distance_too_big_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.location = {3000, 3000}
+
+  IS_SHRINE_HEALING = true
+
+  luaunit.assertFalse(
+    mode_retreat.test_IsHealingByShrine(GetBot(), Unit:new()))
+end
+
+function test_IsHealingByShrine_when_shrine_not_healing_fails()
+  test_RefreshBot()
+
+  IS_SHRINE_HEALING = false
+
+  luaunit.assertFalse(
+    mode_retreat.test_IsHealingByShrine(GetBot(), Unit:new()))
+end
+
+function test_IsShrineFull_succeed()
+  SHRINE_COOLDOWN = 0
+
+  luaunit.assertTrue(mode_retreat.test_IsShrineFull(Unit:new()))
+end
+
+function test_IsShrineFull_fails()
+  SHRINE_COOLDOWN = 10
+
+  luaunit.assertFalse(mode_retreat.test_IsShrineFull(Unit:new()))
+end
+
 function test_GetDesire_with_normal_hp_negative()
   test_RefreshBot()
 
