@@ -57,7 +57,29 @@ function test_IsCourierAvailable_action_fails()
   luaunit.assertFalse(courier.test_IsCourierAvailable(bot))
 end
 
-function test_FreeCourier()
+function test_IsLocationChanged_succeed()
+  test_RefreshCourier()
+
+  local c = GetCourier(0)
+  c.location = {20, 20}
+
+  courier.test_SetCourierPreviousLocation({10, 10})
+
+  luaunit.assertTrue(courier.test_IsLocationChanged(c))
+end
+
+function test_IsLocationChanged_when_unchanged_fails()
+  test_RefreshCourier()
+
+  local c = GetCourier(0)
+  c.location = {10, 10}
+
+  courier.test_SetCourierPreviousLocation({10, 10})
+
+  luaunit.assertFalse(courier.test_IsLocationChanged(c))
+end
+
+function test_FreeCourier_moving_fails()
   test_RefreshCourier()
 
   local bot = GetBot()
@@ -70,9 +92,16 @@ function test_FreeCourier()
     COURIER_STATE_MOVING)
 
   luaunit.assertEquals(courier.test_GetCourierIdleTime(), 1)
+end
+
+function test_FreeCourier_succeed()
+  test_RefreshCourier()
+
+  local bot = GetBot()
 
   TIME = 12
   courier.test_SetCourierIdleTime(3)
+  courier.test_SetCourierPreviousLocation(nil)
   courier.test_FreeCourier(
     bot,
     GetCourier(),
@@ -148,9 +177,9 @@ function test_CourierUsageThink_burst_action_succeed()
 end
 
 local function FreeCourier()
-  courier.test_FreeCourier(GetCourier(), COURIER_STATE_IDLE)
+  courier.test_FreeCourier(GetBot(), GetCourier(0), COURIER_STATE_IDLE)
   TIME = TIME + 11
-  courier.test_FreeCourier(GetCourier(), COURIER_STATE_IDLE)
+  courier.test_FreeCourier(GetBot(), GetCourier(0), COURIER_STATE_IDLE)
 end
 
 function test_CourierUsageThink_transfer_action_succeed()

@@ -374,6 +374,11 @@ function M.IsUnitLowHp(unit)
             <= constants.UNIT_LOW_HEALTH_LEVEL
 end
 
+function M.IsLocationsEquals(location1, location2)
+  return location1[1] == location2[1]
+         and location1[2] == location2[2]
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount
