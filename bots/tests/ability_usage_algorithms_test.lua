@@ -542,13 +542,4 @@ function test_three_and_more_ally_creeps_aoe_two_fails()
   test_algorithm_pattern_fails("three_and_more_ally_creeps_aoe")
 end
 
-function test_move_target()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_EXTRAPOLATED_LOCATION = {3000, 3000}
-
-  test_algorithm_pattern_succeed(
-    "move_target",
-    UNIT_EXTRAPOLATED_LOCATION)
-end
-
 os.exit(luaunit.LuaUnit.run())

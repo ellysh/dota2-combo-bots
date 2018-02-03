@@ -353,16 +353,6 @@ function M.three_and_more_ally_creeps_aoe(bot, ability)
   return false, nil
 end
 
-function M.move_target(bot, ability)
-  local target = bot:GetExtrapolatedLocation(40)
-
-  if constants.MIN_TELEPORT_RADIUS
-     < GetUnitToLocationDistance(bot, target) then
-    return true, target end
-
-  return false, nil
-end
-
 -- Provide an access to local functions and variables for unit tests only
 M.test_IsTargetable = IsTargetable
 M.test_NumberOfTargetableUnits = NumberOfTargetableUnits
