@@ -21,6 +21,7 @@ function test_GetTpScrollAbility_succeed()
   test_RefreshBot()
 
   local ability = Ability:new("item_tpscroll")
+  UNIT_GET_NIL_ABILITY = false
 
   luaunit.assertEquals(move.test_GetTpScrollAbility(GetBot()), ability)
 end
