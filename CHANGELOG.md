@@ -1,4 +1,6 @@
 * version 0.9
+  - Implement the items usage mechanism.
+  - Fix a bug with passive strategy when Combo Bots play in both teams.
   - Implement the shrine usage mechanism.
   - Improve the algorithm for picking a random hero.
   - Implementation of the mode retreat.
