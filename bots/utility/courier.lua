@@ -1,6 +1,9 @@
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local M = {}
 
 -- This table is required because global variables are shared between
@@ -53,8 +56,15 @@ local function SetCourierAction(bot, courier, action)
 end
 
 local function FreeCourier(bot, courier, state)
-  if state == COURIER_STATE_IDLE then
+  if state == COURIER_STATE_IDLE
+     and constants.BASE_SHOP_USE_RADIUS
+         < courier:DistanceFromFountain() then
     SetCourierAction(bot, courier, COURIER_ACTION_RETURN)
+  end
+
+  if state == COURIER_STATE_AT_BASE then
+    COURIER_STATE[GetTeam()].COURIER_OWNER = nil
+    COURIER_STATE[GetTeam()].COURIER_CURRENT_ACTION = nil
   end
 end
 

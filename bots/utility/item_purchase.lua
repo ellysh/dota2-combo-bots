@@ -201,11 +201,14 @@ end
 local function PurchaseViaCourier(bot)
   local courier = GetCourier(0)
   local buy_item = functions.GetItemToBuy(bot)
+  local is_item_from_secret_shop = IsItemPurchasedFromSecretShop(buy_item)
 
   if courier == nil
-     or (IsItemPurchasedFromSecretShop(buy_item)
+     or (is_item_from_secret_shop
          and constants.SHOP_USE_RADIUS < courier:DistanceFromSecretShop())
-     or constants.SHOP_USE_RADIUS < courier:DistanceFromFountain() then
+     or (not is_item_from_secret_shop
+         and constants.BASE_SHOP_USE_RADIUS
+             < courier:DistanceFromFountain()) then
 
      return PURCHASE_ITEM_DISALLOWED_ITEM
    end
