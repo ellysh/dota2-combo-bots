@@ -227,13 +227,11 @@ local function PurchaseViaCourier(bot)
 end
 
 local function PerformPlannedPurchaseAndSell(bot)
-  if PURCHASE_ITEM_SUCCESS == PurchaseViaCourier(bot) then
-    return end
-
   if constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()
     and constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()
     and constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop() then
 
+    PurchaseViaCourier(bot)
     return
   end
 
