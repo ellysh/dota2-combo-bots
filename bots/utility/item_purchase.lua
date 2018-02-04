@@ -101,8 +101,10 @@ local function IsPurchasePossible(bot)
 
   local courier = GetCourier(0)
 
-  return courier:IsAlive()
-         and bot:GetCourierValue() == 0
+  return courier == nil
+         or (courier ~= nil
+             and courier:IsAlive()
+             and bot:GetCourierValue() == 0)
          and bot:GetStashValue() == 0
          and functions.GetItemToBuy(bot) == nil
 end
