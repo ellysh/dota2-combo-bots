@@ -79,6 +79,7 @@ function test_FreeCourier_succeed()
 
   local bot = GetBot()
 
+  DISTANCE_FROM_SHOP = 2000
   TIME = 12
   courier.test_FreeCourier(
     bot,

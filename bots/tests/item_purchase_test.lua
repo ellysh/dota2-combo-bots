@@ -553,21 +553,6 @@ function test_PerformPlannedPurchaseAndSell_too_far_from_shops_fails()
   luaunit.assertEquals(bot.inventory[1], nil)
 end
 
-function test_PerformPlannedPurchaseAndSell_via_courier_succeed()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  COURIER = Unit:new()
-  DISTANCE_FROM_SHOP = 100
-
-  functions.SetItemToBuy(bot, "item_branches")
-
-  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
-
-  luaunit.assertEquals(GetCourier().inventory[1], "item_branches")
-end
-
 function test_ItemPurchaseThink()
   test_RefreshBot()
 
