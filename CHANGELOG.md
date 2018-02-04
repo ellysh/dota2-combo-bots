@@ -1,4 +1,6 @@
 * version 0.9
+  - Fix a bug when all base shop items are bought via a courier.
+  - Fix bugs with hanging courier near the side shop.
   - Implement the items usage mechanism.
   - Fix a bug with passive strategy when Combo Bots play in both teams.
   - Implement the shrine usage mechanism.
