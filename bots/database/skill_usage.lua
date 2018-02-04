@@ -711,6 +711,21 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
   },
 
+  item_blink = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["use_on_attack_enemy_hero_ranged"], 80},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_ranged"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_ranged"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_ranged"], 60},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+  },
+
 }
 
 return M
