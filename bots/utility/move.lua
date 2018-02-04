@@ -10,16 +10,14 @@ local logger = require(
 local M = {}
 
 local function GetTpScrollAbility(unit)
-  return functions.GetItem(unit, "item_tpscroll")
+  return functions.GetItem(unit, "item_tpscroll", ITEM_SLOT_TYPE_MAIN)
 end
 
 local function CanUseTpScroll(unit, target_location)
   local tp_ability = GetTpScrollAbility(unit)
-  local item_slot = unit:FindItemSlot("item_tpscroll")
 
   return tp_ability ~= nil
          and tp_ability:IsFullyCastable()
-         and unit:GetItemSlotType(item_slot) == ITEM_SLOT_TYPE_MAIN
          and constants.MIN_TELEPORT_RADIUS
              < GetUnitToLocationDistance(unit, target_location)
 end

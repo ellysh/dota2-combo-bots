@@ -60,8 +60,14 @@ function M.GetItems(unit, slot_numbers, get_function)
   return items_number, item_list
 end
 
-function M.GetItem(unit, item_name)
-  return unit:GetItemInSlot(unit:FindItemSlot(item_name))
+function M.GetItem(unit, item_name, slot_type)
+  local slot = unit:FindItemSlot(item_name)
+
+  if slot_type ~= nil
+     and unit:GetItemSlotType(slot) ~= slot_type then
+     return nil end
+
+  return unit:GetItemInSlot(slot)
 end
 
 local function GetItemSlotsCount(bot)

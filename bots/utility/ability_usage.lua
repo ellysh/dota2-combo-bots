@@ -32,7 +32,7 @@ local function GetAbility(bot, ability_name)
   local ability = bot:GetAbilityByName(ability_name)
 
   if ability == nil then
-    ability = functions.GetItem(bot, ability_name)
+    ability = functions.GetItem(bot, ability_name, ITEM_SLOT_TYPE_MAIN)
   end
 
   return ability
