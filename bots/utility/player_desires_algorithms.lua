@@ -70,10 +70,23 @@ function M.is_shrine_healing_and_no_enemy()
 
   local enemies = functions.GetEnemyHeroes(bot, 1600)
 
-  if 0 < #enemies then
+  return #enemies == 0
+end
+
+function M.is_shrine_healing_and_enemies_near()
+  local bot = GetBot()
+
+  local shrines = bot:GetNearbyShrines(
+      constants.SHRINE_AURA_RADIUS,
+      false)
+
+  if #shrines == 0
+     or not IsShrineHealing(shrines[1]) then
     return false end
 
-  return true
+  local enemies = functions.GetEnemyHeroes(bot, 700)
+
+  return 0 < #enemies
 end
 
 function M.has_not_full_hp_mp_and_near_fountain()
@@ -83,10 +96,7 @@ function M.has_not_full_hp_mp_and_near_fountain()
      and bot:GetMana() == bot:GetMaxMana() then
      return false end
 
-  if bot:HasModifier("modifier_fountain_aura_buff") then
-    return true end
-
-  return false
+  return bot:HasModifier("modifier_fountain_aura_buff")
 end
 
 -- Provide an access to local functions for unit tests only

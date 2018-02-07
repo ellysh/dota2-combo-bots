@@ -126,6 +126,18 @@ function test_is_shrine_healing_and_no_enemy_fails()
   luaunit.assertFalse(algorithms.is_shrine_healing_and_no_enemy())
 end
 
+function test_is_shrine_healing_and_enemies_near_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.location = {600, 600}
+
+  UNIT_NO_NEARBY_UNITS = false
+  IS_SHRINE_HEALING = true
+
+  luaunit.assertTrue(algorithms.is_shrine_healing_and_enemies_near())
+end
+
 function test_has_not_full_hp_mp_and_near_fountain_succeed()
   test_RefreshBot()
 

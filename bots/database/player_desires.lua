@@ -59,6 +59,13 @@ M.PLAYER_DESIRES = {
     BOT_MODE_RETREAT = {76, 0}
   },
 
+  is_shrine_healing_and_enemies_near = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_RETREAT = {-85, 0}
+  },
+
   has_not_full_hp_mp_and_near_fountain = {
     BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
     BOT_MODE_PUSH_TOWER_MID = {-10, 0},

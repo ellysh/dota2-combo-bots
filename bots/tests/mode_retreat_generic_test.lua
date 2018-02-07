@@ -50,6 +50,7 @@ end
 
 function test_GetDesire_with_normal_hp_negative()
   test_RefreshBot()
+  IS_SHRINE_HEALING = false
 
   luaunit.assertEquals(GetDesire(), 0)
 end
@@ -60,6 +61,7 @@ function test_GetDesire_when_low_hp_positive()
   local bot = GetBot()
   bot.health = 50
   UNIT_NO_NEARBY_UNITS = true
+  IS_SHRINE_HEALING = false
 
   luaunit.assertEquals(GetDesire(), 0.85)
 end
