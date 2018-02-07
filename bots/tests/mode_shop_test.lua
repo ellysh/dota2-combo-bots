@@ -8,6 +8,35 @@ local constants = require("constants")
 local functions = require("functions")
 local luaunit = require('luaunit')
 
+function test_IsShopRequired_item_to_buy_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  functions.SetItemToBuy(bot, "item_boots")
+  IS_SIDE_SHOP_ITEM = true
+  UNIT_MODE = BOT_MODE_NONE
+
+  luaunit.assertTrue(
+    mode_shop.test_IsShopRequired(
+      bot,
+      IsItemPurchasedFromSideShop))
+end
+
+function test_IsShopRequired_item_to_sell_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  functions.SetItemToBuy(bot, nil)
+  functions.SetItemToSell(bot, "item_boots")
+  UNIT_MODE = BOT_MODE_NONE
+
+  luaunit.assertTrue(
+    mode_shop.test_IsShopRequired(
+      bot,
+      IsItemPurchasedFromSideShop))
+end
+
 function test_GetDesire_in_fight_mode_negative()
   test_RefreshBot()
 

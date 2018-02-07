@@ -11,12 +11,14 @@ local M = {}
 
 local function IsShopRequired(bot, check_shop_func)
   local buy_item = functions.GetItemToBuy(bot)
+  local sell_item = functions.GetItemToSell(bot)
 
   return not functions.IsBotBusy(bot)
          and not bot:WasRecentlyDamagedByAnyHero(5.0)
-         and buy_item ~= nil
-         and check_shop_func(buy_item)
-         and GetItemCost(buy_item) <= bot:GetGold()
+         and ((buy_item ~= nil
+               and check_shop_func(buy_item)
+               and GetItemCost(buy_item) <= bot:GetGold())
+              or sell_item ~= nil)
 end
 
 local function GetDesire(check_shop_func, get_distance_func, base_desire)
@@ -81,6 +83,7 @@ function M.ThinkSecretShop()
 end
 
 -- Provide an access to local functions for unit tests only
+M.test_IsShopRequired = IsShopRequired
 M.test_GetDesire = GetDesire
 
 return M
