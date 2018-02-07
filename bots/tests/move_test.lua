@@ -6,17 +6,6 @@ require("global_functions")
 local move = require("move")
 local luaunit = require('luaunit')
 
-function test_Move_action_move_succeed()
-  test_RefreshBot()
-
-  local target_location = {150, 150}
-  UNIT_MOVE_LOCATION = nil
-
-  move.Move(GetBot(), target_location)
-
-  luaunit.assertEquals(UNIT_MOVE_LOCATION, target_location)
-end
-
 function test_GetTpScrollAbility_succeed()
   test_RefreshBot()
 
@@ -48,6 +37,30 @@ function test_CanUseTpScroll_tp_scroll_absent_fails()
     move.test_CanUseTpScroll(GetBot(), target_location))
 end
 
+function test_Move_action_move_succeed()
+  test_RefreshBot()
+
+  local target_location = {150, 150}
+  UNIT_MOVE_LOCATION = nil
+  UNIT_IS_CHANNELING = false
+
+  move.Move(GetBot(), target_location)
+
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, target_location)
+end
+
+function test_Move_bot_is_busy_fails()
+  test_RefreshBot()
+
+  local target_location = {150, 150}
+  UNIT_MOVE_LOCATION = nil
+  UNIT_IS_CHANNELING = true
+
+  move.Move(GetBot(), target_location)
+
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, nil)
+end
+
 function test_Move_use_tp_scroll_succeed()
   test_RefreshBot()
 
@@ -59,6 +72,7 @@ function test_Move_use_tp_scroll_succeed()
 
   UNIT_ABILITY = nil
   UNIT_ABILITY_LOCATION = nil
+  UNIT_IS_CHANNELING = false
   ITEM_IS_FULLY_CASTABLE = true
 
   move.Move(GetBot(), target_location)

@@ -504,10 +504,27 @@ function test_PurchaseViaCourier_succeed()
 
   COURIER = Unit:new()
   DISTANCE_FROM_SHOP = 200
+  UNIT_PURCHASE_RESULT = PURCHASE_ITEM_SUCCESS
 
   luaunit.assertEquals(
     item_purchase.test_PurchaseViaCourier(bot),
     PURCHASE_ITEM_SUCCESS)
+end
+
+function test_PurchaseViaCourier_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  functions.SetItemToBuy(bot, "item_branches")
+
+  COURIER = Unit:new()
+  DISTANCE_FROM_SHOP = 200
+  UNIT_PURCHASE_RESULT = PURCHASE_ITEM_DISALLOWED_ITEM
+
+  luaunit.assertEquals(
+    item_purchase.test_PurchaseViaCourier(bot),
+    PURCHASE_ITEM_DISALLOWED_ITEM)
 end
 
 function test_PerformPlannedPurchaseAndSell_sell_succeed()

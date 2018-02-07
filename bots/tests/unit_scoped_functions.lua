@@ -80,12 +80,14 @@ function Unit:DistanceFromFountain()
   return DISTANCE_FROM_SHOP
 end
 
+UNIT_PURCHASE_RESULT = PURCHASE_ITEM_SUCCESS
+
 function Unit:ActionImmediate_PurchaseItem(item)
   self.gold = self.gold - GetItemCost(item)
 
   table.insert(self.inventory, item)
 
-  return PURCHASE_ITEM_SUCCESS
+  return UNIT_PURCHASE_RESULT
 end
 
 function Unit:ActionImmediate_SellItem(item)

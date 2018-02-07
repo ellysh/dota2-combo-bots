@@ -723,4 +723,10 @@ function test_IsUnitLowHp_full_hp_fails()
   luaunit.assertFalse(functions.IsUnitLowHp(bot))
 end
 
+function test_GetNormalizedDesire()
+  luaunit.assertEquals(functions.GetNormalizedDesire(0.6, 0.7), 0.6)
+  luaunit.assertEquals(functions.GetNormalizedDesire(0.8, 0.7), 0.7)
+  luaunit.assertEquals(functions.GetNormalizedDesire(0.0, 0.7), 0.0)
+end
+
 os.exit(luaunit.LuaUnit.run())

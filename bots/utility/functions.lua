@@ -390,5 +390,6 @@ end
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
+M.test_GetNormalizedDesire = GetNormalizedDesire
 
 return M

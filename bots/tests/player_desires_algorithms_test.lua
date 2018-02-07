@@ -120,6 +120,9 @@ end
 function test_is_shrine_healing_and_no_enemy_fails()
   test_RefreshBot()
 
+  UNIT_NO_NEARBY_UNITS = false
+  IS_SHRINE_HEALING = true
+
   luaunit.assertFalse(algorithms.is_shrine_healing_and_no_enemy())
 end
 
