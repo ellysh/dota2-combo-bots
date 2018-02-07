@@ -7,3 +7,4 @@ has_tp_scroll_or_travel_boots;5;-5;5;-5;5;-5;0;0;;;;;
 has_buyback;0;-5;0;-5;0;-5;0;0;;;;;
 more_enemy_heroes_around_then_ally;-10;0;-10;0;-10;0;80;0;;;;;
 is_shrine_healing_and_no_enemy;0;0;0;0;0;0;76;0;;;;;
+has_not_full_hp_mp_and_near_fountain;-10;0;-10;0;-10;0;76;0;;;;;

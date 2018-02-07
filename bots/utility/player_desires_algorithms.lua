@@ -76,6 +76,19 @@ function M.is_shrine_healing_and_no_enemy()
   return true
 end
 
+function M.has_not_full_hp_mp_and_near_fountain()
+  local bot = GetBot()
+
+  if bot:GetHealth() == bot:GetMaxHealth()
+     and bot:GetMana() == bot:GetMaxMana() then
+     return false end
+
+  if bot:HasModifier("modifier_fountain_aura_buff") then
+    return true end
+
+  return false
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 

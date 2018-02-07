@@ -540,6 +540,12 @@ function Unit:GetItemSlotType()
   return UNIT_ITEM_SLOT_TYPE
 end
 
+UNIT_MODIFIER = nil
+
+function Unit:HasModifier(modifier_name)
+  return UNIT_MODIFIER == modifier_name
+end
+
 ------------------------------------------
 
 Ability = {}
