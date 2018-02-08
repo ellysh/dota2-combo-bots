@@ -57,9 +57,11 @@ function GetDesire()
   if rune == nil then
     return 0 end
 
-  if functions.IsBotInFightingMode(bot)
+  if (functions.IsBotInFightingMode(bot)
      and (constants.MIN_HERO_DISTANCE_FROM_RUNE < distance
-          or GetRuneStatus(rune) == RUNE_STATUS_MISSING) then
+          or GetRuneStatus(rune) == RUNE_STATUS_MISSING))
+     or functions.IsEnemyHeroOnTheWay(bot, GetRuneSpawnLocation(rune)) then
+
     return 0 end
 
   if IsBeginningOfMatch() then
