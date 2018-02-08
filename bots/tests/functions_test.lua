@@ -769,4 +769,26 @@ function test_GetNormalizedDesire()
   luaunit.assertEquals(functions.GetNormalizedDesire(0.0, 0.7), 0.0)
 end
 
+function test_IsEnemyOnTheWay_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.location = {10, 10}
+
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(functions.IsEnemyHeroOnTheWay(bot, {100, 100}))
+end
+
+function test_IsEnemyOnTheWay_no_enemy_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.location = {95, 84}
+
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(functions.IsEnemyHeroOnTheWay(bot, {100, 100}))
+end
+
 os.exit(luaunit.LuaUnit.run())

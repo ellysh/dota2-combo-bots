@@ -386,6 +386,18 @@ function M.GetNormalizedDesire(desire, max_desire)
   return M.ternary(max_desire < desire, max_desire, desire)
 end
 
+function M.IsEnemyHeroOnTheWay(bot, location)
+  local enemies = M.GetEnemyHeroes(bot, 1600)
+  local bot_distance = GetUnitToLocationDistance(bot, location)
+
+  return nil ~= M.GetElementWith(
+    enemies,
+    nil,
+    function(unit)
+      return GetUnitToLocationDistance(unit, location) < bot_distance
+    end)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount

@@ -26,25 +26,13 @@ local function IsShrineFull(shrine)
   return GetShrineCooldown(shrine) == 0
 end
 
-local function IsEnemyOnTheWay(bot, location)
-  local enemies = functions.GetEnemyHeroes(bot, 1600)
-  local bot_distance = GetUnitToLocationDistance(bot, location)
-
-  return nil ~= functions.GetElementWith(
-    enemies,
-    nil,
-    function(unit)
-      return GetUnitToLocationDistance(unit, location) < bot_distance
-    end)
-end
-
 local function AddShrineToList(bot, shrine_id, list)
   local shrine = GetShrine(GetTeam(), shrine_id)
   local location = shrine:GetLocation()
 
   if (IsHealingByShrine(bot, shrine)
       or IsShrineFull(shrine))
-     and not IsEnemyOnTheWay(bot, location) then
+     and not functions.IsEnemyHeroOnTheWay(bot, location) then
     table.insert(list, location)
   end
 end
@@ -85,6 +73,5 @@ end
 -- Provide an access to local functions and variables for unit tests only
 M.test_IsHealingByShrine = IsHealingByShrine
 M.test_IsShrineFull = IsShrineFull
-M.test_IsEnemyOnTheWay = IsEnemyOnTheWay
 
 return M

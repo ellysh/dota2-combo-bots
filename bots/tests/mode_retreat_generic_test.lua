@@ -48,28 +48,6 @@ function test_IsShrineFull_fails()
   luaunit.assertFalse(mode_retreat.test_IsShrineFull(Unit:new()))
 end
 
-function test_IsEnemyOnTheWay_succeed()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.location = {10, 10}
-
-  UNIT_NO_NEARBY_UNITS = false
-
-  luaunit.assertTrue(mode_retreat.test_IsEnemyOnTheWay(bot, {100, 100}))
-end
-
-function test_IsEnemyOnTheWay_no_enemy_fails()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.location = {95, 84}
-
-  UNIT_NO_NEARBY_UNITS = false
-
-  luaunit.assertFalse(mode_retreat.test_IsEnemyOnTheWay(bot, {100, 100}))
-end
-
 function test_GetDesire_with_normal_hp_negative()
   test_RefreshBot()
   IS_SHRINE_HEALING = false
