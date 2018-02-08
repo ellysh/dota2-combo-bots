@@ -42,13 +42,13 @@ function test_GetDesire_in_fight_mode_negative()
 
   functions.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
-  DISTANCE_FROM_SHOP = 2000
   UNIT_MODE = BOT_MODE_ATTACK
+  UNIT_NO_NEARBY_UNITS = true
 
   luaunit.assertEquals(
     mode_shop.test_GetDesire(
       IsItemPurchasedFromSideShop,
-      "DistanceFromSideShop",
+      {1500, 1500},
       0.3),
     0)
 end
@@ -58,13 +58,13 @@ function test_GetDesire_succeed()
 
   functions.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
-  DISTANCE_FROM_SHOP = 2200
   UNIT_MODE = BOT_MODE_NONE
+  UNIT_NO_NEARBY_UNITS = true
 
   luaunit.assertAlmostEquals(
     mode_shop.test_GetDesire(
       IsItemPurchasedFromSideShop,
-      "DistanceFromSideShop",
+      {1600, 1600},
       0.3),
     0.56,
     0.01)
@@ -122,7 +122,6 @@ end
 function test_ThinkSecretShop()
   test_RefreshBot()
 
-  DISTANCE_FROM_SHOP = 1000
   mode_shop.ThinkSecretShop()
 
   luaunit.assertEquals(BOT_ACTION, BOT_ACTION_TYPE_MOVE_TO)
