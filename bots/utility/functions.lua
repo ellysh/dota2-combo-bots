@@ -353,6 +353,7 @@ function M.IsBotInFightingMode(bot)
          or mode == BOT_MODE_DEFEND_TOWER_MID
          or mode == BOT_MODE_DEFEND_TOWER_BOT
          or mode == BOT_MODE_EVASIVE_MANEUVERS
+         or bot:WasRecentlyDamagedByAnyHero(3.0)
 end
 
 function M.DistanceToDesire(distance, max_distance, base_desire)
