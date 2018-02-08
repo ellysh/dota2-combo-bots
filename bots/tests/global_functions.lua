@@ -237,13 +237,13 @@ function IsShrineHealing(shrine)
   return IS_SHRINE_HEALING
 end
 
-SHRINE_DISTANCE = {900, 900}
+SHRINE_LOCATION = {900, 900}
 
 function GetShrine(team, shrine)
   local unit1 = Unit:new()
   unit1.name = "shrine1"
   unit1.health = 10
-  unit1.location = SHRINE_DISTANCE
+  unit1.location = SHRINE_LOCATION
   unit1.offensive_power = 100
 
   return unit1
