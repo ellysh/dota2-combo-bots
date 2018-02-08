@@ -57,7 +57,6 @@ function test_GetItems_succeed()
   for i = 1, #list do
     luaunit.assertEquals(bot.inventory[i], list[i])
   end
-
 end
 
 function test_GetItemSlotsCount_succeed()
@@ -79,6 +78,47 @@ function test_GetItemSlotsCount_succeed()
   }
 
   luaunit.assertEquals(functions.test_GetItemSlotsCount(bot), 3)
+end
+
+function test_GetItem_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = {"item_tango"}
+
+  local item = functions.GetItem(
+      bot,
+      "item_tango",
+      ITEM_SLOT_TYPE_MAIN)
+
+  luaunit.assertEquals(item, Item:new("item_tango"))
+end
+
+function test_GetItem_no_item_fails()
+  test_RefreshBot()
+
+  local item = functions.GetItem(
+      GetBot(),
+      "item_tango",
+      ITEM_SLOT_TYPE_MAIN)
+
+  luaunit.assertEquals(item, nil)
+end
+
+function test_GetItem_wrong_slot_type_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = {"item_tango"}
+
+  UNIT_ITEM_SLOT_TYPE = ITEM_SLOT_TYPE_BACKPACK
+
+  local item = functions.GetItem(
+      bot,
+      "item_tango",
+      ITEM_SLOT_TYPE_STASH)
+
+  luaunit.assertEquals(item, nil)
 end
 
 function test_IsInventoryFull_succeed()
