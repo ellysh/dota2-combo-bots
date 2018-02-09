@@ -23,17 +23,17 @@ M.SKILL_USAGE = {
 
   crystal_maiden_frostbite = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 90},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 90},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 70},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 90},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 90},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 70},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
-      BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 60},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 50},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 80}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 80}
   },
 
   crystal_maiden_freezing_field = {
@@ -158,32 +158,32 @@ M.SKILL_USAGE = {
 
   shadow_shaman_voodoo = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 80},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
       BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 40},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70}
   },
 
   shadow_shaman_shackles = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 30},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 50},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 50},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 50},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 10}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 10}
   },
 
   shadow_shaman_mass_serpent_ward = {
@@ -248,17 +248,17 @@ M.SKILL_USAGE = {
 
   skeleton_king_hellfire_blast = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 60},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 60},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 60}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
   },
 
   sniper_shrapnel = {
@@ -293,32 +293,32 @@ M.SKILL_USAGE = {
 
   lion_impale = {
       any_mode = {algorithms["min_hp_enemy_hero_to_kill"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 90},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 80},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 90},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 80},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 60},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 80},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 80},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 50},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 60}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
   },
 
   lion_voodoo = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 70},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 40},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70}
   },
 
   lion_mana_drain = {
@@ -353,17 +353,17 @@ M.SKILL_USAGE = {
 
   sven_storm_bolt = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 60},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 60},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 60}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
   },
 
   sven_warcry = {
@@ -488,17 +488,17 @@ M.SKILL_USAGE = {
 
   chaos_knight_chaos_bolt = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 60},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 60},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 60}
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
   },
 
   chaos_knight_reality_rift = {
@@ -668,17 +668,17 @@ M.SKILL_USAGE = {
 
   item_sheepstick = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 70},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 40},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70}
   },
 
   item_lotus_orb = {
@@ -698,17 +698,17 @@ M.SKILL_USAGE = {
 
   item_cyclone = {
       any_mode = {algorithms["channeling_enemy_hero"], 90},
-      team_fight = {algorithms["attacked_enemy_hero"], 80},
-      BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_PUSH_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 70},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
-      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
-      BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
+      BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
   },
 
   item_blink = {

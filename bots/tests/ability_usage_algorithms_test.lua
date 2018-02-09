@@ -542,4 +542,69 @@ function test_three_and_more_ally_creeps_aoe_two_fails()
   test_algorithm_pattern_fails("three_and_more_ally_creeps_aoe")
 end
 
+function test_IsDisabled_succeed()
+  local unit = Unit:new()
+
+  UNIT_IS_STUNNED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_STUNNED = false
+  UNIT_IS_HEXED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_HEXED = false
+  UNIT_IS_ROOTED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_ROOTED = false
+  UNIT_IS_SILENCED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_SILENCED = false
+  UNIT_IS_NIGHTMARED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_NIGHTMARED = false
+  UNIT_IS_DISARMED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_DISARMED = false
+  UNIT_IS_BLIND = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+
+  UNIT_IS_BLIND = false
+  UNIT_IS_MUTED = true
+  luaunit.assertTrue(algorithms.test_IsDisabled(unit))
+end
+
+function test_IsDisabled_fails()
+  local unit = Unit:new()
+
+  UNIT_IS_MUTED = false
+  luaunit.assertFalse(algorithms.test_IsDisabled(unit))
+end
+
+function test_attacked_not_disabled_enemy_hero_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_HERO = true
+  UNIT_IS_MUTED = false
+  UNIT_IS_STUNNED = false
+  ATTACK_TARGET = Unit:new()
+
+  test_algorithm_pattern_succeed(
+    "attacked_not_disabled_enemy_hero",
+    ATTACK_TARGET)
+end
+
+function test_attacked_not_disabled_enemy_hero_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_HERO = true
+  UNIT_IS_STUNNED = true
+  ATTACK_TARGET = Unit:new()
+
+  test_algorithm_pattern_fails("attacked_not_disabled_enemy_hero")
+end
+
 os.exit(luaunit.LuaUnit.run())

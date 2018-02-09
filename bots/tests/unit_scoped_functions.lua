@@ -546,6 +546,54 @@ function Unit:HasModifier(modifier_name)
   return UNIT_MODIFIER == modifier_name
 end
 
+UNIT_IS_STUNNED = false
+
+function Unit:IsStunned()
+  return UNIT_IS_STUNNED
+end
+
+UNIT_IS_HEXED = false
+
+function Unit:IsHexed()
+  return UNIT_IS_HEXED
+end
+
+UNIT_IS_ROOTED = false
+
+function Unit:IsRooted()
+  return UNIT_IS_ROOTED
+end
+
+UNIT_IS_SILENCED = false
+
+function Unit:IsSilenced()
+  return UNIT_IS_SILENCED
+end
+
+UNIT_IS_NIGHTMARED = false
+
+function Unit:IsNightmared()
+  return UNIT_IS_NIGHTMARED
+end
+
+UNIT_IS_DISARMED = false
+
+function Unit:IsDisarmed()
+  return UNIT_IS_DISARMED
+end
+
+UNIT_IS_BLIND = false
+
+function Unit:IsBlind()
+  return UNIT_IS_BLIND
+end
+
+UNIT_IS_MUTED = false
+
+function Unit:IsMuted()
+  return UNIT_IS_MUTED
+end
+
 ------------------------------------------
 
 Ability = {}

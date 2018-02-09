@@ -92,6 +92,30 @@ function M.attacked_enemy_hero(bot, ability)
   return true, GetTarget(target, ability)
 end
 
+local function IsDisabled(unit)
+  return unit:IsStunned()
+         or unit:IsHexed()
+         or unit:IsRooted()
+         or unit:IsSilenced()
+         or unit:IsNightmared()
+         or unit:IsDisarmed()
+         or unit:IsBlind()
+         or unit:IsMuted()
+end
+
+function M.attacked_not_disabled_enemy_hero(bot, ability)
+  local target = bot:GetTarget()
+
+  if target == nil
+     or not target:IsHero()
+     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or not IsTargetable(target)
+     or IsDisabled(target) then
+    return false, nil end
+
+  return true, GetTarget(target, ability)
+end
+
 function M.attacked_enemy_creep(bot, ability)
   local target = bot:GetTarget()
 
@@ -360,5 +384,6 @@ M.test_IsEnoughDamageToKill = IsEnoughDamageToKill
 M.test_GetTarget = GetTarget
 M.test_UseOnAttackEnemyUnit = UseOnAttackEnemyUnit
 M.test_GetUnitManaLevel = GetUnitManaLevel
+M.test_IsDisabled = IsDisabled
 
 return M
