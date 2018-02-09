@@ -1,3 +1,8 @@
+* version 1.0
+  - Fix bugs when bots move to shrine, rune or shop toward enemy heroes.
+  - Fix a bug when bots do not attack enemy near own shrine.
+  - Fix a bug with a not full healing near the fountain.
+
 * version 0.9
   - Fix a bug when all base shop items are bought via a courier.
   - Fix bugs with hanging courier near the side shop.
