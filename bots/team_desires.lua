@@ -26,6 +26,10 @@ function UpdatePushLaneDesires()
     TEAM_DESIRES.BOT_MODE_PUSH_TOWER_BOT}
 end
 
+function UpdateRoamDesire()
+    return { 0.5, GetTeamMember(1) }
+end
+
 --[[
 ----------------------------------------------------------------------------------------------------
 
@@ -42,15 +46,6 @@ function UpdateFarmLaneDesires()
     return { 0.5, 0.5, 0.5 }
 
 end
-
-----------------------------------------------------------------------------------------------------
-
-function UpdateRoamDesire()
-
-    return { 0.5, GetTeamMember( 1 ) }
-
-end
-
 
 ----------------------------------------------------------------------------------------------------
 
