@@ -10,7 +10,8 @@ local team_desires_algorithms = require(
 local TEAM_DESIRES = {
   BOT_MODE_PUSH_TOWER_TOP = 0,
   BOT_MODE_PUSH_TOWER_MID = 0,
-  BOT_MODE_PUSH_TOWER_BOT = 0
+  BOT_MODE_PUSH_TOWER_BOT = 0,
+  BOT_MODE_TEAM_ROAM = 0
 }
 
 function TeamThink()
@@ -27,7 +28,7 @@ function UpdatePushLaneDesires()
 end
 
 function UpdateRoamDesire()
-    return { 0.5, GetTeamMember(1) }
+    return { TEAM_DESIRES.BOT_MODE_TEAM_ROAM, nil }
 end
 
 --[[
