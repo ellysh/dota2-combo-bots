@@ -168,6 +168,7 @@ PLAYER_DESIRES = """
     BOT_MODE_PUSH_TOWER_MID = {<3>, <4>},
     BOT_MODE_PUSH_TOWER_BOT = {<5>, <6>},
     BOT_MODE_RETREAT = {<7>, <8>}
+    BOT_MODE_TEAM_ROAM = {<9>, <10>}
   },
 """
 
