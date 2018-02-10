@@ -184,11 +184,12 @@ ATTACK_TARGET = """
       BOT_MODE_TEAM_ROAM = <2>,
       BOT_MODE_PUSH_TOWER = <3>,
       BOT_MODE_ATTACK = <4>,
-      BOT_MODE_LANING = <5>,
-      BOT_MODE_ROSHAN = <6>,
-      BOT_MODE_FARM = <7>,
-      BOT_MODE_DEFEND_TOWER = <8>,
-      BOT_MODE_RETREAT = <9>,
-      BOT_MODE_DEFEND_ALLY = <10>
+      BOT_MODE_NONE = <5>,
+      BOT_MODE_LANING = <6>,
+      BOT_MODE_ROSHAN = <7>,
+      BOT_MODE_FARM = <8>,
+      BOT_MODE_DEFEND_TOWER = <9>,
+      BOT_MODE_RETREAT = <10>,
+      BOT_MODE_DEFEND_ALLY = <11>
   },
 """

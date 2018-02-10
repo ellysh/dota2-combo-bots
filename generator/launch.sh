@@ -23,6 +23,6 @@ RESULT_DIR="../bots/database"
 
 ./generator.py PLAYER_DESIRES 11 $CSV_DIR/player_desires.csv > $RESULT_DIR/player_desires.lua
 
-./generator.py ATTACK_TARGET 11 $CSV_DIR/attack_target.csv > $RESULT_DIR/attack_target.lua
+./generator.py ATTACK_TARGET 12 $CSV_DIR/attack_target.csv > $RESULT_DIR/attack_target.lua
 
 ./check.sh
