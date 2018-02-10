@@ -69,8 +69,21 @@ local function CompareMinHealth(t, a, b)
   return t[a]:GetHealth() < t[b]:GetHealth()
 end
 
-function M.max_hp_creep(bot, radius)
+function M.max_hp_enemy_creep(bot, radius)
   local creeps = functions.GetEnemyCreeps(bot, radius)
+  local creep = functions.GetElementWith(
+    creeps,
+    CompareMaxHealth,
+    IsTargetable)
+
+  if creep == nil then
+    return false, nil end
+
+  return true, creep
+end
+
+function M.max_hp_neutral_creep(bot, radius)
+  local creeps = functions.GetNeutralCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
     CompareMaxHealth,
@@ -86,7 +99,7 @@ local function IsLastHit(bot, unit)
   return unit:GetHealth() <= bot:GetAttackDamage()
 end
 
-function M.last_hit_creep(bot, radius)
+function M.last_hit_enemy_creep(bot, radius)
   local creeps = functions.GetEnemyCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,

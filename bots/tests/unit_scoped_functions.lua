@@ -310,7 +310,7 @@ function Unit:GetNearbyCreeps(radius, enemies)
 
   local unit4 = Unit:new()
   unit4.name = "neutral2"
-  unit4.health = 200
+  unit4.health = 210
   unit4.location = {20, 20}
 
   if 3 <= NEARBY_CREEPS_COUNT then
@@ -331,8 +331,10 @@ function Unit:GetNearbyNeutralCreeps(radius, enemies)
 
   local unit2 = Unit:new()
   unit2.name = "neutral2"
-  unit2.health = 200
+  unit2.health = 210
   unit2.location = {20, 20}
+
+  return { unit1, unit2 }
 end
 
 function Unit:GetNearbyTowers(radius, enemies, mode)

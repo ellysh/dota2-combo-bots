@@ -83,32 +83,46 @@ function test_max_estimated_damage_enemy_hero_not_targetable_fails()
     "unit2")
 end
 
-function test_max_hp_creep_succeed()
+function test_max_hp_enemy_creep_succeed()
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
-  test_algorithm_pattern_succeed("max_hp_creep", "creep2")
+  test_algorithm_pattern_succeed("max_hp_enemy_creep", "creep2")
 end
 
-function test_max_hp_creep_no_unit_fails()
+function test_max_hp_enemy_creep_no_unit_fails()
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
-  test_algorithm_pattern_fails("max_hp_creep", "creep2")
+  test_algorithm_pattern_fails("max_hp_enemy_creep")
 end
 
-function test_last_hit_creep_succeed()
+function test_last_hit_enemy_creep_succeed()
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
-  test_algorithm_pattern_succeed("last_hit_creep", "creep1")
+  test_algorithm_pattern_succeed("last_hit_enemy_creep", "creep1")
 end
 
-function test_last_hit_creep_no_unit_fails()
+function test_last_hit_enemy_creep_no_unit_fails()
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
-  test_algorithm_pattern_fails("last_hit_creep")
+  test_algorithm_pattern_fails("last_hit_enemy_creep")
+end
+
+function test_max_hp_neutral_creep_succeed()
+  UNIT_CAN_BE_SEEN = true
+  UNIT_NO_NEARBY_UNITS = false
+
+  test_algorithm_pattern_succeed("max_hp_neutral_creep", "neutral2")
+end
+
+function test_max_hp_neutral_creep_no_unit_fails()
+  UNIT_CAN_BE_SEEN = true
+  UNIT_NO_NEARBY_UNITS = true
+
+  test_algorithm_pattern_fails("max_hp_neutral_creep")
 end
 
 function test_min_hp_enemy_building_succeed()

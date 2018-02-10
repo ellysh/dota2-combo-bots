@@ -186,7 +186,7 @@ juggernaut_blade_fury
 juggernaut_healing_ward
 juggernaut_omni_slash
 last_attacked_enemy_hero
-last_hit_creep
+last_hit_enemy_creep
 lich_chain_frost
 lich_dark_ritual
 lich_frost_armor
@@ -201,7 +201,8 @@ low_hp_enemy_building
 low_hp_enemy_hero
 low_hp_self
 max_estimated_damage_enemy_hero
-max_hp_creep
+max_hp_enemy_creep
+max_hp_neutral_creep
 max_kills_ally_hero_alive
 max_kills_enemy_hero
 max_kills_enemy_hero_alive

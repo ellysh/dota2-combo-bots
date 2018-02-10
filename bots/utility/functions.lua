@@ -342,6 +342,10 @@ function M.GetEnemyCreeps(bot, radius)
   return M.ComplementOfLists(enemy_creeps, neutral_creeps)
 end
 
+function M.GetNeutralCreeps(bot, radius)
+  return bot:GetNearbyNeutralCreeps(GetNormalizedRadius(radius))
+end
+
 function M.GetAllyCreeps(bot, radius)
   return bot:GetNearbyCreeps(GetNormalizedRadius(radius), false)
 end
