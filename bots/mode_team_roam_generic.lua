@@ -30,17 +30,9 @@ function Think()
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 
-  if target_player == nil then
-    return end
+  local target_location = functions.GetLastPlayerLocation(target_player)
 
-  local locations_times = GetHeroLastSeenInfo(target_player)
-
-  if locations_times == nil or #locations_times == 0 then
-    return end
-
-  local location_time = locations_times[1]
-
-  if location_time == nil then
+  if target_location == nil then
     return end
 
   local bot = GetBot()
@@ -48,7 +40,7 @@ function Think()
   if functions.IsEnemyNear(bot) then
      attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
   else
-    move.Move(bot, location_time.location)
+    move.Move(bot, target_location)
   end
 end
 

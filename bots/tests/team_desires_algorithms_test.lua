@@ -170,14 +170,14 @@ end
 
 function test_enemy_hero_was_seen_succeed()
   IS_HERO_ALIVE = true
-  HERO_LAST_SEEN_INFO = {{{10,10}, 2}}
+  HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
 
   luaunit.assertTrue(algorithms.enemy_hero_was_seen())
 end
 
 function test_enemy_hero_was_seen_dead_fails()
   IS_HERO_ALIVE = false
-  HERO_LAST_SEEN_INFO = {{{10,10}, 2}}
+  HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
 
   luaunit.assertFalse(algorithms.enemy_hero_was_seen())
 end

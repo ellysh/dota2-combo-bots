@@ -811,4 +811,11 @@ function test_GetMaxKillsPlayer_hero_dead_fails()
     nil)
 end
 
+function test_GetLastPlayerLocation_succeed()
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
+
+  luaunit.assertEquals(functions.GetLastPlayerLocation(1), {10, 10})
+end
+
 os.exit(luaunit.LuaUnit.run())

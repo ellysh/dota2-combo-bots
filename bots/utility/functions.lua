@@ -413,6 +413,21 @@ function M.GetMaxKillsPlayer(team, validate_function)
   return player
 end
 
+function M.GetLastPlayerLocation(player)
+  if player == nil then
+    return nil end
+
+  local seen_info = GetHeroLastSeenInfo(player)
+
+  if seen_info == nil
+     or #seen_info == 0
+     or seen_info[1] == nil
+     or 10 < seen_info[1].time_since_seen then
+    return nil end
+
+  return seen_info[1].location
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount

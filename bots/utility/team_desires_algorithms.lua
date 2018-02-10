@@ -151,18 +151,11 @@ function M.all_enemy_team_dead()
 end
 
 function M.enemy_hero_was_seen()
-  local players = GetTeamPlayers(GetOpposingTeam())
-  local player = functions.GetElementWith(
-    players,
-    nil,
-    function(p)
-      local seen_info = GetHeroLastSeenInfo(p)
-      return seen_info ~= nil
-             and #seen_info ~= 0
-             and IsHeroAlive(p)
-    end)
+  local player = functions.GetMaxKillsPlayer(
+    GetOpposingTeam(),
+    function(p) return IsHeroAlive(p) end)
 
-  return player ~= nil
+  return functions.GetLastPlayerLocation(player) ~= nil
 end
 
 -- Provide an access to local functions for unit tests only
