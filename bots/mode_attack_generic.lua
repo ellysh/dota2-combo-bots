@@ -5,5 +5,12 @@ local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
 function Think()
-  attack.Attack(GetBot(), constants.MAX_GET_UNITS_RADIUS)
+  local bot = GetBot()
+  local target = attack.ChooseTarget(bot, constants.MAX_GET_UNITS_RADIUS)
+
+  if target ~= nil then
+    attack.Attack(bot, target)
+  else
+    move.Move(bot, GetShopLocation(GetTeam(), SHOP_HOME))
+  end
 end

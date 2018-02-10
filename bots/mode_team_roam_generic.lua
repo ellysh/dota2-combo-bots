@@ -36,9 +36,10 @@ function Think()
     return end
 
   local bot = GetBot()
+  local target = attack.ChooseTarget(bot, constants.MAX_GET_UNITS_RADIUS)
 
-  if functions.IsEnemyNear(bot) then
-    attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
+  if target ~= nil then
+    attack.Attack(bot, target)
   else
     move.Move(bot, target_location)
   end

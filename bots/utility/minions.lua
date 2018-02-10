@@ -20,19 +20,17 @@ end
 function M.MinionThink(minion)
   local bot = GetBot()
 
-  if functions.IsEnemyNear(minion) then
+  local radius = functions.ternary(
+    minion:GetBaseMovementSpeed() == 0,
+    minion:GetAttackRange(),
+    constants.MAX_GET_UNITS_RADIUS)
 
-    local radius = functions.ternary(
-      minion:GetBaseMovementSpeed() == 0,
-      minion:GetAttackRange(),
-      constants.MAX_GET_UNITS_RADIUS)
+  local target = attack.ChooseTarget(minion, radius)
 
-    attack.Attack(minion, radius)
-
+  if target ~= nil then
+    attack.Attack(minion, target)
   elseif not IsMinionsOwnerNear(bot, minion) then
-
     minion:Action_MoveToLocation(bot:GetExtrapolatedLocation(3.0))
-
   end
 end
 

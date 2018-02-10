@@ -31,7 +31,7 @@ function test_ChooseTarget_succeed()
 
   UNIT_MODE = BOT_MODE_TEAM_ROAM
 
-  local target = attack.test_ChooseTarget(GetBot())
+  local target = attack.ChooseTarget(GetBot())
   luaunit.assertNotEquals(target, nil)
   luaunit.assertEquals(target:GetUnitName(), "unit1")
 end
@@ -44,7 +44,8 @@ function test_Attack_succeed()
   UNIT_IS_CHANNELING = false
   UNIT_MODE = BOT_MODE_TEAM_ROAM
 
-  attack.Attack(bot, bot:GetCurrentVisionRange())
+  local target = attack.ChooseTarget(GetBot())
+  attack.Attack(bot, target)
 
   luaunit.assertNotEquals(ATTACK_TARGET, nil)
 end
@@ -55,7 +56,9 @@ function test_Attack_when_bot_is_busy_fails()
   local bot = GetBot()
   ATTACK_TARGET = nil
   UNIT_IS_CHANNELING = true
-  attack.Attack(bot, bot:GetCurrentVisionRange())
+
+  local target = attack.ChooseTarget(GetBot())
+  attack.Attack(bot, target)
 
   luaunit.assertEquals(ATTACK_TARGET, nil)
 end

@@ -17,7 +17,10 @@ local function GetDesire(bot, mode_desires)
   return 0
 end
 
-local function ChooseTarget(bot, radius)
+function M.ChooseTarget(bot, radius)
+  if not functions.IsEnemyNear(bot) then
+    return nil end
+
   local targets = {}
 
   for algorithm, mode_desires in pairs(attack_target.ATTACK_TARGET) do
@@ -45,13 +48,8 @@ local function ChooseTarget(bot, radius)
     end)
 end
 
-function M.Attack(unit, radius)
+function M.Attack(unit, target)
   if functions.IsBotBusy(unit) then
-    return end
-
-  local target = ChooseTarget(unit, radius)
-
-  if target == nil then
     return end
 
   -- This SetTarget is required to start casting skills
@@ -62,6 +60,5 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_GetDesire = GetDesire
-M.test_ChooseTarget = ChooseTarget
 
 return M
