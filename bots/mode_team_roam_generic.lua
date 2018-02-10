@@ -50,6 +50,10 @@ function Think()
     return end
 
   local locations_times = GetHeroLastSeenInfo(target_player)
+
+  if locations_times == nil or #locations_times == 0 then
+    return end
+
   local location_time = functions.GetElementWith(
     locations_times,
     CompareMinTime,
