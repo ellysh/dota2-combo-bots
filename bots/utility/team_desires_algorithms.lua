@@ -47,25 +47,17 @@ function M.ally_has_cheese()
   return IsAllyHaveItem("item_cheese")
 end
 
-local function CompareMaxHeroKills(t, a, b)
-  return GetHeroKills(t[b]) < GetHeroKills(t[a])
-end
-
 function M.max_kills_enemy_hero_alive()
-  local players = GetTeamPlayers(GetOpposingTeam())
-  local player = functions.GetElementWith(
-    players,
-    CompareMaxHeroKills,
+  local player = functions.GetMaxKillsPlayer(
+    GetOpposingTeam(),
     nil)
 
   return player ~= nil and IsHeroAlive(player)
 end
 
 function M.max_kills_ally_hero_alive()
-  local players = GetTeamPlayers(GetTeam())
-  local player = functions.GetElementWith(
-    players,
-    CompareMaxHeroKills,
+  local player = functions.GetMaxKillsPlayer(
+    GetTeam(),
     nil)
 
   return player ~= nil and IsHeroAlive(player)

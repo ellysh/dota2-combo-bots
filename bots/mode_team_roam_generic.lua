@@ -25,22 +25,10 @@ function GetDesire()
          constants.MAX_PUSH_DESIRE)
 end
 
-local function CompareMaxHeroKills(t, a, b)
-  return GetHeroKills(t[b]) < GetHeroKills(t[a])
-end
-
-local function GetMaxKillsEnemyPlayer()
-  local players = GetTeamPlayers(GetOpposingTeam())
-  local player = functions.GetElementWith(
-    players,
-    CompareMaxHeroKills,
-    function(p) return IsHeroAlive(p) end)
-
-  return player
-end
-
 function Think()
-  local target_player = GetMaxKillsEnemyPlayer()
+  local target_player = functions.GetMaxKillsPlayer(
+    GetOpposingTeam(),
+    function(p) return IsHeroAlive(p) end)
 
   if target_player == nil then
     return end

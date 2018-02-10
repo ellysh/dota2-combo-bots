@@ -399,6 +399,20 @@ function M.IsEnemyHeroOnTheWay(bot, location)
     end)
 end
 
+local function CompareMaxHeroKills(t, a, b)
+  return GetHeroKills(t[b]) < GetHeroKills(t[a])
+end
+
+function M.GetMaxKillsPlayer(team, validate_function)
+  local players = GetTeamPlayers(team)
+  local player = M.GetElementWith(
+    players,
+    CompareMaxHeroKills,
+    validate_function)
+
+  return player
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount
