@@ -1,11 +1,11 @@
 Algorithm;"Push TOP desire";;"Push MID desire";;"Push BOT desire";;"Roam desire";;"Roshan desire";"Defend TOP desire";"Defend MID desire";"Defend BOT desire"
-ally_mega_creeps;20;0;20;0;20;0;20;0;;;;
+ally_mega_creeps;20;0;20;0;20;0;0;0;;;;
 ally_has_aegis;20;0;20;0;20;0;20;0;;;;
 ally_has_cheese;10;0;10;0;10;0;10;0;;;;
-max_kills_enemy_hero_alive;-10;30;-10;30;-10;30;30;-20;;;;
+max_kills_enemy_hero_alive;-10;30;-10;30;-10;30;30;-30;;;;
 max_kills_ally_hero_alive;10;-20;10;-20;10;-20;20;-30;;;;
 time_is_more_5_minutes;30;-30;30;-30;30;-30;20;-30;;;;
-more_ally_heroes_alive_then_enemy;20;-20;20;-20;20;-20;0;-20;;;;
+more_ally_heroes_alive_then_enemy;20;-20;20;-20;20;-20;0;-40;;;;
 no_enemy_heroes_on_top;30;0;0;0;0;0;0;0;;;;
 no_enemy_heroes_on_mid;0;0;30;0;0;0;0;0;;;;
 no_enemy_heroes_on_bot;0;0;0;0;30;0;0;0;;;;

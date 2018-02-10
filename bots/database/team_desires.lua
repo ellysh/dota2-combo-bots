@@ -7,7 +7,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {20, 0},
     BOT_MODE_PUSH_TOWER_MID = {20, 0},
     BOT_MODE_PUSH_TOWER_BOT = {20, 0}
-    BOT_MODE_TEAM_ROAM = {20, 0}
+    BOT_MODE_TEAM_ROAM = {0, 0}
   },
 
   ally_has_aegis = {
@@ -28,7 +28,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {-10, 30},
     BOT_MODE_PUSH_TOWER_MID = {-10, 30},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 30}
-    BOT_MODE_TEAM_ROAM = {30, -20}
+    BOT_MODE_TEAM_ROAM = {30, -30}
   },
 
   max_kills_ally_hero_alive = {
@@ -49,7 +49,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {20, -20},
     BOT_MODE_PUSH_TOWER_MID = {20, -20},
     BOT_MODE_PUSH_TOWER_BOT = {20, -20}
-    BOT_MODE_TEAM_ROAM = {0, -20}
+    BOT_MODE_TEAM_ROAM = {0, -40}
   },
 
   no_enemy_heroes_on_top = {

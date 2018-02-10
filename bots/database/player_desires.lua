@@ -4,11 +4,11 @@ local M = {}
 M.PLAYER_DESIRES = {
 
   has_low_hp = {
-    BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
-    BOT_MODE_PUSH_TOWER_MID = {-10, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
+    BOT_MODE_PUSH_TOWER_TOP = {-30, 0},
+    BOT_MODE_PUSH_TOWER_MID = {-30, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {-30, 0},
     BOT_MODE_RETREAT = {85, 0}
-    BOT_MODE_TEAM_ROAM = {-10, 0}
+    BOT_MODE_TEAM_ROAM = {-30, 0}
   },
 
   player_on_top = {
