@@ -241,28 +241,30 @@ function test_last_attacked_enemy_hero_not_targetable_fails()
   test_algorithm_pattern_fails("last_attacked_enemy_hero")
 end
 
-function test_three_and_more_creeps_succeed()
+function test_three_and_more_enemy_creeps_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_CAN_BE_SEEN = true
   NEARBY_CREEPS_COUNT = 3
 
-  test_algorithm_pattern_succeed("three_and_more_creeps", {1.2, 3.4})
+  test_algorithm_pattern_succeed(
+    "three_and_more_enemy_creeps",
+    {1.2, 3.4})
 end
 
-function test_three_and_more_creeps_not_targetable_fails()
+function test_three_and_more_enemy_creeps_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_CAN_BE_SEEN = false
   FIND_AOE_LOCATION_COUNT = 3
 
-  test_algorithm_pattern_fails("three_and_more_creeps")
+  test_algorithm_pattern_fails("three_and_more_enemy_creeps")
 end
 
-function test_three_and_more_creeps_two_fails()
+function test_three_and_more_enemy_creeps_two_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_CAN_BE_SEEN = true
   FIND_AOE_LOCATION_COUNT = 2
 
-  test_algorithm_pattern_fails("three_and_more_creeps")
+  test_algorithm_pattern_fails("three_and_more_enemy_creeps")
 end
 
 function test_three_and_more_enemy_heroes_succeed()
@@ -466,6 +468,7 @@ end
 
 function test_three_and_more_enemy_creeps_aoe()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  NEARBY_CREEPS_COUNT = 3
 
   test_algorithm_pattern_succeed("three_and_more_enemy_creeps_aoe", nil)
 end

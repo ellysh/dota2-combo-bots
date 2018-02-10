@@ -290,7 +290,7 @@ sven_gods_strength
 sven_storm_bolt
 sven_warcry
 three_and_more_ally_creeps_aoe
-three_and_more_creeps
+three_and_more_enemy_creeps
 three_and_more_enemy_creeps_aoe
 three_and_more_enemy_heroes
 three_and_more_enemy_heroes_aoe
