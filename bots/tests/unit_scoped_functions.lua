@@ -30,7 +30,6 @@ function Unit:new(name)
     level = 1,
     inventory = {},
     location = {10, 10},
-    networth = 500,
     damage = 100
   }
 
@@ -159,7 +158,7 @@ function Unit:IsCastingAbility()
 end
 
 function Unit:GetNetWorth()
-  return self.networth
+  return 0
 end
 
 UNIT_IS_HERO = true
@@ -276,14 +275,12 @@ function Unit:GetNearbyHeroes(radius, enemies, mode)
   local unit2 = Unit:new()
   unit2.name = "unit2"
   unit2.health = 200
-  unit2.networth = 1000
   unit2.location = {20, 20}
   unit2.damage = 200
 
   local unit3 = Unit:new()
   unit3.name = "unit3"
   unit3.health = 180
-  unit3.networth = 180
   unit3.location = {15, 15}
   unit3.damage = 180
 
@@ -304,20 +301,38 @@ function Unit:GetNearbyCreeps(radius, enemies)
   local unit2 = Unit:new()
   unit2.name = "creep2"
   unit2.health = 200
-  unit2.networth = 1000
   unit2.location = {20, 20}
 
   local unit3 = Unit:new()
   unit3.name = "creep3"
   unit3.health = 180
-  unit3.networth = 180
   unit3.location = {15, 15}
 
-  if NEARBY_CREEPS_COUNT == 3 then
-    return { unit1, unit2, unit3 }
+  local unit4 = Unit:new()
+  unit4.name = "neutral2"
+  unit4.health = 200
+  unit4.location = {20, 20}
+
+  if 3 <= NEARBY_CREEPS_COUNT then
+    return { unit1, unit2, unit3, unit4 }
   else
     return { unit1, unit2 }
   end
+end
+
+function Unit:GetNearbyNeutralCreeps(radius, enemies)
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
+  local unit1 = Unit:new()
+  unit1.name = "neutral1"
+  unit1.health = 10
+  unit1.location = {10, 10}
+
+  local unit2 = Unit:new()
+  unit2.name = "neutral2"
+  unit2.health = 200
+  unit2.location = {20, 20}
 end
 
 function Unit:GetNearbyTowers(radius, enemies, mode)
@@ -336,14 +351,12 @@ function Unit:GetNearbyTowers(radius, enemies, mode)
   local unit2 = Unit:new()
   unit2.name = "tower2"
   unit2.health = 200
-  unit2.networth = 1000
   unit2.location = {20, 20}
   unit2.offensive_power = 200
 
   local unit3 = Unit:new()
   unit3.name = "tower3"
   unit3.health = 180
-  unit3.networth = 180
   unit3.location = {15, 15}
   unit3.offensive_power = 180
 
@@ -363,7 +376,6 @@ function Unit:GetNearbyBarracks(radius, enemies, mode)
   local unit2 = Unit:new()
   unit2.name = "barrak2"
   unit2.health = 200
-  unit2.networth = 1000
   unit2.location = {20, 20}
   unit2.offensive_power = 200
 

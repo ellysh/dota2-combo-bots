@@ -108,6 +108,15 @@ function M.IsIntersectionOfLists(list1, list2)
   return false
 end
 
+function M.ComplementOfLists(list1, list2)
+  for key, element in pairs(list1) do
+    if M.IsElementInList(list2, element) then
+      table.remove(list1, key)
+    end
+  end
+  return list1
+end
+
 function M.IsBotBusy(bot)
   return bot:IsChanneling()
         or bot:IsUsingAbility()
@@ -323,7 +332,14 @@ function M.GetAllyHeroes(bot, radius)
 end
 
 function M.GetEnemyCreeps(bot, radius)
-  return bot:GetNearbyCreeps(GetNormalizedRadius(radius), true)
+  local enemy_creeps = bot:GetNearbyCreeps(
+    GetNormalizedRadius(radius),
+    true)
+
+  local neutral_creeps = bot:GetNearbyNeutralCreeps(
+    GetNormalizedRadius(radius))
+
+  return M.ComplementOfLists(enemy_creeps, neutral_creeps)
 end
 
 function M.GetAllyCreeps(bot, radius)
