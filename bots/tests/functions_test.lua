@@ -617,6 +617,7 @@ function test_GetEnemyCreeps_succeed()
   luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
   luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
   luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
+  luaunit.assertEquals(units[4], nil)
 end
 
 function test_GetAllyCreeps_succeed()
@@ -816,6 +817,34 @@ function test_GetLastPlayerLocation_succeed()
   HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
 
   luaunit.assertEquals(functions.GetLastPlayerLocation(1), {10, 10})
+end
+
+function test_ComplementOfLists_number_lists_succeed()
+  local list1 = {1, 2, 3, 4, 5}
+  local list2 = {2, 3, 4}
+
+  luaunit.assertEquals(
+    functions.ComplementOfLists(list1, list2),
+    {1, 5})
+end
+
+function test_ComplementOfLists_unit_lists_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  local enemy_creeps = bot:GetNearbyCreeps(1600, true)
+  local neutral_creeps = bot:GetNearbyNeutralCreeps(1600)
+
+  local units = functions.ComplementOfLists(
+    enemy_creeps,
+    neutral_creeps,
+    true)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
+  luaunit.assertEquals(units[4], nil)
 end
 
 os.exit(luaunit.LuaUnit.run())

@@ -289,6 +289,30 @@ end
 
 NEARBY_CREEPS_COUNT = 3
 
+function Unit:GetNearbyNeutralCreeps(radius, enemies)
+  if UNIT_NO_NEARBY_UNITS then
+    return {} end
+
+  local unit1 = Unit:new()
+  unit1.name = "neutral1"
+  unit1.health = 10
+  unit1.location = {10, 10}
+
+  local unit2 = Unit:new()
+  unit2.name = "neutral2"
+  unit2.health = 210
+  unit2.location = {20, 20}
+
+  return { unit1, unit2 }
+end
+
+function TableConcat(t1,t2)
+  for i=1,#t2 do
+    t1[#t1+1] = t2[i]
+  end
+  return t1
+end
+
 function Unit:GetNearbyCreeps(radius, enemies)
   if UNIT_NO_NEARBY_UNITS then
     return {} end
@@ -308,33 +332,14 @@ function Unit:GetNearbyCreeps(radius, enemies)
   unit3.health = 180
   unit3.location = {15, 15}
 
-  local unit4 = Unit:new()
-  unit4.name = "neutral2"
-  unit4.health = 210
-  unit4.location = {20, 20}
+  local result = { unit1, unit2, unit3 }
+  local neutral = self:GetNearbyNeutralCreeps()
 
   if 3 <= NEARBY_CREEPS_COUNT then
-    return { unit1, unit2, unit3, unit4 }
+    return TableConcat(result, neutral)
   else
     return { unit1, unit2 }
   end
-end
-
-function Unit:GetNearbyNeutralCreeps(radius, enemies)
-  if UNIT_NO_NEARBY_UNITS then
-    return {} end
-
-  local unit1 = Unit:new()
-  unit1.name = "neutral1"
-  unit1.health = 10
-  unit1.location = {10, 10}
-
-  local unit2 = Unit:new()
-  unit2.name = "neutral2"
-  unit2.health = 210
-  unit2.location = {20, 20}
-
-  return { unit1, unit2 }
 end
 
 function Unit:GetNearbyTowers(radius, enemies, mode)

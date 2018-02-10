@@ -34,6 +34,7 @@ function M.spairs(t, order)
 end
 
 -- You should use this function for any table without numeric indexes
+
 function M.GetTableSize(table)
   local count = 0
 
@@ -43,6 +44,7 @@ end
 
 -- Indexes in resulting array do not match to slot indexes.
 -- You should shift them -1 to match the slot indexes.
+
 function M.GetItems(unit, slot_numbers, get_function)
   local item_list = {}
   local items_number = 0
@@ -83,38 +85,64 @@ function M.IsInventoryFull(bot)
   return constants.INVENTORY_SIZE <= GetItemSlotsCount(bot)
 end
 
-function M.GetElementIndexInList(list, element)
+-- This function compares two Lua table objects. It was taken from here:
+-- https://web.archive.org/web/20131225070434/http://snippets.luacode.org/snippets/Deep_Comparison_of_Two_Values_3
+
+local function deepcompare(t1, t2, ignore_mt)
+  local ty1 = type(t1)
+  local ty2 = type(t2)
+  if ty1 ~= ty2 then return false end
+  -- non-table types can be directly compared
+  if ty1 ~= 'table' and ty2 ~= 'table' then return t1 == t2 end
+  -- as well as tables which have the metamethod __eq
+  local mt = getmetatable(t1)
+  if not ignore_mt and mt and mt.__eq then return t1 == t2 end
+  for k1,v1 in pairs(t1) do
+    local v2 = t2[k1]
+    if v2 == nil or not deepcompare(v1,v2) then return false end
+  end
+  for k2,v2 in pairs(t2) do
+    local v1 = t1[k2]
+    if v1 == nil or not deepcompare(v1,v2) then return false end
+  end
+  return true
+end
+
+function M.GetElementIndexInList(list, element, is_deep)
   if list == nil then
     return -1 end
 
   -- We should sort by keys. Otherwise, elements have a random order.
 
   for i, e in M.spairs(list) do
-    if e == element then
+    if (not is_deep and e == element)
+       or (is_deep and deepcompare(e, element, true)) then
       return i end
   end
   return -1
 end
 
-function M.IsElementInList(list, index)
-  return M.GetElementIndexInList(list, index) ~= -1
+function M.IsElementInList(list, index, is_deep)
+  return M.GetElementIndexInList(list, index, is_deep) ~= -1
 end
 
-function M.IsIntersectionOfLists(list1, list2)
+function M.IsIntersectionOfLists(list1, list2, is_deep)
   for _, e in pairs(list1) do
-    if M.IsElementInList(list2, e) then
+    if M.IsElementInList(list2, e, is_deep) then
       return true end
   end
   return false
 end
 
-function M.ComplementOfLists(list1, list2)
+function M.ComplementOfLists(list1, list2, is_deep)
+  local result = {}
+
   for key, element in pairs(list1) do
-    if M.IsElementInList(list2, element) then
-      table.remove(list1, key)
+    if not M.IsElementInList(list2, element, is_deep) then
+      table.insert(result, element)
     end
   end
-  return list1
+  return result
 end
 
 function M.IsBotBusy(bot)
@@ -339,7 +367,7 @@ function M.GetEnemyCreeps(bot, radius)
   local neutral_creeps = bot:GetNearbyNeutralCreeps(
     GetNormalizedRadius(radius))
 
-  return M.ComplementOfLists(enemy_creeps, neutral_creeps)
+  return M.ComplementOfLists(enemy_creeps, neutral_creeps, true)
 end
 
 function M.GetNeutralCreeps(bot, radius)
