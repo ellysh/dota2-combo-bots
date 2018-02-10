@@ -174,9 +174,9 @@ function M.last_attacked_enemy_hero(bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
-function M.three_and_more_enemy_creeps(bot, ability)
+local function ThreeAndMoreCreeps(bot, ability, get_function)
   local cast_range = ability:GetCastRange()
-  local enemies = functions.GetEnemyCreeps(bot, cast_range)
+  local enemies = functions[get_function](bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
     return false, nil end
@@ -196,6 +196,14 @@ function M.three_and_more_enemy_creeps(bot, ability)
   end
 
   return false, nil
+end
+
+function M.three_and_more_enemy_creeps(bot, ability)
+  return ThreeAndMoreCreeps(bot, ability, "GetEnemyCreeps")
+end
+
+function M.three_and_more_neutral_creeps(bot, ability)
+  return ThreeAndMoreCreeps(bot, ability, "GetNeutralCreeps")
 end
 
 function M.three_and_more_enemy_heroes(bot, ability)
@@ -323,6 +331,12 @@ end
 
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
   local enemies = functions.GetEnemyCreeps(bot, ability:GetAOERadius())
+
+  return (3 <= NumberOfTargetableUnits(enemies)), nil
+end
+
+function M.three_and_more_neutral_creeps_aoe(bot, ability)
+  local enemies = functions.GetNeutralCreeps(bot, ability:GetAOERadius())
 
   return (3 <= NumberOfTargetableUnits(enemies)), nil
 end

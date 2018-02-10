@@ -294,6 +294,8 @@ three_and_more_enemy_creeps
 three_and_more_enemy_creeps_aoe
 three_and_more_enemy_heroes
 three_and_more_enemy_heroes_aoe
+three_and_more_neutral_creeps
+three_and_more_neutral_creeps_aoe
 time_is_more_5_minutes
 toggle_on_attack_enemy_hero
 ursa_earthshock

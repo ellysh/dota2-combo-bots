@@ -289,7 +289,7 @@ end
 
 NEARBY_CREEPS_COUNT = 3
 
-function Unit:GetNearbyNeutralCreeps(radius, enemies)
+function Unit:GetNearbyNeutralCreeps(radius)
   if UNIT_NO_NEARBY_UNITS then
     return {} end
 
@@ -303,7 +303,12 @@ function Unit:GetNearbyNeutralCreeps(radius, enemies)
   unit2.health = 210
   unit2.location = {20, 20}
 
-  return { unit1, unit2 }
+  local unit3 = Unit:new()
+  unit3.name = "neutral3"
+  unit3.health = 180
+  unit3.location = {15, 15}
+
+  return { unit1, unit2, unit3 }
 end
 
 function TableConcat(t1,t2)

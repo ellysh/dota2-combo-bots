@@ -267,6 +267,16 @@ function test_three_and_more_enemy_creeps_two_fails()
   test_algorithm_pattern_fails("three_and_more_enemy_creeps")
 end
 
+function test_three_and_more_neutral_creeps_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_MAGIC_IMMUNE = false
+
+  test_algorithm_pattern_succeed(
+    "three_and_more_neutral_creeps",
+    {1.2, 3.4})
+end
+
 function test_three_and_more_enemy_heroes_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   FIND_AOE_LOCATION_COUNT = 3
@@ -466,11 +476,19 @@ function test_use_on_attack_enemy_with_mana_when_low_mp_high_mp_fails()
     "use_on_attack_enemy_with_mana_when_low_mp")
 end
 
-function test_three_and_more_enemy_creeps_aoe()
+function test_three_and_more_enemy_creeps_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   NEARBY_CREEPS_COUNT = 3
 
   test_algorithm_pattern_succeed("three_and_more_enemy_creeps_aoe", nil)
+end
+
+function test_three_and_more_neutral_creeps_aoe_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  NEARBY_CREEPS_COUNT = 3
+  UNIT_IS_MAGIC_IMMUNE = false
+
+  test_algorithm_pattern_succeed("three_and_more_neutral_creeps_aoe", nil)
 end
 
 function test_low_hp_self_succeed()
