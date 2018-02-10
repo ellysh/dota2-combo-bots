@@ -148,6 +148,16 @@ function M.is_night()
          or 0.75 < GetTimeOfDay()
 end
 
+function M.all_enemy_team_dead()
+  local players = GetTeamPlayers(GetOpposingTeam())
+  local player = functions.GetElementWith(
+    players,
+    nil,
+    function(p) return IsHeroAlive(p) end)
+
+  return player == nil
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_NumberUnitsOnLane = NumberUnitsOnLane

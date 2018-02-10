@@ -101,6 +101,13 @@ M.TEAM_DESIRES = {
     BOT_MODE_TEAM_ROAM = {20, 0}
   },
 
+  all_enemy_team_dead = {
+    BOT_MODE_PUSH_TOWER_TOP = {40, 0},
+    BOT_MODE_PUSH_TOWER_MID = {40, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {40, 0},
+    BOT_MODE_TEAM_ROAM = {-100, 0}
+  },
+
 }
 
 return M

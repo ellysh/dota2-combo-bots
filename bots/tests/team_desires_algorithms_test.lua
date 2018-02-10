@@ -27,7 +27,7 @@ function test_IsAllyHaveItem()
   luaunit.assertTrue(algorithms.test_IsAllyHaveItem(test_item))
 end
 
-function test_ally_has_aegis()
+function test_ally_has_aegis_succeed()
   luaunit.assertFalse(algorithms.ally_has_aegis())
 
   local unit = Unit:new()
@@ -38,7 +38,7 @@ function test_ally_has_aegis()
   luaunit.assertTrue(algorithms.ally_has_aegis())
 end
 
-function test_ally_has_cheese()
+function test_ally_has_cheese_succeed()
   luaunit.assertFalse(algorithms.ally_has_cheese())
 
   local unit = Unit:new()
@@ -156,6 +156,16 @@ function test_is_night_succeed()
 
   TIME_OF_DAY = 0.76
   luaunit.assertTrue(algorithms.is_night())
+end
+
+function test_all_enemy_team_dead_succeed()
+  IS_HERO_ALIVE = false
+  luaunit.assertTrue(algorithms.all_enemy_team_dead())
+end
+
+function test_all_enemy_team_dead_fails()
+  IS_HERO_ALIVE = true
+  luaunit.assertFalse(algorithms.all_enemy_team_dead())
 end
 
 os.exit(luaunit.LuaUnit.run())

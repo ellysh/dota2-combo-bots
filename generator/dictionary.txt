@@ -1,3 +1,4 @@
+all_enemy_team_dead
 ally_has_aegis
 ally_has_cheese
 ally_mega_creeps

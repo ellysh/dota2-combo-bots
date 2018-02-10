@@ -13,3 +13,4 @@ more_ally_heroes_on_top_then_enemy;30;-20;0;0;0;0;0;-10;;;;
 more_ally_heroes_on_mid_then_enemy;0;0;30;-20;0;0;0;-10;;;;
 more_ally_heroes_on_bot_then_enemy;0;0;0;0;30;-20;0;-10;;;;
 is_night;-10;0;-10;0;-10;0;20;0;;;;
+all_enemy_team_dead;40;0;40;0;40;0;-100;0;;;;
