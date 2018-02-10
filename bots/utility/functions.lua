@@ -413,6 +413,7 @@ function M.IsEnemyNear(bot)
 
   return 0 < #M.GetEnemyHeroes(bot, radius)
          or 0 < #M.GetEnemyCreeps(bot, radius)
+         or 0 < #M.GetNeutralCreeps(bot, radius)
          or 0 < #M.GetEnemyBuildings(bot, radius)
 end
 
