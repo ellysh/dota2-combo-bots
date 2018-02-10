@@ -7,6 +7,9 @@ local functions = require(
 local move = require(
   GetScriptDirectory() .."/utility/move")
 
+local attack = require(
+  GetScriptDirectory() .."/utility/attack")
+
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
@@ -50,6 +53,9 @@ function Think()
     locations_times,
     CompareMinTime,
     nil)
+
+  if location_time == nil then
+    return end
 
   if functions.IsEnemyNear(bot) then
      attack.Attack(bot, bot:GetCurrentVisionRange())
