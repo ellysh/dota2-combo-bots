@@ -361,7 +361,7 @@ function M.DistanceToDesire(distance, max_distance, base_desire)
 end
 
 function M.IsEnemyNear(bot)
-  local radius = bot:GetCurrentVisionRange()
+  local radius = constants.MAX_GET_UNITS_RADIUS
 
   return 0 < #M.GetEnemyHeroes(bot, radius)
          or 0 < #M.GetEnemyCreeps(bot, radius)

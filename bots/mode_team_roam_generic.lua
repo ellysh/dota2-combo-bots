@@ -13,6 +13,9 @@ local attack = require(
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local M = {}
 
 function GetDesire()
@@ -41,8 +44,6 @@ local function CompareMinTime(t, a, b)
 end
 
 function Think()
-  local bot = GetBot()
-
   local target_player = GetMaxKillsEnemyPlayer()
 
   if target_player == nil then
@@ -57,8 +58,10 @@ function Think()
   if location_time == nil then
     return end
 
+  local bot = GetBot()
+
   if functions.IsEnemyNear(bot) then
-     attack.Attack(bot, bot:GetCurrentVisionRange())
+     attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
   else
     move.Move(bot, location_time[1])
   end

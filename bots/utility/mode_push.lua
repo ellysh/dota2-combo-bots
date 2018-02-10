@@ -10,6 +10,9 @@ local attack = require(
 local move = require(
   GetScriptDirectory() .."/utility/move")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local M = {}
 
 function M.Think(lane)
@@ -17,7 +20,7 @@ function M.Think(lane)
   local target_location = GetLaneFrontLocation(GetTeam(), lane, 0.5)
 
   if functions.IsEnemyNear(bot) then
-     attack.Attack(bot, bot:GetCurrentVisionRange())
+     attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
   else
     move.Move(bot, target_location)
   end

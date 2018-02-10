@@ -7,6 +7,9 @@ local functions = require(
 local attack = require(
   GetScriptDirectory() .."/utility/attack")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local M = {}
 
 local function IsMinionsOwnerNear(bot, minion)
@@ -22,7 +25,7 @@ function M.MinionThink(minion)
     local radius = functions.ternary(
       minion:GetBaseMovementSpeed() == 0,
       minion:GetAttackRange(),
-      minion:GetCurrentVisionRange())
+      constants.MAX_GET_UNITS_RADIUS)
 
     attack.Attack(minion, radius)
 
