@@ -16,6 +16,7 @@ crystal_maiden_frostbite
 drow_ranger_frost_arrows
 drow_ranger_trueshot
 drow_ranger_wave_of_silence
+enemy_hero_was_seen
 has_buyback
 has_low_hp
 has_not_full_hp_mp_and_near_fountain

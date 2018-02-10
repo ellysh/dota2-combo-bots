@@ -168,4 +168,25 @@ function test_all_enemy_team_dead_fails()
   luaunit.assertFalse(algorithms.all_enemy_team_dead())
 end
 
+function test_enemy_hero_was_seen_succeed()
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = {{10,10}, 2}
+
+  luaunit.assertTrue(algorithms.enemy_hero_was_seen())
+end
+
+function test_enemy_hero_was_seen_dead_fails()
+  IS_HERO_ALIVE = false
+  HERO_LAST_SEEN_INFO = {{10,10}, 2}
+
+  luaunit.assertFalse(algorithms.enemy_hero_was_seen())
+end
+
+function test_enemy_hero_was_seen_not_seen_fails()
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = {}
+
+  luaunit.assertFalse(algorithms.enemy_hero_was_seen())
+end
+
 os.exit(luaunit.LuaUnit.run())

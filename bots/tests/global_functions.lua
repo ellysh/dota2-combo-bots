@@ -260,3 +260,9 @@ TIME_OF_DAY = 0.5
 function GetTimeOfDay()
   return TIME_OF_DAY
 end
+
+HERO_LAST_SEEN_INFO = {}
+
+function GetHeroLastSeenInfo()
+  return HERO_LAST_SEEN_INFO
+end

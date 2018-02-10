@@ -158,6 +158,20 @@ function M.all_enemy_team_dead()
   return player == nil
 end
 
+function M.enemy_hero_was_seen()
+  local players = GetTeamPlayers(GetOpposingTeam())
+  local player = functions.GetElementWith(
+    players,
+    nil,
+    function(p)
+      return GetHeroLastSeenInfo(p) ~= nil
+             and #GetHeroLastSeenInfo(p) ~= 0
+             and IsHeroAlive(p)
+    end)
+
+  return player ~= nil
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_NumberUnitsOnLane = NumberUnitsOnLane

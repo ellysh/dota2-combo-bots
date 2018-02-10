@@ -108,6 +108,13 @@ M.TEAM_DESIRES = {
     BOT_MODE_TEAM_ROAM = {-100, 0}
   },
 
+  enemy_hero_was_seen = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, -100}
+  },
+
 }
 
 return M
