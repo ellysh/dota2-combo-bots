@@ -39,10 +39,6 @@ local function GetMaxKillsEnemyPlayer()
   return player
 end
 
-local function CompareMinTime(t, a, b)
-  return t[a][2] < t[b][2]
-end
-
 function Think()
   local target_player = GetMaxKillsEnemyPlayer()
 
@@ -54,10 +50,7 @@ function Think()
   if locations_times == nil or #locations_times == 0 then
     return end
 
-  local location_time = functions.GetElementWith(
-    locations_times,
-    CompareMinTime,
-    nil)
+  local location_time = locations_times[1]
 
   if location_time == nil then
     return end
@@ -67,7 +60,7 @@ function Think()
   if functions.IsEnemyNear(bot) then
      attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
   else
-    move.Move(bot, location_time[1])
+    move.Move(bot, location_time.location)
   end
 end
 

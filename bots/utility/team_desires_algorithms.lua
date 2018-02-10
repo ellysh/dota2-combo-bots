@@ -164,8 +164,9 @@ function M.enemy_hero_was_seen()
     players,
     nil,
     function(p)
-      return GetHeroLastSeenInfo(p) ~= nil
-             and #GetHeroLastSeenInfo(p) ~= 0
+      local seen_info = GetHeroLastSeenInfo(p)
+      return seen_info ~= nil
+             and #seen_info ~= 0
              and IsHeroAlive(p)
     end)
 
