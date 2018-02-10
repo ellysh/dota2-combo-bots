@@ -25,10 +25,15 @@ local function ChooseTarget(bot, radius)
       do goto continue end
     end
 
+    local desire = GetDesire(bot, mode_desires)
+    if desire <= 0 then
+      do goto continue end
+    end
+
     local is_succeed, target = algorithms[algorithm](bot, radius)
 
     if is_succeed then
-      targets[GetDesire(bot, mode_desires)] = target
+      targets[desire] = target
     end
     ::continue::
   end
@@ -45,6 +50,9 @@ function M.Attack(unit, radius)
     return end
 
   local target = ChooseTarget(unit, radius)
+
+  if target == nil then
+    return end
 
   -- This SetTarget is required to start casting skills
   unit:SetTarget(target)

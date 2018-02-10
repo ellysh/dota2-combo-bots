@@ -38,7 +38,7 @@ function Think()
   local bot = GetBot()
 
   if functions.IsEnemyNear(bot) then
-     attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
+    attack.Attack(bot, constants.MAX_GET_UNITS_RADIUS)
   else
     move.Move(bot, target_location)
   end

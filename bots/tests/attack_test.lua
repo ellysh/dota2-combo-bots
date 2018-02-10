@@ -22,14 +22,14 @@ function test_GetDesire_succeed()
       BOT_MODE_DEFEND_ALLY = 40
   }
 
-  UNIT_MODE = BOT_MODE_ROAM
-  luaunit.assertEquals(attack.test_GetDesire(GetBot(), mode_desires), 90)
+  UNIT_MODE = BOT_MODE_TEAM_ROAM
+  luaunit.assertEquals(attack.test_GetDesire(GetBot(), mode_desires), 80)
 end
 
 function test_ChooseTarget_succeed()
   test_RefreshBot()
 
-  UNIT_MODE = BOT_MODE_ROAM
+  UNIT_MODE = BOT_MODE_TEAM_ROAM
 
   local target = attack.test_ChooseTarget(GetBot())
   luaunit.assertNotEquals(target, nil)
@@ -42,6 +42,7 @@ function test_Attack_succeed()
   local bot = GetBot()
   ATTACK_TARGET = nil
   UNIT_IS_CHANNELING = false
+  UNIT_MODE = BOT_MODE_TEAM_ROAM
 
   attack.Attack(bot, bot:GetCurrentVisionRange())
 
