@@ -28,7 +28,7 @@ function UpdatePushLaneDesires()
 end
 
 function UpdateRoamDesire()
-    return { TEAM_DESIRES.BOT_MODE_TEAM_ROAM, nil }
+  return { TEAM_DESIRES.BOT_MODE_TEAM_ROAM, GetTeamMember(1) }
 end
 
 --[[
