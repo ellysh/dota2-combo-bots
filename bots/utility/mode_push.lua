@@ -13,8 +13,6 @@ local move = require(
 local M = {}
 
 function M.Think(lane)
-  -- TODO: Use TP scrolls and TP boots here
-
   local bot = GetBot()
   local target_location = GetLaneFrontLocation(GetTeam(), lane, 0.5)
 

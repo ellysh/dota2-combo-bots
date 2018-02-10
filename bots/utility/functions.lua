@@ -388,7 +388,7 @@ function M.GetNormalizedDesire(desire, max_desire)
 end
 
 function M.IsEnemyHeroOnTheWay(bot, location)
-  local enemies = M.GetEnemyHeroes(bot, 1600)
+  local enemies = M.GetEnemyHeroes(bot, constants.MAX_GET_UNITS_RADIUS)
   local bot_distance = GetUnitToLocationDistance(bot, location)
 
   return nil ~= M.GetElementWith(

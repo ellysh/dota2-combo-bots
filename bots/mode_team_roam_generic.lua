@@ -20,7 +20,14 @@ function GetDesire()
 end
 
 function Think()
-  -- TODO: Implement this function
+  local bot = GetBot()
+  local target_location = GetLaneFrontLocation(GetTeam(), lane, 0.5)
+
+  if functions.IsEnemyNear(bot) then
+     attack.Attack(bot, bot:GetCurrentVisionRange())
+  else
+    move.Move(bot, target_location)
+  end
 end
 
 -- Provide an access to local functions and variables for unit tests only
