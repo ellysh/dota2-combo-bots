@@ -194,6 +194,12 @@ function GetPushLaneDesire(lane)
   return PUSH_LANE_DESIRE
 end
 
+ROAM_DESIRE = 0
+
+function GetRoamDesire(lane)
+  return ROAM_DESIRE
+end
+
 --------------------------------------
 
 IS_SECRET_SHOP_ITEM = false

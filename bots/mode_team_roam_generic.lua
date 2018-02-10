@@ -39,7 +39,13 @@ end
 
 function Think()
   local bot = GetBot()
-  local locations_times = GetHeroLastSeenInfo(GetMaxKillsEnemyPlayer())
+
+  local target_player = GetMaxKillsEnemyPlayer()
+
+  if target_player == nil then
+    return end
+
+  local locations_times = GetHeroLastSeenInfo(target_player)
   local location_time = functions.GetElementWith(
     locations_times,
     CompareMinTime,
@@ -53,5 +59,6 @@ function Think()
 end
 
 -- Provide an access to local functions and variables for unit tests only
+M.test_GetMaxKillsEnemyPlayer = GetMaxKillsEnemyPlayer
 
 return M
