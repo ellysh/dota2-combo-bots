@@ -1,4 +1,5 @@
 * version 1.0
+  - Fix a critical bug with hanging on a draft.
   - Bots cast the chain stunning instead of spamming the disable skills.
   - Fix bugs when bots move to shrine, rune or shop toward enemy heroes.
   - Fix a bug when bots do not attack enemy near own shrine.
