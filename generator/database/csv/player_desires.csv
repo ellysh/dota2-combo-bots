@@ -9,3 +9,4 @@ more_enemy_heroes_around_then_ally;-10;0;-10;0;-10;0;80;0;-10;0;;;;
 is_shrine_healing_and_no_enemy;0;0;0;0;0;0;76;0;0;0;;;;
 is_shrine_healing_and_enemies_near;0;0;0;0;0;0;-85;0;0;0;;;;
 has_not_full_hp_mp_and_near_fountain;-10;0;-10;0;-10;0;76;0;-10;0;;;;
+is_attacked_by_tower;-10;0;-10;0;-10;0;75;0;-10;0;;;;

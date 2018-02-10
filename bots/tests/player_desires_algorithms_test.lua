@@ -149,4 +149,37 @@ function test_has_not_full_hp_mp_and_near_fountain_succeed()
   luaunit.assertTrue(algorithms.has_not_full_hp_mp_and_near_fountain())
 end
 
+function test_is_attacked_by_tower_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  ATTACK_TARGET = bot
+  UNIT_IS_NEARBY_TOWERS = true
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_attacked_by_tower())
+end
+
+function test_is_attacked_by_tower_no_tower_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  ATTACK_TARGET = bot
+  UNIT_IS_NEARBY_TOWERS = false
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(algorithms.is_attacked_by_tower())
+end
+
+function test_is_attacked_by_tower_not_attacked_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  ATTACK_TARGET = nil
+  UNIT_IS_NEARBY_TOWERS = true
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(algorithms.is_attacked_by_tower())
+end
+
 os.exit(luaunit.LuaUnit.run())

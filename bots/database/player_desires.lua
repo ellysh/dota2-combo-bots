@@ -83,6 +83,14 @@ M.PLAYER_DESIRES = {
     BOT_MODE_TEAM_ROAM = {-10, 0}
   },
 
+  is_attacked_by_tower = {
+    BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
+    BOT_MODE_PUSH_TOWER_MID = {-10, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
+    BOT_MODE_RETREAT = {75, 0},
+    BOT_MODE_TEAM_ROAM = {-10, 0}
+  },
+
 }
 
 return M

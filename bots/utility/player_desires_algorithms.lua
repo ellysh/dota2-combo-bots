@@ -105,6 +105,18 @@ function M.has_not_full_hp_mp_and_near_fountain()
   return bot:HasModifier("modifier_fountain_aura_buff")
 end
 
+function M.is_attacked_by_tower()
+  local bot = GetBot()
+  local towers = bot:GetNearbyTowers(
+    constants.MAX_GET_UNITS_RADIUS,
+    true)
+
+  if #towers == 0 then
+    return false end
+
+  return towers[1]:GetAttackTarget() == bot
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 
