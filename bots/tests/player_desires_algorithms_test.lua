@@ -182,4 +182,40 @@ function test_is_attacked_by_tower_not_attacked_fails()
   luaunit.assertFalse(algorithms.is_attacked_by_tower())
 end
 
+function test_is_attacked_by_enemy_hero_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  UNIT_WAS_DAMAGED = true
+
+  luaunit.assertTrue(algorithms.is_attacked_by_enemy_hero())
+end
+
+function test_is_attacked_by_enemy_hero_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  UNIT_WAS_DAMAGED = false
+
+  luaunit.assertFalse(algorithms.is_attacked_by_enemy_hero())
+end
+
+function test_is_attacked_by_any_creep_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  UNIT_WAS_DAMAGED = true
+
+  luaunit.assertTrue(algorithms.is_attacked_by_any_creep())
+end
+
+function test_is_attacked_by_any_creep_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  UNIT_WAS_DAMAGED = false
+
+  luaunit.assertFalse(algorithms.is_attacked_by_any_creep())
+end
+
 os.exit(luaunit.LuaUnit.run())

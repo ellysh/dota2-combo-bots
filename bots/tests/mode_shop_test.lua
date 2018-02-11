@@ -79,10 +79,10 @@ function test_GetDesireSideShop_negative()
   UNIT_IS_CHANNELING = false
   luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 
-  WAS_DAMAGED = true
+  UNIT_WAS_DAMAGED = true
   luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 
-  WAS_DAMAGED = false
+  UNIT_WAS_DAMAGED = false
   luaunit.assertEquals(mode_shop.GetDesireSideShop(), 0)
 end
 

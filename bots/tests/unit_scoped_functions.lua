@@ -457,14 +457,14 @@ function Unit:GetStashValue()
   return STASH_VALUE
 end
 
-WAS_DAMAGED = false
+UNIT_WAS_DAMAGED = false
 
 function Unit:WasRecentlyDamagedByAnyHero()
-  return WAS_DAMAGED
+  return UNIT_WAS_DAMAGED
 end
 
 function Unit:WasRecentlyDamagedByCreep()
-  return WAS_DAMAGED
+  return UNIT_WAS_DAMAGED
 end
 
 UNIT_ACTION = nil
