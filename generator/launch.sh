@@ -21,7 +21,7 @@ RESULT_DIR="../bots/database"
 
 ./generator.py TEAM_DESIRES 9 $CSV_DIR/team_desires.csv > $RESULT_DIR/team_desires.lua
 
-./generator.py PLAYER_DESIRES 13 $CSV_DIR/player_desires.csv > $RESULT_DIR/player_desires.lua
+./generator.py PLAYER_DESIRES 15 $CSV_DIR/player_desires.csv > $RESULT_DIR/player_desires.lua
 
 ./generator.py ATTACK_TARGET 12 $CSV_DIR/attack_target.csv > $RESULT_DIR/attack_target.lua
 
