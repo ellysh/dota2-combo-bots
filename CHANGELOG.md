@@ -1,4 +1,5 @@
 * version 1.0
+  - Bots choose laning when there is no targets for push and roam.
   - Distinguish the neutral and enemy creeps in the attack algorithms.
   - Retreat when a tower attacks a bot.
   - Fix a bug with choosing an attack target by heroes and their minions.
