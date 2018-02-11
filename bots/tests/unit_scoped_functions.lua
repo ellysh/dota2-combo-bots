@@ -463,6 +463,10 @@ function Unit:WasRecentlyDamagedByAnyHero()
   return WAS_DAMAGED
 end
 
+function Unit:WasRecentlyDamagedByCreep()
+  return WAS_DAMAGED
+end
+
 UNIT_ACTION = nil
 UNIT_MOVE_LOCATION = nil
 

@@ -117,6 +117,14 @@ function M.is_attacked_by_tower()
   return towers[1]:GetAttackTarget() == bot
 end
 
+function M.is_attacked_by_enemy_hero()
+  return GetBot():WasRecentlyDamagedByAnyHero(1.0)
+end
+
+function M.is_attacked_by_any_creep()
+  return GetBot():WasRecentlyDamagedByCreep(1.0)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 
