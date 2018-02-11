@@ -1,6 +1,9 @@
 local attack = require(
   GetScriptDirectory() .."/utility/attack")
 
+local move = require(
+  GetScriptDirectory() .."/utility/move")
+
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
