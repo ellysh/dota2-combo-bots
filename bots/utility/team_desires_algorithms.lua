@@ -150,12 +150,35 @@ function M.all_enemy_team_dead()
   return player == nil
 end
 
+local function IsEnemyHeroInLocation(location)
+  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+  local nearby_hero = functions.GetElementWith(
+    ally_heroes,
+    nil,
+    function(unit)
+      return GetUnitToLocationDistance(unit, location)
+             < unit:GetCurrentVisionRange()
+    end)
+
+  -- We consider that there is an enemy if the location is not seen
+  if nearby_hero == nil then
+    return true end
+
+  local enemy_heroes = functions.GetEnemyHeroes(
+    nearby_hero,
+    constants.MAX_GET_UNITS_RADIUS)
+
+  return 0 < #enemy_heroes
+end
+
 function M.enemy_hero_was_seen()
   local player = functions.GetMaxKillsPlayer(
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 
-  return functions.GetLastPlayerLocation(player) ~= nil
+  local player_location = functions.GetLastPlayerLocation(player)
+  return player_location ~= nil
+         and IsEnemyHeroInLocation(player_location)
 end
 
 -- Provide an access to local functions for unit tests only
