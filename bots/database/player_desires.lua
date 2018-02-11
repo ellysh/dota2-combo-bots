@@ -8,7 +8,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {-30, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-30, 0},
     BOT_MODE_RETREAT = {85, 0},
-    BOT_MODE_TEAM_ROAM = {-30, 0}
+    BOT_MODE_TEAM_ROAM = {-30, 0},
     BOT_MODE_ATTACK  = {-30, 0}
   },
 
@@ -17,7 +17,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {-5, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-5, 0},
     BOT_MODE_RETREAT = {0, 0},
-    BOT_MODE_TEAM_ROAM = {0, 0}
+    BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_ATTACK  = {0, 0}
   },
 
@@ -26,7 +26,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {5, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-5, 0},
     BOT_MODE_RETREAT = {0, 0},
-    BOT_MODE_TEAM_ROAM = {0, 0}
+    BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_ATTACK  = {0, 0}
   },
 
@@ -35,7 +35,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {-5, 0},
     BOT_MODE_PUSH_TOWER_BOT = {5, 0},
     BOT_MODE_RETREAT = {0, 0},
-    BOT_MODE_TEAM_ROAM = {0, 0}
+    BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_ATTACK  = {0, 0}
   },
 
@@ -44,7 +44,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {5, -5},
     BOT_MODE_PUSH_TOWER_BOT = {5, -5},
     BOT_MODE_RETREAT = {0, 0},
-    BOT_MODE_TEAM_ROAM = {5, -5}
+    BOT_MODE_TEAM_ROAM = {5, -5},
     BOT_MODE_ATTACK  = {0, 0}
   },
 
@@ -53,7 +53,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {0, -5},
     BOT_MODE_PUSH_TOWER_BOT = {0, -5},
     BOT_MODE_RETREAT = {0, 0},
-    BOT_MODE_TEAM_ROAM = {0, -5}
+    BOT_MODE_TEAM_ROAM = {0, -5},
     BOT_MODE_ATTACK  = {0, 0}
   },
 
@@ -62,7 +62,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {-10, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
     BOT_MODE_RETREAT = {80, 0},
-    BOT_MODE_TEAM_ROAM = {-10, 0}
+    BOT_MODE_TEAM_ROAM = {-10, 0},
     BOT_MODE_ATTACK  = {-30, 0}
   },
 
@@ -71,7 +71,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_RETREAT = {76, 0},
-    BOT_MODE_TEAM_ROAM = {0, 0}
+    BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_ATTACK  = {-30, 0}
   },
 
@@ -80,7 +80,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_RETREAT = {-85, 0},
-    BOT_MODE_TEAM_ROAM = {0, 0}
+    BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_ATTACK  = {30, 0}
   },
 
@@ -89,7 +89,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {-10, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
     BOT_MODE_RETREAT = {76, 0},
-    BOT_MODE_TEAM_ROAM = {-10, 0}
+    BOT_MODE_TEAM_ROAM = {-10, 0},
     BOT_MODE_ATTACK  = {0, 0}
   },
 
@@ -98,7 +98,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_PUSH_TOWER_MID = {-10, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
     BOT_MODE_RETREAT = {76, 0},
-    BOT_MODE_TEAM_ROAM = {-10, 0}
+    BOT_MODE_TEAM_ROAM = {-10, 0},
     BOT_MODE_ATTACK  = {-30, 0}
   },
 

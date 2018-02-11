@@ -36,6 +36,7 @@ M.MAX_MINION_DISTANCE_FROM_HERO = 300
 
 M.MAX_RUNE_AND_SHOP_DESIRE = 0.6
 M.MAX_PUSH_DESIRE = 0.75
+M.MAX_ATTACK_DESIRE = 0.7
 
 -- This is a mapping string from database to the numeric constants for API
 M.BOT_MODES = {
