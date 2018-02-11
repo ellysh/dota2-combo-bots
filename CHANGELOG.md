@@ -1,4 +1,6 @@
 * version 1.0
+  - Distinguish the neutral and enemy creeps in the attack algorithms.
+  - Retreat when a tower attacks a bot.
   - Fix a bug with choosing an attack target by heroes and their minions.
   - Fix a critical bug with hanging on a draft.
   - Bots cast the chain stunning instead of spamming the disable skills.
