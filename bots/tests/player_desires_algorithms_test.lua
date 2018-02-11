@@ -200,22 +200,33 @@ function test_is_attacked_by_enemy_hero_fails()
   luaunit.assertFalse(algorithms.is_attacked_by_enemy_hero())
 end
 
-function test_is_attacked_by_any_creep_succeed()
+function test_is_attacked_by_enemy_creep_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
   UNIT_WAS_DAMAGED = true
+  UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertTrue(algorithms.is_attacked_by_any_creep())
+  luaunit.assertTrue(algorithms.is_attacked_by_enemy_creep())
 end
 
-function test_is_attacked_by_any_creep_fails()
+function test_is_attacked_by_enemy_creep_not_damaged_fails()
   test_RefreshBot()
 
   local bot = GetBot()
   UNIT_WAS_DAMAGED = false
 
-  luaunit.assertFalse(algorithms.is_attacked_by_any_creep())
+  luaunit.assertFalse(algorithms.is_attacked_by_enemy_creep())
+end
+
+function test_is_attacked_by_enemy_creep_not_enemy_creep_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  UNIT_WAS_DAMAGED = true
+  UNIT_NO_NEARBY_UNITS = true
+
+  luaunit.assertFalse(algorithms.is_attacked_by_enemy_creep())
 end
 
 os.exit(luaunit.LuaUnit.run())

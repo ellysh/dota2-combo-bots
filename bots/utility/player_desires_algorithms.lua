@@ -121,7 +121,12 @@ function M.is_attacked_by_enemy_hero()
   return GetBot():WasRecentlyDamagedByAnyHero(1.0)
 end
 
-function M.is_attacked_by_any_creep()
+function M.is_attacked_by_enemy_creep()
+  local enemy_creeps = functions.GetEnemyCreeps(GetBot(), 600)
+
+  if #enemy_creeps == 0 then
+    return false end
+
   return GetBot():WasRecentlyDamagedByCreep(1.0)
 end
 
