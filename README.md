@@ -1,6 +1,6 @@
-# Dota 2 Combo Bots 0.9 version
+# Dota 2 Combo Bots 1.0 version
 
-*This project is still in prototyping and developing stage.*
+*This project is still in a developing stage.*
 
 These are bots for Dota 2 and a toolkit to configure them.
 
