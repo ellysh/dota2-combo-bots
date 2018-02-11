@@ -161,6 +161,36 @@ function M.low_hp_enemy_building(bot, radius)
   return true, enemy_building
 end
 
+function M.attacking_enemy_hero(bot, radius)
+  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxHeroKills,
+    function(unit)
+      return IsTargetable(unit) and unit:GetAttackTarget() == bot
+    end)
+
+  if enemy_hero == nil then
+    return false, nil end
+
+  return true, enemy_hero
+end
+
+function M.attacking_enemy_creep(bot, radius)
+  local enemy_creeps = functions.GetEnemyCreeps(bot, radius)
+  local enemy_creep = functions.GetElementWith(
+    enemy_creeps,
+    CompareMinHealth,
+    function(unit)
+      return IsTargetable(unit) and unit:GetAttackTarget() == bot
+    end)
+
+  if enemy_creep == nil then
+    return false, nil end
+
+  return true, enemy_creep
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_IsTargetable = IsTargetable
 M.test_IsLastHit = IsLastHit

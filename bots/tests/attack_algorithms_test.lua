@@ -34,8 +34,6 @@ function test_IsTargetable()
 end
 
 local function test_algorithm_pattern_succeed(algorithm, expect_target)
-  test_RefreshBot()
-
   local desire, target = algorithms[algorithm](
     GetBot(),
     1200)
@@ -45,8 +43,6 @@ local function test_algorithm_pattern_succeed(algorithm, expect_target)
 end
 
 local function test_algorithm_pattern_fails(algorithm)
-  test_RefreshBot()
-
   local desire, target = algorithms[algorithm](
     GetBot(),
     1200)
@@ -56,18 +52,24 @@ local function test_algorithm_pattern_fails(algorithm)
 end
 
 function test_max_kills_enemy_hero_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
 
   test_algorithm_pattern_succeed("max_kills_enemy_hero", "unit1")
 end
 
 function test_max_kills_enemy_hero_not_targetable_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = false
 
   test_algorithm_pattern_fails("max_kills_enemy_hero")
 end
 
 function test_max_estimated_damage_enemy_hero_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
 
   test_algorithm_pattern_succeed(
@@ -76,6 +78,8 @@ function test_max_estimated_damage_enemy_hero_succeed()
 end
 
 function test_max_estimated_damage_enemy_hero_not_targetable_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = false
 
   test_algorithm_pattern_fails(
@@ -84,6 +88,8 @@ function test_max_estimated_damage_enemy_hero_not_targetable_fails()
 end
 
 function test_max_hp_enemy_creep_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
@@ -91,6 +97,8 @@ function test_max_hp_enemy_creep_succeed()
 end
 
 function test_max_hp_enemy_creep_no_unit_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
@@ -98,6 +106,8 @@ function test_max_hp_enemy_creep_no_unit_fails()
 end
 
 function test_last_hit_enemy_creep_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
@@ -105,6 +115,8 @@ function test_last_hit_enemy_creep_succeed()
 end
 
 function test_last_hit_enemy_creep_no_unit_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
@@ -112,6 +124,8 @@ function test_last_hit_enemy_creep_no_unit_fails()
 end
 
 function test_max_hp_neutral_creep_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
@@ -119,6 +133,8 @@ function test_max_hp_neutral_creep_succeed()
 end
 
 function test_max_hp_neutral_creep_no_unit_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
@@ -126,6 +142,8 @@ function test_max_hp_neutral_creep_no_unit_fails()
 end
 
 function test_min_hp_enemy_building_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
@@ -133,6 +151,8 @@ function test_min_hp_enemy_building_succeed()
 end
 
 function test_min_hp_enemy_building_no_unit_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
@@ -140,6 +160,8 @@ function test_min_hp_enemy_building_no_unit_fails()
 end
 
 function test_low_hp_enemy_hero_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = false
 
@@ -147,6 +169,8 @@ function test_low_hp_enemy_hero_succeed()
 end
 
 function test_low_hp_enemy_hero_no_unit_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_NO_NEARBY_UNITS = true
 
@@ -154,6 +178,8 @@ function test_low_hp_enemy_hero_no_unit_fails()
 end
 
 function test_low_hp_enemy_building_succeed()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_IS_NEARBY_TOWERS = true
   UNIT_NO_NEARBY_UNITS = false
@@ -162,11 +188,77 @@ function test_low_hp_enemy_building_succeed()
 end
 
 function test_low_hp_enemy_building_no_unit_fails()
+  test_RefreshBot()
+
   UNIT_CAN_BE_SEEN = true
   UNIT_IS_NEARBY_TOWERS = true
   UNIT_NO_NEARBY_UNITS = true
 
   test_algorithm_pattern_fails("low_hp_enemy_building")
+end
+
+function test_attacking_enemy_hero_succeed()
+  test_RefreshBot()
+
+  ATTACK_TARGET = GetBot()
+  UNIT_NO_NEARBY_UNITS = false
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_succeed(
+    "attacking_enemy_hero",
+    "unit1")
+end
+
+function test_attacking_enemy_hero_no_heroes_fails()
+  test_RefreshBot()
+
+  ATTACK_TARGET = GetBot()
+  UNIT_NO_NEARBY_UNITS = true
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_fails("attacking_enemy_hero")
+end
+
+function test_attacking_enemy_hero_not_attacking_fails()
+  test_RefreshBot()
+
+  ATTACK_TARGET = nil
+  UNIT_NO_NEARBY_UNITS = false
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_fails("attacking_enemy_hero")
+end
+
+function test_attacking_enemy_creep_succeed()
+  test_RefreshBot()
+
+  ATTACK_TARGET = GetBot()
+  UNIT_NO_NEARBY_UNITS = false
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_succeed(
+    "attacking_enemy_creep",
+    "creep1")
+end
+
+function test_attacking_enemy_creep_no_creeps_fails()
+  test_RefreshBot()
+
+  ATTACK_TARGET = GetBot()
+  UNIT_NO_NEARBY_UNITS = true
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_fails("attacking_enemy_creep")
+end
+
+function test_attacking_enemy_creep_not_attacking_fails()
+  test_RefreshBot()
+
+  ATTACK_TARGET = nil
+  UNIT_NO_NEARBY_UNITS = false
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_fails("attacking_enemy_creep")
 end
 
 os.exit(luaunit.LuaUnit.run())
