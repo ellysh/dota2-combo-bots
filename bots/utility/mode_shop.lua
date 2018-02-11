@@ -32,7 +32,7 @@ local function GetDesire(check_shop_func, shop_location, base_desire)
   end
 
   if shop_distance < constants.SHOP_WALK_RADIUS / 4 then
-    return constants.MAX_RUNE_AND_SHOP_DESIRE
+    return constants.MAX_SHOP_DESIRE
   end
 
   if functions.IsBotInFightingMode(bot)
@@ -45,7 +45,7 @@ local function GetDesire(check_shop_func, shop_location, base_desire)
              shop_distance,
              constants.SHOP_WALK_RADIUS,
              base_desire),
-           constants.MAX_RUNE_AND_SHOP_DESIRE)
+           constants.MAX_SHOP_DESIRE)
 end
 
 local function GetNearestShop(bot, shop_type)

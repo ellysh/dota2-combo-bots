@@ -94,7 +94,7 @@ function test_GetDesireSideShop_positive()
 
   luaunit.assertEquals(
     mode_shop.GetDesireSideShop(),
-    constants.MAX_RUNE_AND_SHOP_DESIRE)
+    constants.MAX_SHOP_DESIRE)
 end
 
 function test_GetDesireSecretShop_positive()
@@ -105,7 +105,7 @@ function test_GetDesireSecretShop_positive()
 
   luaunit.assertEquals(
     mode_shop.GetDesireSecretShop(),
-    constants.MAX_RUNE_AND_SHOP_DESIRE)
+    constants.MAX_SHOP_DESIRE)
 end
 
 function test_ThinkSideShop()
