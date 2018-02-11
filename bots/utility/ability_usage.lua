@@ -109,7 +109,9 @@ end
 local function CancelAbility(bot)
   local ability = bot:GetCurrentActiveAbility()
 
-  if not bot:IsChanneling() or ability == nil then
+  if not bot:IsChanneling()
+     or ability == nil
+     or ability:GetName() == "item_tpscroll" then
     return end
 
   local radius = functions.ternary(
