@@ -284,6 +284,7 @@ phantom_lancer_spirit_lance
 player_on_bot
 player_on_mid
 player_on_top
+roam_target_is_near
 shadow_shaman_ether_shock
 shadow_shaman_mass_serpent_ward
 shadow_shaman_shackles

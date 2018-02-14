@@ -130,6 +130,17 @@ function M.is_attacked_by_enemy_creep()
   return GetBot():WasRecentlyDamagedByCreep(0.5)
 end
 
+function M.roam_target_is_near()
+  local target_player = functions.GetMaxKillsPlayer(
+    GetOpposingTeam(),
+    function(p) return IsHeroAlive(p) end)
+
+  local target_location = functions.GetLastPlayerLocation(target_player)
+  return target_location ~= nil
+         and GetUnitToLocationDistance(GetBot(), target_location)
+             < constants.MAX_ROAM_RADIUS
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 

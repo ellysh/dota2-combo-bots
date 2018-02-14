@@ -39,6 +39,8 @@ M.MAX_SHOP_DESIRE = 0.6
 M.MAX_PUSH_DESIRE = 0.75
 M.MAX_ATTACK_DESIRE = 0.7
 
+M.MAX_ROAM_RADIUS = 4500
+
 -- This is a mapping string from database to the numeric constants for API
 M.BOT_MODES = {
   BOT_MODE_NONE = 0,

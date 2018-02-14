@@ -28,7 +28,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {-10, 20},
     BOT_MODE_PUSH_TOWER_MID = {-10, 20},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 20},
-    BOT_MODE_TEAM_ROAM = {30, -30}
+    BOT_MODE_TEAM_ROAM = {20, -10}
   },
 
   max_kills_ally_hero_alive = {
@@ -42,7 +42,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {10, -30},
     BOT_MODE_PUSH_TOWER_MID = {10, -30},
     BOT_MODE_PUSH_TOWER_BOT = {10, -30},
-    BOT_MODE_TEAM_ROAM = {20, -30}
+    BOT_MODE_TEAM_ROAM = {10, -30}
   },
 
   more_ally_heroes_alive_then_enemy = {
@@ -98,7 +98,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
     BOT_MODE_PUSH_TOWER_MID = {-10, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
-    BOT_MODE_TEAM_ROAM = {20, 0}
+    BOT_MODE_TEAM_ROAM = {10, 0}
   },
 
   all_enemy_team_dead = {

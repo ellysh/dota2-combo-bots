@@ -229,4 +229,22 @@ function test_is_attacked_by_enemy_creep_not_enemy_creep_fails()
   luaunit.assertFalse(algorithms.is_attacked_by_enemy_creep())
 end
 
+function test_roam_target_is_near_succeed()
+  test_RefreshBot()
+
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
+
+  luaunit.assertTrue(algorithms.roam_target_is_near())
+end
+
+function test_roam_target_is_near_but_too_far_fails()
+  test_RefreshBot()
+
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = { {location = {5000, 5000}, time_since_seen = 2} }
+
+  luaunit.assertFalse(algorithms.roam_target_is_near())
+end
+
 os.exit(luaunit.LuaUnit.run())

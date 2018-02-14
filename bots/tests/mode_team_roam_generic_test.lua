@@ -9,9 +9,9 @@ local luaunit = require("luaunit")
 function test_GetDesire_positive()
   test_RefreshBot()
 
-  ROAM_DESIRE = 0.5
+  ROAM_DESIRE = 0.6
 
-  luaunit.assertEquals(GetDesire(), 0.5)
+  luaunit.assertAlmostEquals(GetDesire(), 0.1, 0.01)
 end
 
 function test_GetDesire_low_hp_negative()
@@ -22,7 +22,7 @@ function test_GetDesire_low_hp_negative()
 
   ROAM_DESIRE = 0
 
-  luaunit.assertEquals(GetDesire(), -0.3)
+  luaunit.assertEquals(GetDesire(), -0.8)
 end
 
 function test_Think_attack_succeed()
