@@ -118,7 +118,7 @@ function M.is_attacked_by_tower()
 end
 
 function M.is_attacked_by_enemy_hero()
-  return GetBot():WasRecentlyDamagedByAnyHero(0.5)
+  return GetBot():WasRecentlyDamagedByAnyHero(1.0)
 end
 
 function M.is_attacked_by_enemy_creep()
@@ -127,7 +127,7 @@ function M.is_attacked_by_enemy_creep()
   if #enemy_creeps == 0 then
     return false end
 
-  return GetBot():WasRecentlyDamagedByCreep(0.5)
+  return GetBot():WasRecentlyDamagedByCreep(1.0)
 end
 
 function M.roam_target_is_near()
