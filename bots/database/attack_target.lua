@@ -17,20 +17,6 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 85
   },
 
-  max_estimated_damage_enemy_hero = {
-      BOT_MODE_ROAM = 80,
-      BOT_MODE_TEAM_ROAM = 80,
-      BOT_MODE_PUSH_TOWER = 75,
-      BOT_MODE_ATTACK = 75,
-      BOT_MODE_NONE = 75,
-      BOT_MODE_LANING = 0,
-      BOT_MODE_ROSHAN = 0,
-      BOT_MODE_FARM = 0,
-      BOT_MODE_DEFEND_TOWER = 80,
-      BOT_MODE_RETREAT = 0,
-      BOT_MODE_DEFEND_ALLY = 80
-  },
-
   max_hp_enemy_creep = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,

@@ -67,26 +67,6 @@ function test_max_kills_enemy_hero_not_targetable_fails()
   test_algorithm_pattern_fails("max_kills_enemy_hero")
 end
 
-function test_max_estimated_damage_enemy_hero_succeed()
-  test_RefreshBot()
-
-  UNIT_CAN_BE_SEEN = true
-
-  test_algorithm_pattern_succeed(
-    "max_estimated_damage_enemy_hero",
-    "unit2")
-end
-
-function test_max_estimated_damage_enemy_hero_not_targetable_fails()
-  test_RefreshBot()
-
-  UNIT_CAN_BE_SEEN = false
-
-  test_algorithm_pattern_fails(
-    "max_estimated_damage_enemy_hero",
-    "unit2")
-end
-
 function test_max_hp_enemy_creep_succeed()
   test_RefreshBot()
 

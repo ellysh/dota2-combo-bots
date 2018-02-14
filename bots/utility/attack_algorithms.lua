@@ -31,36 +31,6 @@ function M.max_kills_enemy_hero(bot, radius)
   return true, enemy_hero
 end
 
-local function CompareMaxEstimatedDamage(t, a, b)
-  local b_damage = t[b]:GetEstimatedDamageToTarget(
-    true,
-    GetBot(),
-    3.0,
-    DAMAGE_TYPE_ALL)
-
-  local a_damage = t[a]:GetEstimatedDamageToTarget(
-    true,
-    GetBot(),
-    3.0,
-    DAMAGE_TYPE_ALL)
-
-  return b_damage < a_damage
-end
-
-function M.max_estimated_damage_enemy_hero(bot, radius)
-  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
-
-  local enemy_hero = functions.GetElementWith(
-    enemy_heroes,
-    CompareMaxEstimatedDamage,
-    IsTargetable)
-
-  if enemy_hero == nil then
-    return false, nil end
-
-  return true, enemy_hero
-end
-
 local function CompareMaxHealth(t, a, b)
   return t[b]:GetHealth() < t[a]:GetHealth()
 end
