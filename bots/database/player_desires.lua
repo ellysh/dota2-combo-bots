@@ -63,16 +63,6 @@ M.PLAYER_DESIRES = {
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
   },
 
-  more_enemy_heroes_around_then_ally = {
-    BOT_MODE_PUSH_TOWER_TOP = {-10, 0},
-    BOT_MODE_PUSH_TOWER_MID = {-10, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {-10, 0},
-    BOT_MODE_RETREAT = {80, 0},
-    BOT_MODE_TEAM_ROAM = {-10, 0},
-    BOT_MODE_ATTACK  = {-40, 0},
-    BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
-  },
-
   is_shrine_healing_and_no_enemy = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},

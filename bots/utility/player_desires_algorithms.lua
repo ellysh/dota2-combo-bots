@@ -49,18 +49,6 @@ function M.has_buyback()
          and bot:GetBuybackCost() <= bot:GetGold()
 end
 
-function M.more_enemy_heroes_around_then_ally()
-  local bot = GetBot()
-  local enemies = functions.GetEnemyHeroes(
-    bot,
-    constants.MAX_GET_UNITS_RADIUS)
-  local allies = functions.GetAllyHeroes(
-    bot,
-    constants.MAX_GET_UNITS_RADIUS)
-
-  return #allies < (#enemies - 1)
-end
-
 function M.is_shrine_healing_and_no_enemy()
   local bot = GetBot()
 

@@ -90,21 +90,6 @@ function test_player_has_buyback()
   luaunit.assertFalse(algorithms.has_buyback())
 end
 
-function test_more_enemy_heroes_around_then_ally_succeed()
-  test_RefreshBot()
-
-  UNIT_NO_NEARBY_UNITS = false
-  UNIT_NO_NEARBY_ALLIES = true
-
-  luaunit.assertTrue(algorithms.more_enemy_heroes_around_then_ally())
-end
-
-function test_more_enemy_heroes_around_then_ally_fails()
-  test_RefreshBot()
-
-  luaunit.assertFalse(algorithms.more_enemy_heroes_around_then_ally())
-end
-
 function test_is_shrine_healing_and_no_enemy_succeed()
   test_RefreshBot()
 
