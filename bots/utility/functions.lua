@@ -248,8 +248,22 @@ function M.GetKeyWith(list, compare_function, validate_function)
   return nil
 end
 
+function M.DoWithElements(list, do_function)
+  local result = 0
+
+  for _, element in pairs(list) do
+    do_function(element)
+  end
+
+  return result
+end
+
+function M.GetRate(a, b)
+  return a / b
+end
+
 function M.GetUnitHealthLevel(unit)
-  return unit:GetHealth() / unit:GetMaxHealth()
+  return M.GetRate(unit:GetHealth(), unit:GetMaxHealth())
 end
 
 function M.IsUnitHaveItems(unit, items)

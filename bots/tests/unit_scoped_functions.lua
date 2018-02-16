@@ -541,7 +541,7 @@ function Unit:GetAttackTarget()
 end
 
 function Unit:GetAttackDamage()
-  return 60
+  return self.damage
 end
 
 UNIT_HAS_BUYBACK = true

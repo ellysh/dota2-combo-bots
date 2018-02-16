@@ -121,13 +121,20 @@ function M.is_attacked_by_enemy_hero()
   return GetBot():WasRecentlyDamagedByAnyHero(1.0)
 end
 
-function M.is_attacked_by_enemy_creep()
+function M.is_focused_by_enemy_creeps()
+  local bot = GetBot()
   local enemy_creeps = functions.GetEnemyCreeps(GetBot(), 600)
+  local total_damage = 0
 
-  if #enemy_creeps == 0 then
-    return false end
+  functions.DoWithElements(
+    enemy_creeps,
+    function(unit)
+      if unit:GetAttackTarget() == bot then
+        total_damage = total_damage + unit:GetAttackDamage()
+      end
+    end)
 
-  return GetBot():WasRecentlyDamagedByCreep(1.0)
+  return 0.1 < functions.GetRate(total_damage, bot:GetHealth())
 end
 
 function M.roam_target_is_near()

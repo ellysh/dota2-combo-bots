@@ -123,14 +123,14 @@ M.PLAYER_DESIRES = {
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
   },
 
-  is_attacked_by_enemy_creep = {
+  is_focused_by_enemy_creeps = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_RETREAT = {0, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_ATTACK  = {10, 0},
-    BOT_MODE_EVASIVE_MANEUVERS = {76, 0}
+    BOT_MODE_EVASIVE_MANEUVERS = {66, 0}
   },
 
   roam_target_is_near = {

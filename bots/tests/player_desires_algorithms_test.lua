@@ -200,33 +200,33 @@ function test_is_attacked_by_enemy_hero_fails()
   luaunit.assertFalse(algorithms.is_attacked_by_enemy_hero())
 end
 
-function test_is_attacked_by_enemy_creep_succeed()
+function test_is_focused_by_enemy_creeps_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
-  UNIT_WAS_DAMAGED = true
+  ATTACK_TARGET = bot
   UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertTrue(algorithms.is_attacked_by_enemy_creep())
+  luaunit.assertTrue(algorithms.is_focused_by_enemy_creeps())
 end
 
-function test_is_attacked_by_enemy_creep_not_damaged_fails()
+function test_is_focused_by_enemy_creeps_low_damaged_fails()
   test_RefreshBot()
 
   local bot = GetBot()
-  UNIT_WAS_DAMAGED = false
+  bot.health = 5000
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertFalse(algorithms.is_attacked_by_enemy_creep())
+  luaunit.assertFalse(algorithms.is_focused_by_enemy_creeps())
 end
 
-function test_is_attacked_by_enemy_creep_not_enemy_creep_fails()
+function test_is_focused_by_enemy_creeps_no_creeps_fails()
   test_RefreshBot()
 
-  local bot = GetBot()
-  UNIT_WAS_DAMAGED = true
   UNIT_NO_NEARBY_UNITS = true
 
-  luaunit.assertFalse(algorithms.is_attacked_by_enemy_creep())
+  luaunit.assertFalse(algorithms.is_focused_by_enemy_creeps())
 end
 
 function test_roam_target_is_near_succeed()
