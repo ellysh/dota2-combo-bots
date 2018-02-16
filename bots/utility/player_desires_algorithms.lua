@@ -144,7 +144,7 @@ function M.is_focused_by_stronger_enemy_heroes()
   local bot = GetBot()
   local enemy_heroes = functions.GetEnemyHeroes(
     bot,
-    constants.MAX_HERO_ATTACK_RANGE)
+    constants.MAX_GET_UNITS_RADIUS)
 
   if #enemy_heroes == 0 then
     return false end
