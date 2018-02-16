@@ -105,16 +105,11 @@ function M.has_not_full_hp_mp_and_near_fountain()
   return bot:HasModifier("modifier_fountain_aura_buff")
 end
 
-function M.is_focused_by_enemy_towers()
-  local bot = GetBot()
-  local enemy_towers = bot:GetNearbyTowers(
-    constants.MAX_GET_UNITS_RADIUS,
-    true)
-
+local function IsFocusedByEnemyUnits(bot, units)
   local total_damage = 0
 
   functions.DoWithElements(
-    enemy_towers,
+    units,
     function(unit)
       if unit:GetAttackTarget() == bot then
         total_damage = total_damage + unit:GetAttackDamage()
@@ -122,6 +117,15 @@ function M.is_focused_by_enemy_towers()
     end)
 
   return 0.1 < functions.GetRate(total_damage, bot:GetHealth())
+end
+
+function M.is_focused_by_enemy_towers()
+  local bot = GetBot()
+  local enemy_towers = bot:GetNearbyTowers(
+    700,
+    true)
+
+  return IsFocusedByEnemyUnits(bot, enemy_towers)
 end
 
 function M.is_attacked_by_enemy_hero()
@@ -130,18 +134,9 @@ end
 
 function M.is_focused_by_enemy_creeps()
   local bot = GetBot()
-  local enemy_creeps = functions.GetEnemyCreeps(GetBot(), 600)
-  local total_damage = 0
+  local enemy_creeps = functions.GetEnemyCreeps(bot, 600)
 
-  functions.DoWithElements(
-    enemy_creeps,
-    function(unit)
-      if unit:GetAttackTarget() == bot then
-        total_damage = total_damage + unit:GetAttackDamage()
-      end
-    end)
-
-  return 0.1 < functions.GetRate(total_damage, bot:GetHealth())
+  return IsFocusedByEnemyUnits(bot, enemy_creeps)
 end
 
 function M.roam_target_is_near()
