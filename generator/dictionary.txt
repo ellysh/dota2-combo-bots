@@ -26,6 +26,7 @@ has_tp_scroll_or_travel_boots
 is_focused_by_enemy_creeps
 is_focused_by_enemy_towers
 is_focused_by_stronger_enemy_heroes
+is_focused_by_weaker_enemy_heroes
 is_night
 is_shrine_healing_and_enemies_near
 is_shrine_healing_and_no_enemy

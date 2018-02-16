@@ -128,7 +128,7 @@ local function IsTargetable(unit)
          and not unit:IsIllusion()
 end
 
-function M.is_focused_by_stronger_enemy_heroes()
+local function IsFocusedByEnemyHeroes(is_stronger)
   local bot = GetBot()
   local enemy_heroes = functions.GetEnemyHeroes(
     bot,
@@ -149,7 +149,17 @@ function M.is_focused_by_stronger_enemy_heroes()
   local hits_to_die = bot:GetHealth() / GetTotalDamage(enemy_heroes, bot)
   local hits_to_kill = enemy_hero:GetHealth() / bot:GetAttackDamage()
 
-  return hits_to_die <= hits_to_kill
+  return functions.ternary(is_stronger,
+    hits_to_die <= hits_to_kill,
+    hits_to_kill < hits_to_die)
+end
+
+function M.is_focused_by_stronger_enemy_heroes()
+  return IsFocusedByEnemyHeroes(true)
+end
+
+function M.is_focused_by_weaker_enemy_heroes()
+  return IsFocusedByEnemyHeroes(false)
 end
 
 function M.is_focused_by_enemy_creeps()

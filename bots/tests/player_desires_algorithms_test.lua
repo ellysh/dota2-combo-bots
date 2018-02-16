@@ -195,6 +195,32 @@ function test_is_focused_by_stronger_enemy_heroes_weaker_fails()
   luaunit.assertFalse(algorithms.is_focused_by_stronger_enemy_heroes())
 end
 
+function test_is_focused_by_weaker_enemy_heroes_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 5000
+  bot.damage = 200
+
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_focused_by_weaker_enemy_heroes())
+end
+
+function test_is_focused_by_weaker_enemy_heroes_stronger_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 100
+  bot.damage = 5
+
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(algorithms.is_focused_by_weaker_enemy_heroes())
+end
+
 function test_is_focused_by_enemy_creeps_succeed()
   test_RefreshBot()
 
