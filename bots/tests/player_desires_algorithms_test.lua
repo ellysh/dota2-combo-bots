@@ -149,7 +149,7 @@ function test_has_not_full_hp_mp_and_near_fountain_succeed()
   luaunit.assertTrue(algorithms.has_not_full_hp_mp_and_near_fountain())
 end
 
-function test_is_attacked_by_tower_succeed()
+function test_is_focused_by_enemy_towers_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -157,10 +157,10 @@ function test_is_attacked_by_tower_succeed()
   UNIT_IS_NEARBY_TOWERS = true
   UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertTrue(algorithms.is_attacked_by_tower())
+  luaunit.assertTrue(algorithms.is_focused_by_enemy_towers())
 end
 
-function test_is_attacked_by_tower_no_tower_fails()
+function test_is_focused_by_enemy_towers_no_towers_fails()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -168,18 +168,20 @@ function test_is_attacked_by_tower_no_tower_fails()
   UNIT_IS_NEARBY_TOWERS = false
   UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertFalse(algorithms.is_attacked_by_tower())
+  luaunit.assertFalse(algorithms.is_focused_by_enemy_towers())
 end
 
-function test_is_attacked_by_tower_not_attacked_fails()
+function test_is_focused_by_enemy_towers_low_damage_fails()
   test_RefreshBot()
 
   local bot = GetBot()
-  ATTACK_TARGET = nil
+  bot.health = 5000
+
+  ATTACK_TARGET = bot
   UNIT_IS_NEARBY_TOWERS = true
   UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertFalse(algorithms.is_attacked_by_tower())
+  luaunit.assertFalse(algorithms.is_focused_by_enemy_towers())
 end
 
 function test_is_attacked_by_enemy_hero_succeed()

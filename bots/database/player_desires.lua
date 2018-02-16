@@ -103,7 +103,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
   },
 
-  is_attacked_by_tower = {
+  is_focused_by_enemy_towers = {
     BOT_MODE_PUSH_TOWER_TOP = {-30, 0},
     BOT_MODE_PUSH_TOWER_MID = {-30, 0},
     BOT_MODE_PUSH_TOWER_BOT = {-30, 0},

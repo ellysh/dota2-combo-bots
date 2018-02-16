@@ -105,16 +105,23 @@ function M.has_not_full_hp_mp_and_near_fountain()
   return bot:HasModifier("modifier_fountain_aura_buff")
 end
 
-function M.is_attacked_by_tower()
+function M.is_focused_by_enemy_towers()
   local bot = GetBot()
-  local towers = bot:GetNearbyTowers(
+  local enemy_towers = bot:GetNearbyTowers(
     constants.MAX_GET_UNITS_RADIUS,
     true)
 
-  if #towers == 0 then
-    return false end
+  local total_damage = 0
 
-  return towers[1]:GetAttackTarget() == bot
+  functions.DoWithElements(
+    enemy_towers,
+    function(unit)
+      if unit:GetAttackTarget() == bot then
+        total_damage = total_damage + unit:GetAttackDamage()
+      end
+    end)
+
+  return 0.1 < functions.GetRate(total_damage, bot:GetHealth())
 end
 
 function M.is_attacked_by_enemy_hero()
