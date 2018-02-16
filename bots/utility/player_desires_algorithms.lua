@@ -1,4 +1,4 @@
-local logger = require(
+ local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
 local functions = require(
@@ -105,38 +105,74 @@ function M.has_not_full_hp_mp_and_near_fountain()
   return bot:HasModifier("modifier_fountain_aura_buff")
 end
 
-local function IsFocusedByEnemyUnits(bot, units)
+local function GetTotalDamage(units, target)
   local total_damage = 0
 
   functions.DoWithElements(
     units,
     function(unit)
-      if unit:GetAttackTarget() == bot then
+      if unit:GetAttackTarget() == target then
         total_damage = total_damage + unit:GetAttackDamage()
       end
     end)
 
-  return 0.1 < functions.GetRate(total_damage, bot:GetHealth())
+  return total_damage
 end
 
 function M.is_focused_by_enemy_towers()
   local bot = GetBot()
   local enemy_towers = bot:GetNearbyTowers(
-    700,
+    constants.MAX_TOWER_ATTACK_RANGE,
     true)
 
-  return IsFocusedByEnemyUnits(bot, enemy_towers)
+  return 0.1 < functions.GetRate(
+                 GetTotalDamage(enemy_towers, bot),
+                 bot:GetHealth())
 end
 
-function M.is_attacked_by_enemy_hero()
-  return GetBot():WasRecentlyDamagedByAnyHero(1.0)
+-- TODO: Move this function to functions.IsAttackTargetable.
+-- This is a duplicate of the attack_algorithms.IsTargetable.
+
+local function IsTargetable(unit)
+  return unit:CanBeSeen()
+         and unit:IsAlive()
+         and not unit:IsInvulnerable()
+         and not unit:IsIllusion()
+end
+
+function M.is_focused_by_stronger_enemy_heroes()
+  local bot = GetBot()
+  local enemy_heroes = functions.GetEnemyHeroes(
+    bot,
+    constants.MAX_HERO_ATTACK_RANGE)
+
+  if #enemy_heroes == 0 then
+    return false end
+
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxHeroKills,
+    IsTargetable)
+
+  if enemy_hero == nil then
+    return true end
+
+  -- TODO: Should we consider enemy/allies creeps/towers in this calculation?
+  local hits_to_die = bot:GetHealth() / GetTotalDamage(enemy_heroes, bot)
+  local hits_to_kill = enemy_hero:GetHealth() / bot:GetAttackDamage()
+
+  return hits_to_die <= hits_to_kill
 end
 
 function M.is_focused_by_enemy_creeps()
   local bot = GetBot()
-  local enemy_creeps = functions.GetEnemyCreeps(bot, 600)
+  local enemy_creeps = functions.GetEnemyCreeps(
+    bot,
+    constants.MAX_CREEP_ATTACK_RANGE)
 
-  return IsFocusedByEnemyUnits(bot, enemy_creeps)
+  return 0.1 < functions.GetRate(
+                 GetTotalDamage(enemy_creeps, bot),
+                 bot:GetHealth())
 end
 
 function M.roam_target_is_near()

@@ -184,22 +184,30 @@ function test_is_focused_by_enemy_towers_low_damage_fails()
   luaunit.assertFalse(algorithms.is_focused_by_enemy_towers())
 end
 
-function test_is_attacked_by_enemy_hero_succeed()
+function test_is_focused_by_stronger_enemy_heroes_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
-  UNIT_WAS_DAMAGED = true
+  bot.health = 100
+  bot.damage = 5
 
-  luaunit.assertTrue(algorithms.is_attacked_by_enemy_hero())
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_focused_by_stronger_enemy_heroes())
 end
 
-function test_is_attacked_by_enemy_hero_fails()
+function test_is_focused_by_stronger_enemy_heroes_weaker_fails()
   test_RefreshBot()
 
   local bot = GetBot()
-  UNIT_WAS_DAMAGED = false
+  bot.health = 5000
+  bot.damage = 200
 
-  luaunit.assertFalse(algorithms.is_attacked_by_enemy_hero())
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(algorithms.is_focused_by_stronger_enemy_heroes())
 end
 
 function test_is_focused_by_enemy_creeps_succeed()
