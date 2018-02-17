@@ -148,6 +148,10 @@ function M.roam_target_is_near()
              < constants.MAX_ROAM_RADIUS
 end
 
+function M.has_level_six()
+  return 6 <= GetBot():GetLevel()
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 
