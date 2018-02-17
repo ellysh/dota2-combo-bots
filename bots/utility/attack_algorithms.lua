@@ -83,15 +83,21 @@ function M.min_hp_enemy_building(bot, radius)
   return true, enemy_building
 end
 
-function M.low_hp_enemy_hero(bot, radius)
-  local enemy_heroes = common_algorithms.GetEnemyHeroes(bot, radius)
-  local enemy_hero = functions.GetElementWith(
-    enemy_heroes,
+local function GetLowHpUnit(units)
+  local result = functions.GetElementWith(
+    units,
     common_algorithms.CompareMinHealth,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
              and common_algorithms.IsUnitLowHp(unit)
     end)
+
+    return result
+end
+
+function M.low_hp_enemy_hero(bot, radius)
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(bot, radius)
+  local enemy_hero = GetLowHpUnit(enemy_heroes)
 
   if enemy_hero == nil then
     return false, nil end
@@ -103,13 +109,7 @@ function M.low_hp_enemy_building(bot, radius)
   local enemy_buildings =
     common_algorithms.GetEnemyBuildings(bot, radius)
 
-  local enemy_building = functions.GetElementWith(
-    enemy_buildings,
-    common_algorithms.CompareMinHealth,
-    function(unit)
-      return common_algorithms.IsAttackTargetable(unit)
-             and common_algorithms.IsUnitLowHp(unit)
-    end)
+  local enemy_building = GetLowHpUnit(enemy_buildings)
 
   if enemy_building == nil then
     return false, nil end
