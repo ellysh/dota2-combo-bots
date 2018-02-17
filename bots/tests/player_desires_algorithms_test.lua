@@ -134,6 +134,30 @@ function test_has_not_full_hp_mp_and_near_fountain_succeed()
   luaunit.assertTrue(algorithms.has_not_full_hp_mp_and_near_fountain())
 end
 
+function test_is_focused_by_enemies_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 100
+
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_focused_by_enemies())
+end
+
+function test_is_focused_by_enemies_low_damage_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 5000
+
+  ATTACK_TARGET = bot
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(algorithms.is_focused_by_enemies())
+end
+
 function test_roam_target_is_near_succeed()
   test_RefreshBot()
 
