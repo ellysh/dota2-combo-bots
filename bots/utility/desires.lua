@@ -9,7 +9,7 @@ local M = {}
 function M.Think(database_table, algorithms_implementation)
   local result = {}
 
-  for algorithm, desires in functions.spairs(database_table) do
+  for algorithm, desires in pairs(database_table) do
     if algorithms_implementation[algorithm] == nil then
       goto continue end
 
