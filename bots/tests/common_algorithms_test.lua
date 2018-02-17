@@ -49,4 +49,24 @@ function test_IsAttackTargetable_illusion_fails()
   luaunit.assertFalse(algorithms.IsAttackTargetable(unit))
 end
 
+function test_GetMaxKillsPlayer_succeed()
+  IS_HERO_ALIVE = true
+
+  luaunit.assertEquals(
+    algorithms.GetMaxKillsPlayer(
+      GetOpposingTeam(),
+      function(p) return IsHeroAlive(p) end),
+    1)
+end
+
+function test_GetMaxKillsPlayer_hero_dead_fails()
+  IS_HERO_ALIVE = false
+
+  luaunit.assertEquals(
+    algorithms.GetMaxKillsPlayer(
+      GetOpposingTeam(),
+      function(p) return IsHeroAlive(p) end),
+    nil)
+end
+
 os.exit(luaunit.LuaUnit.run())

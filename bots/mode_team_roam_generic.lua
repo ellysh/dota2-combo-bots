@@ -13,8 +13,8 @@ local attack = require(
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
 
 local M = {}
 
@@ -26,7 +26,7 @@ function GetDesire()
 end
 
 function Think()
-  local target_player = functions.GetMaxKillsPlayer(
+  local target_player = common_algorithms.GetMaxKillsPlayer(
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 

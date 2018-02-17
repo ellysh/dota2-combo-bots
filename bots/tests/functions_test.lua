@@ -792,26 +792,6 @@ function test_IsEnemyOnTheWay_no_enemy_fails()
   luaunit.assertFalse(functions.IsEnemyHeroOnTheWay(bot, {100, 100}))
 end
 
-function test_GetMaxKillsPlayer_succeed()
-  IS_HERO_ALIVE = true
-
-  luaunit.assertEquals(
-    functions.GetMaxKillsPlayer(
-      GetOpposingTeam(),
-      function(p) return IsHeroAlive(p) end),
-    1)
-end
-
-function test_GetMaxKillsPlayer_hero_dead_fails()
-  IS_HERO_ALIVE = false
-
-  luaunit.assertEquals(
-    functions.GetMaxKillsPlayer(
-      GetOpposingTeam(),
-      function(p) return IsHeroAlive(p) end),
-    nil)
-end
-
 function test_GetLastPlayerLocation_succeed()
   IS_HERO_ALIVE = true
   HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }

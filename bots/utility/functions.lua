@@ -458,20 +458,6 @@ function M.IsEnemyHeroOnTheWay(bot, location)
     end)
 end
 
-local function CompareMaxHeroKills(t, a, b)
-  return GetHeroKills(t[b]) < GetHeroKills(t[a])
-end
-
-function M.GetMaxKillsPlayer(team, validate_function)
-  local players = GetTeamPlayers(team)
-  local player = M.GetElementWith(
-    players,
-    CompareMaxHeroKills,
-    validate_function)
-
-  return player
-end
-
 function M.GetLastPlayerLocation(player)
   if player == nil then
     return nil end

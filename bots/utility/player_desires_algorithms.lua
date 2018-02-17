@@ -161,7 +161,7 @@ function M.is_weaker_enemy_hero_near()
 end
 
 function M.roam_target_is_near()
-  local target_player = functions.GetMaxKillsPlayer(
+  local target_player = common_algorithms.GetMaxKillsPlayer(
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 

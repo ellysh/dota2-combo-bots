@@ -7,6 +7,9 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
+
 local M = {}
 
 function M.ally_mega_creeps()
@@ -48,7 +51,7 @@ function M.ally_has_cheese()
 end
 
 function M.max_kills_enemy_hero_alive()
-  local player = functions.GetMaxKillsPlayer(
+  local player = common_algorithms.GetMaxKillsPlayer(
     GetOpposingTeam(),
     nil)
 
@@ -56,7 +59,7 @@ function M.max_kills_enemy_hero_alive()
 end
 
 function M.max_kills_ally_hero_alive()
-  local player = functions.GetMaxKillsPlayer(
+  local player = common_algorithms.GetMaxKillsPlayer(
     GetTeam(),
     nil)
 
@@ -172,7 +175,7 @@ local function IsEnemyHeroInLocation(location)
 end
 
 function M.enemy_hero_was_seen()
-  local player = functions.GetMaxKillsPlayer(
+  local player = common_algorithms.GetMaxKillsPlayer(
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 

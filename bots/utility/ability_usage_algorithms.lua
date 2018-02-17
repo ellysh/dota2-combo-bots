@@ -7,6 +7,9 @@ local constants = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
+
 local M = {}
 
 local function IsTargetable(unit)
@@ -42,11 +45,6 @@ local function CompareMinHealth(t, a, b)
   return t[a]:GetHealth() < t[b]:GetHealth()
 end
 
-local function CompareMaxHeroKills(t, a, b)
-  return GetHeroKills(t[b]:GetPlayerID()) <
-    GetHeroKills(t[a]:GetPlayerID())
-end
-
 function M.min_hp_enemy_hero_to_kill(bot, ability)
   local enemy_heroes = functions.GetEnemyHeroes(
     bot,
@@ -54,7 +52,7 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMaxHeroKills,
+    common_algorithms.CompareMaxHeroKills,
     function(hero)
       return IsTargetable(hero) and IsEnoughDamageToKill(hero, ability)
     end)
@@ -69,7 +67,7 @@ function M.channeling_enemy_hero(bot, ability)
   local enemies = functions.GetEnemyHeroes(bot, ability:GetCastRange())
   local enemy_hero = functions.GetElementWith(
     enemies,
-    CompareMaxHeroKills,
+    common_algorithms.CompareMaxHeroKills,
     function(hero)
       return IsTargetable(hero) and hero:IsChanneling()
     end)
@@ -162,7 +160,7 @@ function M.last_attacked_enemy_hero(bot, ability)
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMaxHeroKills,
+    common_algorithms.CompareMaxHeroKills,
     function(hero)
       return bot:WasRecentlyDamagedByHero(hero, 2.0)
              and IsTargetable(hero)
