@@ -43,6 +43,7 @@ M.MAX_ROAM_RADIUS = 4500
 
 M.MAX_CREEP_ATTACK_RANGE = 690
 M.MAX_TOWER_ATTACK_RANGE = 700
+M.MAX_HERO_ATTACK_RANGE = 700
 
 -- This is a mapping string from database to the numeric constants for API
 M.BOT_MODES = {
