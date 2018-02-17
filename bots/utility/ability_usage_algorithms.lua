@@ -54,7 +54,7 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMaxHeroKillCompareMaxHeroKills,
+    CompareMaxHeroKills,
     function(hero)
       return IsTargetable(hero) and IsEnoughDamageToKill(hero, ability)
     end)
