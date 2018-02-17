@@ -1,4 +1,5 @@
 * version 1.1
+  - Fix a bug with an excessive aggression in the laning phase.
   - Bots estimate a power of the enemy hero before attacking him.
   - Make a limit for the roam target distance.
   - Implementation of the evasive_maneuvers mode. Now bots evade the
