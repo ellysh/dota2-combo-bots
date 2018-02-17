@@ -6,33 +6,6 @@ require("global_functions")
 local algorithms = require("attack_algorithms")
 local luaunit = require('luaunit')
 
-function test_IsTargetable()
-  local unit = Unit:new()
-
-  luaunit.assertTrue(algorithms.test_IsTargetable(unit))
-
-  UNIT_CAN_BE_SEEN = false
-
-  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
-
-  UNIT_CAN_BE_SEEN = true
-  UNIT_IS_MAGIC_IMMUNE = true
-
-  luaunit.assertTrue(algorithms.test_IsTargetable(unit))
-
-  UNIT_IS_MAGIC_IMMUNE = false
-  UNIT_IS_INVULNERABLE = true
-
-  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
-
-  UNIT_IS_INVULNERABLE = false
-  UNIT_IS_ILLUSION = true
-
-  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
-
-  UNIT_IS_ILLUSION = false
-end
-
 local function test_algorithm_pattern_succeed(algorithm, expect_target)
   local desire, target = algorithms[algorithm](
     GetBot(),

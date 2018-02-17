@@ -4,26 +4,17 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
+
 local M = {}
-
-local function IsTargetable(unit)
-  return unit:CanBeSeen()
-         and unit:IsAlive()
-         and not unit:IsInvulnerable()
-         and not unit:IsIllusion()
-end
-
-local function CompareMaxHeroKills(t, a, b)
-  return GetHeroKills(t[b]:GetPlayerID()) <
-    GetHeroKills(t[a]:GetPlayerID())
-end
 
 function M.max_kills_enemy_hero(bot, radius)
   local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMaxHeroKills,
-    IsTargetable)
+    common_algorithms.CompareMaxHeroKills,
+    common_algorithms.IsAttackTargetable)
 
   if enemy_hero == nil then
     return false, nil end
@@ -44,7 +35,7 @@ function M.max_hp_enemy_creep(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
     CompareMaxHealth,
-    IsTargetable)
+    common_algorithms.IsAttackTargetable)
 
   if creep == nil then
     return false, nil end
@@ -57,7 +48,7 @@ function M.max_hp_neutral_creep(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
     CompareMaxHealth,
-    IsTargetable)
+    common_algorithms.IsAttackTargetable)
 
   if creep == nil then
     return false, nil end
@@ -75,7 +66,8 @@ function M.last_hit_enemy_creep(bot, radius)
     creeps,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit) and IsLastHit(bot, unit)
+      return common_algorithms.IsAttackTargetable(unit)
+             and IsLastHit(bot, unit)
     end)
 
   if creep == nil then
@@ -91,7 +83,7 @@ function M.min_hp_enemy_building(bot, radius)
   local enemy_building = functions.GetElementWith(
     enemy_buildings,
     CompareMinHealth,
-    IsTargetable)
+    common_algorithms.IsAttackTargetable)
 
   if enemy_building == nil then
     return false, nil end
@@ -105,7 +97,8 @@ function M.low_hp_enemy_hero(bot, radius)
     enemy_heroes,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
+      return common_algorithms.IsAttackTargetable(unit)
+             and functions.IsUnitLowHp(unit)
     end)
 
   if enemy_hero == nil then
@@ -122,7 +115,8 @@ function M.low_hp_enemy_building(bot, radius)
     enemy_buildings,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
+      return common_algorithms.IsAttackTargetable(unit)
+             and functions.IsUnitLowHp(unit)
     end)
 
   if enemy_building == nil then
@@ -135,9 +129,10 @@ function M.attacking_enemy_hero(bot, radius)
   local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMaxHeroKills,
+    common_algorithms.CompareMaxHeroKills,
     function(unit)
-      return IsTargetable(unit) and unit:GetAttackTarget() == bot
+      return common_algorithms.IsAttackTargetable(unit)
+             and unit:GetAttackTarget() == bot
     end)
 
   if enemy_hero == nil then
@@ -152,7 +147,8 @@ function M.attacking_enemy_creep(bot, radius)
     enemy_creeps,
     CompareMinHealth,
     function(unit)
-      return IsTargetable(unit) and unit:GetAttackTarget() == bot
+      return common_algorithms.IsAttackTargetable(unit)
+             and unit:GetAttackTarget() == bot
     end)
 
   if enemy_creep == nil then
@@ -162,7 +158,6 @@ function M.attacking_enemy_creep(bot, radius)
 end
 
 -- Provide an access to local functions and variables for unit tests only
-M.test_IsTargetable = IsTargetable
 M.test_IsLastHit = IsLastHit
 
 return M

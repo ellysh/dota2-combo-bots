@@ -7,6 +7,9 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
+
 local M = {}
 
 function M.has_low_hp()
@@ -128,22 +131,6 @@ function M.is_focused_by_enemies()
   return 0.2 < functions.GetRate(total_damage, bot:GetHealth())
 end
 
--- TODO: This is a code duplication
-
-local function IsTargetable(unit)
-  return unit:CanBeSeen()
-         and unit:IsAlive()
-         and not unit:IsInvulnerable()
-         and not unit:IsIllusion()
-end
-
--- TODO: This is a code duplication
-
-local function CompareMaxHeroKills(t, a, b)
-  return GetHeroKills(t[b]:GetPlayerID()) <
-    GetHeroKills(t[a]:GetPlayerID())
-end
-
 local function IsWeakerTarget(unit, target)
   local hits_to_die = functions.GetRate(
     unit:GetHealth(),
@@ -164,9 +151,10 @@ function M.is_weaker_enemy_hero_near()
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMaxHeroKills,
+    common_algorithms.CompareMaxHeroKills,
     function(unit)
-      return IsTargetable(unit) and IsWeakerTarget(bot, unit)
+      return common_algorithms.IsAttackTargetable(unit)
+             and IsWeakerTarget(bot, unit)
     end)
 
   return enemy_hero ~= nil
