@@ -1,4 +1,10 @@
 * version 1.1
+  - Bots estimate a power of the enemy hero before attacking him.
+  - Make a limit for the roam target distance.
+  - Implementation of the evasive_maneuvers mode. Now bots evade the
+    damage from enemy towers and creeps.
+  - Fix a bug with hanging in the roam mode.
+  - Fix a bug with a canceling TP scrolls.
   - Fix a bug with picking up rune when it is out of a vision range
     because of elevation.
 
