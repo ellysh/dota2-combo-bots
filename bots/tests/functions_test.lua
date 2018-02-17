@@ -663,4 +663,16 @@ function test_ComplementOfLists_unit_lists_succeed()
   luaunit.assertEquals(units[4], nil)
 end
 
+function test_DoWithElements_succeed()
+  local list = {1, 2, 3, 4, 5}
+
+  local sum = 0
+
+  functions.DoWithElements(
+    list,
+    function(element) sum = sum + element end)
+
+  luaunit.assertEquals(sum, 15)
+end
+
 os.exit(luaunit.LuaUnit.run())

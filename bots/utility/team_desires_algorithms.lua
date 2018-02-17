@@ -152,7 +152,7 @@ end
 
 local function IsEnemyHeroInLocation(location)
   local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
-  local nearby_hero = functions.GetElementWith(
+  local nearby_ally = functions.GetElementWith(
     ally_heroes,
     nil,
     function(unit)
@@ -161,11 +161,11 @@ local function IsEnemyHeroInLocation(location)
     end)
 
   -- We consider that there is an enemy if the location is not seen
-  if nearby_hero == nil then
+  if nearby_ally == nil then
     return true end
 
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
-    nearby_hero,
+    nearby_ally,
     constants.MAX_GET_UNITS_RADIUS)
 
   return 0 < #enemy_heroes

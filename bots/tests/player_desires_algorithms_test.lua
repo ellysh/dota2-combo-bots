@@ -158,6 +158,29 @@ function test_is_focused_by_enemies_low_damage_fails()
   luaunit.assertFalse(algorithms.is_focused_by_enemies())
 end
 
+function test_is_weaker_enemy_hero_near_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 5000
+
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_weaker_enemy_hero_near())
+end
+
+function test_is_weaker_enemy_hero_near_stronger_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 100
+  bot.damage = 5
+
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertFalse(algorithms.is_weaker_enemy_hero_near())
+end
+
 function test_roam_target_is_near_succeed()
   test_RefreshBot()
 
@@ -174,6 +197,24 @@ function test_roam_target_is_near_but_too_far_fails()
   HERO_LAST_SEEN_INFO = { {location = {5000, 5000}, time_since_seen = 2} }
 
   luaunit.assertFalse(algorithms.roam_target_is_near())
+end
+
+function test_has_level_six_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.level = 6
+
+  luaunit.assertTrue(algorithms.has_level_six())
+end
+
+function test_has_level_six_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.level = 5
+
+  luaunit.assertFalse(algorithms.has_level_six())
 end
 
 os.exit(luaunit.LuaUnit.run())
