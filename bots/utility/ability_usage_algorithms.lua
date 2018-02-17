@@ -41,12 +41,8 @@ local function GetTarget(target, ability)
   return nil
 end
 
-local function CompareMinHealth(t, a, b)
-  return t[a]:GetHealth() < t[b]:GetHealth()
-end
-
 function M.min_hp_enemy_hero_to_kill(bot, ability)
-  local enemy_heroes = functions.GetEnemyHeroes(
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
     ability:GetCastRange())
 
@@ -64,7 +60,9 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
 end
 
 function M.channeling_enemy_hero(bot, ability)
-  local enemies = functions.GetEnemyHeroes(bot, ability:GetCastRange())
+  local enemies = common_algorithms.GetEnemyHeroes(
+    bot,
+    ability:GetCastRange())
   local enemy_hero = functions.GetElementWith(
     enemies,
     common_algorithms.CompareMaxHeroKills,
@@ -145,7 +143,9 @@ local function NumberOfTargetableUnits(units)
 end
 
 function M.three_and_more_enemy_heroes_aoe(bot, ability)
-  local enemies = functions.GetEnemyHeroes(bot, ability:GetAOERadius())
+  local enemies = common_algorithms.GetEnemyHeroes(
+    bot,
+    ability:GetAOERadius())
 
   if 3 <= NumberOfTargetableUnits(enemies) then
     return true, nil end
@@ -154,7 +154,7 @@ function M.three_and_more_enemy_heroes_aoe(bot, ability)
 end
 
 function M.last_attacked_enemy_hero(bot, ability)
-  local enemy_heroes = functions.GetEnemyHeroes(
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
     ability:GetCastRange())
 
@@ -174,7 +174,7 @@ end
 
 local function ThreeAndMoreCreeps(bot, ability, get_function)
   local cast_range = ability:GetCastRange()
-  local enemies = functions[get_function](bot, cast_range)
+  local enemies = common_algorithms[get_function](bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
     return false, nil end
@@ -206,7 +206,7 @@ end
 
 function M.three_and_more_enemy_heroes(bot, ability)
   local cast_range = ability:GetCastRange()
-  local enemies = functions.GetEnemyHeroes(bot, cast_range)
+  local enemies = common_algorithms.GetEnemyHeroes(bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
     return false, nil end
@@ -328,19 +328,23 @@ function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
 end
 
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
-  local enemies = functions.GetEnemyCreeps(bot, ability:GetAOERadius())
+  local enemies = common_algorithms.GetEnemyCreeps(
+    bot,
+    ability:GetAOERadius())
 
   return (3 <= NumberOfTargetableUnits(enemies)), nil
 end
 
 function M.three_and_more_neutral_creeps_aoe(bot, ability)
-  local enemies = functions.GetNeutralCreeps(bot, ability:GetAOERadius())
+  local enemies = common_algorithms.GetNeutralCreeps(
+    bot,
+    ability:GetAOERadius())
 
   return (3 <= NumberOfTargetableUnits(enemies)), nil
 end
 
 function M.low_hp_self(bot, ability)
-  if functions.IsUnitLowHp(bot) then
+  if common_algorithms.IsUnitLowHp(bot) then
     return true, GetTarget(bot, ability)
   end
 
@@ -348,12 +352,14 @@ function M.low_hp_self(bot, ability)
 end
 
 function M.low_hp_ally_hero(bot, ability)
-  local ally_heroes = functions.GetAllyHeroes(bot, ability:GetCastRange())
+  local ally_heroes = common_algorithms.GetAllyHeroes(
+    bot,
+    ability:GetCastRange())
   local ally_hero = functions.GetElementWith(
     ally_heroes,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     function(unit)
-      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
+      return IsTargetable(unit) and common_algorithms.IsUnitLowHp(unit)
     end)
 
   if ally_hero == nil then
@@ -363,12 +369,14 @@ function M.low_hp_ally_hero(bot, ability)
 end
 
 function M.low_hp_ally_creep(bot, ability)
-  local allies = functions.GetAllyCreeps(bot, ability:GetCastRange())
+  local allies = common_algorithms.GetAllyCreeps(
+    bot,
+    ability:GetCastRange())
   local ally_creep = functions.GetElementWith(
     allies,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     function(unit)
-      return IsTargetable(unit) and functions.IsUnitLowHp(unit)
+      return IsTargetable(unit) and common_algorithms.IsUnitLowHp(unit)
     end)
 
   if ally_creep == nil then
@@ -378,7 +386,9 @@ function M.low_hp_ally_creep(bot, ability)
 end
 
 function M.three_and_more_ally_creeps_aoe(bot, ability)
-  local allies = functions.GetAllyCreeps(bot, ability:GetAOERadius())
+  local allies = common_algorithms.GetAllyCreeps(
+    bot,
+    ability:GetAOERadius())
 
   if 3 <= #allies then
     return true, nil end

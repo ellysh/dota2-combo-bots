@@ -63,4 +63,8 @@ function test_Attack_when_bot_is_busy_fails()
   luaunit.assertEquals(ATTACK_TARGET, nil)
 end
 
+function test_IsEnemyNear()
+  luaunit.assertTrue(attack.test_IsEnemyNear(GetBot()))
+end
+
 os.exit(luaunit.LuaUnit.run())

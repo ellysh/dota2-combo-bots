@@ -1,8 +1,11 @@
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
 
 local M = {}
 
@@ -60,7 +63,9 @@ function GetDesire()
   if (functions.IsBotInFightingMode(bot)
      and (constants.MIN_HERO_DISTANCE_FROM_RUNE < distance
           or GetRuneStatus(rune) == RUNE_STATUS_MISSING))
-     or functions.IsEnemyHeroOnTheWay(bot, GetRuneSpawnLocation(rune)) then
+     or common_algorithms.IsEnemyHeroOnTheWay(
+          bot,
+          GetRuneSpawnLocation(rune)) then
 
     return 0 end
 

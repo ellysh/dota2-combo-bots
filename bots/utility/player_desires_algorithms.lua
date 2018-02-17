@@ -13,7 +13,7 @@ local common_algorithms = require(
 local M = {}
 
 function M.has_low_hp()
-  return functions.IsUnitLowHp(GetBot())
+  return common_algorithms.IsUnitLowHp(GetBot())
 end
 
 local function PlayerOnLane(lane)
@@ -63,7 +63,7 @@ function M.is_shrine_healing_and_no_enemy()
      or not IsShrineHealing(shrines[1]) then
     return false end
 
-  local enemies = functions.GetEnemyHeroes(
+  local enemies = common_algorithms.GetEnemyHeroes(
     bot,
     constants.MAX_GET_UNITS_RADIUS)
 
@@ -81,7 +81,7 @@ function M.is_shrine_healing_and_enemies_near()
      or not IsShrineHealing(shrines[1]) then
     return false end
 
-  local enemies = functions.GetEnemyHeroes(bot, 700)
+  local enemies = common_algorithms.GetEnemyHeroes(bot, 700)
 
   return 0 < #enemies
 end
@@ -116,11 +116,11 @@ function M.is_focused_by_enemies()
     constants.MAX_TOWER_ATTACK_RANGE,
     true)
 
-  local enemy_creeps = functions.GetEnemyCreeps(
+  local enemy_creeps = common_algorithms.GetEnemyCreeps(
     bot,
     constants.MAX_CREEP_ATTACK_RANGE)
 
-  local enemy_heroes = functions.GetEnemyHeroes(
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
     constants.MAX_HERO_ATTACK_RANGE)
 
@@ -145,7 +145,7 @@ end
 
 function M.is_weaker_enemy_hero_near()
   local bot = GetBot()
-  local enemy_heroes = functions.GetEnemyHeroes(
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
     constants.MAX_GET_UNITS_RADIUS)
 
@@ -165,7 +165,9 @@ function M.roam_target_is_near()
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 
-  local target_location = functions.GetLastPlayerLocation(target_player)
+  local target_location =
+    common_algorithms.GetLastPlayerLocation(target_player)
+
   return target_location ~= nil
          and GetUnitToLocationDistance(GetBot(), target_location)
              < constants.MAX_ROAM_RADIUS

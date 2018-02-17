@@ -258,10 +258,6 @@ function M.GetRate(a, b)
   return a / b
 end
 
-function M.GetUnitHealthLevel(unit)
-  return M.GetRate(unit:GetHealth(), unit:GetMaxHealth())
-end
-
 function M.IsUnitHaveItems(unit, items)
   local inventory = M.GetInventoryItems(unit)
 
@@ -341,62 +337,6 @@ function M.IsBotModeMatch(bot, bot_mode)
   return active_mode == constants.BOT_MODES[bot_mode]
 end
 
-local function GetNormalizedRadius(radius)
-  if radius == nil or radius == 0 then
-    return constants.DEFAULT_ABILITY_USAGE_RADIUS
-  end
-
-  -- TODO: Trick with MAX_ABILITY_USAGE_RADIUS breaks Sniper's ult.
-  -- But the GetNearbyHeroes function has the maximum radius 1600.
-
-  return M.ternary(
-    constants.MAX_ABILITY_USAGE_RADIUS < radius,
-    constants.MAX_ABILITY_USAGE_RADIUS,
-    radius)
-end
-
-function M.GetEnemyHeroes(bot, radius)
-  return bot:GetNearbyHeroes(
-    GetNormalizedRadius(radius),
-    true,
-    BOT_MODE_NONE)
-end
-
-function M.GetAllyHeroes(bot, radius)
-  return bot:GetNearbyHeroes(
-    GetNormalizedRadius(radius),
-    false,
-    BOT_MODE_NONE)
-end
-
-function M.GetEnemyCreeps(bot, radius)
-  local enemy_creeps = bot:GetNearbyCreeps(
-    GetNormalizedRadius(radius),
-    true)
-
-  local neutral_creeps = bot:GetNearbyNeutralCreeps(
-    GetNormalizedRadius(radius))
-
-  return M.ComplementOfLists(enemy_creeps, neutral_creeps, true)
-end
-
-function M.GetNeutralCreeps(bot, radius)
-  return bot:GetNearbyNeutralCreeps(GetNormalizedRadius(radius))
-end
-
-function M.GetAllyCreeps(bot, radius)
-  return bot:GetNearbyCreeps(GetNormalizedRadius(radius), false)
-end
-
-function M.GetEnemyBuildings(bot, radius)
-  local towers = bot:GetNearbyTowers(GetNormalizedRadius(radius), true)
-
-  if #towers ~= 0 then
-    return towers end
-
-  return bot:GetNearbyBarracks(GetNormalizedRadius(radius), true)
-end
-
 function M.IsBotInFightingMode(bot)
   local mode = bot:GetActiveMode()
 
@@ -418,15 +358,6 @@ function M.DistanceToDesire(distance, max_distance, base_desire)
   return (1 - (distance / max_distance)) + base_desire
 end
 
-function M.IsEnemyNear(bot)
-  local radius = constants.MAX_GET_UNITS_RADIUS
-
-  return 0 < #M.GetEnemyHeroes(bot, radius)
-         or 0 < #M.GetEnemyCreeps(bot, radius)
-         or 0 < #M.GetNeutralCreeps(bot, radius)
-         or 0 < #M.GetEnemyBuildings(bot, radius)
-end
-
 function M.GetNearestLocation(bot, locations_list)
   return M.GetElementWith(
     locations_list,
@@ -436,45 +367,11 @@ function M.GetNearestLocation(bot, locations_list)
     end)
 end
 
-function M.IsUnitLowHp(unit)
-  return unit:GetHealth() <= constants.UNIT_LOW_HEALTH
-         or M.GetUnitHealthLevel(unit)
-            <= constants.UNIT_LOW_HEALTH_LEVEL
-end
-
 function M.GetNormalizedDesire(desire, max_desire)
   return M.ternary(max_desire < desire, max_desire, desire)
 end
 
-function M.IsEnemyHeroOnTheWay(bot, location)
-  local enemies = M.GetEnemyHeroes(bot, constants.MAX_GET_UNITS_RADIUS)
-  local bot_distance = GetUnitToLocationDistance(bot, location)
-
-  return nil ~= M.GetElementWith(
-    enemies,
-    nil,
-    function(unit)
-      return GetUnitToLocationDistance(unit, location) < bot_distance
-    end)
-end
-
-function M.GetLastPlayerLocation(player)
-  if player == nil then
-    return nil end
-
-  local seen_info = GetHeroLastSeenInfo(player)
-
-  if seen_info == nil
-     or #seen_info == 0
-     or seen_info[1] == nil
-     or 10 < seen_info[1].time_since_seen then
-    return nil end
-
-  return seen_info[1].location
-end
-
 -- Provide an access to local functions for unit tests only
-M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
 M.test_GetNormalizedDesire = GetNormalizedDesire

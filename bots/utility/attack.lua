@@ -1,8 +1,14 @@
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local algorithms = require(
   GetScriptDirectory() .."/utility/attack_algorithms")
+
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
 
 local attack_target = require(
   GetScriptDirectory() .."/database/attack_target")
@@ -17,8 +23,17 @@ local function GetDesire(bot, mode_desires)
   return 0
 end
 
+local function IsEnemyNear(bot)
+  local radius = constants.MAX_GET_UNITS_RADIUS
+
+  return 0 < #common_algorithms.GetEnemyHeroes(bot, radius)
+         or 0 < #common_algorithms.GetEnemyCreeps(bot, radius)
+         or 0 < #common_algorithms.GetNeutralCreeps(bot, radius)
+         or 0 < #common_algorithms.GetEnemyBuildings(bot, radius)
+end
+
 function M.ChooseTarget(bot, radius)
-  if not functions.IsEnemyNear(bot) then
+  if not IsEnemyNear(bot) then
     return nil end
 
   local targets = {}
@@ -59,6 +74,7 @@ function M.Attack(unit, target)
 end
 
 -- Provide an access to local functions for unit tests only
+M.test_IsEnemyNear = IsEnemyNear
 M.test_GetDesire = GetDesire
 
 return M

@@ -167,7 +167,7 @@ local function IsEnemyHeroInLocation(location)
   if nearby_hero == nil then
     return true end
 
-  local enemy_heroes = functions.GetEnemyHeroes(
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(
     nearby_hero,
     constants.MAX_GET_UNITS_RADIUS)
 
@@ -179,7 +179,7 @@ function M.enemy_hero_was_seen()
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 
-  local player_location = functions.GetLastPlayerLocation(player)
+  local player_location = common_algorithms.GetLastPlayerLocation(player)
   return player_location ~= nil
          and IsEnemyHeroInLocation(player_location)
 end

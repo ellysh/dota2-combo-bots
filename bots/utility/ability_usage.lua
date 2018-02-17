@@ -7,6 +7,9 @@ local functions = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
+
 local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
 
@@ -119,7 +122,7 @@ local function CancelAbility(bot)
     ability:GetCastRange(),
     ability:GetAOERadius())
 
-  if #functions.GetEnemyHeroes(bot, radius) == 0 then
+  if #common_algorithms.GetEnemyHeroes(bot, radius) == 0 then
 
     logger.Print("CancelAbility() - " .. bot:GetUnitName() ..
       " cancel " .. ability:GetName())

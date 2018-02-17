@@ -10,7 +10,7 @@ local common_algorithms = require(
 local M = {}
 
 function M.max_kills_enemy_hero(bot, radius)
-  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     common_algorithms.CompareMaxHeroKills,
@@ -22,19 +22,11 @@ function M.max_kills_enemy_hero(bot, radius)
   return true, enemy_hero
 end
 
-local function CompareMaxHealth(t, a, b)
-  return t[b]:GetHealth() < t[a]:GetHealth()
-end
-
-local function CompareMinHealth(t, a, b)
-  return t[a]:GetHealth() < t[b]:GetHealth()
-end
-
 function M.max_hp_enemy_creep(bot, radius)
-  local creeps = functions.GetEnemyCreeps(bot, radius)
+  local creeps = common_algorithms.GetEnemyCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
-    CompareMaxHealth,
+    common_algorithms.CompareMaxHealth,
     common_algorithms.IsAttackTargetable)
 
   if creep == nil then
@@ -44,10 +36,10 @@ function M.max_hp_enemy_creep(bot, radius)
 end
 
 function M.max_hp_neutral_creep(bot, radius)
-  local creeps = functions.GetNeutralCreeps(bot, radius)
+  local creeps = common_algorithms.GetNeutralCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
-    CompareMaxHealth,
+    common_algorithms.CompareMaxHealth,
     common_algorithms.IsAttackTargetable)
 
   if creep == nil then
@@ -61,10 +53,10 @@ local function IsLastHit(bot, unit)
 end
 
 function M.last_hit_enemy_creep(bot, radius)
-  local creeps = functions.GetEnemyCreeps(bot, radius)
+  local creeps = common_algorithms.GetEnemyCreeps(bot, radius)
   local creep = functions.GetElementWith(
     creeps,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
              and IsLastHit(bot, unit)
@@ -78,11 +70,11 @@ end
 
 function M.min_hp_enemy_building(bot, radius)
   local enemy_buildings =
-    functions.GetEnemyBuildings(bot, radius)
+    common_algorithms.GetEnemyBuildings(bot, radius)
 
   local enemy_building = functions.GetElementWith(
     enemy_buildings,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     common_algorithms.IsAttackTargetable)
 
   if enemy_building == nil then
@@ -92,13 +84,13 @@ function M.min_hp_enemy_building(bot, radius)
 end
 
 function M.low_hp_enemy_hero(bot, radius)
-  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
-             and functions.IsUnitLowHp(unit)
+             and common_algorithms.IsUnitLowHp(unit)
     end)
 
   if enemy_hero == nil then
@@ -109,14 +101,14 @@ end
 
 function M.low_hp_enemy_building(bot, radius)
   local enemy_buildings =
-    functions.GetEnemyBuildings(bot, radius)
+    common_algorithms.GetEnemyBuildings(bot, radius)
 
   local enemy_building = functions.GetElementWith(
     enemy_buildings,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
-             and functions.IsUnitLowHp(unit)
+             and common_algorithms.IsUnitLowHp(unit)
     end)
 
   if enemy_building == nil then
@@ -126,7 +118,7 @@ function M.low_hp_enemy_building(bot, radius)
 end
 
 function M.attacking_enemy_hero(bot, radius)
-  local enemy_heroes = functions.GetEnemyHeroes(bot, radius)
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(bot, radius)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     common_algorithms.CompareMaxHeroKills,
@@ -142,10 +134,10 @@ function M.attacking_enemy_hero(bot, radius)
 end
 
 function M.attacking_enemy_creep(bot, radius)
-  local enemy_creeps = functions.GetEnemyCreeps(bot, radius)
+  local enemy_creeps = common_algorithms.GetEnemyCreeps(bot, radius)
   local enemy_creep = functions.GetElementWith(
     enemy_creeps,
-    CompareMinHealth,
+    common_algorithms.CompareMinHealth,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
              and unit:GetAttackTarget() == bot

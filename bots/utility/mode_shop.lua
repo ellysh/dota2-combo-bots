@@ -1,11 +1,11 @@
-local logger = require(
-  GetScriptDirectory() .."/utility/logger")
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
 
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
 
 local M = {}
 
@@ -36,7 +36,7 @@ local function GetDesire(check_shop_func, shop_location, base_desire)
   end
 
   if functions.IsBotInFightingMode(bot)
-     or functions.IsEnemyHeroOnTheWay(bot, shop_location) then
+     or common_algorithms.IsEnemyHeroOnTheWay(bot, shop_location) then
     return 0
   end
 

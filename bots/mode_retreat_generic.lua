@@ -7,6 +7,9 @@ local functions = require(
 local move = require(
   GetScriptDirectory() .."/utility/move")
 
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
+
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
@@ -32,7 +35,7 @@ local function AddShrineToList(bot, shrine_id, list)
 
   if (IsHealingByShrine(bot, shrine)
       or IsShrineFull(shrine))
-     and not functions.IsEnemyHeroOnTheWay(bot, location) then
+     and not common_algorithms.IsEnemyHeroOnTheWay(bot, location) then
     table.insert(list, location)
   end
 end

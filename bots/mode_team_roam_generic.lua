@@ -30,7 +30,8 @@ function Think()
     GetOpposingTeam(),
     function(p) return IsHeroAlive(p) end)
 
-  local target_location = functions.GetLastPlayerLocation(target_player)
+  local target_location =
+    common_algorithms.GetLastPlayerLocation(target_player)
 
   if target_location == nil then
     return end

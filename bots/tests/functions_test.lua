@@ -416,29 +416,6 @@ function test_GetNumberOfElementsWith()
     0)
 end
 
-function test_GetUnitHealthLevel()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  luaunit.assertEquals(
-    functions.GetUnitHealthLevel(bot),
-    1.0)
-
-  bot.health = bot.max_health / 2
-
-  luaunit.assertEquals(
-    functions.GetUnitHealthLevel(bot),
-    0.5)
-
-  bot.health = bot.max_health / 3
-
-  luaunit.assertAlmostEquals(
-    functions.GetUnitHealthLevel(bot),
-    0.333,
-    0.001)
-end
-
 function test_IsUnitHaveItems()
   test_RefreshBot()
 
@@ -565,96 +542,6 @@ function test_IsBotModeMatch_fails()
       BOT_MODE_ATTACK))
 end
 
-function test_GetNormalizedRadius_succeed()
-  luaunit.assertEquals(
-    functions.test_GetNormalizedRadius(1200),
-    1200)
-
-  luaunit.assertEquals(
-    functions.test_GetNormalizedRadius(0),
-    constants.DEFAULT_ABILITY_USAGE_RADIUS)
-
-  luaunit.assertEquals(
-    functions.test_GetNormalizedRadius(nil),
-    constants.DEFAULT_ABILITY_USAGE_RADIUS)
-
-  luaunit.assertEquals(
-    functions.test_GetNormalizedRadius(2000),
-    constants.MAX_ABILITY_USAGE_RADIUS)
-end
-
-function test_GetEnemyHeroes_succeed()
-  test_RefreshBot()
-
-  local units = functions.GetEnemyHeroes(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
-end
-
-function test_GetAllyHeroes_succeed()
-  test_RefreshBot()
-
-  local units = functions.GetAllyHeroes(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
-end
-
-function test_GetEnemyCreeps_succeed()
-  test_RefreshBot()
-
-  local units = functions.GetEnemyCreeps(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
-  luaunit.assertEquals(units[4], nil)
-end
-
-function test_GetAllyCreeps_succeed()
-  test_RefreshBot()
-
-  local units = functions.GetAllyCreeps(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "creep1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
-end
-
-function test_GetEnemyBuildings_succeed()
-  test_RefreshBot()
-
-  UNIT_IS_NEARBY_TOWERS = true
-
-  local units = functions.GetEnemyBuildings(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "tower1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "tower2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "tower3")
-
-  UNIT_IS_NEARBY_TOWERS = false
-
-  units = functions.GetEnemyBuildings(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "barrak1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "barrak2")
-end
-
 function test_IsBotInFightingMode_succeed()
   test_RefreshBot()
 
@@ -702,10 +589,6 @@ function test_IsBotInFightingMode_fails()
   end
 end
 
-function test_IsEnemyNear()
-  luaunit.assertTrue(functions.IsEnemyNear(GetBot()))
-end
-
 function test_GetItemToSell_when_purchase_list_empty_fails()
   luaunit.assertEquals(functions.GetItemToSell(GetBot()), nil)
 end
@@ -746,57 +629,10 @@ function test_GetNearestLocation_succeed()
     location_2)
 end
 
-function test_IsUnitLowHp_succeed()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.health = 10
-
-  luaunit.assertTrue(functions.IsUnitLowHp(bot))
-end
-
-function test_IsUnitLowHp_full_hp_fails()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.health = bot.max_health
-
-  luaunit.assertFalse(functions.IsUnitLowHp(bot))
-end
-
 function test_GetNormalizedDesire()
   luaunit.assertEquals(functions.GetNormalizedDesire(0.6, 0.7), 0.6)
   luaunit.assertEquals(functions.GetNormalizedDesire(0.8, 0.7), 0.7)
   luaunit.assertEquals(functions.GetNormalizedDesire(0.0, 0.7), 0.0)
-end
-
-function test_IsEnemyOnTheWay_succeed()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.location = {10, 10}
-
-  UNIT_NO_NEARBY_UNITS = false
-
-  luaunit.assertTrue(functions.IsEnemyHeroOnTheWay(bot, {100, 100}))
-end
-
-function test_IsEnemyOnTheWay_no_enemy_fails()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.location = {95, 84}
-
-  UNIT_NO_NEARBY_UNITS = false
-
-  luaunit.assertFalse(functions.IsEnemyHeroOnTheWay(bot, {100, 100}))
-end
-
-function test_GetLastPlayerLocation_succeed()
-  IS_HERO_ALIVE = true
-  HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
-
-  luaunit.assertEquals(functions.GetLastPlayerLocation(1), {10, 10})
 end
 
 function test_ComplementOfLists_number_lists_succeed()
