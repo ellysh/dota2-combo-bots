@@ -628,4 +628,14 @@ function test_attacked_not_disabled_enemy_hero_fails()
   test_algorithm_pattern_fails("attacked_not_disabled_enemy_hero")
 end
 
+function test_last_hit_enemy_creep_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_CAN_BE_SEEN = true
+
+  test_algorithm_unit_pattern_succeed(
+    "last_hit_enemy_creep",
+    "creep1")
+end
+
+
 os.exit(luaunit.LuaUnit.run())

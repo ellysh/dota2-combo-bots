@@ -48,7 +48,7 @@ function M.max_hp_neutral_creep(bot, radius)
   return true, creep
 end
 
-local function IsLastHit(bot, unit)
+local function IsLastHit(unit, bot)
   return unit:GetHealth() <= bot:GetAttackDamage()
 end
 
@@ -59,7 +59,7 @@ function M.last_hit_enemy_creep(bot, radius)
     common_algorithms.CompareMinHealth,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
-             and IsLastHit(bot, unit)
+             and IsLastHit(unit, bot)
     end)
 
   if creep == nil then
@@ -148,8 +148,5 @@ function M.attacking_enemy_creep(bot, radius)
 
   return true, enemy_creep
 end
-
--- Provide an access to local functions and variables for unit tests only
-M.test_IsLastHit = IsLastHit
 
 return M

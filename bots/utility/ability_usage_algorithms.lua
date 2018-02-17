@@ -372,6 +372,7 @@ function M.low_hp_ally_creep(bot, ability)
   local allies = common_algorithms.GetAllyCreeps(
     bot,
     ability:GetCastRange())
+
   local ally_creep = functions.GetElementWith(
     allies,
     common_algorithms.CompareMinHealth,
@@ -394,6 +395,29 @@ function M.three_and_more_ally_creeps_aoe(bot, ability)
     return true, nil end
 
   return false, nil
+end
+
+local function IsLastHit(unit, ability)
+  return unit:GetHealth() <= ability:GetAbilityDamage()
+end
+
+function M.last_hit_enemy_creep(bot, ability)
+  local creeps = common_algorithms.GetEnemyCreeps(
+    bot,
+    ability:GetCastRange())
+
+  local creep = functions.GetElementWith(
+    creeps,
+    common_algorithms.CompareMinHealth,
+    function(unit)
+      return common_algorithms.IsAttackTargetable(unit)
+             and IsLastHit(unit, ability)
+    end)
+
+  if creep == nil then
+    return false, nil end
+
+  return true, GetTarget(creep, ability)
 end
 
 -- Provide an access to local functions and variables for unit tests only
