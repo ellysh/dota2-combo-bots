@@ -123,16 +123,6 @@ M.PLAYER_DESIRES = {
     BOT_MODE_EVASIVE_MANEUVERS = {76, 0}
   },
 
-  is_laining_mode = {
-    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
-    BOT_MODE_RETREAT = {0, 0},
-    BOT_MODE_TEAM_ROAM = {0, 0},
-    BOT_MODE_ATTACK  = {-100, 0},
-    BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
-  },
-
 }
 
 return M
