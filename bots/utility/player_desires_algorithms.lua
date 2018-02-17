@@ -137,6 +137,10 @@ function M.is_enemy_heroes_near()
   return 0 < #enemy_heroes
 end
 
+function M.is_laining_mode()
+  return GetBot():GetActiveMode() == BOT_MODE_LANING
+end
+
 function M.roam_target_is_near()
   local target_player = functions.GetMaxKillsPlayer(
     GetOpposingTeam(),
