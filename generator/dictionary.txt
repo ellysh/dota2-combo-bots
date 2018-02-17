@@ -23,6 +23,7 @@ has_buyback
 has_low_hp
 has_not_full_hp_mp_and_near_fountain
 has_tp_scroll_or_travel_boots
+is_enemy_heroes_near
 is_focused_by_enemy_creeps
 is_focused_by_enemy_towers
 is_focused_by_stronger_enemy_heroes

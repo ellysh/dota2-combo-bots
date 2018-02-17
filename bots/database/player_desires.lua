@@ -123,6 +123,16 @@ M.PLAYER_DESIRES = {
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
   },
 
+  is_enemy_heroes_near = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_RETREAT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_ATTACK  = {0, -100},
+    BOT_MODE_EVASIVE_MANEUVERS = {0, 0}
+  },
+
   is_focused_by_stronger_enemy_heroes = {
     BOT_MODE_PUSH_TOWER_TOP = {-30, 0},
     BOT_MODE_PUSH_TOWER_MID = {-30, 0},

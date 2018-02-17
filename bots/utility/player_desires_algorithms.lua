@@ -118,6 +118,15 @@ function M.is_focused_by_enemy_towers()
                  bot:GetHealth())
 end
 
+function M.is_enemy_heroes_near()
+  local bot = GetBot()
+  local enemy_heroes = functions.GetEnemyHeroes(
+    bot,
+    constants.MAX_GET_UNITS_RADIUS)
+
+  return 0 < #enemy_heroes
+end
+
 -- TODO: Move this function to functions.IsAttackTargetable.
 -- This is a duplicate of the attack_algorithms.IsTargetable.
 
@@ -143,7 +152,7 @@ local function IsFocusedByEnemyHeroes(is_stronger)
     IsTargetable)
 
   if enemy_hero == nil then
-    return true end
+    return false end
 
   -- TODO: Should we consider enemy/allies creeps/towers in this calculation?
   local hits_to_die = bot:GetHealth() / GetTotalDamage(enemy_heroes, bot)
