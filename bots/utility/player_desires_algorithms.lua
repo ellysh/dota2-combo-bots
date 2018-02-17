@@ -1,6 +1,3 @@
- local logger = require(
-  GetScriptDirectory() .."/utility/logger")
-
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
