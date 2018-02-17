@@ -1,3 +1,7 @@
+* version 1.1
+  - Fix a bug with picking up rune when it is out of a vision range
+    because of elevation.
+
 * version 1.0
   - Bots choose laning when there is no targets for push and roam.
   - Distinguish the neutral and enemy creeps in the attack algorithms.

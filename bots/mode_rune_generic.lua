@@ -94,7 +94,7 @@ function Think()
   if rune == nil then
     return end
 
-  if bot:GetCurrentVisionRange() < distance then
+  if constants.MIN_HERO_DISTANCE_FROM_RUNE < distance then
     bot:Action_MoveToLocation(GetRuneSpawnLocation(rune))
   else
     bot:Action_PickUpRune(rune)
