@@ -113,7 +113,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_LANING = {15, 16}
   },
 
-  is_enemy_heroes_near = {
+  is_weaker_enemy_hero_near = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},

@@ -128,13 +128,48 @@ function M.is_focused_by_enemies()
   return 0.2 < functions.GetRate(total_damage, bot:GetHealth())
 end
 
-function M.is_enemy_heroes_near()
+-- TODO: This is a code duplication
+
+local function IsTargetable(unit)
+  return unit:CanBeSeen()
+         and unit:IsAlive()
+         and not unit:IsInvulnerable()
+         and not unit:IsIllusion()
+end
+
+-- TODO: This is a code duplication
+
+local function CompareMaxHeroKills(t, a, b)
+  return GetHeroKills(t[b]:GetPlayerID()) <
+    GetHeroKills(t[a]:GetPlayerID())
+end
+
+local function IsWeakerTarget(unit, target)
+  local hits_to_die = functions.GetRate(
+    unit:GetHealth(),
+    target:GetAttackDamage())
+
+  local hits_to_kill = functions.GetRate(
+    target:GetHealth(),
+    unit:GetAttackDamage())
+
+  return hits_to_kill < hits_to_die
+end
+
+function M.is_weaker_enemy_hero_near()
   local bot = GetBot()
   local enemy_heroes = functions.GetEnemyHeroes(
     bot,
     constants.MAX_GET_UNITS_RADIUS)
 
-  return 0 < #enemy_heroes
+  local enemy_hero = functions.GetElementWith(
+    enemy_heroes,
+    CompareMaxHeroKills,
+    function(unit)
+      return IsTargetable(unit) and IsWeakerTarget(bot, unit)
+    end)
+
+  return enemy_hero ~= nil
 end
 
 function M.roam_target_is_near()
