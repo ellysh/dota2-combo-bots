@@ -1,7 +1,7 @@
 
 local M = {}
 
-M.ITEM_RECIPE = {
+M.ITEM_SETS = {
 
   item_basher = {
     components = {

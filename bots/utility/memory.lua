@@ -1,8 +1,8 @@
-local item_build = require(
-  GetScriptDirectory() .."/database/item_build")
+local item_builds = require(
+  GetScriptDirectory() .."/database/item_builds")
 
-local item_recipe = require(
-  GetScriptDirectory() .."/database/item_recipe")
+local item_sets = require(
+  GetScriptDirectory() .."/database/item_sets")
 
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
@@ -67,7 +67,7 @@ function M.GetItemToBuy(bot)
 end
 
 local function IsRecipeItem(item)
-  return item_recipe.ITEM_RECIPE[item] ~= nil
+  return item_sets.ITEM_SETS[item] ~= nil
 end
 
 local function AddItemToList(list, item)
@@ -76,7 +76,7 @@ local function AddItemToList(list, item)
     return
   end
 
-  local component_list = item_recipe.ITEM_RECIPE[item].components
+  local component_list = item_sets.ITEM_SETS[item].components
 
   for _, component in functions.spairs(component_list) do
     AddItemToList(list, component)
@@ -89,7 +89,7 @@ function M.MakePurchaseList(bot)
 
   InitPurchaseList(bot)
 
-  local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
+  local item_list = item_builds.ITEM_BUILDS[bot:GetUnitName()].items
 
   for _, item in functions.spairs(item_list) do
     AddItemToList(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, item)

@@ -1,7 +1,7 @@
 
 local M = {}
 
-M.ITEM_BUILD = {
+M.ITEM_BUILDS = {
 
   npc_dota_hero_phantom_assassin = {
     items = {

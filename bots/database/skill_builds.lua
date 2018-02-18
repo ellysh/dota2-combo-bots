@@ -1,7 +1,7 @@
 
 local M = {}
 
-M.SKILL_BUILD = {
+M.SKILL_BUILDS = {
 
   npc_dota_hero_phantom_assassin = {
     abilities = {

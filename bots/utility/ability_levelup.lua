@@ -2,7 +2,7 @@ local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
 local skill_build = require(
-  GetScriptDirectory() .."/database/skill_build")
+  GetScriptDirectory() .."/database/skill_builds")
 
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
@@ -59,7 +59,7 @@ function M.AbilityLevelUpThink()
     return end
 
   local abilities_build =
-    skill_build.SKILL_BUILD[bot:GetUnitName()].abilities
+    skill_build.SKILL_BUILDS[bot:GetUnitName()].abilities
 
   for level, ability_index in functions.spairs(abilities_build) do
 

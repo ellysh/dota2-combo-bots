@@ -31,11 +31,11 @@ HEROES = """
 
 #---------------------------------------------
 
-ITEM_RECIPE_HEADER = """
-M.ITEM_RECIPE = {
+ITEM_SETS_HEADER = """
+M.ITEM_SETS = {
 """
 
-ITEM_RECIPE = """
+ITEM_SETS = """
   <0> = {
     components = {
       "<1>",
@@ -47,11 +47,11 @@ ITEM_RECIPE = """
 
 #---------------------------------------------
 
-ITEM_BUILD_HEADER = """
-M.ITEM_BUILD = {
+ITEM_BUILDS_HEADER = """
+M.ITEM_BUILDS = {
 """
 
-ITEM_BUILD = """
+ITEM_BUILDS = """
   <0> = {
     items = {
       "<1>",
@@ -85,11 +85,11 @@ ITEM_SELL = """
 
 #---------------------------------------------
 
-SKILL_BUILD_HEADER = """
-M.SKILL_BUILD = {
+SKILL_BUILDS_HEADER = """
+M.SKILL_BUILDS = {
 """
 
-SKILL_BUILD = """
+SKILL_BUILDS = """
   <0> = {
     abilities = {
       [1] = <1>,

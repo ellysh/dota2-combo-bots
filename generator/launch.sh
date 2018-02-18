@@ -9,13 +9,13 @@ RESULT_DIR="../bots/database"
 
 ./generator.py HEROES 9 $CSV_DIR/heroes.csv > $RESULT_DIR/heroes.lua
 
-./generator.py ITEM_RECIPE 5 $CSV_DIR/item_recipe.csv > $RESULT_DIR/item_recipe.lua
+./generator.py ITEM_SETS 5 $CSV_DIR/item_sets.csv > $RESULT_DIR/item_sets.lua
 
-./generator.py ITEM_BUILD 14 $CSV_DIR/item_build.csv > $RESULT_DIR/item_build.lua
+./generator.py ITEM_BUILDS 14 $CSV_DIR/item_builds.csv > $RESULT_DIR/item_builds.lua
 
 ./generator.py ITEM_SELL 3 $CSV_DIR/item_sell.csv > $RESULT_DIR/item_sell.lua
 
-./generator.py SKILL_BUILD 20 $CSV_DIR/skill_build.csv > $RESULT_DIR/skill_build.lua
+./generator.py SKILL_BUILDS 20 $CSV_DIR/skill_builds.csv > $RESULT_DIR/skill_builds.lua
 
 ./generator.py SKILL_USAGE 27 $CSV_DIR/skill_usage.csv > $RESULT_DIR/skill_usage.lua
 
