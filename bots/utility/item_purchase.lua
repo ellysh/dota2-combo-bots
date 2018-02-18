@@ -40,121 +40,11 @@ local function PurchaseCourier(bot)
   end
 end
 
--- TODO: This is a code duplication with the "memory" module.
-
-local function IsRecipeItem(item)
-  return item_recipe.ITEM_RECIPE[item] ~= nil
-end
-
-local function GetInventoryAndStashItems(bot)
-  local _, result = functions.GetItems(
-    bot,
-    constants.INVENTORY_AND_STASH_MAX_INDEX,
-    function(item) return item:GetName() end)
-
-  return result
-end
-
-local function IsItemAlreadyBought(inventory, item)
-  local index = functions.GetElementIndexInList(inventory, item)
-
-  -- This nil assignment is required to process recipes with several
-  -- identical components
-  if index ~= -1 then
-    inventory[index] = "nil"
-    return true
-  end
-  return false
-end
-
-local function FindNextComponentToBuy(bot, item)
-  local component_list = item_recipe.ITEM_RECIPE[item].components
-
-  local inventory = GetInventoryAndStashItems(bot)
-
-  for _, component in functions.spairs(component_list) do
-    if component ~= "nil"
-      and not IsItemAlreadyBought(inventory, component) then
-
-      if IsRecipeItem(component) then
-        return FindNextComponentToBuy(bot, component)
-      else
-        return component
-      end
-    end
-  end
-
-  return "nil"
-end
-
-local function FindNextItemToBuy(item_list)
-  for i, item in functions.spairs(item_list) do
-    if item ~= "nil" then
-      return i, item end
-  end
-
-  return -1, "nil"
-end
-
-local function IsPurchasePossible(bot)
-
-  -- Do not add anything to the purchase slot until courier bring
-  -- something or the stash is not empty. Otherwise, we are not sure
-  -- that upgradable items are assembled.
-
-  local courier = GetCourier(0)
-
-  return courier == nil
-         or (courier ~= nil
-             and courier:IsAlive()
-             and bot:GetCourierValue() == 0)
-         and bot:GetStashValue() == 0
-         and memory.GetItemToBuy(bot) == nil
-end
-
-local function PurchaseItem(bot, item)
-  if not IsPurchasePossible(bot) then
-    return end
-
-  if IsRecipeItem(item) then
-    item = FindNextComponentToBuy(bot, item)
-  end
-
-  if item == "nil" then
-    return end
-
-  memory.SetItemToBuy(bot, item)
-end
-
 local function PurchaseTpScroll(bot)
   if IsTpScrollPresent(bot) then
     return end
 
   memory.AddItemToBuy(bot, "item_tpscroll")
-end
-
-local function PurchaseItemList(bot)
-  -- We do this check here because the long algorithm of finding an
-  -- item to buy is not make sense if the purchase is not possible.
-  if not IsPurchasePossible(bot) then
-    return end
-
-  local item_list = memory.GetItemBuild(bot)
-
-  local i, item = FindNextItemToBuy(item_list)
-
-  if i ~= -1
-    and item ~= "nil"
-    and functions.IsElementInList(
-      GetInventoryAndStashItems(
-        bot),
-        item) then
-
-    item_list[i] = "nil"
-    return
-  end
-
-  PurchaseItem(bot, item)
 end
 
 local function SellItemByIndex(bot, index, condition)
@@ -287,21 +177,12 @@ function M.ItemPurchaseThink()
   PurchaseTpScroll(bot)
 
   SellExtraItem(bot)
-
-  PurchaseItemList(bot)
 end
 
 -- Provide an access to local functions for unit tests only
 M.test_IsTpScrollPresent = IsTpScrollPresent
 M.test_PurchaseCourier = PurchaseCourier
 M.test_PurchaseTpScroll = PurchaseTpScroll
-M.test_IsRecipeItem = IsRecipeItem
-M.test_IsItemAlreadyBought = IsItemAlreadyBought
-M.test_GetInventoryAndStashItems = GetInventoryAndStashItems
-M.test_FindNextComponentToBuy = FindNextComponentToBuy
-M.test_PurchaseItem = PurchaseItem
-M.test_FindNextItemToBuy = FindNextItemToBuy
-M.test_PurchaseItemList = PurchaseItemList
 M.test_SellItemByIndex = SellItemByIndex
 M.test_SellExtraItem = SellExtraItem
 M.test_PurchaseViaCourier = PurchaseViaCourier
