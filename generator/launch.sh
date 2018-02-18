@@ -11,7 +11,7 @@ RESULT_DIR="../bots/database"
 
 ./generator.py ITEM_SETS 5 $CSV_DIR/item_sets.csv > $RESULT_DIR/item_sets.lua
 
-./generator.py ITEM_BUILDS 14 $CSV_DIR/item_builds.csv > $RESULT_DIR/item_builds.lua
+./generator.py ITEM_BUILDS 10 $CSV_DIR/item_builds.csv > $RESULT_DIR/item_builds.lua
 
 ./generator.py ITEM_SELL 3 $CSV_DIR/item_sell.csv > $RESULT_DIR/item_sell.lua
 

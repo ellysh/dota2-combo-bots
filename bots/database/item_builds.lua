@@ -7,10 +7,6 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_melee",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_phase_boots",
       "item_mask_of_madness",
       "item_desolator",
@@ -23,10 +19,6 @@ M.ITEM_BUILDS = {
   npc_dota_hero_chaos_knight = {
     items = {
       "set_starting_melee",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_belt_of_strength",
       "item_power_treads",
       "item_armlet",
@@ -41,13 +33,9 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_support",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_tranquil_boots",
       "item_glimmer_cape",
+      "nil",
       "item_aether_lens",
       "item_rod_of_atos",
       "item_ultimate_scepter",
@@ -57,11 +45,7 @@ M.ITEM_BUILDS = {
   npc_dota_hero_drow_ranger = {
     items = {
       "set_starting_ranged",
-      "nil",
-      "nil",
-      "nil",
       "item_boots_of_elves",
-      "nil",
       "item_power_treads",
       "item_mask_of_madness",
       "item_invis_sword",
@@ -75,13 +59,9 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_melee",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_phase_boots",
       "item_manta",
+      "nil",
       "item_diffusal_blade",
       "item_butterfly",
       "item_abyssal_blade",
@@ -92,13 +72,9 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_support",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_tranquil_boots",
       "item_aether_lens",
+      "nil",
       "item_force_staff",
       "item_ultimate_scepter",
       "item_sheepstick",
@@ -109,13 +85,9 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_support",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_tranquil_boots",
       "item_blink",
+      "nil",
       "item_aether_lens",
       "item_glimmer_cape",
       "item_ultimate_scepter",
@@ -125,11 +97,7 @@ M.ITEM_BUILDS = {
   npc_dota_hero_phantom_lancer = {
     items = {
       "set_starting_melee",
-      "nil",
-      "nil",
-      "nil",
       "item_boots_of_elves",
-      "nil",
       "item_power_treads",
       "item_ring_of_aquila",
       "item_diffusal_blade",
@@ -143,13 +111,9 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_support",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_arcane_boots",
       "item_aether_lens",
+      "nil",
       "item_ultimate_scepter",
       "item_refresher",
       "item_glimmer_cape",
@@ -159,11 +123,7 @@ M.ITEM_BUILDS = {
   npc_dota_hero_skeleton_king = {
     items = {
       "set_starting_melee",
-      "nil",
-      "nil",
-      "nil",
       "item_belt_of_strength",
-      "nil",
       "item_power_treads",
       "item_armlet",
       "item_blink",
@@ -177,10 +137,6 @@ M.ITEM_BUILDS = {
     items = {
       "set_starting_ranged",
       "nil",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "item_mask_of_madness",
       "item_phase_boots",
       "item_hurricane_pike",
@@ -193,11 +149,7 @@ M.ITEM_BUILDS = {
   npc_dota_hero_sven = {
     items = {
       "set_starting_melee",
-      "nil",
-      "nil",
-      "nil",
       "item_belt_of_strength",
-      "nil",
       "item_power_treads",
       "item_mask_of_madness",
       "item_echo_sabre",
@@ -210,11 +162,7 @@ M.ITEM_BUILDS = {
   npc_dota_hero_ursa = {
     items = {
       "set_starting_melee",
-      "nil",
-      "nil",
-      "nil",
       "item_lifesteal",
-      "nil",
       "item_phase_boots",
       "item_vladmir",
       "item_blink",
@@ -227,10 +175,6 @@ M.ITEM_BUILDS = {
   npc_dota_hero_warlock = {
     items = {
       "set_starting_nuker",
-      "nil",
-      "nil",
-      "nil",
-      "nil",
       "nil",
       "item_arcane_boots",
       "item_hand_of_midas",
