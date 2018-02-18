@@ -15,7 +15,7 @@ function test_IsShopRequired_item_to_buy_succeed()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, "item_boots")
+  memory.AddItemToBuy(bot, "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_NONE
 
@@ -29,7 +29,7 @@ function test_IsShopRequired_item_to_sell_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, "item_boots")
   UNIT_MODE = BOT_MODE_NONE
 
@@ -42,7 +42,7 @@ end
 function test_GetDesire_in_fight_mode_negative()
   test_RefreshBot()
 
-  memory.SetItemToBuy(GetBot(), "item_boots")
+  memory.AddItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_ATTACK
   UNIT_NO_NEARBY_UNITS = true
@@ -58,7 +58,7 @@ end
 function test_GetDesire_succeed()
   test_RefreshBot()
 
-  memory.SetItemToBuy(GetBot(), "item_boots")
+  memory.AddItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_NONE
   UNIT_NO_NEARBY_UNITS = true
@@ -91,7 +91,7 @@ end
 function test_GetDesireSideShop_positive()
   test_RefreshBot()
 
-  memory.SetItemToBuy(GetBot(), "item_boots")
+  memory.AddItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
 
   luaunit.assertEquals(
@@ -102,7 +102,7 @@ end
 function test_GetDesireSecretShop_positive()
   test_RefreshBot()
 
-  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.AddItemToBuy(GetBot(), "item_vitality_booster")
   IS_SECRET_SHOP_ITEM = true
 
   luaunit.assertEquals(
