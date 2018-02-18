@@ -226,8 +226,8 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_warlock = {
     items = {
-      "item_tango",
-      "item_null_talisman",
+      "set_starting_nuker",
+      "nil",
       "nil",
       "nil",
       "nil",

@@ -563,6 +563,14 @@ M.ITEM_SETS = {
       "nil"}
   },
 
+  set_starting_nuker = {
+    components = {
+      "item_tango",
+      "item_null_talisman",
+      "nil",
+      "nil"}
+  },
+
 }
 
 return M

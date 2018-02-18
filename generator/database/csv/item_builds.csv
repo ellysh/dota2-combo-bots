@@ -12,4 +12,4 @@ npc_dota_hero_skeleton_king;set_starting_melee;;;;"  item_belt_of_strength";;ite
 npc_dota_hero_sniper;set_starting_ranged;;;;;;"  item_mask_of_madness";item_phase_boots;item_hurricane_pike;item_mjollnir;item_invis_sword;item_greater_crit;item_butterfly
 npc_dota_hero_sven;set_starting_melee;;;;"  item_belt_of_strength";;item_power_treads;"  item_mask_of_madness";item_echo_sabre;item_blink;item_black_king_bar;item_satanic;item_assault
 npc_dota_hero_ursa;set_starting_melee;;;;"  item_lifesteal";;item_phase_boots;item_vladmir;item_blink;item_black_king_bar;item_monkey_king_bar;item_skadi;item_abyssal_blade
-npc_dota_hero_warlock;item_tango;item_null_talisman;;;;;item_arcane_boots;item_hand_of_midas;item_ultimate_scepter;item_force_staff;item_refresher;item_octarine_core;item_guardian_greaves
+npc_dota_hero_warlock;set_starting_nuker;;;;;;item_arcane_boots;item_hand_of_midas;item_ultimate_scepter;item_force_staff;item_refresher;item_octarine_core;item_guardian_greaves
