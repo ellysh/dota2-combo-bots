@@ -220,7 +220,7 @@ local function PurchaseViaCourier(bot)
     if PURCHASE_ITEM_SUCCESS ==
       courier:ActionImmediate_PurchaseItem(buy_item) then
 
-      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
+      logger.Print("PurchaseViaCourier() - " .. bot:GetUnitName() ..
                    " bought " .. buy_item .. " via courier")
 
       memory.SetItemToBuy(bot, nil)
@@ -245,8 +245,8 @@ local function PerformPlannedPurchaseAndSell(bot)
 
   if sell_item ~= nil then
 
-    logger.Print("SellItemByIndex() - " .. bot:GetUnitName() ..
-                 " sell " .. sell_item)
+    logger.Print("PerformPlannedPurchaseAndSell() - " ..
+      bot:GetUnitName() .. " sell " .. sell_item)
 
     local item_handle = functions.GetItem(bot, sell_item)
 
@@ -267,8 +267,8 @@ local function PerformPlannedPurchaseAndSell(bot)
     if PURCHASE_ITEM_SUCCESS ==
       bot:ActionImmediate_PurchaseItem(buy_item) then
 
-      logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
-                   " bought " .. buy_item)
+      logger.Print("PerformPlannedPurchaseAndSell() - " ..
+        bot:GetUnitName() .. " bought " .. buy_item)
 
       memory.SetItemToBuy(bot, nil)
     end
