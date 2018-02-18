@@ -284,6 +284,7 @@ player_on_mid
 player_on_top
 roam_target_is_near
 set_starting_melee
+set_starting_support
 shadow_shaman_ether_shock
 shadow_shaman_mass_serpent_ward
 shadow_shaman_shackles

@@ -67,3 +67,4 @@ item_vladmir;item_lifesteal;item_ring_of_basilius;item_headdress;
 item_wraith_band;item_circlet;item_slippers;item_recipe_wraith_band;
 item_yasha;item_blade_of_alacrity;item_boots_of_elves;item_recipe_yasha;
 set_starting_melee;item_tango;item_flask;item_stout_shield;item_magic_wand
+set_starting_support;item_tango;item_clarity;item_magic_wand;

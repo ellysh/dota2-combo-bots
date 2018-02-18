@@ -547,6 +547,14 @@ M.ITEM_SETS = {
       "item_magic_wand"}
   },
 
+  set_starting_support = {
+    components = {
+      "item_tango",
+      "item_clarity",
+      "item_magic_wand",
+      "nil"}
+  },
+
 }
 
 return M
