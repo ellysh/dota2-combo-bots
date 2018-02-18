@@ -110,7 +110,7 @@ local function PurchaseViaCourier(bot)
       logger.Print("PurchaseViaCourier() - " .. bot:GetUnitName() ..
                    " bought " .. buy_item .. " via courier")
 
-      memory.SetItemToBuy(bot, nil)
+      memory.IncreaseItemToBuyIndex(bot)
 
       return PURCHASE_ITEM_SUCCESS
     end
