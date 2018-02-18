@@ -22,10 +22,10 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_chaos_knight = {
     items = {
-      "item_tango",
-      "item_clarity",
-      "item_stout_shield",
-      "item_magic_wand",
+      "set_starting_melee",
+      "nil",
+      "nil",
+      "nil",
       "item_boots",
       "item_belt_of_strength",
       "item_power_treads",
@@ -73,11 +73,11 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_juggernaut = {
     items = {
-      "item_tango",
-      "item_flask",
-      "item_stout_shield",
+      "set_starting_melee",
+      "nil",
+      "nil",
       "item_boots",
-      "item_magic_wand",
+      "nil",
       "nil",
       "nil",
       "item_phase_boots",
@@ -124,12 +124,12 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_phantom_lancer = {
     items = {
-      "item_tango",
-      "item_flask",
-      "item_stout_shield",
+      "set_starting_melee",
+      "nil",
+      "nil",
       "item_boots",
-      "item_magic_wand",
       "item_boots_of_elves",
+      "nil",
       "item_power_treads",
       "item_ring_of_aquila",
       "item_diffusal_blade",
@@ -158,12 +158,12 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_skeleton_king = {
     items = {
-      "item_tango",
-      "item_flask",
-      "item_stout_shield",
+      "set_starting_melee",
+      "nil",
+      "nil",
       "item_boots",
-      "item_magic_wand",
       "item_belt_of_strength",
+      "nil",
       "item_power_treads",
       "item_armlet",
       "item_blink",
@@ -192,12 +192,12 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_sven = {
     items = {
-      "item_tango",
-      "item_flask",
-      "item_stout_shield",
+      "set_starting_melee",
+      "nil",
       "nil",
       "item_boots",
       "item_belt_of_strength",
+      "nil",
       "item_power_treads",
       "item_mask_of_madness",
       "item_echo_sabre",
@@ -209,12 +209,12 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_ursa = {
     items = {
-      "item_tango",
-      "item_flask",
-      "item_stout_shield",
-      "item_branches",
+      "set_starting_melee",
+      "nil",
+      "nil",
       "item_boots",
       "item_lifesteal",
+      "nil",
       "item_phase_boots",
       "item_vladmir",
       "item_blink",

@@ -539,6 +539,14 @@ M.ITEM_SETS = {
       "nil"}
   },
 
+  set_starting_melee = {
+    components = {
+      "item_tango",
+      "item_flask",
+      "item_stout_shield",
+      "item_magic_wand"}
+  },
+
 }
 
 return M
