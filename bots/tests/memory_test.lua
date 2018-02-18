@@ -52,4 +52,14 @@ function test_GetItemToBuy_when_purchase_list_empty_fails()
   luaunit.assertEquals(memory.GetItemToBuy(GetBot()), nil)
 end
 
+function test_IsRecipeItem_succeed()
+  luaunit.assertTrue(memory.test_IsRecipeItem("item_magic_wand"))
+end
+
+function test_IsRecipeItem_fails()
+  luaunit.assertFalse(memory.test_IsRecipeItem("item_tango"))
+  luaunit.assertFalse(memory.test_IsRecipeItem("item_branches"))
+
+end
+
 os.exit(luaunit.LuaUnit.run())

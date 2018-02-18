@@ -53,99 +53,6 @@ function test_PurchaseTpScroll_when_another_item_in_purchase_slot_fails()
     "item_branches")
 end
 
-function test_IsRecipeItem()
-  luaunit.assertFalse(item_purchase.test_IsRecipeItem("item_tango"))
-
-  luaunit.assertFalse(item_purchase.test_IsRecipeItem("item_branches"))
-
-  luaunit.assertTrue(item_purchase.test_IsRecipeItem("item_magic_wand"))
-end
-
-function test_IsItemAlreadyBought()
-  local inventory = {
-    "item_tango",
-    "item_branches"
-  }
-
-  luaunit.assertFalse(
-    item_purchase.test_IsItemAlreadyBought(inventory, "item_tpscroll"))
-
-  luaunit.assertEquals(inventory[1], "item_tango")
-  luaunit.assertEquals(inventory[2], "item_branches")
-
-  luaunit.assertTrue(
-    item_purchase.test_IsItemAlreadyBought(inventory, "item_tango"))
-
-  luaunit.assertEquals(inventory[1], "nil")
-  luaunit.assertEquals(inventory[2], "item_branches")
-end
-
-function test_GetInventoryAndStashItems()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  bot.inventory = {
-    "item_tango",
-    "item_branches",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "nil",
-    "item_tango",
-    "nil",
-    "item_branches",
-  }
-
-  local result = item_purchase.test_GetInventoryAndStashItems(bot)
-
-  luaunit.assertEquals(#bot.inventory, #result)
-
-  for i = 1, #result do
-    luaunit.assertEquals(bot.inventory[i], result[i])
-  end
-end
-
-function test_FindNextComponentToBuy()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
-    "item_branches")
-
-  table.insert(bot.inventory, "item_branches")
-
-  luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
-    "item_branches")
-
-  table.insert(bot.inventory, "item_branches")
-
-  luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
-    "item_enchanted_mango")
-
-  table.insert(bot.inventory, "item_enchanted_mango")
-
-  luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
-    "item_magic_stick")
-
-  table.insert(bot.inventory, "item_magic_stick")
-
-  luaunit.assertEquals(
-    item_purchase.test_FindNextComponentToBuy(bot, "item_magic_wand"),
-    "nil")
-end
-
 function test_PurchaseItem_when_nil_item_fails()
   test_RefreshBot()
 
@@ -275,58 +182,6 @@ function test_PurchaseItem_when_inventory_full_succeed()
   luaunit.assertEquals(
     memory.GetItemToBuy(bot),
     "item_tango")
-end
-
-function test_FindNextItemToBuy()
-  local item_list = {
-    "nil",
-    "item_tango"
-  }
-
-  index, item = item_purchase.test_FindNextItemToBuy(item_list)
-
-  luaunit.assertEquals(index, 2)
-  luaunit.assertEquals(item, "item_tango")
-end
-
-function test_FindNextItemToBuy_with_empty_list_fails()
-  local item_list = {
-    "nil",
-    "nil"
-  }
-
-  index, item = item_purchase.test_FindNextItemToBuy(item_list)
-
-  luaunit.assertEquals(index, -1)
-  luaunit.assertEquals(item, "nil")
-end
-
-function test_PurchaseItemList()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  bot.inventory = {}
-
-  COURIER = Unit:new()
-  memory.AddItemToBuy(bot, nil)
-  item_purchase.test_PurchaseItemList(bot)
-
-  luaunit.assertEquals(
-    memory.GetItemToBuy(bot),
-    "item_tango")
-end
-
-function test_PurchaseItemList_for_already_bought_item_fails()
-  test_RefreshBot()
-
-  local bot = GetBot()
-  bot.inventory = { "item_tango" }
-
-  memory.AddItemToBuy(bot, nil)
-  item_purchase.test_PurchaseItemList(bot)
-
-  luaunit.assertEquals(memory.GetItemToBuy(bot), nil)
 end
 
 function test_SellItemByIndex_level_match()
@@ -607,7 +462,6 @@ function test_ItemPurchaseThink_with_full_inventory()
     "item_branches",
   }
 
-  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
 
   item_purchase.ItemPurchaseThink()

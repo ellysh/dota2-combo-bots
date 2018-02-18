@@ -1,10 +1,6 @@
 local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
--- TODO: Remove the "item_recipe" require
-local item_recipe = require(
-  GetScriptDirectory() .."/database/item_recipe")
-
 local item_sell = require(
   GetScriptDirectory() .."/database/item_sell")
 
