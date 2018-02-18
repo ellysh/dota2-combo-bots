@@ -17,8 +17,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["three_and_more_neutral_creeps"], 60},
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_creeps"], 90},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 30}
   },
 
   crystal_maiden_frostbite = {
@@ -32,8 +33,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 80},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 50},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 80}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 50}
   },
 
   crystal_maiden_freezing_field = {
@@ -47,8 +49,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   drow_ranger_frost_arrows = {
@@ -62,8 +65,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   drow_ranger_wave_of_silence = {
@@ -77,8 +81,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 30}
   },
 
   drow_ranger_trueshot = {
@@ -92,8 +97,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_ally_creeps_aoe"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   juggernaut_blade_fury = {
@@ -107,8 +113,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_aoe"], 90},
       BOT_MODE_FARM = {algorithms["three_and_more_neutral_creeps_aoe"], 80},
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_creeps_aoe"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["low_hp_self"], 70},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], 70}
   },
 
   juggernaut_healing_ward = {
@@ -122,8 +129,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   juggernaut_omni_slash = {
@@ -137,8 +145,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["low_hp_ally_hero"], 60},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 30},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 30}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   shadow_shaman_ether_shock = {
@@ -152,8 +161,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 30},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 30}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   shadow_shaman_voodoo = {
@@ -167,8 +177,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 40},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 40}
   },
 
   shadow_shaman_shackles = {
@@ -182,8 +193,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 10},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 10}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   shadow_shaman_mass_serpent_ward = {
@@ -197,8 +209,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], 90},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   ursa_earthshock = {
@@ -212,8 +225,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["use_on_attack_enemy_hero_aoe"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["use_on_attack_enemy_hero_aoe"], 50},
       BOT_MODE_RETREAT = {algorithms["use_on_attack_enemy_hero_aoe"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["use_on_attack_enemy_hero_aoe"], 50}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["use_on_attack_enemy_hero_aoe"], 60}
   },
 
   ursa_overpower = {
@@ -227,8 +241,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   ursa_enrage = {
@@ -242,8 +257,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   skeleton_king_hellfire_blast = {
@@ -257,8 +273,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 60}
   },
 
   sniper_shrapnel = {
@@ -272,8 +289,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["three_and_more_neutral_creeps"], 70},
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_creeps"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 10},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 10}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   sniper_assassinate = {
@@ -287,8 +305,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   lion_impale = {
@@ -302,8 +321,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 60},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 50},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 50}
   },
 
   lion_voodoo = {
@@ -317,8 +337,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 40},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 40}
   },
 
   lion_mana_drain = {
@@ -332,8 +353,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_with_mana_when_low_mp"], 70},
       BOT_MODE_FARM = {algorithms["use_on_attack_enemy_with_mana_when_low_mp"], 70},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   lion_finger_of_death = {
@@ -347,8 +369,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 10},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 10}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   sven_storm_bolt = {
@@ -362,8 +385,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 60}
   },
 
   sven_warcry = {
@@ -377,8 +401,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   sven_gods_strength = {
@@ -392,8 +417,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   lich_frost_nova = {
@@ -407,8 +433,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 60},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 80},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 50},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 80}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 50}
   },
 
   lich_frost_armor = {
@@ -422,8 +449,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["low_hp_ally_hero"], 40},
       BOT_MODE_FARM = {algorithms["low_hp_self"], 20},
       BOT_MODE_DEFEND_TOWER = {algorithms["low_hp_ally_hero"], 40},
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   lich_dark_ritual = {
@@ -437,8 +465,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   lich_chain_frost = {
@@ -452,8 +481,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   phantom_assassin_stifling_dagger = {
@@ -467,8 +497,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 50},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 50}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 30}
   },
 
   phantom_assassin_phantom_strike = {
@@ -482,8 +513,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   chaos_knight_chaos_bolt = {
@@ -497,8 +529,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 60}
   },
 
   chaos_knight_reality_rift = {
@@ -512,8 +545,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   chaos_knight_phantasm = {
@@ -527,8 +561,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   phantom_lancer_spirit_lance = {
@@ -542,8 +577,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 50},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 50}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 30}
   },
 
   phantom_lancer_doppelwalk = {
@@ -557,8 +593,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   phantom_lancer_phantom_edge = {
@@ -572,8 +609,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   warlock_fatal_bonds = {
@@ -587,8 +625,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   warlock_shadow_word = {
@@ -602,8 +641,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 60},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 75},
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 80},
       BOT_MODE_RETREAT = {algorithms["low_hp_self"], 90},
-      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 80}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], 90}
   },
 
   warlock_upheaval = {
@@ -617,8 +657,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_heroes"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   warlock_rain_of_chaos = {
@@ -632,8 +673,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_heroes"], 90},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   item_glimmer_cape = {
@@ -647,8 +689,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["low_hp_ally_hero"], 40},
       BOT_MODE_FARM = {algorithms["low_hp_self"], 20},
       BOT_MODE_DEFEND_TOWER = {algorithms["low_hp_ally_hero"], 40},
-      BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70}
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70},
+      BOT_MODE_RETREAT = {algorithms["low_hp_self"], nil},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], nil}
   },
 
   item_rod_of_atos = {
@@ -662,8 +705,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 30},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_enemy_hero"], 40}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 30}
   },
 
   item_sheepstick = {
@@ -677,8 +721,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 40},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 40}
   },
 
   item_lotus_orb = {
@@ -692,8 +737,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["low_hp_ally_hero"], 40},
       BOT_MODE_FARM = {algorithms["low_hp_self"], 20},
       BOT_MODE_DEFEND_TOWER = {algorithms["low_hp_ally_hero"], 40},
+      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   item_cyclone = {
@@ -707,8 +753,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
       BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
       BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
-      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], 60}
   },
 
   item_blink = {
@@ -722,8 +769,9 @@ M.SKILL_USAGE = {
       BOT_MODE_ROSHAN = {algorithms["nil"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
 }

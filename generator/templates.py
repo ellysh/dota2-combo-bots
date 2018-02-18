@@ -136,8 +136,9 @@ SKILL_USAGE = """
       BOT_MODE_ROSHAN = {algorithms["<15>"], <16>},
       BOT_MODE_FARM = {algorithms["<17>"], <18>},
       BOT_MODE_DEFEND_TOWER = {algorithms["<19>"], <20>},
-      BOT_MODE_RETREAT = {algorithms["<21>"], <22>},
-      BOT_MODE_DEFEND_ALLY = {algorithms["<23>"], <24>}
+      BOT_MODE_DEFEND_ALLY = {algorithms["<21>"], <22>},
+      BOT_MODE_RETREAT = {algorithms["<23>"], <24>},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["<25>"], <26>}
   },
 """
 
