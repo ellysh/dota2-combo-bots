@@ -555,6 +555,14 @@ M.ITEM_SETS = {
       "nil"}
   },
 
+  set_starting_ranged = {
+    components = {
+      "item_tango",
+      "item_ring_of_aquila",
+      "item_magic_wand",
+      "nil"}
+  },
+
 }
 
 return M

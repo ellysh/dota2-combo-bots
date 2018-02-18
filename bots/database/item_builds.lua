@@ -56,12 +56,12 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_drow_ranger = {
     items = {
-      "item_tango",
-      "item_wraith_band",
+      "set_starting_ranged",
       "nil",
-      "item_ring_of_aquila",
+      "nil",
+      "nil",
       "item_boots_of_elves",
-      "item_magic_wand",
+      "nil",
       "item_power_treads",
       "item_mask_of_madness",
       "item_invis_sword",
@@ -175,11 +175,11 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_sniper = {
     items = {
-      "item_tango",
-      "item_wraith_band",
+      "set_starting_ranged",
       "nil",
       "nil",
-      "item_ring_of_aquila",
+      "nil",
+      "nil",
       "nil",
       "item_mask_of_madness",
       "item_phase_boots",
