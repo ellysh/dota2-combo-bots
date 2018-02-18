@@ -41,12 +41,6 @@ function M.GetItemToSell(bot)
   return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL
 end
 
-function M.GetItemToBuy(bot)
-  local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
-
-  return PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD[index]
-end
-
 function M.AddItemToBuy(bot, item)
   local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
 
@@ -56,6 +50,22 @@ end
 function M.IncreaseItemToBuyIndex(bot)
   PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX =
     PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX + 1
+end
+
+function M.GetItemToBuy(bot)
+  local item_build = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
+  local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
+
+  while index <= #item_build do
+    local item = item_build[index]
+    if item ~= "nil" then
+      return item end
+
+    index = index + 1
+    M.IncreaseItemToBuyIndex(bot)
+  end
+
+  return nil
 end
 
 local function IsRecipeItem(item)
