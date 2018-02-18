@@ -4,9 +4,6 @@ local logger = require(
 local item_recipe = require(
   GetScriptDirectory() .."/database/item_recipe")
 
-local item_build = require(
-  GetScriptDirectory() .."/database/item_build")
-
 local item_sell = require(
   GetScriptDirectory() .."/database/item_sell")
 
@@ -139,7 +136,7 @@ local function PurchaseItemList(bot)
   if not IsPurchasePossible(bot) then
     return end
 
-  local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
+  local item_list = memory.GetItemBuild(bot)
 
   local i, item = FindNextItemToBuy(item_list)
 

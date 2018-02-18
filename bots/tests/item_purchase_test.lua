@@ -8,6 +8,8 @@ local item_purchase = require("item_purchase")
 local constants = require("constants")
 local memory = require("memory")
 
+memory.MakePurchaseList(GetBot())
+
 function test_IsTpScrollPresent()
   test_RefreshBot()
 

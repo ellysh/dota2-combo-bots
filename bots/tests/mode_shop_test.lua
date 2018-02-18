@@ -8,6 +8,8 @@ local mode_shop = require("mode_shop")
 local constants = require("constants")
 local memory = require("memory")
 
+memory.MakePurchaseList(GetBot())
+
 function test_IsShopRequired_item_to_buy_succeed()
   test_RefreshBot()
 

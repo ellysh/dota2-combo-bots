@@ -1,3 +1,6 @@
+local item_build = require(
+  GetScriptDirectory() .."/database/item_build")
+
 local M = {}
 
 -- Format of the PURCHASE_LIST list:
@@ -23,35 +26,33 @@ local function InitPurchaseList(bot)
 end
 
 function M.GetItemToSell(bot)
-  if not IsInitPurchaseList(bot) then
-    return nil end
-
   return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL
 end
 
 function M.GetItemToBuy(bot)
-  if not IsInitPurchaseList(bot) then
-    return nil end
-
   return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY
 end
 
 function M.SetItemToSell(bot, item)
-  InitPurchaseList(bot)
-
   PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL = item
 end
 
 function M.SetItemToBuy(bot, item)
-  InitPurchaseList(bot)
-
   PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY = item
+end
+
+function M.GetItemBuild(bot)
+  return PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
 end
 
 function M.MakePurchaseList(bot)
   InitPurchaseList(bot)
 
-  -- TODO: Implement this function
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD =
+    item_build.ITEM_BUILD[bot:GetUnitName()].items
 end
+
+-- Provide an access to local functions for unit tests only
+M.test_InitPurchaseList = InitPurchaseList
 
 return M
