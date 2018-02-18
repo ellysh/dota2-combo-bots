@@ -1,6 +1,12 @@
 local item_build = require(
   GetScriptDirectory() .."/database/item_build")
 
+local item_recipe = require(
+  GetScriptDirectory() .."/database/item_recipe")
+
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 -- Format of the PURCHASE_LIST list:
@@ -22,6 +28,7 @@ end
 local function InitPurchaseList(bot)
   if not IsInitPurchaseList(bot) then
     PURCHASE_LIST[bot:GetUnitName()] = {}
+    PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD = {}
   end
 end
 
@@ -45,11 +52,31 @@ function M.GetItemBuild(bot)
   return PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
 end
 
+local function IsRecipeItem(item)
+  return item_recipe.ITEM_RECIPE[item] ~= nil
+end
+
+local function AddItemToList(list, item)
+  if not IsRecipeItem(item) then
+    table.insert(list, item)
+    return
+  end
+
+  local component_list = item_recipe.ITEM_RECIPE[item].components
+
+  for _, component in functions.spairs(component_list) do
+    AddItemToList(list, component)
+  end
+end
+
 function M.MakePurchaseList(bot)
   InitPurchaseList(bot)
 
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD =
-    item_build.ITEM_BUILD[bot:GetUnitName()].items
+  local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items
+
+  for _, item in functions.spairs(item_list) do
+    AddItemToList(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, item)
+  end
 end
 
 -- Provide an access to local functions for unit tests only

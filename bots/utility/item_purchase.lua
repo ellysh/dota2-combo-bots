@@ -1,6 +1,7 @@
 local logger = require(
   GetScriptDirectory() .."/utility/logger")
 
+-- TODO: Remove the "item_recipe" require
 local item_recipe = require(
   GetScriptDirectory() .."/database/item_recipe")
 
@@ -38,6 +39,8 @@ local function PurchaseCourier(bot)
     bot:ActionImmediate_PurchaseItem("item_courier")
   end
 end
+
+-- TODO: This is a code duplication with the "memory" module.
 
 local function IsRecipeItem(item)
   return item_recipe.ITEM_RECIPE[item] ~= nil
