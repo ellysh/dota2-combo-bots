@@ -10,11 +10,14 @@ local item_build = require(
 local item_sell = require(
   GetScriptDirectory() .."/database/item_sell")
 
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+local memory = require(
+  GetScriptDirectory() .."/utility/memory")
 
 local M = {}
 
@@ -106,7 +109,7 @@ local function IsPurchasePossible(bot)
              and courier:IsAlive()
              and bot:GetCourierValue() == 0)
          and bot:GetStashValue() == 0
-         and functions.GetItemToBuy(bot) == nil
+         and memory.GetItemToBuy(bot) == nil
 end
 
 local function PurchaseItem(bot, item)
@@ -120,7 +123,7 @@ local function PurchaseItem(bot, item)
   if item == "nil" then
     return end
 
-  functions.SetItemToBuy(bot, item)
+  memory.SetItemToBuy(bot, item)
 end
 
 local function PurchaseTpScroll(bot)
@@ -160,14 +163,14 @@ local function SellItemByIndex(bot, index, condition)
   -- We should sell an item despite the condition if we want to buy
   -- item and an inventory is full.
 
-  if functions.GetItemToBuy(bot) == nil
+  if memory.GetItemToBuy(bot) == nil
      and bot:GetLevel() < condition.level
      and DotaTime() < (condition.time * 60) then
 
     return
   end
 
-  functions.SetItemToSell(bot, item:GetName())
+  memory.SetItemToSell(bot, item:GetName())
 end
 
 local function GetSlotIndex(inventory_index)
@@ -175,7 +178,7 @@ local function GetSlotIndex(inventory_index)
 end
 
 local function SellExtraItem(bot)
-  if functions.GetItemToSell(bot) ~= nil then
+  if memory.GetItemToSell(bot) ~= nil then
     return end
 
   if not functions.IsInventoryFull(bot) then
@@ -200,7 +203,7 @@ end
 
 local function PurchaseViaCourier(bot)
   local courier = GetCourier(0)
-  local buy_item = functions.GetItemToBuy(bot)
+  local buy_item = memory.GetItemToBuy(bot)
   local is_item_from_secret_shop = IsItemPurchasedFromSecretShop(buy_item)
 
   if courier == nil
@@ -220,7 +223,7 @@ local function PurchaseViaCourier(bot)
       logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
                    " bought " .. buy_item .. " via courier")
 
-      functions.SetItemToBuy(bot, nil)
+      memory.SetItemToBuy(bot, nil)
 
       return PURCHASE_ITEM_SUCCESS
     end
@@ -238,7 +241,7 @@ local function PerformPlannedPurchaseAndSell(bot)
     return
   end
 
-  local sell_item = functions.GetItemToSell(bot)
+  local sell_item = memory.GetItemToSell(bot)
 
   if sell_item ~= nil then
 
@@ -251,10 +254,10 @@ local function PerformPlannedPurchaseAndSell(bot)
       bot:ActionImmediate_SellItem(item_handle)
     end
 
-    functions.SetItemToSell(bot, nil)
+    memory.SetItemToSell(bot, nil)
   end
 
-  local buy_item = functions.GetItemToBuy(bot)
+  local buy_item = memory.GetItemToBuy(bot)
 
   if functions.IsInventoryFull(bot)
      or bot:GetGold() < GetItemCost(buy_item) then
@@ -267,7 +270,7 @@ local function PerformPlannedPurchaseAndSell(bot)
       logger.Print("PurchaseItemList() - " .. bot:GetUnitName() ..
                    " bought " .. buy_item)
 
-      functions.SetItemToBuy(bot, nil)
+      memory.SetItemToBuy(bot, nil)
     end
   end
 end

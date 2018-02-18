@@ -434,18 +434,6 @@ function test_IsUnitHaveItems()
       {"item_tango"}))
 end
 
-function test_SetItemToSell_first_time()
-  test_RefreshBot()
-
-  local bot = GetBot()
-
-  PURCHASE_LIST = {}
-  functions.SetItemToSell(bot, "item_tpscroll")
-
-  PURCHASE_LIST[bot:GetUnitName()] = {}
-  functions.SetItemToSell(bot, "item_tpscroll")
-end
-
 function test_GetHeroPositions()
   luaunit.assertEquals(
     functions.GetHeroPositions("npc_dota_hero_shadow_shaman"),
@@ -587,14 +575,6 @@ function test_IsBotInFightingMode_fails()
     UNIT_MODE = mode
     luaunit.assertFalse(functions.IsBotInFightingMode(bot))
   end
-end
-
-function test_GetItemToSell_when_purchase_list_empty_fails()
-  luaunit.assertEquals(functions.GetItemToSell(GetBot()), nil)
-end
-
-function test_GetItemToBuy_when_purchase_list_empty_fails()
-  luaunit.assertEquals(functions.GetItemToBuy(GetBot()), nil)
 end
 
 function test_DistanceToDesire_succeed()

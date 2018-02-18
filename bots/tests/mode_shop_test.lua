@@ -3,17 +3,17 @@ package.path = package.path .. ";../utility/?.lua"
 pcall(require, "luacov")
 require("global_functions")
 
+local luaunit = require("luaunit")
 local mode_shop = require("mode_shop")
 local constants = require("constants")
-local functions = require("functions")
-local luaunit = require('luaunit')
+local memory = require("memory")
 
 function test_IsShopRequired_item_to_buy_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
 
-  functions.SetItemToBuy(bot, "item_boots")
+  memory.SetItemToBuy(bot, "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_NONE
 
@@ -27,8 +27,8 @@ function test_IsShopRequired_item_to_sell_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
-  functions.SetItemToBuy(bot, nil)
-  functions.SetItemToSell(bot, "item_boots")
+  memory.SetItemToBuy(bot, nil)
+  memory.SetItemToSell(bot, "item_boots")
   UNIT_MODE = BOT_MODE_NONE
 
   luaunit.assertTrue(
@@ -40,7 +40,7 @@ end
 function test_GetDesire_in_fight_mode_negative()
   test_RefreshBot()
 
-  functions.SetItemToBuy(GetBot(), "item_boots")
+  memory.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_ATTACK
   UNIT_NO_NEARBY_UNITS = true
@@ -56,7 +56,7 @@ end
 function test_GetDesire_succeed()
   test_RefreshBot()
 
-  functions.SetItemToBuy(GetBot(), "item_boots")
+  memory.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_NONE
   UNIT_NO_NEARBY_UNITS = true
@@ -89,7 +89,7 @@ end
 function test_GetDesireSideShop_positive()
   test_RefreshBot()
 
-  functions.SetItemToBuy(GetBot(), "item_boots")
+  memory.SetItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
 
   luaunit.assertEquals(
@@ -100,7 +100,7 @@ end
 function test_GetDesireSecretShop_positive()
   test_RefreshBot()
 
-  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
   IS_SECRET_SHOP_ITEM = true
 
   luaunit.assertEquals(

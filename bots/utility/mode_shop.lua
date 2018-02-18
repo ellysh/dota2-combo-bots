@@ -4,14 +4,17 @@ local constants = require(
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
+local memory = require(
+  GetScriptDirectory() .."/utility/memory")
+
 local common_algorithms = require(
   GetScriptDirectory() .."/utility/common_algorithms")
 
 local M = {}
 
 local function IsShopRequired(bot, check_shop_func)
-  local buy_item = functions.GetItemToBuy(bot)
-  local sell_item = functions.GetItemToSell(bot)
+  local buy_item = memory.GetItemToBuy(bot)
+  local sell_item = memory.GetItemToSell(bot)
 
   return not functions.IsBotBusy(bot)
          and not bot:WasRecentlyDamagedByAnyHero(5.0)

@@ -3,9 +3,9 @@ package.path = package.path .. ";../utility/?.lua"
 pcall(require, "luacov")
 require("global_functions")
 
-local luaunit = require('luaunit')
+local luaunit = require("luaunit")
 local courier = require("courier")
-local functions = require("functions")
+local memory = require("memory")
 
 function test_IsCourierAvailable_succeed()
   local bot = GetBot()
@@ -96,7 +96,7 @@ function test_IsSecretShopRequired()
     courier.test_IsSecretShopRequired(GetBot()))
 
   IS_SECRET_SHOP_ITEM = true
-  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
   luaunit.assertTrue(
     courier.test_IsSecretShopRequired(GetBot()))
 
@@ -185,7 +185,7 @@ function test_CourierUsageThink_secret_shop_action_succeed()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
   IS_SECRET_SHOP_ITEM = true
-  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
 
   courier.CourierUsageThink()
 
@@ -202,7 +202,7 @@ function test_CourierUsageThink_take_and_transfer_action_succeed()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE
   STASH_VALUE = 400
-  functions.SetItemToBuy(GetBot(), nil)
+  memory.SetItemToBuy(GetBot(), nil)
   courier.CourierUsageThink()
 
   luaunit.assertEquals(
@@ -219,7 +219,7 @@ function test_CourierUsageThink_dead_fails()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_DEAD
   IS_SECRET_SHOP_ITEM = true
-  functions.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
 
   courier.CourierUsageThink()
 
@@ -235,7 +235,7 @@ function test_CourierUsageThink_free_succeed()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE
   STASH_VALUE = 0
-  functions.SetItemToBuy(GetBot(), nil)
+  memory.SetItemToBuy(GetBot(), nil)
   courier.CourierUsageThink()
 
   luaunit.assertEquals(

@@ -1,8 +1,11 @@
+local constants = require(
+  GetScriptDirectory() .."/utility/constants")
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
-local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+local memory = require(
+  GetScriptDirectory() .."/utility/memory")
 
 local M = {}
 
@@ -69,7 +72,7 @@ local function FreeCourier(bot, courier, state)
 end
 
 local function IsSecretShopRequired(bot)
-  local buy_item = functions.GetItemToBuy(bot)
+  local buy_item = memory.GetItemToBuy(bot)
 
   return buy_item ~= nil
          and IsItemPurchasedFromSecretShop(buy_item)
