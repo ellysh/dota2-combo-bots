@@ -26,11 +26,9 @@ local function IsInitPurchaseList(bot)
 end
 
 local function InitPurchaseList(bot)
-  if not IsInitPurchaseList(bot) then
-    PURCHASE_LIST[bot:GetUnitName()] = {}
-    PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD = {}
-    PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX = 1
-  end
+  PURCHASE_LIST[bot:GetUnitName()] = {}
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD = {}
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX = 1
 end
 
 function M.SetItemToSell(bot, item)
@@ -86,6 +84,9 @@ local function AddItemToList(list, item)
 end
 
 function M.MakePurchaseList(bot)
+  if IsInitPurchaseList(bot) then
+    return end
+
   InitPurchaseList(bot)
 
   local item_list = item_build.ITEM_BUILD[bot:GetUnitName()].items

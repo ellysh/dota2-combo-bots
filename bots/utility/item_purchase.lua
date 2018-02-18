@@ -162,10 +162,10 @@ local function PerformPlannedPurchaseAndSell(bot)
   end
 end
 
-memory.MakePurchaseList(GetBot())
-
 function M.ItemPurchaseThink()
   local bot = GetBot()
+
+  memory.MakePurchaseList(bot)
 
   PerformPlannedPurchaseAndSell(bot)
 
