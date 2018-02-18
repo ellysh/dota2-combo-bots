@@ -3,30 +3,30 @@ local M = {}
 
 M.ATTACK_TARGET = {
 
-  max_kills_enemy_hero = {
-      BOT_MODE_ROAM = 85,
-      BOT_MODE_TEAM_ROAM = 85,
-      BOT_MODE_PUSH_TOWER = 85,
-      BOT_MODE_ATTACK = 85,
-      BOT_MODE_NONE = 85,
-      BOT_MODE_LANING = 0,
-      BOT_MODE_ROSHAN = 0,
-      BOT_MODE_FARM = 0,
-      BOT_MODE_DEFEND_TOWER = 85,
-      BOT_MODE_RETREAT = 0,
-      BOT_MODE_DEFEND_ALLY = 85
-  },
-
-  max_hp_enemy_creep = {
+  attacking_enemy_creep = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,
-      BOT_MODE_PUSH_TOWER = 10,
-      BOT_MODE_ATTACK = 10,
+      BOT_MODE_PUSH_TOWER = 15,
+      BOT_MODE_ATTACK = 15,
       BOT_MODE_NONE = 15,
       BOT_MODE_LANING = 0,
       BOT_MODE_ROSHAN = 0,
-      BOT_MODE_FARM = 40,
-      BOT_MODE_DEFEND_TOWER = 10,
+      BOT_MODE_FARM = 15,
+      BOT_MODE_DEFEND_TOWER = 25,
+      BOT_MODE_RETREAT = 0,
+      BOT_MODE_DEFEND_ALLY = 0
+  },
+
+  attacking_enemy_hero = {
+      BOT_MODE_ROAM = 50,
+      BOT_MODE_TEAM_ROAM = 50,
+      BOT_MODE_PUSH_TOWER = 65,
+      BOT_MODE_ATTACK = 65,
+      BOT_MODE_NONE = 65,
+      BOT_MODE_LANING = 0,
+      BOT_MODE_ROSHAN = 0,
+      BOT_MODE_FARM = 0,
+      BOT_MODE_DEFEND_TOWER = 75,
       BOT_MODE_RETREAT = 0,
       BOT_MODE_DEFEND_ALLY = 0
   },
@@ -45,12 +45,12 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 0
   },
 
-  min_hp_enemy_building = {
+  low_hp_enemy_building = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,
-      BOT_MODE_PUSH_TOWER = 70,
-      BOT_MODE_ATTACK = 70,
-      BOT_MODE_NONE = 70,
+      BOT_MODE_PUSH_TOWER = 80,
+      BOT_MODE_ATTACK = 80,
+      BOT_MODE_NONE = 80,
       BOT_MODE_LANING = 0,
       BOT_MODE_ROSHAN = 0,
       BOT_MODE_FARM = 0,
@@ -73,16 +73,16 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 90
   },
 
-  low_hp_enemy_building = {
+  max_hp_enemy_creep = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,
-      BOT_MODE_PUSH_TOWER = 80,
-      BOT_MODE_ATTACK = 80,
-      BOT_MODE_NONE = 80,
+      BOT_MODE_PUSH_TOWER = 10,
+      BOT_MODE_ATTACK = 10,
+      BOT_MODE_NONE = 15,
       BOT_MODE_LANING = 0,
       BOT_MODE_ROSHAN = 0,
-      BOT_MODE_FARM = 0,
-      BOT_MODE_DEFEND_TOWER = 0,
+      BOT_MODE_FARM = 40,
+      BOT_MODE_DEFEND_TOWER = 10,
       BOT_MODE_RETREAT = 0,
       BOT_MODE_DEFEND_ALLY = 0
   },
@@ -101,30 +101,30 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 0
   },
 
-  attacking_enemy_hero = {
-      BOT_MODE_ROAM = 50,
-      BOT_MODE_TEAM_ROAM = 50,
-      BOT_MODE_PUSH_TOWER = 65,
-      BOT_MODE_ATTACK = 65,
-      BOT_MODE_NONE = 65,
+  max_kills_enemy_hero = {
+      BOT_MODE_ROAM = 85,
+      BOT_MODE_TEAM_ROAM = 85,
+      BOT_MODE_PUSH_TOWER = 85,
+      BOT_MODE_ATTACK = 85,
+      BOT_MODE_NONE = 85,
       BOT_MODE_LANING = 0,
       BOT_MODE_ROSHAN = 0,
       BOT_MODE_FARM = 0,
-      BOT_MODE_DEFEND_TOWER = 75,
+      BOT_MODE_DEFEND_TOWER = 85,
       BOT_MODE_RETREAT = 0,
-      BOT_MODE_DEFEND_ALLY = 0
+      BOT_MODE_DEFEND_ALLY = 85
   },
 
-  attacking_enemy_creep = {
+  min_hp_enemy_building = {
       BOT_MODE_ROAM = 0,
       BOT_MODE_TEAM_ROAM = 0,
-      BOT_MODE_PUSH_TOWER = 15,
-      BOT_MODE_ATTACK = 15,
-      BOT_MODE_NONE = 15,
+      BOT_MODE_PUSH_TOWER = 70,
+      BOT_MODE_ATTACK = 70,
+      BOT_MODE_NONE = 70,
       BOT_MODE_LANING = 0,
       BOT_MODE_ROSHAN = 0,
-      BOT_MODE_FARM = 15,
-      BOT_MODE_DEFEND_TOWER = 25,
+      BOT_MODE_FARM = 0,
+      BOT_MODE_DEFEND_TOWER = 0,
       BOT_MODE_RETREAT = 0,
       BOT_MODE_DEFEND_ALLY = 0
   },
