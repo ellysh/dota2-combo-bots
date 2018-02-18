@@ -98,7 +98,7 @@ function test_IsSecretShopRequired()
     courier.test_IsSecretShopRequired(GetBot()))
 
   IS_SECRET_SHOP_ITEM = true
-  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.AddItemToBuy(GetBot(), "item_vitality_booster")
   luaunit.assertTrue(
     courier.test_IsSecretShopRequired(GetBot()))
 
@@ -187,7 +187,7 @@ function test_CourierUsageThink_secret_shop_action_succeed()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_IDLE
   IS_SECRET_SHOP_ITEM = true
-  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.AddItemToBuy(GetBot(), "item_vitality_booster")
 
   courier.CourierUsageThink()
 
@@ -204,7 +204,7 @@ function test_CourierUsageThink_take_and_transfer_action_succeed()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE
   STASH_VALUE = 400
-  memory.SetItemToBuy(GetBot(), nil)
+  memory.AddItemToBuy(GetBot(), nil)
   courier.CourierUsageThink()
 
   luaunit.assertEquals(
@@ -221,7 +221,7 @@ function test_CourierUsageThink_dead_fails()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_DEAD
   IS_SECRET_SHOP_ITEM = true
-  memory.SetItemToBuy(GetBot(), "item_vitality_booster")
+  memory.AddItemToBuy(GetBot(), "item_vitality_booster")
 
   courier.CourierUsageThink()
 
@@ -237,7 +237,7 @@ function test_CourierUsageThink_free_succeed()
   COURIER_ACTION = nil
   COURIER_STATE = COURIER_STATE_AT_BASE
   STASH_VALUE = 0
-  memory.SetItemToBuy(GetBot(), nil)
+  memory.AddItemToBuy(GetBot(), nil)
   courier.CourierUsageThink()
 
   luaunit.assertEquals(

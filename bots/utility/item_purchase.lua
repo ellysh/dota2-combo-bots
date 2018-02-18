@@ -130,7 +130,7 @@ local function PurchaseTpScroll(bot)
   if IsTpScrollPresent(bot) then
     return end
 
-  PurchaseItem(bot, "item_tpscroll")
+  memory.AddItemToBuy(bot, "item_tpscroll")
 end
 
 local function PurchaseItemList(bot)
@@ -270,7 +270,7 @@ local function PerformPlannedPurchaseAndSell(bot)
       logger.Print("PerformPlannedPurchaseAndSell() - " ..
         bot:GetUnitName() .. " bought " .. buy_item)
 
-      memory.SetItemToBuy(bot, nil)
+      memory.IncreaseItemToBuyIndex(bot)
     end
   end
 end

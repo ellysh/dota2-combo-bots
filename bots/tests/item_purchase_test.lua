@@ -31,7 +31,7 @@ function test_PurchaseTpScroll()
   test_RefreshBot()
 
   ITEM_COST = 50
-  memory.SetItemToBuy(GetBot(), nil)
+  memory.AddItemToBuy(GetBot(), nil)
 
   item_purchase.test_PurchaseTpScroll(GetBot())
 
@@ -44,7 +44,7 @@ function test_PurchaseTpScroll_when_another_item_in_purchase_slot_fails()
   test_RefreshBot()
 
   ITEM_COST = 50
-  memory.SetItemToBuy(GetBot(), "item_branches")
+  memory.AddItemToBuy(GetBot(), "item_branches")
 
   item_purchase.test_PurchaseTpScroll(GetBot())
 
@@ -151,7 +151,7 @@ function test_PurchaseItem_when_nil_item_fails()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "nil")
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), nil)
@@ -163,7 +163,7 @@ function test_PurchaseItem_when_not_enough_gold_succeed()
   local bot = GetBot()
 
   bot.gold = 0
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_stick")
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_magic_stick")
@@ -174,7 +174,7 @@ function test_PurchaseItem_basic()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_tango")
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_tango")
@@ -185,19 +185,19 @@ function test_PurchaseItem_recipe()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_wand")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_branches")
 
   table.insert(bot.inventory, "item_branches")
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_wand")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_branches")
 
   table.insert(bot.inventory, "item_branches")
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_wand")
   luaunit.assertEquals(
     memory.GetItemToBuy(bot),
@@ -205,7 +205,7 @@ function test_PurchaseItem_recipe()
 
   table.insert(bot.inventory, "item_enchanted_mango")
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_magic_wand")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_magic_stick")
 end
@@ -216,25 +216,25 @@ function test_PurchaseItem_recipe_from_recipe_component()
   local bot = GetBot()
   bot.gold = 9000
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_void_stone")
 
   table.insert(bot.inventory, "item_void_stone")
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_ring_of_health")
 
   table.insert(bot.inventory, "item_pers")
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_platemail")
 
   table.insert(bot.inventory, "item_platemail")
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_lotus_orb")
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_energy_booster")
 
@@ -268,7 +268,7 @@ function test_PurchaseItem_when_inventory_full_succeed()
     "item_branches"
   }
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
   item_purchase.test_PurchaseItem(bot, "item_tango")
 
@@ -309,7 +309,7 @@ function test_PurchaseItemList()
   bot.inventory = {}
 
   COURIER = Unit:new()
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItemList(bot)
 
   luaunit.assertEquals(
@@ -323,7 +323,7 @@ function test_PurchaseItemList_for_already_bought_item_fails()
   local bot = GetBot()
   bot.inventory = { "item_tango" }
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_PurchaseItemList(bot)
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), nil)
@@ -346,7 +346,7 @@ function test_SellItemByIndex_level_match()
   }
 
   memory.SetItemToSell(bot, nil)
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
   luaunit.assertEquals(memory.GetItemToSell(bot), "item_branches")
@@ -368,7 +368,7 @@ function test_SellItemByIndex_time_match()
   }
 
   TIME = 30 * 60
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
@@ -391,7 +391,7 @@ function test_SellItemByIndex_all_checks_fails()
   }
 
   TIME = 1
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
   item_purchase.test_SellItemByIndex(GetBot(), 1, condition)
 
@@ -424,7 +424,7 @@ function test_SellExtraItem_because_of_level_succeed()
     "item_branches"
   }
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
   item_purchase.test_SellExtraItem(GetBot())
 
@@ -456,7 +456,7 @@ function test_SellExtraItem_because_of_buying_new_succeed()
     "item_branches"
   }
 
-  memory.SetItemToBuy(bot, "item_branches")
+  memory.AddItemToBuy(bot, "item_branches")
   memory.SetItemToSell(bot, nil)
   item_purchase.test_SellExtraItem(GetBot())
 
@@ -488,7 +488,7 @@ function test_SellExtraItem_when_already_planned_fails()
     "item_tango"
   }
 
-  memory.SetItemToBuy(bot, "item_branches")
+  memory.AddItemToBuy(bot, "item_branches")
   memory.SetItemToSell(bot, {name = "item_tango"})
   item_purchase.test_SellExtraItem(GetBot())
 
@@ -502,7 +502,7 @@ function test_PurchaseViaCourier_succeed()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, "item_branches")
+  memory.AddItemToBuy(bot, "item_branches")
 
   COURIER = Unit:new()
   DISTANCE_FROM_SHOP = 200
@@ -518,7 +518,7 @@ function test_PurchaseViaCourier_fails()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, "item_branches")
+  memory.AddItemToBuy(bot, "item_branches")
 
   COURIER = Unit:new()
   DISTANCE_FROM_SHOP = 200
@@ -548,7 +548,7 @@ function test_PerformPlannedPurchaseAndSell_buy_succeed()
 
   local bot = GetBot()
 
-  memory.SetItemToBuy(bot, "item_branches")
+  memory.AddItemToBuy(bot, "item_branches")
   memory.SetItemToSell(bot, nil)
 
   COURIER = nil
@@ -564,7 +564,7 @@ function test_PerformPlannedPurchaseAndSell_too_far_from_shops_fails()
   local bot = GetBot()
 
   DISTANCE_FROM_SHOP = 9000
-  memory.SetItemToBuy(bot, "item_branches")
+  memory.AddItemToBuy(bot, "item_branches")
 
   item_purchase.test_PerformPlannedPurchaseAndSell(bot)
 
@@ -607,7 +607,7 @@ function test_ItemPurchaseThink_with_full_inventory()
     "item_branches",
   }
 
-  memory.SetItemToBuy(bot, nil)
+  memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
 
   item_purchase.ItemPurchaseThink()

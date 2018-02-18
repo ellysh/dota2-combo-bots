@@ -12,9 +12,9 @@ local M = {}
 -- Format of the PURCHASE_LIST list:
 -- {
 --   hero_name = {
---     ITEM_TO_BUY = "item_name",
---     ITEM_TO_SELL = item_handle,
 --     ITEM_BUILD = { "item_name", "item_name", ...}
+--     ITEM_BUILD_INDEX = 1
+--     ITEM_TO_SELL = item_handle,
 --   },
 -- ...
 -- }
@@ -29,7 +29,12 @@ local function InitPurchaseList(bot)
   if not IsInitPurchaseList(bot) then
     PURCHASE_LIST[bot:GetUnitName()] = {}
     PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD = {}
+    PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX = 1
   end
+end
+
+function M.SetItemToSell(bot, item)
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL = item
 end
 
 function M.GetItemToSell(bot)
@@ -37,19 +42,20 @@ function M.GetItemToSell(bot)
 end
 
 function M.GetItemToBuy(bot)
-  return PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY
+  local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
+
+  return PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD[index]
 end
 
-function M.SetItemToSell(bot, item)
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL = item
+function M.AddItemToBuy(bot, item)
+  local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
+
+  table.insert(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, index, item)
 end
 
-function M.SetItemToBuy(bot, item)
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_BUY = item
-end
-
-function M.GetItemBuild(bot)
-  return PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
+function M.IncreaseItemToBuyIndex(bot)
+  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX =
+    PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX + 1
 end
 
 local function IsRecipeItem(item)
