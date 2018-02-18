@@ -41,7 +41,8 @@ local function PurchaseCourier(bot)
 end
 
 local function PurchaseTpScroll(bot)
-  if IsTpScrollPresent(bot) then
+  if IsTpScrollPresent(bot)
+     or memory.GetItemToBuy(bot) == "item_tpscroll" then
     return end
 
   memory.AddItemToBuy(bot, "item_tpscroll")
