@@ -1,4 +1,7 @@
 * version 1.1
+  - Add the ITEM_SETS table to gather typical item sets.
+  - Rework the purchasing items mechanism. Now bots buy several items
+    faster without mistakes with duplicates.
   - Fix a bug with an excessive aggression in the laning phase.
   - Bots estimate a power of the enemy hero before attacking him.
   - Make a limit for the roam target distance.
