@@ -64,6 +64,9 @@ local function IsRecipeItem(item)
 end
 
 local function AddItemToList(list, item)
+  if item == "nil" then
+    return end
+
   if not IsRecipeItem(item) then
     table.insert(list, item)
     return
