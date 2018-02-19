@@ -17,6 +17,10 @@ function AbilityUsageThink()
   ability_usage.AbilityUsageThink()
 end
 
+function ItemUsageThink()
+  -- This is a stub function to allow bots perform SKILL_USAGE algorithms
+end
+
 function CourierUsageThink()
   courier.CourierUsageThink()
 end
