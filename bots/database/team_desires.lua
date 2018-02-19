@@ -163,6 +163,16 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {0, -30},
   },
 
+  is_bot_building_focused_by_enemies = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {0, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {60, 0},
+  },
+
 }
 
 return M
