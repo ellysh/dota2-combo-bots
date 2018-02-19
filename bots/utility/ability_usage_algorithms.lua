@@ -311,12 +311,8 @@ function M.use_on_attack_enemy_creep_melee(bot, ability)
     constants.MELEE_ATTACK_RADIUS)
 end
 
-local function GetUnitManaLevel(unit)
-  return unit:GetMana() / unit:GetMaxMana()
-end
-
 function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
-  if GetUnitManaLevel(bot) > constants.UNIT_LOW_MANA_LEVEL then
+  if not common_algorithms.IsUnitLowMp(bot) then
     return false, nil
   end
 
@@ -345,6 +341,14 @@ end
 
 function M.low_hp_self(bot, ability)
   if common_algorithms.IsUnitLowHp(bot) then
+    return true, GetTarget(bot, ability)
+  end
+
+  return false, nil
+end
+
+function M.low_mp_self(bot, ability)
+  if common_algorithms.IsUnitLowMp(bot) then
     return true, GetTarget(bot, ability)
   end
 

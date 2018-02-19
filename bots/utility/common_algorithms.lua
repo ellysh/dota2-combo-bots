@@ -108,6 +108,10 @@ function M.IsEnemyHeroOnTheWay(bot, location)
     end)
 end
 
+local function GetUnitManaLevel(unit)
+  return unit:GetMana() / unit:GetMaxMana()
+end
+
 local function GetUnitHealthLevel(unit)
   return functions.GetRate(unit:GetHealth(), unit:GetMaxHealth())
 end
@@ -116,6 +120,10 @@ function M.IsUnitLowHp(unit)
   return unit:GetHealth() <= constants.UNIT_LOW_HEALTH
          or GetUnitHealthLevel(unit)
             <= constants.UNIT_LOW_HEALTH_LEVEL
+end
+
+function M.IsUnitLowMp(unit)
+  return GetUnitManaLevel(unit) <= constants.UNIT_LOW_MANA_LEVEL
 end
 
 function M.IsUnitHalfHp(unit)

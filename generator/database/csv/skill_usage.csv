@@ -49,3 +49,4 @@ warlock_rain_of_chaos;;;three_and_more_enemy_heroes;90;;;;;three_and_more_enemy_
 warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;75;low_hp_ally_hero;80;low_hp_self;90;low_hp_self;90
 warlock_upheaval;;;three_and_more_enemy_heroes;70;attacked_enemy_hero;60;attacked_enemy_hero;60;three_and_more_enemy_heroes;50;attacked_enemy_hero;40;;;;;;;three_and_more_enemy_heroes;70;;;;;;
 item_tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
+item_clarity;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;

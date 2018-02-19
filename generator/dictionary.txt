@@ -210,6 +210,7 @@ low_hp_ally_hero
 low_hp_enemy_building
 low_hp_enemy_hero
 low_hp_self
+low_mp_self
 max_hp_enemy_creep
 max_hp_neutral_creep
 max_kills_ally_hero_alive
