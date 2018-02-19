@@ -295,6 +295,14 @@ function M.use_on_attack_enemy_hero_ranged(bot, ability)
     ability:GetCastRange())
 end
 
+function M.use_on_attack_enemy_hero(bot, ability)
+  return UseOnAttackEnemyUnit(
+    bot,
+    ability,
+    function(unit) return unit:IsHero() end,
+    bot:GetAttackRange())
+end
+
 function M.use_on_attack_enemy_creep_aoe(bot, ability)
   return UseOnAttackEnemyUnit(
     bot,

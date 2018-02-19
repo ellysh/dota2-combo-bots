@@ -54,3 +54,4 @@ item_magic_stick;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
 item_magic_wand;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
 "  item_black_king_bar";;;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;50;;;;;;;half_hp_self;60;;;low_hp_self;70;;
 item_armlet;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
+item_mask_of_madness;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
