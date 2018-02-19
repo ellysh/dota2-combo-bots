@@ -982,6 +982,38 @@ M.SKILL_USAGE = {
       BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["half_hp_self"], 50}
   },
 
+  item_diffusal_blade = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
+      BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 60}
+  },
+
+  item_abyssal_blade = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["attacked_not_disabled_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
+      BOT_MODE_FARM = {algorithms["attacked_enemy_creep"], 70},
+      BOT_MODE_DEFEND_TOWER = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["attacked_not_disabled_enemy_hero"], 60},
+      BOT_MODE_RETREAT = {algorithms["last_attacked_enemy_hero"], 60},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["last_attacked_enemy_hero"], 60}
+  },
+
 }
 
 return M

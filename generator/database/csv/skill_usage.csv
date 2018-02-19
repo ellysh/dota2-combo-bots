@@ -60,3 +60,5 @@ item_butterfly;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 item_satanic;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 item_invis_sword;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 item_manta;;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;low_hp_self;60;half_hp_self;50
+item_diffusal_blade;;;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
+item_abyssal_blade;;;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
