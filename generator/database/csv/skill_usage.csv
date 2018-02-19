@@ -57,3 +57,4 @@ item_armlet;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;
 item_mask_of_madness;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 item_phase_boots;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 item_butterfly;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
+item_satanic;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
