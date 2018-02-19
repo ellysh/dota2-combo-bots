@@ -148,6 +148,7 @@ local function PerformPlannedPurchaseAndSell(bot)
   local buy_item = memory.GetItemToBuy(bot)
 
   if functions.IsInventoryFull(bot)
+     or functions.IsStashFull(bot)
      or bot:GetGold() < GetItemCost(buy_item) then
      return end
 

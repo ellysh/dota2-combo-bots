@@ -42,14 +42,24 @@ function M.GetTableSize(table)
   return count
 end
 
+function M.GetItem(unit, item_name, slot_type)
+  local slot = unit:FindItemSlot(item_name)
+
+  if slot_type ~= nil
+     and unit:GetItemSlotType(slot) ~= slot_type then
+     return nil end
+
+  return unit:GetItemInSlot(slot)
+end
+
 -- Indexes in resulting array do not match to slot indexes.
 -- You should shift them -1 to match the slot indexes.
 
-function M.GetItems(unit, slot_numbers, get_function)
+function M.GetItems(unit, start_index, end_index, get_function)
   local item_list = {}
   local items_number = 0
 
-  for i = 0, slot_numbers, 1 do
+  for i = start_index, end_index, 1 do
     local item = unit:GetItemInSlot(i)
     if item ~= nil and item:GetName() ~= "nil" then
       items_number = items_number + 1
@@ -62,27 +72,30 @@ function M.GetItems(unit, slot_numbers, get_function)
   return items_number, item_list
 end
 
-function M.GetItem(unit, item_name, slot_type)
-  local slot = unit:FindItemSlot(item_name)
-
-  if slot_type ~= nil
-     and unit:GetItemSlotType(slot) ~= slot_type then
-     return nil end
-
-  return unit:GetItemInSlot(slot)
-end
-
-local function GetItemSlotsCount(unit)
+local function GetItemSlotsCount(unit, start_index, end_index)
   local result, _ = M.GetItems(
     unit,
-    constants.INVENTORY_MAX_INDEX,
+    start_index,
+    end_index,
     function(item) return item:GetName() end)
 
   return result
 end
 
 function M.IsInventoryFull(unit)
-  return constants.INVENTORY_SIZE <= GetItemSlotsCount(unit)
+  return constants.INVENTORY_SIZE <=
+           GetItemSlotsCount(
+             unit,
+             constants.INVENTORY_START_INDEX,
+             constants.INVENTORY_END_INDEX)
+end
+
+function M.IsStashFull(unit)
+  return constants.STASH_SIZE <=
+           GetItemSlotsCount(
+             unit,
+             constants.STASH_START_INDEX,
+             constants.STASH_END_INDEX)
 end
 
 -- This function compares two Lua table objects. It was taken from here:
@@ -197,7 +210,8 @@ end
 function M.GetInventoryItems(bot)
   local _, result = M.GetItems(
     bot,
-    constants.INVENTORY_MAX_INDEX,
+    constants.INVENTORY_START_INDEX,
+    constants.INVENTORY_END_INDEX,
     function(item) return item:GetName() end)
 
   return result

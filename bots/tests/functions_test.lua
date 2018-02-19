@@ -30,7 +30,8 @@ function test_GetItems_succeed()
 
   local size, list = functions.GetItems(
       bot,
-      constants.INVENTORY_MAX_INDEX)
+      constants.INVENTORY_START_INDEX,
+      constants.INVENTORY_END_INDEX)
 
   luaunit.assertEquals(size, 0)
   luaunit.assertEquals(list, empty_list)
@@ -49,7 +50,8 @@ function test_GetItems_succeed()
 
   size, list = functions.GetItems(
       bot,
-      constants.INVENTORY_MAX_INDEX,
+      constants.INVENTORY_START_INDEX,
+      constants.INVENTORY_END_INDEX,
       function(item) return item:GetName() end)
 
   luaunit.assertEquals(size, 3)
@@ -64,7 +66,12 @@ function test_GetItemSlotsCount_succeed()
 
   local bot = GetBot()
 
-  luaunit.assertEquals(functions.test_GetItemSlotsCount(bot), 0)
+  luaunit.assertEquals(
+    functions.test_GetItemSlotsCount(
+      bot,
+      constants.INVENTORY_START_INDEX,
+      constants.INVENTORY_END_INDEX),
+    0)
 
   BOT.inventory = {
     "item_tango",
@@ -77,7 +84,12 @@ function test_GetItemSlotsCount_succeed()
     "nil"
   }
 
-  luaunit.assertEquals(functions.test_GetItemSlotsCount(bot), 3)
+  luaunit.assertEquals(
+    functions.test_GetItemSlotsCount(
+      bot,
+      constants.INVENTORY_START_INDEX,
+      constants.INVENTORY_END_INDEX),
+    3)
 end
 
 function test_GetItem_succeed()
