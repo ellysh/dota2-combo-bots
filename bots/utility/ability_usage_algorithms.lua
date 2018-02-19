@@ -359,6 +359,19 @@ function M.half_hp_self(bot, ability)
   return false, nil
 end
 
+function M.half_hp_tree(bot, ability)
+  if common_algorithms.IsUnitHalfHp(bot) then
+    return false, nil
+  end
+
+  local trees = bot:GetNearbyTrees(1000);
+  if trees[1] ~= nil then
+    bot:Action_UseAbilityOnTree(ability, trees[1]);
+  end
+
+  return false, nil
+end
+
 function M.low_hp_ally_hero(bot, ability)
   local ally_heroes = common_algorithms.GetAllyHeroes(
     bot,
