@@ -147,20 +147,22 @@ local function PerformPlannedPurchaseAndSell(bot)
 
   local buy_item = memory.GetItemToBuy(bot)
 
-  if functions.IsInventoryFull(bot)
-     or functions.IsStashFull(bot)
-     or bot:GetGold() < GetItemCost(buy_item) then
+  if buy_item == nil
+     or bot:GetGold() < GetItemCost(buy_item)
+     or (functions.IsInventoryFull(bot)
+         and (constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop()
+              or constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()))
+     or (functions.IsStashFull(bot)
+         and constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()) then
      return end
 
-  if buy_item ~= nil then
-    if PURCHASE_ITEM_SUCCESS ==
-      bot:ActionImmediate_PurchaseItem(buy_item) then
+  if PURCHASE_ITEM_SUCCESS ==
+    bot:ActionImmediate_PurchaseItem(buy_item) then
 
-      logger.Print("PerformPlannedPurchaseAndSell() - " ..
-        bot:GetUnitName() .. " bought " .. buy_item)
+    logger.Print("PerformPlannedPurchaseAndSell() - " ..
+      bot:GetUnitName() .. " bought " .. buy_item)
 
-      memory.RemoveItemToBuyIndex(bot)
-    end
+    memory.RemoveItemToBuyIndex(bot)
   end
 end
 
