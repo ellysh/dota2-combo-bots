@@ -27,20 +27,18 @@ function UpdatePushLaneDesires()
     TEAM_DESIRES.BOT_MODE_PUSH_TOWER_BOT}
 end
 
+function UpdateDefendLaneDesires()
+  return {
+    TEAM_DESIRES.BOT_MODE_DEFEND_TOWER_TOP,
+    TEAM_DESIRES.BOT_MODE_DEFEND_TOWER_MID,
+    TEAM_DESIRES.BOT_MODE_DEFEND_TOWER_BOT}
+end
+
 function UpdateRoamDesire()
   return { TEAM_DESIRES.BOT_MODE_TEAM_ROAM, GetTeamMember(1) }
 end
 
 --[[
-----------------------------------------------------------------------------------------------------
-
-function UpdateDefendLaneDesires()
-
-    return { 0.2, 0.2, 0.2 }
-
-end
-
-----------------------------------------------------------------------------------------------------
 
 function UpdateFarmLaneDesires()
 
@@ -48,13 +46,10 @@ function UpdateFarmLaneDesires()
 
 end
 
-----------------------------------------------------------------------------------------------------
-
 function UpdateRoshanDesire()
 
     return 0.1
 
 end
 
-----------------------------------------------------------------------------------------------------
 --]]
