@@ -230,10 +230,6 @@ local function IsBuildingFocusedByEnemies(building_id, building_type)
     common_algorithms.GetTotalDamage(enemy_creeps, building) +
     common_algorithms.GetTotalDamage(enemy_heroes, building)
 
-  print("IsBuildingFocusedByEnemies() - team = " .. GetTeam() ..
-    " enemy_creeps = " .. tostring(enemy_creeps) ..
-    " enemy_heroes = " .. tostring(enemy_heroes) ..
-    " damage = " .. total_damage)
   return 0.05 < functions.GetRate(total_damage, building:GetHealth())
 
 end
