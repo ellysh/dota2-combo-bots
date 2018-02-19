@@ -950,6 +950,22 @@ M.SKILL_USAGE = {
       BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
+  item_invis_sword = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["nil"], nil},
+      BOT_MODE_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["nil"], nil},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
+      BOT_MODE_RETREAT = {algorithms["low_hp_self"], 90},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
+  },
+
 }
 
 return M
