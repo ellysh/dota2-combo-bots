@@ -211,7 +211,7 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_TOWER = {algorithms["low_hp_ally_hero"], 60},
       BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["low_hp_self"], 60},
-      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], 10}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   item_lotus_orb = {
@@ -275,7 +275,7 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_TOWER = {algorithms["three_and_more_enemy_creeps_aoe"], 60},
       BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["low_hp_self"], 70},
-      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], 70}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 
   juggernaut_healing_ward = {
@@ -771,7 +771,7 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_TOWER = {algorithms["attacked_enemy_hero"], 75},
       BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 80},
       BOT_MODE_RETREAT = {algorithms["low_hp_self"], 90},
-      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["low_hp_self"], 90}
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["half_hp_self"], 90}
   },
 
   warlock_upheaval = {
@@ -964,6 +964,22 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["low_hp_self"], 90},
       BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
+  },
+
+  item_manta = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["use_on_attack_enemy_hero"], 50},
+      BOT_MODE_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
+      BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_ATTACK = {algorithms["nil"], nil},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 90},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
+      BOT_MODE_RETREAT = {algorithms["low_hp_self"], 60},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["half_hp_self"], 50}
   },
 
 }

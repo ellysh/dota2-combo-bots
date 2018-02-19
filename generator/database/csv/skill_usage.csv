@@ -11,11 +11,11 @@ crystal_maiden_frostbite;channeling_enemy_hero;90;attacked_not_disabled_enemy_he
 item_blink;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;;;;;;;;;;;;
 item_courier;always_self;100;;;;;;;;;;;;;;;;;;;;;;;;
 item_cyclone;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;low_hp_self;60
-item_glimmer_cape;low_hp_self;50;low_hp_ally_hero;80;low_hp_ally_hero;70;low_hp_ally_hero;70;low_hp_ally_hero;70;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;60;low_hp_ally_hero;70;low_hp_self;60;low_hp_self;10
+item_glimmer_cape;low_hp_self;50;low_hp_ally_hero;80;low_hp_ally_hero;70;low_hp_ally_hero;70;low_hp_ally_hero;70;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;60;low_hp_ally_hero;70;low_hp_self;60;;
 item_lotus_orb;half_hp_self;50;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;half_hp_ally_hero;60;half_hp_ally_hero;70;;;;
 item_rod_of_atos;channeling_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;;;;;;;attacked_enemy_hero;70;attacked_enemy_hero;40;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
 item_sheepstick;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;;;attacked_not_disabled_enemy_hero;60;;;;;;;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;70;last_attacked_enemy_hero;40;last_attacked_enemy_hero;40
-juggernaut_blade_fury;;;three_and_more_enemy_heroes_aoe;90;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;60;use_on_attack_enemy_hero_aoe;70;;;use_on_attack_enemy_creep_aoe;90;three_and_more_neutral_creeps_aoe;80;three_and_more_enemy_creeps_aoe;60;;;low_hp_self;70;low_hp_self;70
+juggernaut_blade_fury;;;three_and_more_enemy_heroes_aoe;90;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;60;use_on_attack_enemy_hero_aoe;70;;;use_on_attack_enemy_creep_aoe;90;three_and_more_neutral_creeps_aoe;80;three_and_more_enemy_creeps_aoe;60;;;low_hp_self;70;;
 "juggernaut_healing_ward ";low_hp_self;80;low_hp_ally_hero;70;;;low_hp_ally_hero;;;;;;;;;;;;;;low_hp_ally_hero;70;;;;
 juggernaut_omni_slash;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;50;;;low_hp_ally_hero;60;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
 lich_chain_frost;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;;;attacked_enemy_hero;70;;;;
@@ -46,7 +46,7 @@ ursa_enrage;;;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;5
 ursa_overpower;;;use_on_attack_enemy_hero_melee;80;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;70;;;use_on_attack_enemy_hero_melee;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
 warlock_fatal_bonds;;;attacked_enemy_hero;80;;;;;attacked_enemy_hero;60;attacked_enemy_hero;60;;;;;;;attacked_enemy_hero;60;;;;;;
 warlock_rain_of_chaos;;;three_and_more_enemy_heroes;90;;;;;three_and_more_enemy_heroes;90;attacked_enemy_hero;20;;;;;;;three_and_more_enemy_heroes;90;;;;;;
-warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;75;low_hp_ally_hero;80;low_hp_self;90;low_hp_self;90
+warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;75;low_hp_ally_hero;80;low_hp_self;90;half_hp_self;90
 warlock_upheaval;;;three_and_more_enemy_heroes;70;attacked_enemy_hero;60;attacked_enemy_hero;60;three_and_more_enemy_heroes;50;attacked_enemy_hero;40;;;;;;;three_and_more_enemy_heroes;70;;;;;;
 item_tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
 item_clarity;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;
@@ -59,3 +59,4 @@ item_phase_boots;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 item_butterfly;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 item_satanic;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 item_invis_sword;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
+item_manta;;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;low_hp_self;60;half_hp_self;50
