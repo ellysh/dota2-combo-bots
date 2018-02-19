@@ -4,6 +4,6 @@ function M.Print(string)
   print(GameTime() .. ": " ..string .. "\n")
 end
 
-M.Print("Combo Bots version 1.0")
+M.Print("Combo Bots version 1.1")
 
 return M

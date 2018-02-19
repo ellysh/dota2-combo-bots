@@ -1,4 +1,5 @@
 * version 1.1
+  - Calculate desire for the defend lane mode.
   - Add the ITEM_SETS table to gather typical item sets.
   - Rework the purchasing items mechanism. Now bots buy several items
     faster without mistakes with duplicates.
