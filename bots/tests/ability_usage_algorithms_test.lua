@@ -637,5 +637,10 @@ function test_last_hit_enemy_creep_succeed()
     "creep1")
 end
 
+function test_always_self_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+
+  test_algorithm_pattern_succeed("always_self", nil)
+end
 
 os.exit(luaunit.LuaUnit.run())

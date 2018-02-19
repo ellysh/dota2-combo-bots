@@ -420,6 +420,10 @@ function M.last_hit_enemy_creep(bot, ability)
   return true, GetTarget(creep, ability)
 end
 
+function M.always_self(bot, ability)
+  return true, GetTarget(bot, ability)
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_IsTargetable = IsTargetable
 M.test_NumberOfTargetableUnits = NumberOfTargetableUnits

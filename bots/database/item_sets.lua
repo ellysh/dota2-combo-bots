@@ -547,11 +547,11 @@ M.ITEM_SETS = {
       "item_magic_wand"}
   },
 
-  set_starting_support = {
+  set_starting_nuker = {
     components = {
       "item_tango",
-      "item_clarity",
-      "item_magic_wand",
+      "item_null_talisman",
+      "nil",
       "nil"}
   },
 
@@ -563,11 +563,11 @@ M.ITEM_SETS = {
       "nil"}
   },
 
-  set_starting_nuker = {
+  set_starting_support = {
     components = {
       "item_tango",
-      "item_null_talisman",
-      "nil",
+      "item_clarity",
+      "item_magic_wand",
       "nil"}
   },
 

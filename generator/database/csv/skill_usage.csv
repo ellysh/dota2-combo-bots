@@ -9,6 +9,7 @@ crystal_maiden_frostbite;channeling_enemy_hero;90;attacked_not_disabled_enemy_he
 "drow_ranger_trueshot ";;;three_and_more_ally_creeps_aoe;80;;;;;three_and_more_ally_creeps_aoe;70;;;;;;;;;three_and_more_ally_creeps_aoe;70;;;;;;
 "drow_ranger_wave_of_silence ";;;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;60;;;attacked_enemy_hero;60;;;;;;;attacked_enemy_hero;;attacked_enemy_hero;70;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
 item_blink;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;;;;;;;;;;;;
+item_courier;always_self;100;;;;;;;;;;;;;;;;;;;;;;;;
 item_cyclone;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;low_hp_self;60
 item_glimmer_cape;low_hp_self;80;low_hp_ally_hero;70;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;40;low_hp_ally_hero;70;low_hp_self;;low_hp_self;
 item_lotus_orb;low_hp_self;80;low_hp_ally_hero;70;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;40;low_hp_ally_hero;70;;;;

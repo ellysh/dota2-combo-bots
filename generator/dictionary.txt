@@ -2,6 +2,7 @@ all_enemy_team_dead
 ally_has_aegis
 ally_has_cheese
 ally_mega_creeps
+always_self
 attacked_enemy_building
 attacked_enemy_creep
 attacked_enemy_hero
@@ -57,6 +58,7 @@ item_circlet
 item_clarity
 item_claymore
 item_cloak
+item_courier
 item_crimson_guard
 item_cyclone
 item_demon_edge
