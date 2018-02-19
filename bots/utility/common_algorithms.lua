@@ -76,6 +76,12 @@ function M.GetEnemyCreeps(bot, radius)
   local neutral_creeps = bot:GetNearbyNeutralCreeps(
     GetNormalizedRadius(radius))
 
+  if enemy_creeps == nil or #enemy_creeps == 0 then
+    return {} end
+
+  if neutral_creeps == nil or #neutral_creeps == 0 then
+    return enemy_creeps end
+
   return functions.ComplementOfLists(enemy_creeps, neutral_creeps, true)
 end
 
