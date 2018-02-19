@@ -12,17 +12,17 @@ function test_GetDesire()
 
   luaunit.assertAlmostEquals(
     player_desires.GetDesire("BOT_MODE_PUSH_TOWER_TOP"),
-    -0.05,
+    -0.15,
     0.001)
 
   luaunit.assertAlmostEquals(
     player_desires.GetDesire("BOT_MODE_PUSH_TOWER_MID"),
-    -0.05,
+    -0.15,
     0.001)
 
   luaunit.assertAlmostEquals(
     player_desires.GetDesire("BOT_MODE_PUSH_TOWER_BOT"),
-    -0.05,
+    -0.15,
     0.001)
 end
 
