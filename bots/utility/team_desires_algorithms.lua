@@ -195,25 +195,46 @@ local function GetBuilding(building_id, building_type)
   end
 end
 
+local function GetEnemyUnitsNearLocation(unit_type, location, radius)
+  local units = GetUnitList(unit_type)
+  local result = {}
+
+  functions.DoWithElements(
+    units,
+    function(unit)
+      if GetUnitToLocationDistance(unit, location) <= radius then
+        table.insert(result, unit)
+      end
+    end)
+
+  return result
+end
+
 local function IsBuildingFocusedByEnemies(building_id, building_type)
   local building = GetBuilding(building_id, building_type)
 
   if building == nil then
     return false end
 
-  local enemy_creeps = common_algorithms.GetEnemyCreeps(
-    building,
+  local enemy_creeps = GetEnemyUnitsNearLocation(
+    UNIT_LIST_ENEMY_CREEPS,
+    building:GetLocation(),
     constants.MAX_CREEP_ATTACK_RANGE)
 
-  local enemy_heroes = common_algorithms.GetEnemyHeroes(
-    building,
+  local enemy_heroes = GetEnemyUnitsNearLocation(
+    UNIT_LIST_ENEMY_HEROES,
+    building:GetLocation(),
     constants.MAX_HERO_ATTACK_RANGE)
 
   local total_damage =
     common_algorithms.GetTotalDamage(enemy_creeps, building) +
     common_algorithms.GetTotalDamage(enemy_heroes, building)
 
-  return 0.1 < functions.GetRate(total_damage, building:GetHealth())
+  print("IsBuildingFocusedByEnemies() - team = " .. GetTeam() ..
+    " enemy_creeps = " .. tostring(enemy_creeps) ..
+    " enemy_heroes = " .. tostring(enemy_heroes) ..
+    " damage = " .. total_damage)
+  return 0.05 < functions.GetRate(total_damage, building:GetHealth())
 
 end
 
