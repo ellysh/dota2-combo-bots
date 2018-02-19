@@ -343,17 +343,17 @@ M.SKILL_USAGE = {
   },
 
   lich_frost_armor = {
-      any_mode = {algorithms["low_hp_self"], 80},
-      team_fight = {algorithms["low_hp_ally_hero"], 70},
-      BOT_MODE_ROAM = {algorithms["low_hp_ally_hero"], 50},
-      BOT_MODE_TEAM_ROAM = {algorithms["low_hp_ally_hero"], 50},
-      BOT_MODE_PUSH_TOWER = {algorithms["low_hp_ally_hero"], 50},
-      BOT_MODE_ATTACK = {algorithms["low_hp_ally_hero"], 50},
+      any_mode = {algorithms["half_hp_self"], 50},
+      team_fight = {algorithms["half_hp_ally_hero"], 70},
+      BOT_MODE_ROAM = {algorithms["half_hp_ally_hero"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["half_hp_ally_hero"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["half_hp_ally_hero"], 70},
+      BOT_MODE_ATTACK = {algorithms["half_hp_ally_hero"], 50},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["low_hp_ally_hero"], 40},
       BOT_MODE_FARM = {algorithms["low_hp_self"], 20},
-      BOT_MODE_DEFEND_TOWER = {algorithms["low_hp_ally_hero"], 40},
-      BOT_MODE_DEFEND_ALLY = {algorithms["low_hp_ally_hero"], 70},
+      BOT_MODE_DEFEND_TOWER = {algorithms["half_hp_ally_hero"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["half_hp_ally_hero"], 70},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
       BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
@@ -851,6 +851,22 @@ M.SKILL_USAGE = {
       BOT_MODE_DEFEND_TOWER = {algorithms["nil"], nil},
       BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
       BOT_MODE_RETREAT = {algorithms["nil"], nil},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
+  },
+
+  item_black_king_bar = {
+      any_mode = {algorithms["nil"], nil},
+      team_fight = {algorithms["half_hp_self"], 70},
+      BOT_MODE_ROAM = {algorithms["half_hp_self"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["half_hp_self"], 70},
+      BOT_MODE_PUSH_TOWER = {algorithms["half_hp_self"], 70},
+      BOT_MODE_ATTACK = {algorithms["half_hp_self"], 50},
+      BOT_MODE_LANING = {algorithms["nil"], nil},
+      BOT_MODE_ROSHAN = {algorithms["nil"], nil},
+      BOT_MODE_FARM = {algorithms["nil"], nil},
+      BOT_MODE_DEFEND_TOWER = {algorithms["half_hp_self"], 60},
+      BOT_MODE_DEFEND_ALLY = {algorithms["nil"], nil},
+      BOT_MODE_RETREAT = {algorithms["low_hp_self"], 70},
       BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["nil"], nil}
   },
 

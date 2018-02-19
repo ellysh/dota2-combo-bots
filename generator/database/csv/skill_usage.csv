@@ -20,7 +20,7 @@ juggernaut_blade_fury;;;three_and_more_enemy_heroes_aoe;90;use_on_attack_enemy_h
 juggernaut_omni_slash;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;50;;;low_hp_ally_hero;60;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
 lich_chain_frost;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;;;attacked_enemy_hero;70;;;;
 lich_dark_ritual;low_hp_ally_creep;70;;;;;;;;;;;;;;;;;;;;;;;;
-lich_frost_armor;low_hp_self;80;low_hp_ally_hero;70;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;40;low_hp_ally_hero;70;;;;
+lich_frost_armor;half_hp_self;50;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;half_hp_ally_hero;60;half_hp_ally_hero;70;;;;
 lich_frost_nova;channeling_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;70;attacked_enemy_hero;80;last_attacked_enemy_hero;50;last_attacked_enemy_hero;50
 lion_finger_of_death;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;50;;;;;;;attacked_enemy_hero;60;attacked_enemy_hero;10;;;;
 lion_impale;min_hp_enemy_hero_to_kill;90;attacked_not_disabled_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;;;attacked_enemy_creep;90;attacked_enemy_creep;60;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;50;last_attacked_enemy_hero;50
@@ -52,3 +52,4 @@ item_tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
 item_clarity;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;
 item_magic_stick;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
 item_magic_wand;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
+"  item_black_king_bar";;;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;50;;;;;;;half_hp_self;60;;;low_hp_self;70;;
