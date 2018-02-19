@@ -22,7 +22,7 @@ function test_GetDesire_low_hp_negative()
 
   ROAM_DESIRE = 0
 
-  luaunit.assertEquals(GetDesire(), -0.9)
+  luaunit.assertAlmostEquals(GetDesire(), -0.9, 0.01)
 end
 
 function test_Think_attack_succeed()
