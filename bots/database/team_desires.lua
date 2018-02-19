@@ -173,6 +173,26 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {60, 0},
   },
 
+  is_mid_building_focused_by_enemies = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {65, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+  },
+
+  is_top_building_focused_by_enemies = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {60, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {0, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+  },
+
 }
 
 return M

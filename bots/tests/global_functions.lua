@@ -28,6 +28,10 @@ function GetTower(team, tower)
   return TestUnit
 end
 
+function GetAncient(team)
+  return TestUnit
+end
+
 function GetGlyphCooldown()
   return 0
 end

@@ -16,3 +16,5 @@ no_enemy_heroes_on_mid;0;0;20;0;0;0;0;0;0;0;-10;0;0;0;
 no_enemy_heroes_on_top;20;0;0;0;0;0;0;0;-10;0;0;0;0;0;
 time_is_more_5_minutes;10;-30;10;-30;10;-30;10;-30;0;-30;0;-30;0;-30;
 is_bot_building_focused_by_enemies;0;0;0;0;0;0;0;0;0;0;0;0;60;0;
+is_mid_building_focused_by_enemies;0;0;0;0;0;0;0;0;0;0;65;0;0;0;
+is_top_building_focused_by_enemies;0;0;0;0;0;0;0;0;60;0;0;0;0;0;

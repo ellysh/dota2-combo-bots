@@ -184,7 +184,7 @@ end
 local GET_BUILDING_FUNCTIONS = {
   TYPE_TOWER = GetTower,
   TYPE_BARRACKS = GetBarracks,
-  YPE_ANCIENT = GetShrine
+  TYPE_ANCIENT = GetAncient
 }
 
 local function IsBuildingFocusedByEnemies(building_id, building_type)
@@ -207,7 +207,7 @@ local function IsBuildingFocusedByEnemies(building_id, building_type)
     common_algorithms.GetTotalDamage(enemy_creeps, building) +
     common_algorithms.GetTotalDamage(enemy_heroes, building)
 
-  return 0.125 < functions.GetRate(total_damage, building:GetMaxHealth())
+  return 0.1 < functions.GetRate(total_damage, building:GetHealth())
 
 end
 
@@ -217,6 +217,25 @@ function M.is_bot_building_focused_by_enemies()
          or IsBuildingFocusedByEnemies(TOWER_BOT_3, "TYPE_TOWER")
          or IsBuildingFocusedByEnemies(BARRACKS_BOT_MELEE, "TYPE_BARRACKS")
          or IsBuildingFocusedByEnemies(BARRACKS_BOT_RANGED, "TYPE_BARRACKS")
+end
+
+function M.is_top_building_focused_by_enemies()
+  return IsBuildingFocusedByEnemies(TOWER_TOP_1, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_TOP_2, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_TOP_3, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(BARRACKS_TOP_MELEE, "TYPE_BARRACKS")
+         or IsBuildingFocusedByEnemies(BARRACKS_TOP_RANGED, "TYPE_BARRACKS")
+end
+
+function M.is_mid_building_focused_by_enemies()
+  return IsBuildingFocusedByEnemies(TOWER_MID_1, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_MID_2, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_MID_3, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_BASE_1, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_BASE_2, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(BARRACKS_MID_MELEE, "TYPE_BARRACKS")
+         or IsBuildingFocusedByEnemies(BARRACKS_MID_RANGED, "TYPE_BARRACKS")
+         or IsBuildingFocusedByEnemies(nil, "TYPE_ANCIENT")
 end
 
 -- Provide an access to local functions for unit tests only
