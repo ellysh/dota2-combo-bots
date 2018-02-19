@@ -64,7 +64,7 @@ local function GetSlotIndex(inventory_index)
   return inventory_index - 1
 end
 
-local function SellExtraItem(bot)
+local function SetItemToSell(bot)
   if memory.GetItemToSell(bot) ~= nil then
     return end
 
@@ -102,64 +102,88 @@ local function PurchaseViaCourier(bot)
   local buy_item = memory.GetItemToBuy(bot)
   local is_item_from_secret_shop = IsItemPurchasedFromSecretShop(buy_item)
 
-  if courier == nil
+  if buy_item == nil
+     or courier == nil
      or functions.IsInventoryFull(courier)
      or (is_item_from_secret_shop
         and not IsUnitNearSecretSideShop(courier))
      or (not is_item_from_secret_shop
          and not IsUnitNearBaseShop(courier)) then
 
-     return PURCHASE_ITEM_DISALLOWED_ITEM
-   end
-
-  if buy_item ~= nil then
-    if PURCHASE_ITEM_SUCCESS ==
-      courier:ActionImmediate_PurchaseItem(buy_item) then
-
-      logger.Print("PurchaseViaCourier() - " .. bot:GetUnitName() ..
-                   " bought " .. buy_item .. " via courier")
-
-      memory.RemoveItemToBuyIndex(bot)
-
-      return PURCHASE_ITEM_SUCCESS
-    end
+    return PURCHASE_ITEM_DISALLOWED_ITEM
   end
 
-  return PURCHASE_ITEM_DISALLOWED_ITEM
+  local result = courier:ActionImmediate_PurchaseItem(buy_item)
+
+  if PURCHASE_ITEM_SUCCESS == result then
+
+    logger.Print("PurchaseViaCourier() - " .. bot:GetUnitName() ..
+                 " bought " .. buy_item .. " via courier")
+
+    memory.RemoveItemToBuyIndex(bot)
+  end
+
+  return result
 end
 
-local function PerformPlannedPurchaseAndSell(bot)
+local function HasEmptySlotToBuy(bot)
   if not IsUnitNearBaseShop(bot)
-    and not IsUnitNearSecretSideShop(bot) then
+     and not IsUnitNearSecretSideShop(bot) then
 
-    PurchaseViaCourier(bot)
-    return
+    return not functions.IsStashFull(bot)
+
+  elseif IsUnitNearSecretSideShop(bot) then
+
+    return not functions.IsInventoryFull(bot)
+
+  elseif IsUnitNearBaseShop(bot) then
+
+    return not functions.IsInventoryFull(bot)
+           or not functions.IsStashFull(bot)
   end
+
+  return false
+end
+
+local function PerformSell(bot)
+  if not IsUnitNearBaseShop(bot)
+     and not IsUnitNearSecretSideShop(bot) then
+    return end
 
   local sell_item = memory.GetItemToSell(bot)
 
-  if sell_item ~= nil then
+  if sell_item == nil then
+    return end
 
-    logger.Print("PerformPlannedPurchaseAndSell() - " ..
-      bot:GetUnitName() .. " sell " .. sell_item)
+  local item_handle = functions.GetItem(bot, sell_item)
 
-    local item_handle = functions.GetItem(bot, sell_item)
+  if item_handle == nil then
+    return end
 
-    if item_handle ~= nil then
-      bot:ActionImmediate_SellItem(item_handle)
-    end
+  logger.Print("PerformSell() - " ..
+    bot:GetUnitName() .. " sell " .. sell_item)
 
-    memory.SetItemToSell(bot, nil)
+  bot:ActionImmediate_SellItem(item_handle)
+
+  memory.SetItemToSell(bot, nil)
+end
+
+local function PerformPurchase(bot)
+  if not IsUnitNearBaseShop(bot)
+     and not IsUnitNearSecretSideShop(bot) then
+
+    PurchaseViaCourier(bot)
+
+    -- We return here because otherwise all purchases will be done via stash
+    -- and courier. But bots should walk to the side and secret shops instead.
+    return
   end
 
   local buy_item = memory.GetItemToBuy(bot)
 
   if buy_item == nil
      or bot:GetGold() < GetItemCost(buy_item)
-     or (functions.IsInventoryFull(bot)
-         and IsUnitNearSecretSideShop(bot))
-     or (functions.IsStashFull(bot)
-         and not IsUnitNearSecretSideShop(bot)) then
+     or not HasEmptySlotToBuy(bot) then
         return end
 
   if PURCHASE_ITEM_SUCCESS ==
@@ -177,13 +201,15 @@ function M.ItemPurchaseThink()
 
   memory.MakePurchaseList(bot)
 
-  PerformPlannedPurchaseAndSell(bot)
+  PerformSell(bot)
+
+  PerformPurchase(bot)
 
   PurchaseCourier(bot)
 
   PurchaseTpScroll(bot)
 
-  SellExtraItem(bot)
+  SetItemToSell(bot)
 end
 
 -- Provide an access to local functions for unit tests only
@@ -191,8 +217,9 @@ M.test_IsTpScrollPresent = IsTpScrollPresent
 M.test_PurchaseCourier = PurchaseCourier
 M.test_PurchaseTpScroll = PurchaseTpScroll
 M.test_SellItemByIndex = SellItemByIndex
-M.test_SellExtraItem = SellExtraItem
+M.test_SetItemToSell = SetItemToSell
 M.test_PurchaseViaCourier = PurchaseViaCourier
-M.test_PerformPlannedPurchaseAndSell = PerformPlannedPurchaseAndSell
+M.test_PerformPurchase = PerformPurchase
+M.test_PerformSell = PerformSell
 
 return M
