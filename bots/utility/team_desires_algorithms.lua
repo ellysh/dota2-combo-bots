@@ -181,6 +181,43 @@ function M.enemy_hero_was_seen()
          and IsEnemyHeroInLocation(player_location)
 end
 
+local GET_BUILDING_FUNCTIONS = {
+  TYPE_TOWER = GetTower,
+  TYPE_BARRACKS = GetBarracks,
+  YPE_ANCIENT = GetShrine
+}
+
+local function IsBuildingFocusedByEnemies(building_id, building_type)
+  local building = GET_BUILDING_FUNCTIONS[building_type](
+    GetTeam(),
+    building_id)
+
+  if building == nil then
+    return false end
+
+  local enemy_creeps = common_algorithms.GetEnemyCreeps(
+    building,
+    constants.MAX_CREEP_ATTACK_RANGE)
+
+  local enemy_heroes = common_algorithms.GetEnemyHeroes(
+    building,
+    constants.MAX_HERO_ATTACK_RANGE)
+
+  local total_damage = GetTotalDamage(enemy_creeps, building) +
+                       GetTotalDamage(enemy_heroes, building)
+
+  return 0.125 < functions.GetRate(total_damage, building:GetMaxHealth())
+
+end
+
+function M.is_bot_building_focused_by_enemies()
+  return IsBuildingFocusedByEnemies(TOWER_BOT_1, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_BOT_2, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(TOWER_BOT_3, "TYPE_TOWER")
+         or IsBuildingFocusedByEnemies(BARRACKS_BOT_MELEE, "TYPE_BARRACKS")
+         or IsBuildingFocusedByEnemies(BARRACKS_BOT_RANGED, "TYPE_BARRACKS")
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_NumberUnitsOnLane = NumberUnitsOnLane
