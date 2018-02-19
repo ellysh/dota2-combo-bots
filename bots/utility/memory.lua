@@ -13,7 +13,6 @@ local M = {}
 -- {
 --   hero_name = {
 --     ITEM_BUILD = { "item_name", "item_name", ...}
---     ITEM_BUILD_INDEX = 1
 --     ITEM_TO_SELL = item_handle,
 --   },
 -- ...
@@ -28,7 +27,6 @@ end
 local function InitPurchaseList(bot)
   PURCHASE_LIST[bot:GetUnitName()] = {}
   PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD = {}
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX = 1
 end
 
 function M.SetItemToSell(bot, item)
@@ -40,30 +38,25 @@ function M.GetItemToSell(bot)
 end
 
 function M.AddItemToBuy(bot, item)
-  local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
-
-  table.insert(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, index, item)
+  table.insert(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, 1, item)
 end
 
-function M.IncreaseItemToBuyIndex(bot)
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX =
-    PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX + 1
+function M.RemoveItemToBuyIndex(bot)
+  local item_build = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
+
+  if #item_build == 0 then
+    return end
+
+  table.remove(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, 1)
 end
 
 function M.GetItemToBuy(bot)
   local item_build = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
-  local index = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD_INDEX
 
-  while index <= #item_build do
-    local item = item_build[index]
-    if item ~= "nil" then
-      return item end
+  if #item_build == 0 then
+    return nil end
 
-    index = index + 1
-    M.IncreaseItemToBuyIndex(bot)
-  end
-
-  return nil
+  return item_build[1]
 end
 
 local function IsRecipeItem(item)

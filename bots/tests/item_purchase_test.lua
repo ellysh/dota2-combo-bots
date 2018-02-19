@@ -318,7 +318,7 @@ function test_ItemPurchaseThink_with_full_inventory()
     "item_branches",
   }
 
-  memory.IncreaseItemToBuyIndex(bot)
+  memory.RemoveItemToBuyIndex(bot)
   memory.SetItemToSell(bot, nil)
 
   item_purchase.ItemPurchaseThink()

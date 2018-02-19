@@ -110,7 +110,7 @@ local function PurchaseViaCourier(bot)
       logger.Print("PurchaseViaCourier() - " .. bot:GetUnitName() ..
                    " bought " .. buy_item .. " via courier")
 
-      memory.IncreaseItemToBuyIndex(bot)
+      memory.RemoveItemToBuyIndex(bot)
 
       return PURCHASE_ITEM_SUCCESS
     end
@@ -157,7 +157,7 @@ local function PerformPlannedPurchaseAndSell(bot)
       logger.Print("PerformPlannedPurchaseAndSell() - " ..
         bot:GetUnitName() .. " bought " .. buy_item)
 
-      memory.IncreaseItemToBuyIndex(bot)
+      memory.RemoveItemToBuyIndex(bot)
     end
   end
 end
