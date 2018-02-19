@@ -20,6 +20,8 @@ drow_ranger_frost_arrows
 drow_ranger_trueshot
 drow_ranger_wave_of_silence
 enemy_hero_was_seen
+half_hp_ally_hero
+half_hp_self
 has_buyback
 has_level_six
 has_low_hp

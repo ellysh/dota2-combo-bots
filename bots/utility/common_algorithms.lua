@@ -118,6 +118,10 @@ function M.IsUnitLowHp(unit)
             <= constants.UNIT_LOW_HEALTH_LEVEL
 end
 
+function M.IsUnitHalfHp(unit)
+  return GetUnitHealthLevel(unit) <= constants.UNIT_HALF_HEALTH_LEVEL
+end
+
 function M.GetLastPlayerLocation(player)
   if player == nil then
     return nil end

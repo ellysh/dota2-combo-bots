@@ -351,6 +351,14 @@ function M.low_hp_self(bot, ability)
   return false, nil
 end
 
+function M.half_hp_self(bot, ability)
+  if common_algorithms.IsUnitHalfHp(bot) then
+    return true, GetTarget(bot, ability)
+  end
+
+  return false, nil
+end
+
 function M.low_hp_ally_hero(bot, ability)
   local ally_heroes = common_algorithms.GetAllyHeroes(
     bot,
@@ -360,6 +368,23 @@ function M.low_hp_ally_hero(bot, ability)
     common_algorithms.CompareMinHealth,
     function(unit)
       return IsTargetable(unit) and common_algorithms.IsUnitLowHp(unit)
+    end)
+
+  if ally_hero == nil then
+    return false, nil end
+
+  return true, GetTarget(ally_hero, ability)
+end
+
+function M.half_hp_ally_hero(bot, ability)
+  local ally_heroes = common_algorithms.GetAllyHeroes(
+    bot,
+    ability:GetCastRange())
+  local ally_hero = functions.GetElementWith(
+    ally_heroes,
+    common_algorithms.CompareMinHealth,
+    function(unit)
+      return IsTargetable(unit) and common_algorithms.IsUnitHalfHp(unit)
     end)
 
   if ally_hero == nil then
