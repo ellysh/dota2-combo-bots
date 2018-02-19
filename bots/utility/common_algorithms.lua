@@ -152,6 +152,9 @@ function M.GetLastPlayerLocation(player)
 end
 
 function M.GetTotalDamage(units, target)
+  if units == nil or #units == 0 then
+    return 0 end
+
   local total_damage = 0
 
   functions.DoWithElements(
