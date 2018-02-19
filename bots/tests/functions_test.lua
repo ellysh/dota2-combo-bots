@@ -139,18 +139,42 @@ function test_IsInventoryFull_succeed()
   local bot = GetBot()
   bot.inventory = {}
 
-  luaunit.assertFalse(functions.IsInventoryFull(bot))
-
-  table.insert(bot.inventory, "item_tango")
-
-  luaunit.assertFalse(functions.IsInventoryFull(bot))
-
-  for i = 1, constants.INVENTORY_SIZE - 1, 1 do
+  for i = 1, constants.INVENTORY_SIZE, 1 do
     table.insert(bot.inventory, "item_tango")
   end
 
   luaunit.assertTrue(functions.IsInventoryFull(bot))
 end
+
+function test_IsInventoryFull_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = {}
+
+  luaunit.assertFalse(functions.IsInventoryFull(bot))
+
+  table.insert(bot.inventory, "item_tango")
+
+  luaunit.assertFalse(functions.IsInventoryFull(bot))
+end
+
+function test_IsStashFull_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = {}
+
+  local inventory_and_stash_size =
+    constants.INVENTORY_SIZE + constants.STASH_SIZE
+
+  for i = 1, inventory_and_stash_size, 1 do
+    table.insert(bot.inventory, "item_tango")
+  end
+
+  luaunit.assertTrue(functions.IsStashFull(bot))
+end
+
 
 function test_GetElementIndexInList_succeed()
   local list = {5, 4, 3, 2, 1}
