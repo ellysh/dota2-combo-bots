@@ -72,17 +72,17 @@ function M.GetItem(unit, item_name, slot_type)
   return unit:GetItemInSlot(slot)
 end
 
-local function GetItemSlotsCount(bot)
+local function GetItemSlotsCount(unit)
   local result, _ = M.GetItems(
-    bot,
+    unit,
     constants.INVENTORY_MAX_INDEX,
     function(item) return item:GetName() end)
 
   return result
 end
 
-function M.IsInventoryFull(bot)
-  return constants.INVENTORY_SIZE <= GetItemSlotsCount(bot)
+function M.IsInventoryFull(unit)
+  return constants.INVENTORY_SIZE <= GetItemSlotsCount(unit)
 end
 
 -- This function compares two Lua table objects. It was taken from here:

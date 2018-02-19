@@ -94,6 +94,7 @@ local function PurchaseViaCourier(bot)
   local is_item_from_secret_shop = IsItemPurchasedFromSecretShop(buy_item)
 
   if courier == nil
+     or functions.IsInventoryFull(courier)
      or (is_item_from_secret_shop
          and constants.SHOP_USE_RADIUS < courier:DistanceFromSecretShop())
      or (not is_item_from_secret_shop
