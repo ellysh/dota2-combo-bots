@@ -64,3 +64,4 @@ item_diffusal_blade;;;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_
 item_abyssal_blade;;;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;30
 "  item_hurricane_pike";;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;low_hp_ally_hero;30;last_attacked_enemy_hero;60;;
 item_force_staff;;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;low_hp_ally_hero;50;low_hp_self;40;half_hp_self;40
+item_flask;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
