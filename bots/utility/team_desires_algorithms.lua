@@ -203,8 +203,9 @@ local function IsBuildingFocusedByEnemies(building_id, building_type)
     building,
     constants.MAX_HERO_ATTACK_RANGE)
 
-  local total_damage = GetTotalDamage(enemy_creeps, building) +
-                       GetTotalDamage(enemy_heroes, building)
+  local total_damage =
+    common_algorithms.GetTotalDamage(enemy_creeps, building) +
+    common_algorithms.GetTotalDamage(enemy_heroes, building)
 
   return 0.125 < functions.GetRate(total_damage, building:GetMaxHealth())
 

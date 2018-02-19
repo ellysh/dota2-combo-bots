@@ -9,6 +9,9 @@ local luaunit = require("luaunit")
 function test_GetDesire_below_level_six_positive()
   test_RefreshBot()
 
+  local bot = GetBot()
+  bot.level = 1
+
   luaunit.assertEquals(GetDesire(), 0.5)
 end
 

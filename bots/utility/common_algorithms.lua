@@ -145,6 +145,20 @@ function M.GetLastPlayerLocation(player)
   return seen_info[1].location
 end
 
+function M.GetTotalDamage(units, target)
+  local total_damage = 0
+
+  functions.DoWithElements(
+    units,
+    function(unit)
+      if unit:GetAttackTarget() == target then
+        total_damage = total_damage + unit:GetAttackDamage()
+      end
+    end)
+
+  return total_damage
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetUnitHealthLevel = GetUnitHealthLevel

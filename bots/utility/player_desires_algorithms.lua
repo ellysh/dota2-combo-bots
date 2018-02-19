@@ -93,20 +93,6 @@ function M.has_not_full_hp_mp_and_near_fountain()
   return bot:HasModifier("modifier_fountain_aura_buff")
 end
 
-local function GetTotalDamage(units, target)
-  local total_damage = 0
-
-  functions.DoWithElements(
-    units,
-    function(unit)
-      if unit:GetAttackTarget() == target then
-        total_damage = total_damage + unit:GetAttackDamage()
-      end
-    end)
-
-  return total_damage
-end
-
 function M.is_focused_by_enemies()
   local bot = GetBot()
   local enemy_towers = bot:GetNearbyTowers(
@@ -121,9 +107,10 @@ function M.is_focused_by_enemies()
     bot,
     constants.MAX_HERO_ATTACK_RANGE)
 
-  local total_damage = GetTotalDamage(enemy_towers, bot) +
-                       GetTotalDamage(enemy_creeps, bot) +
-                       GetTotalDamage(enemy_heroes, bot)
+  local total_damage =
+    common_algorithms.GetTotalDamage(enemy_towers, bot) +
+    common_algorithms.GetTotalDamage(enemy_creeps, bot) +
+    common_algorithms.GetTotalDamage(enemy_heroes, bot)
 
   return 0.2 < functions.GetRate(total_damage, bot:GetHealth())
 end
