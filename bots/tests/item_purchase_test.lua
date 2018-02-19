@@ -110,7 +110,7 @@ function test_SellItemByIndex_all_checks_fails()
 end
 
 
-function test_SellExtraItem_because_of_level_succeed()
+function test_SetItemToSell_because_of_level_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -137,12 +137,12 @@ function test_SellExtraItem_because_of_level_succeed()
 
   memory.AddItemToBuy(bot, nil)
   memory.SetItemToSell(bot, nil)
-  item_purchase.test_SellExtraItem(GetBot())
+  item_purchase.test_SetItemToSell(GetBot())
 
   luaunit.assertEquals(memory.GetItemToSell(bot), "item_branches")
 end
 
-function test_SellExtraItem_because_of_buying_new_succeed()
+function test_SetItemToSell_because_of_buying_new_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -169,12 +169,12 @@ function test_SellExtraItem_because_of_buying_new_succeed()
 
   memory.AddItemToBuy(bot, "item_branches")
   memory.SetItemToSell(bot, nil)
-  item_purchase.test_SellExtraItem(GetBot())
+  item_purchase.test_SetItemToSell(GetBot())
 
   luaunit.assertEquals(memory.GetItemToSell(bot), "item_branches")
 end
 
-function test_SellExtraItem_when_already_planned_fails()
+function test_SetItemToSell_when_already_planned_fails()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -199,9 +199,8 @@ function test_SellExtraItem_when_already_planned_fails()
     "item_tango"
   }
 
-  memory.AddItemToBuy(bot, "item_branches")
   memory.SetItemToSell(bot, {name = "item_tango"})
-  item_purchase.test_SellExtraItem(GetBot())
+  item_purchase.test_SetItemToSell(GetBot())
 
   luaunit.assertEquals(
     memory.GetItemToSell(bot),
@@ -240,36 +239,37 @@ function test_PurchaseViaCourier_fails()
     PURCHASE_ITEM_DISALLOWED_ITEM)
 end
 
-function test_PerformPlannedPurchaseAndSell_sell_succeed()
+function test_PerformSell_sell_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
   bot.inventory = { "item_branches" }
 
+  DISTANCE_FROM_SHOP = 100
+
   memory.SetItemToSell(bot, "item_branches")
 
-  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+  item_purchase.test_PerformSell(bot)
 
   luaunit.assertEquals(memory.GetItemToSell(bot), nil)
   luaunit.assertEquals(bot.inventory[1], "nil")
 end
 
-function test_PerformPlannedPurchaseAndSell_buy_succeed()
+function test_PerformPurchase_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
 
   memory.AddItemToBuy(bot, "item_branches")
-  memory.SetItemToSell(bot, nil)
 
   COURIER = nil
-  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+  item_purchase.test_PerformPurchase(bot)
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_clarity")
   luaunit.assertEquals(bot.inventory[1], "item_branches")
 end
 
-function test_PerformPlannedPurchaseAndSell_too_far_from_shops_fails()
+function test_PerformPurchase_too_far_from_shops_fails()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -277,7 +277,7 @@ function test_PerformPlannedPurchaseAndSell_too_far_from_shops_fails()
   DISTANCE_FROM_SHOP = 9000
   memory.AddItemToBuy(bot, "item_branches")
 
-  item_purchase.test_PerformPlannedPurchaseAndSell(bot)
+  item_purchase.test_PerformPurchase(bot)
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), "item_branches")
   luaunit.assertEquals(bot.inventory[1], nil)
