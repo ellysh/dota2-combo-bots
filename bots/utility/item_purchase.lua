@@ -88,6 +88,15 @@ local function SellExtraItem(bot)
   end
 end
 
+local function IsUnitNearSecretSideShop(unit)
+  return unit:DistanceFromSecretShop() <= constants.SHOP_USE_RADIUS
+         or unit:DistanceFromSideShop() <= constants.SHOP_USE_RADIUS
+end
+
+local function IsUnitNearBaseShop(unit)
+  return unit:DistanceFromFountain() <= constants.BASE_SHOP_USE_RADIUS
+end
+
 local function PurchaseViaCourier(bot)
   local courier = GetCourier(0)
   local buy_item = memory.GetItemToBuy(bot)
@@ -96,10 +105,9 @@ local function PurchaseViaCourier(bot)
   if courier == nil
      or functions.IsInventoryFull(courier)
      or (is_item_from_secret_shop
-         and constants.SHOP_USE_RADIUS < courier:DistanceFromSecretShop())
+        and not IsUnitNearSecretSideShop(courier))
      or (not is_item_from_secret_shop
-         and constants.BASE_SHOP_USE_RADIUS
-             < courier:DistanceFromFountain()) then
+         and not IsUnitNearBaseShop(courier)) then
 
      return PURCHASE_ITEM_DISALLOWED_ITEM
    end
@@ -121,9 +129,8 @@ local function PurchaseViaCourier(bot)
 end
 
 local function PerformPlannedPurchaseAndSell(bot)
-  if constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()
-    and constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()
-    and constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop() then
+  if not IsUnitNearBaseShop(bot)
+    and not IsUnitNearSecretSideShop(bot) then
 
     PurchaseViaCourier(bot)
     return
@@ -150,11 +157,10 @@ local function PerformPlannedPurchaseAndSell(bot)
   if buy_item == nil
      or bot:GetGold() < GetItemCost(buy_item)
      or (functions.IsInventoryFull(bot)
-         and (constants.SHOP_USE_RADIUS < bot:DistanceFromSecretShop()
-              or constants.SHOP_USE_RADIUS < bot:DistanceFromSideShop()))
+         and IsUnitNearSecretSideShop(bot))
      or (functions.IsStashFull(bot)
-         and constants.BASE_SHOP_USE_RADIUS < bot:DistanceFromFountain()) then
-     return end
+         and not IsUnitNearSecretSideShop(bot)) then
+        return end
 
   if PURCHASE_ITEM_SUCCESS ==
     bot:ActionImmediate_PurchaseItem(buy_item) then

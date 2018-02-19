@@ -265,7 +265,7 @@ function test_PerformPlannedPurchaseAndSell_buy_succeed()
   COURIER = nil
   item_purchase.test_PerformPlannedPurchaseAndSell(bot)
 
-  luaunit.assertEquals(memory.GetItemToBuy(bot), "item_branches")
+  luaunit.assertEquals(memory.GetItemToBuy(bot), "item_clarity")
   luaunit.assertEquals(bot.inventory[1], "item_branches")
 end
 
@@ -331,7 +331,7 @@ function test_ItemPurchaseThink_with_full_inventory()
 
   luaunit.assertEquals(
     memory.GetItemToBuy(bot),
-    "item_branches")
+    "item_clarity")
 end
 
 os.exit(luaunit.LuaUnit.run())
