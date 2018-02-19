@@ -372,7 +372,8 @@ function M.half_hp_self(bot, ability)
 end
 
 function M.half_hp_tree(bot, ability)
-  if common_algorithms.IsUnitHalfHp(bot) then
+  if not common_algorithms.IsUnitHalfHp(bot)
+     or bot:HasModifier("modifier_tango_heal") then
     return false, nil
   end
 
