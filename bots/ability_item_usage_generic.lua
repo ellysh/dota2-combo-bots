@@ -4,6 +4,9 @@ local ability_levelup = require(
 local ability_usage = require(
   GetScriptDirectory() .."/utility/ability_usage")
 
+local inventory = require(
+  GetScriptDirectory() .."/utility/inventory")
+
 local courier = require(
   GetScriptDirectory() .."/utility/courier")
 
@@ -18,7 +21,7 @@ function AbilityUsageThink()
 end
 
 function ItemUsageThink()
-  -- This is a stub function to allow bots perform SKILL_USAGE algorithms
+  inventory.PickUpItem()
 end
 
 function CourierUsageThink()
