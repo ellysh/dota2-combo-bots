@@ -60,6 +60,7 @@ item_broadsword
 item_buckler
 item_butterfly
 item_chainmail
+item_cheese
 item_circlet
 item_clarity
 item_claymore
