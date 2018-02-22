@@ -21,10 +21,22 @@ function test_PickUpItem_move_succeed()
   test_RefreshBot()
 
   ITEM_LOCATION = {1000, 1000}
+  UNIT_MOVE_LOCATION = nil
 
   inventory.PickUpItem()
 
   luaunit.assertEquals(UNIT_MOVE_LOCATION, {1000, 1000})
+end
+
+function test_PickUpItem_too_far_fails()
+  test_RefreshBot()
+
+  ITEM_LOCATION = {4000, 4000}
+  UNIT_MOVE_LOCATION = nil
+
+  inventory.PickUpItem()
+
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, nil)
 end
 
 os.exit(luaunit.LuaUnit.run())
