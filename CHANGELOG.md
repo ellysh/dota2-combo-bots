@@ -1,3 +1,6 @@
+* version 1.2
+  - Fix a bug with picking up dropped items.
+
 * version 1.1
   - Calculate desire for the defend lane mode.
   - Add the ITEM_SETS table to gather typical item sets.
