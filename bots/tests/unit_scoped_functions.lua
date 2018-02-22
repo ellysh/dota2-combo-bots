@@ -528,6 +528,12 @@ function Unit:Action_AttackUnit(target, is_once)
   ATTACK_TARGET = target
 end
 
+UNIT_PICKUP_ITEM = nil
+
+function Unit:Action_PickUpItem(item)
+  UNIT_PICKUP_ITEM = item
+end
+
 function Unit:SetTarget(target)
   ATTACK_TARGET = target
 end

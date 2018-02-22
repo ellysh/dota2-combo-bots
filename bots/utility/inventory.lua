@@ -22,6 +22,4 @@ function M.PickUpItem()
   end
 end
 
--- Provide an access to local functions for unit tests only
-
 return M

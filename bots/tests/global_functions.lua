@@ -270,3 +270,12 @@ HERO_LAST_SEEN_INFO = {}
 function GetHeroLastSeenInfo()
   return HERO_LAST_SEEN_INFO
 end
+
+ITEM_LOCATION = {10, 10}
+
+function GetDroppedItemList()
+  return {{
+    item = Item:new("item_branches"),
+    owner = Unit:new(),
+    location = ITEM_LOCATION }}
+end
