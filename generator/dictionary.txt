@@ -121,7 +121,8 @@ item_phase_boots
 item_platemail
 item_point_booster
 item_poor_mans_shield
-item_power_treads
+item_power_treads_a
+item_power_treads_s
 item_quarterstaff
 item_quelling_blade
 item_radiance

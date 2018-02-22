@@ -19,8 +19,8 @@ M.ITEM_BUILDS = {
   npc_dota_hero_chaos_knight = {
     items = {
       "set_starting_melee",
-      "item_belt_of_strength",
-      "item_power_treads",
+      "nil",
+      "item_power_treads_s",
       "item_armlet",
       "item_blink",
       "item_echo_sabre",
@@ -45,8 +45,8 @@ M.ITEM_BUILDS = {
   npc_dota_hero_drow_ranger = {
     items = {
       "set_starting_ranged",
-      "item_boots_of_elves",
-      "item_power_treads",
+      "nil",
+      "item_power_treads_a",
       "item_mask_of_madness",
       "item_invis_sword",
       "item_black_king_bar",
@@ -97,8 +97,8 @@ M.ITEM_BUILDS = {
   npc_dota_hero_phantom_lancer = {
     items = {
       "set_starting_melee",
-      "item_boots_of_elves",
-      "item_power_treads",
+      "nil",
+      "item_power_treads_a",
       "item_ring_of_aquila",
       "item_diffusal_blade",
       "item_manta",
@@ -123,8 +123,8 @@ M.ITEM_BUILDS = {
   npc_dota_hero_skeleton_king = {
     items = {
       "set_starting_melee",
-      "item_belt_of_strength",
-      "item_power_treads",
+      "nil",
+      "item_power_treads_s",
       "item_armlet",
       "item_blink",
       "item_radiance",
@@ -149,8 +149,8 @@ M.ITEM_BUILDS = {
   npc_dota_hero_sven = {
     items = {
       "set_starting_melee",
-      "item_belt_of_strength",
-      "item_power_treads",
+      "nil",
+      "item_power_treads_s",
       "item_mask_of_madness",
       "item_echo_sabre",
       "item_blink",

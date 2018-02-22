@@ -379,11 +379,19 @@ M.ITEM_SETS = {
       "nil"}
   },
 
-  item_power_treads = {
+  item_power_treads_s = {
     components = {
       "item_boots",
       "item_gloves",
-      "nil",
+      "item_belt_of_strength",
+      "nil"}
+  },
+
+  item_power_treads_a = {
+    components = {
+      "item_boots",
+      "item_gloves",
+      "item_boots_of_elves",
       "nil"}
   },
 
