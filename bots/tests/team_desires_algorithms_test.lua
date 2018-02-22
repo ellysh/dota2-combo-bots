@@ -197,4 +197,40 @@ function test_enemy_hero_was_seen_no_nearby_ally_succeed()
   luaunit.assertTrue(algorithms.enemy_hero_was_seen())
 end
 
+function test_is_bot_building_focused_by_enemies()
+  UNITS = { Unit:new() }
+
+  local building = GetTower(GetTeam(), TOWER_BOT_1)
+  building.health = 10
+
+  ATTACK_TARGET = building
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_bot_building_focused_by_enemies())
+end
+
+function test_is_top_building_focused_by_enemies()
+  UNITS = { Unit:new() }
+
+  local building = GetTower(GetTeam(), TOWER_TOP_1)
+  building.health = 10
+
+  ATTACK_TARGET = building
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_top_building_focused_by_enemies())
+end
+
+function test_is_mid_building_focused_by_enemies()
+  UNITS = { Unit:new() }
+
+  local building = GetTower(GetTeam(), TOWER_MID_1)
+  building.health = 10
+
+  ATTACK_TARGET = building
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.is_mid_building_focused_by_enemies())
+end
+
 os.exit(luaunit.LuaUnit.run())

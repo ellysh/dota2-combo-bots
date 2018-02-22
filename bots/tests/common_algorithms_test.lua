@@ -115,6 +115,8 @@ end
 function test_GetEnemyCreeps_succeed()
   test_RefreshBot()
 
+  UNIT_NO_NEARBY_UNITS = false
+
   local units = algorithms.GetEnemyCreeps(
     GetBot(),
     1200)
@@ -123,6 +125,18 @@ function test_GetEnemyCreeps_succeed()
   luaunit.assertEquals(units[2]:GetUnitName(), "creep2")
   luaunit.assertEquals(units[3]:GetUnitName(), "creep3")
   luaunit.assertEquals(units[4], nil)
+end
+
+function test_GetEnemyCreeps_no_enemy_fails()
+  test_RefreshBot()
+
+  UNIT_NO_NEARBY_UNITS = true
+
+  local units = algorithms.GetEnemyCreeps(
+    GetBot(),
+    1200)
+
+  luaunit.assertEquals(units, {})
 end
 
 function test_GetAllyCreeps_succeed()
@@ -228,6 +242,24 @@ function test_IsUnitLowHp_full_hp_fails()
   bot.health = bot.max_health
 
   luaunit.assertFalse(algorithms.IsUnitLowHp(bot))
+end
+
+function test_IsUnitHalfHp_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = (bot.max_health / 2) - 1
+
+  luaunit.assertTrue(algorithms.IsUnitHalfHp(bot))
+end
+
+function test_IsUnitHalfHp_full_hp_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = bot.max_health
+
+  luaunit.assertFalse(algorithms.IsUnitHalfHp(bot))
 end
 
 os.exit(luaunit.LuaUnit.run())

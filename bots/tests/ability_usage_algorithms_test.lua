@@ -397,7 +397,7 @@ function test_use_on_attack_enemy_hero_melee_succeed()
     {10, 10})
 end
 
-function test_use_on_attack_enemy_hero_no_hero_fails()
+function test_use_on_attack_enemy_hero_melee_no_hero_fails()
   UNIT_IS_HERO = false
 
   test_algorithm_pattern_fails("use_on_attack_enemy_hero_melee")
@@ -417,6 +417,22 @@ function test_use_on_attack_enemy_hero_ranged_no_hero_fails()
   UNIT_IS_HERO = false
 
   test_algorithm_pattern_fails("use_on_attack_enemy_hero_ranged")
+end
+
+function test_use_on_attack_enemy_hero_succeed()
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_succeed(
+    "use_on_attack_enemy_hero",
+    {10, 10})
+end
+
+function test_use_on_attack_enemy_hero_no_hero_fails()
+  UNIT_IS_HERO = false
+
+  test_algorithm_pattern_fails("use_on_attack_enemy_hero")
 end
 
 function test_use_on_attack_enemy_creep_aoe_succeed()
@@ -509,6 +525,42 @@ function test_low_hp_self_full_hp_fails()
   test_algorithm_pattern_fails("low_hp_self")
 end
 
+function test_half_hp_self_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local bot = GetBot()
+  bot.health = bot.max_health / 2
+
+  test_algorithm_pattern_succeed("half_hp_self", bot)
+end
+
+function test_half_hp_self_full_hp_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local bot = GetBot()
+  bot.health = bot.max_health
+
+  test_algorithm_pattern_fails("half_hp_self")
+end
+
+function test_low_mp_self_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local bot = GetBot()
+  bot.mana = 10
+
+  test_algorithm_pattern_succeed("low_mp_self", bot)
+end
+
+function test_low_mp_self_full_hp_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local bot = GetBot()
+  bot.mana = bot.max_mana
+
+  test_algorithm_pattern_fails("low_mp_self")
+end
+
 local function test_algorithm_unit_pattern_succeed(
   algorithm,
   expect_target)
@@ -540,6 +592,22 @@ function test_low_hp_ally_hero_no_unit_fails()
   UNIT_NO_NEARBY_UNITS = true
 
   test_algorithm_pattern_fails("low_hp_ally_hero")
+end
+
+function test_half_hp_ally_hero_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_NO_NEARBY_UNITS = false
+
+  test_algorithm_unit_pattern_succeed(
+    "half_hp_ally_hero",
+    "unit1")
+end
+
+function test_half_hp_ally_hero_no_unit_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_NO_NEARBY_UNITS = true
+
+  test_algorithm_pattern_fails("half_hp_ally_hero")
 end
 
 function test_low_hp_ally_creep_succeed()
