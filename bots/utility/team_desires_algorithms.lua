@@ -261,5 +261,6 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_UnitsOnLane = UnitsOnLane
+M.test_IsFourEnemyHeroesOnLane = IsFourEnemyHeroesOnLane
 
 return M

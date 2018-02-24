@@ -224,4 +224,24 @@ function test_is_mid_building_focused_by_enemies_succeed()
   luaunit.assertTrue(algorithms.is_mid_building_focused_by_enemies())
 end
 
+function test_IsFourEnemyHeroesOnLane_succed()
+  local unit = Unit:new()
+
+  UNITS = { unit, unit, unit, unit }
+
+  LANE_DISTANCE = 200
+
+  luaunit.assertTrue(algorithms.test_IsFourEnemyHeroesOnLane(LANE_TOP))
+end
+
+function test_IsFourEnemyHeroesOnLane_three_fails()
+  local unit = Unit:new()
+
+  UNITS = { unit, unit, unit }
+
+  LANE_DISTANCE = 200
+
+  luaunit.assertFalse(algorithms.test_IsFourEnemyHeroesOnLane(LANE_TOP))
+end
+
 os.exit(luaunit.LuaUnit.run())
