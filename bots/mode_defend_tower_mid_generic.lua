@@ -1,3 +1,6 @@
+local mode_defend = require(
+  GetScriptDirectory() .."/utility/mode_defend")
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 
@@ -12,4 +15,8 @@ function GetDesire()
            GetDefendLaneDesire(LANE_MID)
            + player_desires.GetDesire("BOT_MODE_DEFEND_TOWER_MID"),
          constants.MAX_DEFEND_DESIRE)
+end
+
+function Think()
+  mode_defend.Think(LANE_MID)
 end
