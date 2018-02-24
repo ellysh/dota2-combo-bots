@@ -1,4 +1,5 @@
 * version 1.2
+  - Tune team desire to not do laning after the laning stage.
   - Implement the mode defend tower mode.
   - Fix a bug with picking up dropped items.
 
