@@ -23,7 +23,7 @@ local function CanUseTpScroll(unit, target_location)
 end
 
 function M.Move(unit, target_location)
-  if functions.IsBotBusy(unit) then
+  if functions.IsBotCasting(unit) then
     return end
 
   if CanUseTpScroll(unit, target_location) then

@@ -64,7 +64,7 @@ function M.ChooseTarget(bot, radius)
 end
 
 function M.Attack(unit, target)
-  if functions.IsBotBusy(unit) then
+  if functions.IsBotCasting(unit) then
     return end
 
   -- This SetTarget is required to start casting skills

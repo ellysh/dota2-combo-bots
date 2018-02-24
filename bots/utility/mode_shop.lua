@@ -39,7 +39,7 @@ local function GetDesire(check_shop_func, shop_location, base_desire)
   end
 
   if functions.IsBotInFightingMode(bot)
-     or functions.IsBotBusy(bot)
+     or functions.IsBotCasting(bot)
      or common_algorithms.IsEnemyHeroOnTheWay(bot, shop_location) then
     return 0
   end

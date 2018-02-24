@@ -136,7 +136,7 @@ function M.AbilityUsageThink()
 
   CancelAbility(bot)
 
-  if functions.IsBotBusy(bot) then
+  if functions.IsBotCasting(bot) then
     return end
 
   local ability, target = ChooseAbilityAndTarget(bot)

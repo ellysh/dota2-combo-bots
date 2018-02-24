@@ -158,7 +158,7 @@ function M.ComplementOfLists(list1, list2, is_deep)
   return result
 end
 
-function M.IsBotBusy(bot)
+function M.IsBotCasting(bot)
   return bot:IsChanneling()
         or bot:IsUsingAbility()
         or bot:IsCastingAbility()

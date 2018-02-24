@@ -63,7 +63,7 @@ function GetDesire()
   if (functions.IsBotInFightingMode(bot)
      and (constants.MIN_HERO_DISTANCE_FROM_RUNE < distance
           or GetRuneStatus(rune) == RUNE_STATUS_MISSING))
-     or functions.IsBotBusy(bot)
+     or functions.IsBotCasting(bot)
      or common_algorithms.IsEnemyHeroOnTheWay(
           bot,
           GetRuneSpawnLocation(rune)) then

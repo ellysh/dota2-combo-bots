@@ -9,7 +9,8 @@ local M = {}
 function M.PickUpItem()
   local bot = GetBot()
 
-  if functions.IsBotInFightingMode(bot) or functions.IsBotBusy(bot) then
+  if functions.IsBotInFightingMode(bot)
+     or functions.IsBotCasting(bot) then
     return end
 
   local items = GetDroppedItemList()

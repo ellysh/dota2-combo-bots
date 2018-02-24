@@ -233,23 +233,29 @@ function test_IsIntersectionOfLists()
   luaunit.assertFalse(functions.IsIntersectionOfLists(list2, list3))
 end
 
-function test_IsBotBusy()
+function test_IsBotCasting_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
 
-  luaunit.assertFalse(functions.IsBotBusy(bot))
-
   UNIT_IS_CHANNELING = true
-  luaunit.assertTrue(functions.IsBotBusy(bot))
+  luaunit.assertTrue(functions.IsBotCasting(bot))
 
   UNIT_IS_CHANNELING = false
   UNIT_IS_USING_ABILITY = true
-  luaunit.assertTrue(functions.IsBotBusy(bot))
+  luaunit.assertTrue(functions.IsBotCasting(bot))
 
   UNIT_IS_USING_ABILITY = false
   UNIT_IS_CASTING_ABILITY = true
-  luaunit.assertTrue(functions.IsBotBusy(bot))
+  luaunit.assertTrue(functions.IsBotCasting(bot))
+end
+
+function test_IsBotCasting_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  luaunit.assertFalse(functions.IsBotCasting(bot))
 end
 
 function test_IsFlagSet_succeed()
