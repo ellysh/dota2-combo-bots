@@ -203,6 +203,20 @@ function test_GetLastPlayerLocation_succeed()
   luaunit.assertEquals(algorithms.GetLastPlayerLocation(1), {10, 10})
 end
 
+function test_GetLastPlayerLocation_no_player_fails()
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
+
+  luaunit.assertEquals(algorithms.GetLastPlayerLocation(nil), nil)
+end
+
+function test_GetLastPlayerLocation_no_last_seen_info_fails()
+  IS_HERO_ALIVE = true
+  HERO_LAST_SEEN_INFO = nil
+
+  luaunit.assertEquals(algorithms.GetLastPlayerLocation(1), nil)
+end
+
 function test_GetUnitHealthLevel_succeed()
   test_RefreshBot()
 
@@ -308,6 +322,85 @@ function test_GetBuilding_ancient_succeed()
       "TYPE_ANCIENT")
 
   luaunit.assertEquals(unit:GetUnitName(), "ancient")
+end
+
+function test_GetNearestFrontBuilding_succeed()
+  local unit = algorithms.GetNearestFrontBuilding(LANE_TOP)
+
+  luaunit.assertEquals(unit:GetUnitName(), "tower2")
+
+  local unit = algorithms.GetNearestFrontBuilding(LANE_BOT)
+
+  luaunit.assertEquals(unit:GetUnitName(), "tower8")
+
+  local unit = algorithms.GetNearestFrontBuilding(LANE_MID)
+
+  luaunit.assertEquals(unit:GetUnitName(), "tower10")
+end
+
+function test_GetTotalDamage_succeed()
+  local units = { Unit:new(), Unit:new() }
+  local target = Unit:new()
+
+  ATTACK_TARGET = target
+
+  luaunit.assertEquals(algorithms.GetTotalDamage(units, target), 200)
+end
+
+function test_GetTotalDamage_no_attacking_units_fails()
+  local target = Unit:new()
+
+  ATTACK_TARGET = target
+
+  luaunit.assertEquals(algorithms.GetTotalDamage({}, target), 0)
+  luaunit.assertEquals(algorithms.GetTotalDamage(nil, target), 0)
+end
+
+function test_GetTotalDamage_no_target_fails()
+  local units = { Unit:new(), Unit:new() }
+
+  ATTACK_TARGET = nil
+
+  luaunit.assertEquals(algorithms.GetTotalDamage(units, nil), 0)
+end
+
+function test_CompareMaxHealth_succeed()
+  local unit1 = Unit:new()
+  local unit2 = Unit:new()
+  unit2.health = 10
+
+  local table = {unit1, unit2}
+
+  luaunit.assertTrue(algorithms.CompareMaxHealth(table, 1, 2))
+end
+
+function test_CompareMinHealth_succeed()
+  local unit1 = Unit:new()
+  unit1.health = 10
+
+  local unit2 = Unit:new()
+  local table = {unit1, unit2}
+
+  luaunit.assertTrue(algorithms.CompareMinHealth(table, 1, 2))
+end
+
+function test_CompareMaxHeroKills_equals_fails()
+  local unit1 = Unit:new()
+  local unit2 = Unit:new()
+  local table = {unit1, unit2}
+
+  luaunit.assertFalse(algorithms.CompareMaxHeroKills(table, 1, 2))
+end
+
+function test_GetNeutralCreeps_succeed()
+  test_RefreshBot()
+
+  UNIT_NO_NEARBY_UNITS = false
+  local units = algorithms.GetNeutralCreeps(GetBot(), 1600)
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "neutral1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "neutral2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "neutral3")
 end
 
 os.exit(luaunit.LuaUnit.run())
