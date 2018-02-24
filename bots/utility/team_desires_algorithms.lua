@@ -63,8 +63,8 @@ function M.max_kills_ally_hero_alive()
   return player ~= nil and IsHeroAlive(player)
 end
 
-function M.time_is_more_5_minutes()
-  return (5 * 60) < DotaTime()
+function M.time_is_more_3_minutes()
+  return (3 * 60) < DotaTime()
 end
 
 local function UnitsOnLane(unit_type, lane)
@@ -195,7 +195,7 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
   return result
 end
 
-local function IsFourEnemyHeroesOnLane(lane)
+local function IsThreeEnemyHeroesOnLane(lane)
   local units = UnitsOnLane(UNIT_LIST_ENEMY_HEROES, lane)
   local building = common_algorithms.GetNearestFrontBuilding(lane)
   local units_number = 0
@@ -209,19 +209,19 @@ local function IsFourEnemyHeroesOnLane(lane)
       end
     end)
 
-  return 4 <= units_number
+  return 3 <= units_number
 end
 
-function M.four_enemy_heroes_on_bot()
-  return IsFourEnemyHeroesOnLane(LANE_BOT)
+function M.three_enemy_heroes_on_bot()
+  return IsThreeEnemyHeroesOnLane(LANE_BOT)
 end
 
-function M.four_enemy_heroes_on_mid()
-  return IsFourEnemyHeroesOnLane(LANE_MID)
+function M.three_enemy_heroes_on_mid()
+  return IsThreeEnemyHeroesOnLane(LANE_MID)
 end
 
-function M.four_enemy_heroes_on_top()
-  return IsFourEnemyHeroesOnLane(LANE_TOP)
+function M.three_enemy_heroes_on_top()
+  return IsThreeEnemyHeroesOnLane(LANE_TOP)
 end
 
 local function IsBuildingFocusedByEnemies(building)
@@ -265,6 +265,6 @@ end
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_UnitsOnLane = UnitsOnLane
 M.test_IsBuildingFocusedByEnemies = IsBuildingFocusedByEnemies
-M.test_IsFourEnemyHeroesOnLane = IsFourEnemyHeroesOnLane
+M.test_IsThreeEnemyHeroesOnLane = IsThreeEnemyHeroesOnLane
 
 return M

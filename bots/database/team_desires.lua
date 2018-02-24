@@ -153,7 +153,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
   },
 
-  time_is_more_5_minutes = {
+  time_is_more_3_minutes = {
     BOT_MODE_PUSH_TOWER_TOP = {10, -30},
     BOT_MODE_PUSH_TOWER_MID = {10, -30},
     BOT_MODE_PUSH_TOWER_BOT = {10, -30},
@@ -193,7 +193,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
   },
 
-  four_enemy_heroes_on_bot = {
+  three_enemy_heroes_on_bot = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
@@ -203,7 +203,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {60, 0},
   },
 
-  four_enemy_heroes_on_mid = {
+  three_enemy_heroes_on_mid = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
@@ -213,7 +213,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
   },
 
-  four_enemy_heroes_on_top = {
+  three_enemy_heroes_on_top = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},

@@ -65,12 +65,14 @@ function test_max_kills_ally_hero_alive()
   luaunit.assertFalse(algorithms.max_kills_ally_hero_alive())
 end
 
-function test_time_is_more_5_minutes()
+function test_time_is_more_3_minutes_fails()
   TIME = 1 * 60
-  luaunit.assertFalse(algorithms.time_is_more_5_minutes())
+  luaunit.assertFalse(algorithms.time_is_more_3_minutes())
+end
 
+function test_time_is_more_3_minutes_succeed()
   TIME = 6 * 60
-  luaunit.assertTrue(algorithms.time_is_more_5_minutes())
+  luaunit.assertTrue(algorithms.time_is_more_3_minutes())
 end
 
 function test_NumberUnitsOnLane_succed()
@@ -228,24 +230,24 @@ function test_is_mid_building_focused_by_enemies_succeed()
   luaunit.assertTrue(algorithms.is_mid_building_focused_by_enemies())
 end
 
-function test_IsFourEnemyHeroesOnLane_succed()
-  local unit = Unit:new()
-
-  UNITS = { unit, unit, unit, unit }
-
-  LANE_DISTANCE = 200
-
-  luaunit.assertTrue(algorithms.test_IsFourEnemyHeroesOnLane(LANE_TOP))
-end
-
-function test_IsFourEnemyHeroesOnLane_three_fails()
+function test_IsThreeEnemyHeroesOnLane_succed()
   local unit = Unit:new()
 
   UNITS = { unit, unit, unit }
 
   LANE_DISTANCE = 200
 
-  luaunit.assertFalse(algorithms.test_IsFourEnemyHeroesOnLane(LANE_TOP))
+  luaunit.assertTrue(algorithms.test_IsThreeEnemyHeroesOnLane(LANE_TOP))
+end
+
+function test_IsThreeEnemyHeroesOnLane_two_fails()
+  local unit = Unit:new()
+
+  UNITS = { unit, unit }
+
+  LANE_DISTANCE = 200
+
+  luaunit.assertFalse(algorithms.test_IsThreeEnemyHeroesOnLane(LANE_TOP))
 end
 
 os.exit(luaunit.LuaUnit.run())

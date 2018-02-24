@@ -20,9 +20,6 @@ drow_ranger_frost_arrows
 drow_ranger_trueshot
 drow_ranger_wave_of_silence
 enemy_hero_was_seen
-four_enemy_heroes_on_bot
-four_enemy_heroes_on_mid
-four_enemy_heroes_on_top
 half_hp_ally_hero
 half_hp_self
 half_hp_tree
@@ -318,7 +315,10 @@ three_and_more_enemy_heroes
 three_and_more_enemy_heroes_aoe
 three_and_more_neutral_creeps
 three_and_more_neutral_creeps_aoe
-time_is_more_5_minutes
+three_enemy_heroes_on_bot
+three_enemy_heroes_on_mid
+three_enemy_heroes_on_top
+time_is_more_3_minutes
 toggle_on_attack_enemy_hero
 ursa_earthshock
 ursa_enrage
