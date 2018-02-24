@@ -1,15 +1,21 @@
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 function M.PickUpItem()
+  local bot = GetBot()
+
+  if functions.IsBotInFightingMode(bot) or functions.IsBotBusy(bot) then
+    return end
+
   local items = GetDroppedItemList()
 
   if items == nil or #items == 0 then
     return end
-
-  local bot = GetBot()
 
   for _, item in pairs(items) do
     local distance = GetUnitToLocationDistance(bot, item.location)

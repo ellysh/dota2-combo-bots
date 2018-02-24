@@ -16,10 +16,8 @@ local function IsShopRequired(bot, check_shop_func)
   local buy_item = memory.GetItemToBuy(bot)
   local sell_item = memory.GetItemToSell(bot)
 
-  return not functions.IsBotBusy(bot)
-         and not bot:WasRecentlyDamagedByAnyHero(5.0)
-         and (not functions.IsInventoryFull(bot)
-              or sell_item ~= nil)
+  return (not functions.IsInventoryFull(bot)
+          or sell_item ~= nil)
          and ((buy_item ~= nil
                and check_shop_func(buy_item)
                and GetItemCost(buy_item) <= bot:GetGold())
@@ -41,6 +39,7 @@ local function GetDesire(check_shop_func, shop_location, base_desire)
   end
 
   if functions.IsBotInFightingMode(bot)
+     or functions.IsBotBusy(bot)
      or common_algorithms.IsEnemyHeroOnTheWay(bot, shop_location) then
     return 0
   end
