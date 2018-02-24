@@ -33,10 +33,10 @@ is_bot_building_focused_by_enemies
 is_focused_by_enemies
 is_mid_building_focused_by_enemies
 is_night
+is_one_weaker_enemy_hero_near
 is_shrine_healing_and_enemies_near
 is_shrine_healing_and_no_enemy
 is_top_building_focused_by_enemies
-is_weaker_enemy_hero_near
 item_abyssal_blade
 item_aether_lens
 item_ancient_janggo

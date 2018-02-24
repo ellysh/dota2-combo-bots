@@ -127,7 +127,7 @@ local function IsWeakerTarget(unit, target)
   return hits_to_kill < hits_to_die
 end
 
-function M.is_weaker_enemy_hero_near()
+function M.is_one_weaker_enemy_hero_near()
   local bot = GetBot()
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
@@ -141,7 +141,7 @@ function M.is_weaker_enemy_hero_near()
              and IsWeakerTarget(bot, unit)
     end)
 
-  return enemy_hero ~= nil
+  return enemy_hero ~= nil and #enemy_heroes == 1
 end
 
 function M.roam_target_is_near()

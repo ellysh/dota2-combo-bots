@@ -115,13 +115,13 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
   },
 
-  is_weaker_enemy_hero_near = {
+  is_one_weaker_enemy_hero_near = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_RETREAT = {0, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
-    BOT_MODE_ATTACK  = {55, 0},
+    BOT_MODE_ATTACK  = {60, 0},
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0},
     BOT_MODE_LANING = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
@@ -186,12 +186,12 @@ M.PLAYER_DESIRES = {
   },
 
   ally_hero_is_near = {
-    BOT_MODE_PUSH_TOWER_TOP = {5, 0},
-    BOT_MODE_PUSH_TOWER_MID = {5, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {5, 0},
+    BOT_MODE_PUSH_TOWER_TOP = {5, -5},
+    BOT_MODE_PUSH_TOWER_MID = {5, -5},
+    BOT_MODE_PUSH_TOWER_BOT = {5, -5},
     BOT_MODE_RETREAT = {0, 0},
     BOT_MODE_TEAM_ROAM = {30, -20},
-    BOT_MODE_ATTACK  = {0, 0},
+    BOT_MODE_ATTACK  = {10, -15},
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0},
     BOT_MODE_LANING = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
