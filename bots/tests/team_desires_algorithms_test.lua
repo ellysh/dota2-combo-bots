@@ -197,6 +197,10 @@ function test_enemy_hero_was_seen_no_nearby_ally_succeed()
   luaunit.assertTrue(algorithms.enemy_hero_was_seen())
 end
 
+function test_IsBuildingFocusedByEnemies_nil_building_fails()
+  luaunit.assertFalse(algorithms.test_IsBuildingFocusedByEnemies(nil))
+end
+
 function test_is_bot_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
   TOWER_HEALTH = 10

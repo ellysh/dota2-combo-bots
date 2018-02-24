@@ -225,6 +225,9 @@ function M.four_enemy_heroes_on_top()
 end
 
 local function IsBuildingFocusedByEnemies(building)
+  if building == nil then
+    return false end
+
   local enemy_creeps = GetEnemyUnitsNearLocation(
     UNIT_LIST_ENEMY_CREEPS,
     building:GetLocation(),
@@ -261,6 +264,7 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_UnitsOnLane = UnitsOnLane
+M.test_IsBuildingFocusedByEnemies = IsBuildingFocusedByEnemies
 M.test_IsFourEnemyHeroesOnLane = IsFourEnemyHeroesOnLane
 
 return M
