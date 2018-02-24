@@ -41,18 +41,12 @@ function UpdateRoamDesire()
   return { TEAM_DESIRES.BOT_MODE_TEAM_ROAM, GetTeamMember(1) }
 end
 
---[[
-
 function UpdateFarmLaneDesires()
-
-    return { 0.5, 0.5, 0.5 }
-
+  return {0, 0, 0}
 end
 
+--[[
 function UpdateRoshanDesire()
-
     return 0.1
-
 end
-
 --]]
