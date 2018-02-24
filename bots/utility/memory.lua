@@ -51,6 +51,12 @@ function M.RemoveItemToBuyIndex(bot)
 end
 
 function M.GetItemToBuy(bot)
+  -- The CourierUsageThink function is call for all allies units.
+  -- Therefore, the IsSecretShopRequired happens for non heroes.
+
+  if PURCHASE_LIST[bot:GetUnitName()] == nil then
+    return nil end
+
   local item_build = PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD
 
   if #item_build == 0 then

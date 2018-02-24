@@ -41,13 +41,29 @@ function test_SetItemToSell_second_time_succeed()
 end
 
 function test_GetItemToSell_when_purchase_list_empty_fails()
-  memory.test_InitPurchaseList(GetBot())
+  test_RefreshBot()
 
-  luaunit.assertEquals(memory.GetItemToSell(GetBot()), nil)
+  local bot = GetBot()
+
+  memory.test_InitPurchaseList(bot)
+
+  luaunit.assertEquals(memory.GetItemToSell(bot), nil)
 end
 
 function test_GetItemToBuy_when_purchase_list_empty_fails()
-  memory.test_InitPurchaseList(GetBot())
+  test_RefreshBot()
+
+  local bot = GetBot()
+  memory.test_InitPurchaseList(bot)
+
+  luaunit.assertEquals(memory.GetItemToBuy(bot), nil)
+end
+
+function test_GetItemToBuy_when_purchase_list_not_exist_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.name = "unknown"
 
   luaunit.assertEquals(memory.GetItemToBuy(GetBot()), nil)
 end
