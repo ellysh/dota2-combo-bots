@@ -20,6 +20,9 @@ drow_ranger_frost_arrows
 drow_ranger_trueshot
 drow_ranger_wave_of_silence
 enemy_hero_was_seen
+four_enemy_heroes_on_bot
+four_enemy_heroes_on_mid
+four_enemy_heroes_on_top
 half_hp_ally_hero
 half_hp_self
 half_hp_tree

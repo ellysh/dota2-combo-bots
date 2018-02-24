@@ -96,29 +96,29 @@ M.TEAM_DESIRES = {
   more_ally_heroes_on_bot_then_enemy = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {20, -20},
+    BOT_MODE_PUSH_TOWER_BOT = {20, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
-    BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {0, 20},
   },
 
   more_ally_heroes_on_mid_then_enemy = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {20, -20},
+    BOT_MODE_PUSH_TOWER_MID = {20, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
-    BOT_MODE_DEFEND_TOWER_MID = {0, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {0, 20},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
   },
 
   more_ally_heroes_on_top_then_enemy = {
-    BOT_MODE_PUSH_TOWER_TOP = {20, -20},
+    BOT_MODE_PUSH_TOWER_TOP = {20, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
-    BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {0, 20},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
   },
@@ -170,7 +170,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
-    BOT_MODE_DEFEND_TOWER_BOT = {60, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {65, 0},
   },
 
   is_mid_building_focused_by_enemies = {
@@ -184,6 +184,36 @@ M.TEAM_DESIRES = {
   },
 
   is_top_building_focused_by_enemies = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {65, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {0, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+  },
+
+  four_enemy_heroes_on_bot = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {0, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {60, 0},
+  },
+
+  four_enemy_heroes_on_mid = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {60, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+  },
+
+  four_enemy_heroes_on_top = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
