@@ -195,6 +195,23 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
   return result
 end
 
+function M.four_enemy_heroes_on_bot()
+  local units = UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
+  local building = common_algorithms.GetNearestFrontBuilding(LANE_BOT)
+  local units_number = 0
+
+  functions.DoWithElements(
+    units,
+    function(unit)
+      if GetUnitToUnitDistance(unit, building)
+         <= constants.MAX_ENEMY_TO_BUILDING_RADIUS then
+        units_number = units_number + 1
+      end
+    end)
+
+  return 4 <= units_number
+end
+
 local function IsBuildingFocusedByEnemies(building)
   local enemy_creeps = GetEnemyUnitsNearLocation(
     UNIT_LIST_ENEMY_CREEPS,
