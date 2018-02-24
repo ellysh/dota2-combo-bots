@@ -3,7 +3,7 @@ package.path = package.path .. ";../utility/?.lua"
 pcall(require, "luacov")
 require("global_functions")
 
-local mode_push = require("mode_push")
+local mode_defend = require("mode_defend")
 local constants = require("constants")
 local luaunit = require("luaunit")
 
@@ -11,7 +11,7 @@ function test_Think_attack_succeed()
   test_RefreshBot()
 
   ATTACK_TARGET = nil
-  mode_push.Think(LANE_TOP)
+  mode_defend.Think(LANE_TOP)
 
   luaunit.assertNotEquals(ATTACK_TARGET, nil)
 end
@@ -21,7 +21,7 @@ function test_Think_move_succeed()
 
   UNIT_NO_NEARBY_UNITS = true
   UNIT_MOVE_LOCATION = nil
-  mode_push.Think(LANE_TOP)
+  mode_defend.Think(LANE_TOP)
 
   luaunit.assertEquals(UNIT_MOVE_LOCATION, {10, 10})
 end

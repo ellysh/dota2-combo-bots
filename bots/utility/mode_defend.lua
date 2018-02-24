@@ -7,34 +7,37 @@ local move = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local M = {}
 
 local ANCIENT = 1000
 
 local BUILDINGS = {
   [LANE_TOP] = {
-    [TOWER_TOP_1] = "TYPE_TOWER",
-    [TOWER_TOP_2] = "TYPE_TOWER",
-    [TOWER_TOP_3] = "TYPE_TOWER",
-    [BARRACKS_TOP_MELEE] = "TYPE_BARRACKS",
-    [BARRACKS_TOP_RANGED] = "TYPE_BARRACKS",
+    {id = TOWER_TOP_1, type ="TYPE_TOWER"},
+    {id = TOWER_TOP_2, type ="TYPE_TOWER"},
+    {id = TOWER_TOP_3, type ="TYPE_TOWER"},
+    {id = BARRACKS_TOP_MELEE, type = "TYPE_BARRACKS"},
+    {id = BARRACKS_TOP_RANGED, type = "TYPE_BARRACKS"},
   },
   [LANE_BOT] = {
-    [TOWER_BOT_1] = "TYPE_TOWER",
-    [TOWER_BOT_2] = "TYPE_TOWER",
-    [TOWER_BOT_3] = "TYPE_TOWER",
-    [BARRACKS_BOT_MELEE] = "TYPE_BARRACKS",
-    [BARRACKS_BOT_RANGED] = "TYPE_BARRACKS",
+    {id = TOWER_BOT_1, type = "TYPE_TOWER"},
+    {id = TOWER_BOT_2, type = "TYPE_TOWER"},
+    {id = TOWER_BOT_3, type = "TYPE_TOWER"},
+    {id = BARRACKS_BOT_MELEE, type = "TYPE_BARRACKS"},
+    {id = BARRACKS_BOT_RANGED, type = "TYPE_BARRACKS"},
   },
   [LANE_MID] = {
-    [TOWER_MID_1] = "TYPE_TOWER",
-    [TOWER_MID_2] = "TYPE_TOWER",
-    [TOWER_MID_3] = "TYPE_TOWER",
-    [TOWER_BASE_1] = "TYPE_TOWER",
-    [TOWER_BASE_2] = "TYPE_TOWER",
-    [BARRACKS_MID_MELEE] = "TYPE_BARRACKS",
-    [BARRACKS_MID_RANGED] = "TYPE_BARRACKS",
-    [ANCIENT] = "TYPE_ANCIENT",
+    {id = TOWER_MID_1, type = "TYPE_TOWER"},
+    {id = TOWER_MID_2, type = "TYPE_TOWER"},
+    {id = TOWER_MID_3, type = "TYPE_TOWER"},
+    {id = TOWER_BASE_1, type = "TYPE_TOWER"},
+    {id = TOWER_BASE_2, type = "TYPE_TOWER"},
+    {id = BARRACKS_MID_MELEE, type = "TYPE_BARRACKS"},
+    {id = BARRACKS_MID_RANGED, type = "TYPE_BARRACKS"},
+    {id = ANCIENT, type = "TYPE_ANCIENT"},
   },
 }
 
@@ -43,8 +46,10 @@ local function GetNearestFrontBuilding(lane)
   local result = nil
   local min_distance = 10000000
 
-  for building_id, building_type in pairs(BUILDINGS[lane]) do
-    local building = functions.GetBuilding(building_id, building_type)
+  for _, building_info in pairs(BUILDINGS[lane]) do
+    local building = functions.GetBuilding(
+      building_info.id,
+      building_info.type)
 
     if GetUnitToLocationDistance(building, front_location)
        < min_distance then
