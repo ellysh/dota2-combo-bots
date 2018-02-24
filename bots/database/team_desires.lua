@@ -126,7 +126,7 @@ M.TEAM_DESIRES = {
   no_enemy_heroes_on_bot = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
-    BOT_MODE_PUSH_TOWER_BOT = {20, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {30, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
@@ -135,7 +135,7 @@ M.TEAM_DESIRES = {
 
   no_enemy_heroes_on_mid = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
-    BOT_MODE_PUSH_TOWER_MID = {20, 0},
+    BOT_MODE_PUSH_TOWER_MID = {30, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
@@ -144,7 +144,7 @@ M.TEAM_DESIRES = {
   },
 
   no_enemy_heroes_on_top = {
-    BOT_MODE_PUSH_TOWER_TOP = {20, 0},
+    BOT_MODE_PUSH_TOWER_TOP = {30, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},
     BOT_MODE_TEAM_ROAM = {0, 0},
