@@ -81,49 +81,49 @@ function test_NumberUnitsOnLane_succed()
   LANE_DISTANCE = 200
 
   luaunit.assertEquals(
-    algorithms.test_NumberUnitsOnLane(
+    algorithms.test_UnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP),
-    3)
+    UNITS)
 
   UNITS = { unit }
 
   luaunit.assertEquals(
-    algorithms.test_NumberUnitsOnLane(
+    algorithms.test_UnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP),
-    1)
+    UNITS)
 end
 
-function test_NumberUnitsOnLane_fails()
+function test_UnitsOnLane_fails()
   local unit = Unit:new()
 
   UNITS = {}
 
   luaunit.assertEquals(
-    algorithms.test_NumberUnitsOnLane(
+    algorithms.test_UnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP),
-    0)
+      {})
 
   UNITS = { unit }
   LANE_DISTANCE = 3000
 
   luaunit.assertEquals(
-    algorithms.test_NumberUnitsOnLane(
+    algorithms.test_UnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP),
-    0)
+      {})
 
   unit.health = 0
   UNITS = { unit }
   LANE_DISTANCE = 200
 
   luaunit.assertEquals(
-    algorithms.test_NumberUnitsOnLane(
+    algorithms.test_UnitsOnLane(
       UNIT_LIST_ALLIED_HEROES,
       LANE_TOP),
-    0)
+      {})
 end
 
 function test_more_ally_heroes_on_lane_then_enemy()

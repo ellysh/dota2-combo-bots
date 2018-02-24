@@ -67,10 +67,9 @@ function M.time_is_more_5_minutes()
   return (5 * 60) < DotaTime()
 end
 
-local function NumberUnitsOnLane(unit_type, lane)
+local function UnitsOnLane(unit_type, lane)
   local units = GetUnitList(unit_type)
-
-  local units_number = 0
+  local result = {}
 
   for _, unit in pairs(units) do
     if not unit:IsAlive() or unit:IsIllusion() then
@@ -81,46 +80,46 @@ local function NumberUnitsOnLane(unit_type, lane)
       GetAmountAlongLane(lane, unit:GetLocation()).distance
 
     if disatnce_from_lane < constants.MAX_HERO_DISTANCE_FROM_LANE then
-      units_number = units_number + 1
+      table.insert(result, unit)
     end
 
     ::continue::
   end
 
-  return units_number
+  return result
 end
 
 function M.more_ally_heroes_on_top_then_enemy()
-  local allies = NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
-  local enemies = NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_TOP)
+  local allies = #UnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_TOP)
+  local enemies = #UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_TOP)
 
   return allies < (enemies - 1)
 end
 
 function M.more_ally_heroes_on_mid_then_enemy()
-  local allies = NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
-  local enemies = NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_MID)
+  local allies = #UnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_MID)
+  local enemies = #UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_MID)
 
   return allies < (enemies - 1)
 end
 
 function M.more_ally_heroes_on_bot_then_enemy()
-  local allies = NumberUnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
-  local enemies = NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
+  local allies = #UnitsOnLane(UNIT_LIST_ALLIED_HEROES, LANE_BOT)
+  local enemies = #UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
 
   return allies < (enemies - 1)
 end
 
 function M.no_enemy_heroes_on_top()
-  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_TOP)
+  return 0 == #UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_TOP)
 end
 
 function M.no_enemy_heroes_on_mid()
-  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_MID)
+  return 0 == #UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_MID)
 end
 
 function M.no_enemy_heroes_on_bot()
-  return 0 == NumberUnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
+  return 0 == #UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
 end
 
 function M.more_ally_heroes_alive_then_enemy()
@@ -232,6 +231,6 @@ end
 
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
-M.test_NumberUnitsOnLane = NumberUnitsOnLane
+M.test_UnitsOnLane = UnitsOnLane
 
 return M
