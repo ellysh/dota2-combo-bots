@@ -1,4 +1,5 @@
 * version 1.2
+  - Implement the mode defend tower mode.
   - Fix a bug with picking up dropped items.
 
 * version 1.1
