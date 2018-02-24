@@ -259,6 +259,8 @@ end
 UNIT_NO_NEARBY_UNITS = false
 UNIT_NO_NEARBY_ALLIES = false
 
+NEARBY_HEROES_COUNT = 3
+
 function Unit:GetNearbyHeroes(radius, enemies, mode)
   if UNIT_NO_NEARBY_UNITS then
     return {} end
@@ -284,7 +286,11 @@ function Unit:GetNearbyHeroes(radius, enemies, mode)
   unit3.location = {15, 15}
   unit3.damage = 180
 
-  return { unit1, unit2, unit3 }
+  if NEARBY_HEROES_COUNT == 1 then
+    return { unit1 }
+  else
+    return { unit1, unit2, unit3 }
+  end
 end
 
 NEARBY_CREEPS_COUNT = 3

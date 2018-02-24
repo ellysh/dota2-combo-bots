@@ -158,27 +158,29 @@ function test_is_focused_by_enemies_low_damage_fails()
   luaunit.assertFalse(algorithms.is_focused_by_enemies())
 end
 
-function test_is_weaker_enemy_hero_near_succeed()
+function test_is_one_weaker_enemy_hero_near_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
   bot.health = 5000
 
+  NEARBY_HEROES_COUNT = 1
   UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertTrue(algorithms.is_weaker_enemy_hero_near())
+  luaunit.assertTrue(algorithms.is_one_weaker_enemy_hero_near())
 end
 
-function test_is_weaker_enemy_hero_near_stronger_fails()
+function test_is_one_weaker_enemy_hero_near_stronger_fails()
   test_RefreshBot()
 
   local bot = GetBot()
   bot.health = 100
   bot.damage = 5
 
+  NEARBY_HEROES_COUNT = 1
   UNIT_NO_NEARBY_UNITS = false
 
-  luaunit.assertFalse(algorithms.is_weaker_enemy_hero_near())
+  luaunit.assertFalse(algorithms.is_one_weaker_enemy_hero_near())
 end
 
 function test_roam_target_is_near_succeed()
