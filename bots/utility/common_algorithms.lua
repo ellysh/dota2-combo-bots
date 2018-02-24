@@ -195,7 +195,7 @@ local BUILDINGS = {
   },
 }
 
-function M.GetBuilding(building_id, building_type)
+local function GetBuilding(building_id, building_type)
   local GET_BUILDING_FUNCTIONS = {
     TYPE_TOWER = GetTower,
     TYPE_BARRACKS = GetBarracks,
@@ -210,18 +210,20 @@ function M.GetBuilding(building_id, building_type)
 end
 
 function M.GetNearestFrontBuilding(lane)
-  local front_location = GetLaneFrontLocation(GetTeam(), lane, 0)
+  local front_location = GetLaneFrontLocation(GetOpposingTeam(), lane, 0)
   local result = nil
   local min_distance = 10000000
 
   for _, building_info in pairs(BUILDINGS[lane]) do
-    local building = M.GetBuilding(
+    local building = GetBuilding(
       building_info.id,
       building_info.type)
 
-    if GetUnitToLocationDistance(building, front_location)
-       < min_distance then
+    if building ~= nil
+       and GetUnitToLocationDistance(building, front_location)
+           < min_distance then
 
+       min_distance = GetUnitToLocationDistance(building, front_location)
        result = building
     end
   end

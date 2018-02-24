@@ -196,14 +196,7 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
   return result
 end
 
-local function IsBuildingFocusedByEnemies(building_id, building_type)
-  local building = common_algorithms.GetBuilding(
-    building_id,
-    building_type)
-
-  if building == nil then
-    return false end
-
+local function IsBuildingFocusedByEnemies(building)
   local enemy_creeps = GetEnemyUnitsNearLocation(
     UNIT_LIST_ENEMY_CREEPS,
     building:GetLocation(),
@@ -223,30 +216,18 @@ local function IsBuildingFocusedByEnemies(building_id, building_type)
 end
 
 function M.is_bot_building_focused_by_enemies()
-  return IsBuildingFocusedByEnemies(TOWER_BOT_1, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_BOT_2, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_BOT_3, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(BARRACKS_BOT_MELEE, "TYPE_BARRACKS")
-         or IsBuildingFocusedByEnemies(BARRACKS_BOT_RANGED, "TYPE_BARRACKS")
+  return IsBuildingFocusedByEnemies(
+           common_algorithms.GetNearestFrontBuilding(LANE_BOT))
 end
 
 function M.is_top_building_focused_by_enemies()
-  return IsBuildingFocusedByEnemies(TOWER_TOP_1, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_TOP_2, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_TOP_3, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(BARRACKS_TOP_MELEE, "TYPE_BARRACKS")
-         or IsBuildingFocusedByEnemies(BARRACKS_TOP_RANGED, "TYPE_BARRACKS")
+  return IsBuildingFocusedByEnemies(
+           common_algorithms.GetNearestFrontBuilding(LANE_TOP))
 end
 
 function M.is_mid_building_focused_by_enemies()
-  return IsBuildingFocusedByEnemies(TOWER_MID_1, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_MID_2, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_MID_3, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_BASE_1, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(TOWER_BASE_2, "TYPE_TOWER")
-         or IsBuildingFocusedByEnemies(BARRACKS_MID_MELEE, "TYPE_BARRACKS")
-         or IsBuildingFocusedByEnemies(BARRACKS_MID_RANGED, "TYPE_BARRACKS")
-         or IsBuildingFocusedByEnemies(nil, "TYPE_ANCIENT")
+  return IsBuildingFocusedByEnemies(
+           common_algorithms.GetNearestFrontBuilding(LANE_MID))
 end
 
 -- Provide an access to local functions for unit tests only
