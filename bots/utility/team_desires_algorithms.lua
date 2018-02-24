@@ -195,9 +195,9 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
   return result
 end
 
-function M.four_enemy_heroes_on_bot()
-  local units = UnitsOnLane(UNIT_LIST_ENEMY_HEROES, LANE_BOT)
-  local building = common_algorithms.GetNearestFrontBuilding(LANE_BOT)
+local function IsFourEnemyHeroesOnLane(lane)
+  local units = UnitsOnLane(UNIT_LIST_ENEMY_HEROES, lane)
+  local building = common_algorithms.GetNearestFrontBuilding(lane)
   local units_number = 0
 
   functions.DoWithElements(
@@ -210,6 +210,18 @@ function M.four_enemy_heroes_on_bot()
     end)
 
   return 4 <= units_number
+end
+
+function M.four_enemy_heroes_on_bot()
+  return IsFourEnemyHeroesOnLane(LANE_BOT)
+end
+
+function M.four_enemy_heroes_on_mid()
+  return IsFourEnemyHeroesOnLane(LANE_MID)
+end
+
+function M.four_enemy_heroes_on_top()
+  return IsFourEnemyHeroesOnLane(LANE_TOP)
 end
 
 local function IsBuildingFocusedByEnemies(building)
