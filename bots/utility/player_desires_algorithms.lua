@@ -157,6 +157,15 @@ function M.roam_target_is_near()
              < constants.MAX_ROAM_RADIUS
 end
 
+function M.ally_hero_is_near()
+  local bot = GetBot()
+  local allies = common_algorithms.GetAllyHeroes(
+    bot,
+    constants.MAX_ALLY_HERO_RADIUS)
+
+  return 0 < #allies
+end
+
 function M.has_level_six()
   return 6 <= GetBot():GetLevel()
 end
