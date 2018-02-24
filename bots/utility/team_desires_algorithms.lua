@@ -181,20 +181,6 @@ function M.enemy_hero_was_seen()
          and IsEnemyHeroInLocation(player_location)
 end
 
-local function GetBuilding(building_id, building_type)
-  local GET_BUILDING_FUNCTIONS = {
-    TYPE_TOWER = GetTower,
-    TYPE_BARRACKS = GetBarracks,
-    TYPE_ANCIENT = GetAncient
-  }
-
-  if "TYPE_ANCIENT" == building_type then
-    return GET_BUILDING_FUNCTIONS[building_type](GetTeam())
-  else
-    return GET_BUILDING_FUNCTIONS[building_type](GetTeam(), building_id)
-  end
-end
-
 local function GetEnemyUnitsNearLocation(unit_type, location, radius)
   local units = GetUnitList(unit_type)
   local result = {}
@@ -211,7 +197,7 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
 end
 
 local function IsBuildingFocusedByEnemies(building_id, building_type)
-  local building = GetBuilding(building_id, building_type)
+  local building = functions.GetBuilding(building_id, building_type)
 
   if building == nil then
     return false end
