@@ -10,7 +10,8 @@ function M.PickUpItem()
   local bot = GetBot()
 
   if functions.IsBotInFightingMode(bot)
-     or functions.IsBotCasting(bot) then
+     or functions.IsBotCasting(bot)
+     or functions.IsInventoryFull(bot) then
     return end
 
   local items = GetDroppedItemList()
