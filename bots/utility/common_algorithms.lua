@@ -168,6 +168,33 @@ function M.GetTotalDamage(units, target)
   return total_damage
 end
 
+local BUILDINGS = {
+  [LANE_TOP] = {
+    {id = TOWER_TOP_1, type ="TYPE_TOWER"},
+    {id = TOWER_TOP_2, type ="TYPE_TOWER"},
+    {id = TOWER_TOP_3, type ="TYPE_TOWER"},
+    {id = BARRACKS_TOP_MELEE, type = "TYPE_BARRACKS"},
+    {id = BARRACKS_TOP_RANGED, type = "TYPE_BARRACKS"},
+  },
+  [LANE_BOT] = {
+    {id = TOWER_BOT_1, type = "TYPE_TOWER"},
+    {id = TOWER_BOT_2, type = "TYPE_TOWER"},
+    {id = TOWER_BOT_3, type = "TYPE_TOWER"},
+    {id = BARRACKS_BOT_MELEE, type = "TYPE_BARRACKS"},
+    {id = BARRACKS_BOT_RANGED, type = "TYPE_BARRACKS"},
+  },
+  [LANE_MID] = {
+    {id = TOWER_MID_1, type = "TYPE_TOWER"},
+    {id = TOWER_MID_2, type = "TYPE_TOWER"},
+    {id = TOWER_MID_3, type = "TYPE_TOWER"},
+    {id = TOWER_BASE_1, type = "TYPE_TOWER"},
+    {id = TOWER_BASE_2, type = "TYPE_TOWER"},
+    {id = BARRACKS_MID_MELEE, type = "TYPE_BARRACKS"},
+    {id = BARRACKS_MID_RANGED, type = "TYPE_BARRACKS"},
+    {id = nil, type = "TYPE_ANCIENT"},
+  },
+}
+
 function M.GetBuilding(building_id, building_type)
   local GET_BUILDING_FUNCTIONS = {
     TYPE_TOWER = GetTower,
@@ -180,6 +207,26 @@ function M.GetBuilding(building_id, building_type)
   else
     return GET_BUILDING_FUNCTIONS[building_type](GetTeam(), building_id)
   end
+end
+
+function M.GetNearestFrontBuilding(lane)
+  local front_location = GetLaneFrontLocation(GetTeam(), lane, 0)
+  local result = nil
+  local min_distance = 10000000
+
+  for _, building_info in pairs(BUILDINGS[lane]) do
+    local building = M.GetBuilding(
+      building_info.id,
+      building_info.type)
+
+    if GetUnitToLocationDistance(building, front_location)
+       < min_distance then
+
+       result = building
+    end
+  end
+
+  return result
 end
 
 -- Provide an access to local functions for unit tests only
