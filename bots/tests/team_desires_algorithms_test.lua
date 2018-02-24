@@ -4,7 +4,7 @@ pcall(require, "luacov")
 require("global_functions")
 
 local algorithms = require("team_desires_algorithms")
-local luaunit = require('luaunit')
+local luaunit = require("luaunit")
 
 function test_ally_mega_creeps()
   BARRAK_HEALTH = 100
@@ -197,37 +197,28 @@ function test_enemy_hero_was_seen_no_nearby_ally_succeed()
   luaunit.assertTrue(algorithms.enemy_hero_was_seen())
 end
 
-function test_is_bot_building_focused_by_enemies()
+function test_is_bot_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
-
-  local building = GetTower(GetTeam(), TOWER_BOT_1)
-  building.health = 10
-
-  ATTACK_TARGET = building
+  TOWER_HEALTH = 10
+  ATTACK_TARGET = TOWER
   UNIT_NO_NEARBY_UNITS = false
 
   luaunit.assertTrue(algorithms.is_bot_building_focused_by_enemies())
 end
 
-function test_is_top_building_focused_by_enemies()
+function test_is_top_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
-
-  local building = GetTower(GetTeam(), TOWER_TOP_1)
-  building.health = 10
-
-  ATTACK_TARGET = building
+  TOWER_HEALTH = 10
+  ATTACK_TARGET = TOWER
   UNIT_NO_NEARBY_UNITS = false
 
   luaunit.assertTrue(algorithms.is_top_building_focused_by_enemies())
 end
 
-function test_is_mid_building_focused_by_enemies()
+function test_is_mid_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
-
-  local building = GetTower(GetTeam(), TOWER_MID_1)
-  building.health = 10
-
-  ATTACK_TARGET = building
+  TOWER_HEALTH = 10
+  ATTACK_TARGET = TOWER
   UNIT_NO_NEARBY_UNITS = false
 
   luaunit.assertTrue(algorithms.is_mid_building_focused_by_enemies())

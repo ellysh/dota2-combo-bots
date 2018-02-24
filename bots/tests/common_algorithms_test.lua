@@ -262,4 +262,52 @@ function test_IsUnitHalfHp_full_hp_fails()
   luaunit.assertFalse(algorithms.IsUnitHalfHp(bot))
 end
 
+function test_GetBuilding_tower_succeed()
+  local unit = algorithms.test_GetBuilding(
+      TOWER_TOP_1,
+      "TYPE_TOWER")
+
+  luaunit.assertEquals(unit:GetUnitName(), "tower0")
+
+  unit = algorithms.test_GetBuilding(
+      TOWER_BOT_1,
+      "TYPE_TOWER")
+
+  luaunit.assertEquals(unit:GetUnitName(), "tower6")
+
+  unit = algorithms.test_GetBuilding(
+      TOWER_MID_1,
+      "TYPE_TOWER")
+
+  luaunit.assertEquals(unit:GetUnitName(), "tower3")
+end
+
+function test_GetBuilding_barracks_succeed()
+  local unit = algorithms.test_GetBuilding(
+      BARRACKS_TOP_MELEE,
+      "TYPE_BARRACKS")
+
+  luaunit.assertEquals(unit:GetUnitName(), "barrack0")
+
+  unit = algorithms.test_GetBuilding(
+      BARRACKS_BOT_MELEE,
+      "TYPE_BARRACKS")
+
+  luaunit.assertEquals(unit:GetUnitName(), "barrack4")
+
+  unit = algorithms.test_GetBuilding(
+      BARRACKS_MID_MELEE,
+      "TYPE_BARRACKS")
+
+  luaunit.assertEquals(unit:GetUnitName(), "barrack2")
+end
+
+function test_GetBuilding_ancient_succeed()
+  local unit = algorithms.test_GetBuilding(
+      nil,
+      "TYPE_ANCIENT")
+
+  luaunit.assertEquals(unit:GetUnitName(), "ancient")
+end
+
 os.exit(luaunit.LuaUnit.run())

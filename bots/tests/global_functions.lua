@@ -22,14 +22,27 @@ function test_RefreshBot()
   BOT.inventory = {}
 end
 
-local TestUnit = Unit:new()
+TOWER_HEALTH = 100
+TOWER = Unit:new()
 
 function GetTower(team, tower)
-  return TestUnit
+  TOWER.name = "tower" .. tostring(tower)
+  TOWER.health = TOWER_HEALTH
+  return TOWER
 end
 
 function GetAncient(team)
-  return TestUnit
+  local ancient = Unit:new("ancient")
+  return ancient
+end
+
+BARRAK_HEALTH = 100
+
+function GetBarracks(team, barrack_id)
+  local unit = Unit:new("barrack" .. tostring(barrack_id))
+  unit.health = BARRAK_HEALTH
+
+  return unit
 end
 
 function GetGlyphCooldown()
@@ -162,16 +175,6 @@ COURIER_STATE = COURIER_STATE_IDLE
 
 function GetCourierState(courier)
   return COURIER_STATE
-end
-
-BARRAK_HEALTH = 100
-
-function GetBarracks(team, barrack_index)
-  local unit = Unit:new()
-  unit.name = "unit1"
-  unit.health = BARRAK_HEALTH
-
-  return unit
 end
 
 UNITS = {}

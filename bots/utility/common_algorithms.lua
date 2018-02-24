@@ -234,5 +234,6 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetUnitHealthLevel = GetUnitHealthLevel
+M.test_GetBuilding = GetBuilding
 
 return M
