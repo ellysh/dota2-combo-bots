@@ -1,12 +1,12 @@
 Algorithm;"Push TOP desire";;"Push MID desire";;"Push BOT desire";;"Roam desire";;"Defend TOP desire";;"Defend MID desire";;"Defend BOT desire";;"Roshan desire"
 all_enemy_team_dead;40;0;40;0;40;0;-100;0;-20;0;-20;0;-20;0;
-ally_has_aegis;20;0;20;0;20;0;20;0;0;0;0;0;0;0;
-ally_has_cheese;10;0;10;0;10;0;10;0;0;0;0;0;0;0;
+ally_has_aegis;20;0;20;0;20;0;0;0;0;0;0;0;0;0;
+ally_has_cheese;10;0;10;0;10;0;0;0;0;0;0;0;0;0;
 ally_mega_creeps;20;0;20;0;20;0;0;0;-10;0;-10;0;-10;0;
 enemy_hero_was_seen;0;0;0;0;0;0;0;-100;0;0;0;0;0;0;
 is_night;-10;0;-10;0;-10;0;10;0;0;0;0;0;0;0;
-max_kills_ally_hero_alive;10;-20;10;-20;10;-20;20;-30;0;0;0;0;0;0;
-max_kills_enemy_hero_alive;-10;20;-10;20;-10;20;20;-10;0;0;0;0;0;0;
+max_kills_ally_hero_alive;10;-20;10;-20;10;-20;0;0;0;0;0;0;0;0;
+max_kills_enemy_hero_alive;-10;20;-10;20;-10;20;0;0;0;0;0;0;0;0;
 more_ally_heroes_alive_then_enemy;20;-20;20;-20;20;-20;0;0;0;0;0;0;0;0;
 more_ally_heroes_on_bot_then_enemy;0;0;0;0;20;0;0;0;0;0;0;0;0;20;
 more_ally_heroes_on_mid_then_enemy;0;0;20;0;0;0;0;0;0;0;0;20;0;0;

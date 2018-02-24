@@ -22,7 +22,7 @@ function GetDesire()
   return functions.GetNormalizedDesire(
            GetRoamDesire()
            + player_desires.GetDesire("BOT_MODE_TEAM_ROAM"),
-         constants.MAX_PUSH_DESIRE)
+         constants.MAX_ROAM_DESIRE)
 end
 
 function Think()
