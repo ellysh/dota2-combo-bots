@@ -168,6 +168,20 @@ function M.GetTotalDamage(units, target)
   return total_damage
 end
 
+function M.GetBuilding(building_id, building_type)
+  local GET_BUILDING_FUNCTIONS = {
+    TYPE_TOWER = GetTower,
+    TYPE_BARRACKS = GetBarracks,
+    TYPE_ANCIENT = GetAncient
+  }
+
+  if "TYPE_ANCIENT" == building_type then
+    return GET_BUILDING_FUNCTIONS[building_type](GetTeam())
+  else
+    return GET_BUILDING_FUNCTIONS[building_type](GetTeam(), building_id)
+  end
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetUnitHealthLevel = GetUnitHealthLevel

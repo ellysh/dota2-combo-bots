@@ -7,8 +7,8 @@ local move = require(
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
-local functions = require(
-  GetScriptDirectory() .."/utility/functions")
+local common_algorithms = require(
+  GetScriptDirectory() .."/utility/common_algorithms")
 
 local M = {}
 
@@ -47,7 +47,7 @@ local function GetNearestFrontBuilding(lane)
   local min_distance = 10000000
 
   for _, building_info in pairs(BUILDINGS[lane]) do
-    local building = functions.GetBuilding(
+    local building = common_algorithms.GetBuilding(
       building_info.id,
       building_info.type)
 

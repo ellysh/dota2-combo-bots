@@ -197,7 +197,9 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
 end
 
 local function IsBuildingFocusedByEnemies(building_id, building_type)
-  local building = functions.GetBuilding(building_id, building_type)
+  local building = common_algorithms.GetBuilding(
+    building_id,
+    building_type)
 
   if building == nil then
     return false end
