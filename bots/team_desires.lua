@@ -15,6 +15,7 @@ local TEAM_DESIRES = {
   BOT_MODE_DEFEND_TOWER_TOP = 0,
   BOT_MODE_DEFEND_TOWER_MID = 0,
   BOT_MODE_DEFEND_TOWER_BOT = 0,
+  BOT_MODE_ROSHAN = 0,
 }
 
 function TeamThink()
@@ -45,8 +46,6 @@ function UpdateFarmLaneDesires()
   return {0, 0, 0}
 end
 
---[[
 function UpdateRoshanDesire()
-    return 0.1
+  return TEAM_DESIRES.BOT_MODE_ROSHAN
 end
---]]
