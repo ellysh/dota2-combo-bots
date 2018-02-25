@@ -1,4 +1,6 @@
 * version 1.2
+  - Decrease desire to make solo agression actions.
+  - Decrease the roam desire to prevent feeding by single heroes.
   - Tune team desire to not do laning after the laning stage.
   - Implement the mode defend tower mode.
   - Fix a bug with picking up dropped items.
