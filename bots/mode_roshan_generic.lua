@@ -1,6 +1,9 @@
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
 
+local functions = require(
+  GetScriptDirectory() .."/utility/functions")
+
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
