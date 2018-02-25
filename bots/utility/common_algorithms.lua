@@ -160,7 +160,7 @@ function M.GetTotalDamage(units, target)
   functions.DoWithElements(
     units,
     function(unit)
-      if unit:GetAttackTarget() == target then
+      if unit:IsAlive() and unit:GetAttackTarget() == target then
         total_damage = total_damage + unit:GetAttackDamage()
       end
     end)
