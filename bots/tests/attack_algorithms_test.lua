@@ -214,17 +214,4 @@ function test_attacking_enemy_creep_not_attacking_fails()
   test_algorithm_pattern_fails("attacking_enemy_creep")
 end
 
-function test_assist_ally_hero_succeed()
-  test_RefreshBot()
-
-  local target = Unit:new("assist_target")
-
-  ATTACK_TARGET = target
-  UNIT_CAN_BE_SEEN = true
-  UNIT_NO_NEARBY_UNITS = false
-  UNIT_IS_HERO = true
-
-  test_algorithm_pattern_succeed("assist_ally_hero", "assist_target")
-end
-
 os.exit(luaunit.LuaUnit.run())
