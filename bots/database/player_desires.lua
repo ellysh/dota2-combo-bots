@@ -131,7 +131,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_ROSHAN = {0, 0},
   },
 
-  is_one_weaker_enemy_hero_near = {
+  is_weaker_enemy_group_near = {
     BOT_MODE_PUSH_TOWER_TOP = {0, 0},
     BOT_MODE_PUSH_TOWER_MID = {0, 0},
     BOT_MODE_PUSH_TOWER_BOT = {0, 0},

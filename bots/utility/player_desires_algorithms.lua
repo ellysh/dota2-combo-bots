@@ -115,21 +115,17 @@ function M.is_focused_by_enemies()
   return 0.2 < functions.GetRate(total_damage, bot:GetHealth())
 end
 
-function M.is_one_weaker_enemy_hero_near()
+function M.is_weaker_enemy_group_near()
   local bot = GetBot()
-  local enemy_heroes = common_algorithms.GetEnemyHeroes(
+  local allies = common_algorithms.GetGroupHeroes(bot)
+  table.insert(allies, bot)
+
+  local enemies = common_algorithms.GetEnemyHeroes(
     bot,
     constants.MAX_GET_UNITS_RADIUS)
 
-  local enemy_hero = functions.GetElementWith(
-    enemy_heroes,
-    common_algorithms.CompareMaxHeroKills,
-    function(unit)
-      return common_algorithms.IsAttackTargetable(unit)
-             and common_algorithms.IsWeakerGroup({bot}, {unit})
-    end)
-
-  return enemy_hero ~= nil and #enemy_heroes == 1
+  return 0 < #enemies
+         and common_algorithms.IsWeakerGroup(allies, enemies)
 end
 
 function M.roam_target_is_near()
