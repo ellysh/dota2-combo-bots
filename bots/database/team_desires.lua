@@ -66,7 +66,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
-    BOT_MODE_ROSHAN = {0, 0},
+    BOT_MODE_ROSHAN = {10, 0},
   },
 
   max_kills_ally_hero_alive = {
@@ -77,7 +77,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
-    BOT_MODE_ROSHAN = {0, 0},
+    BOT_MODE_ROSHAN = {10, -50},
   },
 
   max_kills_enemy_hero_alive = {
@@ -88,7 +88,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
-    BOT_MODE_ROSHAN = {0, 0},
+    BOT_MODE_ROSHAN = {10, -10},
   },
 
   more_ally_heroes_alive_then_enemy = {
@@ -176,7 +176,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, -30},
     BOT_MODE_DEFEND_TOWER_MID = {0, -30},
     BOT_MODE_DEFEND_TOWER_BOT = {0, -30},
-    BOT_MODE_ROSHAN = {0, 0},
+    BOT_MODE_ROSHAN = {10, 0},
   },
 
   is_bot_building_focused_by_enemies = {
