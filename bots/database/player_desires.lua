@@ -15,6 +15,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   has_level_six = {
@@ -29,6 +30,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {30, -20},
   },
 
   has_low_hp = {
@@ -43,6 +45,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-30, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-30, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-30, 0},
+    BOT_MODE_FARM = {-30, 0},
   },
 
   has_not_full_hp_mp_and_near_fountain = {
@@ -57,6 +60,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-10, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-10, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-10, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   has_tp_scroll_or_travel_boots = {
@@ -71,6 +75,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {5, -5},
     BOT_MODE_DEFEND_TOWER_MID = {5, -5},
     BOT_MODE_DEFEND_TOWER_BOT = {5, -5},
+    BOT_MODE_FARM = {0, 0},
   },
 
   is_focused_by_enemies = {
@@ -85,6 +90,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-30, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-30, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-30, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   is_shrine_healing_and_enemies_near = {
@@ -99,6 +105,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   is_shrine_healing_and_no_enemy = {
@@ -113,6 +120,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   is_one_weaker_enemy_hero_near = {
@@ -127,6 +135,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   player_on_bot = {
@@ -141,6 +150,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-5, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-5, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {5, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   player_on_mid = {
@@ -155,6 +165,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-5, 0},
     BOT_MODE_DEFEND_TOWER_MID = {5, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-5, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   player_on_top = {
@@ -169,6 +180,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {5, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-5, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-5, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   roam_target_is_near = {
@@ -183,6 +195,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
   ally_hero_is_near = {
@@ -197,6 +210,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {0, 0},
   },
 
 }
