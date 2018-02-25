@@ -177,6 +177,7 @@ PLAYER_DESIRES = """
     BOT_MODE_DEFEND_TOWER_MID = {<19>, <20>},
     BOT_MODE_DEFEND_TOWER_BOT = {<21>, <22>},
     BOT_MODE_FARM = {<23>, <24>},
+    BOT_MODE_ROSHAN = {<25>, <26>},
   },
 """
 
