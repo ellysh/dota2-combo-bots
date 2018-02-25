@@ -115,19 +115,6 @@ function M.is_focused_by_enemies()
   return 0.2 < functions.GetRate(total_damage, bot:GetHealth())
 end
 
--- TODO: Rewrite this with the IsWeakerGroup function
-local function IsWeakerTarget(unit, target)
-  local hits_to_die = functions.GetRate(
-    unit:GetHealth(),
-    target:GetAttackDamage())
-
-  local hits_to_kill = functions.GetRate(
-    target:GetHealth(),
-    unit:GetAttackDamage())
-
-  return hits_to_kill < hits_to_die
-end
-
 function M.is_one_weaker_enemy_hero_near()
   local bot = GetBot()
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
@@ -139,7 +126,7 @@ function M.is_one_weaker_enemy_hero_near()
     common_algorithms.CompareMaxHeroKills,
     function(unit)
       return common_algorithms.IsAttackTargetable(unit)
-             and IsWeakerTarget(bot, unit)
+             and common_algorithms.IsWeakerGroup({bot}, {unit})
     end)
 
   return enemy_hero ~= nil and #enemy_heroes == 1

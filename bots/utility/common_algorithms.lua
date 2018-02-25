@@ -252,7 +252,7 @@ local function GetSumParameter(units, get_function)
   return result
 end
 
-local function IsWeakerTarget(
+local function IsWeakerTargetImpl(
   unit_health,
   unit_damage,
   target_health,
@@ -269,7 +269,7 @@ local function IsWeakerTarget(
   return hits_to_kill < hits_to_die
 end
 
-function M.IsWeakerTarget(units, target_group)
+function M.IsWeakerGroup(units, target_group)
   -- This is a trick with calculating offsets of GetHealth and
   -- GetAttackDamage methods of the "Unit" class.
   local bot = GetBot()
@@ -279,7 +279,7 @@ function M.IsWeakerTarget(units, target_group)
   local group_health = GetSumParameter(target_group, bot.GetHealth)
   local group_damage = GetSumParameter(target_group, bot.GetAttackDamage)
 
-  return IsWeakerTarget(
+  return IsWeakerTargetImpl(
     units_health,
     units_damage,
     group_health,
@@ -294,7 +294,7 @@ function M.IsWeakerTarget(units, target_health, target_damage)
   local units_health = GetSumParameter(units, bot.GetHealth)
   local units_damage = GetSumParameter(units, bot.GetAttackDamage)
 
-  return IsWeakerTarget(
+  return IsWeakerTargetImpl(
     units_health,
     units_damage,
     target_health,
