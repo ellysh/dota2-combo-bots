@@ -235,6 +235,37 @@ function M.GetGroupHeroes(bot)
   return M.GetAllyHeroes(bot, constants.MAX_GROUP_RADIUS)
 end
 
+local function GetSumParameter(units, get_function)
+  local result = 0
+
+  functions.DoWithElements(
+    units,
+    function(unit)
+      if unit:IsAlive() then
+        result = result + unit[get_function]()
+      end
+    end)
+
+  return result
+end
+
+function M.IsWeakerGroup(units, group)
+  local units_health = GetSumParameter(units, "GetHealth")
+  local units_damage = GetSumParameter(units, "GetHealth")
+  local group_health = GetSumParameter(group, "GetAttackDamage")
+  local group_damage = GetSumParameter(group, "GetAttackDamage")
+
+  local hits_to_die = functions.GetRate(
+    units_health,
+    group_damage)
+
+  local hits_to_kill = functions.GetRate(
+    group_health,
+    units_damage)
+
+  return hits_to_kill < hits_to_die
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetUnitHealthLevel = GetUnitHealthLevel
