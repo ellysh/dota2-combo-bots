@@ -219,4 +219,20 @@ function test_has_level_six_fails()
   luaunit.assertFalse(algorithms.has_level_six())
 end
 
+function test_ally_hero_is_near_succeed()
+  test_RefreshBot()
+
+  UNIT_NO_NEARBY_UNITS = false
+
+  luaunit.assertTrue(algorithms.ally_hero_is_near())
+end
+
+function test_ally_hero_is_near_fails()
+  test_RefreshBot()
+
+  UNIT_NO_NEARBY_UNITS = true
+
+  luaunit.assertFalse(algorithms.ally_hero_is_near())
+end
+
 os.exit(luaunit.LuaUnit.run())

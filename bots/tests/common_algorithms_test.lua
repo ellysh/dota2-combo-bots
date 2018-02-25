@@ -403,4 +403,14 @@ function test_GetNeutralCreeps_succeed()
   luaunit.assertEquals(units[3]:GetUnitName(), "neutral3")
 end
 
+function test_GetGroupHeroes_succeed()
+  test_RefreshBot()
+
+  local units = algorithms.GetGroupHeroes(GetBot())
+
+  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+end
+
 os.exit(luaunit.LuaUnit.run())
