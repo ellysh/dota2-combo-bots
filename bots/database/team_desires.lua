@@ -11,6 +11,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-20, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-20, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-20, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   ally_has_aegis = {
@@ -21,6 +22,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   ally_has_cheese = {
@@ -31,6 +33,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   ally_mega_creeps = {
@@ -41,6 +44,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-10, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-10, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-10, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   enemy_hero_was_seen = {
@@ -51,6 +55,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   is_night = {
@@ -61,6 +66,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   max_kills_ally_hero_alive = {
@@ -71,6 +77,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   max_kills_enemy_hero_alive = {
@@ -81,6 +88,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   more_ally_heroes_alive_then_enemy = {
@@ -91,6 +99,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   more_ally_heroes_on_bot_then_enemy = {
@@ -101,6 +110,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 20},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   more_ally_heroes_on_mid_then_enemy = {
@@ -111,6 +121,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 20},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   more_ally_heroes_on_top_then_enemy = {
@@ -121,6 +132,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 20},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   no_enemy_heroes_on_bot = {
@@ -131,6 +143,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   no_enemy_heroes_on_mid = {
@@ -141,6 +154,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   no_enemy_heroes_on_top = {
@@ -151,6 +165,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   time_is_more_3_minutes = {
@@ -161,6 +176,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, -30},
     BOT_MODE_DEFEND_TOWER_MID = {0, -30},
     BOT_MODE_DEFEND_TOWER_BOT = {0, -30},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   is_bot_building_focused_by_enemies = {
@@ -171,6 +187,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {65, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   is_mid_building_focused_by_enemies = {
@@ -181,6 +198,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {65, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   is_top_building_focused_by_enemies = {
@@ -191,6 +209,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {65, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   three_enemy_heroes_on_bot = {
@@ -201,6 +220,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {60, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   three_enemy_heroes_on_mid = {
@@ -211,6 +231,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {60, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
   three_enemy_heroes_on_top = {
@@ -221,6 +242,7 @@ M.TEAM_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {60, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
 }

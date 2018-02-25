@@ -153,6 +153,7 @@ TEAM_DESIRES = """
     BOT_MODE_DEFEND_TOWER_TOP = {<9>, <10>},
     BOT_MODE_DEFEND_TOWER_MID = {<11>, <12>},
     BOT_MODE_DEFEND_TOWER_BOT = {<13>, <14>},
+    BOT_MODE_ROSHAN = {<15>, <16>},
   },
 """
 
