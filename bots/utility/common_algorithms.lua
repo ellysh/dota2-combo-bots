@@ -231,6 +231,10 @@ function M.GetNearestFrontBuilding(lane)
   return result
 end
 
+function M.GetGroupHeroes(bot)
+  return M.GetAllyHeroes(bot, constants.MAX_GROUP_RADIUS)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetUnitHealthLevel = GetUnitHealthLevel

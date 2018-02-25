@@ -44,6 +44,7 @@ end
 local function GetDesiredAbilitiesList(bot)
   local result = {}
 
+  -- FIXME: Iterate over bots abilities and items instead of the database table
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
     local ability = GetAbility(bot, ability_name)
 

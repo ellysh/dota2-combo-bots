@@ -159,11 +159,7 @@ end
 
 function M.ally_hero_is_near()
   local bot = GetBot()
-  local allies = common_algorithms.GetAllyHeroes(
-    bot,
-    constants.MAX_GROUP_RADIUS)
-
-  return 0 < #allies
+  return 0 < #common_algorithms.GetGroupHeroes(bot)
 end
 
 function M.has_level_six()
