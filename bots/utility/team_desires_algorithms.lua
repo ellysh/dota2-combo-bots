@@ -301,7 +301,7 @@ end
 function M.is_roshan_alive()
   local MAX_ROSHAN_RESPAWN_MINUTES = 11
   return MAX_ROSHAN_RESPAWN_MINUTES * 60
-         < (DotaTime() - GetRoshanKillTime())
+         <= (DotaTime() - GetRoshanKillTime())
 end
 
 -- Provide an access to local functions for unit tests only

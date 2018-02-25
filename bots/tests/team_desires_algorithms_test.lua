@@ -250,4 +250,48 @@ function test_IsThreeEnemyHeroesOnLane_two_fails()
   luaunit.assertFalse(algorithms.test_IsThreeEnemyHeroesOnLane(LANE_TOP))
 end
 
+function test_is_roshan_alive_succeed()
+  TIME = 16 * 60
+  ROSHAN_KILL_TIME = 5 * 60
+
+  luaunit.assertTrue(algorithms.is_roshan_alive())
+end
+
+function test_is_roshan_alive_fails()
+  TIME = 16 * 60
+  ROSHAN_KILL_TIME = 6 * 60
+
+  luaunit.assertFalse(algorithms.is_roshan_alive())
+end
+
+function test_enough_damage_and_health_for_roshan_succeed()
+  local unit = Unit:new()
+  unit.damage = 300
+  unit.health = 2500
+
+  UNITS = { unit, unit, unit }
+
+  luaunit.assertTrue(algorithms.enough_damage_and_health_for_roshan())
+end
+
+function test_enough_damage_and_health_for_roshan_few_hp_fails()
+  local unit = Unit:new()
+  unit.damage = 300
+  unit.health = 100
+
+  UNITS = { unit, unit, unit }
+
+  luaunit.assertFalse(algorithms.enough_damage_and_health_for_roshan())
+end
+
+function test_enough_damage_and_health_for_roshan_few_damage_fails()
+  local unit = Unit:new()
+  unit.damage = 10
+  unit.health = 2500
+
+  UNITS = { unit, unit, unit }
+
+  luaunit.assertFalse(algorithms.enough_damage_and_health_for_roshan())
+end
+
 os.exit(luaunit.LuaUnit.run())

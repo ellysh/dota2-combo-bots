@@ -63,7 +63,7 @@ function RealTime()
   return TIME
 end
 
-ROSHAN_KILL_TIME = 10
+ROSHAN_KILL_TIME = 0
 
 function GetRoshanKillTime()
   return ROSHAN_KILL_TIME
