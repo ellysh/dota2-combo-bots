@@ -32,7 +32,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
     BOT_MODE_FARM = {15, -20},
-    BOT_MODE_ROSHAN = {15, -50},
+    BOT_MODE_ROSHAN = {15, -15},
   },
 
   has_low_hp = {
@@ -240,7 +240,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
     BOT_MODE_FARM = {50, -50},
-    BOT_MODE_ROSHAN = {50, -50},
+    BOT_MODE_ROSHAN = {0, 0},
   },
 
 }

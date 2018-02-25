@@ -22,6 +22,7 @@ drow_ranger_frost_arrows
 drow_ranger_trueshot
 drow_ranger_wave_of_silence
 enemy_hero_was_seen
+enough_damage_and_health_for_roshan
 half_hp_ally_hero
 half_hp_self
 half_hp_tree
@@ -36,6 +37,7 @@ is_focused_by_enemies
 is_mid_building_focused_by_enemies
 is_night
 is_one_weaker_enemy_hero_near
+is_roshan_alive
 is_shrine_healing_and_enemies_near
 is_shrine_healing_and_no_enemy
 is_top_building_focused_by_enemies
