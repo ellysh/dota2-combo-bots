@@ -26,6 +26,7 @@ half_hp_ally_hero
 half_hp_self
 half_hp_tree
 has_buyback
+has_high_damage_and_health
 has_level_six
 has_low_hp
 has_not_full_hp_mp_and_near_fountain

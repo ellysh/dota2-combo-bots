@@ -166,6 +166,12 @@ function M.has_level_six()
   return 6 <= GetBot():GetLevel()
 end
 
+function M.has_high_damage_and_health()
+  local bot = GetBot()
+
+  return 1000 <= bot:GetHealth() and 100 <= bot:GetAttackDamage()
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 

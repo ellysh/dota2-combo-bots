@@ -30,7 +30,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
-    BOT_MODE_FARM = {30, -20},
+    BOT_MODE_FARM = {15, -20},
   },
 
   has_low_hp = {
@@ -45,7 +45,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-30, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-30, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-30, 0},
-    BOT_MODE_FARM = {-30, 0},
+    BOT_MODE_FARM = {-50, 0},
   },
 
   has_not_full_hp_mp_and_near_fountain = {
@@ -90,7 +90,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_TOP = {-30, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-30, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-30, 0},
-    BOT_MODE_FARM = {-25, 0},
+    BOT_MODE_FARM = {-30, 0},
   },
 
   is_shrine_healing_and_enemies_near = {
@@ -211,6 +211,21 @@ M.PLAYER_DESIRES = {
     BOT_MODE_DEFEND_TOWER_MID = {0, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
     BOT_MODE_FARM = {0, 0},
+  },
+
+  has_high_damage_and_health = {
+    BOT_MODE_PUSH_TOWER_TOP = {0, 0},
+    BOT_MODE_PUSH_TOWER_MID = {0, 0},
+    BOT_MODE_PUSH_TOWER_BOT = {0, 0},
+    BOT_MODE_RETREAT = {0, 0},
+    BOT_MODE_TEAM_ROAM = {0, 0},
+    BOT_MODE_ATTACK  = {0, 0},
+    BOT_MODE_EVASIVE_MANEUVERS = {0, 0},
+    BOT_MODE_LANING = {-25, 0},
+    BOT_MODE_DEFEND_TOWER_TOP = {0, 0},
+    BOT_MODE_DEFEND_TOWER_MID = {0, 0},
+    BOT_MODE_DEFEND_TOWER_BOT = {0, 0},
+    BOT_MODE_FARM = {50, -50},
   },
 
 }

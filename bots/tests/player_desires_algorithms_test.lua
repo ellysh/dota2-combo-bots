@@ -235,4 +235,34 @@ function test_ally_hero_is_near_fails()
   luaunit.assertFalse(algorithms.ally_hero_is_near())
 end
 
+function test_has_high_damage_and_health_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 1000
+  bot.damage = 100
+
+  luaunit.assertTrue(algorithms.has_high_damage_and_health())
+end
+
+function test_has_high_damage_and_health_low_health_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 100
+  bot.damage = 100
+
+  luaunit.assertFalse(algorithms.has_high_damage_and_health())
+end
+
+function test_has_high_damage_and_health_low_damage_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 1000
+  bot.damage = 10
+
+  luaunit.assertFalse(algorithms.has_high_damage_and_health())
+end
+
 os.exit(luaunit.LuaUnit.run())
