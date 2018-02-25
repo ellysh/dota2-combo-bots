@@ -41,7 +41,7 @@ M.PLAYER_DESIRES = {
     BOT_MODE_TEAM_ROAM = {-30, 0},
     BOT_MODE_ATTACK  = {-30, 0},
     BOT_MODE_EVASIVE_MANEUVERS = {0, 0},
-    BOT_MODE_LANING = {-10, 0},
+    BOT_MODE_LANING = {-25, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {-30, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-30, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-30, 0},
@@ -86,11 +86,11 @@ M.PLAYER_DESIRES = {
     BOT_MODE_TEAM_ROAM = {-10, 0},
     BOT_MODE_ATTACK  = {-30, 0},
     BOT_MODE_EVASIVE_MANEUVERS = {76, 0},
-    BOT_MODE_LANING = {0, 0},
+    BOT_MODE_LANING = {-25, 0},
     BOT_MODE_DEFEND_TOWER_TOP = {-30, 0},
     BOT_MODE_DEFEND_TOWER_MID = {-30, 0},
     BOT_MODE_DEFEND_TOWER_BOT = {-30, 0},
-    BOT_MODE_FARM = {0, 0},
+    BOT_MODE_FARM = {-25, 0},
   },
 
   is_shrine_healing_and_enemies_near = {

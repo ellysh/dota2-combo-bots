@@ -1,10 +1,10 @@
 Algorithm;"Push TOP desire";;"Push MID desire";;"Push BOT desire";;"Retreat desire";;"Roam desire";;"Attack desire";;"Evasive maneuvers desire";;"Laning desire";;"Defend TOP desire";;"Defend MID desire";;"Defend BOT desire";;"Farm desire";
 has_buyback;0;-5;0;-5;0;-5;0;0;0;-5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
 has_level_six;0;0;0;0;0;0;0;0;0;0;0;0;0;0;25;50;0;0;0;0;0;0;30;-20
-has_low_hp;-30;0;-30;0;-30;0;85;0;-30;0;-30;0;0;0;-10;0;-30;0;-30;0;-30;0;-30;0
+has_low_hp;-30;0;-30;0;-30;0;85;0;-30;0;-30;0;0;0;-25;0;-30;0;-30;0;-30;0;-30;0
 has_not_full_hp_mp_and_near_fountain;-10;0;-10;0;-10;0;76;0;-10;0;0;0;0;0;0;0;-10;0;-10;0;-10;0;0;0
 has_tp_scroll_or_travel_boots;5;-5;5;-5;5;-5;0;0;10;-10;0;0;0;0;0;0;5;-5;5;-5;5;-5;0;0
-is_focused_by_enemies;-30;0;-30;0;-30;0;0;0;-10;0;-30;0;76;0;0;0;-30;0;-30;0;-30;0;0;0
+is_focused_by_enemies;-30;0;-30;0;-30;0;0;0;-10;0;-30;0;76;0;-25;0;-30;0;-30;0;-30;0;-25;0
 is_shrine_healing_and_enemies_near;0;0;0;0;0;0;-85;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
 is_shrine_healing_and_no_enemy;0;0;0;0;0;0;76;0;0;0;-30;0;0;0;0;0;0;0;0;0;0;0;0;0
 is_one_weaker_enemy_hero_near;0;0;0;0;0;0;0;0;0;0;60;0;0;0;0;0;0;0;0;0;0;0;0;0
