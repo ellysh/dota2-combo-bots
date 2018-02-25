@@ -267,35 +267,10 @@ function M.enough_damage_and_health_for_roshan()
 
   local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
 
-  -- We expect that Roshan will attack the team's durable hero only
-  local max_health_hero = functions.GetElementWith(
+  return common_algorithms.IsWeakerTarget(
     ally_heroes,
-    common_algorithms.CompareMaxHealth,
-    function(unit) return unit:IsAlive() end)
-
-  if max_health_hero == nil then
-    return false end
-
-  local max_health = max_health_hero:GetHealth()
-  local team_damage = 0
-
-  functions.DoWithElements(
-    ally_heroes,
-    function(unit)
-      if unit:IsAlive() then
-        team_damage = team_damage + unit:GetAttackDamage()
-      end
-    end)
-
-  local hits_to_die = functions.GetRate(
-    max_health,
-    ROSHAN_DAMAGE)
-
-  local hits_to_kill = functions.GetRate(
     ROSHAN_HEALTH,
-    team_damage)
-
-  return hits_to_kill < hits_to_die
+    ROSHAN_DAMAGE)
 end
 
 function M.is_roshan_alive()

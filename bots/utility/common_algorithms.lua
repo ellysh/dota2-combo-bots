@@ -236,34 +236,69 @@ function M.GetGroupHeroes(bot)
 end
 
 local function GetSumParameter(units, get_function)
+  if units == nil or #units == 0 then
+    return 0 end
+
   local result = 0
 
   functions.DoWithElements(
     units,
     function(unit)
       if unit:IsAlive() then
-        result = result + unit[get_function]()
+        result = result + get_function(unit)
       end
     end)
 
   return result
 end
 
-function M.IsWeakerGroup(units, group)
-  local units_health = GetSumParameter(units, "GetHealth")
-  local units_damage = GetSumParameter(units, "GetHealth")
-  local group_health = GetSumParameter(group, "GetAttackDamage")
-  local group_damage = GetSumParameter(group, "GetAttackDamage")
+local function IsWeakerTarget(
+  unit_health,
+  unit_damage,
+  target_health,
+  target_damage)
 
   local hits_to_die = functions.GetRate(
-    units_health,
-    group_damage)
+    unit_health,
+    target_damage)
 
   local hits_to_kill = functions.GetRate(
-    group_health,
-    units_damage)
+    target_health,
+    unit_damage)
 
   return hits_to_kill < hits_to_die
+end
+
+function M.IsWeakerTarget(units, target_group)
+  -- This is a trick with calculating offsets of GetHealth and
+  -- GetAttackDamage methods of the "Unit" class.
+  local bot = GetBot()
+
+  local units_health = GetSumParameter(units, bot.GetHealth)
+  local units_damage = GetSumParameter(units, bot.GetAttackDamage)
+  local group_health = GetSumParameter(target_group, bot.GetHealth)
+  local group_damage = GetSumParameter(target_group, bot.GetAttackDamage)
+
+  return IsWeakerTarget(
+    units_health,
+    units_damage,
+    group_health,
+    group_damage)
+end
+
+function M.IsWeakerTarget(units, target_health, target_damage)
+  -- This is a trick with calculating offsets of GetHealth and
+  -- GetAttackDamage methods of the "Unit" class.
+  local bot = GetBot()
+
+  local units_health = GetSumParameter(units, bot.GetHealth)
+  local units_damage = GetSumParameter(units, bot.GetAttackDamage)
+
+  return IsWeakerTarget(
+    units_health,
+    units_damage,
+    target_health,
+    target_damage)
 end
 
 -- Provide an access to local functions for unit tests only
