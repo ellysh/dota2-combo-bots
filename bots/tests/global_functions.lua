@@ -63,6 +63,12 @@ function RealTime()
   return TIME
 end
 
+ROSHAN_KILL_TIME = 10
+
+function GetRoshanKillTime()
+  return ROSHAN_KILL_TIME
+end
+
 function RandomSeed()
   math.randomseed(os.clock() * 100000)
 end
