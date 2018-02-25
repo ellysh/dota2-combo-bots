@@ -16,8 +16,6 @@ local player_desires = require(
 local common_algorithms = require(
   GetScriptDirectory() .."/utility/common_algorithms")
 
-local M = {}
-
 function GetDesire()
   return functions.GetNormalizedDesire(
            GetRoamDesire()
@@ -45,8 +43,3 @@ function Think()
     move.Move(bot, target_location)
   end
 end
-
--- Provide an access to local functions and variables for unit tests only
-M.test_GetMaxKillsEnemyPlayer = GetMaxKillsEnemyPlayer
-
-return M
