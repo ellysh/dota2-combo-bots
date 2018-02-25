@@ -161,7 +161,7 @@ function M.ally_hero_is_near()
   local bot = GetBot()
   local allies = common_algorithms.GetAllyHeroes(
     bot,
-    constants.MAX_ALLY_HERO_RADIUS)
+    constants.MAX_GROUP_RADIUS)
 
   return 0 < #allies
 end
