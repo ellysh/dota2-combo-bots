@@ -261,6 +261,43 @@ function M.is_mid_building_focused_by_enemies()
            common_algorithms.GetNearestFrontBuilding(LANE_MID))
 end
 
+function M.enough_damage_and_health_for_roshan()
+  local ROSHAN_HEALTH = 5500
+  local ROSHAN_DAMAGE = 65
+
+  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+
+  -- We expect that Roshan will attack the team's durable hero only
+  local max_health_hero = functions.GetElementWith(
+    ally_heroes,
+    common_algorithms.CompareMaxHealth,
+    function(unit) return unit:IsAlive() end)
+
+  if max_health_hero == nil then
+    return false end
+
+  local max_health = max_health_hero:GetHealth()
+  local team_damage = 0
+
+  functions.DoWithElements(
+    ally_heroes,
+    function(unit)
+      if unit:IsAlive() then
+        team_damage = team_damage + unit:GetAttackDamage()
+      end
+    end)
+
+  local hits_to_die = functions.GetRate(
+    max_health,
+    ROSHAN_DAMAGE)
+
+  local hits_to_kill = functions.GetRate(
+    ROSHAN_HEALTH,
+    team_damage)
+
+  return hits_to_kill < hits_to_die
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_UnitsOnLane = UnitsOnLane
