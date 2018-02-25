@@ -298,6 +298,12 @@ function M.enough_damage_and_health_for_roshan()
   return hits_to_kill < hits_to_die
 end
 
+function M.is_roshan_alive()
+  local MAX_ROSHAN_RESPAWN_MINUTES = 11
+  return MAX_ROSHAN_RESPAWN_MINUTES * 60
+         < (DotaTime() - GetRoshanKillTime())
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsAllyHaveItem = IsAllyHaveItem
 M.test_UnitsOnLane = UnitsOnLane
