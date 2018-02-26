@@ -103,13 +103,15 @@ end
 function test_GetAllyHeroes_succeed()
   test_RefreshBot()
 
+  local bot = GetBot()
   local units = algorithms.GetAllyHeroes(
-    GetBot(),
+    bot,
     1200)
 
-  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+  luaunit.assertEquals(units[1]:GetUnitName(), bot:GetUnitName())
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[4]:GetUnitName(), "unit3")
 end
 
 function test_GetEnemyCreeps_succeed()
@@ -406,11 +408,13 @@ end
 function test_GetGroupHeroes_succeed()
   test_RefreshBot()
 
-  local units = algorithms.GetGroupHeroes(GetBot())
+  local bot = GetBot()
+  local units = algorithms.GetGroupHeroes(bot)
 
-  luaunit.assertEquals(units[1]:GetUnitName(), "unit1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "unit2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "unit3")
+  luaunit.assertEquals(units[1]:GetUnitName(), bot:GetUnitName())
+  luaunit.assertEquals(units[2]:GetUnitName(), "unit1")
+  luaunit.assertEquals(units[3]:GetUnitName(), "unit2")
+  luaunit.assertEquals(units[4]:GetUnitName(), "unit3")
 end
 
 os.exit(luaunit.LuaUnit.run())

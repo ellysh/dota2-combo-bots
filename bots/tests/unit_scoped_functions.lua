@@ -268,6 +268,12 @@ function Unit:GetNearbyHeroes(radius, enemies, mode)
   if UNIT_NO_NEARBY_ALLIES and not enemies then
     return {} end
 
+  local result = {}
+
+  if not enemies then
+    table.insert(result, GetBot())
+  end
+
   local unit1 = Unit:new()
   unit1.name = "unit1"
   unit1.health = 10
@@ -287,10 +293,13 @@ function Unit:GetNearbyHeroes(radius, enemies, mode)
   unit3.damage = 180
 
   if NEARBY_HEROES_COUNT == 1 then
-    return { unit1 }
+    table.insert(result, unit1)
   else
-    return { unit1, unit2, unit3 }
+    table.insert(result, unit1)
+    table.insert(result, unit2)
+    table.insert(result, unit3)
   end
+  return result
 end
 
 NEARBY_CREEPS_COUNT = 3
