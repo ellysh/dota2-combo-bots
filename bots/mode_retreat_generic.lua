@@ -16,7 +16,9 @@ local player_desires = require(
 local M = {}
 
 function GetDesire()
-  return player_desires.GetDesire("BOT_MODE_RETREAT")
+  return functions.GetNormalizedDesire(
+           player_desires.GetDesire("BOT_MODE_RETREAT"),
+           constants.MAX_RETREAT_DESIRE)
 end
 
 local function IsHealingByShrine(bot, shrine)
