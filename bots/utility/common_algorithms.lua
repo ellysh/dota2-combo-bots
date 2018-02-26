@@ -310,6 +310,9 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_GetNormalizedRadius = GetNormalizedRadius
 M.test_GetUnitHealthLevel = GetUnitHealthLevel
+M.test_GetUnitManaLevel = GetUnitManaLevel
 M.test_GetBuilding = GetBuilding
+M.test_GetSumParameter = GetSumParameter
+M.test_IsWeakerTargetImpl = IsWeakerTargetImpl
 
 return M

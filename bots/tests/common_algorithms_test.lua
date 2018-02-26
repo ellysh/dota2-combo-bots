@@ -242,6 +242,29 @@ function test_GetUnitHealthLevel_succeed()
     0.001)
 end
 
+function test_GetUnitManaLevel_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  luaunit.assertEquals(
+    algorithms.test_GetUnitManaLevel(bot),
+    1.0)
+
+  bot.mana = bot.max_mana / 2
+
+  luaunit.assertEquals(
+    algorithms.test_GetUnitManaLevel(bot),
+    0.5)
+
+  bot.mana = bot.max_mana / 3
+
+  luaunit.assertAlmostEquals(
+    algorithms.test_GetUnitManaLevel(bot),
+    0.333,
+    0.001)
+end
+
 function test_IsUnitLowHp_succeed()
   test_RefreshBot()
 
@@ -415,6 +438,109 @@ function test_GetGroupHeroes_succeed()
   luaunit.assertEquals(units[2]:GetUnitName(), "unit1")
   luaunit.assertEquals(units[3]:GetUnitName(), "unit2")
   luaunit.assertEquals(units[4]:GetUnitName(), "unit3")
+end
+
+function test_GetSumParameter_succeed()
+  local units = {Unit:new(), Unit:new()}
+
+  luaunit.assertEquals(
+    algorithms.test_GetSumParameter(units, units[1].GetHealth),
+    800)
+end
+
+function test_GetSumParameter_empty_list_fails()
+  local unit = Unit:new()
+
+  luaunit.assertEquals(
+    algorithms.test_GetSumParameter(nil, unit.GetHealth),
+    0)
+
+  luaunit.assertEquals(
+    algorithms.test_GetSumParameter({}, unit.GetHealth),
+    0)
+end
+
+function test_IsWeakerTargetImpl_succeed()
+  local unit_health = 200
+  local unit_damage = 50
+  local target_health = 180
+  local target_damage = 40
+
+  luaunit.assertTrue(
+    algorithms.test_IsWeakerTargetImpl(
+      unit_health,
+      unit_damage,
+      target_health,
+      target_damage))
+end
+
+function test_IsWeakerTargetImpl_fails()
+  local unit_health = 180
+  local unit_damage = 40
+  local target_health = 200
+  local target_damage = 50
+
+  luaunit.assertFalse(
+    algorithms.test_IsWeakerTargetImpl(
+      unit_health,
+      unit_damage,
+      target_health,
+      target_damage))
+end
+
+function test_IsWeakerGroup_succeed()
+  local units = { Unit:new(), Unit:new() }
+  local target_group = { Unit:new() }
+
+  luaunit.assertTrue(
+    algorithms.IsWeakerGroup(units, target_group))
+end
+
+function test_IsWeakerGroup_fails()
+  local units = { Unit:new() }
+  local target_group = { Unit:new(), Unit:new() }
+
+  luaunit.assertFalse(
+    algorithms.IsWeakerGroup(units, target_group))
+end
+
+function test_IsWeakerTarget_succeed()
+  local units = { Unit:new(), Unit:new() }
+
+  local target_health = 180
+  local target_damage = 40
+
+  luaunit.assertTrue(
+    algorithms.IsWeakerTarget(
+      units,
+      target_health,
+      target_damage))
+end
+
+function test_IsWeakerTarget_when_target_strong_fails()
+  local units = { Unit:new(), Unit:new() }
+
+  local target_health = 5500
+  local target_damage = 65
+
+  luaunit.assertFalse(
+    algorithms.IsWeakerTarget(
+      units,
+      target_health,
+      target_damage))
+end
+
+function test_IsWeakerTarget_when_empty_units_fails()
+  local units = {}
+
+  local target_health = 180
+  local target_damage = 40
+
+  luaunit.assertFalse(
+    algorithms.IsWeakerTarget(
+      units,
+      target_health,
+      target_damage))
 end
 
 os.exit(luaunit.LuaUnit.run())
