@@ -294,3 +294,9 @@ function GetDroppedItemList()
     owner = Unit:new(),
     location = ITEM_LOCATION }}
 end
+
+-- The real Vector function creaes a Vector object.
+
+function Vector(x, y, z)
+  return {x, y}
+end
