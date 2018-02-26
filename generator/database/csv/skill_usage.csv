@@ -50,8 +50,8 @@ warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_ene
 warlock_upheaval;;;three_and_more_enemy_heroes;70;attacked_enemy_hero;60;attacked_enemy_hero;60;three_and_more_enemy_heroes;50;attacked_enemy_hero;40;;;;;;;three_and_more_enemy_heroes;70;;;;;;
 item_tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
 item_clarity;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;
-item_magic_stick;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
-item_magic_wand;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
+item_magic_stick;low_hp_charges_self;70;;;;;;;;;;;;;;;;;;;;;;;;
+item_magic_wand;low_hp_charges_self;70;;;;;;;;;;;;;;;;;;;;;;;;
 "  item_black_king_bar";;;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;50;;;;;;;half_hp_self;60;;;low_hp_self;70;;
 item_armlet;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 item_mask_of_madness;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;

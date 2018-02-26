@@ -738,3 +738,9 @@ ABILITY_IS_NULL = false
 function Ability:IsNull()
   return ABILITY_IS_NULL
 end
+
+ABILITY_CHARGES = 0
+
+function Ability:GetCurrentCharges()
+  return ABILITY_CHARGES
+end

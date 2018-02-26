@@ -525,6 +525,28 @@ function test_low_hp_self_full_hp_fails()
   test_algorithm_pattern_fails("low_hp_self")
 end
 
+function test_low_hp_charges_self_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local bot = GetBot()
+  bot.health = 10
+
+  ABILITY_CHARGES = 1
+
+  test_algorithm_pattern_succeed("low_hp_charges_self", bot)
+end
+
+function test_low_hp_charges_self_no_charges_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+
+  local bot = GetBot()
+  bot.health = 10
+
+  ABILITY_CHARGES = 0
+
+  test_algorithm_pattern_fails("low_hp_charges_self")
+end
+
 function test_half_hp_self_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
 

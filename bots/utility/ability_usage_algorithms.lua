@@ -355,6 +355,15 @@ function M.low_hp_self(bot, ability)
   return false, nil
 end
 
+function M.low_hp_charges_self(bot, ability)
+  if common_algorithms.IsUnitLowHp(bot)
+     and 0 < ability:GetCurrentCharges() then
+    return true, GetTarget(bot, ability)
+  end
+
+  return false, nil
+end
+
 function M.low_mp_self(bot, ability)
   if common_algorithms.IsUnitLowMp(bot) then
     return true, GetTarget(bot, ability)

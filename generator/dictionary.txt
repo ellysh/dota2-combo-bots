@@ -216,6 +216,7 @@ lion_mana_drain
 lion_voodoo
 low_hp_ally_creep
 low_hp_ally_hero
+low_hp_charges_self
 low_hp_enemy_building
 low_hp_enemy_hero
 low_hp_self

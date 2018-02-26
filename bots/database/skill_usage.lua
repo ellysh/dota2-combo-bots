@@ -823,7 +823,7 @@ M.SKILL_USAGE = {
   },
 
   item_magic_stick = {
-      any_mode = {algorithms["low_hp_self"], 70},
+      any_mode = {algorithms["low_hp_charges_self"], 70},
       team_fight = {algorithms["nil"], nil},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
@@ -839,7 +839,7 @@ M.SKILL_USAGE = {
   },
 
   item_magic_wand = {
-      any_mode = {algorithms["low_hp_self"], 70},
+      any_mode = {algorithms["low_hp_charges_self"], 70},
       team_fight = {algorithms["nil"], nil},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
