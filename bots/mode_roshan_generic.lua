@@ -13,3 +13,20 @@ function GetDesire()
            + player_desires.GetDesire("BOT_MODE_ROSHAN"),
          constants.MAX_ROSHAN_DESIRE)
 end
+
+function Think()
+  local bot = GetBot()
+  local target_location = { -2190, 1650 }
+
+  if 180 < GetUnitToLocationDistance(bot, target_location) then
+    move.Move(bot, target_location)
+  else
+    local target = attack.ChooseTarget(
+      bot,
+      constants.MAX_GET_UNITS_RADIUS)
+
+    if target ~= nil then
+      attack.Attack(bot, target)
+    end
+  end
+end
