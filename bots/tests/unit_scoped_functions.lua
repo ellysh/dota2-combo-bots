@@ -319,7 +319,7 @@ function Unit:GetNearbyNeutralCreeps(radius)
   unit2.location = {20, 20}
 
   local unit3 = Unit:new()
-  unit3.name = "neutral3"
+  unit3.name = "npc_dota_roshan"
   unit3.health = 180
   unit3.location = {15, 15}
 

@@ -69,6 +69,12 @@ function GetRoshanKillTime()
   return ROSHAN_KILL_TIME
 end
 
+ROSHAN_DESIRE = 0
+
+function GetRoshanDesire()
+  return ROSHAN_DESIRE
+end
+
 function RandomSeed()
   math.randomseed(os.clock() * 100000)
 end

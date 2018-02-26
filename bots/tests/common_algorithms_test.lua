@@ -402,7 +402,7 @@ function test_GetNeutralCreeps_succeed()
 
   luaunit.assertEquals(units[1]:GetUnitName(), "neutral1")
   luaunit.assertEquals(units[2]:GetUnitName(), "neutral2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "neutral3")
+  luaunit.assertEquals(units[3]:GetUnitName(), "npc_dota_roshan")
 end
 
 function test_GetGroupHeroes_succeed()

@@ -7,6 +7,12 @@ local functions = require(
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
+local move = require(
+  GetScriptDirectory() .."/utility/move")
+
+local attack = require(
+  GetScriptDirectory() .."/utility/attack")
+
 function GetDesire()
   return functions.GetNormalizedDesire(
            GetRoshanDesire()
