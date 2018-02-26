@@ -300,6 +300,7 @@ player_on_bot
 player_on_mid
 player_on_top
 roam_target_is_near
+roshan
 set_starting_melee
 set_starting_nuker
 set_starting_ranged

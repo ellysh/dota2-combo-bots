@@ -171,4 +171,19 @@ function M.assist_ally_hero(bot, radius)
   return true, target
 end
 
+function M.roshan(bot, radius)
+  local creeps = common_algorithms.GetNeutralCreeps(bot, radius)
+  local creep = functions.GetElementWith(
+    creeps,
+    common_algorithms.CompareMaxHealth,
+    function(unit)
+      return unit:GetUnitName() == "npc_dota_roshan"
+    end)
+
+  if creep == nil then
+    return false, nil end
+
+  return true, creep
+end
+
 return M
