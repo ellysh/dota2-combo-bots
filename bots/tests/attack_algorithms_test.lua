@@ -214,4 +214,13 @@ function test_attacking_enemy_creep_not_attacking_fails()
   test_algorithm_pattern_fails("attacking_enemy_creep")
 end
 
+function test_roshan_succeed()
+  test_RefreshBot()
+
+  UNIT_CAN_BE_SEEN = true
+  UNIT_NO_NEARBY_UNITS = false
+
+  test_algorithm_pattern_succeed("roshan", "npc_dota_roshan")
+end
+
 os.exit(luaunit.LuaUnit.run())
