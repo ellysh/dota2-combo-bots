@@ -4,6 +4,7 @@ ally_has_cheese
 ally_hero_is_near
 ally_mega_creeps
 always_self
+assist_ally_hero
 attacked_enemy_building
 attacked_enemy_creep
 attacked_enemy_hero

@@ -8,3 +8,4 @@ max_hp_enemy_creep;0;0;10;10;15;0;0;40;10;0;0
 max_hp_neutral_creep;0;0;0;10;10;0;60;60;0;0;0
 max_kills_enemy_hero;85;85;85;85;85;0;0;0;85;0;85
 min_hp_enemy_building;0;0;70;70;70;0;0;0;0;0;0
+assist_ally_hero;87;87;87;87;87;0;0;0;87;0;87

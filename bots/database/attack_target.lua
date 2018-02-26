@@ -129,6 +129,20 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 0
   },
 
+  assist_ally_hero = {
+      BOT_MODE_ROAM = 87,
+      BOT_MODE_TEAM_ROAM = 87,
+      BOT_MODE_PUSH_TOWER = 87,
+      BOT_MODE_ATTACK = 87,
+      BOT_MODE_NONE = 87,
+      BOT_MODE_LANING = 0,
+      BOT_MODE_ROSHAN = 0,
+      BOT_MODE_FARM = 0,
+      BOT_MODE_DEFEND_TOWER = 87,
+      BOT_MODE_RETREAT = 0,
+      BOT_MODE_DEFEND_ALLY = 87
+  },
+
 }
 
 return M

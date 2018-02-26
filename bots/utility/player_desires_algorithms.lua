@@ -118,7 +118,6 @@ end
 function M.is_weaker_enemy_group_near()
   local bot = GetBot()
   local allies = common_algorithms.GetGroupHeroes(bot)
-  table.insert(allies, bot)
 
   local enemies = common_algorithms.GetEnemyHeroes(
     bot,

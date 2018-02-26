@@ -149,4 +149,26 @@ function M.attacking_enemy_creep(bot, radius)
   return true, enemy_creep
 end
 
+function M.assist_ally_hero(bot, radius)
+  local bot = GetBot()
+  local allies = common_algorithms.GetGroupHeroes(bot)
+
+  local target = nil
+
+  local attacking_ally = functions.GetElementWith(
+    allies,
+    common_algorithms.CompareMaxHeroKills,
+    function(unit)
+      target = unit:GetTarget()
+      return target ~= nil
+             and target:IsHero()
+             and common_algorithms.IsAttackTargetable(target)
+    end)
+
+  if attacking_ally == nil or target == nil then
+    return false, nil end
+
+  return true, target
+end
+
 return M

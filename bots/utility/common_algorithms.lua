@@ -61,6 +61,8 @@ function M.GetEnemyHeroes(bot, radius)
     BOT_MODE_NONE)
 end
 
+-- Result of this fucntion includes the "bot" unit
+
 function M.GetAllyHeroes(bot, radius)
   return bot:GetNearbyHeroes(
     GetNormalizedRadius(radius),
@@ -230,6 +232,8 @@ function M.GetNearestFrontBuilding(lane)
 
   return result
 end
+
+-- Result of this fucntion includes the "bot" unit
 
 function M.GetGroupHeroes(bot)
   return M.GetAllyHeroes(bot, constants.MAX_GROUP_RADIUS)
