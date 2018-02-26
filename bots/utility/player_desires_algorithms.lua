@@ -142,7 +142,9 @@ end
 
 function M.ally_hero_is_near()
   local bot = GetBot()
-  return 0 < #common_algorithms.GetGroupHeroes(bot)
+
+  -- The GetGroupHeroes function contains bot
+  return 1 < #common_algorithms.GetGroupHeroes(bot)
 end
 
 function M.has_level_six()
