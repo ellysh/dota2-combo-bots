@@ -300,3 +300,11 @@ end
 function Vector(x, y, z)
   return {x, y}
 end
+
+NEUTRAL_CAMP_LOCATION = {10, 10}
+
+function GetNeutralSpawners()
+  return {
+           {"neutral_camp0", NEUTRAL_CAMP_LOCATION}
+         }
+end

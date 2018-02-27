@@ -7,6 +7,12 @@ local constants = require(
 local player_desires = require(
   GetScriptDirectory() .."/utility/player_desires")
 
+local move = require(
+  GetScriptDirectory() .."/utility/move")
+
+local attack = require(
+  GetScriptDirectory() .."/utility/attack")
+
 local M = {}
 
 function GetDesire()
@@ -37,9 +43,8 @@ local function CompareMinDistance(t, a, b)
          < GetUnitToLocationDistance(GetBot(), t[b][2])
 end
 
-local function GetClosestFarmSpot(bot)
+local function GetClosestFarmSpot()
   local farm_spots = GetNeutralSpawners()
-
   local front_lanes = GetEnemyFrontLocations()
 
   functions.TableConcat(farm_spots, front_lanes)
@@ -53,12 +58,12 @@ local function GetClosestFarmSpot(bot)
 end
 
 function Think()
-  local bot = GetBot()
-
-  local target_location = GetClosestFarmSpot(bot)
+  local target_location = GetClosestFarmSpot()
 
   if target_location == nil then
     return end
+
+  local bot = GetBot()
 
   if constants.MIN_HERO_DISTANCE_FROM_FARM_SPOT
      < GetUnitToLocationDistance(bot, target_location) then
