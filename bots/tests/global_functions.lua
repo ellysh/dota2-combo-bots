@@ -301,12 +301,12 @@ function Vector(x, y, z)
   return {x, y}
 end
 
-NEUTRAL_CAMP_LOCATION = {10, 10}
+NEUTRAL_CAMP_LOCATION = {15, 15}
 
 function GetNeutralSpawners()
   return {
            {
-             type = "neutral_camp0",
+             type = "medium",
              location = NEUTRAL_CAMP_LOCATION
            }
          }

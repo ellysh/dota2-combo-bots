@@ -51,10 +51,13 @@ local function CompareMinDistance(t, a, b)
 end
 
 local function GetClosestFarmSpot()
-  local farm_spots = memory.GetNeutralCampList()
-  local front_lanes = GetEnemyFrontLocations()
+  local farm_spots = GetEnemyFrontLocations()
 
-  functions.TableConcat(farm_spots, front_lanes)
+  -- Do not change this variable because this is a reference to
+  -- the memory.NEUTRAL_CAMP_LIST
+  local neutral_camps = memory.GetNeutralCampList()
+
+  functions.TableConcat(farm_spots, neutral_camps)
 
   local camp = functions.GetElementWith(
     farm_spots,
