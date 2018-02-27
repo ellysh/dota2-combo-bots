@@ -36,9 +36,9 @@ local function GetEnemyFrontLocations()
     table.insert(
       result,
       {
-        lane = {
-          is_full = true,
-          location = GetLaneFrontLocation(GetOpposingTeam(), lane, 0)}
+        type = lane,
+        is_full = true,
+        location = GetLaneFrontLocation(GetOpposingTeam(), lane, 0)
       })
   end
 
@@ -56,28 +56,31 @@ local function GetClosestFarmSpot()
 
   functions.TableConcat(farm_spots, front_lanes)
 
-  local camp_type, camp = functions.GetKeyAndElementWith(
+  local camp = functions.GetElementWith(
     farm_spots,
     CompareMinDistance,
     function(spot)
       return spot.is_full
     end)
 
-  return camp_type, camp.location
+  if camp == nil then
+    return nil end
+
+  return camp.location
 end
 
 function Think()
-  local camp_type, camp_location = GetClosestFarmSpot()
+  local target_location = GetClosestFarmSpot()
 
-  if camp_location == nil then
+  if target_location == nil then
     return end
 
   local bot = GetBot()
 
   if constants.MIN_HERO_DISTANCE_FROM_FARM_SPOT
-     < GetUnitToLocationDistance(bot, camp_location) then
+     < GetUnitToLocationDistance(bot, target_location) then
 
-    bot:Action_MoveToLocation(camp_location)
+    bot:Action_MoveToLocation(target_location)
   else
     local target = attack.ChooseTarget(
       bot,
@@ -86,7 +89,7 @@ function Think()
     if target ~= nil then
       attack.Attack(bot, target)
     else
-      memory.SetNeutralCampEmpty(camp_type)
+      memory.SetNeutralCampEmpty(target_location)
     end
   end
 end

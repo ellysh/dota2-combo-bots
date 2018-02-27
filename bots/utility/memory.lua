@@ -102,7 +102,7 @@ end
 -- {
 --   camp_type = {
 --     is_full = true/false
---     locaion = Vector(x, y, z)
+--     location = Vector(x, y, z)
 --   },
 -- ...
 -- }
@@ -110,7 +110,7 @@ end
 NEUTRAL_CAMP_LIST = {}
 
 local function IsInitNeutralCampList()
-  return NEUTRAL_CAMP_LIST == nil or #NEUTRAL_CAMP_LIST == 0
+  return NEUTRAL_CAMP_LIST ~= nil and 0 < #NEUTRAL_CAMP_LIST
 end
 
 function M.InitNeutralCampList()
@@ -122,9 +122,13 @@ function M.InitNeutralCampList()
   functions.DoWithElements(
     camps,
     function(camp)
-      NEUTRAL_CAMP_LIST[camp.type] = {
-        is_full = true,
-        locaion = camp.locaion}
+      table.insert(
+        NEUTRAL_CAMP_LIST,
+        {
+          type = camp.type,
+          is_full = true,
+          location = camp.location
+        })
     end)
 end
 
@@ -149,8 +153,15 @@ function M.GetNeutralCampList()
   return NEUTRAL_CAMP_LIST
 end
 
-function M.SetNeutralCampEmpty(camp_type)
-  NEUTRAL_CAMP_LIST[camp_type].is_full = false
+function M.SetNeutralCampEmpty(location)
+  local key = functions.GetKeyWith(
+    NEUTRAL_CAMP_LIST,
+    nil,
+    function(key, camp)
+      return camp.location == location
+    end)
+
+  NEUTRAL_CAMP_LIST[key].is_full = false
 end
 
 -- Provide an access to local functions for unit tests only
