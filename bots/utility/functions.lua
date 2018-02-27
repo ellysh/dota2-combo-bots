@@ -346,6 +346,18 @@ function M.GetNormalizedDesire(desire, max_desire)
   return M.ternary(max_desire < desire, max_desire, desire)
 end
 
+-- This function is taken from here:
+-- https://stackoverflow.com/a/15278426
+-- Result will be stored in the t1 table. The return value is
+-- requried for tests.
+
+function M.TableConcat(t1, t2)
+  for i = 1, #t2 do
+    t1[#t1+1] = t2[i]
+  end
+  return t1
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

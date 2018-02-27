@@ -326,13 +326,6 @@ function Unit:GetNearbyNeutralCreeps(radius)
   return { unit1, unit2, unit3 }
 end
 
-function TableConcat(t1,t2)
-  for i=1,#t2 do
-    t1[#t1+1] = t2[i]
-  end
-  return t1
-end
-
 function Unit:GetNearbyCreeps(radius, enemies)
   if not UNIT_HAS_NEARBY_UNITS then
     return {} end
@@ -356,7 +349,7 @@ function Unit:GetNearbyCreeps(radius, enemies)
   local neutral = self:GetNearbyNeutralCreeps()
 
   if 3 <= NEARBY_CREEPS_COUNT then
-    return TableConcat(result, neutral)
+    return functions.TableConcat(result, neutral)
   else
     return { unit1, unit2 }
   end
