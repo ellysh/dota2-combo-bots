@@ -256,16 +256,16 @@ function Unit:FindItemSlot(itemName)
   return -1
 end
 
-UNIT_NO_NEARBY_UNITS = false
-UNIT_NO_NEARBY_ALLIES = false
+UNIT_HAS_NEARBY_UNITS = true
+UNIT_HAS_NEARBY_ALLIES = true
 
 NEARBY_HEROES_COUNT = 3
 
 function Unit:GetNearbyHeroes(radius, enemies, mode)
-  if UNIT_NO_NEARBY_UNITS then
+  if not UNIT_HAS_NEARBY_UNITS then
     return {} end
 
-  if UNIT_NO_NEARBY_ALLIES and not enemies then
+  if not UNIT_HAS_NEARBY_ALLIES and not enemies then
     return {} end
 
   local result = {}
@@ -305,7 +305,7 @@ end
 NEARBY_CREEPS_COUNT = 3
 
 function Unit:GetNearbyNeutralCreeps(radius)
-  if UNIT_NO_NEARBY_UNITS then
+  if not UNIT_HAS_NEARBY_UNITS then
     return {} end
 
   local unit1 = Unit:new()
@@ -334,7 +334,7 @@ function TableConcat(t1,t2)
 end
 
 function Unit:GetNearbyCreeps(radius, enemies)
-  if UNIT_NO_NEARBY_UNITS then
+  if not UNIT_HAS_NEARBY_UNITS then
     return {} end
 
   local unit1 = Unit:new()
@@ -362,11 +362,13 @@ function Unit:GetNearbyCreeps(radius, enemies)
   end
 end
 
+UNIT_HAS_NEARBY_TOWERS = false
+
 function Unit:GetNearbyTowers(radius, enemies, mode)
-  if not UNIT_IS_NEARBY_TOWERS then
+  if not UNIT_HAS_NEARBY_TOWERS then
     return {} end
 
-  if UNIT_NO_NEARBY_UNITS then
+  if not UNIT_HAS_NEARBY_UNITS then
     return {} end
 
   local unit1 = Unit:new()
@@ -391,7 +393,7 @@ function Unit:GetNearbyTowers(radius, enemies, mode)
 end
 
 function Unit:GetNearbyBarracks(radius, enemies, mode)
-  if UNIT_NO_NEARBY_UNITS then
+  if not UNIT_HAS_NEARBY_UNITS then
     return {} end
 
   local unit1 = Unit:new()

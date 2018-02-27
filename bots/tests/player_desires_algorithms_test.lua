@@ -96,7 +96,7 @@ function test_is_shrine_healing_and_no_enemy_succeed()
   local bot = GetBot()
   bot.location = {600, 600}
 
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   IS_SHRINE_HEALING = true
 
   luaunit.assertTrue(algorithms.is_shrine_healing_and_no_enemy())
@@ -105,7 +105,7 @@ end
 function test_is_shrine_healing_and_no_enemy_fails()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
   IS_SHRINE_HEALING = true
 
   luaunit.assertFalse(algorithms.is_shrine_healing_and_no_enemy())
@@ -117,7 +117,7 @@ function test_is_shrine_healing_and_enemies_near_succeed()
   local bot = GetBot()
   bot.location = {600, 600}
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
   IS_SHRINE_HEALING = true
 
   luaunit.assertTrue(algorithms.is_shrine_healing_and_enemies_near())
@@ -141,7 +141,7 @@ function test_is_focused_by_enemies_succeed()
   bot.health = 100
 
   ATTACK_TARGET = bot
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.is_focused_by_enemies())
 end
@@ -153,7 +153,7 @@ function test_is_focused_by_enemies_low_damage_fails()
   bot.health = 5000
 
   ATTACK_TARGET = bot
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertFalse(algorithms.is_focused_by_enemies())
 end
@@ -165,8 +165,8 @@ function test_is_weaker_enemy_group_near_succeed()
   bot.health = 5000
 
   NEARBY_HEROES_COUNT = 1
-  UNIT_NO_NEARBY_ALLIES = false
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_ALLIES = true
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.is_weaker_enemy_group_near())
 end
@@ -178,9 +178,9 @@ function test_is_weaker_enemy_group_near_when_stronger_fails()
   bot.health = 10
   bot.damage = 1
 
-  UNIT_NO_NEARBY_ALLIES = true
+  UNIT_HAS_NEARBY_ALLIES = false
   NEARBY_HEROES_COUNT = 1
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertFalse(algorithms.is_weaker_enemy_group_near())
 end
@@ -224,7 +224,7 @@ end
 function test_ally_hero_is_near_succeed()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.ally_hero_is_near())
 end
@@ -232,7 +232,7 @@ end
 function test_ally_hero_is_near_fails()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   luaunit.assertFalse(algorithms.ally_hero_is_near())
 end

@@ -76,7 +76,7 @@ function test_GetDesire_on_beginning_bounty_rune_positive()
   TIME = -60
   RUNE_LOCATION = {20, 20}
   RUNE_TYPE = RUNE_BOUNTY_1
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   luaunit.assertEquals(GetDesire(), 0.6)
 end

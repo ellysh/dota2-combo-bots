@@ -207,7 +207,7 @@ function test_is_bot_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
   TOWER_HEALTH = 10
   ATTACK_TARGET = TOWER
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.is_bot_building_focused_by_enemies())
 end
@@ -216,7 +216,7 @@ function test_is_top_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
   TOWER_HEALTH = 10
   ATTACK_TARGET = TOWER
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.is_top_building_focused_by_enemies())
 end
@@ -225,7 +225,7 @@ function test_is_mid_building_focused_by_enemies_succeed()
   UNITS = { Unit:new() }
   TOWER_HEALTH = 10
   ATTACK_TARGET = TOWER
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.is_mid_building_focused_by_enemies())
 end

@@ -41,7 +41,7 @@ function test_Think_move_succeed()
   test_RefreshBot()
 
   IS_HERO_ALIVE = true
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   UNIT_MOVE_LOCATION = nil
   HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
 
@@ -54,7 +54,7 @@ function test_Think_no_alive_enemy_hero_fails()
   test_RefreshBot()
 
   IS_HERO_ALIVE = false
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   UNIT_MOVE_LOCATION = nil
   HERO_LAST_SEEN_INFO = { {location = {10, 10}, time_since_seen = 2} }
 
@@ -67,7 +67,7 @@ function test_Think_no_seen_enemy_hero_fails()
   test_RefreshBot()
 
   IS_HERO_ALIVE = true
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   UNIT_MOVE_LOCATION = nil
   HERO_LAST_SEEN_INFO = {}
 

@@ -60,7 +60,7 @@ function test_GetDesire_when_low_hp_positive()
 
   local bot = GetBot()
   bot.health = 50
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   IS_SHRINE_HEALING = false
 
   luaunit.assertEquals(GetDesire(), 0.85)
@@ -69,7 +69,7 @@ end
 function test_Think_move_succeed()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   UNIT_MOVE_LOCATION = nil
   SHRINE_LOCATION = {900, 900}
 
@@ -84,7 +84,7 @@ function test_Think_use_shrine_succeed()
   local bot = GetBot()
   bot.location = {95, 95}
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
   UNIT_USE_SHRINE = nil
   SHRINE_LOCATION = {100, 100}
 
@@ -99,7 +99,7 @@ function test_Think_enemy_on_the_way_fails()
   local bot = GetBot()
   bot.location = {10, 10}
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
   UNIT_USE_SHRINE = nil
   SHRINE_LOCATION = {100, 100}
 

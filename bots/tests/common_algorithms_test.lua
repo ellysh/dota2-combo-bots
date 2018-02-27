@@ -117,7 +117,7 @@ end
 function test_GetEnemyCreeps_succeed()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   local units = algorithms.GetEnemyCreeps(
     GetBot(),
@@ -132,7 +132,7 @@ end
 function test_GetEnemyCreeps_no_enemy_fails()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   local units = algorithms.GetEnemyCreeps(
     GetBot(),
@@ -156,7 +156,7 @@ end
 function test_GetEnemyBuildings_succeed()
   test_RefreshBot()
 
-  UNIT_IS_NEARBY_TOWERS = true
+  UNIT_HAS_NEARBY_TOWERS = true
 
   local units = algorithms.GetEnemyBuildings(
     GetBot(),
@@ -166,7 +166,7 @@ function test_GetEnemyBuildings_succeed()
   luaunit.assertEquals(units[2]:GetUnitName(), "tower2")
   luaunit.assertEquals(units[3]:GetUnitName(), "tower3")
 
-  UNIT_IS_NEARBY_TOWERS = false
+  UNIT_HAS_NEARBY_TOWERS = false
 
   units = algorithms.GetEnemyBuildings(
     GetBot(),
@@ -182,7 +182,7 @@ function test_IsEnemyOnTheWay_succeed()
   local bot = GetBot()
   bot.location = {10, 10}
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertTrue(algorithms.IsEnemyHeroOnTheWay(bot, {100, 100}))
 end
@@ -193,7 +193,7 @@ function test_IsEnemyOnTheWay_no_enemy_fails()
   local bot = GetBot()
   bot.location = {95, 84}
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   luaunit.assertFalse(algorithms.IsEnemyHeroOnTheWay(bot, {100, 100}))
 end
@@ -420,7 +420,7 @@ end
 function test_GetNeutralCreeps_succeed()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
   local units = algorithms.GetNeutralCreeps(GetBot(), 1600)
 
   luaunit.assertEquals(units[1]:GetUnitName(), "neutral1")

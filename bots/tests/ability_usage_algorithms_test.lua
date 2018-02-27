@@ -128,7 +128,7 @@ end
 function test_min_hp_enemy_hero_to_kill_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("min_hp_enemy_hero_to_kill", {10, 10})
 end
@@ -143,7 +143,7 @@ end
 function test_channeling_enemy_hero_succeed()
   UNIT_IS_CHANNELING = true
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("channeling_enemy_hero", {10, 10})
 end
@@ -151,7 +151,7 @@ end
 function test_channeling_enemy_hero_no_hero_fails()
   UNIT_IS_CHANNELING = true
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("channeling_enemy_hero")
 end
@@ -602,7 +602,7 @@ end
 
 function test_low_hp_ally_hero_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_unit_pattern_succeed(
     "low_hp_ally_hero",
@@ -611,14 +611,14 @@ end
 
 function test_low_hp_ally_hero_no_unit_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("low_hp_ally_hero")
 end
 
 function test_half_hp_ally_hero_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_unit_pattern_succeed(
     "half_hp_ally_hero",
@@ -627,7 +627,7 @@ end
 
 function test_half_hp_ally_hero_no_unit_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("half_hp_ally_hero")
 end

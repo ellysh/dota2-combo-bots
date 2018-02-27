@@ -39,7 +39,7 @@ end
 function test_Think_move_succeed()
   test_RefreshBot()
 
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
   UNIT_MOVE_LOCATION = nil
 
   Think()

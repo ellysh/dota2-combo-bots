@@ -13,7 +13,7 @@ function test_MinionThink_move_to_hero_succeed()
   bot.location = {500, 500}
 
   UNIT_EXTRAPOLATED_LOCATION = {500, 500}
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   minions.MinionThink(Unit:new())
 
@@ -25,7 +25,7 @@ function test_MinionThink_attack_when_owner_not_near_succeed()
 
   local bot = GetBot()
   bot.location = {500, 500}
-  UNIT_NO_NEARBY_UNITS = false
+  UNIT_HAS_NEARBY_UNITS = true
 
   minions.MinionThink(Unit:new())
 

@@ -45,7 +45,7 @@ function test_GetDesire_in_fight_mode_negative()
   memory.AddItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_ATTACK
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   luaunit.assertEquals(
     mode_shop.test_GetDesire(
@@ -61,7 +61,7 @@ function test_GetDesire_succeed()
   memory.AddItemToBuy(GetBot(), "item_boots")
   IS_SIDE_SHOP_ITEM = true
   UNIT_MODE = BOT_MODE_NONE
-  UNIT_NO_NEARBY_UNITS = true
+  UNIT_HAS_NEARBY_UNITS = false
 
   luaunit.assertAlmostEquals(
     mode_shop.test_GetDesire(
