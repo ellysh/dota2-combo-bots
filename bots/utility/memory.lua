@@ -98,6 +98,36 @@ function M.MakePurchaseList(bot)
   end
 end
 
+-- Format of the NEUTRAL_CAMP_LIST list:
+-- {
+--   camp_type = {
+--     is_empty = true/false
+--     locaion = Vector(x, y, z)
+--   },
+-- ...
+-- }
+
+NEUTRAL_CAMP_LIST = {}
+
+local function IsInitNeutralCampList()
+  return NEUTRAL_CAMP_LIST == nil or #NEUTRAL_CAMP_LIST == 0
+end
+
+function M.InitNeutralCampList()
+  if IsInitNeutralCampList() then
+    return end
+
+  local camps = GetNeutralSpawners()
+
+  functions.DoWithElements(
+    camps,
+    function(camp)
+      NEUTRAL_CAMP_LIST[camp.type] = {
+        is_full = true,
+        locaion = camp.locaion}
+    end)
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_InitPurchaseList = InitPurchaseList
 M.test_IsRecipeItem = IsRecipeItem
