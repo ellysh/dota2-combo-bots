@@ -32,15 +32,16 @@ local function GetEnemyFrontLocations()
 
     table.insert(
       result,
-      {"", GetLaneFrontLocation(GetOpposingTeam(), lane, 0)})
+      {type = "",
+       location = GetLaneFrontLocation(GetOpposingTeam(), lane, 0)})
   end
 
   return result
 end
 
 local function CompareMinDistance(t, a, b)
-  return GetUnitToLocationDistance(GetBot(), t[a][2])
-         < GetUnitToLocationDistance(GetBot(), t[b][2])
+  return GetUnitToLocationDistance(GetBot(), t[a].location)
+         < GetUnitToLocationDistance(GetBot(), t[b].location)
 end
 
 local function GetClosestFarmSpot()
@@ -54,7 +55,7 @@ local function GetClosestFarmSpot()
     CompareMinDistance,
     nil)
 
-  return result[2]
+  return result.location
 end
 
 function Think()
