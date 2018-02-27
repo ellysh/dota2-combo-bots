@@ -95,6 +95,10 @@ function M.GetAllyCreeps(bot, radius)
   return bot:GetNearbyCreeps(GetNormalizedRadius(radius), false)
 end
 
+function M.GetAllyTowers(bot, radius)
+  return bot:GetNearbyTowers(GetNormalizedRadius(radius), false)
+end
+
 function M.GetEnemyBuildings(bot, radius)
   local towers = bot:GetNearbyTowers(GetNormalizedRadius(radius), true)
 

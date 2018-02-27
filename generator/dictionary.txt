@@ -18,6 +18,7 @@ chaos_knight_reality_rift
 crystal_maiden_crystal_nova
 crystal_maiden_freezing_field
 crystal_maiden_frostbite
+deny_ally_tower
 drow_ranger_frost_arrows
 drow_ranger_trueshot
 drow_ranger_wave_of_silence

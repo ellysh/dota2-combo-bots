@@ -157,6 +157,20 @@ M.ATTACK_TARGET = {
       BOT_MODE_DEFEND_ALLY = 0
   },
 
+  deny_ally_tower = {
+      BOT_MODE_ROAM = 0,
+      BOT_MODE_TEAM_ROAM = 0,
+      BOT_MODE_PUSH_TOWER = 0,
+      BOT_MODE_ATTACK = 80,
+      BOT_MODE_NONE = 80,
+      BOT_MODE_LANING = 0,
+      BOT_MODE_ROSHAN = 0,
+      BOT_MODE_FARM = 0,
+      BOT_MODE_DEFEND_TOWER = 80,
+      BOT_MODE_RETREAT = 0,
+      BOT_MODE_DEFEND_ALLY = 0
+  },
+
 }
 
 return M

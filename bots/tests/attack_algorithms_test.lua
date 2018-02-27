@@ -223,4 +223,14 @@ function test_roshan_succeed()
   test_algorithm_pattern_succeed("roshan", "npc_dota_roshan")
 end
 
+function test_deny_ally_tower_succeed()
+  test_RefreshBot()
+
+  UNIT_CAN_BE_SEEN = true
+  UNIT_NO_NEARBY_UNITS = false
+  UNIT_IS_NEARBY_TOWERS = true
+
+  test_algorithm_pattern_succeed("deny_ally_tower", "tower1")
+end
+
 os.exit(luaunit.LuaUnit.run())

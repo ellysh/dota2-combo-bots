@@ -186,4 +186,30 @@ function M.roshan(bot, radius)
   return true, creep
 end
 
+local function GetDenyHpTower(units)
+  local DENY_TOWER_HEALTH = 160
+
+  local result = functions.GetElementWith(
+    units,
+    common_algorithms.CompareMinHealth,
+    function(unit)
+      return common_algorithms.IsAttackTargetable(unit)
+             and unit:GetHealth() <= DENY_TOWER_HEALTH
+    end)
+
+    return result
+end
+
+function M.deny_ally_tower(bot, radius)
+  local ally_towers =
+    common_algorithms.GetAllyTowers(bot, radius)
+
+  local target = GetDenyHpTower(ally_towers)
+
+  if target == nil then
+    return false, nil end
+
+  return true, target
+end
+
 return M
