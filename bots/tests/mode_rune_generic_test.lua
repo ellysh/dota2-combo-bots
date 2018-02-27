@@ -4,7 +4,7 @@ pcall(require, "luacov")
 require("global_functions")
 
 local mode_rune = require("mode_rune_generic")
-local luaunit = require('luaunit')
+local luaunit = require("luaunit")
 
 function test_GetDesire_when_rune_missing_negative()
   test_RefreshBot()
