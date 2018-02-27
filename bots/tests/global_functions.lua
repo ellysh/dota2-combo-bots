@@ -305,6 +305,9 @@ NEUTRAL_CAMP_LOCATION = {10, 10}
 
 function GetNeutralSpawners()
   return {
-           {"neutral_camp0", NEUTRAL_CAMP_LOCATION}
+           {
+             type = "neutral_camp0",
+             location = NEUTRAL_CAMP_LOCATION
+           }
          }
 end

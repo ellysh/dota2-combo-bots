@@ -32,9 +32,9 @@ function test_GetEnemyFrontLocations_succeed()
   local front_lanes = mode_farm.test_GetEnemyFrontLocations()
 
   luaunit.assertEquals(#front_lanes, 3)
-  luaunit.assertEquals(front_lanes[1], {"", {10, 10}})
-  luaunit.assertEquals(front_lanes[2], {"", {10, 10}})
-  luaunit.assertEquals(front_lanes[3], {"", {10, 10}})
+  luaunit.assertEquals(front_lanes[1], {type = "", location = {10, 10}})
+  luaunit.assertEquals(front_lanes[2], {type = "", location = {10, 10}})
+  luaunit.assertEquals(front_lanes[3], {type = "", location = {10, 10}})
 end
 
 function test_GetClosestFarmSpot_neutral_camp_succeed()
