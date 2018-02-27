@@ -7,6 +7,9 @@ local team_desires = require(
 local team_desires_algorithms = require(
   GetScriptDirectory() .."/utility/team_desires_algorithms")
 
+local memory = require(
+  GetScriptDirectory() .."/utility/memory")
+
 local TEAM_DESIRES = {
   BOT_MODE_PUSH_TOWER_TOP = 0,
   BOT_MODE_PUSH_TOWER_MID = 0,
@@ -19,6 +22,8 @@ local TEAM_DESIRES = {
 }
 
 function TeamThink()
+  memory.Remember()
+
   TEAM_DESIRES = desires.Think(
     team_desires.TEAM_DESIRES,
     team_desires_algorithms)

@@ -101,7 +101,7 @@ end
 -- Format of the NEUTRAL_CAMP_LIST list:
 -- {
 --   camp_type = {
---     is_empty = true/false
+--     is_full = true/false
 --     locaion = Vector(x, y, z)
 --   },
 -- ...
@@ -126,6 +126,31 @@ function M.InitNeutralCampList()
         is_full = true,
         locaion = camp.locaion}
     end)
+end
+
+local function NeutralCampSpawn()
+  if (DotaTime() % (1 * 60)) ~= 0 then
+    return end
+
+  functions.DoWithElements(
+    NEUTRAL_CAMP_LIST,
+    function(camp)
+      camp.is_full = true
+    end)
+end
+
+function M.Remember()
+  M.InitNeutralCampList()
+
+  NeutralCampSpawn()
+end
+
+function M.GetNeutralCampList()
+  return NEUTRAL_CAMP_LIST
+end
+
+function M.SetNeutralCampEmpty(camp_type)
+  NEUTRAL_CAMP_LIST[camp_type].is_full = false
 end
 
 -- Provide an access to local functions for unit tests only

@@ -13,6 +13,9 @@ local move = require(
 local attack = require(
   GetScriptDirectory() .."/utility/attack")
 
+local memory = require(
+  GetScriptDirectory() .."/utility/memory")
+
 local M = {}
 
 function GetDesire()
@@ -32,8 +35,11 @@ local function GetEnemyFrontLocations()
 
     table.insert(
       result,
-      {type = "",
-       location = GetLaneFrontLocation(GetOpposingTeam(), lane, 0)})
+      {
+        lane = {
+          is_full = true,
+          location = GetLaneFrontLocation(GetOpposingTeam(), lane, 0)}
+      })
   end
 
   return result
@@ -45,31 +51,33 @@ local function CompareMinDistance(t, a, b)
 end
 
 local function GetClosestFarmSpot()
-  local farm_spots = GetNeutralSpawners()
+  local farm_spots = memory.GetNeutralCampList()
   local front_lanes = GetEnemyFrontLocations()
 
   functions.TableConcat(farm_spots, front_lanes)
 
-  local result = functions.GetElementWith(
+  local camp_type, camp = functions.GetKeyAndElementWith(
     farm_spots,
     CompareMinDistance,
-    nil)
+    function(spot)
+      return spot.is_full
+    end)
 
-  return result.location
+  return camp_type, camp.location
 end
 
 function Think()
-  local target_location = GetClosestFarmSpot()
+  local camp_type, camp_location = GetClosestFarmSpot()
 
-  if target_location == nil then
+  if camp_location == nil then
     return end
 
   local bot = GetBot()
 
   if constants.MIN_HERO_DISTANCE_FROM_FARM_SPOT
-     < GetUnitToLocationDistance(bot, target_location) then
+     < GetUnitToLocationDistance(bot, camp_location) then
 
-    bot:Action_MoveToLocation(target_location)
+    bot:Action_MoveToLocation(camp_location)
   else
     local target = attack.ChooseTarget(
       bot,
@@ -77,6 +85,8 @@ function Think()
 
     if target ~= nil then
       attack.Attack(bot, target)
+    else
+      memory.SetNeutralCampEmpty(camp_type)
     end
   end
 end
