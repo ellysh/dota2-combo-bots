@@ -77,20 +77,18 @@ function Think()
 
   local bot = GetBot()
 
-  if constants.MIN_HERO_DISTANCE_FROM_FARM_SPOT
+  local target = attack.ChooseTarget(
+    bot,
+    constants.MAX_GET_UNITS_RADIUS)
+
+  if target ~= nil then
+    attack.Attack(bot, target)
+  elseif constants.MIN_HERO_DISTANCE_FROM_FARM_SPOT
      < GetUnitToLocationDistance(bot, target_location) then
 
     bot:Action_MoveToLocation(target_location)
   else
-    local target = attack.ChooseTarget(
-      bot,
-      constants.MAX_GET_UNITS_RADIUS)
-
-    if target ~= nil then
-      attack.Attack(bot, target)
-    else
-      memory.SetNeutralCampEmpty(target_location)
-    end
+    memory.SetNeutralCampEmpty(target_location)
   end
 end
 
