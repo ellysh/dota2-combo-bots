@@ -45,7 +45,8 @@ local function IsRuneAppeared()
   local time = DotaTime()
   local last_appear = time - (time % (2 * 60))
 
-  return 110 <= (time - last_appear)
+  -- Bot moves to a rune at 8 seconds before it appears
+  return 112 <= (time - last_appear)
 end
 
 local function IsPowerRune(rune)
