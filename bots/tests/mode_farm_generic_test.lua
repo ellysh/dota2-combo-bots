@@ -16,7 +16,7 @@ function test_GetDesire_when_level_six_and_high_hp_damage_positive()
 
   local bot = GetBot()
   bot.level = 6
-  bot.health = 1000
+  bot.max_health = 1000
   bot.damage = 100
 
   luaunit.assertEquals(GetDesire(), 0.5)

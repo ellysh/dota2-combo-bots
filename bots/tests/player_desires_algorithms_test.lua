@@ -241,7 +241,7 @@ function test_has_high_damage_and_health_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
-  bot.health = 1000
+  bot.max_health = 1000
   bot.damage = 100
 
   luaunit.assertTrue(algorithms.has_high_damage_and_health())
