@@ -255,7 +255,7 @@ end
 
 function M.activate_on_attack_enemy_hero(bot, ability)
   local target = bot:GetTarget()
-  local is_activated = ability:IsActivated()
+  local is_activated = ability:GetToggleState()
 
   if is_activated then
     if target == nil
