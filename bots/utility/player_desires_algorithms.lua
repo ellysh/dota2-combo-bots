@@ -154,7 +154,7 @@ end
 function M.has_high_damage_and_health()
   local bot = GetBot()
 
-  return 1000 <= bot:GetHealth() and 100 <= bot:GetAttackDamage()
+  return 1000 <= bot:GetMaxHealth() and 100 <= bot:GetAttackDamage()
 end
 
 function M.ally_hero_in_roshpit()
