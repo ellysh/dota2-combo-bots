@@ -1,3 +1,4 @@
+activate_on_attack_enemy_hero
 all_enemy_team_dead
 ally_has_aegis
 ally_has_cheese

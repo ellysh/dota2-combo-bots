@@ -253,6 +253,34 @@ function M.toggle_on_attack_enemy_hero(bot, ability)
   return false, nil
 end
 
+function M.activate_on_attack_enemy_hero(bot, ability)
+  local target = bot:GetTarget()
+  local is_activated = ability:IsActivated()
+
+  if is_activated then
+    if target == nil
+       or not target:IsHero()
+       or common_algorithms.IsUnitLowHp(bot) then
+
+      logger.Print("activate_on_attack_enemy_hero() - " ..
+        bot:GetUnitName() .. " deactivates " .. ability:GetName())
+
+      return true, GetTarget(bot, ability)
+    end
+  else
+    if target ~= nil
+       and target:IsHero()
+       and not common_algorithms.IsUnitLowHp(bot) then
+
+      logger.Print("activate_on_attack_enemy_hero() - " ..
+        bot:GetUnitName() .. " activates " .. ability:GetName())
+
+      return true, GetTarget(bot, ability)
+    end
+  end
+  return false, nil
+end
+
 local function UseOnAttackEnemyUnit(
   bot,
   ability,
