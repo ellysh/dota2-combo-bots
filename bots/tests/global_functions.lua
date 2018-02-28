@@ -295,12 +295,6 @@ function GetDroppedItemList()
     location = ITEM_LOCATION }}
 end
 
--- The real Vector function creaes a Vector object.
-
-function Vector(x, y, z)
-  return {x, y}
-end
-
 NEUTRAL_CAMP_LOCATION = {15, 15}
 
 function GetNeutralSpawners()

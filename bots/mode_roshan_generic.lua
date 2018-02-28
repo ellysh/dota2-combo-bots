@@ -21,11 +21,10 @@ function GetDesire()
 end
 
 function Think()
-  local ROSHAN_PIT_RADIUS = 180
   local bot = GetBot()
-  local target_location = Vector(-2190, 1650, ROSHAN_PIT_RADIUS)
+  local target_location = constants.ROSHAN_PIT_LOCATION
 
-  if ROSHAN_PIT_RADIUS
+  if constants.ROSHAN_PIT_RADIUS
      < GetUnitToLocationDistance(bot, target_location) then
 
     move.Move(bot, target_location)

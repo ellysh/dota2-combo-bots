@@ -157,6 +157,20 @@ function M.has_high_damage_and_health()
   return 1000 <= bot:GetHealth() and 100 <= bot:GetAttackDamage()
 end
 
+function M.ally_hero_in_roshpit()
+  local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
+
+  local hero = functions.GetElementWith(
+    ally_heroes,
+    nil,
+    function(unit)
+      return GetUnitToLocationDistance(unit, constants.ROSHPIT_LOCATION)
+             <= constants.ROSHAN_PIT_RADIUS
+    end)
+
+  return hero ~= nil
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_PlayerOnLane = PlayerOnLane
 

@@ -5,6 +5,12 @@ function GetScriptDirectory()
   return ".."
 end
 
+-- The real Vector function creaes a Vector object.
+
+function Vector(x, y, z)
+  return {x, y}
+end
+
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
 

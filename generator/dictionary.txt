@@ -2,6 +2,7 @@ activate_on_attack_enemy_hero
 all_enemy_team_dead
 ally_has_aegis
 ally_has_cheese
+ally_hero_in_roshpit
 ally_hero_is_near
 ally_mega_creeps
 always_self

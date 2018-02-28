@@ -65,6 +65,9 @@ M.MAX_CREEP_ATTACK_RANGE = 690
 M.MAX_TOWER_ATTACK_RANGE = 700
 M.MAX_HERO_ATTACK_RANGE = 700
 
+M.ROSHAN_PIT_RADIUS = 180
+M.ROSHAN_PIT_LOCATION = Vector(-2190, 1650, ROSHAN_PIT_RADIUS)
+
 -- This is a mapping string from database to the numeric constants for API
 M.BOT_MODES = {
   BOT_MODE_NONE = 0,
