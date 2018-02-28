@@ -6,6 +6,25 @@ require("global_functions")
 local luaunit = require("luaunit")
 local inventory = require("inventory")
 
+function test_FreeInventorySlot_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+
+  bot.inventory = {
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+    "item_branches",
+  }
+
+  inventory.test_FreeInventorySlot(bot)
+
+  luaunit.assertEquals(bot.inventory[1], nil)
+end
+
 function test_PickUpItem_pickup_succeed()
   test_RefreshBot()
 

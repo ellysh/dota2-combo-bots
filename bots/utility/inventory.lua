@@ -17,7 +17,7 @@ local function FreeInventorySlot(bot)
   local empty_index = -1
   for i = 6, 8, 1 do
     local item = bot:GetItemInSlot(i)
-    if item ~= nil and item:GetName() ~= "nil" then
+    if item == nil or item:GetName() == "nil" then
       empty_index = i
       break
     end
@@ -63,5 +63,8 @@ function M.PickUpItem()
     ::continue::
   end
 end
+
+-- Provide an access to local functions for unit tests only
+M.test_FreeInventorySlot = FreeInventorySlot
 
 return M

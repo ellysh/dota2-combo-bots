@@ -644,6 +644,12 @@ function Unit:IsMuted()
   return UNIT_IS_MUTED
 end
 
+function Unit:ActionImmediate_SwapItems(index1, index2)
+  local tmp = self.inventory[index1+1]
+  self.inventory[index1+1] = self.inventory[index2+1]
+  self.inventory[index2+1] = tmp
+end
+
 ------------------------------------------
 
 Ability = {}
