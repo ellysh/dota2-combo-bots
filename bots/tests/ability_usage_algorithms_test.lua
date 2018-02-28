@@ -113,8 +113,6 @@ local function test_algorithm_pattern_succeed(algorithm, expect_target)
 end
 
 local function test_algorithm_pattern_fails(algorithm)
-  test_RefreshBot()
-
   local ability = Ability:new("crystal_maiden_crystal_nova")
 
   local desire, target = algorithms[algorithm](
@@ -731,6 +729,89 @@ function test_always_self_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
 
   test_algorithm_pattern_succeed("always_self", nil)
+end
+
+function test_activate_on_attack_enemy_hero_activate_succeed()
+  test_RefreshBot()
+
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = false
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+end
+
+function test_activate_on_attack_enemy_hero_activate_low_hp_fails()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 10
+
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = false
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
+end
+
+function test_activate_on_attack_enemy_hero_activate_not_hero_fails()
+  test_RefreshBot()
+
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = false
+  UNIT_IS_HERO = false
+
+  test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
+end
+
+function test_activate_on_attack_enemy_hero_deactivate_no_target_succeed()
+  test_RefreshBot()
+
+  ATTACK_TARGET = nil
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = true
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+end
+
+function test_activate_on_attack_enemy_hero_deactivate_not_hero_succeed()
+  test_RefreshBot()
+
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = true
+  UNIT_IS_HERO = false
+
+  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+end
+
+function test_activate_on_attack_enemy_hero_deactivate_low_hp_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.health = 10
+
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = true
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+end
+
+function test_activate_on_attack_enemy_hero_deactivate_fails()
+  test_RefreshBot()
+
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
+  ABILITY_ACTIVATED_STATE = true
+  UNIT_IS_HERO = true
+
+  test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
 end
 
 os.exit(luaunit.LuaUnit.run())

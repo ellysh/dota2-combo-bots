@@ -733,6 +733,12 @@ function Ability:GetAutoCastState()
   return ABILITY_TOGGLE_STATE
 end
 
+ABILITY_ACTIVATED_STATE = false
+
+function Ability:IsActivated()
+  return ABILITY_ACTIVATED_STATE
+end
+
 function Ability:ToggleAutoCast()
   ABILITY_TOGGLE_STATE = not ABILITY_TOGGLE_STATE
 end
