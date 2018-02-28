@@ -161,6 +161,9 @@ function M.SetNeutralCampEmpty(location)
       return camp.location == location
     end)
 
+  if key == nil then
+    return end
+
   NEUTRAL_CAMP_LIST[key].is_full = false
 end
 
