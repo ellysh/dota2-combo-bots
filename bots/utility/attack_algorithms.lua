@@ -163,6 +163,8 @@ function M.assist_ally_hero(bot, radius)
       return target ~= nil
              and target:IsHero()
              and common_algorithms.IsAttackTargetable(target)
+             and GetUnitToUnitDistance(unit, target)
+                 <= constants.MAX_ASSIST_RADIUS
     end)
 
   if attacking_ally == nil or target == nil then
