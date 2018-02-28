@@ -358,6 +358,11 @@ function M.TableConcat(t1, t2)
   return t1
 end
 
+function M.IsUnitInRoshpit(unit)
+  return GetUnitToLocationDistance(unit, constants.ROSHAN_PIT_LOCATION)
+         <= constants.ROSHAN_PIT_RADIUS
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet

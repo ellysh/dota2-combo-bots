@@ -13,7 +13,8 @@ end
 function M.PickUpItem()
   local bot = GetBot()
 
-  if (not IsRoshanMode(bot) and functions.IsBotInFightingMode(bot))
+  if (not functions.IsUnitInRoshpit(bot)
+      and functions.IsBotInFightingMode(bot))
      or functions.IsBotCasting(bot)
      or functions.IsInventoryFull(bot) then
     return end

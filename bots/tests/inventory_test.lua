@@ -29,10 +29,13 @@ function test_PickUpItem_move_succeed()
   luaunit.assertEquals(UNIT_MOVE_LOCATION, {1000, 1000})
 end
 
-function test_PickUpItem_pickup_mode_roshan_succeed()
+function test_PickUpItem_pickup_in_roshpit_succeed()
   test_RefreshBot()
 
-  ITEM_LOCATION = {10, 10}
+  local bot = GetBot()
+  bot.location = {-2190, 1650}
+
+  ITEM_LOCATION = {-2190, 1650}
   UNIT_PICKUP_ITEM = nil
   UNIT_MODE = BOT_MODE_ROSHAN
 

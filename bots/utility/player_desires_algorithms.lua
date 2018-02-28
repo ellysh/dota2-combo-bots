@@ -164,10 +164,7 @@ function M.ally_hero_in_roshpit()
     ally_heroes,
     nil,
     function(unit)
-      return GetUnitToLocationDistance(
-               unit,
-               constants.ROSHAN_PIT_LOCATION)
-             <= constants.ROSHAN_PIT_RADIUS
+      return functions.IsUnitInRoshpit(unit)
     end)
 
   return hero ~= nil
