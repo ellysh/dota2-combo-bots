@@ -6,10 +6,14 @@ local functions = require(
 
 local M = {}
 
+local function IsRoshanMode(bot)
+  return bot:GetActiveMode() == BOT_MODE_ROSHAN
+end
+
 function M.PickUpItem()
   local bot = GetBot()
 
-  if functions.IsBotInFightingMode(bot)
+  if (not IsRoshanMode(bot) and functions.IsBotInFightingMode(bot))
      or functions.IsBotCasting(bot)
      or functions.IsInventoryFull(bot) then
     return end

@@ -11,6 +11,7 @@ function test_PickUpItem_pickup_succeed()
 
   ITEM_LOCATION = {10, 10}
   UNIT_PICKUP_ITEM = nil
+  UNIT_MODE = BOT_MODE_NONE
 
   inventory.PickUpItem()
 
@@ -26,6 +27,30 @@ function test_PickUpItem_move_succeed()
   inventory.PickUpItem()
 
   luaunit.assertEquals(UNIT_MOVE_LOCATION, {1000, 1000})
+end
+
+function test_PickUpItem_pickup_mode_roshan_succeed()
+  test_RefreshBot()
+
+  ITEM_LOCATION = {10, 10}
+  UNIT_PICKUP_ITEM = nil
+  UNIT_MODE = BOT_MODE_ROSHAN
+
+  inventory.PickUpItem()
+
+  luaunit.assertEquals(UNIT_PICKUP_ITEM, Item:new("item_branches"))
+end
+
+function test_PickUpItem_pickup_mode_attack_fails()
+  test_RefreshBot()
+
+  ITEM_LOCATION = {10, 10}
+  UNIT_PICKUP_ITEM = nil
+  UNIT_MODE = BOT_MODE_ATTACK
+
+  inventory.PickUpItem()
+
+  luaunit.assertEquals(UNIT_PICKUP_ITEM, nil)
 end
 
 function test_PickUpItem_too_far_fails()
