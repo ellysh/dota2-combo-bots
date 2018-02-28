@@ -363,6 +363,10 @@ function M.IsUnitInRoshpit(unit)
          <= constants.ROSHAN_PIT_RADIUS
 end
 
+function M.IsEnemy(unit)
+  return unit:GetTeam() ~= GetTeam()
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
