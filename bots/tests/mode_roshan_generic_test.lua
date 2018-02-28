@@ -44,7 +44,7 @@ function test_Think_move_succeed()
 
   Think()
 
-  luaunit.assertEquals(UNIT_MOVE_LOCATION, {-2190, 1650})
+  luaunit.assertEquals(UNIT_MOVE_LOCATION, {-2250, 1700})
 end
 
 os.exit(luaunit.LuaUnit.run())
