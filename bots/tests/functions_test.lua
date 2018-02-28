@@ -67,7 +67,7 @@ function test_GetItemSlotsCount_succeed()
   local bot = GetBot()
 
   luaunit.assertEquals(
-    functions.test_GetItemSlotsCount(
+    functions.GetItemSlotsCount(
       bot,
       constants.INVENTORY_START_INDEX,
       constants.INVENTORY_END_INDEX),
@@ -85,7 +85,7 @@ function test_GetItemSlotsCount_succeed()
   }
 
   luaunit.assertEquals(
-    functions.test_GetItemSlotsCount(
+    functions.GetItemSlotsCount(
       bot,
       constants.INVENTORY_START_INDEX,
       constants.INVENTORY_END_INDEX),

@@ -11,7 +11,7 @@ local function IsRoshanMode(bot)
 end
 
 local function FreeInventorySlot(bot)
-  if GetItemSlotsCount(bot, 0, 5) < 6 then
+  if functions.GetItemSlotsCount(bot, 0, 5) < 6 then
     return end
 
   local empty_index = -1

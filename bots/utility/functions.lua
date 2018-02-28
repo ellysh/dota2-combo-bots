@@ -72,7 +72,7 @@ function M.GetItems(unit, start_index, end_index, get_function)
   return items_number, item_list
 end
 
-local function GetItemSlotsCount(unit, start_index, end_index)
+function M.GetItemSlotsCount(unit, start_index, end_index)
   local result, _ = M.GetItems(
     unit,
     start_index,
@@ -84,7 +84,7 @@ end
 
 function M.IsInventoryFull(unit)
   return constants.INVENTORY_SIZE <=
-           GetItemSlotsCount(
+           M.GetItemSlotsCount(
              unit,
              constants.INVENTORY_START_INDEX,
              constants.INVENTORY_END_INDEX)
@@ -92,7 +92,7 @@ end
 
 function M.IsStashFull(unit)
   return constants.STASH_SIZE <=
-           GetItemSlotsCount(
+           M.GetItemSlotsCount(
              unit,
              constants.STASH_START_INDEX,
              constants.STASH_END_INDEX)
@@ -368,7 +368,6 @@ function M.IsEnemy(unit)
 end
 
 -- Provide an access to local functions for unit tests only
-M.test_GetItemSlotsCount = GetItemSlotsCount
 M.test_IsFlagSet = IsFlagSet
 M.test_GetNormalizedDesire = GetNormalizedDesire
 
