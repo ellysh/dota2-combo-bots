@@ -736,7 +736,7 @@ function test_activate_on_attack_enemy_hero_activate_succeed()
 
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = false
+  ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = true
 
   test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
@@ -750,7 +750,7 @@ function test_activate_on_attack_enemy_hero_activate_low_hp_fails()
 
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = false
+  ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = true
 
   test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
@@ -761,7 +761,7 @@ function test_activate_on_attack_enemy_hero_activate_not_hero_fails()
 
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = false
+  ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = false
 
   test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
@@ -772,7 +772,7 @@ function test_activate_on_attack_enemy_hero_deactivate_no_target_succeed()
 
   ATTACK_TARGET = nil
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = true
+  ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = true
 
   test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
@@ -783,7 +783,7 @@ function test_activate_on_attack_enemy_hero_deactivate_not_hero_succeed()
 
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = true
+  ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = false
 
   test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
@@ -797,7 +797,7 @@ function test_activate_on_attack_enemy_hero_deactivate_low_hp_succeed()
 
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = true
+  ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = true
 
   test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
@@ -808,7 +808,7 @@ function test_activate_on_attack_enemy_hero_deactivate_fails()
 
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  ABILITY_ACTIVATED_STATE = true
+  ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = true
 
   test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
