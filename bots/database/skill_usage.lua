@@ -103,7 +103,7 @@ M.SKILL_USAGE = {
   },
 
   drow_ranger_frost_arrows = {
-      any_mode = {algorithms["toggle_on_attack_enemy_hero"], 90},
+      any_mode = {algorithms["autocast_on_attack_enemy_hero"], 90},
       team_fight = {algorithms["nil"], nil},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
