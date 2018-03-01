@@ -14,7 +14,7 @@ function M.IsAttackTargetable(unit)
 end
 
 function M.CompareMaxHealth(t, a, b)
-  return t[b]:GetHealth() < t[a]:GetHealth()
+  return t[b]:GetMaxHealth() < t[a]:GetMaxHealth()
 end
 
 function M.CompareMinHealth(t, a, b)

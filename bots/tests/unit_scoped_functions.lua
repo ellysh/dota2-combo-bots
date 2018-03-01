@@ -316,16 +316,19 @@ function Unit:GetNearbyNeutralCreeps(radius)
 
   local unit1 = Unit:new()
   unit1.name = "neutral1"
+  unit1.max_health = 150
   unit1.health = 10
   unit1.location = {10, 10}
 
   local unit2 = Unit:new()
   unit2.name = "neutral2"
+  unit2.max_health = 210
   unit2.health = 210
   unit2.location = {20, 20}
 
   local unit3 = Unit:new()
   unit3.name = "npc_dota_roshan"
+  unit3.max_health = 180
   unit3.health = 180
   unit3.location = {15, 15}
 
@@ -338,16 +341,19 @@ function Unit:GetNearbyCreeps(radius, enemies)
 
   local unit1 = Unit:new()
   unit1.name = "creep1"
+  unit1.max_health = 150
   unit1.health = 10
   unit1.location = {10, 10}
 
   local unit2 = Unit:new()
   unit2.name = "creep2"
+  unit2.max_health = 200
   unit2.health = 200
   unit2.location = {20, 20}
 
   local unit3 = Unit:new()
   unit3.name = "creep3"
+  unit3.max_health = 180
   unit3.health = 180
   unit3.location = {15, 15}
 

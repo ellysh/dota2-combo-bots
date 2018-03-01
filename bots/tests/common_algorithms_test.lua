@@ -392,7 +392,7 @@ end
 function test_CompareMaxHealth_succeed()
   local unit1 = Unit:new()
   local unit2 = Unit:new()
-  unit2.health = 10
+  unit2.max_health = 10
 
   local table = {unit1, unit2}
 
