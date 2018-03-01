@@ -228,7 +228,7 @@ function M.three_and_more_enemy_heroes(bot, ability)
   return false, nil
 end
 
-function M.toggle_on_attack_enemy_hero(bot, ability)
+function M.autocast_on_attack_enemy_hero(bot, ability)
   local target = bot:GetTarget()
 
   if target == nil then
@@ -237,14 +237,14 @@ function M.toggle_on_attack_enemy_hero(bot, ability)
   if not ability:GetAutoCastState() and target:IsHero() then
     -- Enable the ability when we are attacking an enemy hero
 
-    logger.Print("toggle_on_attack_enemy_hero() - " ..
+    logger.Print("autocast_on_attack_enemy_hero() - " ..
       bot:GetUnitName() .. " activates " .. ability:GetName())
 
     ability:ToggleAutoCast()
   elseif ability:GetAutoCastState() and not target:IsHero() then
     -- Disable the ability when we are attacking a creep
 
-    logger.Print("toggle_on_attack_enemy_hero() - " ..
+    logger.Print("autocast_on_attack_enemy_hero() - " ..
       bot:GetUnitName() .. " deactivates " .. ability:GetName())
 
     ability:ToggleAutoCast()
@@ -253,7 +253,7 @@ function M.toggle_on_attack_enemy_hero(bot, ability)
   return false, nil
 end
 
-function M.activate_on_attack_enemy_hero(bot, ability)
+function M.toggle_on_attack_enemy_hero(bot, ability)
   local target = bot:GetTarget()
   local is_activated = ability:GetToggleState()
 
@@ -262,7 +262,7 @@ function M.activate_on_attack_enemy_hero(bot, ability)
        or not target:IsHero()
        or common_algorithms.IsUnitLowHp(bot) then
 
-      logger.Print("activate_on_attack_enemy_hero() - " ..
+      logger.Print("toggle_on_attack_enemy_hero() - " ..
         bot:GetUnitName() .. " deactivates " .. ability:GetName())
 
       return true, GetTarget(bot, ability)
@@ -272,7 +272,7 @@ function M.activate_on_attack_enemy_hero(bot, ability)
        and target:IsHero()
        and not common_algorithms.IsUnitLowHp(bot) then
 
-      logger.Print("activate_on_attack_enemy_hero() - " ..
+      logger.Print("toggle_on_attack_enemy_hero() - " ..
         bot:GetUnitName() .. " activates " .. ability:GetName())
 
       return true, GetTarget(bot, ability)

@@ -1,4 +1,3 @@
-activate_on_attack_enemy_hero
 all_enemy_team_dead
 ally_has_aegis
 ally_has_cheese
@@ -13,6 +12,7 @@ attacked_enemy_hero
 attacked_not_disabled_enemy_hero
 attacking_enemy_creep
 attacking_enemy_hero
+autocast_on_attack_enemy_hero
 channeling_enemy_hero
 chaos_knight_chaos_bolt
 chaos_knight_phantasm

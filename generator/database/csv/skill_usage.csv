@@ -29,7 +29,7 @@ lion_voodoo;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacke
 "phantom_assassin_phantom_strike ";;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
 "phantom_assassin_stifling_dagger ";min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;90;last_hit_enemy_creep;50;attacked_enemy_creep;70;;;attacked_enemy_hero;60;attacked_enemy_hero;50;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
 phantom_lancer_doppelwalk;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-phantom_lancer_phantom_edge;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
+phantom_lancer_phantom_edge;autocast_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 phantom_lancer_spirit_lance;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;attacked_enemy_hero;60;attacked_enemy_hero;50;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
 "shadow_shaman_ether_shock ";min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;50;;;attacked_enemy_creep;90;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
 "shadow_shaman_mass_serpent_ward ";;;attacked_enemy_hero;90;;;;;attacked_enemy_building;90;;;;;;;;;;90;;;;;;
@@ -53,7 +53,7 @@ item_clarity;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;
 item_magic_stick;low_hp_charges_self;70;;;;;;;;;;;;;;;;;;;;;;;;
 item_magic_wand;low_hp_charges_self;70;;;;;;;;;;;;;;;;;;;;;;;;
 "  item_black_king_bar";;;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;50;;;;;;;half_hp_self;60;;;low_hp_self;70;;
-item_armlet;activate_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
+item_armlet;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 item_mask_of_madness;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
 item_phase_boots;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 item_butterfly;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;

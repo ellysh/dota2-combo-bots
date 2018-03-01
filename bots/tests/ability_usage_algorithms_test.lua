@@ -300,41 +300,41 @@ function test_three_and_more_enemy_heroes_when_hits_only_2_fails()
 
   test_algorithm_pattern_fails("three_and_more_enemy_heroes")
 end
-local function test_toggle_on_attack_enemy_hero_pattern(expected_state)
+local function test_autocast_on_attack_enemy_hero_pattern(expected_state)
   test_RefreshBot()
 
   local ability = Ability:new("drow_ranger_frost_arrows")
 
   local desire, target =
-    algorithms.toggle_on_attack_enemy_hero(
+    algorithms.autocast_on_attack_enemy_hero(
       GetBot(),
       ability)
 
   luaunit.assertEquals(ABILITY_TOGGLE_STATE, expected_state)
 end
 
-function test_toggle_on_attack_enemy_hero_activate_succeed()
+function test_autocast_on_attack_enemy_hero_activate_succeed()
   ATTACK_TARGET = Unit:new()
   ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = true
 
-  test_toggle_on_attack_enemy_hero_pattern(true)
+  test_autocast_on_attack_enemy_hero_pattern(true)
 end
 
-function test_toggle_on_attack_enemy_hero_deactivate_succeed()
+function test_autocast_on_attack_enemy_hero_deactivate_succeed()
   ATTACK_TARGET = Unit:new()
   ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = false
 
-  test_toggle_on_attack_enemy_hero_pattern(false)
+  test_autocast_on_attack_enemy_hero_pattern(false)
 end
 
-function test_toggle_on_attack_enemy_hero_no_target_fails()
+function test_autocast_on_attack_enemy_hero_no_target_fails()
   ATTACK_TARGET = nil
   ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = true
 
-  test_toggle_on_attack_enemy_hero_pattern(false)
+  test_autocast_on_attack_enemy_hero_pattern(false)
 end
 
 local function test_UseOnAttackEnemyUnit_pattern(
@@ -731,7 +731,7 @@ function test_always_self_succeed()
   test_algorithm_pattern_succeed("always_self", nil)
 end
 
-function test_activate_on_attack_enemy_hero_activate_succeed()
+function test_toggle_on_attack_enemy_hero_activate_succeed()
   test_RefreshBot()
 
   ATTACK_TARGET = Unit:new()
@@ -739,10 +739,10 @@ function test_activate_on_attack_enemy_hero_activate_succeed()
   ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+  test_algorithm_pattern_succeed("toggle_on_attack_enemy_hero", nil)
 end
 
-function test_activate_on_attack_enemy_hero_activate_low_hp_fails()
+function test_toggle_on_attack_enemy_hero_activate_low_hp_fails()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -753,10 +753,10 @@ function test_activate_on_attack_enemy_hero_activate_low_hp_fails()
   ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
+  test_algorithm_pattern_fails("toggle_on_attack_enemy_hero")
 end
 
-function test_activate_on_attack_enemy_hero_activate_not_hero_fails()
+function test_toggle_on_attack_enemy_hero_activate_not_hero_fails()
   test_RefreshBot()
 
   ATTACK_TARGET = Unit:new()
@@ -764,10 +764,10 @@ function test_activate_on_attack_enemy_hero_activate_not_hero_fails()
   ABILITY_TOGGLE_STATE = false
   UNIT_IS_HERO = false
 
-  test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
+  test_algorithm_pattern_fails("toggle_on_attack_enemy_hero")
 end
 
-function test_activate_on_attack_enemy_hero_deactivate_no_target_succeed()
+function test_toggle_on_attack_enemy_hero_deactivate_no_target_succeed()
   test_RefreshBot()
 
   ATTACK_TARGET = nil
@@ -775,10 +775,10 @@ function test_activate_on_attack_enemy_hero_deactivate_no_target_succeed()
   ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+  test_algorithm_pattern_succeed("toggle_on_attack_enemy_hero", nil)
 end
 
-function test_activate_on_attack_enemy_hero_deactivate_not_hero_succeed()
+function test_toggle_on_attack_enemy_hero_deactivate_not_hero_succeed()
   test_RefreshBot()
 
   ATTACK_TARGET = Unit:new()
@@ -786,10 +786,10 @@ function test_activate_on_attack_enemy_hero_deactivate_not_hero_succeed()
   ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = false
 
-  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+  test_algorithm_pattern_succeed("toggle_on_attack_enemy_hero", nil)
 end
 
-function test_activate_on_attack_enemy_hero_deactivate_low_hp_succeed()
+function test_toggle_on_attack_enemy_hero_deactivate_low_hp_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
@@ -800,10 +800,10 @@ function test_activate_on_attack_enemy_hero_deactivate_low_hp_succeed()
   ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_succeed("activate_on_attack_enemy_hero", nil)
+  test_algorithm_pattern_succeed("toggle_on_attack_enemy_hero", nil)
 end
 
-function test_activate_on_attack_enemy_hero_deactivate_fails()
+function test_toggle_on_attack_enemy_hero_deactivate_fails()
   test_RefreshBot()
 
   ATTACK_TARGET = Unit:new()
@@ -811,7 +811,7 @@ function test_activate_on_attack_enemy_hero_deactivate_fails()
   ABILITY_TOGGLE_STATE = true
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_fails("activate_on_attack_enemy_hero")
+  test_algorithm_pattern_fails("toggle_on_attack_enemy_hero")
 end
 
 os.exit(luaunit.LuaUnit.run())
