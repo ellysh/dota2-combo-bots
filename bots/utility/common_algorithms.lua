@@ -7,8 +7,7 @@ local constants = require(
 local M = {}
 
 function M.IsAttackTargetable(unit)
-  return unit:CanBeSeen()
-         and unit:IsAlive()
+  return unit:IsAlive()
          and not unit:IsInvulnerable()
          and not unit:IsIllusion()
 end

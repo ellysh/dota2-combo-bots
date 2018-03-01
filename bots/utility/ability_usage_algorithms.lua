@@ -13,8 +13,7 @@ local common_algorithms = require(
 local M = {}
 
 local function IsTargetable(unit)
-  return unit:CanBeSeen()
-         and unit:IsAlive()
+  return unit:IsAlive()
          and not unit:IsMagicImmune()
          and not unit:IsInvulnerable()
          and not unit:IsIllusion()
