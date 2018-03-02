@@ -29,6 +29,7 @@ function test_PickUpItem_pickup_succeed()
   test_RefreshBot()
 
   ITEM_LOCATION = {10, 10}
+  ITEM_OWNER = nil
   UNIT_PICKUP_ITEM = nil
   UNIT_MODE = BOT_MODE_NONE
 

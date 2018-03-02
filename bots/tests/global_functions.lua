@@ -291,11 +291,12 @@ function GetHeroLastSeenInfo()
 end
 
 ITEM_LOCATION = {10, 10}
+ITEM_OWNER = Unit:new()
 
 function GetDroppedItemList()
   return {{
     item = Item:new("item_branches"),
-    owner = Unit:new(),
+    owner = ITEM_OWNER,
     location = ITEM_LOCATION }}
 end
 
