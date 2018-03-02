@@ -87,4 +87,45 @@ function test_PickUpItem_too_far_fails()
   luaunit.assertEquals(UNIT_MOVE_LOCATION, nil)
 end
 
+function test_PickUpItem_pickup_item_of_ally_fails()
+  test_RefreshBot()
+
+  ITEM_LOCATION = {10, 10}
+  ITEM_OWNER = Unit:new()
+  UNIT_PICKUP_ITEM = nil
+  UNIT_MODE = BOT_MODE_NONE
+
+  inventory.PickUpItem()
+
+  luaunit.assertEquals(UNIT_PICKUP_ITEM, nil)
+end
+
+function test_PickUpItem_pickup_item_of_dead_ally_succeed()
+  test_RefreshBot()
+
+  ITEM_LOCATION = {10, 10}
+  ITEM_OWNER = Unit:new()
+  ITEM_OWNER.health = 0
+  UNIT_PICKUP_ITEM = nil
+  UNIT_MODE = BOT_MODE_NONE
+
+  inventory.PickUpItem()
+
+  luaunit.assertEquals(UNIT_PICKUP_ITEM, Item:new("item_branches"))
+end
+
+function test_PickUpItem_pickup_item_of_far_ally_succeed()
+  test_RefreshBot()
+
+  ITEM_LOCATION = {10, 10}
+  ITEM_OWNER = Unit:new()
+  ITEM_OWNER.location = {1000, 1000}
+  UNIT_PICKUP_ITEM = nil
+  UNIT_MODE = BOT_MODE_NONE
+
+  inventory.PickUpItem()
+
+  luaunit.assertEquals(UNIT_PICKUP_ITEM, Item:new("item_branches"))
+end
+
 os.exit(luaunit.LuaUnit.run())
