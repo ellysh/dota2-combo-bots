@@ -170,5 +170,6 @@ end
 -- Provide an access to local functions for unit tests only
 M.test_InitPurchaseList = InitPurchaseList
 M.test_IsRecipeItem = IsRecipeItem
+M.test_NeutralCampSpawn = NeutralCampSpawn
 
 return M

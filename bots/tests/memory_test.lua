@@ -78,4 +78,85 @@ function test_IsRecipeItem_fails()
 
 end
 
+function test_InitNeutralCampList_succeed()
+  NEUTRAL_CAMP_LIST = {}
+
+  memory.InitNeutralCampList()
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=true, location={15, 15}, type="medium"}})
+end
+
+function test_InitNeutralCampList_reinit_succeed()
+  NEUTRAL_CAMP_LIST = {}
+
+  memory.InitNeutralCampList()
+  memory.InitNeutralCampList()
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=true, location={15, 15}, type="medium"}})
+end
+
+function test_Rememeber_init_succeed()
+  NEUTRAL_CAMP_LIST = {}
+
+  memory.Remember()
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=true, location={15, 15}, type="medium"}})
+end
+
+function test_NeutralCampSpawn_succeed()
+  NEUTRAL_CAMP_LIST = {{is_full=false, location={15, 15}, type="medium"}}
+
+  TIME = 120
+  memory.test_NeutralCampSpawn()
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=true, location={15, 15}, type="medium"}})
+end
+
+function test_NeutralCampSpawn_too_early_fails()
+  NEUTRAL_CAMP_LIST = {{is_full=false, location={15, 15}, type="medium"}}
+
+  TIME = 119
+  memory.test_NeutralCampSpawn()
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=false, location={15, 15}, type="medium"}})
+end
+
+function test_NeutralCampSpawn_succeed()
+  NEUTRAL_CAMP_LIST = {{is_full=false, location={15, 15}, type="medium"}}
+
+  local camps = memory.GetNeutralCampList()
+
+  luaunit.assertEquals(camps, NEUTRAL_CAMP_LIST)
+end
+
+function test_SetNeutralCampEmpty_succeed()
+  NEUTRAL_CAMP_LIST = {{is_full=true, location={15, 15}, type="medium"}}
+
+  memory.SetNeutralCampEmpty({15, 15})
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=false, location={15, 15}, type="medium"}})
+end
+
+function test_SetNeutralCampEmpty_wrong_coordinates_fails()
+  NEUTRAL_CAMP_LIST = {{is_full=true, location={15, 15}, type="medium"}}
+
+  memory.SetNeutralCampEmpty({10, 20})
+
+  luaunit.assertEquals(
+    NEUTRAL_CAMP_LIST,
+    {{is_full=true, location={15, 15}, type="medium"}})
+end
+
 os.exit(luaunit.LuaUnit.run())
