@@ -267,4 +267,38 @@ function test_has_high_damage_and_health_low_damage_fails()
   luaunit.assertFalse(algorithms.has_high_damage_and_health())
 end
 
+function test_ally_hero_in_roshpit_succeed()
+  test_RefreshBot()
+
+  local unit = Unit:new()
+  unit.location = {-2250, 1700}
+
+  UNITS = {unit}
+
+  luaunit.assertTrue(algorithms.ally_hero_in_roshpit())
+end
+
+function test_ally_hero_in_roshpit_too_far_fails()
+  test_RefreshBot()
+
+  local unit = Unit:new()
+  unit.location = {-1000, 1000}
+
+  UNITS = {unit}
+
+  luaunit.assertFalse(algorithms.ally_hero_in_roshpit())
+end
+
+function test_ally_hero_in_roshpit_dead_fails()
+  test_RefreshBot()
+
+  local unit = Unit:new()
+  unit.location = {-2250, 1700}
+  unit.health = 0
+
+  UNITS = {unit}
+
+  luaunit.assertFalse(algorithms.ally_hero_in_roshpit())
+end
+
 os.exit(luaunit.LuaUnit.run())

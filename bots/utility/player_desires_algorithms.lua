@@ -165,6 +165,7 @@ function M.ally_hero_in_roshpit()
     nil,
     function(unit)
       return functions.IsUnitInRoshpit(unit)
+             and unit:IsAlive()
     end)
 
   return hero ~= nil
