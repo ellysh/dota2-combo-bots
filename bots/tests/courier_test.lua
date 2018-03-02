@@ -7,7 +7,7 @@ local luaunit = require("luaunit")
 local courier = require("courier")
 local memory = require("memory")
 
-memory.MakePurchaseList(GetBot())
+memory.InitPurchaseList(GetBot())
 
 function test_IsCourierAvailable_succeed()
   local bot = GetBot()

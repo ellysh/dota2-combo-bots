@@ -7,13 +7,20 @@ local luaunit = require("luaunit")
 local memory = require("memory")
 local constants = require("constants")
 
+local function InitPurchaseList(bot)
+  local bot_name = bot:GetUnitName()
+
+  PURCHASE_LIST[bot_name] = {}
+  PURCHASE_LIST[bot_name].ITEM_BUILD = {}
+end
+
 function test_SetItemToSell_first_time_succeed()
   test_RefreshBot()
 
   local bot = GetBot()
 
   PURCHASE_LIST = {}
-  memory.test_InitPurchaseList(bot)
+  InitPurchaseList(bot)
   memory.SetItemToSell(bot, "item_tpscroll")
 
   luaunit.assertEquals(memory.GetItemToSell(bot), "item_tpscroll")
@@ -28,7 +35,7 @@ function test_SetItemToSell_second_time_succeed()
   local bot = GetBot()
 
   PURCHASE_LIST = {}
-  memory.test_InitPurchaseList(bot)
+  InitPurchaseList(bot)
   memory.SetItemToSell(bot, "item_tpscroll")
 
   PURCHASE_LIST[bot:GetUnitName()] = {}
@@ -45,7 +52,7 @@ function test_GetItemToSell_when_purchase_list_empty_fails()
 
   local bot = GetBot()
 
-  memory.test_InitPurchaseList(bot)
+  InitPurchaseList(bot)
 
   luaunit.assertEquals(memory.GetItemToSell(bot), nil)
 end
@@ -54,7 +61,7 @@ function test_GetItemToBuy_when_purchase_list_empty_fails()
   test_RefreshBot()
 
   local bot = GetBot()
-  memory.test_InitPurchaseList(bot)
+  InitPurchaseList(bot)
 
   luaunit.assertEquals(memory.GetItemToBuy(bot), nil)
 end

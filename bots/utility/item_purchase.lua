@@ -1,11 +1,11 @@
 local logger = require(
-  GetScriptDirectory() .."/utility/logger")
+GetScriptDirectory() .."/utility/logger")
 
 local item_sell = require(
-  GetScriptDirectory() .."/database/item_sell")
+GetScriptDirectory() .."/database/item_sell")
 
 local constants = require(
-  GetScriptDirectory() .."/utility/constants")
+GetScriptDirectory() .."/utility/constants")
 
 local functions = require(
   GetScriptDirectory() .."/utility/functions")
@@ -199,7 +199,7 @@ end
 function M.ItemPurchaseThink()
   local bot = GetBot()
 
-  memory.MakePurchaseList(bot)
+  memory.InitPurchaseList(bot)
 
   PerformSell(bot)
 

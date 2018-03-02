@@ -24,11 +24,6 @@ local function IsInitPurchaseList(bot)
   return PURCHASE_LIST ~= nil and PURCHASE_LIST[bot:GetUnitName()] ~= nil
 end
 
-local function InitPurchaseList(bot)
-  PURCHASE_LIST[bot:GetUnitName()] = {}
-  PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD = {}
-end
-
 function M.SetItemToSell(bot, item)
   PURCHASE_LIST[bot:GetUnitName()].ITEM_TO_SELL = item
 end
@@ -85,16 +80,19 @@ local function AddItemToList(list, item)
   end
 end
 
-function M.MakePurchaseList(bot)
+function M.InitPurchaseList(bot)
   if IsInitPurchaseList(bot) then
     return end
 
-  InitPurchaseList(bot)
+  local bot_name = bot:GetUnitName()
 
-  local item_list = item_builds.ITEM_BUILDS[bot:GetUnitName()].items
+  PURCHASE_LIST[bot_name] = {}
+  PURCHASE_LIST[bot_name].ITEM_BUILD = {}
+
+  local item_list = item_builds.ITEM_BUILDS[bot_name].items
 
   for _, item in functions.spairs(item_list) do
-    AddItemToList(PURCHASE_LIST[bot:GetUnitName()].ITEM_BUILD, item)
+    AddItemToList(PURCHASE_LIST[bot_name].ITEM_BUILD, item)
   end
 end
 
@@ -168,7 +166,6 @@ function M.SetNeutralCampEmpty(location)
 end
 
 -- Provide an access to local functions for unit tests only
-M.test_InitPurchaseList = InitPurchaseList
 M.test_IsRecipeItem = IsRecipeItem
 M.test_NeutralCampSpawn = NeutralCampSpawn
 
