@@ -1,3 +1,11 @@
+* version 1.3
+  - Fix priorities to attack enemy buildings. The current order is
+    ancient, barracks, towers.
+  - Do not use the CanBeSeen API function for checking attack and skill
+    usage targets. This function returns false for neutral creeps
+    because of the bug.
+  - Fix a bug with focusing max health targets.
+
 * version 1.2
   - Implement the farm mode.
   - Implement the Roshan mode.
