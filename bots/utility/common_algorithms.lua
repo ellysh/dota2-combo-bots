@@ -98,13 +98,31 @@ function M.GetAllyTowers(bot, radius)
   return bot:GetNearbyTowers(GetNormalizedRadius(radius), false)
 end
 
+-- TODO: Avoid code duplication in this method
+
 function M.GetEnemyBuildings(bot, radius)
+  local result = {}
+  local ancient = GetAncient(GetOpposingTeam())
+
+  if GetUnitToUnitDistance(bot, ancient) <= radius then
+    table.insert(result, ancient)
+  end
+
+  local barracks = bot:GetNearbyBarracks(
+    GetNormalizedRadius(radius),
+    true)
+
+  if #barracks ~= 0 then
+    functions.TableConcat(result, barracks)
+  end
+
   local towers = bot:GetNearbyTowers(GetNormalizedRadius(radius), true)
 
   if #towers ~= 0 then
-    return towers end
+    functions.TableConcat(result, towers)
+  end
 
-  return bot:GetNearbyBarracks(GetNormalizedRadius(radius), true)
+  return result
 end
 
 function M.IsEnemyHeroOnTheWay(bot, location)
