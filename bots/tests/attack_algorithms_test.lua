@@ -43,7 +43,6 @@ end
 function test_max_hp_enemy_creep_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("max_hp_enemy_creep", "creep2")
@@ -52,7 +51,6 @@ end
 function test_max_hp_enemy_creep_no_unit_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("max_hp_enemy_creep")
@@ -61,7 +59,6 @@ end
 function test_last_hit_enemy_creep_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("last_hit_enemy_creep", "creep1")
@@ -70,7 +67,6 @@ end
 function test_last_hit_enemy_creep_no_unit_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("last_hit_enemy_creep")
@@ -79,7 +75,6 @@ end
 function test_max_hp_neutral_creep_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("max_hp_neutral_creep", "neutral2")
@@ -88,7 +83,6 @@ end
 function test_max_hp_neutral_creep_no_unit_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("max_hp_neutral_creep")
@@ -114,7 +108,6 @@ end
 function test_low_hp_enemy_hero_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("low_hp_enemy_hero", "unit1")
@@ -123,7 +116,6 @@ end
 function test_low_hp_enemy_hero_no_unit_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("low_hp_enemy_hero")
@@ -132,7 +124,6 @@ end
 function test_low_hp_enemy_building_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_TOWERS = true
   UNIT_HAS_NEARBY_UNITS = true
 
@@ -142,7 +133,6 @@ end
 function test_low_hp_enemy_building_no_unit_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_TOWERS = true
   UNIT_HAS_NEARBY_UNITS = false
 
@@ -216,7 +206,6 @@ end
 function test_roshan_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("roshan", "npc_dota_roshan")
@@ -225,7 +214,6 @@ end
 function test_deny_ally_tower_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
   UNIT_HAS_NEARBY_TOWERS = true
 
