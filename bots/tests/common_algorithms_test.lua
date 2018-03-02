@@ -13,18 +13,9 @@ function test_IsAttackTargetable_default_succeed()
   luaunit.assertTrue(algorithms.IsAttackTargetable(unit))
 end
 
-function test_IsAttackTargetable_not_seen_fails()
-  local unit = Unit:new()
-
-  UNIT_CAN_BE_SEEN = false
-
-  luaunit.assertFalse(algorithms.IsAttackTargetable(unit))
-end
-
 function test_IsAttackTargetable_magic_immune_succeed()
   local unit = Unit:new()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_IS_MAGIC_IMMUNE = true
   UNIT_IS_ILLUSION = false
   UNIT_IS_INVULNERABLE = false

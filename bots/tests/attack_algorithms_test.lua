@@ -27,7 +27,7 @@ end
 function test_max_kills_enemy_hero_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_INVULNERABLE = false
 
   test_algorithm_pattern_succeed("max_kills_enemy_hero", "unit1")
 end
@@ -35,7 +35,7 @@ end
 function test_max_kills_enemy_hero_not_targetable_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = false
+  UNIT_IS_INVULNERABLE = true
 
   test_algorithm_pattern_fails("max_kills_enemy_hero")
 end

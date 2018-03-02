@@ -13,11 +13,6 @@ function test_IsTargetable()
 
   luaunit.assertTrue(algorithms.test_IsTargetable(unit))
 
-  UNIT_CAN_BE_SEEN = false
-
-  luaunit.assertFalse(algorithms.test_IsTargetable(unit))
-
-  UNIT_CAN_BE_SEEN = true
   UNIT_IS_MAGIC_IMMUNE = true
 
   luaunit.assertFalse(algorithms.test_IsTargetable(unit))
@@ -211,7 +206,7 @@ end
 
 function test_three_and_more_enemy_heroes_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed(
     "three_and_more_enemy_heroes_aoe",
@@ -220,28 +215,28 @@ end
 
 function test_three_and_more_enemy_heroes_aoe_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
-  UNIT_CAN_BE_SEEN = false
+  UNIT_IS_MAGIC_IMMUNE = true
 
   test_algorithm_pattern_fails("three_and_more_enemy_heroes_aoe")
 end
 
 function test_last_attacked_enemy_hero_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed("last_attacked_enemy_hero", {10, 10})
 end
 
 function test_last_attacked_enemy_hero_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_CAN_BE_SEEN = false
+  UNIT_IS_MAGIC_IMMUNE = true
 
   test_algorithm_pattern_fails("last_attacked_enemy_hero")
 end
 
 function test_three_and_more_enemy_creeps_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_MAGIC_IMMUNE = false
   NEARBY_CREEPS_COUNT = 3
 
   test_algorithm_pattern_succeed(
@@ -251,7 +246,7 @@ end
 
 function test_three_and_more_enemy_creeps_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_CAN_BE_SEEN = false
+  UNIT_IS_MAGIC_IMMUNE = true
   FIND_AOE_LOCATION_COUNT = 3
 
   test_algorithm_pattern_fails("three_and_more_enemy_creeps")
@@ -259,7 +254,7 @@ end
 
 function test_three_and_more_enemy_creeps_two_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_CAN_BE_SEEN = true
+  UNIT_IS_MAGIC_IMMUNE = false
   FIND_AOE_LOCATION_COUNT = 2
 
   test_algorithm_pattern_fails("three_and_more_enemy_creeps")
@@ -267,7 +262,6 @@ end
 
 function test_three_and_more_neutral_creeps_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_CAN_BE_SEEN = true
   UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed(
