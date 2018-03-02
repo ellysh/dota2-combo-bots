@@ -140,23 +140,33 @@ function test_NeutralCampSpawn_succeed()
 end
 
 function test_SetNeutralCampEmpty_succeed()
-  NEUTRAL_CAMP_LIST = {{is_full=true, location={15, 15}, type="medium"}}
+  NEUTRAL_CAMP_LIST = {
+    {is_full = true,
+      location = Vector_type:new(15, 15),
+      type="medium"}}
 
-  memory.SetNeutralCampEmpty({15, 15})
+  memory.SetNeutralCampEmpty(Vector_type:new(15, 15))
 
   luaunit.assertEquals(
     NEUTRAL_CAMP_LIST,
-    {{is_full=false, location={15, 15}, type="medium"}})
+    {{is_full = false,
+      location = Vector_type:new(15, 15),
+      type="medium"}})
 end
 
 function test_SetNeutralCampEmpty_wrong_coordinates_fails()
-  NEUTRAL_CAMP_LIST = {{is_full=true, location={15, 15}, type="medium"}}
+  NEUTRAL_CAMP_LIST = {
+    {is_full = true,
+      location = Vector_type:new(15, 15),
+      type="medium"}}
 
-  memory.SetNeutralCampEmpty({10, 20})
+  memory.SetNeutralCampEmpty(Vector_type:new(10, 20))
 
   luaunit.assertEquals(
     NEUTRAL_CAMP_LIST,
-    {{is_full=true, location={15, 15}, type="medium"}})
+    {{is_full = true,
+      location = Vector_type:new(15, 15),
+      type="medium"}})
 end
 
 os.exit(luaunit.LuaUnit.run())

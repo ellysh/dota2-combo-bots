@@ -5,7 +5,7 @@ function GetScriptDirectory()
   return ".."
 end
 
--- The real Vector function creaes a Vector object.
+-- The real Vector function creates a Vector object.
 
 function Vector(x, y, z)
   return {x, y}
@@ -16,6 +16,22 @@ local functions = require(
 
 local constants = require(
   GetScriptDirectory() .."/utility/constants")
+
+-- This is the fake Vector class for some special tests
+
+Vector_type = {}
+
+function Vector_type:new(_x, _y)
+  local newObj = { x = _x, y = _y }
+  self.__index = self
+  self.__eq = function(a, b)
+    return a.x == b.x and a.y == b.y
+  end
+
+  return setmetatable(newObj, self)
+end
+
+------------------
 
 Unit = {}
 
