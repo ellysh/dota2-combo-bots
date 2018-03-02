@@ -97,7 +97,6 @@ end
 function test_min_hp_enemy_building_succeed()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_pattern_succeed("min_hp_enemy_building", "tower1")
@@ -106,7 +105,7 @@ end
 function test_min_hp_enemy_building_no_unit_fails()
   test_RefreshBot()
 
-  UNIT_CAN_BE_SEEN = true
+  ANCIENT_LOCATION = {2000, 2000}
   UNIT_HAS_NEARBY_UNITS = false
 
   test_algorithm_pattern_fails("min_hp_enemy_building")

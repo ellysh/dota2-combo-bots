@@ -413,18 +413,23 @@ function Unit:GetNearbyTowers(radius, enemies, mode)
   return { unit1, unit2, unit3 }
 end
 
+UNIT_HAS_NEARBY_BARRACKS = false
+
 function Unit:GetNearbyBarracks(radius, enemies, mode)
+  if not UNIT_HAS_NEARBY_BARRACKS then
+    return {} end
+
   if not UNIT_HAS_NEARBY_UNITS then
     return {} end
 
   local unit1 = Unit:new()
-  unit1.name = "barrak1"
+  unit1.name = "barrack1"
   unit1.health = 10
   unit1.location = {10, 10}
   unit1.offensive_power = 100
 
   local unit2 = Unit:new()
-  unit2.name = "barrak2"
+  unit2.name = "barrack2"
   unit2.health = 200
   unit2.location = {20, 20}
   unit2.offensive_power = 200

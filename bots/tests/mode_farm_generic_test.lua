@@ -93,6 +93,7 @@ function test_Think_move_succeed()
   local bot = GetBot()
   bot.location = {1200, 1200}
 
+  ANCIENT_LOCATION = {20000, 20000}
   UNIT_HAS_NEARBY_UNITS = false
   UNIT_MOVE_LOCATION = nil
   FRONT_LOCATION = {1000, 1000}

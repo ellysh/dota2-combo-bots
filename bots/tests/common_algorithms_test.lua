@@ -147,24 +147,20 @@ end
 function test_GetEnemyBuildings_succeed()
   test_RefreshBot()
 
+  ANCIENT_LOCATION = {10, 10}
   UNIT_HAS_NEARBY_TOWERS = true
+  UNIT_HAS_NEARBY_BARRACKS = true
 
   local units = algorithms.GetEnemyBuildings(
     GetBot(),
     1200)
 
-  luaunit.assertEquals(units[1]:GetUnitName(), "tower1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "tower2")
-  luaunit.assertEquals(units[3]:GetUnitName(), "tower3")
-
-  UNIT_HAS_NEARBY_TOWERS = false
-
-  units = algorithms.GetEnemyBuildings(
-    GetBot(),
-    1200)
-
-  luaunit.assertEquals(units[1]:GetUnitName(), "barrak1")
-  luaunit.assertEquals(units[2]:GetUnitName(), "barrak2")
+  luaunit.assertEquals(units[1]:GetUnitName(), "ancient")
+  luaunit.assertEquals(units[2]:GetUnitName(), "barrack1")
+  luaunit.assertEquals(units[3]:GetUnitName(), "barrack2")
+  luaunit.assertEquals(units[4]:GetUnitName(), "tower1")
+  luaunit.assertEquals(units[5]:GetUnitName(), "tower2")
+  luaunit.assertEquals(units[6]:GetUnitName(), "tower3")
 end
 
 function test_IsEnemyOnTheWay_succeed()

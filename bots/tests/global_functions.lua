@@ -31,8 +31,12 @@ function GetTower(team, tower)
   return TOWER
 end
 
+ANCIENT_LOCATION = {2000, 2000}
+
 function GetAncient(team)
   local ancient = Unit:new("ancient")
+  ancient.location = ANCIENT_LOCATION
+
   return ancient
 end
 
