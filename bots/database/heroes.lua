@@ -167,7 +167,7 @@ M.HEROES = {
     available_skills = {
       "stun",
       "hex",
-      "mana_regen",
+      "slow",
       "nuke",
     },
     available_auras = {
