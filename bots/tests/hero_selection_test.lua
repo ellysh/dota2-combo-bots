@@ -80,6 +80,34 @@ function test_IsPickRequired_fails()
   luaunit.assertFalse(hero_selection.test_IsPickRequired())
 end
 
+function test_GetRequiredPosition_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 1)
+
+  hero_selection.test_PickHero()
+
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 2)
+
+  hero_selection.test_PickHero()
+
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 3)
+
+  hero_selection.test_PickHero()
+
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 4)
+
+  hero_selection.test_PickHero()
+
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 5)
+
+  hero_selection.test_PickHero()
+
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 6)
+end
+
 function test_PickHero_succeed()
   hero_selection.test_ResetTeamComposition(GetTeam())
 
