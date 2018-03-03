@@ -189,7 +189,7 @@ end
 local function GetComboHero(position)
   local hero_estimates = {}
 
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     heroes.HEROES,
     function(hero, details)
       if functions.IsElementInList(details.positions, position)
@@ -212,7 +212,7 @@ local function ApplyHumanPlayersHeroes()
     return end
 
   local players = GetTeamPlayers(GetTeam())
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     players,
     function(_, player)
       if IsPlayerBot(player) then

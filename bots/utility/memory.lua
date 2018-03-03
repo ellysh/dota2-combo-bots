@@ -117,7 +117,7 @@ function M.InitNeutralCampList()
 
   local camps = GetNeutralSpawners()
 
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     camps,
     function(_, camp)
       table.insert(
@@ -134,7 +134,7 @@ local function NeutralCampSpawn()
   if (DotaTime() % (1 * 60)) ~= 0 then
     return end
 
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     NEUTRAL_CAMP_LIST,
     function(_, camp)
       camp.is_full = true

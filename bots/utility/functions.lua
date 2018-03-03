@@ -262,7 +262,7 @@ function M.GetKeyWith(list, compare_function, validate_function)
   return nil
 end
 
-function M.DoWithElements(list, do_function)
+function M.DoWithKeysAndElements(list, do_function)
   for key, element in pairs(list) do
     do_function(key, element)
   end

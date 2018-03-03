@@ -184,7 +184,7 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
   local units = GetUnitList(unit_type)
   local result = {}
 
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     units,
     function(_, unit)
       if GetUnitToLocationDistance(unit, location) <= radius then
@@ -200,7 +200,7 @@ local function IsThreeEnemyHeroesOnLane(lane)
   local building = common_algorithms.GetNearestFrontBuilding(lane)
   local units_number = 0
 
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     units,
     function(_, unit)
       if GetUnitToUnitDistance(unit, building)

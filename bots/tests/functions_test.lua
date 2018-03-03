@@ -685,12 +685,12 @@ function test_ComplementOfLists_unit_lists_succeed()
   luaunit.assertEquals(units[4], nil)
 end
 
-function test_DoWithElements_succeed()
+function test_DoWithKeysAndElements_succeed()
   local list = {1, 2, 3, 4, 5}
 
   local sum = 0
 
-  functions.DoWithElements(
+  functions.DoWithKeysAndElements(
     list,
     function(element) sum = sum + element end)
 
