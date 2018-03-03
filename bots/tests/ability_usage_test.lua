@@ -67,6 +67,7 @@ end
 function test_ChooseAbilityAndTarget_succeed()
   test_RefreshBot()
 
+  UNIT_ABILITIES = { Ability:new("crystal_maiden_crystal_nova") }
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
   UNIT_HAS_NEARBY_UNITS = true
@@ -81,6 +82,7 @@ end
 function test_ChooseAbilityAndTarget_with_not_castable_fails()
   test_RefreshBot()
 
+  UNIT_ABILITIES = { Ability:new("crystal_maiden_crystal_nova") }
   ABILITY_IS_FULLY_CASTABLE = false
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
@@ -95,6 +97,7 @@ end
 function test_UseAbility_behavior_point_succeed()
   test_RefreshBot()
 
+  UNIT_ABILITIES = { Ability:new("crystal_maiden_crystal_nova") }
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_ABILITY = nil
   UNIT_ABILITY_LOCATION = nil
@@ -127,6 +130,7 @@ end
 function test_UseAbility_behavior_unit_target_succeed()
   test_RefreshBot()
 
+  UNIT_ABILITIES = { Ability:new("crystal_maiden_crystal_nova") }
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
   UNIT_ABILITY = nil
   UNIT_ABILITY_LOCATION = nil
@@ -172,6 +176,7 @@ function test_AbilityUsageThink_succeed()
   UNIT_ABILITY = nil
   UNIT_ABILITY_LOCATION = nil
 
+  UNIT_ABILITIES = { Ability:new("crystal_maiden_crystal_nova") }
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ABILITY_DAMAGE = 200
 
@@ -189,6 +194,7 @@ end
 function test_AbilityUsageThink_when_UNIT_channeling_fails()
   test_RefreshBot()
 
+  UNIT_ABILITIES = { Ability:new("crystal_maiden_crystal_nova") }
   UNIT_ABILITY = nil
   UNIT_ABILITY_LOCATION = nil
   UNIT_IS_CHANNELING = true

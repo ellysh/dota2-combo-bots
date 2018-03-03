@@ -38,7 +38,7 @@ local function GetAbilitiesAndItems(bot)
     local ability = bot:GetAbilityInSlot(i)
 
     if ability ~= nil and ability:IsFullyCastable() then
-      table.insert(result, ability:GetName())
+      result[ability:GetName()] = ability
     end
   end
 
@@ -46,7 +46,7 @@ local function GetAbilitiesAndItems(bot)
     local item = bot:GetItemInSlot(i)
 
     if item ~= nil and item:IsFullyCastable() then
-      table.insert(result, item:GetName())
+      result[item:GetName()] = item
     end
   end
 
@@ -57,7 +57,7 @@ local function GetDesiredAbilitiesList(bot)
   local result = {}
   local abilities = GetAbilitiesAndItems(bot)
 
-  for _, ability_name in pairs(abilities) do
+  for ability_name, ability in pairs(abilities) do
     local algorithms = skill_usage.SKILL_USAGE[ability_name]
 
     if algorithms == nil then
