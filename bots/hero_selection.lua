@@ -214,13 +214,11 @@ local function ApplyHumanPlayersHeroes()
   local players = GetTeamPlayers(GetTeam())
   functions.DoWithElements(
     players,
-    function(player)
-      if not IsPlayerBot(player) then
+    function(_, player)
+      if IsPlayerBot(player) then
         return end
 
       local hero = GetSelectedHeroName(player)
-
-      print("hero = " .. tostring(hero))
 
       if hero == nil or hero == "" then
         return end
@@ -256,10 +254,16 @@ end
 local function GetRequiredPosition()
   local team = GetTeam()
 
-  if TEAM_COMPOSITION[team].positions == nil then
-    return 1 end
+  for i = 1, 5 do
+    if not functions.IsElementInList(
+      TEAM_COMPOSITION[team].positions,
+      i) then
 
-  return #TEAM_COMPOSITION[team].positions + 1
+      return i
+    end
+  end
+
+  return nil
 end
 
 local function PickHero()

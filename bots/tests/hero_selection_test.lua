@@ -97,6 +97,7 @@ function test_ApplyHumanPlayersHeroes_succeed()
   hero_selection.test_ResetTeamComposition(GetTeam())
 
   SELECTED_HEROES = { "npc_dota_hero_sven" }
+  IS_PLAYER_BOT = false
 
   hero_selection.test_ApplyHumanPlayersHeroes()
 
@@ -165,7 +166,7 @@ function test_GetRequiredPosition_succeed()
 
   hero_selection.test_PickHero()
 
-  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), 6)
+  luaunit.assertEquals(hero_selection.test_GetRequiredPosition(), nil)
 end
 
 function test_PickHero_succeed()

@@ -119,8 +119,10 @@ function GetTeamPlayers(team)
   return {1, 2, 3, 4, 5}
 end
 
+IS_PLAYER_BOT = true
+
 function IsPlayerBot(playerId)
-  return true
+  return IS_PLAYER_BOT
 end
 
 SELECTED_HEROES = {}

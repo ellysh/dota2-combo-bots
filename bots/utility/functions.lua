@@ -135,8 +135,8 @@ function M.GetElementIndexInList(list, element, is_deep)
   return -1
 end
 
-function M.IsElementInList(list, index, is_deep)
-  return M.GetElementIndexInList(list, index, is_deep) ~= -1
+function M.IsElementInList(list, element, is_deep)
+  return M.GetElementIndexInList(list, element, is_deep) ~= -1
 end
 
 function M.IsIntersectionOfLists(list1, list2, is_deep)
