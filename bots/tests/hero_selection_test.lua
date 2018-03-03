@@ -6,7 +6,7 @@ require("global_functions")
 local hero_selection = require("hero_selection")
 local luaunit = require('luaunit')
 
-function test_GetPickedHeroesList()
+function test_GetPickedHeroesList_succeed()
   SELECTED_HEROES = {}
 
   SelectHero(1, "npc_dota_hero_venomancer")
@@ -17,7 +17,7 @@ function test_GetPickedHeroesList()
     {"npc_dota_hero_venomancer", "npc_dota_hero_crystal_maiden"})
 end
 
-function test_IsHeroPickedByTeam()
+function test_IsHeroPickedByTeam_succeed()
   SELECTED_HEROES = {}
 
   SelectHero(1, "npc_dota_hero_venomancer")
@@ -25,19 +25,31 @@ function test_IsHeroPickedByTeam()
   luaunit.assertTrue(
     hero_selection.test_IsHeroPickedByTeam("npc_dota_hero_venomancer",
     TEAM_RADIANT))
+end
+
+function test_IsHeroPickedByTeam_fails()
+  SELECTED_HEROES = {}
+
+  SelectHero(1, "npc_dota_hero_venomancer")
 
   luaunit.assertFalse(
     hero_selection.test_IsHeroPickedByTeam("npc_dota_hero_crystal_maiden",
     TEAM_RADIANT))
 end
 
-function test_IsHeroPicked()
+function test_IsHeroPicked_succeed()
   SELECTED_HEROES = {}
 
   SelectHero(1, "npc_dota_hero_venomancer")
 
   luaunit.assertTrue(
     hero_selection.test_IsHeroPicked("npc_dota_hero_venomancer"))
+end
+
+function test_IsHeroPicked_fails()
+  SELECTED_HEROES = {}
+
+  SelectHero(1, "npc_dota_hero_venomancer")
 
   luaunit.assertFalse(
     hero_selection.test_IsHeroPicked(
@@ -227,7 +239,7 @@ function test_Think_succeed()
   luaunit.assertNotEquals(SELECTED_HEROES[5], nil)
 end
 
-function test_UpdateLaneAssignments()
+function test_UpdateLaneAssignments_succeed()
   TEAM = TEAM_RADIANT
   local result = UpdateLaneAssignments()
 
@@ -247,7 +259,7 @@ function test_UpdateLaneAssignments()
   luaunit.assertEquals(result[5], LANE_BOT)
 end
 
-function test_GetBotNames()
+function test_GetBotNames_succeed()
   local bot_names = hero_selection.test_GetBotNames()
 
   luaunit.assertEquals(bot_names[1], "Alfa")
