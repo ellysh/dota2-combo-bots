@@ -60,64 +60,60 @@ function test_IsHumanPlayersPicked()
   luaunit.assertTrue(hero_selection.test_IsHumanPlayersPicked())
 end
 
-function test_IsPickRequired()
-  luaunit.assertTrue(hero_selection.test_IsPickRequired({}))
+function test_IsPickRequired_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
 
-  luaunit.assertTrue(
-    hero_selection.test_IsPickRequired(
-      {
-        "hero1",
-      }))
-
-  luaunit.assertTrue(
-    hero_selection.test_IsPickRequired(
-      {
-        "hero1",
-        "hero2",
-        "hero3",
-        "hero4",
-      }))
-
-  luaunit.assertFalse(
-    hero_selection.test_IsPickRequired(
-      {
-        "hero1",
-        "hero2",
-        "hero3",
-        "hero4",
-        "hero5",
-      }))
+  luaunit.assertTrue(hero_selection.test_IsPickRequired())
 end
 
-function test_PickHero()
+function test_IsPickRequired_fails()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
   SELECTED_HEROES = {}
 
-  hero_selection.test_PickHero(1)
-  hero_selection.test_PickHero(2)
-  hero_selection.test_PickHero(3)
-  hero_selection.test_PickHero(4)
-  hero_selection.test_PickHero(5)
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_lich")
-  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
-  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
-  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lion")
+  luaunit.assertFalse(hero_selection.test_IsPickRequired())
 end
 
-function test_Think()
-  SELECTED_HEROES = {"npc_dota_hero_sven"}
+function test_PickHero_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
 
-  Think()
-  Think()
-  Think()
-  Think()
+  SELECTED_HEROES = {}
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_sven")
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+  hero_selection.test_PickHero()
+
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_drow_ranger")
   luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_chaos_knight")
   luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
   luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lion")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lich")
+end
+
+function test_Think_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  Think()
+  Think()
+  Think()
+  Think()
+  Think()
+
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_drow_ranger")
+  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_chaos_knight")
+  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
+  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
+  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lich")
 end
 
 function test_UpdateLaneAssignments()

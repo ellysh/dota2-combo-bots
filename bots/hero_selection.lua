@@ -229,7 +229,7 @@ local function PickHero()
   if TEAM_COMPOSITION[team].positions == nil then
     SelectHero(players[1], hero)
   else
-    SelectHero(players[#TEAM_COMPOSITION[team].positions + 1], hero)
+    SelectHero(players[#TEAM_COMPOSITION[team].positions], hero)
   end
 end
 
@@ -280,7 +280,22 @@ M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 M.test_IsHumanPlayersPicked = IsHumanPlayersPicked
 M.test_IsPickRequired = IsPickRequired
+M.test_GetRequiredPosition = GetRequiredPosition
 M.test_PickHero = PickHero
 M.test_GetBotNames = GetBotNames
+
+function M.test_ResetTeamComposition(team)
+  TEAM_COMPOSITION[team].positions = {}
+  TEAM_COMPOSITION[team].damage_type = {physical = 0, magical = 0}
+  TEAM_COMPOSITION[team].attack_range = {melee = 0, ranged = 0}
+  TEAM_COMPOSITION[team].attribute = {
+    strength = 0,
+    agility = 0,
+    intelligence = 0}
+  TEAM_COMPOSITION[team].available_skills = {}
+  TEAM_COMPOSITION[team].available_auras = {}
+  TEAM_COMPOSITION[team].required_skills = {}
+  TEAM_COMPOSITION[team].required_auras = {}
+end
 
 return M
