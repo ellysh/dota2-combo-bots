@@ -53,7 +53,8 @@ local TEAM_COMPOSITION = {
     available_skills = {},
     available_auras = {},
     required_skills = {},
-    required_auras = {}
+    required_auras = {},
+    is_human_applied = false
   },
   [TEAM_DIRE] = {
     positions = {},
@@ -73,7 +74,8 @@ local TEAM_COMPOSITION = {
     available_skills = {},
     available_auras = {},
     required_skills = {},
-    required_auras = {}
+    required_auras = {},
+    is_human_applied = false
   }
 }
 
@@ -203,6 +205,32 @@ local function GetComboHero(position)
     nil)
 end
 
+local function ApplyHumanPlayersHeroes()
+  local team = GetTeam()
+
+  if TEAM_COMPOSITION[team].is_human_applied then
+    return end
+
+  local players = GetTeamPlayers(GetTeam())
+  functions.DoWithElements(
+    players,
+    function(player)
+      if not IsPlayerBot(player) then
+        return end
+
+      local hero = GetSelectedHeroName(player)
+
+      if hero == nil or hero == "" then
+        return end
+
+      local hero_details = heroes.HEROES[hero]
+
+      FillTeamComposition(hero_details.positions[1], hero)
+    end)
+
+  TEAM_COMPOSITION[team].is_human_applied = true
+end
+
 local function IsHumanPlayersPicked()
   local players = GetTeamPlayers(GetTeam())
   local no_pick_player = functions.GetElementWith(
@@ -266,6 +294,8 @@ end
 
 function Think()
   if not IsHumanPlayersPicked() then return end
+
+  ApplyHumanPlayersHeroes()
 
   if not IsPickRequired() then return end
 
