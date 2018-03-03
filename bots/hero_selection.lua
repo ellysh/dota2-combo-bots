@@ -37,7 +37,7 @@ end
 local TEAM_COMPOSITION = {
   [TEAM_RADIANT] = {
     positions = {},
-    damage = {
+    damage_type = {
       physical = 0,
       magical = 0
     },
@@ -57,7 +57,7 @@ local TEAM_COMPOSITION = {
   },
   [TEAM_DIRE] = {
     positions = {},
-    damage = {
+    damage_type = {
       physical = 0,
       magical = 0
     },
@@ -83,8 +83,8 @@ local function FillTeamComposition(position, hero)
 
   table.insert(TEAM_COMPOSITION[team].positions, position)
 
-  TEAM_COMPOSITION[team].damage[hero_details.damage_type] =
-    TEAM_COMPOSITION[team].damage[hero_details.damage_type] + 1
+  TEAM_COMPOSITION[team].damage_type[hero_details.damage_type] =
+    TEAM_COMPOSITION[team].damage_type[hero_details.damage_type] + 1
 
   TEAM_COMPOSITION[team].attack_range[hero_details.attack_range] =
     TEAM_COMPOSITION[team].attack_range[hero_details.attack_range] + 1
@@ -126,6 +126,30 @@ local function GetRandomHero(position)
   return hero
 end
 
+local function HasRequiredAuras(details)
+  return functions.IsIntersectionOfLists(
+    details.available_auras,
+    TEAM_COMPOSITION[GetTeam()].required_auras)
+end
+
+local function HasRequiredSkills(details)
+  return functions.IsIntersectionOfLists(
+    details.available_skills,
+    TEAM_COMPOSITION[GetTeam()].required_skills)
+end
+
+local function HasRequiredDamageType(details)
+  local team = GetTeam()
+
+  if TEAM_COMPOSITION[team].damage_type["physical"] <
+    TEAM_COMPOSITION[team].damage_type["magical"] then
+
+    return details.damage_type == "physical"
+  else
+    return details.damage_type == "magical"
+  end
+end
+
 local function GetComboHero(position)
   local hero = functions.GetKeyWith(
     heroes.HEROES,
@@ -133,8 +157,9 @@ local function GetComboHero(position)
     function(hero, details)
       return functions.IsElementInList(details.position, position)
              and not IsHeroPicked(hero)
-             and (HasRequiredAuras(hero)
-                  or HasRequiredSkills(hero))
+             and (HasRequiredAuras(details)
+                  or HasRequiredSkills(details)
+                  or HasRequiredDamageType(details))
     end)
 
   return hero
