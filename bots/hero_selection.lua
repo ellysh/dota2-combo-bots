@@ -164,23 +164,38 @@ local function HasRequiredAttackRange(details)
   end
 end
 
+local function HasRequiredAttribute(details)
+  local team = GetTeam()
+
+  return (TEAM_COMPOSITION[team].attribute["strength"] == 0
+          and details.attribute == "strength")
+         or (TEAM_COMPOSITION[team].attribute["agility"] == 0
+             and details.attribute == "agility")
+         or (TEAM_COMPOSITION[team].attribute["intelligence"] == 0
+             and details.attribute == "intelligence")
+end
+
 local function EstimateHero(details)
   local result = 0
 
   if HasRequiredAuras(details) then
-    result = result + 30
+    result = result + 35
   end
 
   if HasRequiredSkills(details) then
-    result = result + 30
+    result = result + 25
   end
 
   if HasRequiredDamageType(details) then
-    result = result + 20
+    result = result + 15
   end
 
   if HasRequiredAttackRange(details) then
-    result = result + 20
+    result = result + 15
+  end
+
+  if HasRequiredAttribute(details) then
+    result = result + 10
   end
 
   return result
