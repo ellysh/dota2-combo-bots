@@ -119,6 +119,120 @@ function test_HasRequiredSkills_fails()
       heroes.HEROES["npc_dota_hero_phantom_lancer"]))
 end
 
+function test_HasRequiredDamageType_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertTrue(
+    hero_selection.test_HasRequiredDamageType(
+      heroes.HEROES["npc_dota_hero_lich"]))
+end
+
+function test_HasRequiredDamageType_fails()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertFalse(
+    hero_selection.test_HasRequiredDamageType(
+      heroes.HEROES["npc_dota_hero_phantom_lancer"]))
+end
+
+function test_HasRequiredAttackRange_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertTrue(
+    hero_selection.test_HasRequiredAttackRange(
+      heroes.HEROES["npc_dota_hero_lich"]))
+end
+
+function test_HasRequiredAttackRange_fails()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertFalse(
+    hero_selection.test_HasRequiredAttackRange(
+      heroes.HEROES["npc_dota_hero_phantom_lancer"]))
+end
+
+function test_HasRequiredAttribute_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertTrue(
+    hero_selection.test_HasRequiredAttribute(
+      heroes.HEROES["npc_dota_hero_lich"]))
+end
+
+function test_HasRequiredAttribute_fails()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertFalse(
+    hero_selection.test_HasRequiredAttribute(
+      heroes.HEROES["npc_dota_hero_phantom_lancer"]))
+end
+
+function test_EstimateHero_high_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertEquals(
+    hero_selection.test_EstimateHero(
+      heroes.HEROES["npc_dota_hero_lich"]),
+    100)
+end
+
+function test_EstimateHero_low_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertEquals(
+    hero_selection.test_EstimateHero(
+      heroes.HEROES["npc_dota_hero_phantom_lancer"]),
+    0)
+end
+
 function test_GetComboHero_succeed()
   hero_selection.test_ResetTeamComposition(GetTeam())
 
