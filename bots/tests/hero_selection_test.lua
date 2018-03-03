@@ -57,9 +57,9 @@ function test_GetComboHero_succeed()
 
   hero_selection.test_PickHero()
 
-  luaunit.assertEquals(
+  luaunit.assertNotEquals(
     hero_selection.test_GetComboHero(4),
-    "npc_dota_hero_crystal_maiden")
+    nil)
 end
 
 function test_IsHumanPlayersPicked()
@@ -125,11 +125,11 @@ function test_PickHero_succeed()
   hero_selection.test_PickHero()
   hero_selection.test_PickHero()
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_chaos_knight")
-  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
-  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
-  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lich")
+  luaunit.assertNotEquals(SELECTED_HEROES[1], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[2], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[3], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[4], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[5], nil)
 end
 
 function test_Think_succeed()
@@ -143,11 +143,11 @@ function test_Think_succeed()
   Think()
   Think()
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_chaos_knight")
-  luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
-  luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
-  luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
-  luaunit.assertEquals(SELECTED_HEROES[5], "npc_dota_hero_lich")
+  luaunit.assertNotEquals(SELECTED_HEROES[1], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[2], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[3], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[4], nil)
+  luaunit.assertNotEquals(SELECTED_HEROES[5], nil)
 end
 
 function test_UpdateLaneAssignments()
