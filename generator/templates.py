@@ -25,7 +25,9 @@ HEROES = """
       "<8>",
       "<9>",
     },
-    available_aura = "<10>",
+    available_auras = {
+      "<10>"
+    },
     required_skills = {
       "<11>",
       "<12>",

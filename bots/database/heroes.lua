@@ -14,7 +14,9 @@ M.HEROES = {
       "slow",
       "nil",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "stun",
       "slow",
@@ -38,7 +40,9 @@ M.HEROES = {
       "attack_damage",
       "illusions",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "stun",
       "slow",
@@ -62,7 +66,9 @@ M.HEROES = {
       "aoe",
       "nil",
     },
-    available_aura = "mana_regen",
+    available_auras = {
+      "mana_regen"
+    },
     required_skills = {
       "attack_damage",
       "nuke",
@@ -86,7 +92,9 @@ M.HEROES = {
       "nil",
       "nil",
     },
-    available_aura = "attack_damage",
+    available_auras = {
+      "attack_damage"
+    },
     required_skills = {
       "stun",
       "slow",
@@ -110,7 +118,9 @@ M.HEROES = {
       "invulnerable",
       "nil",
     },
-    available_aura = "heal",
+    available_auras = {
+      "heal"
+    },
     required_skills = {
       "stun",
       "slow",
@@ -134,7 +144,9 @@ M.HEROES = {
       "nuke",
       "nil",
     },
-    available_aura = "armor",
+    available_auras = {
+      "armor"
+    },
     required_skills = {
       "attack_damage",
       "slow",
@@ -158,7 +170,9 @@ M.HEROES = {
       "mana_regen",
       "nuke",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "attack_damage",
       "nuke",
@@ -182,7 +196,9 @@ M.HEROES = {
       "nil",
       "nil",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "stun",
       "hex",
@@ -206,7 +222,9 @@ M.HEROES = {
       "minions",
       "nuke",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "attack_damage",
       "stun",
@@ -230,7 +248,9 @@ M.HEROES = {
       "nil",
       "nil",
     },
-    available_aura = "lifesteal",
+    available_auras = {
+      "lifesteal"
+    },
     required_skills = {
       "stun",
       "nuke",
@@ -254,7 +274,9 @@ M.HEROES = {
       "aoe",
       "nuke",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "stun",
       "slow",
@@ -278,7 +300,9 @@ M.HEROES = {
       "aoe",
       "nil",
     },
-    available_aura = "armor",
+    available_auras = {
+      "armor"
+    },
     required_skills = {
       "stun",
       "slow",
@@ -302,7 +326,9 @@ M.HEROES = {
       "armor",
       "nil",
     },
-    available_aura = "nil",
+    available_auras = {
+      "nil"
+    },
     required_skills = {
       "stun",
       "hex",
@@ -326,7 +352,9 @@ M.HEROES = {
       "minions",
       "nil",
     },
-    available_aura = "heal",
+    available_auras = {
+      "heal"
+    },
     required_skills = {
       "stun",
       "attack_damage",

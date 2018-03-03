@@ -34,6 +34,81 @@ local function IsHeroPicked(hero)
          or IsHeroPickedByTeam(hero, GetOpposingTeam())
 end
 
+local TEAM_COMPOSITION = {
+  [TEAM_RADIANT] = {
+    positions = {},
+    damage = {
+      physical = 0,
+      magical = 0
+    },
+    attack_range = {
+      melee = 0,
+      ranged = 0
+    },
+    attribute = {
+      strength = 0,
+      agility = 0,
+      intelligence = 0,
+    },
+    available_skills = {},
+    available_auras = {},
+    required_skills = {},
+    required_auras = {}
+  },
+  [TEAM_DIRE] = {
+    positions = {},
+    damage = {
+      physical = 0,
+      magical = 0
+    },
+    attack_range = {
+      melee = 0,
+      ranged = 0
+    },
+    attribute = {
+      strength = 0,
+      agility = 0,
+      intelligence = 0,
+    },
+    available_skills = {},
+    available_auras = {},
+    required_skills = {},
+    required_auras = {}
+  }
+}
+
+local function FillTeamComposition(position, hero)
+  local team = GetTeam()
+  local hero_details = heroes.HEROES[hero]
+
+  table.insert(TEAM_COMPOSITION[team].positions, position)
+
+  TEAM_COMPOSITION[team].damage[hero_details.damage_type] =
+    TEAM_COMPOSITION[team].damage[hero_details.damage_type] + 1
+
+  TEAM_COMPOSITION[team].attack_range[hero_details.attack_range] =
+    TEAM_COMPOSITION[team].attack_range[hero_details.attack_range] + 1
+
+  TEAM_COMPOSITION[team].attribute[hero_details.attribute] =
+    TEAM_COMPOSITION[team].attribute[hero_details.attribute] + 1
+
+  functions.TableConcat(
+    TEAM_COMPOSITION[team].available_skills,
+    hero_details.available_skills)
+
+  functions.TableConcat(
+    TEAM_COMPOSITION[team].available_auras,
+    hero_details.available_auras)
+
+  functions.TableConcat(
+    TEAM_COMPOSITION[team].required_skills,
+    hero_details.required_skills)
+
+  functions.TableConcat(
+    TEAM_COMPOSITION[team].required_auras,
+    hero_details.required_auras)
+end
+
 local function GetRandomHero(position)
   local start_index = RandomInt(1, functions.GetTableSize(heroes.HEROES))
   local index = 1
@@ -51,23 +126,18 @@ local function GetRandomHero(position)
   return hero
 end
 
-local function GetComboHero(position, combo_heroes)
+local function GetComboHero(position)
   local hero = functions.GetKeyWith(
     heroes.HEROES,
     nil,
     function(hero, details)
       return functions.IsElementInList(details.position, position)
              and not IsHeroPicked(hero)
-             and functions.IsIntersectionOfLists(
-              details.combo_heroes,
-              combo_heroes)
+             and (HasRequiredAuras(hero)
+                  or HasRequiredSkills(hero))
     end)
 
-  if hero ~= nil then
-    return hero
-  else
-    return GetRandomHero(position)
-  end
+  return hero
 end
 
 local function IsHumanPlayersPicked()
@@ -87,55 +157,31 @@ local function IsPickRequired(heroes)
   return heroes == nil or #heroes < 5
 end
 
-local function GetRequiredPosition(heroes)
-  local positions = {
-    [1] = "empty",
-    [2] = "empty",
-    [3] = "empty",
-    [4] = "empty",
-    [5] = "empty"
-  }
+local function PickHero(position)
+  local hero = GetComboHero(position)
 
-  for _, hero in pairs(heroes) do
-    local hero_position = functions.GetHeroPositions(hero)
+  if hero == nil then
+    hero = GetRandomHero(position)
 
-    if positions[hero_position[1]] == "empty" then
-      positions[hero_position[1]] = hero
-    elseif positions[hero_position[2]] == "empty" then
-      positions[hero_position[2]] = hero
-    end
+    if hero == nil then
+      return end
   end
-
-  return functions.GetKeyWith(
-    positions,
-    nil,
-    function(position, hero) return hero == "empty" end)
-end
-
-local function PickHero(position, combo_heroes)
-  local hero = GetComboHero(position, combo_heroes)
 
   logger.Print("PickHero() - position = " .. position ..
     " hero = " .. tostring(hero))
 
-  if hero ~= nil then
-    local players = GetTeamPlayers(GetTeam())
-    if combo_heroes == nil then
-      SelectHero(players[1], hero)
-    else
-      SelectHero(players[#combo_heroes + 1], hero)
-    end
-  end
+  FillTeamComposition(position, hero)
+
+  local players = GetTeamPlayers(GetTeam())
+  SelectHero(players[#TEAM_COMPOSITION.positions + 1], hero)
 end
 
 function Think()
   if not IsHumanPlayersPicked() then return end
 
-  local team_heroes = GetPickedHeroesList(GetTeam())
-
   if not IsPickRequired(team_heroes) then return end
 
-  PickHero(GetRequiredPosition(team_heroes), team_heroes)
+  PickHero()
 end
 
 function UpdateLaneAssignments()
