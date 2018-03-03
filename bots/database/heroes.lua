@@ -4,7 +4,7 @@ local M = {}
 M.HEROES = {
 
   npc_dota_hero_phantom_assassin = {
-    position = {1, 2},
+    positions = {1, 2},
     attribute = "agility",
     damage_type = "physical",
     attack_range = "melee",
@@ -30,7 +30,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_chaos_knight = {
-    position = {1, 2},
+    positions = {1, 2},
     attribute = "strength",
     damage_type = "physical",
     attack_range = "melee",
@@ -56,7 +56,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_crystal_maiden = {
-    position = {4, 5},
+    positions = {4, 5},
     attribute = "intelligence",
     damage_type = "magical",
     attack_range = "ranged",
@@ -82,7 +82,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_drow_ranger = {
-    position = {1, 2},
+    positions = {1, 2},
     attribute = "agility",
     damage_type = "physical",
     attack_range = "ranged",
@@ -108,7 +108,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_juggernaut = {
-    position = {1, 3},
+    positions = {1, 3},
     attribute = "agility",
     damage_type = "physical",
     attack_range = "melee",
@@ -134,7 +134,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_lich = {
-    position = {5, 4},
+    positions = {5, 4},
     attribute = "intelligence",
     damage_type = "magical",
     attack_range = "ranged",
@@ -160,7 +160,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_lion = {
-    position = {5, 4},
+    positions = {5, 4},
     attribute = "intelligence",
     damage_type = "magical",
     attack_range = "ranged",
@@ -186,7 +186,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_phantom_lancer = {
-    position = {1, 3},
+    positions = {1, 3},
     attribute = "agility",
     damage_type = "physical",
     attack_range = "melee",
@@ -212,7 +212,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_shadow_shaman = {
-    position = {5, 4},
+    positions = {5, 4},
     attribute = "intelligence",
     damage_type = "magical",
     attack_range = "ranged",
@@ -238,7 +238,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_skeleton_king = {
-    position = {2, 3},
+    positions = {2, 3},
     attribute = "strength",
     damage_type = "physical",
     attack_range = "melee",
@@ -264,7 +264,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_sniper = {
-    position = {2, 1},
+    positions = {2, 1},
     attribute = "agility",
     damage_type = "physical",
     attack_range = "ranged",
@@ -290,7 +290,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_sven = {
-    position = {1, 3},
+    positions = {1, 3},
     attribute = "strength",
     damage_type = "physical",
     attack_range = "melee",
@@ -316,7 +316,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_ursa = {
-    position = {3, 1},
+    positions = {3, 1},
     attribute = "agility",
     damage_type = "physical",
     attack_range = "melee",
@@ -342,7 +342,7 @@ M.HEROES = {
   },
 
   npc_dota_hero_warlock = {
-    position = {2, 4},
+    positions = {2, 4},
     attribute = "intelligence",
     damage_type = "magical",
     attack_range = "ranged",

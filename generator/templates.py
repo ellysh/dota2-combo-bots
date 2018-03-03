@@ -15,7 +15,7 @@ M.HEROES = {
 
 HEROES = """
   <0> = {
-    position = {<1>, <2>},
+    positions = {<1>, <2>},
     attribute = "<3>",
     damage_type = "<4>",
     attack_range = "<5>",

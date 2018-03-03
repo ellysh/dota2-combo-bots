@@ -280,7 +280,7 @@ end
 
 function M.GetHeroPositions(hero)
   if heroes.HEROES[hero] ~= nil then
-    return heroes.HEROES[hero].position
+    return heroes.HEROES[hero].positions
   else
     -- TODO: We choose the positions 1 and 2 for unknown player's hero
     return {1, 2}

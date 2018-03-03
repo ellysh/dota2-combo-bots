@@ -121,7 +121,7 @@ local function GetRandomHero(position)
     function(hero, details)
       index = index + 1
       return start_index <= index
-             and functions.IsElementInList(details.position, position)
+             and functions.IsElementInList(details.positions, position)
              and not IsHeroPicked(hero)
     end)
 
@@ -192,7 +192,7 @@ local function GetComboHero(position)
   functions.DoWithElements(
     heroes.HEROES,
     function(hero, details)
-      if functions.IsElementInList(details.position, position)
+      if functions.IsElementInList(details.positions, position)
          and not IsHeroPicked(hero) then
 
         hero_estimates[hero] = EstimateHero(details)
@@ -219,6 +219,8 @@ local function ApplyHumanPlayersHeroes()
         return end
 
       local hero = GetSelectedHeroName(player)
+
+      print("hero = " .. tostring(hero))
 
       if hero == nil or hero == "" then
         return end
@@ -340,6 +342,7 @@ M.test_IsHeroPicked = IsHeroPicked
 M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 M.test_IsHumanPlayersPicked = IsHumanPlayersPicked
+M.test_ApplyHumanPlayersHeroes = ApplyHumanPlayersHeroes
 M.test_IsPickRequired = IsPickRequired
 M.test_GetRequiredPosition = GetRequiredPosition
 M.test_PickHero = PickHero
@@ -357,6 +360,11 @@ function M.test_ResetTeamComposition(team)
   TEAM_COMPOSITION[team].available_auras = {}
   TEAM_COMPOSITION[team].required_skills = {}
   TEAM_COMPOSITION[team].required_auras = {}
+  TEAM_COMPOSITION[team].is_human_applied = false
+end
+
+function M.test_GetTeamComposition(team)
+  return TEAM_COMPOSITION[team]
 end
 
 return M
