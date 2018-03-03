@@ -1,9 +1,10 @@
-package.path = package.path .. ";../?.lua"
+package.path = package.path .. ";../?.lua;../database/?.lua"
 
 pcall(require, "luacov")
 require("global_functions")
 
 local hero_selection = require("hero_selection")
+local heroes = require("heroes")
 local luaunit = require('luaunit')
 
 function test_GetPickedHeroesList_succeed()
@@ -60,6 +61,62 @@ function test_GetRandomHero_succeed()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
     "npc_dota_hero_lich")
+end
+
+function test_HasRequiredAuras_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertTrue(
+    hero_selection.test_HasRequiredAuras(
+      heroes.HEROES["npc_dota_hero_skeleton_king"]))
+end
+
+function test_HasRequiredAuras_fails()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertFalse(
+    hero_selection.test_HasRequiredAuras(
+      heroes.HEROES["npc_dota_hero_crystal_maiden"]))
+end
+
+function test_HasRequiredSkills_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertTrue(
+    hero_selection.test_HasRequiredSkills(
+      heroes.HEROES["npc_dota_hero_skeleton_king"]))
+end
+
+function test_HasRequiredSkills_fails()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(
+    1,
+    "npc_dota_hero_phantom_assassin")
+
+  luaunit.assertFalse(
+    hero_selection.test_HasRequiredSkills(
+      heroes.HEROES["npc_dota_hero_phantom_lancer"]))
 end
 
 function test_GetComboHero_succeed()
