@@ -150,6 +150,18 @@ local function HasRequiredDamageType(details)
   end
 end
 
+local function HasRequiredAttackRange(details)
+  local team = GetTeam()
+
+  if TEAM_COMPOSITION[team].attack_range["melee"] <
+    TEAM_COMPOSITION[team].attack_range["ranged"] then
+
+    return details.attack_range == "melee"
+  else
+    return details.attack_range == "ranged"
+  end
+end
+
 local function GetComboHero(position)
   local hero = functions.GetKeyWith(
     heroes.HEROES,
@@ -159,7 +171,8 @@ local function GetComboHero(position)
              and not IsHeroPicked(hero)
              and (HasRequiredAuras(details)
                   or HasRequiredSkills(details)
-                  or HasRequiredDamageType(details))
+                  or HasRequiredDamageType(details)
+                  or HasRequiredAttackRange(details))
     end)
 
   return hero
