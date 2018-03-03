@@ -31,16 +31,6 @@ local function CalculateDesireAndTarget(
   return algorithm(bot, ability)
 end
 
-local function GetAbility(bot, ability_name)
-  local ability = bot:GetAbilityByName(ability_name)
-
-  if ability == nil then
-    ability = functions.GetItem(bot, ability_name, ITEM_SLOT_TYPE_MAIN)
-  end
-
-  return ability
-end
-
 local function GetAbilitiesAndItems(bot)
   local result = {}
 
@@ -67,13 +57,10 @@ local function GetDesiredAbilitiesList(bot)
   local result = {}
   local abilities = GetAbilitiesAndItems(bot)
 
-  -- FIXME: Iterate over bots abilities and items instead of the database table
-  for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
-    local ability = GetAbility(bot, ability_name)
+  for _, ability_name in pairs(abilities) do
+    local algorithms = skill_usage.SKILL_USAGE[ability_name]
 
-    if ability == nil
-      or not ability:IsFullyCastable() then
-      -- We need "do end" around otherwse a code coverage does not work
+    if algorithms == nil then
       do goto continue end
     end
 
