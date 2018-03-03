@@ -209,10 +209,16 @@ end
 
 local function PickHero()
   local position = GetRequiredPosition()
-  local hero = GetComboHero(position)
+  local hero = nil
+
+  if position == 1 then
+    hero = GetRandomHero(position)
+  else
+    hero = GetComboHero(position)
+  end
 
   if hero == nil then
-    hero = GetRandomHero()
+    hero = GetRandomHero(position)
 
     if hero == nil then
       return end
