@@ -178,8 +178,11 @@ local function IsHumanPlayersPicked()
     return no_pick_player == nil
 end
 
-local function IsPickRequired(heroes)
-  return heroes == nil or #heroes < 5
+local function IsPickRequired()
+  local team = GetTeam()
+
+  return TEAM_COMPOSITION[team].positions == nil
+         or #TEAM_COMPOSITION[team].positions < 5
 end
 
 local function PickHero(position)
@@ -197,14 +200,20 @@ local function PickHero(position)
 
   FillTeamComposition(position, hero)
 
-  local players = GetTeamPlayers(GetTeam())
-  SelectHero(players[#TEAM_COMPOSITION.positions + 1], hero)
+  local team = GetTeam()
+  local players = GetTeamPlayers(team)
+
+  if TEAM_COMPOSITION[team].positions == nil then
+    SelectHero(players[1], hero)
+  else
+    SelectHero(players[#TEAM_COMPOSITION[team].positions + 1], hero)
+  end
 end
 
 function Think()
   if not IsHumanPlayersPicked() then return end
 
-  if not IsPickRequired(team_heroes) then return end
+  if not IsPickRequired() then return end
 
   PickHero()
 end
@@ -248,7 +257,6 @@ M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 M.test_IsHumanPlayersPicked = IsHumanPlayersPicked
 M.test_IsPickRequired = IsPickRequired
-M.test_GetRequiredPosition = GetRequiredPosition
 M.test_PickHero = PickHero
 M.test_GetBotNames = GetBotNames
 

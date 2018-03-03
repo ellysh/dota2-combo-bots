@@ -89,48 +89,16 @@ function test_IsPickRequired()
       }))
 end
 
-function test_GetRequiredPosition()
-  SELECTED_HEROES = {"npc_dota_hero_sven"}
-
-  luaunit.assertEquals(
-    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
-    2)
-
-  table.insert(SELECTED_HEROES, "npc_dota_hero_drow_ranger")
-
-  luaunit.assertEquals(
-    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
-    3)
-
-  table.insert(SELECTED_HEROES, "npc_dota_hero_ursa")
-
-  luaunit.assertEquals(
-    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
-    4)
-
-  table.insert(SELECTED_HEROES, "npc_dota_hero_shadow_shaman")
-
-  luaunit.assertEquals(
-    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
-    4)
-
-  table.insert(SELECTED_HEROES, "npc_dota_hero_crystal_maiden")
-
-  luaunit.assertEquals(
-    hero_selection.test_GetRequiredPosition(SELECTED_HEROES),
-    nil)
-end
-
 function test_PickHero()
   SELECTED_HEROES = {}
 
-  hero_selection.test_PickHero(1, nil)
-  hero_selection.test_PickHero(2, SELECTED_HEROES)
-  hero_selection.test_PickHero(3, SELECTED_HEROES)
-  hero_selection.test_PickHero(4, SELECTED_HEROES)
-  hero_selection.test_PickHero(5, SELECTED_HEROES)
+  hero_selection.test_PickHero(1)
+  hero_selection.test_PickHero(2)
+  hero_selection.test_PickHero(3)
+  hero_selection.test_PickHero(4)
+  hero_selection.test_PickHero(5)
 
-  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_chaos_knight")
+  luaunit.assertEquals(SELECTED_HEROES[1], "npc_dota_hero_lich")
   luaunit.assertEquals(SELECTED_HEROES[2], "npc_dota_hero_drow_ranger")
   luaunit.assertEquals(SELECTED_HEROES[3], "npc_dota_hero_juggernaut")
   luaunit.assertEquals(SELECTED_HEROES[4], "npc_dota_hero_crystal_maiden")
