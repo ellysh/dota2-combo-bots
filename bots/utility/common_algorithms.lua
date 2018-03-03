@@ -182,7 +182,7 @@ function M.GetTotalDamage(units, target)
 
   functions.DoWithElements(
     units,
-    function(unit)
+    function(_, unit)
       if unit:IsAlive() and unit:GetAttackTarget() == target then
         total_damage = total_damage + unit:GetAttackDamage()
       end
@@ -268,7 +268,7 @@ local function GetSumParameter(units, get_function)
 
   functions.DoWithElements(
     units,
-    function(unit)
+    function(_, unit)
       if unit:IsAlive() then
         result = result + get_function(unit)
       end

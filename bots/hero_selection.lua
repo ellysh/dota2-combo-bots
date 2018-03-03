@@ -162,20 +162,45 @@ local function HasRequiredAttackRange(details)
   end
 end
 
+local function EstimateHero(details)
+  local result = 0
+
+  if HasRequiredAuras(details) then
+    result = result + 30
+  end
+
+  if HasRequiredSkills(details) then
+    result = result + 30
+  end
+
+  if HasRequiredDamageType(details) then
+    result = result + 20
+  end
+
+  if HasRequiredAttackRange(details) then
+    result = result + 20
+  end
+
+  return result
+end
+
 local function GetComboHero(position)
-  local hero = functions.GetKeyWith(
+  local hero_estimates = {}
+
+  functions.DoWithElements(
     heroes.HEROES,
-    nil,
     function(hero, details)
-      return functions.IsElementInList(details.position, position)
-             and not IsHeroPicked(hero)
-             and (HasRequiredAuras(details)
-                  or HasRequiredSkills(details)
-                  or HasRequiredDamageType(details)
-                  or HasRequiredAttackRange(details))
+      if functions.IsElementInList(details.position, position)
+         and not IsHeroPicked(hero) then
+
+        hero_estimates[hero] = EstimateHero(details)
+      end
     end)
 
-  return hero
+  return functions.GetKeyWith(
+    hero_estimates,
+    function(t, a, b) return t[b] < t[a] end,
+    nil)
 end
 
 local function IsHumanPlayersPicked()

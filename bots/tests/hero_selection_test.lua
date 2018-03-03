@@ -44,15 +44,21 @@ function test_IsHeroPicked()
       "npc_dota_hero_crystal_maiden"))
 end
 
-function test_GetRandomHero()
+function test_GetRandomHero_succeed()
   luaunit.assertEquals(
     hero_selection.test_GetRandomHero(5),
     "npc_dota_hero_lich")
 end
 
-function test_GetComboHero()
+function test_GetComboHero_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_PickHero()
+
   luaunit.assertEquals(
-    hero_selection.test_GetComboHero(4, {"npc_dota_hero_shadow_shaman"}),
+    hero_selection.test_GetComboHero(4),
     "npc_dota_hero_crystal_maiden")
 end
 

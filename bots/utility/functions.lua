@@ -263,8 +263,8 @@ function M.GetKeyWith(list, compare_function, validate_function)
 end
 
 function M.DoWithElements(list, do_function)
-  for _, element in pairs(list) do
-    do_function(element)
+  for key, element in pairs(list) do
+    do_function(key, element)
   end
 end
 
