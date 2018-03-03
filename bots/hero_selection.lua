@@ -219,11 +219,10 @@ local function ApplyHumanPlayersHeroes()
         return end
 
       local hero = GetSelectedHeroName(player)
-
-      if hero == nil or hero == "" then
-        return end
-
       local hero_details = heroes.HEROES[hero]
+
+      if hero_details == nil then
+        return end
 
       FillTeamComposition(hero_details.positions[1], hero)
     end)
