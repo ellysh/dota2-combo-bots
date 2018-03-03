@@ -141,7 +141,7 @@ end
 
 function M.IsIntersectionOfLists(list1, list2, is_deep)
   for _, e in pairs(list1) do
-    if M.IsElementInList(list2, e, is_deep) then
+    if e ~= "nil" and M.IsElementInList(list2, e, is_deep) then
       return true end
   end
   return false

@@ -221,7 +221,7 @@ function test_IsElementInList()
   luaunit.assertFalse(functions.IsElementInList(list, 6))
 end
 
-function test_IsIntersectionOfLists()
+function test_IsIntersectionOfLists_numbers_succeed()
   local list1 = {1, 2, 3, 4, 5}
   local list2 = {3, 4, 5, 6}
   local list3 = {10, 11, 12}
@@ -231,6 +231,25 @@ function test_IsIntersectionOfLists()
   luaunit.assertFalse(functions.IsIntersectionOfLists(list1, list3))
 
   luaunit.assertFalse(functions.IsIntersectionOfLists(list2, list3))
+end
+
+function test_IsIntersectionOfLists_strings_succeed()
+  local list1 = {"one", "two", "three"}
+  local list2 = {"three", "four", "five"}
+  local list3 = {"ten", "eleven", "twelve"}
+
+  luaunit.assertTrue(functions.IsIntersectionOfLists(list1, list2))
+
+  luaunit.assertFalse(functions.IsIntersectionOfLists(list1, list3))
+
+  luaunit.assertFalse(functions.IsIntersectionOfLists(list2, list3))
+end
+
+function test_IsIntersectionOfLists_nil_fails()
+  local list1 = {"one", "two", "three", nil}
+  local list2 = {"ten", "eleven", "twelve", nil}
+
+  luaunit.assertFalse(functions.IsIntersectionOfLists(list1, list2))
 end
 
 function test_IsBotCasting_succeed()
