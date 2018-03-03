@@ -5,198 +5,338 @@ M.HEROES = {
 
   npc_dota_hero_phantom_assassin = {
     position = {1, 2},
-    combo_heroes = {
-      "agility",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "agility",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "blink",
       "attack_damage",
-      "slow"
-    }
+      "slow",
+      "nil",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "stun",
+      "slow",
+      "nil",
+    },
+    required_auras = {
+      "heal",
+      "armor",
+      "lifesteal",
+    },
   },
 
   npc_dota_hero_chaos_knight = {
     position = {1, 2},
-    combo_heroes = {
-      "strength",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "strength",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "blink",
       "stun",
-      "attack_damage"
-    }
+      "attack_damage",
+      "illusions",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "stun",
+      "slow",
+      "nil",
+    },
+    required_auras = {
+      "heal",
+      "armor",
+      "lifesteal",
+    },
   },
 
   npc_dota_hero_crystal_maiden = {
     position = {4, 5},
-    combo_heroes = {
-      "intelligence",
-      "magical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "intelligence",
+    damage_type = "magical",
+    attack_range = "ranged",
+    available_skills = {
       "stun",
       "slow",
-      "aoe"
-    }
+      "aoe",
+      "nil",
+    },
+    available_aura = "mana_regen",
+    required_skills = {
+      "attack_damage",
+      "nuke",
+      "nil",
+    },
+    required_auras = {
+      "nil",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_drow_ranger = {
     position = {1, 2},
-    combo_heroes = {
-      "agility",
-      "physical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "agility",
+    damage_type = "physical",
+    attack_range = "ranged",
+    available_skills = {
       "silence",
       "slow",
-      "nil"
-    }
+      "nil",
+      "nil",
+    },
+    available_aura = "attack_damage",
+    required_skills = {
+      "stun",
+      "slow",
+      "nil",
+    },
+    required_auras = {
+      "lifesteal",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_juggernaut = {
     position = {1, 3},
-    combo_heroes = {
-      "agility",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "agility",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "aoe",
       "attack_damage",
-      "invulnerable"
-    }
+      "invulnerable",
+      "nil",
+    },
+    available_aura = "heal",
+    required_skills = {
+      "stun",
+      "slow",
+      "aoe",
+    },
+    required_auras = {
+      "nil",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_lich = {
     position = {5, 4},
-    combo_heroes = {
-      "intelligence",
-      "magical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "intelligence",
+    damage_type = "magical",
+    attack_range = "ranged",
+    available_skills = {
       "slow",
       "mana_regen",
-      "nuke"
-    }
+      "nuke",
+      "nil",
+    },
+    available_aura = "armor",
+    required_skills = {
+      "attack_damage",
+      "slow",
+      "nuke",
+    },
+    required_auras = {
+      "nil",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_lion = {
     position = {5, 4},
-    combo_heroes = {
-      "intelligence",
-      "magical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "intelligence",
+    damage_type = "magical",
+    attack_range = "ranged",
+    available_skills = {
       "stun",
       "hex",
-      "mana_regen"
-    }
+      "mana_regen",
+      "nuke",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "attack_damage",
+      "nuke",
+      "nil",
+    },
+    required_auras = {
+      "nil",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_phantom_lancer = {
     position = {1, 3},
-    combo_heroes = {
-      "agility",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "agility",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "illusions",
       "attack_damage",
-      "nil"
-    }
+      "nil",
+      "nil",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "stun",
+      "hex",
+      "slow",
+    },
+    required_auras = {
+      "lifesteal",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_shadow_shaman = {
     position = {5, 4},
-    combo_heroes = {
-      "intelligence",
-      "magical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "intelligence",
+    damage_type = "magical",
+    attack_range = "ranged",
+    available_skills = {
       "hex",
       "stun",
-      "minions"
-    }
+      "minions",
+      "nuke",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "attack_damage",
+      "stun",
+      "nuke",
+    },
+    required_auras = {
+      "mana_regen",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_skeleton_king = {
     position = {2, 3},
-    combo_heroes = {
-      "strength",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "strength",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "attack_damage",
       "stun",
-      "nil"
-    }
+      "nil",
+      "nil",
+    },
+    available_aura = "lifesteal",
+    required_skills = {
+      "stun",
+      "nuke",
+      "hex",
+    },
+    required_auras = {
+      "heal",
+      "armor",
+      "nil",
+    },
   },
 
   npc_dota_hero_sniper = {
     position = {2, 1},
-    combo_heroes = {
-      "agility",
-      "physical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "agility",
+    damage_type = "physical",
+    attack_range = "ranged",
+    available_skills = {
       "attack_damage",
       "slow",
-      "aoe"
-    }
+      "aoe",
+      "nuke",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "stun",
+      "slow",
+      "nil",
+    },
+    required_auras = {
+      "lifesteal",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_sven = {
     position = {1, 3},
-    combo_heroes = {
-      "strength",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "strength",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "attack_damage",
       "stun",
-      "aoe"
-    }
+      "aoe",
+      "nil",
+    },
+    available_aura = "armor",
+    required_skills = {
+      "stun",
+      "slow",
+      "hex",
+    },
+    required_auras = {
+      "heal",
+      "nil",
+      "nil",
+    },
   },
 
   npc_dota_hero_ursa = {
     position = {3, 1},
-    combo_heroes = {
-      "agility",
-      "physical",
-      "melee"
-    },
-    counter_heroes = {
+    attribute = "agility",
+    damage_type = "physical",
+    attack_range = "melee",
+    available_skills = {
       "attack_damage",
       "slow",
-      "armor"
-    }
+      "armor",
+      "nil",
+    },
+    available_aura = "nil",
+    required_skills = {
+      "stun",
+      "hex",
+      "nil",
+    },
+    required_auras = {
+      "armor",
+      "heal",
+      "lifesteal",
+    },
   },
 
   npc_dota_hero_warlock = {
     position = {2, 4},
-    combo_heroes = {
-      "intelligence",
-      "magical",
-      "ranged"
-    },
-    counter_heroes = {
+    attribute = "intelligence",
+    damage_type = "magical",
+    attack_range = "ranged",
+    available_skills = {
       "stun",
       "slow",
-      "minions"
-    }
+      "minions",
+      "nil",
+    },
+    available_aura = "heal",
+    required_skills = {
+      "stun",
+      "attack_damage",
+      "nuke",
+    },
+    required_auras = {
+      "mana_regen",
+      "nil",
+      "nil",
+    },
   },
 
 }

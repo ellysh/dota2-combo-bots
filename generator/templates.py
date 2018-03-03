@@ -16,16 +16,26 @@ M.HEROES = {
 HEROES = """
   <0> = {
     position = {<1>, <2>},
-    combo_heroes = {
-      "<3>",
-      "<4>",
-      "<5>"
-    },
-    counter_heroes = {
+    attribute = "<3>",
+    damage_type = "<4>",
+    attack_range = "<5>",
+    available_skills = {
       "<6>",
       "<7>",
-      "<8>"
-    }
+      "<8>",
+      "<9>",
+    },
+    available_aura = "<10>",
+    required_skills = {
+      "<11>",
+      "<12>",
+      "<13>",
+    },
+    required_auras = {
+      "<14>",
+      "<15>",
+      "<16>",
+    },
   },
 """
 

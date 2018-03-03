@@ -7,7 +7,7 @@ RESULT_DIR="../bots/database"
 
 ./ods2csv.sh
 
-./generator.py HEROES 9 $CSV_DIR/heroes.csv > $RESULT_DIR/heroes.lua
+./generator.py HEROES 17 $CSV_DIR/heroes.csv > $RESULT_DIR/heroes.lua
 
 ./generator.py ITEM_SETS 5 $CSV_DIR/item_sets.csv > $RESULT_DIR/item_sets.lua
 
