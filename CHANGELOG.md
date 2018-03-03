@@ -1,4 +1,6 @@
 * version 1.3
+  - Change a format of the HEROES table. Now heroes skills, damage type,
+    and attack range are considered when drafting.
   - Fix priorities to attack enemy buildings. The current order is
     ancient, barracks, towers.
   - Do not use the CanBeSeen API function for checking attack and skill
