@@ -13,6 +13,8 @@ function test_Think()
   RANDOM_ENABLE = true
 
   for i = 1, 100 do
+    hero_selection.test_ResetTeamComposition(GetTeam())
+
     SELECTED_HEROES = {}
 
     RandomSeed()
