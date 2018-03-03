@@ -186,7 +186,7 @@ local function GetEnemyUnitsNearLocation(unit_type, location, radius)
 
   functions.DoWithElements(
     units,
-    function(unit)
+    function(_, unit)
       if GetUnitToLocationDistance(unit, location) <= radius then
         table.insert(result, unit)
       end
@@ -202,7 +202,7 @@ local function IsThreeEnemyHeroesOnLane(lane)
 
   functions.DoWithElements(
     units,
-    function(unit)
+    function(_, unit)
       if GetUnitToUnitDistance(unit, building)
          <= constants.MAX_ENEMY_TO_BUILDING_RADIUS then
         units_number = units_number + 1

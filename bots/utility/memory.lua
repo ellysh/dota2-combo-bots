@@ -119,7 +119,7 @@ function M.InitNeutralCampList()
 
   functions.DoWithElements(
     camps,
-    function(camp)
+    function(_, camp)
       table.insert(
         NEUTRAL_CAMP_LIST,
         {
@@ -136,7 +136,7 @@ local function NeutralCampSpawn()
 
   functions.DoWithElements(
     NEUTRAL_CAMP_LIST,
-    function(camp)
+    function(_, camp)
       camp.is_full = true
     end)
 end
