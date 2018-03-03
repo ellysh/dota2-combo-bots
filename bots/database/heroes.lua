@@ -93,7 +93,7 @@ M.HEROES = {
       "nil",
     },
     available_auras = {
-      "attack_damage"
+      "attack_damage_ranged"
     },
     required_skills = {
       "stun",
@@ -284,7 +284,7 @@ M.HEROES = {
     },
     required_auras = {
       "lifesteal",
-      "nil",
+      "attack_damage_ranged",
       "nil",
     },
   },

@@ -10,6 +10,7 @@ aoe
 armor
 assist_ally_hero
 attack_damage
+attack_damage_ranged
 attacked_enemy_building
 attacked_enemy_creep
 attacked_enemy_hero

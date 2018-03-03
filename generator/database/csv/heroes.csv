@@ -2,14 +2,14 @@ Hero;Position;;"Primary attribute";"Damage type";"Attack range";"Available skill
 " npc_dota_hero_phantom_assassin";1;2;agility;physical;melee;blink;attack_damage;slow;;;stun;slow;;heal;armor;lifesteal
 npc_dota_hero_chaos_knight;1;2;strength;physical;melee;blink;stun;attack_damage;illusions;;stun;slow;;heal;armor;lifesteal
 npc_dota_hero_crystal_maiden;4;5;intelligence;magical;ranged;stun;slow;aoe;;mana_regen;attack_damage;nuke;;;;
-npc_dota_hero_drow_ranger;1;2;agility;physical;ranged;silence;slow;;;attack_damage;stun;slow;;lifesteal;;
+npc_dota_hero_drow_ranger;1;2;agility;physical;ranged;silence;slow;;;attack_damage_ranged;stun;slow;;lifesteal;;
 npc_dota_hero_juggernaut;1;3;agility;physical;melee;aoe;attack_damage;invulnerable;;heal;stun;slow;aoe;;;
 npc_dota_hero_lich;5;4;intelligence;magical;ranged;slow;mana_regen;nuke;;armor;attack_damage;slow;nuke;;;
 npc_dota_hero_lion;5;4;intelligence;magical;ranged;stun;hex;mana_regen;nuke;;attack_damage;nuke;;;;
 npc_dota_hero_phantom_lancer;1;3;agility;physical;melee;illusions;attack_damage;;;;stun;hex;slow;lifesteal;;
 npc_dota_hero_shadow_shaman;5;4;intelligence;magical;ranged;hex;stun;minions;nuke;;attack_damage;stun;nuke;mana_regen;;
 npc_dota_hero_skeleton_king;2;3;strength;physical;melee;attack_damage;stun;;;lifesteal;stun;nuke;hex;heal;armor;
-npc_dota_hero_sniper;2;1;agility;physical;ranged;attack_damage;slow;aoe;nuke;;stun;slow;;lifesteal;;
+npc_dota_hero_sniper;2;1;agility;physical;ranged;attack_damage;slow;aoe;nuke;;stun;slow;;lifesteal;attack_damage_ranged;
 npc_dota_hero_sven;1;3;strength;physical;melee;attack_damage;stun;aoe;;armor;stun;slow;hex;heal;;
 npc_dota_hero_ursa;3;1;agility;physical;melee;attack_damage;slow;armor;;;stun;hex;;armor;heal;lifesteal
 npc_dota_hero_warlock;2;4;intelligence;magical;ranged;stun;slow;minions;;heal;stun;attack_damage;nuke;mana_regen;;
