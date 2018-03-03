@@ -41,8 +41,31 @@ local function GetAbility(bot, ability_name)
   return ability
 end
 
+local function GetAbilitiesAndItems(bot)
+  local result = {}
+
+  for i = 0, 23 do
+    local ability = bot:GetAbilityInSlot(i)
+
+    if ability ~= nil and ability:IsFullyCastable() then
+      table.insert(result, ability:GetName())
+    end
+  end
+
+  for i = 0, 16 do
+    local item = bot:GetItemInSlot(i)
+
+    if item ~= nil and item:IsFullyCastable() then
+      table.insert(result, item:GetName())
+    end
+  end
+
+  return result
+end
+
 local function GetDesiredAbilitiesList(bot)
   local result = {}
+  local abilities = GetAbilitiesAndItems(bot)
 
   -- FIXME: Iterate over bots abilities and items instead of the database table
   for ability_name, algorithms in pairs(skill_usage.SKILL_USAGE) do
