@@ -339,6 +339,7 @@ end
 M.test_GetPickedHeroesList = GetPickedHeroesList
 M.test_IsHeroPickedByTeam = IsHeroPickedByTeam
 M.test_IsHeroPicked = IsHeroPicked
+M.test_FillTeamComposition = FillTeamComposition
 M.test_GetRandomHero = GetRandomHero
 M.test_GetComboHero = GetComboHero
 M.test_IsHumanPlayersPicked = IsHumanPlayersPicked

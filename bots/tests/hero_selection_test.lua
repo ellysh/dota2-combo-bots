@@ -66,6 +66,33 @@ function test_IsHumanPlayersPicked_succeed()
   luaunit.assertTrue(hero_selection.test_IsHumanPlayersPicked())
 end
 
+function test_FillTeamComposition_succeed()
+  hero_selection.test_ResetTeamComposition(GetTeam())
+
+  SELECTED_HEROES = {}
+
+  hero_selection.test_FillTeamComposition(1, "npc_dota_hero_sven")
+
+  local team_composition = hero_selection.test_GetTeamComposition(
+    GetTeam())
+
+  luaunit.assertEquals(team_composition.positions[1], 1)
+  luaunit.assertEquals(team_composition.damage_type["physical"], 1)
+  luaunit.assertEquals(team_composition.attack_range["melee"], 1)
+  luaunit.assertEquals(team_composition.attribute["strength"], 1)
+  luaunit.assertEquals(
+    team_composition.available_skills,
+    {"attack_damage", "stun", "aoe", "nil"})
+  luaunit.assertEquals(team_composition.available_auras, {"armor"})
+  luaunit.assertEquals(
+    team_composition.required_skills,
+    {"stun", "slow", "hex"})
+  luaunit.assertEquals(
+    team_composition.required_auras,
+    {"heal", "nil", "nil"})
+  luaunit.assertEquals(team_composition.is_human_applied, false)
+end
+
 function test_ApplyHumanPlayersHeroes_succeed()
   hero_selection.test_ResetTeamComposition(GetTeam())
 
