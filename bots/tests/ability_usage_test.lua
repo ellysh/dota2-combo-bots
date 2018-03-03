@@ -64,6 +64,32 @@ function test_CalculateDesireAndTarget_fails()
   luaunit.assertEquals(target, nil)
 end
 
+function test_GetAbilitiesAndItems_ability_succeed()
+  test_RefreshBot()
+
+  ABILITY_IS_FULLY_CASTABLE = true
+  local test_ability = Ability:new("crystal_maiden_crystal_nova")
+  UNIT_ABILITIES = { test_ability }
+
+  luaunit.assertEquals(
+    ability_usage.test_GetAbilitiesAndItems(GetBot()),
+    {crystal_maiden_crystal_nova = test_ability})
+end
+
+function test_GetAbilitiesAndItems_item_succeed()
+  test_RefreshBot()
+
+  local bot = GetBot()
+  bot.inventory = { "item_tango" }
+
+  ABILITY_IS_FULLY_CASTABLE = true
+  UNIT_ABILITIES = {}
+
+  luaunit.assertEquals(
+    ability_usage.test_GetAbilitiesAndItems(bot),
+    {item_tango = Item:new("item_tango")})
+end
+
 function test_ChooseAbilityAndTarget_succeed()
   test_RefreshBot()
 

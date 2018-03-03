@@ -157,6 +157,7 @@ end
 
 -- Provide an access to local functions and lists for unit tests only
 M.test_CalculateDesireAndTarget = CalculateDesireAndTarget
+M.test_GetAbilitiesAndItems = GetAbilitiesAndItems
 M.test_GetDesiredAbilitiesList = GetDesiredAbilitiesList
 M.test_ChooseAbilityAndTarget = ChooseAbilityAndTarget
 M.test_UseAbility = UseAbility
