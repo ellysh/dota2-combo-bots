@@ -198,11 +198,21 @@ local function IsPickRequired()
          or #TEAM_COMPOSITION[team].positions < 5
 end
 
-local function PickHero(position)
+local function GetRequiredPosition()
+  local team = GetTeam()
+
+  if TEAM_COMPOSITION[team].positions == nil then
+    return 1 end
+
+  return #TEAM_COMPOSITION[team].positions + 1
+end
+
+local function PickHero()
+  local position = GetRequiredPosition()
   local hero = GetComboHero(position)
 
   if hero == nil then
-    hero = GetRandomHero(position)
+    hero = GetRandomHero()
 
     if hero == nil then
       return end
