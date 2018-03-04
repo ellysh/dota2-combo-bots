@@ -115,7 +115,6 @@ local function test_algorithm_pattern_fails(algorithm)
     ability)
 
   luaunit.assertFalse(desire)
-  luaunit.assertEquals(target, nil)
 end
 
 function test_min_hp_enemy_hero_to_kill_succeed()
@@ -362,7 +361,7 @@ end
 function test_UseOnAttackEnemyUnit_fails()
   UNIT_IS_HERO = false
 
-  test_UseOnAttackEnemyUnit_pattern(false, nil)
+  test_UseOnAttackEnemyUnit_pattern(false, {10, 10})
 end
 
 function test_use_on_attack_enemy_hero_succeed()

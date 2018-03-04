@@ -26,6 +26,9 @@ local function IsEnoughDamageToKill(npc, ability)
 end
 
 local function GetTarget(target, ability)
+  if target == nil then
+    return nil end
+
   local target_type = functions.GetAbilityTargetType(ability)
 
   if target_type == constants.ABILITY_LOCATION_TARGET then
@@ -52,10 +55,7 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
       return IsTargetable(hero) and IsEnoughDamageToKill(hero, ability)
     end)
 
-  if enemy_hero == nil then
-    return false, nil end
-
-  return true, GetTarget(enemy_hero, ability)
+  return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
 end
 
 function M.channeling_enemy_hero(bot, ability)
@@ -69,23 +69,24 @@ function M.channeling_enemy_hero(bot, ability)
       return IsTargetable(hero) and hero:IsChanneling()
     end)
 
-  if enemy_hero == nil then
-    return false, nil end
+  return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
+end
 
-  return true, GetTarget(enemy_hero, ability)
+local function AttackedEnemyUnit(bot, ability, check_function)
+  local target = bot:GetTarget()
+
+  local is_succeed =
+    (target ~= nil
+     and check_function(target)
+     and GetUnitToUnitDistance(bot, target)
+         <= common_algorithms.GetAbilityRadius(ability)
+     and IsTargetable(target))
+
+  return is_succeed, GetTarget(target, ability)
 end
 
 function M.attacked_enemy_hero(bot, ability)
-  local target = bot:GetTarget()
-
-  if target == nil
-     or not target:IsHero()
-     or common_algorithms.GetAbilityRadius(ability)
-        < GetUnitToUnitDistance(bot, target)
-     or not IsTargetable(target) then
-    return false, nil end
-
-  return true, GetTarget(target, ability)
+  return AttackedEnemyUnit(bot, ability, bot.IsHero)
 end
 
 local function IsDisabled(unit)
@@ -102,41 +103,18 @@ end
 function M.attacked_not_disabled_enemy_hero(bot, ability)
   local target = bot:GetTarget()
 
-  if target == nil
-     or not target:IsHero()
-     or common_algorithms.GetAbilityRadius(ability)
-        < GetUnitToUnitDistance(bot, target)
-     or not IsTargetable(target)
-     or IsDisabled(target) then
+  if target == nil or IsDisabled(target) then
     return false, nil end
 
-  return true, GetTarget(target, ability)
+  return AttackedEnemyUnit(bot, ability, bot.IsHero)
 end
 
 function M.attacked_enemy_creep(bot, ability)
-  local target = bot:GetTarget()
-
-  if target == nil
-     or not target:IsCreep()
-     or common_algorithms.GetAbilityRadius(ability)
-        < GetUnitToUnitDistance(bot, target)
-     or not IsTargetable(target) then
-    return false, nil end
-
-  return true, GetTarget(target, ability)
+  return AttackedEnemyUnit(bot, ability, bot.IsCreep)
 end
 
 function M.attacked_enemy_building(bot, ability)
-  local target = bot:GetTarget()
-
-  if target == nil
-     or not target:IsBuilding()
-     or common_algorithms.GetAbilityRadius(ability)
-        < GetUnitToUnitDistance(bot, target)
-     or not IsTargetable(target) then
-    return false, nil end
-
-  return true, GetTarget(target, ability)
+  return AttackedEnemyUnit(bot, ability, bot.IsBuilding)
 end
 
 local function NumberOfTargetableUnits(units)
@@ -158,10 +136,7 @@ function M.last_attacked_enemy_hero(bot, ability)
              and IsTargetable(hero)
     end)
 
-  if enemy_hero == nil then
-    return false, nil end
-
-  return true, GetTarget(enemy_hero, ability)
+  return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
 end
 
 local function ThreeAndMoreUnitsAoe(bot, ability, get_function)
@@ -263,14 +238,12 @@ local function UseOnAttackEnemyUnit(bot, ability, check_function)
 
   local target = bot:GetTarget()
 
-  if target == nil
-    or not check_function(target)
-    or radius < GetUnitToUnitDistance(bot, target) then
+  local is_succeed =
+    (target ~= nil
+     and check_function(target)
+     and GetUnitToUnitDistance(bot, target) <= radius)
 
-    return false, nil
-  end
-
-  return true, GetTarget(target, ability)
+  return is_succeed, GetTarget(target, ability)
 end
 
 function M.use_on_attack_enemy_hero(bot, ability)
@@ -322,11 +295,7 @@ function M.three_and_more_ally_creeps_self_aoe(bot, ability)
 end
 
 local function CheckSelf(bot, ability, check_function)
-  if common_algorithms[check_function](bot) then
-    return true, GetTarget(bot, ability)
-  else
-    return false, nil
-  end
+  return common_algorithms[check_function](bot), GetTarget(bot, ability)
 end
 
 function M.low_hp_self(bot, ability)
@@ -375,10 +344,7 @@ local function CheckUnit(bot, ability, get_function, check_function)
              and common_algorithms[check_function](unit)
     end)
 
-  if unit == nil then
-    return false, nil end
-
-  return true, GetTarget(unit, ability)
+  return unit ~= nil, GetTarget(unit, ability)
 end
 
 function M.low_hp_ally_hero(bot, ability)
@@ -410,10 +376,7 @@ function M.last_hit_enemy_creep(bot, ability)
              and IsLastHit(unit, ability)
     end)
 
-  if creep == nil then
-    return false, nil end
-
-  return true, GetTarget(creep, ability)
+  return creep ~= nil, GetTarget(creep, ability)
 end
 
 function M.always_self(bot, ability)
