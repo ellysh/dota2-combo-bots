@@ -277,7 +277,7 @@ M.SKILL_USAGE = {
   },
 
   sven_gods_strength = {
-      [1] = "buff_self_ult",
+      [1] = "attack_buff_self_ult",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
@@ -291,28 +291,28 @@ M.SKILL_USAGE = {
   },
 
   sven_warcry = {
-      [1] = "buff_self",
+      [1] = "physical_protection_buff_aoe_self",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
   },
 
   ursa_earthshock = {
-      [1] = "aoe_self_short",
+      [1] = "aoe_short_self",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
   },
 
   ursa_enrage = {
-      [1] = "buff_self_ult",
+      [1] = "attack_buff_self_ult",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
   },
 
   ursa_overpower = {
-      [1] = "buff_self",
+      [1] = "attack_buff_self",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
@@ -389,7 +389,7 @@ M.SKILL_USAGE = {
   },
 
   item_mask_of_madness = {
-      [1] = "attack_buff",
+      [1] = "attack_buff_self",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
@@ -410,7 +410,7 @@ M.SKILL_USAGE = {
   },
 
   item_satanic = {
-      [1] = "attack_buff",
+      [1] = "attack_buff_self",
       [2] = "nil",
       [3] = "nil",
       [4] = "nil"
