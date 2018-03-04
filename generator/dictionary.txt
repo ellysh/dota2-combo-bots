@@ -382,8 +382,7 @@ toggle_on_attack_enemy_hero
 ursa_earthshock
 ursa_enrage
 ursa_overpower
-use_on_attack_enemy_creep_aoe
-use_on_attack_enemy_creep_melee
+use_on_attack_enemy_creep
 use_on_attack_enemy_hero
 use_on_attack_enemy_with_mana_when_low_mp
 warlock_fatal_bonds

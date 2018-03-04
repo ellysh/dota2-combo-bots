@@ -284,11 +284,13 @@ function M.toggle_on_attack_enemy_hero(bot, ability)
   return false, nil
 end
 
-local function UseOnAttackEnemyUnit(
-  bot,
-  ability,
-  check_function,
-  radius)
+local function UseOnAttackEnemyUnit(bot, ability, check_function)
+
+  local ability_radius = common_algorithms.GetAbilityRadius(ability)
+  local radius = functions.ternary(
+    ability_radius ~= 0,
+    ability_radius,
+    bot:GetAttackRange())
 
   local target = bot:GetTarget()
 
@@ -303,33 +305,17 @@ local function UseOnAttackEnemyUnit(
 end
 
 function M.use_on_attack_enemy_hero(bot, ability)
-  local ability_radius = common_algorithms.GetAbilityRadius(ability)
-  local radius = functions.ternary(
-    ability_radius ~= 0,
-    ability_radius,
-    bot:GetAttackRange())
-
   return UseOnAttackEnemyUnit(
     bot,
     ability,
-    function(unit) return unit:IsHero() end,
-    radius)
+    function(unit) return unit:IsHero() end)
 end
 
-function M.use_on_attack_enemy_creep_aoe(bot, ability)
+function M.use_on_attack_enemy_creep(bot, ability)
   return UseOnAttackEnemyUnit(
     bot,
     ability,
-    function(unit) return unit:IsCreep() end,
-    ability:GetAOERadius())
-end
-
-function M.use_on_attack_enemy_creep_melee(bot, ability)
-  return UseOnAttackEnemyUnit(
-    bot,
-    ability,
-    function(unit) return unit:IsCreep() end,
-    constants.MELEE_ATTACK_RADIUS)
+    function(unit) return unit:IsCreep() end)
 end
 
 function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
@@ -340,8 +326,7 @@ function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
   return UseOnAttackEnemyUnit(
     bot,
     ability,
-    function(unit) return 0 < unit:GetMana() end,
-    common_algorithms.GetAbilityRadius(ability))
+    function(unit) return 0 < unit:GetMana() end)
 end
 
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
