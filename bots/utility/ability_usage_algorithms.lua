@@ -329,7 +329,7 @@ function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
     function(unit) return 0 < unit:GetMana() end)
 end
 
-function M.three_and_more_enemy_creeps_aoe(bot, ability)
+function M.three_and_more_enemy_creeps_self_aoe(bot, ability)
   local enemies = common_algorithms.GetEnemyCreeps(
     bot,
     ability:GetAOERadius())
@@ -337,7 +337,7 @@ function M.three_and_more_enemy_creeps_aoe(bot, ability)
   return (3 <= NumberOfTargetableUnits(enemies)), nil
 end
 
-function M.three_and_more_neutral_creeps_aoe(bot, ability)
+function M.three_and_more_neutral_creeps_self_aoe(bot, ability)
   local enemies = common_algorithms.GetNeutralCreeps(
     bot,
     ability:GetAOERadius())

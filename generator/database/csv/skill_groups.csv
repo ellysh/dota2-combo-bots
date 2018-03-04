@@ -1,7 +1,7 @@
 "Skill Group";"Any Mode";;"Team Fight";;BOT_MODE_ROAM;;BOT_MODE_TEAM_ROAM;;BOT_MODE_PUSH_TOWER;;BOT_MODE_ATTACK;;BOT_MODE_LANING;;"BOT_MODE_ROSHAN ";;BOT_MODE_FARM;;BOT_MODE_DEFEND_TOWER;;BOT_MODE_DEFEND_ALLY;;BOT_MODE_RETREAT;;"BOT_MODE_EVASIVE_MANEUVERS ";
 ally_creep_sacrifice;low_hp_ally_creep;70;;;;;;;;;;;;;;;;;;;;;;;;
 always_self;always_self;100;;;;;;;;;;;;;;;;;;;;;;;;
-aoe_self;use_on_attack_enemy_hero;;three_and_more_enemy_heroes_self_aoe;90;use_on_attack_enemy_hero;80;use_on_attack_enemy_hero;80;use_on_attack_enemy_hero;60;use_on_attack_enemy_hero;70;;;use_on_attack_enemy_creep;90;three_and_more_neutral_creeps_aoe;80;three_and_more_enemy_creeps_aoe;60;;;low_hp_self;70;;
+aoe_self;use_on_attack_enemy_hero;;three_and_more_enemy_heroes_self_aoe;90;use_on_attack_enemy_hero;80;use_on_attack_enemy_hero;80;use_on_attack_enemy_hero;60;use_on_attack_enemy_hero;70;;;use_on_attack_enemy_creep;90;three_and_more_neutral_creeps_self_aoe;80;three_and_more_enemy_creeps_self_aoe;60;;;low_hp_self;70;;
 aoe_self_ult;;;three_and_more_enemy_heroes_self_aoe;80;;;;;;;;;;;;;;;;;;;;;;
 aoe_short_self;;;use_on_attack_enemy_hero;90;use_on_attack_enemy_hero;80;use_on_attack_enemy_hero;80;use_on_attack_enemy_hero;70;use_on_attack_enemy_hero;60;;;use_on_attack_enemy_creep;;;;use_on_attack_enemy_hero;70;use_on_attack_enemy_hero;50;use_on_attack_enemy_hero;60;use_on_attack_enemy_hero;60
 attack_autocast;autocast_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
