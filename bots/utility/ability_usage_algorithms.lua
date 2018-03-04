@@ -145,17 +145,6 @@ local function NumberOfTargetableUnits(units)
     function(unit) return IsTargetable(unit) end)
 end
 
-function M.three_and_more_enemy_heroes_self_aoe(bot, ability)
-  local enemies = common_algorithms.GetEnemyHeroes(
-    bot,
-    common_algorithms.GetAbilityRadius(ability))
-
-  if 3 <= NumberOfTargetableUnits(enemies) then
-    return true, nil end
-
-  return false, nil
-end
-
 function M.last_attacked_enemy_hero(bot, ability)
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
@@ -175,7 +164,7 @@ function M.last_attacked_enemy_hero(bot, ability)
   return true, GetTarget(enemy_hero, ability)
 end
 
-local function ThreeAndMoreCreeps(bot, ability, get_function)
+local function ThreeAndMoreUnitsAoe(bot, ability, get_function)
   local cast_range = common_algorithms.GetAbilityRadius(ability)
   local enemies = common_algorithms[get_function](bot, cast_range)
 
@@ -199,36 +188,16 @@ local function ThreeAndMoreCreeps(bot, ability, get_function)
   return false, nil
 end
 
-function M.three_and_more_enemy_creeps(bot, ability)
-  return ThreeAndMoreCreeps(bot, ability, "GetEnemyCreeps")
+function M.three_and_more_enemy_creeps_aoe(bot, ability)
+  return ThreeAndMoreUnitsAoe(bot, ability, "GetEnemyCreeps")
 end
 
-function M.three_and_more_neutral_creeps(bot, ability)
-  return ThreeAndMoreCreeps(bot, ability, "GetNeutralCreeps")
+function M.three_and_more_neutral_creeps_aoe(bot, ability)
+  return ThreeAndMoreUnitsAoe(bot, ability, "GetNeutralCreeps")
 end
 
 function M.three_and_more_enemy_heroes_aoe(bot, ability)
-  local cast_range = common_algorithms.GetAbilityRadius(ability)
-  local enemies = common_algorithms.GetEnemyHeroes(bot, cast_range)
-
-  if NumberOfTargetableUnits(enemies) < 3 then
-    return false, nil end
-
-  local target = bot:FindAoELocation(
-    true,
-    true,
-    bot:GetLocation(),
-    cast_range,
-    ability:GetSpecialValueInt("radius"),
-    0,
-    ability:GetAbilityDamage())
-
-  if 3 <= target.count
-    and GetUnitToLocationDistance(bot, target.targetloc) < cast_range then
-    return true, target.targetloc
-  end
-
-  return false, nil
+  return ThreeAndMoreUnitsAoe(bot, ability, "GetEnemyHeroes")
 end
 
 function M.autocast_on_attack_enemy_hero(bot, ability)
@@ -329,20 +298,27 @@ function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
     function(unit) return 0 < unit:GetMana() end)
 end
 
-function M.three_and_more_enemy_creeps_self_aoe(bot, ability)
-  local enemies = common_algorithms.GetEnemyCreeps(
-    bot,
-    ability:GetAOERadius())
+local function ThreeAndMoreUnitsSelfAoe(bot, ability, get_function)
+  local cast_range = common_algorithms.GetAbilityRadius(ability)
+  local enemies = common_algorithms[get_function](bot, cast_range)
 
   return (3 <= NumberOfTargetableUnits(enemies)), nil
 end
 
-function M.three_and_more_neutral_creeps_self_aoe(bot, ability)
-  local enemies = common_algorithms.GetNeutralCreeps(
-    bot,
-    ability:GetAOERadius())
+function M.three_and_more_enemy_heroes_self_aoe(bot, ability)
+  return ThreeAndMoreUnitsSelfAoe(bot, ability, "GetEnemyHeroes")
+end
 
-  return (3 <= NumberOfTargetableUnits(enemies)), nil
+function M.three_and_more_enemy_creeps_self_aoe(bot, ability)
+  return ThreeAndMoreUnitsSelfAoe(bot, ability, "GetEnemyCreeps")
+end
+
+function M.three_and_more_neutral_creeps_self_aoe(bot, ability)
+  return ThreeAndMoreUnitsSelfAoe(bot, ability, "GetNeutralCreeps")
+end
+
+function M.three_and_more_ally_creeps_self_aoe(bot, ability)
+  return ThreeAndMoreUnitsSelfAoe(bot, ability, "GetAllyCreeps")
 end
 
 function M.low_hp_self(bot, ability)
@@ -442,17 +418,6 @@ function M.low_hp_ally_creep(bot, ability)
     return false, nil end
 
   return true, GetTarget(ally_creep, ability)
-end
-
-function M.three_and_more_ally_creeps_aoe(bot, ability)
-  local allies = common_algorithms.GetAllyCreeps(
-    bot,
-    ability:GetAOERadius())
-
-  if 3 <= #allies then
-    return true, nil end
-
-  return false, nil
 end
 
 local function IsLastHit(unit, ability)
