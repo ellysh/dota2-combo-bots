@@ -271,6 +271,7 @@ end
 
 function test_three_and_more_enemy_heroes_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  NEARBY_HEROES_COUNT = 3
   FIND_AOE_LOCATION_COUNT = 3
   UNIT_IS_MAGIC_IMMUNE = false
 
@@ -549,6 +550,7 @@ end
 
 function test_half_hp_ally_hero_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
+  UNIT_IS_MAGIC_IMMUNE = false
   UNIT_HAS_NEARBY_UNITS = true
 
   test_algorithm_unit_pattern_succeed(
@@ -747,6 +749,21 @@ function test_toggle_on_attack_enemy_hero_deactivate_fails()
   UNIT_IS_HERO = true
 
   test_algorithm_pattern_fails("toggle_on_attack_enemy_hero")
+end
+
+function test_group_enemy_heroes_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_IS_MAGIC_IMMUNE = false
+
+  test_algorithm_pattern_succeed("group_enemy_heroes", {10, 10})
+end
+
+function test_group_enemy_heroes_when_targets_immune_fails()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  NEARBY_HEROES_COUNT = 1
+  UNIT_IS_MAGIC_IMMUNE = true
+
+  test_algorithm_pattern_fails("group_enemy_heroes")
 end
 
 os.exit(luaunit.LuaUnit.run())

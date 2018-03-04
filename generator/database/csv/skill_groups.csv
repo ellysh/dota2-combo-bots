@@ -21,7 +21,7 @@ invisibility_self;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 magic_protection;half_hp_self;50;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;half_hp_ally_hero;60;half_hp_ally_hero;70;;;;
 mana_drain;;;;;;;;;;;use_on_attack_enemy_with_mana_when_low_mp;70;use_on_attack_enemy_with_mana_when_low_mp;70;use_on_attack_enemy_with_mana_when_low_mp;70;use_on_attack_enemy_with_mana_when_low_mp;70;;;;;;;;
 mana_regen_self;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;
-nuke;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;50;;;low_hp_ally_hero;60;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
+nuke;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;50;;;;;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
 nuke_aoe;min_hp_enemy_hero_to_kill;90;three_and_more_enemy_heroes_aoe;90;attacked_enemy_hero;70;attacked_enemy_hero;70;three_and_more_enemy_heroes_aoe;90;attacked_enemy_hero;90;three_and_more_enemy_creeps_aoe;50;attacked_enemy_creep;70;three_and_more_neutral_creeps_aoe;60;three_and_more_enemy_creeps_aoe;90;attacked_enemy_hero;70;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
 nuke_last_hit;min_hp_enemy_hero_to_kill;90;;;;;;;;;;;;;;;;;;;;;;;;
 physical_protection;half_hp_self;50;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;half_hp_ally_hero;60;half_hp_ally_hero;70;;;;
@@ -32,3 +32,4 @@ root;channeling_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;70;atta
 speedup;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 stun;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
 tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
+chain;;;group_enemy_heroes;90;group_enemy_heroes;80;group_enemy_heroes;80;group_enemy_heroes;60;group_enemy_heroes;50;;;;;;;group_enemy_heroes;60;group_enemy_heroes;30;;;;

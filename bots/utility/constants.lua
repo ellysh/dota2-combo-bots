@@ -22,6 +22,7 @@ M.MIN_TELEPORT_RADIUS = 1600
 M.MAX_ROAM_RADIUS = 4500
 M.MAX_GROUP_RADIUS = 1200 -- This is the Smoke of Deceit radius
 M.MAX_ENEMY_TO_BUILDING_RADIUS = 3000
+M.MAX_TARGET_GROUP_RADIUS = 600 -- This is a bounce distance for abilities
 
 M.MAX_ASSIST_RADIUS = 1200
 

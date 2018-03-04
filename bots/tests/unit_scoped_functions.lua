@@ -284,10 +284,8 @@ UNIT_HAS_NEARBY_ALLIES = true
 NEARBY_HEROES_COUNT = 3
 
 function Unit:GetNearbyHeroes(radius, enemies, mode)
-  if not UNIT_HAS_NEARBY_UNITS then
-    return {} end
-
-  if not UNIT_HAS_NEARBY_ALLIES and not enemies then
+  if not UNIT_HAS_NEARBY_UNITS
+     or (not UNIT_HAS_NEARBY_ALLIES and not enemies) then
     return {} end
 
   local result = {}

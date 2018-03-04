@@ -137,8 +137,8 @@ M.SKILL_USAGE = {
   },
 
   lich_chain_frost = {
-      [1] = "nuke",
-      [2] = "chain",
+      [1] = "chain",
+      [2] = "nil",
       [3] = "nil",
       [4] = "nil"
   },
@@ -319,8 +319,8 @@ M.SKILL_USAGE = {
   },
 
   warlock_fatal_bonds = {
-      [1] = "nuke",
-      [2] = "chain",
+      [1] = "chain",
+      [2] = "nil",
       [3] = "nil",
       [4] = "nil"
   },

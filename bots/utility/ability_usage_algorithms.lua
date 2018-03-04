@@ -420,6 +420,26 @@ function M.always_self(bot, ability)
   return true, GetTarget(bot, ability)
 end
 
+function M.group_enemy_heroes(bot, ability)
+  local cast_range = common_algorithms.GetAbilityRadius(ability)
+  local units = common_algorithms.GetEnemyHeroes(bot, cast_range)
+
+  if NumberOfTargetableUnits(units) < 2 then
+    return false, nil end
+
+  local unit = functions.GetElementWith(
+    units,
+    common_algorithms.CompareMaxHeroKills,
+    function(unit)
+      return IsTargetable(unit)
+             and common_algorithms.GetAllyHeroes(
+               unit,
+               constants.MAX_TARGET_GROUP_RADIUS)
+    end)
+
+  return unit ~= nil, GetTarget(unit, ability)
+end
+
 -- Provide an access to local functions and variables for unit tests only
 M.test_IsTargetable = IsTargetable
 M.test_NumberOfTargetableUnits = NumberOfTargetableUnits
