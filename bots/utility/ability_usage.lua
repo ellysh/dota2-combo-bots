@@ -13,6 +13,9 @@ local common_algorithms = require(
 local skill_usage = require(
   GetScriptDirectory() .."/database/skill_usage")
 
+local skill_groups = require(
+  GetScriptDirectory() .."/database/skill_groups")
+
 local M = {}
 
 local function CalculateDesireAndTarget(
@@ -58,28 +61,32 @@ local function GetDesiredAbilitiesList(bot)
   local abilities = GetAbilitiesAndItems(bot)
 
   for ability_name, ability in pairs(abilities) do
-    local algorithms = skill_usage.SKILL_USAGE[ability_name]
+    local ability_groups = skill_usage.SKILL_USAGE[ability_name]
 
-    if algorithms == nil then
-      do goto continue end
-    end
+    for _, ability_group in pairs(ability_groups) do
+      local algorithms = skill_groups.SKILL_GROUPS[ability_group]
 
-    for bot_mode, algorithm in functions.spairs(algorithms) do
-
-      local is_succeed, target =
-        CalculateDesireAndTarget(bot,
-          algorithm[1],
-          bot_mode,
-          ability)
-
-      local desire = functions.ternary(is_succeed, algorithm[2], 0)
-
-      if desire ~= nil and desire ~= 0 then
-         result[ability] = {target, desire}
+      if algorithms == nil then
+        do goto continue end
       end
-    end
 
-    ::continue::
+      for bot_mode, algorithm in functions.spairs(algorithms) do
+
+        local is_succeed, target =
+          CalculateDesireAndTarget(bot,
+            algorithm[1],
+            bot_mode,
+            ability)
+
+        local desire = functions.ternary(is_succeed, algorithm[2], 0)
+
+        if desire ~= nil and desire ~= 0 then
+           result[ability] = {target, desire}
+        end
+      end
+
+      ::continue::
+    end
   end
 
   return result
