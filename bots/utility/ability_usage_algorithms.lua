@@ -43,6 +43,9 @@ local function GetTarget(target, ability)
   return nil
 end
 
+-- TODO: Generalize below functions:
+-- min_hp_enemy_hero_to_kill, channeling_enemy_hero, retreat_enemy_hero
+
 function M.min_hp_enemy_hero_to_kill(bot, ability)
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
@@ -67,6 +70,27 @@ function M.channeling_enemy_hero(bot, ability)
     common_algorithms.CompareMaxHeroKills,
     function(hero)
       return IsTargetable(hero) and hero:IsChanneling()
+    end)
+
+  return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
+end
+
+local function IsUnitRetreat(bot, unit)
+  -- If unit turned away from the bot, he is retreating
+
+  return not unit:IsFacingLocation(bot:GetLocation(), 30)
+end
+
+function M.retreat_enemy_hero(bot, ability)
+  local enemies = common_algorithms.GetEnemyHeroes(
+    bot,
+    common_algorithms.GetAbilityRadius(ability))
+
+  local enemy_hero = functions.GetElementWith(
+    enemies,
+    common_algorithms.CompareMaxHeroKills,
+    function(hero)
+      return IsTargetable(hero) and IsUnitRetreat(bot, hero)
     end)
 
   return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
