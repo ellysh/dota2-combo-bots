@@ -63,7 +63,15 @@ local function GetDesiredAbilitiesList(bot)
   for ability_name, ability in pairs(abilities) do
     local ability_groups = skill_usage.SKILL_USAGE[ability_name]
 
+    if ability_groups == nil then
+      do goto continue1 end
+    end
+
     for _, ability_group in pairs(ability_groups) do
+      if ability_group == "nil" then
+        do goto continue2 end
+      end
+
       local algorithms = skill_groups.SKILL_GROUPS[ability_group]
 
       if algorithms == nil then
@@ -71,7 +79,7 @@ local function GetDesiredAbilitiesList(bot)
           bot:GetUnitName() .. " unknown skill group " ..
           tostring(ability_group))
 
-        do goto continue end
+        do goto continue2 end
       end
 
       for bot_mode, algorithm in functions.spairs(algorithms) do
@@ -89,8 +97,9 @@ local function GetDesiredAbilitiesList(bot)
         end
       end
 
-      ::continue::
+      ::continue2::
     end
+    ::continue1::
   end
 
   return result
