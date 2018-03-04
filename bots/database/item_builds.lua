@@ -60,9 +60,9 @@ M.ITEM_BUILDS = {
       "set_starting_melee",
       "nil",
       "item_phase_boots",
+      "item_bfury",
       "item_manta",
       "nil",
-      "item_diffusal_blade",
       "item_butterfly",
       "item_abyssal_blade",
       "item_skadi"}

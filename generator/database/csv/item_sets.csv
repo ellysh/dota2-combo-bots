@@ -7,6 +7,7 @@ item_ancient_janggo;item_bracer;item_sobi_mask;item_wind_lace;item_recipe_ancien
 item_arcane_boots;item_boots;item_energy_booster;;
 item_armlet;item_helm_of_iron_will;item_gloves;item_blades_of_attack;item_recipe_armlet
 item_assault;item_platemail;item_hyperstone;item_chainmail;item_recipe_assault
+item_bfury;item_pers;"  item_demon_edge";;
 item_black_king_bar;item_mithril_hammer;item_ogre_axe;item_recipe_black_king_bar;
 item_blade_mail;item_broadsword;item_chainmail;item_robe;
 item_bloodstone;item_pers;item_soul_booster;;
@@ -46,8 +47,8 @@ item_octarine_core;item_mystic_staff;item_soul_booster;;
 item_orchid;item_oblivion_staff;item_oblivion_staff;item_recipe_orchid;
 item_pers;item_void_stone;item_ring_of_health;;
 item_phase_boots;item_boots;item_blades_of_attack;item_blades_of_attack;
-item_power_treads_s;item_boots;item_gloves;"  item_belt_of_strength";
 item_power_treads_a;item_boots;item_gloves;item_boots_of_elves;
+item_power_treads_s;item_boots;item_gloves;"  item_belt_of_strength";
 item_radiance;item_relic;item_recipe_radiance;;
 item_refresher;item_pers;item_pers;item_recipe_refresher;
 item_ring_of_aquila;item_wraith_band;"  item_ring_of_basilius";;
@@ -67,6 +68,7 @@ item_veil_of_discord;item_helm_of_iron_will;item_null_talisman;item_null_talisma
 item_vladmir;item_lifesteal;item_ring_of_basilius;item_headdress;
 item_wraith_band;item_circlet;item_slippers;item_recipe_wraith_band;
 item_yasha;item_blade_of_alacrity;item_boots_of_elves;item_recipe_yasha;
+set_starting_bfury_melee;item_tango;item_flask;item_quelling_blade;item_magic_wand
 set_starting_melee;item_tango;item_flask;item_stout_shield;item_magic_wand
 set_starting_nuker;item_tango;item_null_talisman;;
 set_starting_ranged;item_tango;item_ring_of_aquila;item_magic_wand;

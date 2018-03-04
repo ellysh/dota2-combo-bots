@@ -67,6 +67,14 @@ M.ITEM_SETS = {
       "item_recipe_assault"}
   },
 
+  item_bfury = {
+    components = {
+      "item_pers",
+      "item_demon_edge",
+      "nil",
+      "nil"}
+  },
+
   item_black_king_bar = {
     components = {
       "item_mithril_hammer",
@@ -379,19 +387,19 @@ M.ITEM_SETS = {
       "nil"}
   },
 
-  item_power_treads_s = {
-    components = {
-      "item_boots",
-      "item_gloves",
-      "item_belt_of_strength",
-      "nil"}
-  },
-
   item_power_treads_a = {
     components = {
       "item_boots",
       "item_gloves",
       "item_boots_of_elves",
+      "nil"}
+  },
+
+  item_power_treads_s = {
+    components = {
+      "item_boots",
+      "item_gloves",
+      "item_belt_of_strength",
       "nil"}
   },
 
@@ -545,6 +553,14 @@ M.ITEM_SETS = {
       "item_boots_of_elves",
       "item_recipe_yasha",
       "nil"}
+  },
+
+  set_starting_bfury_melee = {
+    components = {
+      "item_tango",
+      "item_flask",
+      "item_quelling_blade",
+      "item_magic_wand"}
   },
 
   set_starting_melee = {

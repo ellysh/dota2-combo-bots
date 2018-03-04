@@ -78,6 +78,7 @@ item_armlet
 item_assault
 item_basher
 item_belt_of_strength
+item_bfury
 item_black_king_bar
 item_blade_mail
 item_blade_of_alacrity
@@ -347,6 +348,7 @@ ranged
 roam_target_is_near
 root
 roshan
+set_starting_bfury_melee
 set_starting_melee
 set_starting_nuker
 set_starting_ranged
