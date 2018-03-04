@@ -368,56 +368,34 @@ function M.half_hp_tree(bot, ability)
   return false, nil
 end
 
-function M.low_hp_ally_hero(bot, ability)
-  local ally_heroes = common_algorithms.GetAllyHeroes(
-    bot,
-    common_algorithms.GetAbilityRadius(ability))
-  local ally_hero = functions.GetElementWith(
-    ally_heroes,
-    common_algorithms.CompareMinHealth,
+local function CheckUnit(bot, ability, get_function, check_function)
+  local cast_range = common_algorithms.GetAbilityRadius(ability)
+  local units = common_algorithms[get_function](bot, cast_range)
+
+  local unit = functions.GetElementWith(
+    units,
+    nil,
     function(unit)
-      return IsTargetable(unit) and common_algorithms.IsUnitLowHp(unit)
+      return IsTargetable(unit)
+             and common_algorithms[check_function](unit)
     end)
 
-  if ally_hero == nil then
+  if unit == nil then
     return false, nil end
 
-  return true, GetTarget(ally_hero, ability)
+  return true, GetTarget(unit, ability)
+end
+
+function M.low_hp_ally_hero(bot, ability)
+  return CheckUnit(bot, ability, "GetAllyHeroes", "IsUnitLowHp")
 end
 
 function M.half_hp_ally_hero(bot, ability)
-  local ally_heroes = common_algorithms.GetAllyHeroes(
-    bot,
-    common_algorithms.GetAbilityRadius(ability))
-  local ally_hero = functions.GetElementWith(
-    ally_heroes,
-    common_algorithms.CompareMinHealth,
-    function(unit)
-      return IsTargetable(unit) and common_algorithms.IsUnitHalfHp(unit)
-    end)
-
-  if ally_hero == nil then
-    return false, nil end
-
-  return true, GetTarget(ally_hero, ability)
+  return CheckUnit(bot, ability, "GetAllyHeroes", "IsUnitHalfHp")
 end
 
 function M.low_hp_ally_creep(bot, ability)
-  local allies = common_algorithms.GetAllyCreeps(
-    bot,
-    common_algorithms.GetAbilityRadius(ability))
-
-  local ally_creep = functions.GetElementWith(
-    allies,
-    common_algorithms.CompareMinHealth,
-    function(unit)
-      return IsTargetable(unit) and common_algorithms.IsUnitLowHp(unit)
-    end)
-
-  if ally_creep == nil then
-    return false, nil end
-
-  return true, GetTarget(ally_creep, ability)
+  return CheckUnit(bot, ability, "GetAllyCreeps", "IsUnitLowHp")
 end
 
 local function IsLastHit(unit, ability)
