@@ -204,20 +204,20 @@ function test_attacked_enemy_building_not_building_fails()
   test_algorithm_pattern_fails("attacked_enemy_building")
 end
 
-function test_three_and_more_enemy_heroes_aoe_succeed()
+function test_three_and_more_enemy_heroes_self_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed(
-    "three_and_more_enemy_heroes_aoe",
+    "three_and_more_enemy_heroes_self_aoe",
     nil)
 end
 
-function test_three_and_more_enemy_heroes_aoe_not_targetable_fails()
+function test_three_and_more_enemy_heroes_self_aoe_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   UNIT_IS_MAGIC_IMMUNE = true
 
-  test_algorithm_pattern_fails("three_and_more_enemy_heroes_aoe")
+  test_algorithm_pattern_fails("three_and_more_enemy_heroes_self_aoe")
 end
 
 function test_last_attacked_enemy_hero_succeed()
@@ -234,66 +234,67 @@ function test_last_attacked_enemy_hero_not_targetable_fails()
   test_algorithm_pattern_fails("last_attacked_enemy_hero")
 end
 
-function test_three_and_more_enemy_creeps_succeed()
+function test_three_and_more_enemy_creeps_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_IS_MAGIC_IMMUNE = false
   NEARBY_CREEPS_COUNT = 3
 
   test_algorithm_pattern_succeed(
-    "three_and_more_enemy_creeps",
+    "three_and_more_enemy_creeps_aoe",
     {1.2, 3.4})
 end
 
-function test_three_and_more_enemy_creeps_not_targetable_fails()
+function test_three_and_more_enemy_creeps_aoe_not_targetable_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_IS_MAGIC_IMMUNE = true
   FIND_AOE_LOCATION_COUNT = 3
 
-  test_algorithm_pattern_fails("three_and_more_enemy_creeps")
+  test_algorithm_pattern_fails("three_and_more_enemy_creeps_aoe")
 end
 
-function test_three_and_more_enemy_creeps_two_fails()
+function test_three_and_more_enemy_creeps_aoe_two_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_IS_MAGIC_IMMUNE = false
   FIND_AOE_LOCATION_COUNT = 2
 
-  test_algorithm_pattern_fails("three_and_more_enemy_creeps")
+  test_algorithm_pattern_fails("three_and_more_enemy_creeps_aoe")
 end
 
-function test_three_and_more_neutral_creeps_succeed()
+function test_three_and_more_neutral_creeps_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed(
-    "three_and_more_neutral_creeps",
+    "three_and_more_neutral_creeps_aoe",
     {1.2, 3.4})
 end
 
-function test_three_and_more_enemy_heroes_succeed()
+function test_three_and_more_enemy_heroes_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   FIND_AOE_LOCATION_COUNT = 3
   UNIT_IS_MAGIC_IMMUNE = false
 
   test_algorithm_pattern_succeed(
-    "three_and_more_enemy_heroes",
+    "three_and_more_enemy_heroes_aoe",
     {1.2, 3.4})
 end
 
-function test_three_and_more_enemy_heroes_when_targets_immune_fails()
+function test_three_and_more_enemy_heroes_aoe_when_targets_immune_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   FIND_AOE_LOCATION_COUNT = 3
   UNIT_IS_MAGIC_IMMUNE = true
 
-  test_algorithm_pattern_fails("three_and_more_enemy_heroes")
+  test_algorithm_pattern_fails("three_and_more_enemy_heroes_aoe")
 end
 
-function test_three_and_more_enemy_heroes_when_hits_only_2_fails()
+function test_three_and_more_enemy_heroes_aoe_when_hits_only_2_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   FIND_AOE_LOCATION_COUNT = 2
   UNIT_IS_MAGIC_IMMUNE = false
 
-  test_algorithm_pattern_fails("three_and_more_enemy_heroes")
+  test_algorithm_pattern_fails("three_and_more_enemy_heroes_aoe")
 end
+
 local function test_autocast_on_attack_enemy_hero_pattern(expected_state)
   test_RefreshBot()
 
@@ -363,105 +364,39 @@ function test_UseOnAttackEnemyUnit_fails()
   test_UseOnAttackEnemyUnit_pattern(false, nil)
 end
 
-function test_use_on_attack_enemy_hero_aoe_succeed()
-  ATTACK_TARGET = Unit:new()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_IS_HERO = true
-
-  test_algorithm_pattern_succeed("use_on_attack_enemy_hero_aoe", {10, 10})
-end
-
-function test_use_on_attack_enemy_hero_aoe_no_hero_fails()
-  ATTACK_TARGET = Unit:new()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_IS_HERO = false
-
-  test_algorithm_pattern_fails("use_on_attack_enemy_hero_aoe")
-end
-
-function test_use_on_attack_enemy_hero_melee_succeed()
-  ATTACK_TARGET = Unit:new()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_IS_HERO = true
-
-  test_algorithm_pattern_succeed(
-    "use_on_attack_enemy_hero_melee",
-    {10, 10})
-end
-
-function test_use_on_attack_enemy_hero_melee_no_hero_fails()
-  UNIT_IS_HERO = false
-
-  test_algorithm_pattern_fails("use_on_attack_enemy_hero_melee")
-end
-
-function test_use_on_attack_enemy_hero_ranged_succeed()
-  ATTACK_TARGET = Unit:new()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_IS_HERO = true
-
-  test_algorithm_pattern_succeed(
-    "use_on_attack_enemy_hero_ranged",
-    {10, 10})
-end
-
-function test_use_on_attack_enemy_hero_ranged_no_hero_fails()
-  UNIT_IS_HERO = false
-
-  test_algorithm_pattern_fails("use_on_attack_enemy_hero_ranged")
-end
-
 function test_use_on_attack_enemy_hero_succeed()
   ATTACK_TARGET = Unit:new()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_succeed(
-    "use_on_attack_enemy_hero",
-    {10, 10})
+  test_algorithm_pattern_succeed("use_on_attack_enemy_hero", {10, 10})
 end
 
 function test_use_on_attack_enemy_hero_no_hero_fails()
+  ATTACK_TARGET = Unit:new()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   UNIT_IS_HERO = false
 
   test_algorithm_pattern_fails("use_on_attack_enemy_hero")
 end
 
-function test_use_on_attack_enemy_creep_aoe_succeed()
+function test_use_on_attack_enemy_creep_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ATTACK_TARGET = Unit:new()
   UNIT_IS_HERO = false
   UNIT_EXTRAPOLATED_LOCATION = {10, 10}
 
   test_algorithm_pattern_succeed(
-    "use_on_attack_enemy_creep_aoe",
+    "use_on_attack_enemy_creep",
     {10, 10})
 end
 
-function test_use_on_attack_enemy_creep_aoe_no_creep_fails()
+function test_use_on_attack_enemy_creep_no_creep_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
   ATTACK_TARGET = Unit:new()
   UNIT_IS_HERO = true
 
-  test_algorithm_pattern_fails("use_on_attack_enemy_creep_aoe")
-end
-
-function test_use_on_attack_enemy_creep_melee_succeed()
-  ATTACK_TARGET = Unit:new()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_IS_HERO = false
-
-  test_algorithm_pattern_succeed(
-    "use_on_attack_enemy_creep_melee",
-    {10, 10})
-end
-
-function test_use_on_attack_enemy_creep_melee_no_creep_fails()
-  ATTACK_TARGET = Unit:new()
-  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
-  UNIT_IS_HERO = true
-
-  test_algorithm_pattern_fails("use_on_attack_enemy_creep_melee")
+  test_algorithm_pattern_fails("use_on_attack_enemy_creep")
 end
 
 function test_use_on_attack_enemy_with_mana_when_low_mp_succeed()
@@ -484,19 +419,23 @@ function test_use_on_attack_enemy_with_mana_when_low_mp_high_mp_fails()
     "use_on_attack_enemy_with_mana_when_low_mp")
 end
 
-function test_three_and_more_enemy_creeps_aoe_succeed()
+function test_three_and_more_enemy_creeps_self_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   NEARBY_CREEPS_COUNT = 3
 
-  test_algorithm_pattern_succeed("three_and_more_enemy_creeps_aoe", nil)
+  test_algorithm_pattern_succeed(
+    "three_and_more_enemy_creeps_self_aoe",
+   nil)
 end
 
-function test_three_and_more_neutral_creeps_aoe_succeed()
+function test_three_and_more_neutral_creeps_self_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   NEARBY_CREEPS_COUNT = 3
   UNIT_IS_MAGIC_IMMUNE = false
 
-  test_algorithm_pattern_succeed("three_and_more_neutral_creeps_aoe", nil)
+  test_algorithm_pattern_succeed(
+    "three_and_more_neutral_creeps_self_aoe",
+    nil)
 end
 
 function test_low_hp_self_succeed()
@@ -632,17 +571,19 @@ function test_low_hp_ally_creep_succeed()
     "creep1")
 end
 
-function test_three_and_more_ally_creeps_aoe_succeed()
+function test_three_and_more_ally_creeps_self_aoe_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
 
-  test_algorithm_pattern_succeed("three_and_more_ally_creeps_aoe", nil)
+  test_algorithm_pattern_succeed(
+    "three_and_more_ally_creeps_self_aoe",
+    nil)
 end
 
-function test_three_and_more_ally_creeps_aoe_two_fails()
+function test_three_and_more_ally_creeps_self_aoe_two_fails()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_NO_TARGET
   NEARBY_CREEPS_COUNT = 2
 
-  test_algorithm_pattern_fails("three_and_more_ally_creeps_aoe")
+  test_algorithm_pattern_fails("three_and_more_ally_creeps_self_aoe")
 end
 
 function test_IsDisabled_succeed()
