@@ -43,10 +43,7 @@ local function GetTarget(target, ability)
   return nil
 end
 
--- TODO: Generalize below functions:
--- min_hp_enemy_hero_to_kill, channeling_enemy_hero, retreat_enemy_hero
-
-function M.min_hp_enemy_hero_to_kill(bot, ability)
+local function CheckEnemyHero(bot, ability, check_function)
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
     common_algorithms.GetAbilityRadius(ability))
@@ -54,25 +51,27 @@ function M.min_hp_enemy_hero_to_kill(bot, ability)
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
     common_algorithms.CompareMaxHeroKills,
-    function(hero)
-      return IsTargetable(hero) and IsEnoughDamageToKill(hero, ability)
-    end)
+    check_function)
 
   return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
 end
 
-function M.channeling_enemy_hero(bot, ability)
-  local enemies = common_algorithms.GetEnemyHeroes(
+function M.min_hp_enemy_hero_to_kill(bot, ability)
+  return CheckEnemyHero(
     bot,
-    common_algorithms.GetAbilityRadius(ability))
-  local enemy_hero = functions.GetElementWith(
-    enemies,
-    common_algorithms.CompareMaxHeroKills,
-    function(hero)
-      return IsTargetable(hero) and hero:IsChanneling()
+    ability,
+    function(unit)
+      return IsTargetable(unit) and IsEnoughDamageToKill(unit, ability)
     end)
+end
 
-  return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
+function M.channeling_enemy_hero(bot, ability)
+  return CheckEnemyHero(
+    bot,
+    ability,
+    function(unit)
+      return IsTargetable(unit) and unit:IsChanneling()
+    end)
 end
 
 local function IsUnitRetreat(bot, unit)
@@ -82,18 +81,12 @@ local function IsUnitRetreat(bot, unit)
 end
 
 function M.retreat_enemy_hero(bot, ability)
-  local enemies = common_algorithms.GetEnemyHeroes(
+  return CheckEnemyHero(
     bot,
-    common_algorithms.GetAbilityRadius(ability))
-
-  local enemy_hero = functions.GetElementWith(
-    enemies,
-    common_algorithms.CompareMaxHeroKills,
-    function(hero)
-      return IsTargetable(hero) and IsUnitRetreat(bot, hero)
+    ability,
+    function(unit)
+      return IsTargetable(unit) and IsUnitRetreat(bot, unit)
     end)
-
-  return enemy_hero ~= nil, GetTarget(enemy_hero, ability)
 end
 
 local function AttackedEnemyUnit(bot, ability, check_function)
