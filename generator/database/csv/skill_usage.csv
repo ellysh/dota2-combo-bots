@@ -1,68 +1,68 @@
-"Skill Name";"Any Mode";;"Team Fight";;BOT_MODE_ROAM;;BOT_MODE_TEAM_ROAM;;BOT_MODE_PUSH_TOWER;;BOT_MODE_ATTACK;;BOT_MODE_LANING;;"BOT_MODE_ROSHAN ";;BOT_MODE_FARM;;BOT_MODE_DEFEND_TOWER;;BOT_MODE_DEFEND_ALLY;;BOT_MODE_RETREAT;;"BOT_MODE_EVASIVE_MANEUVERS ";
-chaos_knight_chaos_bolt;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
-chaos_knight_phantasm;;;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;50;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-chaos_knight_reality_rift;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-crystal_maiden_crystal_nova;min_hp_enemy_hero_to_kill;90;three_and_more_enemy_heroes;90;attacked_enemy_hero;70;attacked_enemy_hero;70;three_and_more_enemy_heroes;90;attacked_enemy_hero;90;three_and_more_enemy_creeps;50;attacked_enemy_creep;70;three_and_more_neutral_creeps;60;three_and_more_enemy_creeps;90;attacked_enemy_hero;70;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
-crystal_maiden_freezing_field;;;three_and_more_enemy_heroes_aoe;80;;;;;;;;;;;;;;;;;;;;;;
-crystal_maiden_frostbite;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;90;attacked_not_disabled_enemy_hero;90;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;70;;;attacked_enemy_creep;70;;;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;80;last_attacked_enemy_hero;50;last_attacked_enemy_hero;50
-"drow_ranger_frost_arrows ";autocast_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
-"drow_ranger_trueshot ";;;three_and_more_ally_creeps_aoe;80;;;;;three_and_more_ally_creeps_aoe;70;;;;;;;;;three_and_more_ally_creeps_aoe;70;;;;;;
-"drow_ranger_wave_of_silence ";;;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;60;;;attacked_enemy_hero;60;;;;;;;attacked_enemy_hero;;attacked_enemy_hero;70;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
-item_blink;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;;;;;;;;;;;;
-item_courier;always_self;100;;;;;;;;;;;;;;;;;;;;;;;;
-item_cyclone;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;low_hp_self;60
-item_glimmer_cape;low_hp_self;50;low_hp_ally_hero;80;low_hp_ally_hero;70;low_hp_ally_hero;70;low_hp_ally_hero;70;low_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;low_hp_ally_hero;60;low_hp_ally_hero;70;low_hp_self;60;;
-item_lotus_orb;half_hp_self;50;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;half_hp_ally_hero;60;half_hp_ally_hero;70;;;;
-item_rod_of_atos;channeling_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;70;;;;;;;attacked_enemy_hero;70;attacked_enemy_hero;40;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
-item_sheepstick;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;;;attacked_not_disabled_enemy_hero;60;;;;;;;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;70;last_attacked_enemy_hero;40;last_attacked_enemy_hero;40
-juggernaut_blade_fury;;;three_and_more_enemy_heroes_aoe;90;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;60;use_on_attack_enemy_hero_aoe;70;;;use_on_attack_enemy_creep_aoe;90;three_and_more_neutral_creeps_aoe;80;three_and_more_enemy_creeps_aoe;60;;;low_hp_self;70;;
-"juggernaut_healing_ward ";low_hp_self;80;low_hp_ally_hero;70;;;low_hp_ally_hero;;;;;;;;;;;;;;low_hp_ally_hero;70;;;;
-juggernaut_omni_slash;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;80;attacked_enemy_hero;80;attacked_enemy_hero;60;attacked_enemy_hero;50;;;low_hp_ally_hero;60;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
-lich_chain_frost;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;;;attacked_enemy_hero;70;;;;
-lich_dark_ritual;low_hp_ally_creep;70;;;;;;;;;;;;;;;;;;;;;;;;
-lich_frost_armor;half_hp_self;50;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;70;half_hp_ally_hero;50;;;low_hp_ally_hero;40;low_hp_self;20;half_hp_ally_hero;60;half_hp_ally_hero;70;;;;
-lich_frost_nova;channeling_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;70;attacked_enemy_hero;80;last_attacked_enemy_hero;50;last_attacked_enemy_hero;50
-lion_finger_of_death;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;50;;;;;;;attacked_enemy_hero;60;attacked_enemy_hero;10;;;;
-lion_impale;min_hp_enemy_hero_to_kill;90;attacked_not_disabled_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;;;attacked_enemy_creep;90;attacked_enemy_creep;60;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;50;last_attacked_enemy_hero;50
-lion_mana_drain;;;;;;;;;;;use_on_attack_enemy_with_mana_when_low_mp;70;use_on_attack_enemy_with_mana_when_low_mp;70;use_on_attack_enemy_with_mana_when_low_mp;70;use_on_attack_enemy_with_mana_when_low_mp;70;;;;;;;;
-lion_voodoo;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;;;attacked_not_disabled_enemy_hero;60;;;;;;;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;70;last_attacked_enemy_hero;40;last_attacked_enemy_hero;40
-"phantom_assassin_phantom_strike ";;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-"phantom_assassin_stifling_dagger ";min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;90;last_hit_enemy_creep;50;attacked_enemy_creep;70;;;attacked_enemy_hero;60;attacked_enemy_hero;50;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
-phantom_lancer_doppelwalk;;;use_on_attack_enemy_hero_ranged;80;use_on_attack_enemy_hero_ranged;70;use_on_attack_enemy_hero_ranged;70;;;use_on_attack_enemy_hero_ranged;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-phantom_lancer_phantom_edge;autocast_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
-phantom_lancer_spirit_lance;min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;attacked_enemy_hero;60;attacked_enemy_hero;90;;;attacked_enemy_creep;70;;;attacked_enemy_hero;60;attacked_enemy_hero;50;last_attacked_enemy_hero;30;last_attacked_enemy_hero;30
-"shadow_shaman_ether_shock ";min_hp_enemy_hero_to_kill;90;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;60;attacked_enemy_hero;50;;;attacked_enemy_creep;90;;;attacked_enemy_hero;60;attacked_enemy_hero;30;;;;
-"shadow_shaman_mass_serpent_ward ";;;attacked_enemy_hero;90;;;;;attacked_enemy_building;90;;;;;;;;;;90;;;;;;
-shadow_shaman_shackles;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;50;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;50;;;;;;;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;10;;;;
-"shadow_shaman_voodoo ";channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;;;attacked_not_disabled_enemy_hero;60;;;;;;;attacked_not_disabled_enemy_hero;70;attacked_not_disabled_enemy_hero;70;last_attacked_enemy_hero;40;last_attacked_enemy_hero;40
-skeleton_king_hellfire_blast;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
-sniper_assassinate;min_hp_enemy_hero_to_kill;90;;;;;;;;;;;;;;;;;;;;;;;;
-sniper_shrapnel;;;three_and_more_enemy_heroes;80;attacked_enemy_hero;50;attacked_enemy_hero;50;three_and_more_enemy_creeps;70;attacked_enemy_hero;30;three_and_more_enemy_creeps;50;attacked_enemy_creep;90;three_and_more_neutral_creeps;70;three_and_more_enemy_creeps;70;attacked_enemy_hero;10;;;;
-sven_gods_strength;;;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;50;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-sven_storm_bolt;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
-sven_warcry;;;use_on_attack_enemy_hero_melee;80;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;70;;;use_on_attack_enemy_hero_melee;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-"ursa_earthshock ";;;use_on_attack_enemy_hero_aoe;90;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;80;use_on_attack_enemy_hero_aoe;70;use_on_attack_enemy_hero_aoe;60;;;use_on_attack_enemy_creep_melee;;;;use_on_attack_enemy_hero_aoe;70;use_on_attack_enemy_hero_aoe;50;use_on_attack_enemy_hero_aoe;60;use_on_attack_enemy_hero_aoe;60
-ursa_enrage;;;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;50;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_hero_melee;50;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-ursa_overpower;;;use_on_attack_enemy_hero_melee;80;use_on_attack_enemy_hero_melee;70;use_on_attack_enemy_hero_melee;70;;;use_on_attack_enemy_hero_melee;60;;;use_on_attack_enemy_creep_melee;90;;;;;;;;;;
-warlock_fatal_bonds;;;attacked_enemy_hero;80;;;;;attacked_enemy_hero;60;attacked_enemy_hero;60;;;;;;;attacked_enemy_hero;60;;;;;;
-warlock_rain_of_chaos;;;three_and_more_enemy_heroes;90;;;;;three_and_more_enemy_heroes;90;attacked_enemy_hero;20;;;;;;;three_and_more_enemy_heroes;90;;;;;;
-warlock_shadow_word;;;attacked_enemy_hero;75;attacked_enemy_hero;90;attacked_enemy_hero;90;attacked_enemy_hero;70;attacked_enemy_hero;70;;;attacked_enemy_creep;70;attacked_enemy_creep;60;attacked_enemy_hero;75;low_hp_ally_hero;80;low_hp_self;90;half_hp_self;90
-warlock_upheaval;;;three_and_more_enemy_heroes;70;attacked_enemy_hero;60;attacked_enemy_hero;60;three_and_more_enemy_heroes;50;attacked_enemy_hero;40;;;;;;;three_and_more_enemy_heroes;70;;;;;;
-item_tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
-item_clarity;low_mp_self;50;;;;;;;;;;;;;;;;;;;;;;;;
-item_magic_stick;low_hp_charges_self;70;;;;;;;;;;;;;;;;;;;;;;;;
-item_magic_wand;low_hp_charges_self;70;;;;;;;;;;;;;;;;;;;;;;;;
-"  item_black_king_bar";;;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;70;half_hp_self;50;;;;;;;half_hp_self;60;;;low_hp_self;70;;
-item_armlet;toggle_on_attack_enemy_hero;90;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
-item_mask_of_madness;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
-item_phase_boots;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
-item_butterfly;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
-item_satanic;use_on_attack_enemy_hero;50;;;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;;;;
-item_invis_sword;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
-item_manta;;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;;;low_hp_self;60;half_hp_self;50
-item_diffusal_blade;;;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;30
-item_abyssal_blade;;;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;30
-"  item_hurricane_pike";;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;low_hp_ally_hero;30;last_attacked_enemy_hero;60;;
-item_force_staff;;;use_on_attack_enemy_hero;50;;;;;;;;;;;attacked_enemy_creep;90;;;;;low_hp_ally_hero;50;low_hp_self;40;half_hp_self;40
-item_flask;low_hp_self;70;;;;;;;;;;;;;;;;;;;;;;;;
-item_cheese;low_hp_self;90;;;;;;;;;;;;;;;;;;;;;;;;
+"Skill Name";"Skill Groups";;;
+chaos_knight_chaos_bolt;stun;" ";" ";" "
+chaos_knight_phantasm;illusions;;;
+chaos_knight_reality_rift;blink;;;
+crystal_maiden_crystal_nova;nuke_aoe;;;
+crystal_maiden_freezing_field;aoe_self_ult;;;
+crystal_maiden_frostbite;stun;;;
+"drow_ranger_frost_arrows ";attack_autocast;;;
+"drow_ranger_trueshot ";creeps_buff;;;
+"drow_ranger_wave_of_silence ";silence;;;
+item_blink;blink;;;
+item_courier;always_self;;;
+item_cyclone;stun;;;
+item_glimmer_cape;invisibility;;;
+item_lotus_orb;magic_protection;;;
+item_rod_of_atos;root;;;
+item_sheepstick;hex;;;
+juggernaut_blade_fury;aoe_self;;;
+"juggernaut_healing_ward ";heal;;;
+juggernaut_omni_slash;nuke;;;
+lich_chain_frost;nuke;chain;;
+lich_dark_ritual;ally_creep_sacrifice;;;
+lich_frost_armor;physical_protection;;;
+lich_frost_nova;stun;nuke;;
+lion_finger_of_death;nuke;;;
+lion_impale;stun;;;
+lion_mana_drain;mana_drain;slow;;
+lion_voodoo;hex;;;
+"phantom_assassin_phantom_strike ";blink;;;
+"phantom_assassin_stifling_dagger ";nuke;slow;;
+phantom_lancer_doppelwalk;blink;;;
+phantom_lancer_phantom_edge;attack_autocast;;;
+phantom_lancer_spirit_lance;nuke;;;
+"shadow_shaman_ether_shock ";nuke;;;
+"shadow_shaman_mass_serpent_ward ";attack_ward;;;
+shadow_shaman_shackles;stun;;;
+"shadow_shaman_voodoo ";hex;;;
+skeleton_king_hellfire_blast;stun;;;
+sniper_assassinate;nuke_last_hit;;;
+sniper_shrapnel;nuke_aoe;;;
+sven_gods_strength;buff_self_ult;;;
+sven_storm_bolt;nuke;;;
+sven_warcry;buff_self;;;
+"ursa_earthshock ";aoe_self_short;;;
+ursa_enrage;buff_self_ult;;;
+ursa_overpower;buff_self;;;
+warlock_fatal_bonds;nuke;chain;;
+warlock_rain_of_chaos;nuke_aoe;;;
+warlock_shadow_word;nuke;;;
+warlock_upheaval;nuke_aoe;slow;;
+item_tango;tango;;;
+item_clarity;mana_regen_self;;;
+item_magic_stick;heal_charges_self;;;
+item_magic_wand;heal_charges_self;;;
+"  item_black_king_bar";magic_protection;;;
+item_armlet;attack_toggle;;;
+item_mask_of_madness;attack_buff;;;
+item_phase_boots;speedup;;;
+item_butterfly;speedup;;;
+item_satanic;attack_buff;;;
+item_invis_sword;invisibility_self;;;
+item_manta;illusions;;;
+item_diffusal_blade;stun;;;
+item_abyssal_blade;stun;;;
+"  item_hurricane_pike";push;;;
+item_force_staff;push;;;
+item_flask;heal_self;;;
+item_cheese;heal_self;;;

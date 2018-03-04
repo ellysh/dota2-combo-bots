@@ -126,13 +126,28 @@ SKILL_BUILDS = """
 #---------------------------------------------
 
 SKILL_USAGE_HEADER = """
-local algorithms = require(
-  GetScriptDirectory() .. "/utility/ability_usage_algorithms")
-
 M.SKILL_USAGE = {
 """
 
 SKILL_USAGE = """
+  <0> = {
+      [1] = "<1>",
+      [2] = "<2>",
+      [3] = "<3>",
+      [4] = "<4>"
+  },
+"""
+
+#---------------------------------------------
+
+SKILL_GROUPS_HEADER = """
+local algorithms = require(
+  GetScriptDirectory() .. "/utility/ability_usage_algorithms")
+
+M.SKILL_GROUPS = {
+"""
+
+SKILL_GROUPS = """
   <0> = {
       any_mode = {algorithms["<1>"], <2>},
       team_fight = {algorithms["<3>"], <4>},
