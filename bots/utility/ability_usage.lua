@@ -135,10 +135,7 @@ local function CancelAbility(bot)
      or ability:GetName() == "item_tpscroll" then
     return end
 
-  local radius = functions.ternary(
-    ability:GetCastRange() ~= 0,
-    ability:GetCastRange(),
-    ability:GetAOERadius())
+  local radius = common_algorithms.GetAbilityRadius(ability)
 
   if #common_algorithms.GetEnemyHeroes(bot, radius) == 0 then
 

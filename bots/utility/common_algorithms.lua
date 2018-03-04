@@ -53,6 +53,13 @@ local function GetNormalizedRadius(radius)
     radius)
 end
 
+function M.GetAbilityRadius(ability)
+  return functions.ternary(
+    ability:GetCastRange() ~= 0,
+    ability:GetCastRange(),
+    ability:GetAOERadius())
+end
+
 function M.GetEnemyHeroes(bot, radius)
   return bot:GetNearbyHeroes(
     GetNormalizedRadius(radius),
