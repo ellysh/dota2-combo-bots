@@ -321,37 +321,32 @@ function M.three_and_more_ally_creeps_self_aoe(bot, ability)
   return ThreeAndMoreUnitsSelfAoe(bot, ability, "GetAllyCreeps")
 end
 
-function M.low_hp_self(bot, ability)
-  if common_algorithms.IsUnitLowHp(bot) then
+local function CheckSelf(bot, ability, check_function)
+  if common_algorithms[check_function](bot) then
     return true, GetTarget(bot, ability)
+  else
+    return false, nil
   end
+end
 
-  return false, nil
+function M.low_hp_self(bot, ability)
+  return CheckSelf(bot, ability, "IsUnitLowHp")
 end
 
 function M.low_hp_charges_self(bot, ability)
-  if common_algorithms.IsUnitLowHp(bot)
-     and 0 < ability:GetCurrentCharges() then
-    return true, GetTarget(bot, ability)
+  if 0 < ability:GetCurrentCharges() then
+    return CheckSelf(bot, ability, "IsUnitLowHp")
+  else
+    return false, nil
   end
-
-  return false, nil
 end
 
 function M.low_mp_self(bot, ability)
-  if common_algorithms.IsUnitLowMp(bot) then
-    return true, GetTarget(bot, ability)
-  end
-
-  return false, nil
+  return CheckSelf(bot, ability, "IsUnitLowMp")
 end
 
 function M.half_hp_self(bot, ability)
-  if common_algorithms.IsUnitHalfHp(bot) then
-    return true, GetTarget(bot, ability)
-  end
-
-  return false, nil
+  return CheckSelf(bot, ability, "IsUnitHalfHp")
 end
 
 function M.half_hp_tree(bot, ability)
