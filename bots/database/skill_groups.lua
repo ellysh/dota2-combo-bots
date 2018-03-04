@@ -39,12 +39,12 @@ M.SKILL_GROUPS = {
   },
 
   aoe_self = {
-      any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["three_and_more_enemy_heroes_aoe"], 90},
-      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_aoe"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_aoe"], 80},
-      BOT_MODE_PUSH_TOWER = {algorithms["use_on_attack_enemy_hero_aoe"], 60},
-      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_aoe"], 70},
+      any_mode = {algorithms["use_on_attack_enemy_hero"], nil},
+      team_fight = {algorithms["three_and_more_enemy_heroes_self_aoe"], 90},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["use_on_attack_enemy_hero"], 60},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero"], 70},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_aoe"], 90},
       BOT_MODE_FARM = {algorithms["three_and_more_neutral_creeps_aoe"], 80},
@@ -56,7 +56,7 @@ M.SKILL_GROUPS = {
 
   aoe_self_ult = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["three_and_more_enemy_heroes_aoe"], 80},
+      team_fight = {algorithms["three_and_more_enemy_heroes_self_aoe"], 80},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
       BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
@@ -72,18 +72,18 @@ M.SKILL_GROUPS = {
 
   aoe_short_self = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["use_on_attack_enemy_hero_aoe"], 90},
-      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_aoe"], 80},
-      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_aoe"], 80},
-      BOT_MODE_PUSH_TOWER = {algorithms["use_on_attack_enemy_hero_aoe"], 70},
-      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_aoe"], 60},
+      team_fight = {algorithms["use_on_attack_enemy_hero"], 90},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero"], 80},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero"], 80},
+      BOT_MODE_PUSH_TOWER = {algorithms["use_on_attack_enemy_hero"], 70},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], nil},
       BOT_MODE_FARM = {algorithms["nil"], nil},
-      BOT_MODE_DEFEND_TOWER = {algorithms["use_on_attack_enemy_hero_aoe"], 70},
-      BOT_MODE_DEFEND_ALLY = {algorithms["use_on_attack_enemy_hero_aoe"], 50},
-      BOT_MODE_RETREAT = {algorithms["use_on_attack_enemy_hero_aoe"], 60},
-      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["use_on_attack_enemy_hero_aoe"], 60}
+      BOT_MODE_DEFEND_TOWER = {algorithms["use_on_attack_enemy_hero"], 70},
+      BOT_MODE_DEFEND_ALLY = {algorithms["use_on_attack_enemy_hero"], 50},
+      BOT_MODE_RETREAT = {algorithms["use_on_attack_enemy_hero"], 60},
+      BOT_MODE_EVASIVE_MANEUVERS  = {algorithms["use_on_attack_enemy_hero"], 60}
   },
 
   attack_autocast = {
@@ -119,7 +119,7 @@ M.SKILL_GROUPS = {
   },
 
   attack_buff_self_ult = {
-      any_mode = {algorithms["three_and_more_enemy_heroes_aoe"], 70},
+      any_mode = {algorithms["three_and_more_enemy_heroes_self_aoe"], 70},
       team_fight = {algorithms["nil"], nil},
       BOT_MODE_ROAM = {algorithms["nil"], nil},
       BOT_MODE_TEAM_ROAM = {algorithms["nil"], nil},
@@ -168,11 +168,11 @@ M.SKILL_GROUPS = {
 
   blink = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["use_on_attack_enemy_hero_ranged"], 80},
-      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_ranged"], 70},
-      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_ranged"], 70},
+      team_fight = {algorithms["use_on_attack_enemy_hero"], 80},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero"], 70},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero"], 70},
       BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
-      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_ranged"], 60},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero"], 60},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
@@ -264,11 +264,11 @@ M.SKILL_GROUPS = {
 
   illusions = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["use_on_attack_enemy_hero_melee"], 70},
-      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_melee"], 50},
-      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_melee"], 50},
+      team_fight = {algorithms["use_on_attack_enemy_hero"], 70},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero"], 50},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero"], 50},
       BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
-      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_melee"], 50},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero"], 50},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},
@@ -376,10 +376,10 @@ M.SKILL_GROUPS = {
 
   nuke_aoe = {
       any_mode = {algorithms["min_hp_enemy_hero_to_kill"], 90},
-      team_fight = {algorithms["three_and_more_enemy_heroes"], 90},
+      team_fight = {algorithms["three_and_more_enemy_heroes_aoe"], 90},
       BOT_MODE_ROAM = {algorithms["attacked_enemy_hero"], 70},
       BOT_MODE_TEAM_ROAM = {algorithms["attacked_enemy_hero"], 70},
-      BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_enemy_heroes"], 90},
+      BOT_MODE_PUSH_TOWER = {algorithms["three_and_more_enemy_heroes_aoe"], 90},
       BOT_MODE_ATTACK = {algorithms["attacked_enemy_hero"], 90},
       BOT_MODE_LANING = {algorithms["three_and_more_enemy_creeps"], 50},
       BOT_MODE_ROSHAN = {algorithms["attacked_enemy_creep"], 70},
@@ -424,11 +424,11 @@ M.SKILL_GROUPS = {
 
   physical_protection_buff_aoe_self = {
       any_mode = {algorithms["nil"], nil},
-      team_fight = {algorithms["use_on_attack_enemy_hero_melee"], 70},
-      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero_melee"], 50},
-      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero_melee"], 50},
+      team_fight = {algorithms["use_on_attack_enemy_hero"], 70},
+      BOT_MODE_ROAM = {algorithms["use_on_attack_enemy_hero"], 50},
+      BOT_MODE_TEAM_ROAM = {algorithms["use_on_attack_enemy_hero"], 50},
       BOT_MODE_PUSH_TOWER = {algorithms["nil"], nil},
-      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero_melee"], 50},
+      BOT_MODE_ATTACK = {algorithms["use_on_attack_enemy_hero"], 50},
       BOT_MODE_LANING = {algorithms["nil"], nil},
       BOT_MODE_ROSHAN = {algorithms["use_on_attack_enemy_creep_melee"], 90},
       BOT_MODE_FARM = {algorithms["nil"], nil},

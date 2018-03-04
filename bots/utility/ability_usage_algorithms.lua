@@ -145,10 +145,10 @@ local function NumberOfTargetableUnits(units)
     function(unit) return IsTargetable(unit) end)
 end
 
-function M.three_and_more_enemy_heroes_aoe(bot, ability)
+function M.three_and_more_enemy_heroes_self_aoe(bot, ability)
   local enemies = common_algorithms.GetEnemyHeroes(
     bot,
-    ability:GetAOERadius())
+    common_algorithms.GetAbilityRadius(ability))
 
   if 3 <= NumberOfTargetableUnits(enemies) then
     return true, nil end
@@ -207,7 +207,7 @@ function M.three_and_more_neutral_creeps(bot, ability)
   return ThreeAndMoreCreeps(bot, ability, "GetNeutralCreeps")
 end
 
-function M.three_and_more_enemy_heroes(bot, ability)
+function M.three_and_more_enemy_heroes_aoe(bot, ability)
   local cast_range = common_algorithms.GetAbilityRadius(ability)
   local enemies = common_algorithms.GetEnemyHeroes(bot, cast_range)
 
@@ -302,36 +302,18 @@ local function UseOnAttackEnemyUnit(
   return true, GetTarget(target, ability)
 end
 
-function M.use_on_attack_enemy_hero_aoe(bot, ability)
-  return UseOnAttackEnemyUnit(
-    bot,
-    ability,
-    function(unit) return unit:IsHero() end,
-    ability:GetAOERadius())
-end
-
-function M.use_on_attack_enemy_hero_melee(bot, ability)
-  return UseOnAttackEnemyUnit(
-    bot,
-    ability,
-    function(unit) return unit:IsHero() end,
-    constants.MELEE_ATTACK_RADIUS)
-end
-
-function M.use_on_attack_enemy_hero_ranged(bot, ability)
-  return UseOnAttackEnemyUnit(
-    bot,
-    ability,
-    function(unit) return unit:IsHero() end,
-    common_algorithms.GetAbilityRadius(ability))
-end
-
 function M.use_on_attack_enemy_hero(bot, ability)
+  local ability_radius = common_algorithms.GetAbilityRadius(ability)
+  local radius = functions.ternary(
+    ability_radius ~= 0,
+    ability_radius,
+    bot:GetAttackRange())
+
   return UseOnAttackEnemyUnit(
     bot,
     ability,
     function(unit) return unit:IsHero() end,
-    bot:GetAttackRange())
+    radius)
 end
 
 function M.use_on_attack_enemy_creep_aoe(bot, ability)
