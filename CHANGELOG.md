@@ -1,4 +1,7 @@
 * version 1.3
+  - Add the SKILL_GROUPS table. Now each skill can refer to several
+    skill groups. This allows using the skill in a different manner
+    depending on the situation.
   - Change a format of the HEROES table. Now heroes skills, damage type,
     and attack range are considered when drafting.
   - Fix priorities to attack enemy buildings. The current order is
