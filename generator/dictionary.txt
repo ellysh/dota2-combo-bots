@@ -43,6 +43,7 @@ drow_ranger_trueshot
 drow_ranger_wave_of_silence
 enemy_hero_was_seen
 enough_damage_and_health_for_roshan
+group_enemy_heroes
 half_hp_ally_hero
 half_hp_self
 half_hp_tree
@@ -345,6 +346,7 @@ player_on_mid
 player_on_top
 push
 ranged
+retreat_enemy_hero
 roam_target_is_near
 root
 roshan

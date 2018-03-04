@@ -33,3 +33,4 @@ speedup;;;;;;;;;;;;;;;;;;;;;;;low_hp_self;90;;
 stun;channeling_enemy_hero;90;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;80;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;;;attacked_enemy_creep;90;attacked_enemy_creep;70;attacked_not_disabled_enemy_hero;60;attacked_not_disabled_enemy_hero;60;last_attacked_enemy_hero;60;last_attacked_enemy_hero;60
 tango;half_hp_tree;50;;;;;;;;;;;;;;;;;;;;;;;;
 chain;;;group_enemy_heroes;90;group_enemy_heroes;80;group_enemy_heroes;80;group_enemy_heroes;60;group_enemy_heroes;50;;;;;;;group_enemy_heroes;60;group_enemy_heroes;30;;;;
+slow;;;retreat_enemy_hero;70;retreat_enemy_hero;60;retreat_enemy_hero;60;retreat_enemy_hero;50;retreat_enemy_hero;50;;;;;;;retreat_enemy_hero;50;;;;;;
