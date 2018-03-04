@@ -67,6 +67,10 @@ local function GetDesiredAbilitiesList(bot)
       local algorithms = skill_groups.SKILL_GROUPS[ability_group]
 
       if algorithms == nil then
+        logger.Print("GetDesiredAbilitiesList() - " ..
+          bot:GetUnitName() .. " unknown skill group " ..
+          tostring(ability_group))
+
         do goto continue end
       end
 
