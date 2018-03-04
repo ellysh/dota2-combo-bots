@@ -43,7 +43,7 @@ end
 function M.min_hp_enemy_hero_to_kill(bot, ability)
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
@@ -61,7 +61,7 @@ end
 function M.channeling_enemy_hero(bot, ability)
   local enemies = common_algorithms.GetEnemyHeroes(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
   local enemy_hero = functions.GetElementWith(
     enemies,
     common_algorithms.CompareMaxHeroKills,
@@ -80,7 +80,8 @@ function M.attacked_enemy_hero(bot, ability)
 
   if target == nil
      or not target:IsHero()
-     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or common_algorithms.GetAbilityRadius(ability)
+        < GetUnitToUnitDistance(bot, target)
      or not IsTargetable(target) then
     return false, nil end
 
@@ -103,7 +104,8 @@ function M.attacked_not_disabled_enemy_hero(bot, ability)
 
   if target == nil
      or not target:IsHero()
-     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or common_algorithms.GetAbilityRadius(ability)
+        < GetUnitToUnitDistance(bot, target)
      or not IsTargetable(target)
      or IsDisabled(target) then
     return false, nil end
@@ -116,7 +118,8 @@ function M.attacked_enemy_creep(bot, ability)
 
   if target == nil
      or not target:IsCreep()
-     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or common_algorithms.GetAbilityRadius(ability)
+        < GetUnitToUnitDistance(bot, target)
      or not IsTargetable(target) then
     return false, nil end
 
@@ -128,7 +131,8 @@ function M.attacked_enemy_building(bot, ability)
 
   if target == nil
      or not target:IsBuilding()
-     or ability:GetCastRange() < GetUnitToUnitDistance(bot, target)
+     or common_algorithms.GetAbilityRadius(ability)
+        < GetUnitToUnitDistance(bot, target)
      or not IsTargetable(target) then
     return false, nil end
 
@@ -155,7 +159,7 @@ end
 function M.last_attacked_enemy_hero(bot, ability)
   local enemy_heroes = common_algorithms.GetEnemyHeroes(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
 
   local enemy_hero = functions.GetElementWith(
     enemy_heroes,
@@ -172,7 +176,7 @@ function M.last_attacked_enemy_hero(bot, ability)
 end
 
 local function ThreeAndMoreCreeps(bot, ability, get_function)
-  local cast_range = ability:GetCastRange()
+  local cast_range = common_algorithms.GetAbilityRadius(ability)
   local enemies = common_algorithms[get_function](bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
@@ -204,7 +208,7 @@ function M.three_and_more_neutral_creeps(bot, ability)
 end
 
 function M.three_and_more_enemy_heroes(bot, ability)
-  local cast_range = ability:GetCastRange()
+  local cast_range = common_algorithms.GetAbilityRadius(ability)
   local enemies = common_algorithms.GetEnemyHeroes(bot, cast_range)
 
   if NumberOfTargetableUnits(enemies) < 3 then
@@ -319,7 +323,7 @@ function M.use_on_attack_enemy_hero_ranged(bot, ability)
     bot,
     ability,
     function(unit) return unit:IsHero() end,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
 end
 
 function M.use_on_attack_enemy_hero(bot, ability)
@@ -355,7 +359,7 @@ function M.use_on_attack_enemy_with_mana_when_low_mp(bot, ability)
     bot,
     ability,
     function(unit) return 0 < unit:GetMana() end,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
 end
 
 function M.three_and_more_enemy_creeps_aoe(bot, ability)
@@ -424,7 +428,7 @@ end
 function M.low_hp_ally_hero(bot, ability)
   local ally_heroes = common_algorithms.GetAllyHeroes(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
   local ally_hero = functions.GetElementWith(
     ally_heroes,
     common_algorithms.CompareMinHealth,
@@ -441,7 +445,7 @@ end
 function M.half_hp_ally_hero(bot, ability)
   local ally_heroes = common_algorithms.GetAllyHeroes(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
   local ally_hero = functions.GetElementWith(
     ally_heroes,
     common_algorithms.CompareMinHealth,
@@ -458,7 +462,7 @@ end
 function M.low_hp_ally_creep(bot, ability)
   local allies = common_algorithms.GetAllyCreeps(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
 
   local ally_creep = functions.GetElementWith(
     allies,
@@ -491,7 +495,7 @@ end
 function M.last_hit_enemy_creep(bot, ability)
   local creeps = common_algorithms.GetEnemyCreeps(
     bot,
-    ability:GetCastRange())
+    common_algorithms.GetAbilityRadius(ability))
 
   local creep = functions.GetElementWith(
     creeps,
