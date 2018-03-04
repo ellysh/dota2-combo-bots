@@ -230,6 +230,12 @@ function Unit:Action_ClearActions()
   UNIT_CLEAR_ACTIONS = true
 end
 
+UNIT_IS_FACING_LOCATION = true
+
+function Unit:IsFacingLocation(location, degree)
+  return UNIT_IS_FACING_LOCATION
+end
+
 -----------------------------------------------
 
 Item = {}

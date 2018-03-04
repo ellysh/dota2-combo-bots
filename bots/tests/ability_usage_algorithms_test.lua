@@ -148,6 +148,14 @@ function test_channeling_enemy_hero_no_hero_fails()
   test_algorithm_pattern_fails("channeling_enemy_hero")
 end
 
+function test_retreat_enemy_hero_enemy_hero_succeed()
+  ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_POINT
+  UNIT_IS_FACING_LOCATION = false
+  UNIT_HAS_NEARBY_UNITS = true
+
+  test_algorithm_pattern_succeed("retreat_enemy_hero", {10, 10})
+end
+
 function test_attacked_enemy_hero_succeed()
   ABILITY_BEHAVIOR = ABILITY_BEHAVIOR_UNIT_TARGET
   UNIT_CAN_BE_SEEN = true
