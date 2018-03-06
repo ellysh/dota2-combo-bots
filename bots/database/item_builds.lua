@@ -57,7 +57,7 @@ M.ITEM_BUILDS = {
 
   npc_dota_hero_juggernaut = {
     items = {
-      "set_starting_melee",
+      "set_starting_bfury_melee",
       "nil",
       "item_phase_boots",
       "item_bfury",
