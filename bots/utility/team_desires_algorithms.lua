@@ -262,8 +262,11 @@ function M.is_mid_building_focused_by_enemies()
 end
 
 function M.enough_damage_and_health_for_roshan()
-  local ROSHAN_HEALTH = 5500
-  local ROSHAN_DAMAGE = 65
+  -- The factor value is required to tune the bots strength when
+  -- they decide to kill Roshan.
+  local FACTOR = 1.2
+  local ROSHAN_HEALTH = 5500 * FACTOR
+  local ROSHAN_DAMAGE = 65 * FACTOR
 
   local ally_heroes = GetUnitList(UNIT_LIST_ALLIED_HEROES)
 
