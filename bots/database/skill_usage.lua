@@ -472,6 +472,20 @@ M.SKILL_USAGE = {
       [4] = "nil"
   },
 
+  item_arcane_boots = {
+      [1] = "mana_regen_self",
+      [2] = "nil",
+      [3] = "nil",
+      [4] = "nil"
+  },
+
+  item_soul_ring = {
+      [1] = "mana_regen_self",
+      [2] = "nil",
+      [3] = "nil",
+      [4] = "nil"
+  },
+
 }
 
 return M

@@ -66,3 +66,5 @@ item_abyssal_blade;stun;;;
 item_force_staff;push;;;
 item_flask;heal_self;;;
 item_cheese;heal_self;;;
+item_arcane_boots;mana_regen_self;;;
+item_soul_ring;mana_regen_self;;;
