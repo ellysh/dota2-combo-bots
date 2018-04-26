@@ -169,6 +169,7 @@ item_recipe_ancient_janggo
 item_recipe_armlet
 item_recipe_assault
 item_recipe_basher
+item_recipe_bfury
 item_recipe_black_king_bar
 item_recipe_buckler
 item_recipe_cyclone
@@ -181,6 +182,7 @@ item_recipe_headdress
 item_recipe_kaya
 item_recipe_lesser_crit
 item_recipe_maelstrom
+item_recipe_magic_wand
 item_recipe_manta
 item_recipe_mekansm
 item_recipe_mjollnir

@@ -5,8 +5,8 @@ M.ITEM_SETS = {
 
   item_basher = {
     components = {
-      "item_javelin",
       "item_belt_of_strength",
+      "item_mithril_hammer",
       "item_recipe_basher",
       "nil"}
   },
@@ -71,7 +71,7 @@ M.ITEM_SETS = {
     components = {
       "item_pers",
       "item_demon_edge",
-      "nil",
+      "item_recipe_bfury",
       "nil"}
   },
 
@@ -165,8 +165,8 @@ M.ITEM_SETS = {
 
   item_force_staff = {
     components = {
+      "item_ring_of_regen",
       "item_staff_of_wizardry",
-      "item_ring_of_health",
       "item_recipe_force_staff",
       "nil"}
   },
@@ -269,9 +269,9 @@ M.ITEM_SETS = {
 
   item_maelstrom = {
     components = {
+      "item_javelin",
       "item_mithril_hammer",
-      "item_gloves",
-      "item_recipe_maelstrom",
+      "nil",
       "nil"}
   },
 
@@ -279,8 +279,8 @@ M.ITEM_SETS = {
     components = {
       "item_branches",
       "item_branches",
-      "item_enchanted_mango",
-      "item_magic_stick"}
+      "item_magic_stick",
+      "item_recipe_magic_wand"}
   },
 
   item_manta = {
@@ -325,9 +325,9 @@ M.ITEM_SETS = {
 
   item_monkey_king_bar = {
     components = {
-      "item_hyperstone",
+      "item_quarterstaff",
       "item_javelin",
-      "item_javelin",
+      "item_demon_edge",
       "nil"}
   },
 
