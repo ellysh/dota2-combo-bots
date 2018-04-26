@@ -1,3 +1,6 @@
+* version 1.3a
+  - Fix items receipts according to the 7.14 patch.
+
 * version 1.3
   - Add the SKILL_GROUPS table. Now each skill can refer to several
     skill groups. This allows using the skill in a different manner
