@@ -41,17 +41,18 @@ local function IsBeginningOfMatch()
   return DotaTime() < 0
 end
 
-local function IsRuneAppeared()
-  local time = DotaTime()
-  local last_appear = time - (time % (2 * 60))
-
-  -- Bot moves to a rune at 8 seconds before it appears
-  return 112 <= (time - last_appear)
-end
-
 local function IsPowerRune(rune)
   return rune == RUNE_POWERUP_1
          or rune == RUNE_POWERUP_2
+end
+
+local function IsRuneAppeared(rune)
+  local spawn_time = functions.ternary(IsPowerRune(rune), 2, 5)
+  local time = DotaTime()
+  local last_appear = time - (time % (spawn_time * 60))
+
+  -- Bot moves to a rune at 8 seconds before it appears
+  return 112 <= (time - last_appear)
 end
 
 function GetDesire()
@@ -80,7 +81,7 @@ function GetDesire()
   end
 
   if GetRuneStatus(rune) == RUNE_STATUS_MISSING
-     and not IsRuneAppeared() then
+     and not IsRuneAppeared(rune) then
     return 0 end
 
   if GetRuneStatus(rune) == RUNE_STATUS_AVAILABLE then
