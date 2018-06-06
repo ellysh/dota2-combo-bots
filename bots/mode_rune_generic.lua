@@ -9,6 +9,9 @@ local common_algorithms = require(
 
 local M = {}
 
+local NEXT_BOUNTY_RUNE_TIME = 0
+local NEXT_POWER_RUNE_TIME = functions.GetMinutes(2)
+
 local RUNES = {
   RUNE_POWERUP_1,
   RUNE_POWERUP_2,
@@ -47,15 +50,33 @@ local function IsPowerRune(rune)
 end
 
 local function IsRuneAppeared(rune)
-  local spawn_time = functions.ternary(IsPowerRune(rune), 2, 5)
-  local time = DotaTime()
-  local last_appear = time - (time % (spawn_time * 60))
+  local RUNE_CONTROL_TIME = 5
+  local time = DotaTime() + RUNE_CONTROL_TIME
 
-  -- Bot moves to a rune at 8 seconds before it appears
-  return 112 <= (time - last_appear)
+  if IsPowerRune(rune) then
+    return NEXT_POWER_RUNE_TIME <= time
+  else
+    return NEXT_BOUNTY_RUNE_TIME <= time
+  end
+end
+
+local function UpdateGetRuneTime()
+  local time = DotaTime()
+
+  if NEXT_BOUNTY_RUNE_TIME <= time then
+    NEXT_BOUNTY_RUNE_TIME = NEXT_BOUNTY_RUNE_TIME
+                            + functions.GetMinutes(5)
+  end
+
+  if NEXT_POWER_RUNE_TIME <= time then
+    NEXT_POWER_RUNE_TIME = NEXT_POWER_RUNE_TIME
+                           + functions.GetMinutes(2)
+  end
 end
 
 function GetDesire()
+  UpdateGetRuneTime()
+
   local bot = GetBot()
   local rune, distance = GetClosestRune(bot)
 

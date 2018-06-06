@@ -10,7 +10,7 @@ function test_GetDesire_when_rune_missing_negative()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = 40
+  TIME = 5
   RUNE_LOCATION = {20, 20}
 
   luaunit.assertEquals(GetDesire(), 0)
@@ -51,7 +51,7 @@ function test_GetDesire_when_rune_appear_soon_positive()
   test_RefreshBot()
 
   RUNE_STATUS = RUNE_STATUS_MISSING
-  TIME = 1 * 60 + 52
+  TIME = 4 * 60 + 55
   RUNE_LOCATION = {20, 20}
   UNIT_MODE = BOT_MODE_NONE
 

@@ -367,6 +367,10 @@ function M.IsEnemy(unit)
   return unit:GetTeam() ~= GetTeam()
 end
 
+function M.GetMinutes(minute)
+  return minute * 60
+end
+
 -- Provide an access to local functions for unit tests only
 M.test_IsFlagSet = IsFlagSet
 M.test_GetNormalizedDesire = GetNormalizedDesire
