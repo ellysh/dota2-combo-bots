@@ -31,7 +31,8 @@ def print_footer(table):
   sys.stdout.write(t.FOOTER)
 
 def get_value(line, index):
-  return line[index].strip() if line[index] else 'nil'
+  value = line[index].strip()
+  return value if value else 'nil'
 
 def print_element(table, column_number, line):
   element = get_variable(table, "")

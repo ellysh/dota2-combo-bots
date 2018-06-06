@@ -5,9 +5,9 @@ M.SKILL_USAGE = {
 
   chaos_knight_chaos_bolt = {
       [1] = "stun",
-      [2] = "",
-      [3] = "",
-      [4] = ""
+      [2] = "nil",
+      [3] = "nil",
+      [4] = "nil"
   },
 
   chaos_knight_phantasm = {
