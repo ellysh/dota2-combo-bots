@@ -1,3 +1,7 @@
+* version 1.3b
+  - Fix timings for bounty runes (5 minutes) according to the 7.15 patch.
+  - Fix a bug with Chaos Knight skills.
+
 * version 1.3a
   - Fix items receipts according to the 7.14 patch.
 
