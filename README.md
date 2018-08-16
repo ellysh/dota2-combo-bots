@@ -1,6 +1,6 @@
 # Dota 2 Combo Bots 1.3b version
 
-*This project is still in a developing stage.*
+*This project is closed and no longer supported.*
 
 These are bots for Dota 2 and a toolkit to configure them.
 
